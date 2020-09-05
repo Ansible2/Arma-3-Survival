@@ -22,19 +22,19 @@ waitUntil { scriptDone _basepoint };
 ["<t size = '.5'>Ready</t>", 0, 0, 0.5, 0] remoteExec ["BIS_fnc_dynamicText", 0];
 
 publicVariable "bulwarkBox";
-publicVariable "PARATROOP_CLASS";
-publicVariable "BULWARK_SUPPORTITEMS";
-publicVariable "BULWARK_BUILDITEMS";
-publicVariable "PLAYER_STARTWEAPON";
-publicVariable "PLAYER_STARTMAP";
-publicVariable "PLAYER_STARTNVG";
-publicVariable "PISTOL_HOSTILES";
-publicVariable "DOWN_TIME";
-publicVariable "RESPAWN_TICKETS";
-publicVariable "RESPAWN_TIME";
+publicVariable "BLWK_paratroopClasses";
+publicVariable "BLWK_supports_array";
+publicVariable "BLWK_buildableObjects_array";
+publicVariable "BLWK_startWithPistol";
+publicVariable "BLWK_startWithMap";
+publicVariable "BLWK_startWithNVGs";
+publicVariable "BLWK_maxPistolOnlyWaves";
+publicVariable "BLWK_timeBetweenRounds";
+publicVariable "BLWK_numRespawnTickets";
+publicVariable "BLWK_respawnTime";
 publicVariable "PLAYER_OBJECT_LIST";
 publicVariable "MIND_CONTROLLED_AI";
-publicVariable "SCORE_RANDOMBOX";
+publicVariable "BLWK_costToSpinRandomBox";
 
 //determine if Support Menu is available
 _supportParam = ("SUPPORT_MENU" call BIS_fnc_getParamValue);
@@ -58,9 +58,9 @@ publicVariable 'TEAM_DAMAGE';
 HITMARKERPARAM = ("HUD_POINT_HITMARKERS" call BIS_fnc_getParamValue);
 publicVariable 'HITMARKERPARAM';
 
-_dayTimeHours = DAY_TIME_TO - DAY_TIME_FROM;
+_dayTimeHours = BLWK_timeOfDayMax - BLWK_timeOfDayMin;
 _randTime = floor random _dayTimeHours;
-_timeToSet = DAY_TIME_FROM + _randTime;
+_timeToSet = BLWK_timeOfDayMin + _randTime;
 setDate [2018, 7, 1, _timeToSet, 0];
 
 //[] execVM "revivePlayers.sqf";

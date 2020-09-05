@@ -72,8 +72,8 @@ if ((attkWave >= _armourStartWave && (floor random carChance) == 1) || (attkWave
 	};
 };
 
-_noOfPlayers = 1 max floor ((playersNumber west) * HOSTILE_TEAM_MULTIPLIER);
-_multiplierBase = HOSTILE_MULTIPLIER;
+_noOfPlayers = 1 max floor ((playersNumber west) * BLWK_enemiesPerPlayerMultiplier);
+_multiplierBase = BLWK_enemiesPerWaveMultiplier;
 _SoldierMulti = attkWave / 5;
 
 if (attkWave <= 2) then {
@@ -82,20 +82,20 @@ if (attkWave <= 2) then {
 
 _squadCount = floor (attkWave * _multiplierBase);
 for ("_i") from 1 to (floor (attkWave * _multiplierBase)) do {
-	_script = [HOSTILE_LEVEL_1, attkWave, _noOfPlayers, HOSTILE_LEVEL_1_POINT_SCORE] execVM "hostiles\spawnSquad.sqf";
+	_script = [BLWK_enemyClasses_level_1, attkWave, _noOfPlayers, BLWK_pointMulti_men_level1] execVM "hostiles\spawnSquad.sqf";
 	waitUntil {scriptDone _script};
 };
 
 if (attkWave > 6) then {
 	for ("_i") from 0 to (floor (_SoldierMulti)) do {
-		_script = [HOSTILE_LEVEL_2, attkWave, _noOfPlayers, HOSTILE_LEVEL_2_POINT_SCORE] execVM "hostiles\spawnSquad.sqf";
+		_script = [BLWK_enemyClasses_level_2, attkWave, _noOfPlayers, BLWK_pointMulti_men_level2] execVM "hostiles\spawnSquad.sqf";
 		waitUntil {scriptDone _script};
 	};
 };
 
 if (attkWave > 12) then {
 	for ("_i") from 0 to (floor (_SoldierMulti)) do {
-		_script = [HOSTILE_LEVEL_3, attkWave, _noOfPlayers, HOSTILE_LEVEL_3_POINT_SCORE] execVM "hostiles\spawnSquad.sqf";
+		_script = [BLWK_enemyClasses_level_3, attkWave, _noOfPlayers, BLWK_pointMulti_men_level3] execVM "hostiles\spawnSquad.sqf";
 		waitUntil {scriptDone _script};
 	};
 };

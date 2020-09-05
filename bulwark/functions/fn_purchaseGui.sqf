@@ -17,7 +17,7 @@ waitUntil {!isNull (findDisplay 9999);};
 _ctrl = (findDisplay 9999) displayCtrl 1500;
 {
     _ctrl lbAdd format [_listFormat, _x select 0, _x select 1],;
-} forEach BULWARK_BUILDITEMS;
+} forEach BLWK_buildableObjects_array;
 
 
 
@@ -31,7 +31,7 @@ SUPPORTMENU = missionNamespace getVariable "SUPPORTMENU";
 if (SUPPORTMENU) then {
   {
       _ctrl lbAdd format [_listFormat, _x select 0, _x select 1],;
-  } forEach BULWARK_SUPPORTITEMS;
+  } forEach BLWK_supports_array;
 }else{
   _ctrl lbAdd " ";
   _ctrl lbAdd "";
@@ -42,8 +42,8 @@ if (SUPPORTMENU) then {
 
 ((findDisplay 9999) displayCtrl 1500) ctrlAddEventHandler ['LBSelChanged', {
 _index = lbCurSel 1500;
-_picture = getText (configFile >> "CfgVehicles" >> ((BULWARK_BUILDITEMS select _index) select 2) >> "editorPreview");
-/**   getText ((BULWARK_BUILDITEMS select _index) select 2)    editorPreview = "EFM_modular_base\data\preview\EFM_beam_wood_v_1_5m.jpg";**/
+_picture = getText (configFile >> "CfgVehicles" >> ((BLWK_buildableObjects_array select _index) select 2) >> "editorPreview");
+/**   getText ((BLWK_buildableObjects_array select _index) select 2)    editorPreview = "EFM_modular_base\data\preview\EFM_beam_wood_v_1_5m.jpg";**/
 ctrlSetText [1502, _picture];
 
 }]

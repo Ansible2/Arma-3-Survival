@@ -45,7 +45,7 @@ while {true} do {
           if (isNull objectParent _AItoCheck) then {
             deleteVehicle _AItoCheck;
           }else{
-            if (nearestPlayerDistance >= BULWARK_RADIUS) then {
+            if (nearestPlayerDistance >= BLWK_playAreaRadius) then {
               objectParent _AItoCheck setDamage 1;
             };
           };

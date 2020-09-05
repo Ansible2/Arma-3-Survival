@@ -35,7 +35,7 @@ if (!SUPPORTMENU) then {
 		_satSupport = _this select 0;
 		_player = _this select 1;
 		[_satSupport] remoteExec ['removeAllActions', 0];
-		_pointsMulti = ('SCORE_KILL' call BIS_fnc_getParamValue);
+		_pointsMulti = ('BLWK_pointsForKill' call BIS_fnc_getParamValue);
 		if (!SUPPORTMENU) then {
 			['TaskAssigned',['Support','Support Menu Unlocked at Bulwark Box']] remoteExec ['BIS_fnc_showNotification', 0];
 			['comNoise'] remoteExec ['playSound', 0];
@@ -73,7 +73,7 @@ _houseLoot = 0;
 _roomCount = 0;
 {
 	_houseCount = _houseCount + 1;
-	if (_houseCount mod LOOT_HOUSE_DISTRIBUTION == 0) then {
+	if (_houseCount mod BLWK_loot_cityDistribution == 0) then {
 		_houseLoot = _houseLoot + 1;
 
 		_lootBulding = _x;
@@ -82,68 +82,68 @@ _roomCount = 0;
 		_roomCount = -1;
 		{
 			_roomCount = _roomCount + 1;
-			if (_roomCount mod LOOT_ROOM_DISTRIBUTION == 0) then {
+			if (_roomCount mod BLWK_loot_roomDistribution == 0) then {
 				if (!(_x isEqualTo droneRoom) && !(_x isEqualTo satRoom) && !(_x isEqualTo pointsLootRoom)) then {
 					_lootRoomPos = _x;
 					_lootHolder = "WeaponHolderSimulated_Scripted" createVehicle _lootRoomPos;
-					if (LOOT_WHITELIST_MODE != 1) then {
+					if (BLWK_loot_whiteListMode != 1) then {
 						switch (floor random 6) do {
 							case 0: {
-								_weapon = selectRandom LOOT_WEAPON_POOL;
+								_weapon = selectRandom BLWK_loot_weaponClasses;
 								_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
 								_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, 1];
 								_lootHolder addWeaponCargoGlobal [_weapon, 1];
 							};
 							case 1: {
-								_weapon = selectRandom LOOT_WEAPON_POOL;
+								_weapon = selectRandom BLWK_loot_weaponClasses;
 								_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
 								_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, 1 + (floor random 3)];
 							};
 							case 2: {
-								_clothes = selectRandom LOOT_APPAREL_POOL;
+								_clothes = selectRandom BLWK_loot_clothingClasses;
 								_lootHolder addItemCargoGlobal [_clothes, 1];
 							};
 							case 3: {
-								_items = selectRandom LOOT_ITEM_POOL;
+								_items = selectRandom BLWK_loot_itemClasses;
 								_lootHolder addItemCargoGlobal [_items, 1];
 							};
 							case 4: {
-								_backpack = selectRandom LOOT_STORAGE_POOL;
+								_backpack = selectRandom BLWK_loot_backpackClasses;
 								_lootHolder addBackpackCargoGlobal [_backpack, 1];
 							};
 							case 5: {
-								_explosive = selectRandom LOOT_EXPLOSIVE_POOL;
+								_explosive = selectRandom BLWK_loot_explosiveClasses;
 								_lootHolder addMagazineCargoGlobal [_explosive, 1 + (floor random 3)];
 							};
 						};
 					};
-					if (LOOT_WHITELIST_MODE > 0) then {
+					if (BLWK_loot_whiteListMode > 0) then {
 						switch (floor random 6) do {
 							case 0: {
-								_weapon = selectRandom LOOT_WHITELIST_WEAPON;
+								_weapon = selectRandom BLWK_whitelist_weaponClasses;
 								_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
 								_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, 1];
 								_lootHolder addWeaponCargoGlobal [_weapon, 1];
 							};
 							case 1: {
-								_weapon = selectRandom LOOT_WHITELIST_WEAPON;
+								_weapon = selectRandom BLWK_whitelist_weaponClasses;
 								_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
 								_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, 1 + (floor random 3)];
 							};
 							case 2: {
-								_clothes = selectRandom LOOT_WHITELIST_APPAREL;
+								_clothes = selectRandom BLWK_whitelist_clothingClasses;
 								_lootHolder addItemCargoGlobal [_clothes, 1];
 							};
 							case 3: {
-								_items = selectRandom LOOT_WHITELIST_ITEM;
+								_items = selectRandom BLWK_whitelist_itemClasses;
 								_lootHolder addItemCargoGlobal [_items, 1];
 							};
 							case 4: {
-								_backpack = selectRandom LOOT_WHITELIST_STORAGE;
+								_backpack = selectRandom BLWK_whitelist_backpackClasses;
 								_lootHolder addBackpackCargoGlobal [_backpack, 1];
 							};
 							case 5: {
-								_explosive = selectRandom LOOT_WHITELIST_EXPLOSIVE;
+								_explosive = selectRandom BLWK_whitelist_explosiveClasses;
 								_lootHolder addMagazineCargoGlobal [_explosive, 1 + (floor random 3)];
 							};
 						};

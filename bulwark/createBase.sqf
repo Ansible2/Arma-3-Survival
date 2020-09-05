@@ -32,7 +32,7 @@ _bulMon setDir 180;
 
 _isWater = true;
 while {_isWater} do {
-	_bulwarkLocation = [BULWARK_LOCATIONS, BULWARK_RADIUS] call bulwark_fnc_bulwarkLocation;
+	_bulwarkLocation = [BLWK_locations, BLWK_playAreaRadius] call bulwark_fnc_bulwarkLocation;
 	bulwarkRoomPos = _bulwarkLocation select 0;
 	bulwarkCity = _bulwarkLocation select 1;
 	bulwarkBox setPosASL bulwarkRoomPos;
@@ -43,8 +43,8 @@ publicVariable "bulwarkCity";
 
 //bulwarkBox addWeaponCargoGlobal["hgun_P07_F",10];
 //bulwarkBox addMagazineCargoGlobal ["16Rnd_9x21_Mag",20];
-if(BULWARK_MEDIKITS > 0) then {
-	bulwarkBox addItemCargoGlobal ["Medikit", BULWARK_MEDIKITS];
+if(BLWK_numMedKits > 0) then {
+	bulwarkBox addItemCargoGlobal ["Medikit", BLWK_numMedKits];
 };
 
 //Add actions to Bulwark Box
@@ -118,10 +118,10 @@ if(count _hits > 0) then {
 
 _marker1 = createMarker ["Mission Area", bulwarkCity];
 "Mission Area" setMarkerShape "ELLIPSE";
-"Mission Area" setMarkerSize [BULWARK_RADIUS, BULWARK_RADIUS];
+"Mission Area" setMarkerSize [BLWK_playAreaRadius, BLWK_playAreaRadius];
 "Mission Area" setMarkerColor "ColorWhite";
 
-lootHouses = bulwarkCity nearObjects ["House", BULWARK_RADIUS];
+lootHouses = bulwarkCity nearObjects ["House", BLWK_playAreaRadius];
 
 [] execVM "bulwark\fakToMedkit.sqf";
 
@@ -137,14 +137,14 @@ lootBox = createVehicle ["Land_WoodenBox_F", _lootBoxRoom, [], 4];
 publicVariable "lootBox";
 [lootBox, ["<t color='#00ffff'>" + "Pickup", "bulwark\moveSpinBox.sqf"]] remoteExec ["addAction", 0, true];
 [lootBox, [
-	format ["<t color='#FF0000'>Spin the box! %1p</t>", SCORE_RANDOMBOX], "
+	format ["<t color='#FF0000'>Spin the box! %1p</t>", BLWK_costToSpinRandomBox], "
 		lootBoxPos    = getPos lootBox;
 		lootBoxPosATL = getPosATL lootBox;
 		lootBoxDir    = getDir lootBox;
 		_player = _this select 1;
 		_points = _player getVariable 'killPoints';
-		if(_points >= SCORE_RANDOMBOX) then {
-			[_player, SCORE_RANDOMBOX] remoteExec ['killPoints_fnc_spend', 2];
+		if(_points >= BLWK_costToSpinRandomBox) then {
+			[_player, BLWK_costToSpinRandomBox] remoteExec ['killPoints_fnc_spend', 2];
 			[[lootBoxPos, lootBoxPosATL, lootBoxDir], 'loot\spin\main.sqf'] remoteExec ['execVM', 2];
 		};
 	"

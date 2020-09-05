@@ -193,7 +193,7 @@ class Params
 		default = 0;
 	};
 
-	class HOSTILE_MULTIPLIER
+	class BLWK_enemiesPerWaveMultiplier
 	{
 		title = "Number of hostiles per wave";
 		values[] = {0.5,1,2,3};
@@ -201,7 +201,7 @@ class Params
 		default = 1;
 	};
 
-	class HOSTILE_TEAM_MULTIPLIER
+	class BLWK_enemiesPerPlayerMultiplier
 	{
 		title = "Extra hostiles per player";
 		values[] = {50, 100, 150, 200};
@@ -209,7 +209,7 @@ class Params
 		default = 50;
 	};
 
-	class PISTOL_HOSTILES
+	class BLWK_maxPistolOnlyWaves
 	{
 		title = "Hostiles only use pistols until wave";
 		values[] = {0, 1, 2, 3, 4, 5, 10, 15, 25, 30};
@@ -225,7 +225,7 @@ class Params
 		default = 0;
 	};
 
-	class DOWN_TIME
+	class BLWK_timeBetweenRounds
 	{
 		title = "Time between rounds";
 		values[] = {0, 15, 30, 60, 90, 120, 180, 240, 300};
@@ -233,7 +233,7 @@ class Params
 		default = 60;
 	};
 
-	class MAX_WAVES
+	class BLWK_maxNumWaves
 	{
 		title = "How Many Waves";
 		values[] = {"infinite", 20, 30, 40};
@@ -241,7 +241,7 @@ class Params
 		default = "infinite";
 	};
 
-	class BULWARK_MEDIKIT
+	class BLWK_numMedKits
 	{
 		title = "Medikits in Bulwark";
 		values[] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
@@ -249,7 +249,7 @@ class Params
 		default = 3;
 	};
 
-	class PLAYER_STARTMAP
+	class BLWK_startWithMap
 	{
 		title = "Start with map";
 		values[] = {0, 1};
@@ -257,7 +257,7 @@ class Params
 		default = 1;
 	};
 
-	class PLAYER_STARTWEAPON
+	class BLWK_startWithPistol
 	{
 		title = "Players start with pistol";
 		values[] = {0, 1};
@@ -265,7 +265,7 @@ class Params
 		default = 0;
 	};
 
-	class PLAYER_STARTNVG
+	class BLWK_startWithNVGs
 	{
 		title = "Players start with NVG";
 		values[] = {0, 1};
@@ -273,7 +273,7 @@ class Params
 		default = 0;
 	};
 
-	class SPECIAL_WAVES
+	class BLWK_useSpecialWaves
 	{
 		title = "Special Waves - suicide bombers, etc";
 		values[] = {0, 1};
@@ -321,7 +321,7 @@ class Params
 		default = 0;
 	};
 
-	class BULWARK_RADIUS
+	class BLWK_playAreaRadius
 	{
 		title = "Mission area size";
 		values[] = {50, 100, 150, 200, 250};
@@ -329,7 +329,7 @@ class Params
 		default = 150;
 	};
 
-	class BULWARK_MINSIZE
+	class BLWK_minSpawnRoomSize
 	{
 		title = "Minimum spawn room size";
 		values[] = {10, 13, 15, 18, 20};
@@ -337,7 +337,7 @@ class Params
 		default = 13;
 	};
 
-	class BULWARK_LANDRATIO
+	class BLWK_minLandToWaterRatio
 	{
 		title = "Minimum land area (To avoid spawning on a dock)";
 		values[] = {60, 70, 80, 90, 100};
@@ -345,7 +345,7 @@ class Params
 		default = 80;
 	};
 
-	class LOOT_HOUSE_DENSITY
+	class BLWK_loot_houseDensity
 	{
 		title = "Minimum number of buildings in Bulwark radius";
 		values[] = {5, 10, 15, 20, 30};
@@ -353,7 +353,7 @@ class Params
 		default = 10;
 	};
 
-	class LOOT_HOUSE_DISTRIBUTION
+	class BLWK_loot_cityDistribution
 	{
 		title = "Loot distribution";
 		values[] = {1, 2, 3, 4};
@@ -361,7 +361,7 @@ class Params
 		default = 2;
 	};
 
-	class LOOT_ROOM_DISTRIBUTION
+	class BLWK_loot_roomDistribution
 	{
 		title = "Loot density";
 		values[] = {1, 2, 3, 4};
@@ -369,7 +369,7 @@ class Params
 		default = 2;
 	};
 
-	class LOOT_SUPPLYDROP
+	class BLWK_supplyDropRadius
 	{
 		title = "Supply drop distance from centre";
 		values[] = {0, 25, 50, 75};
@@ -377,7 +377,7 @@ class Params
 		default = 25;
 	};
 
-	class DAY_TIME_FROM
+	class BLWK_timeOfDayMin
 	{
 		title = "Earliest time of day";
 		values[] = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22};
@@ -385,7 +385,7 @@ class Params
 		default = 8;
 	};
 
-	class DAY_TIME_TO
+	class BLWK_timeOfDayMax
 	{
 		title = "Latest time of day";
 		values[] = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22};
@@ -425,7 +425,7 @@ class Params
 		default = 1;
 	};
 
-	class SCORE_KILL
+	class BLWK_pointsForKill
 	{
 		title = "Points per kill";
 		values[] = {10, 50, 100, 150, 200, 300};
@@ -433,7 +433,7 @@ class Params
 		default = 100;
 	};
 
-	class SCORE_HIT
+	class BLWK_pointsForHit
 	{
 		title = "Points per hit";
 		values[] = {0, 10, 20, 50, 100};
@@ -441,7 +441,7 @@ class Params
 		default = 20;
 	};
 
-	class SCORE_DAMAGE_BASE
+	class BLWK_pointsMultiForDamage
 	{
 		title = "Damage bonus points";
 		values[] = {0, 10, 20, 50, 100};
@@ -449,7 +449,7 @@ class Params
 		default = 20;
 	};
 
-	class PARATROOP_COUNT
+	class BLWK_paratrooperCount
 	{
 		title = "Paratrooper count";
 		values[] = {1, 2, 3, 4, 5, 6};
@@ -492,7 +492,7 @@ class Params
 		function = "bis_fnc_paramReviveRequiredItems";
 	};
 
-	class RESPAWN_TICKETS
+	class BLWK_numRespawnTickets
 	{
 		title = "Tickets";
 		values[] = {0, 5, 10, 15, 20};
@@ -500,7 +500,7 @@ class Params
 		default = 0;
 	};
 
-	class RESPAWN_TIME
+	class BLWK_respawnTime
 	{
 		title = "Respawn Time";
 		values[] = {0, 5, 10, 20, 30};

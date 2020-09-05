@@ -48,10 +48,10 @@ if(!isNil "nightWave") then {
 
 _respawnTickets = [west] call BIS_fnc_respawnTickets;
 if (_respawnTickets <= 0) then {
-	RESPAWN_TIME = 99999;
-	publicVariable "RESPAWN_TIME";
+	BLWK_respawnTime = 99999;
+	publicVariable "BLWK_respawnTime";
 };
-[RESPAWN_TIME] remoteExec ["setPlayerRespawnTime", 0];
+[BLWK_respawnTime] remoteExec ["setPlayerRespawnTime", 0];
 
 missionNamespace setVariable ["buildPhase", false, true];
 

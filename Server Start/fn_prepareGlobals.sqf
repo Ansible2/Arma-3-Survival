@@ -9,10 +9,11 @@
 /* Attacker Waves */
 
 // List_Bandits, List_ParaBandits, List_OPFOR, List_INDEP, List_NATO, List_Viper
+// cipher comment: why the fuck use global vars to initialize global vars and then not clear the memory?
 BLWK_enemyClasses_level_1 = List_Bandits;  // Wave 0 >
 BLWK_enemyClasses_level_2 = List_OPFOR;    // Wave 5 >
 BLWK_enemyClasses_level_3 = List_Viper;    // Wave 10 >
-BLWK_enemyClasses_armor = List_Armour;//expects vehicles
+BLWK_enemyClasses_armor = List_Armour;      //expects vehicles
 BLWK_enemyClasses_armedCars = List_ArmedCars; //expects vehicles
 
 BLWK_enemiesPerWaveMultiplier = ("BLWK_enemiesPerWaveMultiplier" call BIS_fnc_getParamValue);  // How many hostiles per wave (waveCount x BLWK_enemiesPerWaveMultiplier)
@@ -26,14 +27,14 @@ BLWK_maxPistolOnlyWaves = ("BLWK_maxPistolOnlyWaves" call BIS_fnc_getParamValue)
 // *IMPORTANT* If you get an error using List_SpecificPoint it means that there isn't a building that qualifies. Turning down the "Minimum spawn room size" parameter might help.
 BLWK_locations = List_AllCities;
 
-BLWK_playAreaRadius = ("BLWK_playAreaRadius" call BIS_fnc_getParamValue);
+BLWK_playAreaRadius = ("BLWK_playAreaRadius" call BIS_fnc_getParamValue); //Cipher Comment: Total play area radius in meters
 BLWK_minSpawnRoomSize = ("BLWK_minSpawnRoomSize" call BIS_fnc_getParamValue);   // Spawn room must be bigger than x square metres
-BLWK_minLandToWaterRatio = ("BLWK_minLandToWaterRatio" call BIS_fnc_getParamValue);
+BLWK_minLandToWaterRatio = ("BLWK_minLandToWaterRatio" call BIS_fnc_getParamValue); //Cipher Comment: The ratio to ensure there isn't too much water.
 BLWK_loot_houseDensity = ("BLWK_loot_houseDensity" call BIS_fnc_getParamValue);
 
 BLWK_startWithPistol = if ("BLWK_startWithPistol" call BIS_fnc_getParamValue == 1) then {true} else {false};
 BLWK_startWithMap    = if ("BLWK_startWithMap" call BIS_fnc_getParamValue == 1) then {true} else {false};
-BLWK_startWithNVGs    = if ("BLWK_startWithNVGs" call BIS_fnc_getParamValue == 1) then {true} else {false};
+BLWK_startWithNVGs   = if ("BLWK_startWithNVGs" call BIS_fnc_getParamValue == 1) then {true} else {false};
 
 /* Respawn */
 BLWK_respawnTime = ("BLWK_respawnTime" call BIS_fnc_getParamValue);
@@ -60,22 +61,24 @@ BLWK_loot_whiteListMode = 0;
 /* Fill with classname arrays: ["example_item_1", "example_item_2"] */
 /* To use Whitelisting there MUST be at least one applicaple item in each LOOT_WHITELIST array*/
 BLWK_whitelist_weaponClasses = [];
+BLWK_whitelist_vests = [];
 BLWK_whitelist_clothingClasses = [];
 BLWK_whitelist_itemClasses = [];
 BLWK_whitelist_explosiveClasses = [];
 BLWK_whitelist_backpackClasses = [];
 
 /* Loot Spawn */
-BLWK_loot_weaponClasses    = List_AllWeapons - BLWK_blacklist;    // Classnames of Loot items as an array
+BLWK_loot_weaponClasses    = List_AllWeapons - BLWK_blacklist;   
+BLWK_loot_vestClasses = List_Vests; //Cipher Comment: not used yet, need to implement intead of having it added to the clothing pool
 BLWK_loot_clothingClasses   = List_AllClothes + List_Vests - BLWK_blacklist;
 BLWK_loot_itemClasses      = List_Optics + List_Items - BLWK_blacklist;
 BLWK_loot_explosiveClasses = List_Mines + List_Grenades + List_Charges - BLWK_blacklist;
 BLWK_loot_backpackClasses   = List_Backpacks - BLWK_blacklist;
 
 /* Random Loot */
-BLWK_loot_cityDistribution = ("BLWK_loot_cityDistribution" call BIS_fnc_getParamValue);  // Every *th house will spwan loot.
-BLWK_loot_roomDistribution = ("BLWK_loot_roomDistribution" call BIS_fnc_getParamValue);   // Every *th position, within that house will spawn loot.
-BLWK_distributionOffset = 0; // Offset the position by this number.
+BLWK_loot_cityDistribution = ("BLWK_loot_cityDistribution" call BIS_fnc_getParamValue);  // decides how many buildings will be marked as having loot in a city
+BLWK_loot_roomDistribution = ("BLWK_loot_roomDistribution" call BIS_fnc_getParamValue);   // decides how much loot will be in a building if it has any 
+BLWK_distributionOffset = 0; // Offset the position by this number. //Cipher Comment not used
 BLWK_supplyDropRadius = ("BLWK_supplyDropRadius" call BIS_fnc_getParamValue) / 100;        // Radius of supply drop
 BLWK_paratrooperCount = ("BLWK_paratrooperCount" call BIS_fnc_getParamValue);
 BLWK_paratroopClasses = List_NATO;
@@ -94,9 +97,9 @@ BLWK_pointMulti_men_level3 = 1.50;
 BLWK_pointMulti_car = 2;
 BLWK_pointMulti_armour = 4;
 
-/* Comment out or delete the below support items to prevent the player from buying them */
 
 BLWK_supports_array = [
+	//1. Price //2. Displayed Name //3. className
     [800,  "Recon UAV",             "reconUAV"],
     [1680, "Emergency Teleport",   "telePlode"],
     [1950, "Paratroopers",          "paraDrop"],
@@ -108,12 +111,10 @@ BLWK_supports_array = [
     [7500, "Predator Drone",    "droneControl"]
 ];
 
-/* Objects the Player can buy */
-
-/* Radius prevents hostiles walking through objects */
-
-/*  Price - Display Name - Class Name - Rotation When Bought - Object Radius (meters) *prevents AI glitching through object and triggers suicide bombers - Has AI true/false (for objects with AI like autonomous turrests) */
+// default objects players can purchase
 BLWK_buildableObjects_array = [
+	//1. Price //2. Displayed Name //3. ClassName //4. Default rotation //5. Object Radius (meters) //6. Has AI
+	//Cipher Comment The object radius is used to prevent AI from glitching through and triggers suicide bombers.......that seems dumb
     [25,   "Long Plank (8m)",      "Land_Plank_01_8m_F",                0,   4, false],
     [50,   "Junk Barricade",       "Land_Barricade_01_4m_F",            0, 1.5, false],
     [75,   "Small Ramp (1m)",      "Land_Obstacle_Ramp_F",            180, 1.5, false],
@@ -154,3 +155,8 @@ if (BLWK_timeOfDayMin > BLWK_timeOfDayMax) then {
 
 /* Starter MediKits */
 BLWK_numMedKits = ("BLWK_numMedKits" call BIS_fnc_getParamValue);
+
+
+BLWK_timeBetweenRounds = ("BLWK_timeBetweenRounds" call BIS_fnc_getParamValue);
+BLWK_useSpecialWaves = ("BLWK_useSpecialWaves" call BIS_fnc_getParamValue);
+BLWK_maxNumWaves = ("BLWK_maxNumWaves" call BIS_fnc_getParamValue);

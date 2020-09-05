@@ -10,7 +10,7 @@ if  (SUPPORTMENU) then {
   _index = lbCurSel 1501;
   shopVehic = objNull;
 
-  _shopItem = BULWARK_SUPPORTITEMS select _index;
+  _shopItem = BLWK_supports_array select _index;
   _shopPrice = (_shopItem) select 0;
   _shopName  = (_shopItem) select 1;
   _shopClass = (_shopItem) select 2;

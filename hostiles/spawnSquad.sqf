@@ -9,7 +9,7 @@
 _randWeapons = "RANDOM_WEAPONS" call BIS_fnc_getParamValue;
 
 if (defectorWave) then { //determine if defect wave and spawn from List defined in EditMe.sqf
-	unitClasses = DEFECTOR_CLASS;
+	unitClasses = BLWK_defectorClasses;
 } else {
 	unitClasses = _this select 0;
 };
@@ -45,7 +45,7 @@ if (_attackWave >= 30) then {
 
 sleep 0.5;
 
-_location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
+_location = [bulwarkCity, BLWK_playAreaRadius + 30, BLWK_playAreaRadius + 150,1,0] call BIS_fnc_findSafePos;
 for ("_i") from 1 to _unitCount do {
 	_attGroupBand = createGroup [EAST, true];
 	_unitClass = selectRandom unitClasses;
@@ -85,7 +85,7 @@ for ("_i") from 1 to _unitCount do {
 		_unit selectWeapon _unitPrimaryToAdd;
 	};
 
-	if(_attackWave <= PISTOL_HOSTILES) then {
+	if(_attackWave <= BLWK_maxPistolOnlyWaves) then {
 		removeAllWeapons _unit;
 		_unit addMagazine "16Rnd_9x21_Mag";
 		_unit addMagazine "16Rnd_9x21_Mag";
@@ -120,7 +120,7 @@ for ("_i") from 1 to _unitCount do {
 			_scriptedCharge setdamage 1;
 			deleteVehicle _unit;
 		}];
-		_leadah setVariable ["killPointMulti", HOSTILE_CAR_POINT_SCORE];
+		_leadah setVariable ["killPointMulti", BLWK_pointMulti_car];
 	};
 	mainZeus addCuratorEditableObjects [[_unit], true];
 	unitArray = waveUnits select 0;

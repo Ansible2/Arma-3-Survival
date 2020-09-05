@@ -51,19 +51,19 @@ removeAllWeapons player;
 removeAllAssignedItems player;
 player setPosASL ([bulwarkBox] call bulwark_fnc_findPlaceAround);
 
-if(PLAYER_STARTWEAPON) then {
+if(BLWK_startWithPistol) then {
     player addMagazine "16Rnd_9x21_Mag";
     player addMagazine "16Rnd_9x21_Mag";
     player addWeapon "hgun_P07_F";
 };
 
-if(PLAYER_STARTMAP) then {
+if(BLWK_startWithMap) then {
     player addItem "ItemMap";
     player assignItem "ItemMap";
     player linkItem "ItemMap";
 };
 
-if(PLAYER_STARTNVG) then {
+if(BLWK_startWithNVGs) then {
     player addItem "Integrated_NVG_F";
     player assignItem "Integrated_NVG_F";
     player linkItem "Integrated_NVG_F";

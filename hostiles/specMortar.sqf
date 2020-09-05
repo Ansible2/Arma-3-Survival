@@ -1,4 +1,4 @@
-_distFromBulwark = "BULWARK_RADIUS" call BIS_fnc_getParamValue;
+_distFromBulwark = "BLWK_playAreaRadius" call BIS_fnc_getParamValue;
 
 _mortarPos = [bulwarkRoomPos, _distFromBulwark - 15, _distFromBulwark - 5, 3, 0, 10, 0] call BIS_fnc_findSafePos;
 specMortar = [_mortarPos, 0, "O_Mortar_01_F", EAST] call bis_fnc_spawnvehicle;

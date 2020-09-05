@@ -22,7 +22,7 @@ while {isNil "_finalPos"} do {
 			_probe setPos _x;
 			_roomVolume = [_probe, getDir _house] call bulwark_fnc_roomVolume;
 			if(_roomVolume select 0) then {
-				if((_roomVolume select 1 > _largestVolume) && (_roomVolume select 1 > BULWARK_MINSIZE)) then {
+				if((_roomVolume select 1 > _largestVolume) && (_roomVolume select 1 > BLWK_minSpawnRoomSize)) then {
 					_roomCentre = [_probe, getDir _house] call bulwark_fnc_roomCentre;
 					_largestPos = _roomCentre select 1;
 					_largestVolume = (_largestVolume max (_roomVolume select 1));
@@ -31,14 +31,14 @@ while {isNil "_finalPos"} do {
 		} forEach (_house buildingPos -1);
 
 		// Make sure it's not some crapshack in the middle of nowhere
-		_neighbours = count nearestObjects [_largestPos, ["house"], BULWARK_RADIUS];
+		_neighbours = count nearestObjects [_largestPos, ["house"], BLWK_playAreaRadius];
 
 		// One house, one location. Add it to the list of options
-		if(_largestVolume > 0 && _neighbours > LOOT_HOUSE_DENSITY) then {
+		if(_largestVolume > 0 && _neighbours > BLWK_loot_houseDensity) then {
 			// See how much water is around
 			_water = 0;
 			_land = 0;
-			for ("_i") from 1 to BULWARK_RADIUS / 10 do {
+			for ("_i") from 1 to BLWK_playAreaRadius / 10 do {
 				for ("_a") from 0 to 15 do {
 					_relPos = [_largestPos, _i * 10, 22 * _a] call BIS_fnc_relPos;
 					if(surfaceIsWater _relPos) then {_water = _water + 1;} else {_land = _land + 1;};
@@ -47,7 +47,7 @@ while {isNil "_finalPos"} do {
 			_totalSurface = _water + _land;
 			_landPercent = (_land / _totalSurface) * 100;
 
-			if(_landPercent > BULWARK_LANDRATIO) then {
+			if(_landPercent > BLWK_minLandToWaterRatio) then {
 				_options append [_largestPos];
 			};
 		};

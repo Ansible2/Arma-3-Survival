@@ -1,7 +1,7 @@
 civClassArr = [];
 _spawnedCivs = [];
 _currentWave = attkWave;
-_distFromBulwark = "BULWARK_RADIUS" call BIS_fnc_getParamValue;
+_distFromBulwark = "BLWK_playAreaRadius" call BIS_fnc_getParamValue;
 
 //Create array of all Civ classes
 _civSide = 3;
