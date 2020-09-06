@@ -12,7 +12,8 @@ waitUntil {
     scriptDone _hLoot &&
     scriptDone _hHostiles
 };
-_hConfig   = [] execVM "editMe.sqf";
+
+_hConfig   = [] spawn BLWK_fnc_prepareGlobals;
 waitUntil { scriptDone _hConfig };
 
 ["<t size = '.5'>Creating Base...</t>", 0, 0, 30, 0] remoteExec ["BIS_fnc_dynamicText", 0];
