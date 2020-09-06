@@ -7,7 +7,7 @@
 **/
 
 for "_i" from 1 to (ArmourCount) do {
-	_location = [bulwarkCity, BLWK_playAreaRadius, BLWK_playAreaRadius + 150,10,0] call BIS_fnc_findSafePos;
+	_location = [BLWK_playAreaCenter, BLWK_playAreaRadius, BLWK_playAreaRadius + 150,10,0] call BIS_fnc_findSafePos;
 	_foundVeh = selectRandom List_Armour;
 	_createdVehFnc = [_location, 0, _foundVeh, EAST] call bis_fnc_spawnvehicle;
 	_createdVehFnc select 0 doMove (getPos (selectRandom playableUnits));

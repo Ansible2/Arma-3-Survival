@@ -34,12 +34,12 @@ _isWater = true;
 while {_isWater} do {
 	_bulwarkLocation = [BLWK_locations, BLWK_playAreaRadius] call bulwark_fnc_bulwarkLocation;
 	bulwarkRoomPos = _bulwarkLocation select 0;
-	bulwarkCity = _bulwarkLocation select 1;
+	BLWK_playAreaCenter = _bulwarkLocation select 1;
 	bulwarkBox setPosASL bulwarkRoomPos;
 	_isWater = surfaceIsWater (getPos bulwarkBox);
 };
 
-publicVariable "bulwarkCity";
+publicVariable "BLWK_playAreaCenter";
 
 //bulwarkBox addWeaponCargoGlobal["hgun_P07_F",10];
 //bulwarkBox addMagazineCargoGlobal ["16Rnd_9x21_Mag",20];
@@ -116,12 +116,12 @@ if(count _hits > 0) then {
 	bulwarkBox setDir _objDir;
 };
 
-_marker1 = createMarker ["Mission Area", bulwarkCity];
+_marker1 = createMarker ["Mission Area", BLWK_playAreaCenter];
 "Mission Area" setMarkerShape "ELLIPSE";
 "Mission Area" setMarkerSize [BLWK_playAreaRadius, BLWK_playAreaRadius];
 "Mission Area" setMarkerColor "ColorWhite";
 
-lootHouses = bulwarkCity nearObjects ["House", BLWK_playAreaRadius];
+lootHouses = BLWK_playAreaCenter nearObjects ["House", BLWK_playAreaRadius];
 
 [] execVM "bulwark\fakToMedkit.sqf";
 

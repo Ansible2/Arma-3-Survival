@@ -45,7 +45,7 @@ if (_attackWave >= 30) then {
 
 sleep 0.5;
 
-_location = [bulwarkCity, BLWK_playAreaRadius + 30, BLWK_playAreaRadius + 150,1,0] call BIS_fnc_findSafePos;
+_location = [BLWK_playAreaCenter, BLWK_playAreaRadius + 30, BLWK_playAreaRadius + 150,1,0] call BIS_fnc_findSafePos;
 for ("_i") from 1 to _unitCount do {
 	_attGroupBand = createGroup [EAST, true];
 	_unitClass = selectRandom unitClasses;
