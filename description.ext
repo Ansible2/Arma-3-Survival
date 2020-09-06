@@ -28,16 +28,17 @@ class Header
 {
 	gameType =  Defend;
 	minPlayers =  	 1;
-	maxPlayers = 	  25;
+	maxPlayers = 	 25;
 };
 
 class CfgFunctions
 {
+	#include "headers\functions.hpp"
+	
 	#include "score\Functions.hpp"
 	#include "supports\Functions.hpp"
 	#include "bulwark\Functions.hpp"
 	#include "sound\Functions.hpp"
-	#include "area\Functions.hpp"
 	#include "build\Functions.hpp"
 	#include "hostiles\Functions.hpp"
 	#include "loot\Functions.hpp"

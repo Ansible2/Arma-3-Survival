@@ -29,6 +29,7 @@ player setVariable ["killPoints", _killPoints, true];
 hitMarkers = [];
 
 //Show the Bulwark label on screen
+// CIPHER COMMENT: change this shit to a addMissionEventHandler
 onEachFrame {
     if(!isNil "bulwarkBox") then {
         _textPos = getPosATL bulwarkBox vectorAdd [0, 0, 1.5];
@@ -181,7 +182,7 @@ player addEventHandler ["HandleDamage", {
     };
 }];
 
-waitUntil {!isNil "bulwarkCity"};
+waitUntil {!isNil "BLWK_playAreaCenter"};
 
 // kill player if they disconnected and rejoined during a wave
 _buildPhase = missionNamespace getVariable ["buildPhase", true];
@@ -211,3 +212,5 @@ toggled = 0;
 
 waituntil {!(isNull (findDisplay 46))};
 (findDisplay 46) displayAddEventHandler ["KeyDown",{_this call MY_KEYDOWN_FNC}];
+
+null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
