@@ -249,7 +249,7 @@ class Params
 		default = 3;
 	};
 
-	class BLWK_startWithMap
+	class BLWK_playersStartWith_map
 	{
 		title = "Start with map";
 		values[] = {0, 1};
@@ -257,7 +257,7 @@ class Params
 		default = 1;
 	};
 
-	class BLWK_startWithPistol
+	class BLWK_playersStartWith_pistol
 	{
 		title = "Players start with pistol";
 		values[] = {0, 1};
@@ -265,7 +265,7 @@ class Params
 		default = 0;
 	};
 
-	class BLWK_startWithNVGs
+	class BLWK_playersStartWith_NVGs
 	{
 		title = "Players start with NVG";
 		values[] = {0, 1};
@@ -297,7 +297,7 @@ class Params
 		default = "No";
 	};
 
-	class HUD_POINT_HITMARKERS
+	class BLWK_hitPointsShown
 	{
 		title = "Point Hitmarkers on HUD";
 		values[] = {1, 0};
@@ -417,7 +417,7 @@ class Params
 		default = 0;
 	};
 
-	class SUPPORT_MENU
+	class BLWK_supportMenuAllowed
 	{
 		title = "Find Satellite Dish to Unlock Supports";
 		values[] = {0, 1};
@@ -508,7 +508,7 @@ class Params
 		default = 10;
 	};
 
-	class TEAM_DAMAGE
+	class BLWK_friendlyFireOn
 	{
 		title = "Freindly Fire";
 		values[] = {0, 1};
