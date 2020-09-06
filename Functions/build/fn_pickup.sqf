@@ -1,3 +1,27 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_pickupBuidlableObject
+
+Description:
+	Executes the action to pick up a building object
+
+	Executed from ""
+
+Parameters:
+	0: _object : <OBJECT> - The object to pickup
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		[myObject] call BLWK_fnc_pickupBuidlableObject;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 _object = _this select 0;
 _caller = _this select 1;
 _pos = _this select 2;
@@ -24,13 +48,13 @@ if (!(player getVariable "buildItemHeld")) then {
 
 		_caller addAction [
 			"<t color='#00ffff'>Drop Object (Snap To Ground)</t>",
-			'[_this select 3, _this select 1, _this select 2] call build_fnc_drop;',
+			'[_this select 3, _this select 1, _this select 2] call BLWK_fnc_drop;',
 			_object
 		];
 
 		_caller addAction [
 			"<t color='#00ffff'>Place Object (Floating)</t>",
-			'[_this select 3, _this select 1, _this select 2] call build_fnc_place;',
+			'[_this select 3, _this select 1, _this select 2] call BLWK_fnc_place;',
 			_object
 		];
 

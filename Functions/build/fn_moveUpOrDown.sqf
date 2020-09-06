@@ -1,6 +1,6 @@
 _object = _this select 0;
-_movePos = _this select 1;
-_caller = _this select 2;
+_caller = _this select 1;
+_movePos = _this select 2;
 
 _callerPos = getPosATL (_caller);
 _objectPos = getPosATL (_object);

@@ -55,5 +55,5 @@ if (objPurchase) then {
     clearMagazineCargoGlobal shopVehic;
     clearBackpackCargoGlobal shopVehic;
 
-	[shopVehic, ShopCaller, [0,_VecRadius + 1.5,0.02], _shopDir] call build_fnc_pickup;
+	[shopVehic, ShopCaller, [0,_VecRadius + 1.5,0.02], _shopDir] call BLWK_fnc_pickup;
 };

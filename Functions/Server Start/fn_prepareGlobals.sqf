@@ -28,6 +28,7 @@ Examples:
 // We don't need to constantly check if the server is dedicated, and we only want to run things like
 /// playSound and hud updates on a server with an interface (0) or just clients (-2)
 BLWK_allPlayersTargetID = [0,-2] select isDedicated;
+publicVariable "BLWK_allPlayersTargetID";
 
 /* Attacker Waves */
 // cipher comment: why the use global vars to initialize global vars and then not clear the memory?

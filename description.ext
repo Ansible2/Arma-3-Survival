@@ -88,8 +88,6 @@ class CfgRemoteExec
 };
 */
 
-
-
 class CfgDebriefing
 {
 	class End1
@@ -116,9 +114,6 @@ class CfgCommunicationMenu
 {
 	#include "supports\CommunicationMenu.h"
 };
-
-
-
 
 //Notification for Special Waves
 class CfgNotifications
