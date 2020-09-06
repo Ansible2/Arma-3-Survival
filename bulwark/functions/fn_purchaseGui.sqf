@@ -27,8 +27,8 @@ _ctrl = (findDisplay 9999) displayCtrl 1500;
 
 
 _ctrl = (findDisplay 9999) displayCtrl 1501;
-SUPPORTMENU = missionNamespace getVariable "SUPPORTMENU";
-if (SUPPORTMENU) then {
+BLWK_supportMenuAllowed = missionNamespace getVariable "BLWK_supportMenuAllowed";
+if (BLWK_supportMenuAllowed) then {
   {
       _ctrl lbAdd format [_listFormat, _x select 0, _x select 1],;
   } forEach BLWK_supports_array;
