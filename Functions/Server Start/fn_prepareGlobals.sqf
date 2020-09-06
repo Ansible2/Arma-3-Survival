@@ -21,7 +21,7 @@ Examples:
 ---------------------------------------------------------------------------- */
 
 
-/* Attacker Waves */
+
 // cipher comment: this needs to be organized the same way it shows up in the params menu in the lobby
 /// which itself may need to be reorganized
 
@@ -29,8 +29,8 @@ Examples:
 /// playSound and hud updates on a server with an interface (0) or just clients (-2)
 BLWK_allPlayersTargetID = [0,-2] select isDedicated;
 
-// List_Bandits, List_ParaBandits, List_OPFOR, List_INDEP, List_NATO, List_Viper
-// cipher comment: why the fuck use global vars to initialize global vars and then not clear the memory?
+/* Attacker Waves */
+// cipher comment: why the use global vars to initialize global vars and then not clear the memory?
 /// PS, none of these are used, they only used the first ones (e.g. list_bandits,list_opfor)
 BLWK_enemyClasses_level_1 = List_Bandits;  // Wave 0 >
 BLWK_enemyClasses_level_2 = List_OPFOR;    // Wave 5 >
