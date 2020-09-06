@@ -3,18 +3,18 @@ waitUntil {!isNil "bulwarkBox"};
 player setVariable ["buildItemHeld", false];
 
 //Make player immune to fall damage and immune to all damage while incapacitated
-waitUntil {!isNil "TEAM_DAMAGE"};
+waitUntil {!isNil "BLWK_friendlyFireOn"};
 player removeAllEventHandlers 'HandleDamage';
 player addEventHandler ["HandleDamage", {
     _beingRevived = player getVariable "RevByMedikit";
-    TEAM_DAMAGE = missionNamespace getVariable "TEAM_DAMAGE";
+    BLWK_friendlyFireOn = missionNamespace getVariable "BLWK_friendlyFireOn";
     _incDamage = _this select 2;
     _hitpoint = _this select 5;
     _currentPointDamage = player getHitIndex _hitpoint;
     _totalDamage = _incDamage + _currentPointDamage;
     _playerItems = items player;
     _players = allPlayers;
-    if ((_this select 4) == "" || lifeState player == "INCAPACITATED" || _beingRevived || ((_this select 3) in _players && !TEAM_DAMAGE && !((_this select 3) isEqualTo player))) then {
+    if ((_this select 4) == "" || lifeState player == "INCAPACITATED" || _beingRevived || ((_this select 3) in _players && !BLWK_friendlyFireOn && !((_this select 3) isEqualTo player))) then {
         0
     } else {
         if (_totalDamage >= 0.89) then {
@@ -51,19 +51,19 @@ removeAllWeapons player;
 removeAllAssignedItems player;
 player setPosASL ([bulwarkBox] call bulwark_fnc_findPlaceAround);
 
-if(BLWK_startWithPistol) then {
+if(BLWK_playersStartWith_pistol) then {
     player addMagazine "16Rnd_9x21_Mag";
     player addMagazine "16Rnd_9x21_Mag";
     player addWeapon "hgun_P07_F";
 };
 
-if(BLWK_startWithMap) then {
+if(BLWK_playersStartWith_map) then {
     player addItem "ItemMap";
     player assignItem "ItemMap";
     player linkItem "ItemMap";
 };
 
-if(BLWK_startWithNVGs) then {
+if(BLWK_playersStartWith_NVGs) then {
     player addItem "Integrated_NVG_F";
     player assignItem "Integrated_NVG_F";
     player linkItem "Integrated_NVG_F";

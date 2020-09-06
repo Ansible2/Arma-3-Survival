@@ -25,9 +25,9 @@ publicVariable "bulwarkBox";
 publicVariable "BLWK_paratroopClasses";
 publicVariable "BLWK_supports_array";
 publicVariable "BLWK_buildableObjects_array";
-publicVariable "BLWK_startWithPistol";
-publicVariable "BLWK_startWithMap";
-publicVariable "BLWK_startWithNVGs";
+publicVariable "BLWK_playersStartWith_pistol";
+publicVariable "BLWK_playersStartWith_map";
+publicVariable "BLWK_playersStartWith_NVGs";
 publicVariable "BLWK_maxPistolOnlyWaves";
 publicVariable "BLWK_timeBetweenRounds";
 publicVariable "BLWK_numRespawnTickets";
@@ -36,27 +36,11 @@ publicVariable "PLAYER_OBJECT_LIST";
 publicVariable "MIND_CONTROLLED_AI";
 publicVariable "BLWK_costToSpinRandomBox";
 
-//determine if Support Menu is available
-_supportParam = ("SUPPORT_MENU" call BIS_fnc_getParamValue);
-if (_supportParam == 1) then {
-  SUPPORTMENU = false;
-}else{
-  SUPPORTMENU = true;
-};
-publicVariable 'SUPPORTMENU';
+publicVariable 'BLWK_supportMenuAllowed';
 
-//Determine team damage Settings
-_teamDamageParam = ("TEAM_DAMAGE" call BIS_fnc_getParamValue);
-if (_teamDamageParam == 0) then {
-  TEAM_DAMAGE = false;
-}else{
-  TEAM_DAMAGE = true;
-};
-publicVariable 'TEAM_DAMAGE';
+publicVariable 'BLWK_friendlyFireOn';
 
-//determine if hitmarkers appear on HUD
-HITMARKERPARAM = ("HUD_POINT_HITMARKERS" call BIS_fnc_getParamValue);
-publicVariable 'HITMARKERPARAM';
+publicVariable 'BLWK_hitPointsShown';
 
 _dayTimeHours = BLWK_timeOfDayMax - BLWK_timeOfDayMin;
 _randTime = floor random _dayTimeHours;

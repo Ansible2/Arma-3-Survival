@@ -35,7 +35,7 @@ onEachFrame {
         drawIcon3D ["", [1,1,1,0.5], _textPos, 1, 1, 0, "Bulwark", 0, 0.04, "RobotoCondensed", "center", true];
     };
 
-    if (HITMARKERPARAM == 1) then {
+    if (BLWK_hitPointsShown) then {
       {
           _pos    = _x select 0;
           _label  = _x select 1;
@@ -148,18 +148,18 @@ You can repack your magazines by pressing CTRL + R.
 <font color='#FFCC00'>You won't survive this fight but take as many of the bastards with you as you can!</font>"]];
 
 //Make player immune to fall damage and immune to all damage while incapacitated
-waitUntil {!isNil "TEAM_DAMAGE"};
+waitUntil {!isNil "BLWK_friendlyFireOn"};
 player removeAllEventHandlers 'HandleDamage';
 player addEventHandler ["HandleDamage", {
     _beingRevived = player getVariable "RevByMedikit";
-    TEAM_DAMAGE = missionNamespace getVariable "TEAM_DAMAGE";
+    BLWK_friendlyFireOn = missionNamespace getVariable "BLWK_friendlyFireOn";
     _incDamage = _this select 2;
     _hitpoint = _this select 5;
     _currentPointDamage = player getHitIndex _hitpoint;
     _totalDamage = _incDamage + _currentPointDamage;
     _playerItems = items player;
     _players = allPlayers;
-    if ((_this select 4) == "" || lifeState player == "INCAPACITATED" || _beingRevived || ((_this select 3) in _players && !TEAM_DAMAGE && !((_this select 3) isEqualTo player))) then {
+    if ((_this select 4) == "" || lifeState player == "INCAPACITATED" || _beingRevived || ((_this select 3) in _players && !BLWK_friendlyFireOn && !((_this select 3) isEqualTo player))) then {
         0
     } else {
         if (_totalDamage >= 0.89) then {
