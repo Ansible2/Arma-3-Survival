@@ -6,7 +6,7 @@
 *  Domain: Server
 **/
 
-_randWeapons = "RANDOM_WEAPONS" call BIS_fnc_getParamValue;
+_randWeapons = "BLWK_randomizeHostileWeapons" call BIS_fnc_getParamValue;
 
 if (defectorWave) then { //determine if defect wave and spawn from List defined in EditMe.sqf
 	unitClasses = BLWK_defectorClasses;

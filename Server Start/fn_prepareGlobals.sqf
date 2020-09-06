@@ -1,10 +1,25 @@
-/**
-*  editMe
-*
-*  Defines all global config for the mission
-*
-*  Domain: Client, Server
-**/
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_prepareGlobals
+
+Description:
+	Does exactly what it says. Most globals in the scenario are initialized here.
+	
+	It is executed from the "initServer.sqf".
+	
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		call BLWK_fnc_prepareGlobals
+
+    (end)
+---------------------------------------------------------------------------- */
+
 
 /* Attacker Waves */
 // cipher comment: this needs to be organized the same way it shows up in the params menu in the lobby
@@ -172,3 +187,5 @@ BLWK_supportMenuAllowed = [false,true] select ("BLWK_supportMenuAllowed" call BI
 BLWK_friendlyFireOn = [false,true] select ("BLWK_friendlyFireOn" call BIS_fnc_getParamValue);
 
 BLWK_hitPointsShown = [false,true] select ("BLWK_hitPointsShown" call BIS_fnc_getParamValue);
+
+BLWK_vehicleStartWave = ("BLWK_vehicleStartWave" call BIS_fnc_getParamValue);

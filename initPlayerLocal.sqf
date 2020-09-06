@@ -1,7 +1,7 @@
 player setCustomAimCoef 0.2;
 player setUnitRecoilCoefficient 0.5;
 player enableStamina FALSE;
-"START_KILLPOINTS" call BIS_fnc_getParamValue;
+"BLWK_startingKillPoints" call BIS_fnc_getParamValue;
 player setVariable ["RevByMedikit", false, true];
 player setVariable ["buildItemHeld", false];
 
@@ -13,7 +13,7 @@ player addEventHandler ['Respawn',{
 }];
 
 //setup Kill Points
-_killPoints = ("START_KILLPOINTS" call BIS_fnc_getParamValue);
+_killPoints = ("BLWK_startingKillPoints" call BIS_fnc_getParamValue);
 player setVariable ["killPoints", _killPoints, true];
 [] call killPoints_fnc_updateHud;
 

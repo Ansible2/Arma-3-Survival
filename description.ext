@@ -13,7 +13,7 @@ respawnOnStart = 1;
 respawnDialog = 0;
 respawnTemplates[] = {"Base"};
 ReviveMode = 1;
-ReviveRequiredItems = 2;
+BLWK_reviveRequiredItems = 2;
 ReviveBleedOutDelay = 120;
 
 corpseManagerMode = 2;
@@ -43,7 +43,9 @@ class CfgFunctions
 	#include "loot\Functions.hpp"
 };
 
-
+/*
+cipher Comment: Why do these even need to be in cfgRemoteExec?
+*/
 class CfgRemoteExec
 {
 	class Functions
@@ -62,7 +64,7 @@ class CfgRemoteExec
 		class ragePack {};
 		class say3DGlobal {};
 		class createBlur {};
-		class suiExplode{};
+		class suiExplode {};
 	};
 };
 
@@ -217,7 +219,7 @@ class Params
 		default = 3;
 	};
 
-	class BODY_CLEANUP
+	class BLWK_roundsBeforeBodyDeletion
 	{
 		title = "Dead bodies remain for how many waves (dead bodies impact perfomance)";
 		values[] = {0, 1, 2};
@@ -281,7 +283,7 @@ class Params
 		default = 1;
 	};
 
-	class ARMOUR_START_WAVE
+	class BLWK_vehicleStartWave
 	{
 		title = "Vehicles can spawn after wave";
 		values[] = {5, 10, 15, 20, 25, 9999};
@@ -289,7 +291,7 @@ class Params
 		default = 5;
 	};
 
-	class RANDOM_WEAPONS
+	class BLWK_randomizeHostileWeapons
 	{
 		title = "Randomize Hostile Weapons";
 		values[] = {"true", "false"};
@@ -409,7 +411,7 @@ class Params
 		default = 0;
 	};
 
-	class START_KILLPOINTS
+	class BLWK_startingKillPoints
 	{
 		title = "Kill points players start with";
 		values[] = {0, 250, 500, 1000, 2500, 5000, 10000};
@@ -473,7 +475,7 @@ class Params
 		default = 0;
 	};
 
-	class ReviveRequiredItems
+	class BLWK_reviveRequiredItems
 	{
 		title = "Required items";
 		isGlobal = 1;
