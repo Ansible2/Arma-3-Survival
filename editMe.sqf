@@ -31,9 +31,9 @@ BLWK_minSpawnRoomSize = ("BLWK_minSpawnRoomSize" call BIS_fnc_getParamValue);   
 BLWK_minLandToWaterRatio = ("BLWK_minLandToWaterRatio" call BIS_fnc_getParamValue);
 BLWK_loot_houseDensity = ("BLWK_loot_houseDensity" call BIS_fnc_getParamValue);
 
-BLWK_startWithPistol = if ("BLWK_startWithPistol" call BIS_fnc_getParamValue == 1) then {true} else {false};
-BLWK_startWithMap    = if ("BLWK_startWithMap" call BIS_fnc_getParamValue == 1) then {true} else {false};
-BLWK_startWithNVGs    = if ("BLWK_startWithNVGs" call BIS_fnc_getParamValue == 1) then {true} else {false};
+BLWK_playersStartWith_pistol = if ("BLWK_playersStartWith_pistol" call BIS_fnc_getParamValue == 1) then {true} else {false};
+BLWK_playersStartWith_map    = if ("BLWK_playersStartWith_map" call BIS_fnc_getParamValue == 1) then {true} else {false};
+BLWK_playersStartWith_NVGs    = if ("BLWK_playersStartWith_NVGs" call BIS_fnc_getParamValue == 1) then {true} else {false};
 
 /* Respawn */
 BLWK_respawnTime = ("BLWK_respawnTime" call BIS_fnc_getParamValue);
