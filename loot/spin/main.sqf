@@ -61,7 +61,7 @@ if (floor random 15 == 1) then {
   [_weapon, "boxSpin"] remoteExec ["sound_fnc_say3DGlobal", 0];
 
   // Start raising the weapon out of the box
-  _coRoutine = [1, _boxPosATL, _lPos, _hPos, _weapon] execVM "loot\spin\animateWeapon.sqf";
+  _coRoutine = [false, _boxPosATL, _weapon] execVM "loot\spin\animateWeapon.sqf";
 
   // Start cycling weapons
   _spinDelay = 0.01;
@@ -90,7 +90,7 @@ if (floor random 15 == 1) then {
   detach _weapon;
 
   // Start to drop the weapon
-  _coRoutine = [2, _boxPosATL, _lPos, _hPos, _weapon] execVM "loot\spin\animateWeapon.sqf";
+  _coRoutine = [true, _boxPosATL, _weapon] execVM "loot\spin\animateWeapon.sqf";
   sleep 6;
   terminate _coRoutine;
 

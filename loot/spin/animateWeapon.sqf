@@ -6,28 +6,20 @@
 *  Domain: Server
 **/
 
-//TODO: less code duplication
+#define SLEEP_TIME 0.03
+#define NUMBER_OF_FRAMES 30
 
-_boxPos       = _this select 1;
-_lPos         = _this select 2;
-_hPos         = _this select 3;
-_targetWeapon = _this select 4;
+params ["_loweringWeapon","_boxPosition","_weaponToSpawn"];
 
-if(_this select 0 == 1) then {
-    _liftDelay = 0;
-    while {_liftDelay < 1} do {
-        _pos = [_lPos, _hPos, _liftDelay, 0.1] call BIS_fnc_lerp;
-        [_targetWeapon, [(_boxPos select 0), (_boxPos select 1), (_boxPos select 2) + _pos]] remoteExec ["setPosATL", 0];
-        sleep 0.03;
-        _liftDelay = _liftDelay + 0.01;
-    };
+// ultimately, we want the weapon to travel 1m in height (up or down) after all the "frames" are done
+// so we get how much we would need to incriment each step for that to be the case
+private _incriment = 1/NUMBER_OF_FRAMES;
+if (_loweringWeapon) then {
+    _incriment = -(_incriment);
 };
-if(_this select 0 == 2) then {
-    _liftDelay = 1;
-    while {_liftDelay > 0} do {
-        _pos = [_lPos, _hPos, _liftDelay, 0.1] call BIS_fnc_lerp;
-        [_targetWeapon, [(_boxPos select 0), (_boxPos select 1), (_boxPos select 2) + _pos]] remoteExec ["setPosATL", 0];
-        sleep 0.025;
-        _liftDelay = _liftDelay - 0.005;
-    };
+
+for "_i" from 1 to NUMBER_OF_FRAMES do {
+    _spawnedWeapon setPosWorld (_boxPosition vectorAdd [0,0,_incriment]);
+    
+    sleep SLEEP_TIME;
 };
