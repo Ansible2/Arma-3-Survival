@@ -7,9 +7,16 @@
 **/
 
 /* Attacker Waves */
+// cipher comment: this needs to be organized the same way it shows up in the params menu in the lobby
+/// which itself may need to be reorganized
+
+// We don't need to constantly check if the server is dedicated, and we only want to run things like
+/// playSound and hud updates on a server with an interface (0) or just clients (-2)
+BLWK_allPlayersTargetID = [0,-2] select isDedicated;
 
 // List_Bandits, List_ParaBandits, List_OPFOR, List_INDEP, List_NATO, List_Viper
 // cipher comment: why the fuck use global vars to initialize global vars and then not clear the memory?
+/// PS, none of these are used, they only used the first ones (e.g. list_bandits,list_opfor)
 BLWK_enemyClasses_level_1 = List_Bandits;  // Wave 0 >
 BLWK_enemyClasses_level_2 = List_OPFOR;    // Wave 5 >
 BLWK_enemyClasses_level_3 = List_Viper;    // Wave 10 >
@@ -32,9 +39,9 @@ BLWK_minSpawnRoomSize = ("BLWK_minSpawnRoomSize" call BIS_fnc_getParamValue);   
 BLWK_minLandToWaterRatio = ("BLWK_minLandToWaterRatio" call BIS_fnc_getParamValue); //Cipher Comment: The ratio to ensure there isn't too much water.
 BLWK_loot_houseDensity = ("BLWK_loot_houseDensity" call BIS_fnc_getParamValue);
 
-BLWK_startWithPistol = if ("BLWK_startWithPistol" call BIS_fnc_getParamValue == 1) then {true} else {false};
-BLWK_startWithMap    = if ("BLWK_startWithMap" call BIS_fnc_getParamValue == 1) then {true} else {false};
-BLWK_startWithNVGs   = if ("BLWK_startWithNVGs" call BIS_fnc_getParamValue == 1) then {true} else {false};
+BLWK_playersStartWith_pistol = [false,true] select ("BLWK_playersStartWith_pistol" call BIS_fnc_getParamValue);
+BLWK_playersStartWith_map    = [false,true] select ("BLWK_playersStartWith_map" call BIS_fnc_getParamValue); 
+BLWK_playersStartWith_NVGs   = [false,true] select ("BLWK_playersStartWith_NVGs" call BIS_fnc_getParamValue);
 
 /* Respawn */
 BLWK_respawnTime = ("BLWK_respawnTime" call BIS_fnc_getParamValue);
@@ -156,7 +163,12 @@ if (BLWK_timeOfDayMin > BLWK_timeOfDayMax) then {
 /* Starter MediKits */
 BLWK_numMedKits = ("BLWK_numMedKits" call BIS_fnc_getParamValue);
 
-
 BLWK_timeBetweenRounds = ("BLWK_timeBetweenRounds" call BIS_fnc_getParamValue);
 BLWK_useSpecialWaves = ("BLWK_useSpecialWaves" call BIS_fnc_getParamValue);
 BLWK_maxNumWaves = ("BLWK_maxNumWaves" call BIS_fnc_getParamValue);
+
+BLWK_supportMenuAllowed = [false,true] select ("BLWK_supportMenuAllowed" call BIS_fnc_getParamValue);
+
+BLWK_friendlyFireOn = [false,true] select ("BLWK_friendlyFireOn" call BIS_fnc_getParamValue);
+
+BLWK_hitPointsShown = [false,true] select ("BLWK_hitPointsShown" call BIS_fnc_getParamValue);

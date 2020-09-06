@@ -11,7 +11,7 @@
 [] remoteExec ["killPoints_fnc_updateHud", 0];
 
 for ("_i") from 0 to 14 do {
-	if(_i > 10) then {"beep_target" remoteExec ["playsound", 0];} else {"readoutClick" remoteExec ["playsound", 0];};
+	if(_i > 10) then {"beep_target" remoteExec ["playsound", BLWK_allPlayersTargetID];} else {"readoutClick" remoteExec ["playsound", BLWK_allPlayersTargetID];};
 	[format ["<t>%1</t>", 15-_i], 0, 0, 1, 0] remoteExec ["BIS_fnc_dynamicText", 0];
 	sleep 1;
 };
@@ -217,23 +217,23 @@ if (specMortarWave) then {
 };
 
 if (specCivs) then {
-	["SpecialWarning",["CIVILIANS Are Fleeing! Don't Shoot Them!"]] remoteExec ["BIS_fnc_showNotification", 0];
+	["SpecialWarning",["CIVILIANS Are Fleeing! Don't Shoot Them!"]] remoteExec ["BIS_fnc_showNotification", BLWK_allPlayersTargetID];
 	["Alarm"] remoteExec ["playSound", 0];
 };
 
 if (nightWave) then {
-	["SpecialWarning",["They mostly come at night. Mostly..."]] remoteExec ["BIS_fnc_showNotification", 0];
+	["SpecialWarning",["They mostly come at night. Mostly..."]] remoteExec ["BIS_fnc_showNotification", BLWK_allPlayersTargetID];
 	["Alarm"] remoteExec ["playSound", 0];
 };
 
 if (fogWave) then {
-	["SpecialWarning",["A dense fog is rolling in!"]] remoteExec ["BIS_fnc_showNotification", 0];
+	["SpecialWarning",["A dense fog is rolling in!"]] remoteExec ["BIS_fnc_showNotification", BLWK_allPlayersTargetID];
 	["Alarm"] remoteExec ["playSound", 0];
 };
 
 if (swticharooWave) then {
-	["SpecialWarning",["You were overrun! Take back the bulwark!! Quickly!"]] remoteExec ["BIS_fnc_showNotification", 0];
-	["Alarm"] remoteExec ["playSound", 0];
+	["SpecialWarning",["You were overrun! Take back the bulwark!! Quickly!"]] remoteExec ["BIS_fnc_showNotification", BLWK_allPlayersTargetID];
+	["Alarm"] remoteExec ["playSound", BLWK_allPlayersTargetID];
 	_secCount = 0;
 	_deadUnconscious = [];
 	sleep 1;
@@ -268,12 +268,12 @@ if (swticharooWave) then {
 
 if (demineWave) then {
 	["SpecialWarning",["Look up! They're sending drones!"]] remoteExec ["BIS_fnc_showNotification", 0];
-	["Alarm"] remoteExec ["playSound", 0];
+	["Alarm"] remoteExec ["playSound", BLWK_allPlayersTargetID];
 };
 
 if (defectorWave) then {
 	["SpecialWarning",["NATO Defectors Are Attacking Us!"]] remoteExec ["BIS_fnc_showNotification", 0];
-	["Alarm"] remoteExec ["playSound", 0];
+	["Alarm"] remoteExec ["playSound", BLWK_allPlayersTargetID];
 };
 
 if (!specialWave) then {
