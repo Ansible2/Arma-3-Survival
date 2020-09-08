@@ -30,13 +30,27 @@ params [
 	["_player",player,[objNull]]
 ];
 
-// drop action
-_player addAction [
+// place object snap to
+private _snaptoActionID = _player addAction [
 	"<t color='#ed601f'>-- Drop Object --</t>",
 	{
 		private _player = _this select 0;
-		private _dropCrate_actionID = param [2,0,[123]];
-		private _crate = param [3];
+		private _object = _this select 3;
+
+		[_crate,_caller,BLWK_dropCurrentObject_actionID] call KISKA_fnc_dropCrate;
+	},
+	_object,
+	100,
+	true,
+	true
+];
+
+// place object floating
+private _placeActionID = _player addAction [
+	"<t color='#ed601f'>-- Drop Object --</t>",
+	{
+		private _player = _this select 0;
+		private _object = _this select 3;
 
 		[_crate,_caller,BLWK_dropCurrentObject_actionID] call KISKA_fnc_dropCrate;
 	},
@@ -47,75 +61,85 @@ _player addAction [
 ];
 
 // sell object
-_object addAction [ 
+private _sellActionID = _player addAction [ 
 	"<t color='#ff0000'>-- Sell Object Back --</t>",  
 	{
-		params ["_objectWithActions","_caller"];
+		private _player = _this select 0;
+		private _object = _this select 3;
+
 		[_objectWithActions,_caller] call BLWK_fnc_sell;
 	}, 
-	nil, 
+	_object, 
 	1,  
-	false,  
-	false,  
-	"true", 
-	"!(_originalTarget getVariable ['BLWK_objectPickedUp',false])", 
-	5 
+	true,  
+	false
 ];
 
 // move up
-_object addAction [ 
+private _moveUpActionID = _player addAction [ 
 	"<t color='#00ffff'>-- Move Up --</t>",  
 	{
-		params ["_objectWithActions","_caller"];
+		private _player = _this select 0;
+		private _object = _this select 3;
+
 		[_objectWithActions,_caller,true] call BLWK_fnc_moveUpOrDown;
 	}, 
-	nil, 
+	_object, 
 	2,  
-	false,  
-	false,  
-	"true", 
-	"!(_originalTarget getVariable ['BLWK_objectPickedUp',false])", 
-	5 
+	true,  
+	false 
 ];
 
 // move down
-_object addAction [ 
+private _moveDownActionID = _player addAction [ 
 	"<t color='#00ff00'>-- Move Down --</t>",  
 	{
-		params ["_objectWithActions","_caller"];
+		private _player = _this select 0;
+		private _object = _this select 3;
+		
 		[_objectWithActions,_caller,false] call BLWK_fnc_moveUpOrDown;
 	}, 
-	nil, 
+	_object, 
 	2,  
-	false,  
-	false,  
-	"true", 
-	"!(_originalTarget getVariable ['BLWK_objectPickedUp',false])", 
-	5 
+	true,  
+	false
 ];
 
 // rotate left
-_player addAction [
-	"<t color='#ed601f'>-- Drop Object --</t>",
+private _rotateLeftActionID = _player addAction [
+	"<t color='#ffff05'>-- Rotate Left --</t>",
 	{
-		
+		private _player = _this select 1;
+		private _object = _this select 3;
+
 	},
 	_object,
 	90,
 	true,
-	true
+	false
 ];
 
 // rotate right
-_player addAction [
-	"<t color='#ed601f'>-- Drop Object --</t>",
+private _rotateRightActionID = _player addAction [
+	"<t color='#7e33ff'>-- Rotate Right --</t>",
 	{
-		
+		private _player = _this select 1;
+		private _object = _this select 3;
+
 	},
 	_object,
 	91,
 	true,
-	true
+	false
 ];
 
-BLWK_heldObjectActionIDs = [_dropActionID,_moveUpActionID]
+// this is used to remove them all at once when the object is placed down
+BLWK_heldObjectActionIDs = [
+	_snaptoActionID,
+	_placeActionID,
+	_sellActionID,
+	_moveUpActionID,
+	_moveDownActionID,
+	_rotateLeftActionID,
+	_rotateRightActionID
+];

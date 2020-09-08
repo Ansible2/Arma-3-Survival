@@ -1,3 +1,29 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_moveUpOrDown
+
+Description:
+	Executes the action to pick up a building object
+
+	Executed from ""
+
+Parameters:
+	0: _object : <OBJECT> - The object to pickup
+	1: _player : <OBJECT> - The person picking up the object
+	2: _justPurchased : <BOOL> - Was the item just purchased from the Bulwark?
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		[myObject,player] call BLWK_fnc_pickupObject;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 #define MOVEMENT_INCRIMENT 0.25;
 
 _object = _this select 0;
