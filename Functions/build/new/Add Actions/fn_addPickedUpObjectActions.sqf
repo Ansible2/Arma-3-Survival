@@ -34,10 +34,8 @@ params [
 private _snaptoActionID = _player addAction [
 	"<t color='#00ffff'>-- Drop Object (Snap To Ground) --</t>",
 	{
-		private _player = _this select 0;
 		private _object = _this select 3;
-
-		
+		[_object,true] call BLWK_fnc_placeObject;
 	},
 	_object,
 	97,
@@ -49,10 +47,8 @@ private _snaptoActionID = _player addAction [
 private _placeActionID = _player addAction [
 	"<t color='#ed601f'>-- Place Object (Floating) --</t>",
 	{
-		private _player = _this select 0;
 		private _object = _this select 3;
-
-		
+		[_object,false] call BLWK_fnc_placeObject;
 	},
 	_object,
 	96,
