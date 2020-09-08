@@ -32,30 +32,30 @@ params [
 
 // place object snap to
 private _snaptoActionID = _player addAction [
-	"<t color='#ed601f'>-- Drop Object --</t>",
+	"<t color='#00ffff'>-- Drop Object (Snap To Ground) --</t>",
 	{
 		private _player = _this select 0;
 		private _object = _this select 3;
 
-		[_crate,_caller,BLWK_dropCurrentObject_actionID] call KISKA_fnc_dropCrate;
+		
 	},
 	_object,
-	100,
+	97,
 	true,
 	true
 ];
 
 // place object floating
 private _placeActionID = _player addAction [
-	"<t color='#ed601f'>-- Drop Object --</t>",
+	"<t color='#ed601f'>-- Place Object (Floating) --</t>",
 	{
 		private _player = _this select 0;
 		private _object = _this select 3;
 
-		[_crate,_caller,BLWK_dropCurrentObject_actionID] call KISKA_fnc_dropCrate;
+		
 	},
 	_object,
-	100,
+	96,
 	true,
 	true
 ];
@@ -67,10 +67,10 @@ private _sellActionID = _player addAction [
 		private _player = _this select 0;
 		private _object = _this select 3;
 
-		[_objectWithActions,_caller] call BLWK_fnc_sell;
+		
 	}, 
 	_object, 
-	1,  
+	90,  
 	true,  
 	false
 ];
@@ -85,7 +85,7 @@ private _moveUpActionID = _player addAction [
 		[_objectWithActions,_caller,true] call BLWK_fnc_moveUpOrDown;
 	}, 
 	_object, 
-	2,  
+	95,  
 	true,  
 	false 
 ];
@@ -100,21 +100,21 @@ private _moveDownActionID = _player addAction [
 		[_objectWithActions,_caller,false] call BLWK_fnc_moveUpOrDown;
 	}, 
 	_object, 
-	2,  
+	94,  
 	true,  
 	false
 ];
 
 // rotate left
 private _rotateLeftActionID = _player addAction [
-	"<t color='#ffff05'>-- Rotate Left --</t>",
+	"<t color='#ff00bf'>-- Rotate Left --</t>",
 	{
 		private _player = _this select 1;
 		private _object = _this select 3;
 
 	},
 	_object,
-	90,
+	92,
 	true,
 	false
 ];
@@ -128,8 +128,23 @@ private _rotateRightActionID = _player addAction [
 
 	},
 	_object,
-	91,
+	93,
 	true,
+	false
+];
+
+// Reset Rotation
+private _resetRotationActionID = _player addAction [ 
+	"<t color='#ffff00'>-- Reset Rotation --</t>",  
+	{
+		private _player = _this select 0;
+		private _object = _this select 3;
+
+		[]
+	}, 
+	_object, 
+	91,  
+	true,  
 	false
 ];
 
@@ -141,5 +156,6 @@ BLWK_heldObjectActionIDs = [
 	_moveUpActionID,
 	_moveDownActionID,
 	_rotateLeftActionID,
-	_rotateRightActionID
+	_rotateRightActionID,
+	_resetRotationActionID
 ];
