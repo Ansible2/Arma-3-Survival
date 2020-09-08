@@ -39,6 +39,7 @@ private _playerKillpoints = missionNamespace getVariable ["BLWK_playerKillPoints
 
 // does the player have enough money and are they holding an object 
 // CIPHER COMMENT: Should probably just exit GUI fnc if the person is holding an object or make it unavailable
+// CIPHER COMMENT: Potentially need to add the object to curator
 if (_playerKillpoints >= _price AND {!(missionNamespace getVariable ["BLWK_holdingObject",false])}) then {
     if (_hasAi) then {
       	_purchasedObject = ([[0,0,300], 0, _className, west] call BIS_fnc_spawnVehicle) select 0;
