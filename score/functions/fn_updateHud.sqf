@@ -10,7 +10,7 @@ if (!isDedicated) then {
     disableSerialization;
     _player = player;
 
-    _killPoints = _player getVariable "killPoints";
+    _killPoints = missionNamespace getVariable ["BLWK_playerKillPoints",0];
     if(isNil "_killPoints") then {
         _killPoints = 0;
     };

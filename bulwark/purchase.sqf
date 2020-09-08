@@ -19,7 +19,7 @@ _vechAi    = (BLWK_buildableObjects_array select _index) select 5;
 // Script was passed an invalid number
 if(_shopClass == "") exitWith {};
 
-if(player getVariable "killPoints" >= _shopPrice && !(player getVariable "buildItemHeld")) then {
+if(missionNamespace getVariable ["BLWK_playerKillPoints",0] >= _shopPrice && !(player getVariable "buildItemHeld")) then {
     [player, _shopPrice] remoteExec ["killPoints_fnc_spend", 2];
     if (_vechAi) then {
         _vechWithAi = [[0,0,300], 0, _shopClass, west] call BIS_fnc_spawnVehicle;
@@ -31,7 +31,7 @@ if(player getVariable "killPoints" >= _shopPrice && !(player getVariable "buildI
     shopVehic setVariable ["Radius", _VecRadius, true];
     objPurchase = true;
 } else {
-    if(player getVariable "killPoints" < _shopPrice) then {
+    if(missionNamespace getVariable ["BLWK_playerKillPoints",0] < _shopPrice) then {
         [format ["<t size='0.6' color='#ff3300'>Not enough points for %1!</t>", _shopName], -0, -0.02, 2, 0.1] call BIS_fnc_dynamicText;
         objPurchase = false;
     }else{

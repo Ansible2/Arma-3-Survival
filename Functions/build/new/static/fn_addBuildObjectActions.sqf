@@ -10,7 +10,7 @@ Parameters:
 	0: _object : <OBJECT> - The object to add the actions to
 
 Returns:
-	Nothing
+	NUMBER (action ID)
 
 Examples:
     (begin example)
@@ -24,7 +24,10 @@ Author:
 ---------------------------------------------------------------------------- */
 if !(hasInterface) exitWith {};
 
-params ["_object",objNull,[objNull]];
+params [
+	["_object",objNull,[objNull]],
+	["_action",0,[123]]
+];
 
 // sell object
 _object addAction [ 
@@ -38,7 +41,7 @@ _object addAction [
 	false,  
 	false,  
 	"true", 
-	"true", 
+	"!(_originalTarget getVariable ['BLWK_objectPickedUp',false])", 
 	5 
 ];
 
@@ -54,9 +57,10 @@ _object addAction [
 	false,  
 	false,  
 	"true", 
-	"true", 
+	"!(_originalTarget getVariable ['BLWK_objectPickedUp',false])", 
 	5 
 ];
+
 
 // move down
 _object addAction [ 
@@ -70,7 +74,7 @@ _object addAction [
 	false,  
 	false,  
 	"true", 
-	"true", 
+	"!(_originalTarget getVariable ['BLWK_objectPickedUp',false])", 
 	5 
 ];
 
@@ -86,7 +90,7 @@ _object addAction [
 	false,  
 	false,  
 	"true", 
-	"true", 
+	"!(_originalTarget getVariable ['BLWK_objectPickedUp',false])", 
 	5 
 ];
 
@@ -102,6 +106,6 @@ _object addAction [
 	false,  
 	false,  
 	"true", 
-	"true", 
+	"!(_originalTarget getVariable ['BLWK_objectPickedUp',false])", 
 	5 
 ];

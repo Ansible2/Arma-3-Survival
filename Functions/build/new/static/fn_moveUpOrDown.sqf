@@ -1,3 +1,5 @@
+#define MOVEMENT_INCRIMENT 0.25;
+
 _object = _this select 0;
 _caller = _this select 1;
 _movePos = _this select 2;

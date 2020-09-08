@@ -21,5 +21,11 @@ class BLWK
         class reset{};
 		class moveUpOrDown {};
         class place {};
+	};
+
+	class Other
+	{
+		file = "functions\other";
+		class getOnlyPlayers {};
 	}
 }

@@ -9,7 +9,7 @@
 if (isServer) then {
 	_player = _this select 0;
 	_points = _this select 1;
-	_killPoints = _player getVariable "killPoints";
+	_killPoints = missionNamespace getVariable ["BLWK_playerKillPoints",0];
 	if(isNil "_killPoints") then {
 		_killPoints = 0;
 	};

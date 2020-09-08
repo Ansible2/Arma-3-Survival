@@ -1,3 +1,5 @@
+//CIpher comment: assuming you still use this patch job, just use boungingBoxes or agents
+
 _object  = _this select 0;
 _isHeld = _object getVariable "buildItemHeld";
 _loopCount = 0;

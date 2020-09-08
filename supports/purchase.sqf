@@ -18,7 +18,7 @@ if  (BLWK_supportMenuAllowed) then {
   // Script was passed an invalid number
   if(_shopClass == "") exitWith {};
 
-  if(player getVariable "killPoints" >= _shopPrice) then {
+  if(missionNamespace getVariable ["BLWK_playerKillPoints",0] >= _shopPrice) then {
       [player, _shopPrice] remoteExec ["killPoints_fnc_spend", 2];
       [player, _shopClass] call BIS_fnc_addCommMenuItem;
   } else {
