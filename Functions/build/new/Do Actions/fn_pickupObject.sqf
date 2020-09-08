@@ -56,7 +56,7 @@ missionNamespace setVariable ["BLWK_holdingObject",true];
 [_object,_player] call BLWK_fnc_addPickedUpObjectActions;
 
 
-// this loop is checking to see if the player is not unconcious or dead
+// this loop is checking to see if the player is unconcious or dead
 /// if they are, they drop the object
 [_object,_player] spawn {
 	params ["_object","_player"];
