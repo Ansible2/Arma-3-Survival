@@ -10,7 +10,7 @@ Parameters:
 	0: _object : <OBJECT> - The object to add the actions to
 
 Returns:
-	NUMBER (action ID)
+	BOOL
 
 Examples:
     (begin example)
@@ -22,12 +22,13 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if !(hasInterface) exitWith {};
+if !(hasInterface) exitWith {false};
 
 params [
-	["_object",objNull,[objNull]],
-	["_action",0,[123]]
+	["_object",objNull,[objNull]]
 ];
+
+if (isNull _object) exitWith {false};
 
 // sell object
 _object addAction [ 
@@ -109,3 +110,5 @@ _object addAction [
 	"!(_originalTarget getVariable ['BLWK_objectPickedUp',false])", 
 	5 
 ];
+
+true
