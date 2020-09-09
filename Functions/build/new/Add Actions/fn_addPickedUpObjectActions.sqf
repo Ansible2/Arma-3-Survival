@@ -58,12 +58,12 @@ private _placeActionID = _player addAction [
 
 // sell object
 private _sellActionID = _player addAction [ 
-	"<t color='#ff0000'>-- Sell Object Back --</t>",  
+	"<t color='#ff0000'>-- Sell (In Hand) Object Back --</t>",  
 	{
 		private _player = _this select 0;
 		private _object = _this select 3;
 
-		
+		[_object] call BLWK_fnc_sellObject;
 	}, 
 	_object, 
 	90,  
@@ -73,7 +73,7 @@ private _sellActionID = _player addAction [
 
 // move up
 private _moveUpActionID = _player addAction [ 
-	"<t color='#00ffff'>-- Move Up --</t>",  
+	"<t color='#00ffff'>-- Move Up (In Hand) Object --</t>",  
 	{
 		private _player = _this select 0;
 		private _object = _this select 3;
@@ -88,7 +88,7 @@ private _moveUpActionID = _player addAction [
 
 // move down
 private _moveDownActionID = _player addAction [ 
-	"<t color='#00ff00'>-- Move Down --</t>",  
+	"<t color='#00ff00'>-- Move Down (In Hand) Object --</t>",  
 	{
 		private _player = _this select 0;
 		private _object = _this select 3;
@@ -103,7 +103,7 @@ private _moveDownActionID = _player addAction [
 
 // rotate left
 private _rotateLeftActionID = _player addAction [
-	"<t color='#ff00bf'>-- Rotate Left --</t>",
+	"<t color='#ff00bf'>-- Rotate Left (In Hand) Object --</t>",
 	{
 		private _player = _this select 1;
 		private _object = _this select 3;
@@ -117,7 +117,7 @@ private _rotateLeftActionID = _player addAction [
 
 // rotate right
 private _rotateRightActionID = _player addAction [
-	"<t color='#7e33ff'>-- Rotate Right --</t>",
+	"<t color='#7e33ff'>-- Rotate Right (In Hand) Object --</t>",
 	{
 		private _player = _this select 1;
 		private _object = _this select 3;
@@ -131,7 +131,7 @@ private _rotateRightActionID = _player addAction [
 
 // Reset Rotation
 private _resetRotationActionID = _player addAction [ 
-	"<t color='#ffff00'>-- Reset Rotation --</t>",  
+	"<t color='#ffff00'>-- Reset Rotation (In Hand) Object --</t>",  
 	{
 		private _player = _this select 0;
 		private _object = _this select 3;
