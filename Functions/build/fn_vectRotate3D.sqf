@@ -9,10 +9,6 @@ Parameters:
 	1: _rotationAxis : <ARRAY> - 3D vector that the first argument is rotated around
     2: _theta : <OBJECT> - Angle, in degrees clockwise, about which the first vector is rotated
 
-    _vector       -  <ARRAY>
-    _rotationAxis -  <ARRAY>
-    _theta        -  <NUMBER>
-
 Returns:
     _returnVector - 3D vector returned after rotation <ARRAY>
 
