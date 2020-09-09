@@ -3,6 +3,14 @@ class BLWK
 	class Player Start
 	{
 		file = "functions\Player Start";
+		class keepPlayerLoadout
+		{
+			posInit = 1;
+		};
+		class keepPlayerInGroup
+		{
+			postInit = 1;
+		};
 		class playAreaEnforcementLoop 
 		{};
 	};
