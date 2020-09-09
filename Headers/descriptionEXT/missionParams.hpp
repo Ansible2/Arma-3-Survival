@@ -321,6 +321,14 @@ class BLWK_respawnTime
 	default = 10;
 };
 
+class BLWK_saveRespawnLoadout
+{
+	title = "Players Get Their Loadout If They Respawn";
+	values[] = {0, 1};
+	texts[] = {"Off", "On"};
+	default = 0;
+};
+
 class BLWK_friendlyFireOn
 {
 	title = "Freindly Fire";

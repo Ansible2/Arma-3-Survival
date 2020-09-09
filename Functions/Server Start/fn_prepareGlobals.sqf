@@ -20,8 +20,6 @@ Examples:
     (end)
 ---------------------------------------------------------------------------- */
 
-
-
 // cipher comment: this needs to be organized the same way it shows up in the params menu in the lobby
 /// which itself may need to be reorganized
 
@@ -190,3 +188,5 @@ BLWK_friendlyFireOn = [false,true] select ("BLWK_friendlyFireOn" call BIS_fnc_ge
 BLWK_hitPointsShown = [false,true] select ("BLWK_hitPointsShown" call BIS_fnc_getParamValue);
 
 BLWK_vehicleStartWave = ("BLWK_vehicleStartWave" call BIS_fnc_getParamValue);
+
+BLWK_saveRespawnLoadout = [false,true] select ("BLWK_saveRespawnLoadout" call BIS_fnc_getParamValue);
