@@ -47,6 +47,10 @@ if (_playerKillpoints >= _price AND {!(isNil "BLWK_heldObject")}) then {
 		_purchasedObject = _className createVehicle [0,0,0];
 	};
 
+	if (_className == "B_HMG_01_A_F") then {
+		_purchasedObject allowDamage false;
+	};
+
 	BLWK_playerKillPoints = _playerKillpoints - _price;
 
 	closeDialog 0;
@@ -67,14 +71,4 @@ if (_playerKillpoints >= _price AND {!(isNil "BLWK_heldObject")}) then {
 	[_purchasedObject] remoteExecCall ["BLWK_fnc_addBuildableObjectActions",BLWK_allPlayersTargetID,true];
 } else {
 	[format ["<t size='0.6' color='#ff3300'>Not enough points for: %1!</t>", _displayName], -0, -0.02, 2, 0.1] call BIS_fnc_dynamicText;
-
-/*
-    if(missionNamespace getVariable ["BLWK_playerKillPoints",0] < _price) then {
-        [format ["<t size='0.6' color='#ff3300'>Not enough points for %1!</t>", _displayName], -0, -0.02, 2, 0.1] call BIS_fnc_dynamicText;
-        objPurchase = false;
-    } else {
-        [format ["<t size='0.6' color='#ff3300'>You're already carrying an object!</t>", _displayName], -0, -0.02, 2, 0.1] call BIS_fnc_dynamicText;
-        objPurchase = false;
-    };
-*/
 };
