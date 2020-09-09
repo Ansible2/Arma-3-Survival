@@ -34,11 +34,11 @@ if (isNull _object) exitWith {false};
 _object addAction [ 
 	"<t color='#ff0000'>-- Sell Object Back --</t>",  
 	{
-		params ["_objectWithActions","_caller"];
-		[_objectWithActions,_caller] call BLWK_fnc_sell;
+		params ["_object","_caller"];
+		[_object,_caller] call BLWK_fnc_sell;
 	}, 
 	nil, 
-	1,  
+	90,  
 	false,  
 	false,  
 	"true", 
@@ -48,13 +48,13 @@ _object addAction [
 
 // move up
 _object addAction [ 
-	"<t color='#00ffff'>-- Move Up --</t>",  
+	"<t color='#00ffff'>-- Move Object Up --</t>",  
 	{
-		params ["_objectWithActions","_caller"];
-		[_objectWithActions,_caller,true] call BLWK_fnc_moveUpOrDown;
+		params ["_object","_caller"];
+		[_object,_caller,true] call BLWK_fnc_moveUpOrDown;
 	}, 
 	nil, 
-	2,  
+	95,  
 	false,  
 	false,  
 	"true", 
@@ -65,13 +65,13 @@ _object addAction [
 
 // move down
 _object addAction [ 
-	"<t color='#00ff00'>-- Move Down --</t>",  
+	"<t color='#00ff00'>-- Move Object Down --</t>",  
 	{
-		params ["_objectWithActions","_caller"];
-		[_objectWithActions,_caller,false] call BLWK_fnc_moveUpOrDown;
+		params ["_object","_caller"];
+		[_object,_caller,false] call BLWK_fnc_moveUpOrDown;
 	}, 
 	nil, 
-	2,  
+	94,  
 	false,  
 	false,  
 	"true", 
@@ -81,13 +81,13 @@ _object addAction [
 
 // pick up
 _object addAction [ 
-	"<t color='#ffffff'>-- Pickup --</t>",  
+	"<t color='#ffffff'>-- Pickup Object --</t>",  
 	{
-		params ["_objectWithActions","_caller"];
-		[_objectWithActions,_caller] call BLWK_fnc_pickup;
+		params ["_object","_caller"];
+		[_object,_caller] call BLWK_fnc_pickup;
 	}, 
 	nil, 
-	2,  
+	100,  
 	false,  
 	false,  
 	"true", 
@@ -95,20 +95,52 @@ _object addAction [
 	5 
 ];
 
-// reset rotation
-_object addAction [ 
-	"<t color='#ffffff'>-- Reset Rotation --</t>",  
+// rotate left
+_object addAction [
+	"<t color='#ff00bf'>-- Rotate Object Left --</t>",
 	{
-		params ["_objectWithActions","_caller"];
-		[_objectWithActions,_caller] call BLWK_fnc_pickup;
-	}, 
-	nil, 
-	2,  
+		params ["_object"];
+
+	},
+	_object,
+	92,
 	false,  
 	false,  
 	"true", 
 	"!(_originalTarget getVariable ['BLWK_objectPickedUp',false])", 
-	5 
+	5
+];
+
+// rotate right
+_object addAction [
+	"<t color='#7e33ff'>-- Rotate Object Right --</t>",
+	{
+		params ["_object"]
+
+	},
+	nil,
+	93,
+	false,  
+	false,  
+	"true", 
+	"!(_originalTarget getVariable ['BLWK_objectPickedUp',false])", 
+	5
+];
+
+// Reset Rotation
+_object addAction [ 
+	"<t color='#ffff00'>-- Reset Object Rotation --</t>",  
+	{
+		params ["_object"];
+		
+	}, 
+	nil, 
+	91,  
+	false,  
+	false,  
+	"true", 
+	"!(_originalTarget getVariable ['BLWK_objectPickedUp',false])", 
+	5
 ];
 
 true
