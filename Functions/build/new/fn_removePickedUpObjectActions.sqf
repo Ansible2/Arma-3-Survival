@@ -28,4 +28,6 @@ BLWK_heldObjectActionIDs apply {
 	player removeAction _x;
 };
 
+missionNamespace setVariable ["BLWK_heldObjectActionIDs",nil];
+
 true
