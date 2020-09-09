@@ -43,34 +43,38 @@ player addEventHandler ["HandleDamage", {
 }]] remoteExec ['addEventHandler', 0, true];
 
 //remove and add gear
-removeHeadgear player;
-removeGoggles player;
-removeVest player;
-removeBackpack player;
-removeAllWeapons player;
-removeAllAssignedItems player;
-player setPosASL ([bulwarkBox] call bulwark_fnc_findPlaceAround);
+if !(BLWK_saveRespawnLoadout) then {
+    removeHeadgear player;
+    removeGoggles player;
+    removeVest player;
+    removeBackpack player;
+    removeAllWeapons player;
+    removeAllAssignedItems player;
+    player setPosASL ([bulwarkBox] call bulwark_fnc_findPlaceAround);
 
-if(BLWK_playersStartWith_pistol) then {
-    player addMagazine "16Rnd_9x21_Mag";
-    player addMagazine "16Rnd_9x21_Mag";
-    player addWeapon "hgun_P07_F";
-};
+    if(BLWK_playersStartWith_pistol) then {
+        player addMagazine "16Rnd_9x21_Mag";
+        player addMagazine "16Rnd_9x21_Mag";
+        player addWeapon "hgun_P07_F";
+    };
 
-if(BLWK_playersStartWith_map) then {
-    player addItem "ItemMap";
-    player assignItem "ItemMap";
-    player linkItem "ItemMap";
-};
+    if(BLWK_playersStartWith_map) then {
+        player addItem "ItemMap";
+        player assignItem "ItemMap";
+        player linkItem "ItemMap";
+    };
 
-if(BLWK_playersStartWith_NVGs) then {
-    player addItem "Integrated_NVG_F";
-    player assignItem "Integrated_NVG_F";
-    player linkItem "Integrated_NVG_F";
-};
+    if(BLWK_playersStartWith_NVGs) then {
+        player addItem "Integrated_NVG_F";
+        player assignItem "Integrated_NVG_F";
+        player linkItem "Integrated_NVG_F";
+    };
 
-if (isClass (configfile >> "CfgVehicles" >> "tf_anarc164")) then {
-  player addItem "tf_anprc152";
+    if (isClass (configfile >> "CfgVehicles" >> "tf_anarc164")) then {
+    player addItem "tf_anprc152";
+    };
+} else {
+    player setUnitLoadout BLWK_savedLoadout;
 };
 
 waituntil {alive player};
