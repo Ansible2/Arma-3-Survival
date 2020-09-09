@@ -1,27 +1,5 @@
 class BLWK
 {
-	class Player Start
-	{
-		file = "functions\Player Start";
-		class keepPlayerLoadout
-		{
-			posInit = 1;
-		};
-		class keepPlayerInGroup
-		{
-			postInit = 1;
-		};
-		class playAreaEnforcementLoop 
-		{};
-	};
-	
-	class Server Start
-	{
-		file = "functions\Server Start";
-		class prepareGlobals 
-		{};
-	};
-
 	class Build
 	{
 		file = "functions\build";
@@ -55,4 +33,21 @@ class BLWK
 		class getOnlyPlayers 
 		{};
 	}
+
+	class Init
+	{
+		file = "function\init";
+		class keepPlayerInGroup
+		{
+			postInit = 1;
+		};
+		class keepPlayerLoadout
+		{
+			postInit = 1;
+		};
+		class playAreaEnforcementLoop
+		{};
+		class prepareGlobals
+		{};
+	};
 }
