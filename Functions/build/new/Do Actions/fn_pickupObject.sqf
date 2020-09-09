@@ -26,6 +26,12 @@ Author:
 ---------------------------------------------------------------------------- */
 if !(hasInterface) exitWith {};
 
+// if they have an object in hand
+if (BLWK_holdingObject) exitWith {
+	hint "Can't pick up two objects Superman";
+	false
+};
+
 params [
 	["_object",objNull,[objNull]],
 	["_player",player,[objNull]],
