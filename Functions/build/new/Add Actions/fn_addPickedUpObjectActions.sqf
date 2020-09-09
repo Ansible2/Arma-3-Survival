@@ -32,7 +32,7 @@ params [
 
 // place object snap to
 private _snaptoActionID = _player addAction [
-	"<t color='#00ffff'>-- Drop Object (Snap To Ground) --</t>",
+	"<t color='#00ffff'>-- Snap Object To Surface --</t>",
 	{
 		private _object = _this select 3;
 		[_object,true] call BLWK_fnc_placeObject;
@@ -60,9 +60,7 @@ private _placeActionID = _player addAction [
 private _sellActionID = _player addAction [ 
 	"<t color='#ff0000'>-- Sell (In Hand) Object Back --</t>",  
 	{
-		private _player = _this select 0;
 		private _object = _this select 3;
-
 		[_object] call BLWK_fnc_sellObject;
 	}, 
 	_object, 
@@ -136,13 +134,14 @@ private _resetRotationActionID = _player addAction [
 		private _player = _this select 0;
 		private _object = _this select 3;
 
-		[]
+		
 	}, 
 	_object, 
 	91,  
 	true,  
 	false
 ];
+
 
 // this is used to remove them all at once when the object is placed down
 BLWK_heldObjectActionIDs = [
