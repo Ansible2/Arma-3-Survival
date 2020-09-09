@@ -8,8 +8,7 @@ Description:
 
 Parameters:
 	0: _object : <OBJECT> - The object to place
-	1: _player : <OBJECT> - The person who picked up the object
-	2: _snapToSurface : <BOOL> - Should the object snap to the nearest surface
+	1: _snapToSurface : <BOOL> - Should the object snap to the nearest surface
 
 Returns:
 	BOOL
