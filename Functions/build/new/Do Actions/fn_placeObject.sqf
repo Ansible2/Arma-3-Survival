@@ -34,7 +34,7 @@ if (_snapToSurface) then {
 	private _objectPositionATL = getPosATL _object;
 	private _ATLBeneathObject = _objectPositionATL vectorDiff [0,0,_objectPositionATL select 2];
 
-	private _closestIntersect = (lineIntersectsSurfaces [ATLToASL _objectPositionATL,ATLToASL _ATLBeneathObjectm,_object]) select 0;
+	private _closestIntersect = (lineIntersectsSurfaces [ATLToASL _objectPositionATL,ATLToASL _ATLBeneathObject,_object]) select 0;
 	_closestIntersect params ["_intersectPosASL","_intersectPosSurfaceNormal"];
 
 	_object setPosASL _intersectPosASL;
