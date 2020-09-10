@@ -19,7 +19,6 @@ Examples:
 
     (end)
 ---------------------------------------------------------------------------- */
-
 // cipher comment: this needs to be organized the same way it shows up in the params menu in the lobby
 /// which itself may need to be reorganized
 
@@ -173,6 +172,8 @@ BLWK_timeOfDayMax = ("BLWK_timeOfDayMax" call BIS_fnc_getParamValue);
 if (BLWK_timeOfDayMin > BLWK_timeOfDayMax) then {
     BLWK_timeOfDayMin = BLWK_timeOfDayMax - 2;
 };
+
+BLWK_randomizeHostileWeapons = ("BLWK_randomizeHostileWeapons" call BIS_fnc_getParamValue);
 
 /* Starter MediKits */
 BLWK_numMedKits = ("BLWK_numMedKits" call BIS_fnc_getParamValue);
