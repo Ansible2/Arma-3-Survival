@@ -2,10 +2,9 @@
 //teleport players away from Bulwark
 {
     _distToBulwark = 0;
-    _distFromBulwark = "BLWK_playAreaRadius" call BIS_fnc_getParamValue;
     telePos = getPos _x;
     while {_distToBulwark < 30 && {["mine_", str(_x)] call BIS_fnc_inString} count (telePos nearObjects 10) <= 1} do {
-    telePos = [bulwarkRoomPos, 30, _distFromBulwark - 10, 3, 0, 10, 0] call BIS_fnc_findSafePos;
+    telePos = [bulwarkRoomPos, 30, BLWK_playAreaRadius - 10, 3, 0, 10, 0] call BIS_fnc_findSafePos;
     _distToBulwark = telePos distance bulwarkBox;
     };
     if (telePos distance _x >= 3 && _x distance bulwarkBox < 30) then {

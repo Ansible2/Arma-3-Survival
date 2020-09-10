@@ -1,7 +1,6 @@
 civClassArr = [];
 _spawnedCivs = [];
 _currentWave = attkWave;
-_distFromBulwark = "BLWK_playAreaRadius" call BIS_fnc_getParamValue;
 
 //Create array of all Civ classes
 _civSide = 3;
@@ -44,7 +43,7 @@ for [{_i=0}, {_i<20}, {_i=_i+1}] do {
 
 while {EAST countSide allUnits > 0} do {
   {
-    _civGoToPos = [bulwarkRoomPos, 0, _distFromBulwark - 5,0,0,70,0] call BIS_fnc_findSafePos;
+    _civGoToPos = [bulwarkRoomPos, 0, BLWK_playAreaRadius - 5,0,0,70,0] call BIS_fnc_findSafePos;
     _x doMove _civGoToPos;
     _x allowFleeing 0;
     _x setBehaviour "CARELESS";
