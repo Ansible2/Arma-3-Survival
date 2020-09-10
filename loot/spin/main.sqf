@@ -44,7 +44,7 @@ if (floor random 15 == 1) then {
   		_player = _this select 1;
   		_points = _player getVariable 'killPoints';
   		if(_points >= BLWK_costToSpinRandomBox) then {
-  			[_player, BLWK_costToSpinRandomBox] remoteExec ['killPoints_fnc_spend', 2];
+  			[_player, BLWK_costToSpinRandomBox] remoteExec ['BLWK_fnc_spendPoints', 2];
   			[[lootBoxPos, lootBoxPosATL, lootBoxDir], 'loot\spin\main.sqf'] remoteExec ['execVM', 2];
   		};
   	"

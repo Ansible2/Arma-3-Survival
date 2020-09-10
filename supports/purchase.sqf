@@ -19,7 +19,7 @@ if  (BLWK_supportMenuAllowed) then {
   if(_shopClass == "") exitWith {};
 
   if(missionNamespace getVariable ["BLWK_playerKillPoints",0] >= _shopPrice) then {
-      [player, _shopPrice] remoteExec ["killPoints_fnc_spend", 2];
+      [player, _shopPrice] remoteExec ["BLWK_fnc_spendPoints", 2];
       [player, _shopClass] call BIS_fnc_addCommMenuItem;
   } else {
       [format ["<t size='0.6' color='#ff3300'>Not enough points for %1!</t>", _shopName], -0, -0.02, 0.2] call BIS_fnc_dynamicText;
