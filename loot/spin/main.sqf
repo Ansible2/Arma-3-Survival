@@ -28,7 +28,7 @@ if (floor random 15 == 1) then {
   _player = player;
   [_player, "SmallExplosion"] remoteExec ["sound_fnc_say3DGlobal", 0];
   _lootBoxRoom = while {true} do {
-  	_lootBulding = selectRandom lootHouses;
+  	_lootBulding = selectRandom BLWK_playAreaBuildings;
   	_lootRooms = _lootBulding buildingPos -1;
   	_lootRoom = selectRandom _lootRooms;
   	if(!isNil "_lootRoom") exitWith {_lootRoom};

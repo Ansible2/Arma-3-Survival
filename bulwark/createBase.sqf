@@ -121,14 +121,14 @@ _marker1 = createMarker ["Mission Area", BLWK_playAreaCenter];
 "Mission Area" setMarkerSize [BLWK_playAreaRadius, BLWK_playAreaRadius];
 "Mission Area" setMarkerColor "ColorWhite";
 
-lootHouses = BLWK_playAreaCenter nearObjects ["House", BLWK_playAreaRadius];
+
 
 [] execVM "bulwark\fakToMedkit.sqf";
 
 /* Spinner Box */
 
 _lootBoxRoom = while {true} do {
-	_lootBulding = selectRandom lootHouses;
+	_lootBulding = selectRandom BLWK_playAreaBuildings;
 	_lootRooms = _lootBulding buildingPos -1;
 	_lootRoom = selectRandom _lootRooms;
 	if(!isNil "_lootRoom") exitWith {_lootRoom};

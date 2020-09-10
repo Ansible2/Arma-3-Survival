@@ -26,7 +26,7 @@ for [{_i = 0}, {_i < _cfgVehiclesConfigCount}, {_i = _i + 1}] do
 for [{_i=0}, {_i<20}, {_i=_i+1}] do {
   //find random location for Civ to spawn
   _civRoom = while {true} do {
-    _civBulding = selectRandom lootHouses;
+    _civBulding = selectRandom BLWK_playAreaBuildings;
     _civRooms = _civBulding buildingPos -1;
     _civRoom = selectRandom _civRooms;
     if(!isNil "_civRoom") exitWith {_civRoom};
@@ -36,7 +36,7 @@ for [{_i=0}, {_i<20}, {_i=_i+1}] do {
   _civClass = selectRandom civClassArr;
   _civgroup = createGroup [civilian, true];
   _civUnit = _civgroup createUnit [_civClass, _civRoom, [], 0.5, "FORM"];
-  mainZeus addCuratorEditableObjects [[_civUnit], true];
+  mainzeus addCuratorEditableObjects [[_civUnit], true];
   _civUnit addEventHandler ["Killed", killPoints_fnc_civKilled];
   _spawnedCivs pushBack _civUnit;
 };

@@ -12,7 +12,7 @@ lootDebugMarkers = [];
 
 /* Item to reveal all loot on the Map (1 spawns every wave) */
 droneRoom = while {true} do {
-	_lootBulding = selectRandom lootHouses;
+	_lootBulding = selectRandom BLWK_playAreaBuildings;
 	_lootRooms = _lootBulding buildingPos -1;
 	_lootRoom = selectRandom _lootRooms;
 	if(!isNil "_lootRoom") exitWith {_lootRoom};
@@ -25,7 +25,7 @@ mainZeus addCuratorEditableObjects [[_droneSupport], true];
 satRoom = [];
 if (!BLWK_supportMenuAllowed) then {
 	satRoom = while {true} do {
-		_satBulding = selectRandom lootHouses;
+		_satBulding = selectRandom BLWK_playAreaBuildings;
 		_satRooms = _satBulding buildingPos -1;
 		_satRoom = selectRandom _satRooms;
 		if(!isNil "_satRoom") exitWith {_satRoom};
@@ -57,7 +57,7 @@ if (!BLWK_supportMenuAllowed) then {
 
 // Item to give KillPoints (1 spawns every wave)
 pointsLootRoom = while {true} do {
-	_lootBulding = selectRandom lootHouses;
+	_lootBulding = selectRandom BLWK_playAreaBuildings;
 	_lootRooms = _lootBulding buildingPos -1;
 	_lootRoom = selectRandom _lootRooms;
 	if(!isNil "_lootRoom") exitWith {_lootRoom};
@@ -163,7 +163,7 @@ _roomCount = 0;
 		} forEach _lootRooms;
 	};
 
-} forEach lootHouses;
+} forEach BLWK_playAreaBuildings;
 
 /* Supply Drop */
 [BLWK_playAreaCenter, ["<t color='#00ff00'>" + "FILL AMMO", "supports\ammoDrop.sqf","",2,true,false,"true","true",4], "B_T_VTOL_01_vehicle_F"] remoteExec ["supports_fnc_supplyDrop", 2];
