@@ -191,3 +191,22 @@ BLWK_hitPointsShown = [false,true] select ("BLWK_hitPointsShown" call BIS_fnc_ge
 BLWK_vehicleStartWave = ("BLWK_vehicleStartWave" call BIS_fnc_getParamValue);
 
 BLWK_saveRespawnLoadout = [false,true] select ("BLWK_saveRespawnLoadout" call BIS_fnc_getParamValue);
+
+// CIPHER COMMENT: See about using a #include here, but I don't think it is possible within an if statement
+if (isServer OR {!hasInterface}) then {
+    BLWK_civUniforms = [
+
+    ];
+
+    BLWK_civHeadgear = [
+
+    ];
+
+    BLWK_civFaceWear = [
+
+    ];
+
+    BLWK_civVests = [
+
+    ];
+};
