@@ -336,3 +336,11 @@ class BLWK_friendlyFireOn
 	texts[] = {"Off", "On"};
 	default = 1;
 };
+
+class BLWK_buildingsNearBulwarkAreIndestructable
+{
+	title = "Buildings Near Bulwark Are Indestructable";
+	values[] = {0, 1};
+	texts[] = {"Off", "On"};
+	default = 0;
+};

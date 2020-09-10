@@ -190,10 +190,14 @@ BLWK_hitPointsShown = [false,true] select ("BLWK_hitPointsShown" call BIS_fnc_ge
 
 BLWK_vehicleStartWave = ("BLWK_vehicleStartWave" call BIS_fnc_getParamValue);
 
+BLWK_buildingsNearBulwarkAreIndestructable = [false,true] select ("BLWK_buildingsNearBulwarkAreIndestructable" call BIS_fnc_getParamValue);
+
 BLWK_saveRespawnLoadout = [false,true] select ("BLWK_saveRespawnLoadout" call BIS_fnc_getParamValue);
 
 // CIPHER COMMENT: See about using a #include here, but I don't think it is possible within an if statement
 if (isServer OR {!hasInterface}) then {
+    BLWK_civilianClass = "C_man_1";
+
     BLWK_civUniforms = [
 
     ];
@@ -210,3 +214,20 @@ if (isServer OR {!hasInterface}) then {
 
     ];
 };
+
+private _buildingsInPlayArea = BLWK_playAreaCenter nearObjects ["House", BLWK_playAreaRadius];
+// sort those that actually have cfg building positions to spawn stuff
+BLWK_playAreaBuildings = _buildingsInPlayArea select {!((_x buildingPos -1) isEqualTo [])};
+
+/*
+    POTENTIAL AI QUE
+
+    Have a while true loop run constantly on server, maybe check every second
+
+    There is a global array that contains other arrays that have:
+    [entity type, position to spawn, code to run]
+
+    Could have funtions that pushBack the info and pushToFront
+
+    There is a global setting of how many AI can be present at any given time
+*/
