@@ -2,7 +2,7 @@
 Function: BLWK_fnc_civRandomGear
 
 Description:
-	Randomizes gear based upon global arrays. Designed with civillians in mind.
+	Randomizes gear based upon global arrays. Designed with civilians in mind.
 
 Parameters:
 	0: _unit : <OBJECT> - The unit to randomize gear
