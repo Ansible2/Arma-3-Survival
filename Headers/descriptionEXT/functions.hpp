@@ -27,16 +27,17 @@ class BLWK
 		{};
 	};
 
-	class Other
+	class Hostiles
 	{
-		file = "functions\other";
-		class getOnlyPlayers 
+		file = "functions\Hostiles";
+		class explodeSuicideBomber
 		{};
-	}
+		
+	};
 
 	class Init
 	{
-		file = "function\init";
+		file = "functions\init";
 		class keepPlayerInGroup
 		{
 			postInit = 1;
@@ -50,4 +51,11 @@ class BLWK
 		class prepareGlobals
 		{};
 	};
+
+	class Other
+	{
+		file = "functions\other";
+		class getOnlyPlayers 
+		{};
+	}
 }
