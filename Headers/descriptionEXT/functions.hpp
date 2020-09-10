@@ -23,6 +23,23 @@ class BLWK
 		{};
 		class sellObject 
 		{};
+	};
+
+	class CBAP
+	{
+		file = "functions\CBAP";
+		class addWaypoint
+		{};
+		class clearWaypoints
+		{};
+		class getGroup
+		{};
+		class getPos
+		{};
+		class players
+		{};
+		class taskPatrol
+		{};
 		class vectRotate3D
 		{};
 	};
@@ -47,7 +64,7 @@ class BLWK
 	class Other
 	{
 		file = "functions\other";
-		class getOnlyPlayers 
+		class civRandomGear 
 		{};
 	}
 

@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_vectRotate3D
+Function: CBAP_fnc_vectRotate3D
 
 Description:
     Rotates the first vector around the second, clockwise by theta degrees.
@@ -16,24 +16,22 @@ Examples:
     (begin example)
     
     // Rotate 25 degrees right of player weapon direction;
-    [weaponDirection player, [0,0,1], 25] call BLWK_fnc_vectRotate3D;
+    [weaponDirection player, [0,0,1], 25] call CBAP_fnc_vectRotate3D;
 
     // Pitch a projectile's velocity down 10 degrees;
-    [velocity _projectile, (velocity _projectile) vectorCrossProduct [0,0,1], 10] call BLWK_fnc_vectRotate3D;
+    [velocity _projectile, (velocity _projectile) vectorCrossProduct [0,0,1], 10] call CBAP_fnc_vectRotate3D;
     
     // Rotate just an object's direction by 10 degrees
     _dir = vectorDir myObject;
     _up = vectorUP myObject;
-    _new = [_dir,_up,10] call CBA_fnc_vectRotate3D;
+    _new = [_dir,_up,10] call CBAP_fnc_vectRotate3D;
     myObject setVectorDirAndUp [_new,_up];
 
     (end)
 
 Author:
     LorenLuke
-	(Exported from CBA)
 ---------------------------------------------------------------------------- */
-
 params ["_vector", "_rotationAxis", "_theta"];
 
 private _normalVector = vectorNormalized _rotationAxis;

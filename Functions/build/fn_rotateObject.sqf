@@ -42,7 +42,7 @@ private _currVectUp = vectorUp _object;
 // this means we are either adding or subtracting 10 degrees from the current angle
 private _addToAngle = [10,-10] select _direction;
 
-private _newVector = [_currVectDir,_currVectUp,_addToAngle] call BLWK_fnc_vectRotate3D;
+private _newVector = [_currVectDir,_currVectUp,_addToAngle] call CBAP_fnc_vectRotate3D;
 
 if (_beingCarried) then {
 	[_object,[_player vectorModelToWorld _newVector,_currVectUp]] remoteExecCall ["setVectorDirAndUp",_object];
