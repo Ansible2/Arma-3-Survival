@@ -27,14 +27,6 @@ class BLWK
 		{};
 	};
 
-	class Hostiles
-	{
-		file = "functions\Hostiles";
-		class explodeSuicideBomber
-		{};
-		
-	};
-
 	class Init
 	{
 		file = "functions\init";
@@ -58,4 +50,12 @@ class BLWK
 		class getOnlyPlayers 
 		{};
 	}
+
+	class Waves
+	{
+		file = "functions\waves";
+		class explodeSuicideBomber
+		{};
+		
+	};
 }
