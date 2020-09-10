@@ -29,7 +29,7 @@ player setVariable ["killPoints", _killPoints, true];
 hitMarkers = [];
 
 //Show the Bulwark label on screen
-// CIPHER COMMENT: change this shit to a addMissionEventHandler
+// CIPHER COMMENT: change this to an addMissionEventHandler
 onEachFrame {
     if(!isNil "bulwarkBox") then {
         _textPos = getPosATL bulwarkBox vectorAdd [0, 0, 1.5];
