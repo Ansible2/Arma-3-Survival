@@ -1,3 +1,25 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_mainLoop
+
+Description:
+	Starts the main loop of the mission 
+	
+	It is executed from the "initServer.sqf".
+	
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		null = [] spawn BLWK_fnc_mainLoop;
+
+    (end)
+---------------------------------------------------------------------------- */
+
 {
 	[_x, false] remoteExec ["setUnconscious", 0];
 	_X action ["CancelAction", _X];
