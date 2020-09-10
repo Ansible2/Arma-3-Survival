@@ -67,6 +67,13 @@ class BLWK
 		class civRandomGear 
 		{};
 	}
+	
+	class Points
+	{
+		file = "functions\Points";
+		class spendPoints 
+		{};
+	};
 
 	class Waves
 	{
