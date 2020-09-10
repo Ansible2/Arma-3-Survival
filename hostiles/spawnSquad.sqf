@@ -97,7 +97,12 @@ for ("_i") from 1 to _unitCount do {
 
 	if (suicideWave) then {
 		removeAllWeapons _unit;
-		_unit addEventHandler ["Killed", CreateHostiles_fnc_suiExplode];
+		_unit addMPEventHandler ["MPKilled", {
+			params ["_unit"];
+			[_unit] call BLWK_fnc_explodeSuicideBomber;
+
+			removeMPEventHandler ["mpKilled",_thisEventHandler];
+		}];
 	};
 
 	if (demineWave && (floor random 2 == 0) && droneCount <= 15) then {
