@@ -105,17 +105,17 @@ class BLWK_vehicleStartWave
 class BLWK_randomizeHostileWeapons
 {
 	title = "Randomize Hostile Weapons";
-	values[] = {"true", "false"};
-	texts[] = {"Yes", "No"};
-	default = "No";
+	values[] = {0, 1};
+	texts[] = {"No", "Yes"};
+	default = 0;
 };
 
-class BLWK_hitPointsShown
+class BLWK_showHitPoints
 {
 	title = "Point Hitmarkers on HUD";
-	values[] = {1, 0};
-	texts[] = {"Yes", "No"};
-	default = "1";
+	values[] = {0, 1};
+	texts[] = {"No", "Yes"};
+	default = 1;
 };
 
 class BULWARK_LABEL_SPACE
