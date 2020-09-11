@@ -20,7 +20,7 @@ Examples:
     (end)
 ---------------------------------------------------------------------------- */
 #define NUM_CIVILIANS 20
-
+// CIPHER COMMENT: Consider adjusting this for dedicated and hosted server
 // CIPHER COMMENT: could just do an allunits select {side _x isEqualTo civilian} instead of deletion pile...
 private _civilians = [];
 for "_i" from 1 to NUM_CIVILIANS do {
@@ -59,4 +59,4 @@ for "_i" from 1 to NUM_CIVILIANS do {
 	sleep 0.5;
 };
 
-mainzeus addCuratorEditableObjects [[_civilians], true];
+mainzeus addCuratorEditableObjects [_civilians, true];
