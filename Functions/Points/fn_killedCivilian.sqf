@@ -7,7 +7,7 @@ Description:
 	Executed from ""
 
 Parameters:
-	NONE
+	0: _killedCivilian : <OBJECT> - The person killed
 
 Returns:
 	NOTHING
@@ -22,12 +22,10 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-params [
-	["_player",player,[objNull]]
-];
+params ["_killedCivilian"];
 
 [BLWK_pointsForKill * 10] call BLWK_fnc_spendPoints;
 
 playSound "alarm";
 
-null = [_unit, round (BLWK_pointsForKill * -10), [1, 0.1, 0.1]] spawn killPoints_fnc_hitMarker;
+[_killedCivilian, round (BLWK_pointsForKill * -10), ] call BLWK_fnc_createHitMarker;
