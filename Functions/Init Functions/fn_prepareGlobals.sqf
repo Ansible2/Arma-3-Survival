@@ -173,7 +173,7 @@ if (BLWK_timeOfDayMin > BLWK_timeOfDayMax) then {
     BLWK_timeOfDayMin = BLWK_timeOfDayMax - 2;
 };
 
-BLWK_randomizeHostileWeapons = ("BLWK_randomizeHostileWeapons" call BIS_fnc_getParamValue);
+BLWK_randomizeHostileWeapons = [false,true] select ("BLWK_randomizeHostileWeapons" call BIS_fnc_getParamValue);
 
 /* Starter MediKits */
 BLWK_numMedKits = ("BLWK_numMedKits" call BIS_fnc_getParamValue);
@@ -186,7 +186,7 @@ BLWK_supportMenuAllowed = [false,true] select ("BLWK_supportMenuAllowed" call BI
 
 BLWK_friendlyFireOn = [false,true] select ("BLWK_friendlyFireOn" call BIS_fnc_getParamValue);
 
-BLWK_hitPointsShown = [false,true] select ("BLWK_hitPointsShown" call BIS_fnc_getParamValue);
+BLWK_showHitPoints = [false,true] select ("BLWK_showHitPoints" call BIS_fnc_getParamValue);
 
 BLWK_vehicleStartWave = ("BLWK_vehicleStartWave" call BIS_fnc_getParamValue);
 
