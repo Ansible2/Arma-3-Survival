@@ -39,11 +39,11 @@ hitMarkers = [];
 // CIPHER COMMENT: change this to an addMissionEventHandler
 onEachFrame {
     if(!isNil "bulwarkBox") then {
-        _textPos = getPosATL bulwarkBox vectorAdd [0, 0, 1.5];
+        _textPos = getPosATLVisual bulwarkBox vectorAdd [0, 0, 1.5];
         drawIcon3D ["", [1,1,1,0.5], _textPos, 1, 1, 0, "Bulwark", 0, 0.04, "RobotoCondensed", "center", true];
     };
 
-    if (BLWK_hitPointsShown) then {
+    if (BLWK_showHitPoints) then {
       {
           _pos    = _x select 0;
           _label  = _x select 1;

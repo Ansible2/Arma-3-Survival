@@ -41,7 +41,7 @@ publicVariable 'BLWK_supportMenuAllowed';
 
 publicVariable 'BLWK_friendlyFireOn';
 
-publicVariable 'BLWK_hitPointsShown';
+publicVariable 'BLWK_showHitPoints';
 
 _dayTimeHours = BLWK_timeOfDayMax - BLWK_timeOfDayMin;
 _randTime = floor random _dayTimeHours;
