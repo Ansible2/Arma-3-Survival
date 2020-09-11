@@ -1,8 +1,36 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_addDiaryEntries
+
+Description:
+	Adds diary entries at the start of the mission to the player
+
+	Executed from ""
+
+Parameters:
+	NONE
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+
+		call BLWK_fnc_addDiaryEntries;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if !(hasInterface) exitWith {};
 
-player createDiarySubject ["DynamicBulwarks","Dynamic Bulwarks","preview.paa"];
+params [
+	["_player",player]
+];
 
-player createDiaryRecord ["DynamicBulwarks", ["Looting", "
+_player createDiarySubject ["DynamicBulwarks","Dynamic Bulwarks","preview.paa"];
+
+_player createDiaryRecord ["DynamicBulwarks", ["Looting", "
 <br />
 Loot such as weapons, ammo, clothing and equipement can be found in buildings. Almost every item in the game (and any mods you have loaded) should be possible to find.
 <br />
@@ -23,7 +51,7 @@ There are also some special loot items that can be found:
 "]];
 
 
-player createDiaryRecord ["DynamicBulwarks", ["Supports", "<br />Supports can be purchased at the Bulwark Box. To use a Support bring up the Support menu <font color='#FFCC00'>(Default keys '0' then '8')</font>.
+_player createDiaryRecord ["DynamicBulwarks", ["Supports", "<br />Supports can be purchased at the Bulwark Box. To use a Support bring up the Support menu <font color='#FFCC00'>(Default keys '0' then '8')</font>.
 <br />
 <br />
 <br />
@@ -57,7 +85,7 @@ player createDiaryRecord ["DynamicBulwarks", ["Supports", "<br />Supports can be
 <br />
 Some Supports can be targeted by just looking at the target when you call the Support. Alternatively, you can use your map to target the support by openning your map and bring up the support menu. Have the support highlighted and then middle click your mouse on the map to have the support target that location."]];
 
-player createDiaryRecord ["DynamicBulwarks", ["How to Play", "<img image='preview.paa' height=175 width=350/>
+_player createDiaryRecord ["DynamicBulwarks", ["How to Play", "<img image='preview.paa' height=175 width=350/>
 <br />
 <br />
 <font color='#FFCC00'>You are unarmed and there are hostile untis moving towards you. Survive for as many waves as possible.</font>
