@@ -40,10 +40,11 @@ for "_i" from 1 to NUM_CIVILIANS do {
 	
 	// if a player kills the civilian, remove points
 	_unit addEventHandler ["KILLED",{
+		private _killedUnit = _this select 0;
 		private _instigator = _this select 2;
 		
 		if (isPlayer _instigator) then {
-			remoteExecCall ["BLWK_fnc_killedCivilian",_instigator];
+			[_killedUnit] remoteExecCall ["BLWK_fnc_killedCivilian",_instigator];
 		};
 	}];
 
