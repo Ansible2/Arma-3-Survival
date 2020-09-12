@@ -29,7 +29,6 @@ BLWK_loot_weaponClasses
 
 // get ALL buildings in area
 private _buildingsInPlayArea = BLWK_playAreaCenter nearObjects ["House", BLWK_playAreaRadius];
-
 // sort buildings that actually have cfg positions to spawn stuff
 // AND those that are NOT built by players
 //// this is done every wave because buildings are destroyed and can have different models and therefore positions
@@ -37,9 +36,11 @@ BLWK_playAreaBuildings = _buildingsInPlayArea select {
 	!((_x buildingPos -1) isEqualTo []) AND
 	{!(_x getVariable ["BLWK_isABuiltObject",false])}
 };
-
 private _buildings = BLWK_playAreaBuildings;
 //private _numberOfBuildings = count _buildings;
+
+
+
 
 // sort through all available buildings and positions
 // to distribute to every building, every other building, every 3rd, etc.
@@ -60,6 +61,8 @@ private _sortedPositions = [];
 } forEach _buildings;
 
 
+
+
 private _fn_getASpawnPosition = {
 	private _spawnPosition = selectRandom _sortedPositions;
 	_positionIndex = _sortedPositions findIf {_x isEqualTo _spawnPosition};
@@ -69,12 +72,31 @@ private _fn_getASpawnPosition = {
 	_spawnPosition
 };
 
+
+
 private _addToZeusArray = [];
+
+
+
 // loot revealer spawn
-// need a function for reveal loot
 // this is a global for future endeavors
 BLWK_lootRevealerBox = createVehicle ["Box_C_UAV_06_Swifd_F", (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
-_addToZeusArray pushBack BLWK_lootRevealerBox;
+publicVariable "BLWK_lootRevealerBox";
+_addToZeusArray pushBackUnique BLWK_lootRevealerBox;
+
+[BLWK_lootRevealerBox] remoteExec ["BLWK_fnc_addRevealLootAction",BLWK_allPlayersTargetID,true];
+// add to list to for cleanup
+BLWK_spawnedLoot pushBackUnique BLWK_lootRevealerBox;
+
+
+if (!BLWK_supportDishFound) then {
+	BLWK_supportDish = createVehicle ["Land_SatelliteAntenna_01_F", (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
+	publicVariable "BLWK_supportDish";
+	_addToZeusArray pushBackUnique BLWK_supportDish;
+
+	[BLWK_supportDish] remoteExec ["BLWK_fnc_addUnlockSupportAction",BLWK_allPlayersTargetID,true];
+	BLWK_spawnedLoot pushBackUnique BLWK_supportDish;
+};
 
 
 
