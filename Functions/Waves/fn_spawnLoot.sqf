@@ -20,13 +20,11 @@ Examples:
     (end)
 ---------------------------------------------------------------------------- */
 
-BLWK_loot_backpackClasses
-BLWK_loot_explosiveClasses
-BLWK_loot_itemClasses
-BLWK_loot_clothingClasses
-BLWK_loot_vestClasses
-BLWK_loot_weaponClasses
 
+
+//////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////Prepare Spawn Positions////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
 // get ALL buildings in area
 private _buildingsInPlayArea = BLWK_playAreaCenter nearObjects ["House", BLWK_playAreaRadius];
 // sort buildings that actually have cfg positions to spawn stuff
@@ -38,9 +36,6 @@ BLWK_playAreaBuildings = _buildingsInPlayArea select {
 };
 private _buildings = BLWK_playAreaBuildings;
 //private _numberOfBuildings = count _buildings;
-
-
-
 
 // sort through all available buildings and positions
 // to distribute to every building, every other building, every 3rd, etc.
@@ -61,8 +56,6 @@ private _sortedPositions = [];
 } forEach _buildings;
 
 
-
-
 private _fn_getASpawnPosition = {
 	private _spawnPosition = selectRandom _sortedPositions;
 	_positionIndex = _sortedPositions findIf {_x isEqualTo _spawnPosition};
@@ -73,13 +66,14 @@ private _fn_getASpawnPosition = {
 };
 
 
-
 private _addToZeusArray = [];
 
-
+//////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////Unique Items///////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
 
 // LOOT REVEAL BOX
-// this is a global for future endeavors
+// these are global for future endeavors
 BLWK_lootRevealerBox = createVehicle ["Box_C_UAV_06_Swifd_F", (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
 publicVariable "BLWK_lootRevealerBox";
 _addToZeusArray pushBackUnique BLWK_lootRevealerBox;
@@ -109,8 +103,66 @@ _addToZeusArray pushBackUnique BLWK_moneyPile;
 BLWK_spawnedLoot pushBackUnique BLWK_moneyPile;
 
 
+//////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////Everything else////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+private _fn_decideLoot = {
+	params ["_holder"];
+	
+	private _typeToSpawn = round random 6;
+	
+	private "_selectedItemClass";
+	// backpack
+	if (_typeToSpawn isEqualTo 0) exitWith {
+		_selectedItemClass = selectRandom BLWK_loot_backpackClasses;
+		_holder addBackpackCargoGlobal [_selectedItemClass,1];
+	};
+	// vest
+	if (_typeToSpawn isEqualTo 1) exitWith {
+		_selectedItemClass = selectRandom BLWK_loot_vestClasses;
+		_holder addItemCargoGlobal [_selectedItemClass,1]; 
+	};
+	// clothes
+	if (_typeToSpawn isEqualTo 2) exitWith {
+		_selectedItemClass = selectRandom BLWK_loot_clothingClasses;
+		_holder addItemCargoGlobal [_selectedItemClass,1]; 
+	};
+	// items
+	if (_typeToSpawn isEqualTo 3) exitWith {
+		_selectedItemClass = selectRandom BLWK_loot_itemClasses;
+		_holder addItemCargoGlobal [_selectedItemClass,1]; 
+	};
+	// explosives
+	if (_typeToSpawn isEqualTo 4) exitWith {
+		_selectedItemClass = selectRandom BLWK_loot_explosiveClasses;
+		_holder addMagazineCargoGlobal [_selectedItemClass,round random [1,2,3]]; 
+	};
+	// weapons
+	if (_typeToSpawn isEqualTo 5) exitWith {
+		_selectedItemClass = selectRandom BLWK_loot_weaponClasses;
+		private _potentialAmmo = getArray (configFile >> "CfgWeapons" >> _selectedItemClass >> "magazines");
+		_holder addWeaponCargoGlobal [_selectedItemClass,1];
+		_holder addMagazineCargoGlobal [_potentialAmmo,round random [1,2,3]];  
+	};
+	// magazines
+	if (_typeToSpawn isEqualTo 6) exitWith {
+		_selectedItemClass = selectRandom BLWK_loot_weaponClasses;
+		private _potentialAmmo = getArray (configFile >> "CfgWeapons" >> _selectedItemClass >> "magazines");
+		_holder addMagazineCargoGlobal [selectRandom _potentialAmmo,round random [1,2,3]]; 
+	};
+};
 
 
+_sortedPositions apply {
+	// in order to spawn stuff like weapons on the ground, we create holders
+	// CIPHER COMMENT: See if this is needed
+	private _spawnPosition = _x vectorAdd [0,0,0.1];
+
+	private _holder = createVehicle ["WeaponHolderSimulated_Scripted", _position, [], 0, "CAN_COLLIDE"];
+	[_holder] call _fn_decideLoot;
+	
+	BLWK_spawnedLoot pushBack _holder;
+};
 
 
 

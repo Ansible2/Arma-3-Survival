@@ -80,18 +80,48 @@ BLWK_loot_whiteListMode = 0;
 
 /* Loot Whitelists */
 /* Fill with classname arrays: ["example_item_1", "example_item_2"] */
-/* To use Whitelisting there MUST be at least one applicaple item in each LOOT_WHITELIST array*/
-BLWK_whitelist_weaponClasses = [];
-BLWK_whitelist_vests = [];
-BLWK_whitelist_clothingClasses = [];
-BLWK_whitelist_itemClasses = [];
-BLWK_whitelist_explosiveClasses = [];
-BLWK_whitelist_backpackClasses = [];
+BLWK_whitelist_weaponClasses = [
+
+];
+BLWK_whitelist_vestClassess = [
+
+];
+BLWK_whitelist_clothingClasses = [
+
+];
+BLWK_whitelist_itemClasses = [
+
+];
+BLWK_whitelist_explosiveClasses = [
+
+];
+BLWK_whitelist_backpackClasses = [
+
+];
+
+// adjusut to white list mode
+if (BLWK_loot_whiteListMode isEqualTo 1) then {
+    BLWK_loot_backpackClasses = BLWK_whitelist_backpackClasses;
+    BLWK_loot_explosiveClasses = BLWK_whitelist_explosiveClasses;
+    BLWK_loot_itemClasses = BLWK_whitelist_itemClasses;
+    BLWK_loot_clothingClasses = BLWK_whitelist_clothingClasses;
+    BLWK_loot_vestClasses = BLWK_whitelist_vestClassess;
+	BLWK_loot_weaponClasses = BLWK_whitelist_weaponClasses;
+};
+if (BLWK_loot_whiteListMode isEqualTo 2) then {
+    BLWK_loot_backpackClasses append BLWK_whitelist_backpackClasses;
+    BLWK_loot_explosiveClasses append BLWK_whitelist_explosiveClasses;
+    BLWK_loot_itemClasses append BLWK_whitelist_itemClasses;
+    BLWK_loot_clothingClasses append BLWK_whitelist_clothingClasses;
+    BLWK_loot_vestClasses append BLWK_whitelist_vestClassess;
+	BLWK_loot_weaponClasses append BLWK_whitelist_weaponClasses;
+};
+
 
 /* Loot Spawn */
 BLWK_loot_weaponClasses    = List_AllWeapons - BLWK_blacklist;   
-BLWK_loot_vestClasses = List_Vests; //Cipher Comment: not used yet, need to implement intead of having it added to the clothing pool
-BLWK_loot_clothingClasses   = List_AllClothes + List_Vests - BLWK_blacklist;
+BLWK_loot_vestClasses = List_Vests; //Cipher Comment: not used yet, need to implement instead of having it added to the clothing pool
+BLWK_loot_clothingClasses   = List_AllClothes /*+ List_Vests*/ - BLWK_blacklist;
 BLWK_loot_itemClasses      = List_Optics + List_Items - BLWK_blacklist;
 BLWK_loot_explosiveClasses = List_Mines + List_Grenades + List_Charges - BLWK_blacklist;
 BLWK_loot_backpackClasses   = List_Backpacks - BLWK_blacklist;
