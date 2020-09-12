@@ -70,6 +70,14 @@ class BLWK_playersStartWith_map
 	default = 1;
 };
 
+class BLWK_playersStartWith_compass
+{
+	title = "Start with compass";
+	values[] = {0, 1};
+	texts[] = {"No", "Yes"};
+	default = 1;
+};
+
 class BLWK_playersStartWith_pistol
 {
 	title = "Players start with pistol";
