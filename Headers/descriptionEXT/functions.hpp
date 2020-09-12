@@ -25,7 +25,7 @@ class BLWK
 		{};
 	};
 
-	class CBAP
+	class CBAP //ported CBA functions 
 	{
 		file = "functions\CBAP";
 		class addWaypoint
