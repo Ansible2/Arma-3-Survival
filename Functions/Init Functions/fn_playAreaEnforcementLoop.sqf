@@ -58,24 +58,26 @@ private _fn_110percentFromCenter = {
 		private _effectHandle = ppEffectCreate ["DynamicBlur",200];
 		_effectHandle ppEffectEnable true;
 		_effectHandle ppEffectAdjust [10];
+		_effectHandle ppEffectCommit 0.5;
+
+		waitUntil {ppEffectCommitted _effectHandle};
 		
 		playSound "teleportHit";
 
 		// put player back eight meters
-		private _dir = BLWK_playAreaCenter getDir _player;
+		private _dir = BLWK_playAreaCenter getDir player;
 		private _eightMetersBack = BLWK_playAreaCenter getPos [(BLWK_playAreaRadius * 1.1)-8, _dir];
 		player setPos _eightMetersBack;
 
 		// delete effects
 		_effectHandle ppEffectAdjust [0];
-		sleep 0.5;
 		ppEffectDestroy _effectHandle;
 	};
 };
 private _fn_200percentFromCenter = {
 	private _radius = 2;
 	waitUntil {
-		if (player setVehiclePosition [bulwarkBox,[],_radius]) exitWith {true}
+		if (player setVehiclePosition [bulwarkBox,[],_radius]) exitWith {true};
 		_radius = _radius + 0.5;
 		sleep 1;
 		false;
@@ -83,8 +85,14 @@ private _fn_200percentFromCenter = {
 	hint "Get back here you...";
 };
 
-while {sleep 2; true} do {
-	_playerDistanceToBulwark = player distance2D BLWK_playAreaCenter
+// this is to have potential supports that put the player outside the immediate radius
+// may also consider using remote controlled units if they work intstead
+if !(missionNamespace getVariable ["BLWK_enforceArea",false]) then {
+	BLWK_enforceArea = true;
+};
+
+while {sleep 2; BLWK_enforceArea} do {
+	_playerDistanceToBulwark = player distance2D BLWK_playAreaCenter;
 
 	if (_playerDistanceToBulwark >= (BLWK_playAreaRadius * 0.9)) then {
 		BLWK_playerDistanceToBulwark = _playerDistanceToBulwark;
