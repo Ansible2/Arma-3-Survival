@@ -47,6 +47,9 @@ if (_playerKillpoints >= _price AND {!(isNil "BLWK_heldObject")}) then {
 		_purchasedObject = _className createVehicle [0,0,0];
 	};
 
+	// tell the server this was built so that it doesn't get loot spawns
+	_purchasedObject setVariable ["BLWK_isABuiltObject",true,2];
+
 	if (_className == "B_HMG_01_A_F") then {
 		_purchasedObject allowDamage false;
 	};
