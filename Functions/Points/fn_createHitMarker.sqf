@@ -27,7 +27,7 @@ Author:
 if (!BLWK_showHitPoints) exitWith {};
 
 params [ 
-	["_hitUnit",man1,[objNull]], 
+	["_hitUnit",objNull,[objNull]], 
 	["_pointsToDisplay",22,[123]],
 	["_minusPoints",false,[true]] 
 ]; 
@@ -82,6 +82,6 @@ private _globalVarString = "BLWK_hitPointHandleInfo_" + (str _thisEventHandler);
 private _globalVarString = "BLWK_hitPointHandleInfo_" + (str _handleNumber); 
 private _textPositionStart = getPosATLVisual _hitUnit;
 
-// if minus, make points show red
+// If minus, show points as red, else show as green
 private _color = [[0.1,1,0,1],[1,0.1,0.1,1]] select _minusPoints;
 missionNamespace setVariable [_globalVarString,[0,str _pointsToDisplay, _color, 1,_textPositionStart,0.0035]];
