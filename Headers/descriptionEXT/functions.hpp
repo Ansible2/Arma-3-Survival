@@ -34,7 +34,11 @@ class BLWK
 		{};
 		class getGroup
 		{};
+		class getItemConfig
+		{};
 		class getPos
+		{};
+		class inheritsFrom
 		{};
 		class players
 		{};
