@@ -8,7 +8,7 @@
 
 //_droneBox = _this select 0;
 lootMrks = [];
-_curWave = attkWave;
+_curWave = BLWK_currentWaveNumber;
 
 //deleteVehicle _droneBox;
 
@@ -51,6 +51,6 @@ _loot = [] call loot_fnc_get;
 	lootMrks pushback _mrkrName;
 } forEach _loot;
 
-waitUntil {attkWave >= 2};
-waitUntil {_curWave != attkWave};
+waitUntil {BLWK_currentWaveNumber >= 2};
+waitUntil {_curWave != BLWK_currentWaveNumber};
 {deleteMarker _x} forEach lootMrks;

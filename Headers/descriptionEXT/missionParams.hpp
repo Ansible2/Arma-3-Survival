@@ -230,7 +230,7 @@ class BLWK_startingKillPoints
 	default = 0;
 };
 
-class BLWK_supportMenuAllowed
+class BLWK_supportDishFound
 {
 	title = "Find Satellite Dish to Unlock Supports";
 	values[] = {0, 1};

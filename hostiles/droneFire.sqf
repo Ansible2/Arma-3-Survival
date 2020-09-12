@@ -1,8 +1,8 @@
-_curWave = attkWave;
+_curWave = BLWK_currentWaveNumber;
 
 waitUntil {waveSpawned};
 
-while {_curWave == attkWave} do {
+while {_curWave == BLWK_currentWaveNumber} do {
   _drone = leader selectRandom droneSquad;
   if (alive _drone) then {
     _drone fireAtTarget [bulwarkBox];

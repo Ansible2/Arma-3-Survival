@@ -16,8 +16,8 @@ if (!isDedicated) then {
     };
 
     _attackWave = 0;
-    if(!isNil "attkWave") then {
-        _attackWave = attkWave;
+    if(!isNil "BLWK_currentWaveNumber") then {
+        _attackWave = BLWK_currentWaveNumber;
     };
 
 	_respawnTickets = [west] call BIS_fnc_respawnTickets;

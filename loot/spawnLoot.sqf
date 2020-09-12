@@ -23,7 +23,7 @@ mainZeus addCuratorEditableObjects [[_droneSupport], true];
 
 /* Item to unlock Support Menu (1 spawns every wave until found) */
 satRoom = [];
-if (!BLWK_supportMenuAllowed) then {
+if (!BLWK_supportDishFound) then {
 	satRoom = while {true} do {
 		_satBulding = selectRandom BLWK_playAreaBuildings;
 		_satRooms = _satBulding buildingPos -1;
@@ -36,12 +36,12 @@ if (!BLWK_supportMenuAllowed) then {
 		_player = _this select 1;
 		[_satSupport] remoteExec ['removeAllActions', 0];
 		_pointsMulti = ('BLWK_pointsForKill' call BIS_fnc_getParamValue);
-		if (!BLWK_supportMenuAllowed) then {
+		if (!BLWK_supportDishFound) then {
 			['TaskAssigned',['Support','Support Menu Unlocked at Bulwark Box']] remoteExec ['BIS_fnc_showNotification', 0];
 			['comNoise'] remoteExec ['playSound', 0];
 		};
-		BLWK_supportMenuAllowed = true;
-		publicVariable 'BLWK_supportMenuAllowed';
+		BLWK_supportDishFound = true;
+		publicVariable 'BLWK_supportDishFound';
 		SatUnlocks = missionNamespace getVariable 'SatUnlocks';
 		[_player, (20 * _pointsMulti)] remoteExecCall ['killPoints_fnc_add', 2];
 		{

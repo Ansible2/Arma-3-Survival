@@ -1,8 +1,8 @@
-_wave = attkWave;
+_wave = BLWK_currentWaveNumber;
 _allHCs = entities "HeadlessClient_F";
 _allHPs = allPlayers - _allHCs;
 
-while {_wave == attkWave} do {
+while {_wave == BLWK_currentWaveNumber} do {
   {
     if (side _x == east) then {
       _thisAI = _x;

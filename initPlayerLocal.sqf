@@ -72,9 +72,9 @@ waitUntil {!isNil "BLWK_playAreaCenter"};
 
 // kill player if they disconnected and rejoined during a wave
 _buildPhase = missionNamespace getVariable ["buildPhase", true];
-waitUntil {alive _player && !isnil "playersInWave" && !isnil "attkWave"};
+waitUntil {alive _player && !isnil "playersInWave" && !isnil "BLWK_currentWaveNumber"};
 
-if (getPlayerUID _player in playersInWave && attkWave > 0 && !_buildPhase) then {
+if (getPlayerUID _player in playersInWave && BLWK_currentWaveNumber > 0 && !_buildPhase) then {
     _player setDamage 1;
 };
 

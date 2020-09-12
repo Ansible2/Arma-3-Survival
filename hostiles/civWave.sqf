@@ -1,6 +1,6 @@
 civClassArr = [];
 _spawnedCivs = [];
-_currentWave = attkWave;
+_currentWave = BLWK_currentWaveNumber;
 
 //Create array of all Civ classes
 _civSide = 3;
@@ -60,7 +60,7 @@ while {EAST countSide allUnits > 0} do {
   };
 } forEach _spawnedCivs;
 
-waitUntil {_currentWave != attkWave};
+waitUntil {_currentWave != BLWK_currentWaveNumber};
 
 {
   deleteVehicle _x;

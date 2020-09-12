@@ -182,7 +182,7 @@ BLWK_timeBetweenRounds = ("BLWK_timeBetweenRounds" call BIS_fnc_getParamValue);
 BLWK_useSpecialWaves = ("BLWK_useSpecialWaves" call BIS_fnc_getParamValue);
 BLWK_maxNumWaves = ("BLWK_maxNumWaves" call BIS_fnc_getParamValue);
 
-BLWK_supportMenuAllowed = [false,true] select ("BLWK_supportMenuAllowed" call BIS_fnc_getParamValue);
+BLWK_supportDishFound = [false,true] select ("BLWK_supportDishFound" call BIS_fnc_getParamValue);
 
 BLWK_friendlyFireOn = [false,true] select ("BLWK_friendlyFireOn" call BIS_fnc_getParamValue);
 
@@ -220,6 +220,11 @@ if (isServer OR {!hasInterface}) then {
 private _buildingsInPlayArea = BLWK_playAreaCenter nearObjects ["House", BLWK_playAreaRadius];
 // sort those that actually have cfg building positions to spawn stuff
 BLWK_playAreaBuildings = _buildingsInPlayArea select {!((_x buildingPos -1) isEqualTo [])};
+
+
+BLWK_currentWaveNumber = 0;
+
+BLWK_enforceArea = true;
 
 /*
     POTENTIAL AI QUE

@@ -1,10 +1,10 @@
-_wave = attkWave;
+_wave = BLWK_currentWaveNumber;
 
 _allHCs = entities "HeadlessClient_F";
 _allHPs = allPlayers - _allHCs;
 
 //Kill Hostile AI if they get too close to player. Event for explosion assigned to AI in spawnSquad.sqf
-while {_wave == attkWave} do {
+while {_wave == BLWK_currentWaveNumber} do {
   {
     if (side _x == east) then {
       _thisAI = _x;

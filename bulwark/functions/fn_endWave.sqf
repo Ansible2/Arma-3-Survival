@@ -12,7 +12,7 @@ publicVariable "playersInWave";
 
 missionNamespace setVariable ["buildPhase", true, true];
 
-["TaskSucceeded",["Complete","Wave " + str attkWave + " complete!"]] remoteExec ["BIS_fnc_showNotification", 0];
+["TaskSucceeded",["Complete","Wave " + str BLWK_currentWaveNumber + " complete!"]] remoteExec ["BIS_fnc_showNotification", 0];
 BLWK_respawnTime = 0;
 publicVariable "BLWK_respawnTime";
 [BLWK_respawnTime] remoteExec ["setPlayerRespawnTime", 0];

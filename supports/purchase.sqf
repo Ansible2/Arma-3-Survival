@@ -6,7 +6,7 @@
 *  Domain: Client
 **/
 
-if  (BLWK_supportMenuAllowed) then {
+if  (BLWK_supportDishFound) then {
   _index = lbCurSel 1501;
   shopVehic = objNull;
 

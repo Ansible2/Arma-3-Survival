@@ -29,8 +29,8 @@ _wp setWaypointLoiterType "CIRCLE_L";
 _wp setWaypointLoiterRadius 10;
 
 hosMrks = [];
-_curWave = attkWave;
-while {_curWave == attkWave} do {
+_curWave = BLWK_currentWaveNumber;
+while {_curWave == BLWK_currentWaveNumber} do {
 
     if (currentWaypoint _uavGroup != _wp select 1) then {_uavGroup setCurrentWaypoint _wp;};
 

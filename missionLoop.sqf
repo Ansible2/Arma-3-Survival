@@ -19,7 +19,15 @@ Examples:
 
     (end)
 ---------------------------------------------------------------------------- */
+/* Cipher Comment: 
+	So set everyone conscious
+	Play an animation
+	Make them stand
+	Then revive them?
+	And set their damage to nothing
 
+	...huh?
+*/
 {
 	[_x, false] remoteExec ["setUnconscious", 0];
 	_X action ["CancelAction", _X];
@@ -29,8 +37,8 @@ Examples:
 } forEach allPlayers;
 
 _CenterPos = _this;
-attkWave = 0;
-publicVariable "attkWave";
+BLWK_currentWaveNumber = 0;
+publicVariable "BLWK_currentWaveNumber";
 suicideWave = false;
 
 waveUnits = [[],[],[]];
@@ -62,7 +70,7 @@ while {runMissionLoop} do {
 	AIstuckcheck = 0;
 	AIStuckCheckArray = [];
 
-	[] call bulwark_fnc_startWave;
+	call bulwark_fnc_startWave;
 
 	while {runMissionLoop} do {
 
@@ -109,7 +117,7 @@ while {runMissionLoop} do {
 
 	if(missionFailure) exitWith {};
 
-	if (attkWave == BLWK_maxNumWaves) exitWith {
+	if (BLWK_currentWaveNumber == BLWK_maxNumWaves) exitWith {
 		"End2" call BIS_fnc_endMissionServer;
 	};
 

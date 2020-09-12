@@ -15,7 +15,7 @@
 
 
 //Spawn AI Around Bulwark
-for ("_i") from 1 to ((floor attkWave / 2) + (floor count allPlayers * 1.5)) do {
+for ("_i") from 1 to ((floor BLWK_currentWaveNumber / 2) + (floor count allPlayers * 1.5)) do {
     _location = [bulwarkBox] call bulwark_fnc_findPlaceAround;
     _attGroupBand = createGroup [EAST, true];
     _unitClass = selectRandom BLWK_enemyClasses_level_1;

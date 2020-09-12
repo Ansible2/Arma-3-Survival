@@ -8,13 +8,13 @@
 
 _droneBox = _this select 0;
 hosMrks = [];
-_curWave = attkWave;
+_curWave = BLWK_currentWaveNumber;
 
 deleteVehicle _droneBox;
 
 ["IntelAdded",["Hostiles added to MAP"]] remoteExec ["BIS_fnc_showNotification", 0];
 
-while {_curWave == attkWave} do {
+while {_curWave == BLWK_currentWaveNumber} do {
 	{if ((side _x) == east) then
 		{
 		_mrkrName = format ["hos%1", _x];
