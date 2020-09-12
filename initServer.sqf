@@ -23,25 +23,6 @@ waitUntil { scriptDone _basepoint };
 ["<t size = '.5'>Ready</t>", 0, 0, 0.5, 0] remoteExec ["BIS_fnc_dynamicText", 0];
 
 publicVariable "bulwarkBox";
-publicVariable "BLWK_paratroopClasses";
-publicVariable "BLWK_supports_array";
-publicVariable "BLWK_buildableObjects_array";
-publicVariable "BLWK_playersStartWith_pistol";
-publicVariable "BLWK_playersStartWith_map";
-publicVariable "BLWK_playersStartWith_NVGs";
-publicVariable "BLWK_maxPistolOnlyWaves";
-publicVariable "BLWK_timeBetweenRounds";
-publicVariable "BLWK_numRespawnTickets";
-publicVariable "BLWK_respawnTime";
-publicVariable "PLAYER_OBJECT_LIST";
-publicVariable "MIND_CONTROLLED_AI";
-publicVariable "BLWK_costToSpinRandomBox";
-
-publicVariable 'BLWK_supportMenuAllowed';
-
-publicVariable 'BLWK_friendlyFireOn';
-
-publicVariable 'BLWK_showHitPoints';
 
 _dayTimeHours = BLWK_timeOfDayMax - BLWK_timeOfDayMin;
 _randTime = floor random _dayTimeHours;
