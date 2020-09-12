@@ -17,6 +17,8 @@ _satelliteDish addAction [
 		["TaskAssigned",["Support","Support Menu Unlocked at Bulwark Box"]] remoteExec ["BIS_fnc_showNotification",_onlyPlayers];
 		["comNoise"] remoteExec ["playSound",_onlyPlayers];
 
+		[BLWK_pointsForKill * 20] call BLWK_fnc_addPoints;
+
 		deleteVehicle (_this select 0);
 	}, 
 	nil, 

@@ -36,8 +36,8 @@ private _indexOfType = BLWK_buildableObjects_array findIf {(_x select 2) == _obj
 
 // add the cost back to player's total
 private _price = (BLWK_buildableObjects_array select _indexOfType) select 0;
-private _playerKillpoints = missionNamespace getVariable ["BLWK_playerKillPoints",0];
-missionNamespace setVariable ["BLWK_playerKillPoints",_playerKillpoints + _price];
+
+[_price] call BLWK_fnc_addPoints;
 
 deleteVehicle _object;
 

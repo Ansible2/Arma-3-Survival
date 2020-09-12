@@ -54,7 +54,7 @@ if (_playerKillpoints >= _price AND {!(isNil "BLWK_heldObject")}) then {
 		_purchasedObject allowDamage false;
 	};
 
-	BLWK_playerKillPoints = _playerKillpoints - _price;
+	[_price] call BLWK_fnc_spendPoints;
 
 	closeDialog 0;
 
