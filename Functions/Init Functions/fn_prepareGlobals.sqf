@@ -53,6 +53,7 @@ BLWK_minLandToWaterRatio = ("BLWK_minLandToWaterRatio" call BIS_fnc_getParamValu
 BLWK_minNumberOfHousesInArea = ("BLWK_minNumberOfHousesInArea" call BIS_fnc_getParamValue);
 
 BLWK_playersStartWith_pistol = [false,true] select ("BLWK_playersStartWith_pistol" call BIS_fnc_getParamValue);
+BLWK_playersStartWith_compass = [false,true] select ("BLWK_playersStartWith_map" call BIS_fnc_getParamValue);
 BLWK_playersStartWith_map    = [false,true] select ("BLWK_playersStartWith_map" call BIS_fnc_getParamValue); 
 BLWK_playersStartWith_NVGs   = [false,true] select ("BLWK_playersStartWith_NVGs" call BIS_fnc_getParamValue);
 
@@ -97,7 +98,7 @@ BLWK_loot_backpackClasses   = List_Backpacks - BLWK_blacklist;
 
 /* Random Loot */
 BLWK_loot_cityDistribution = ("BLWK_loot_cityDistribution" call BIS_fnc_getParamValue);  // decides how many buildings will be marked as having loot in a city
-BLWK_loot_distributionInBuildings = ("BLWK_loot_distributionInBuildings" call BIS_fnc_getParamValue);   // decides how much loot will be in a building if it has any 
+BLWK_loot_roomDistribution = ("BLWK_loot_roomDistribution" call BIS_fnc_getParamValue);   // decides how much loot will be in a building if it has any 
 BLWK_distributionOffset = 0; // Offset the position by this number. //Cipher Comment not used
 BLWK_supplyDropRadius = ("BLWK_supplyDropRadius" call BIS_fnc_getParamValue) / 100;        // Radius of supply drop
 BLWK_paratrooperCount = ("BLWK_paratrooperCount" call BIS_fnc_getParamValue);
@@ -221,6 +222,10 @@ if (isServer OR {!hasInterface}) then {
 BLWK_currentWaveNumber = 0;
 
 BLWK_enforceArea = true;
+
+// for revealing loot and deleteing it at the end of the round
+BLWK_lootMarkers = [];
+BLWK_spawnedLoot = [];
 
 /*
     POTENTIAL AI QUE
