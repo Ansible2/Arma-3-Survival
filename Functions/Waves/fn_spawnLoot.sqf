@@ -78,7 +78,7 @@ private _addToZeusArray = [];
 
 
 
-// loot revealer spawn
+// LOOT REVEAL BOX
 // this is a global for future endeavors
 BLWK_lootRevealerBox = createVehicle ["Box_C_UAV_06_Swifd_F", (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
 publicVariable "BLWK_lootRevealerBox";
@@ -89,6 +89,7 @@ _addToZeusArray pushBackUnique BLWK_lootRevealerBox;
 BLWK_spawnedLoot pushBackUnique BLWK_lootRevealerBox;
 
 
+// SUPPORT UNLOCK DISH
 if (!BLWK_supportDishFound) then {
 	BLWK_supportDish = createVehicle ["Land_SatelliteAntenna_01_F", (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
 	publicVariable "BLWK_supportDish";
@@ -99,8 +100,13 @@ if (!BLWK_supportDishFound) then {
 };
 
 
+// MONEY PILE
+BLWK_moneyPile = createVehicle ["Box_C_UAV_06_Swifd_F", (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
+publicVariable "BLWK_moneyPile";
+_addToZeusArray pushBackUnique BLWK_moneyPile;
 
-
+[BLWK_moneyPile] remoteExec ["BLWK_fnc_addMoneyPileAction",BLWK_allPlayersTargetID,true];
+BLWK_spawnedLoot pushBackUnique BLWK_moneyPile;
 
 
 
