@@ -158,7 +158,7 @@ class BLWK_minLandToWaterRatio
 	default = 80;
 };
 
-class BLWK_loot_houseDensity
+class BLWK_minNumberOfHousesInArea
 {
 	title = "Minimum number of buildings in Bulwark radius";
 	values[] = {5, 10, 15, 20, 30};
@@ -168,15 +168,15 @@ class BLWK_loot_houseDensity
 
 class BLWK_loot_cityDistribution
 {
-	title = "Loot distribution";
+	title = "Loot City distribution";
 	values[] = {1, 2, 3, 4};
 	texts[] = {"Every building", "Every second building", "Every third building", "Every fourth building"};
 	default = 2;
 };
 
-class BLWK_loot_roomDistribution
+class BLWK_loot_distributionInBuildings
 {
-	title = "Loot density";
+	title = "Loot Within Building Distribution";
 	values[] = {1, 2, 3, 4};
 	texts[] = {"Every location", "Every second location", "Every third location", "Every fourth location"};
 	default = 2;

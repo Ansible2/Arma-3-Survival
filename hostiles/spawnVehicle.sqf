@@ -11,7 +11,7 @@ for "_i" from 1 to (ArmourCount) do {
 	_foundVeh = selectRandom List_Armour;
 	_createdVehFnc = [_location, 0, _foundVeh, EAST] call bis_fnc_spawnvehicle;
 	_createdVehFnc select 0 doMove (getPos (selectRandom playableUnits));
-	mainZeus addCuratorEditableObjects [[_createdVehFnc select 0], true];
+	BLWK_zeus addCuratorEditableObjects [[_createdVehFnc select 0], true];
 	_tankcrew = fullCrew (_createdVehFnc select 0);
 	{
 		_x select 0 addEventHandler ["Hit", killPoints_fnc_hit];

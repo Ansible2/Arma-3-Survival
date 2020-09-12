@@ -34,7 +34,7 @@ for ("_i") from 1 to ((floor BLWK_currentWaveNumber / 2) + (floor count allPlaye
 	_unit addEventHandler ["Killed", killPoints_fnc_killed];
     _unit setVariable ["killPointMulti", BLWK_pointMulti_men_level1];
 	removeAllAssignedItems _unit;
-	mainZeus addCuratorEditableObjects [[_unit], true];
+	BLWK_zeus addCuratorEditableObjects [[_unit], true];
     unitArray = waveUnits select 0;
     unitArray append [_unit];
 };

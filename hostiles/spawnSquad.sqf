@@ -99,12 +99,15 @@ for ("_i") from 1 to _unitCount do {
 		removeAllWeapons _unit;
 		_unit addMPEventHandler ["MPKilled", {
 			params ["_unit"];
-			[_unit] call BLWK_fnc_explodeSuicideBomber;
+			if (local _unit) then {
+				[_unit] call BLWK_fnc_explodeSuicideBomber;
 
-			removeMPEventHandler ["mpKilled",_thisEventHandler];
+				removeMPEventHandler ["mpKilled",_thisEventHandler];
+			};
 		}];
 	};
 
+	// if it is a drone wave... WHAT IS WITH THESE NAMES????
 	if (demineWave && (floor random 2 == 0) && droneCount <= 15) then {
 		droneCount = droneCount + 1;
 		_aicrew = creategroup EAST;
@@ -116,7 +119,7 @@ for ("_i") from 1 to _unitCount do {
 		_leadah flyInHeight 30;
 		_leadah setSkill 1;
 		sleep 0.5;
-		mainZeus addCuratorEditableObjects [[_drone select 0], true];
+		BLWK_zeus addCuratorEditableObjects [[_drone select 0], true];
 		_leadah addEventHandler ["Hit", killPoints_fnc_hit];
 		_leadah addEventHandler ["Killed", {
 			params ["_unit", "_killer", "_instigator", "_useEffects"];
@@ -127,7 +130,7 @@ for ("_i") from 1 to _unitCount do {
 		}];
 		_leadah setVariable ["killPointMulti", BLWK_pointMulti_car];
 	};
-	mainZeus addCuratorEditableObjects [[_unit], true];
+	BLWK_zeus addCuratorEditableObjects [[_unit], true];
 	unitArray = waveUnits select 0;
 	unitArray append [_unit];
 };

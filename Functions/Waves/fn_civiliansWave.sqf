@@ -59,4 +59,4 @@ for "_i" from 1 to NUM_CIVILIANS do {
 	sleep 0.5;
 };
 
-mainzeus addCuratorEditableObjects [_civilians, true];
+BLWK_zeus addCuratorEditableObjects [_civilians, true];

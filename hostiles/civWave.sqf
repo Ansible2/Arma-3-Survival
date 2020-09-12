@@ -36,7 +36,7 @@ for [{_i=0}, {_i<20}, {_i=_i+1}] do {
   _civClass = selectRandom civClassArr;
   _civgroup = createGroup [civilian, true];
   _civUnit = _civgroup createUnit [_civClass, _civRoom, [], 0.5, "FORM"];
-  mainzeus addCuratorEditableObjects [[_civUnit], true];
+  BLWK_zeus addCuratorEditableObjects [[_civUnit], true];
   _civUnit addEventHandler ["Killed", killPoints_fnc_civKilled];
   _spawnedCivs pushBack _civUnit;
 };

@@ -1097,7 +1097,7 @@ class Mission
 			{
 				position[]={1039.526,3.1360903,672.75702};
 			};
-			name="mainZeus";
+			name="BLWK_zeus";
 			id=116;
 			type="ModuleCurator_F";
 			atlOffset=189.10609;

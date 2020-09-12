@@ -6,11 +6,9 @@
 *  Domain: Server
 **/
 
-//activeLoot = [];
-lootDebugMarkers = [];
-
 
 /* Item to reveal all loot on the Map (1 spawns every wave) */
+
 droneRoom = while {true} do {
 	_lootBulding = selectRandom BLWK_playAreaBuildings;
 	_lootRooms = _lootBulding buildingPos -1;
@@ -19,7 +17,7 @@ droneRoom = while {true} do {
 };
 _droneSupport = createVehicle ["Box_C_UAV_06_Swifd_F", droneRoom, [], 0, "CAN_COLLIDE"];
 [_droneSupport, ["<t color='#ff00ff'>" + "Reveal loot", "removeAllActions (_this select 0); [ [],'supports\lootDrone.sqf'] remoteExec ['execVM',0];","",1,true,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
-mainZeus addCuratorEditableObjects [[_droneSupport], true];
+BLWK_zeus addCuratorEditableObjects [[_droneSupport], true];
 
 /* Item to unlock Support Menu (1 spawns every wave until found) */
 satRoom = [];
@@ -41,7 +39,6 @@ if (!BLWK_supportDishFound) then {
 			['comNoise'] remoteExec ['playSound', 0];
 		};
 		BLWK_supportDishFound = true;
-		publicVariable 'BLWK_supportDishFound';
 		SatUnlocks = missionNamespace getVariable 'SatUnlocks';
 		[_player, (20 * _pointsMulti)] remoteExecCall ['killPoints_fnc_add', 2];
 		{
@@ -50,7 +47,7 @@ if (!BLWK_supportDishFound) then {
 	"]] remoteExec ["addAction", 0, true];
 	SatUnlocks pushBack _satSupport;
 	publicVariable 'SatUnlocks';
-	mainZeus addCuratorEditableObjects [[_satSupport], true];
+	BLWK_zeus addCuratorEditableObjects [[_satSupport], true];
 };
 
 //activeLoot pushback _droneSupport;
@@ -82,7 +79,7 @@ _roomCount = 0;
 		_roomCount = -1;
 		{
 			_roomCount = _roomCount + 1;
-			if (_roomCount mod BLWK_loot_roomDistribution == 0) then {
+			if (_roomCount mod BLWK_loot_distributionInBuildings == 0) then {
 				if (!(_x isEqualTo droneRoom) && !(_x isEqualTo satRoom) && !(_x isEqualTo pointsLootRoom)) then {
 					_lootRoomPos = _x;
 					_lootHolder = "WeaponHolderSimulated_Scripted" createVehicle _lootRoomPos;

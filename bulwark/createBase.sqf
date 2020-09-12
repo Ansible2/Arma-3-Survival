@@ -64,7 +64,7 @@ if(BLWK_numMedKits > 0) then {
 ","",1,false,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
 
 //Add Bulwark Box to Zeus
-mainZeus addCuratorEditableObjects [[bulwarkBox], true];
+BLWK_zeus addCuratorEditableObjects [[bulwarkBox], true];
 
 //Add EH for text to explain the FAK to Medkit feature
 [bulwarkBox, ["ContainerOpened", {

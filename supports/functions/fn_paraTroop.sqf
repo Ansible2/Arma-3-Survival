@@ -62,7 +62,7 @@ if (count _targetPos == 0) then {
       _unitClass = selectRandom _classList;
       _unit = objNull;
       _unit = coreGroup createUnit [_unitClass, _location vectorAdd [0,0,-2], [], 0.5, "CAN_COLLIDE"];
-      mainZeus addCuratorEditableObjects [[_unit], true];
+      BLWK_zeus addCuratorEditableObjects [[_unit], true];
       sleep 0.3;
       waitUntil {!isNull _unit};
       _unit addBackpack "B_Parachute";

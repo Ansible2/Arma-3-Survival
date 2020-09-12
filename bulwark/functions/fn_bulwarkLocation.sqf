@@ -34,7 +34,7 @@ while {isNil "_finalPos"} do {
 		_neighbours = count nearestObjects [_largestPos, ["house"], BLWK_playAreaRadius];
 
 		// One house, one location. Add it to the list of options
-		if(_largestVolume > 0 && _neighbours > BLWK_loot_houseDensity) then {
+		if(_largestVolume > 0 && _neighbours > BLWK_minNumberOfHousesInArea) then {
 			// See how much water is around
 			_water = 0;
 			_land = 0;

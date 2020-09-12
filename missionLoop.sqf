@@ -111,7 +111,7 @@ while {runMissionLoop} do {
 
 		//Add objects to zeus
 		{
-			mainZeus addCuratorEditableObjects [[_x], true];
+			BLWK_zeus addCuratorEditableObjects [[_x], true];
 		} foreach _allHPs;
 	};
 

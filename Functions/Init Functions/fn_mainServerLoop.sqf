@@ -19,12 +19,6 @@ Examples:
 
     (end)
 ---------------------------------------------------------------------------- */
-wavesSinceArmour = 0;
-wavesSinceCar = 0;
-wavesSinceSpecial = 0;
-SatUnlocks = [];
-publicVariable 'SatUnlocks';
-
 //spawn start loot
 if (isServer) then {
 	execVM "loot\spawnLoot.sqf";
@@ -86,7 +80,7 @@ while {runMissionLoop} do {
 
 		//Add objects to zeus
 		{
-			mainZeus addCuratorEditableObjects [[_x], true];
+			BLWK_zeus addCuratorEditableObjects [[_x], true];
 		} foreach _allHPs;
 	};
 

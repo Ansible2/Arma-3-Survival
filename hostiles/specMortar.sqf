@@ -2,7 +2,7 @@
 _mortarPos = [bulwarkRoomPos, BLWK_playAreaRadius - 15, BLWK_playAreaRadius - 5, 3, 0, 10, 0] call BIS_fnc_findSafePos;
 specMortar = [_mortarPos, 0, "O_Mortar_01_F", EAST] call bis_fnc_spawnvehicle;
 mortarGunner = specMortar select 1 select 0;
-mainZeus addCuratorEditableObjects [[specMortar select 0], true];
+BLWK_zeus addCuratorEditableObjects [[specMortar select 0], true];
 
 sleep 3;
 
