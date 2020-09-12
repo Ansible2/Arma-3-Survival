@@ -6,7 +6,7 @@
 *  Domain: Server
 **/
 
-//CIpher comment: assuming you still use this patch job, just use boungingBoxes or agents
+// Cipher comment: assuming you still use this patch job, just use boungingBoxes or agents
 while {true} do{
   {
     if (!isNull _x) then {
