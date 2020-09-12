@@ -28,4 +28,4 @@ params ["_killedCivilian"];
 
 playSound "alarm";
 
-[_killedCivilian, round (BLWK_pointsForKill * -10)] call BLWK_fnc_createHitMarker;
+[_killedCivilian, round (BLWK_pointsForKill * -10), true] call BLWK_fnc_createHitMarker;
