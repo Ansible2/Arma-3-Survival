@@ -19,7 +19,9 @@ for ("_i") from 0 to 14 do {
 // Delete
 _final = waveUnits select ("BLWK_roundsBeforeBodyDeletion" call BIS_fnc_getParamValue);
 {deleteVehicle _x} foreach _final;
-// Shuffle
+// This readjusts the units that spawned in other waves
+// This is what allows bodies to be deleted after a wave
+// This is dumb and should be replaced with an allDeadMen/allDead to either collect or delete bodies after the rounds
 waveUnits set [2, waveUnits select 1];
 waveUnits set [1, waveUnits select 0];
 waveUnits set [0, []];
@@ -30,8 +32,8 @@ _allHPs = allPlayers - _allHCs;
 { playersInWave pushBack getPlayerUID _x; } foreach _allHPs;
 publicVariable "playersInWave";
 
-attkWave = (attkWave + 1);
-publicVariable "attkWave";
+BLWK_currentWaveNumber = (BLWK_currentWaveNumber + 1);
+publicVariable "BLWK_currentWaveNumber";
 
 waveSpawned = false;
 
@@ -57,25 +59,25 @@ missionNamespace setVariable ["buildPhase", false, true];
 
 //determine if Special wave
 
-if (attkWave < 10) then {
+if (BLWK_currentWaveNumber < 10) then {
 	randSpecChance = 4;
 	maxSinceSpecial = 4;
 	maxSpecialLimit = 1;
 };
 
-if (attkWave >= 10 && attkWave < 15) then {
+if (BLWK_currentWaveNumber >= 10 && BLWK_currentWaveNumber < 15) then {
 	randSpecChance = 3;
 	maxSinceSpecial = 3;
 	maxSpecialLimit = 1;
 };
 
-if (attkWave >= 15) then {
+if (BLWK_currentWaveNumber >= 15) then {
 	randSpecChance = 2;
 	maxSinceSpecial = 2;
 	maxSpecialLimit = 0;
 };
 
-if ((floor random randSpecChance == 1 || wavesSinceSpecial >= maxSinceSpecial) && attkWave >= 5 && wavesSinceSpecial >= maxSpecialLimit) then {
+if ((floor random randSpecChance == 1 || wavesSinceSpecial >= maxSinceSpecial) && BLWK_currentWaveNumber >= 5 && wavesSinceSpecial >= maxSpecialLimit) then {
 	specialWave = true;
 }else{
 	wavesSinceSpecial = wavesSinceSpecial + 1;
@@ -85,7 +87,7 @@ if ((floor random randSpecChance == 1 || wavesSinceSpecial >= maxSinceSpecial) &
 SpecialWaveType = "";
 droneCount = 0;
 
-if (specialWave && attkWave >= 5 and attkWave < 10) then {
+if (specialWave && BLWK_currentWaveNumber >= 5 and BLWK_currentWaveNumber < 10) then {
 	_randWave = floor random 3;
 	switch (_randWave) do
 	{
@@ -105,7 +107,7 @@ if (specialWave && attkWave >= 5 and attkWave < 10) then {
 	wavesSinceSpecial = 0;
 };
 
-if (specialWave && attkWave >= 10) then {
+if (specialWave && BLWK_currentWaveNumber >= 10) then {
 	_randWave = floor random 8;
 	switch (_randWave) do
 	{
@@ -277,7 +279,7 @@ if (defectorWave) then {
 };
 
 if (!specialWave) then {
-	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
+	["TaskAssigned",["In-coming","Wave " + str BLWK_currentWaveNumber]] remoteExec ["BIS_fnc_showNotification", 0];
 };
 
 {
@@ -296,7 +298,7 @@ if (!specialWave) then {
 _createHostiles = execVM "hostiles\createWave.sqf";
 waitUntil {scriptDone _createHostiles};
 
-if (attkWave > 1) then { //if first wave give player extra time before spawning enemies
+if (BLWK_currentWaveNumber > 1) then { //if first wave give player extra time before spawning enemies
 	{deleteMarker _x} foreach lootDebugMarkers;
 	[] call loot_fnc_cleanup;
 	_spawnLoot = execVM "loot\spawnLoot.sqf";
