@@ -42,7 +42,7 @@ BLWK_maxPistolOnlyWaves = ("BLWK_maxPistolOnlyWaves" call BIS_fnc_getParamValue)
 
 /* LOCATION LIST OPTIONS */
 // List_AllCities - for any random City
-// List_SpecificPoint - will start the mission on the "Specific Bulwark Pos" marker (move with mission editor). Location must meet BLWK_minLandToWaterRatio and BLWK_loot_houseDensity, BLWK_minSpawnRoomSize, etc requirements
+// List_SpecificPoint - will start the mission on the "Specific Bulwark Pos" marker (move with mission editor). Location must meet BLWK_minLandToWaterRatio and BLWK_minNumberOfHousesInArea, BLWK_minSpawnRoomSize, etc requirements
 // List_LocationMarkers - for a location selected randomly from the Bulwark Zones in editor (Currently broken)
 // *IMPORTANT* If you get an error using List_SpecificPoint it means that there isn't a building that qualifies. Turning down the "Minimum spawn room size" parameter might help.
 BLWK_locations = List_AllCities;
@@ -50,7 +50,7 @@ BLWK_locations = List_AllCities;
 BLWK_playAreaRadius = ("BLWK_playAreaRadius" call BIS_fnc_getParamValue); //Cipher Comment: Total play area radius in meters
 BLWK_minSpawnRoomSize = ("BLWK_minSpawnRoomSize" call BIS_fnc_getParamValue);   // Spawn room must be bigger than x square metres
 BLWK_minLandToWaterRatio = ("BLWK_minLandToWaterRatio" call BIS_fnc_getParamValue); //Cipher Comment: The ratio to ensure there isn't too much water.
-BLWK_loot_houseDensity = ("BLWK_loot_houseDensity" call BIS_fnc_getParamValue);
+BLWK_minNumberOfHousesInArea = ("BLWK_minNumberOfHousesInArea" call BIS_fnc_getParamValue);
 
 BLWK_playersStartWith_pistol = [false,true] select ("BLWK_playersStartWith_pistol" call BIS_fnc_getParamValue);
 BLWK_playersStartWith_map    = [false,true] select ("BLWK_playersStartWith_map" call BIS_fnc_getParamValue); 
@@ -97,7 +97,7 @@ BLWK_loot_backpackClasses   = List_Backpacks - BLWK_blacklist;
 
 /* Random Loot */
 BLWK_loot_cityDistribution = ("BLWK_loot_cityDistribution" call BIS_fnc_getParamValue);  // decides how many buildings will be marked as having loot in a city
-BLWK_loot_roomDistribution = ("BLWK_loot_roomDistribution" call BIS_fnc_getParamValue);   // decides how much loot will be in a building if it has any 
+BLWK_loot_distributionInBuildings = ("BLWK_loot_distributionInBuildings" call BIS_fnc_getParamValue);   // decides how much loot will be in a building if it has any 
 BLWK_distributionOffset = 0; // Offset the position by this number. //Cipher Comment not used
 BLWK_supplyDropRadius = ("BLWK_supplyDropRadius" call BIS_fnc_getParamValue) / 100;        // Radius of supply drop
 BLWK_paratrooperCount = ("BLWK_paratrooperCount" call BIS_fnc_getParamValue);
@@ -216,10 +216,6 @@ if (isServer OR {!hasInterface}) then {
 
     ];
 };
-
-private _buildingsInPlayArea = BLWK_playAreaCenter nearObjects ["House", BLWK_playAreaRadius];
-// sort those that actually have cfg building positions to spawn stuff
-BLWK_playAreaBuildings = _buildingsInPlayArea select {!((_x buildingPos -1) isEqualTo [])};
 
 
 BLWK_currentWaveNumber = 0;
