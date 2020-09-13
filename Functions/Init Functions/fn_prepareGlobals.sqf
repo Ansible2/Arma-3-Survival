@@ -54,8 +54,8 @@ BLWK_minNumberOfHousesInArea = ("BLWK_minNumberOfHousesInArea" call BIS_fnc_getP
 
 BLWK_playersStartWith_pistol = [false,true] select ("BLWK_playersStartWith_pistol" call BIS_fnc_getParamValue);
 BLWK_playersStartWith_compass = [false,true] select ("BLWK_playersStartWith_map" call BIS_fnc_getParamValue);
-BLWK_playersStartWith_map    = [false,true] select ("BLWK_playersStartWith_map" call BIS_fnc_getParamValue); 
-BLWK_playersStartWith_NVGs   = [false,true] select ("BLWK_playersStartWith_NVGs" call BIS_fnc_getParamValue);
+BLWK_playersStartWith_map = [false,true] select ("BLWK_playersStartWith_map" call BIS_fnc_getParamValue); 
+BLWK_playersStartWith_NVGs = [false,true] select ("BLWK_playersStartWith_NVGs" call BIS_fnc_getParamValue);
 
 /* Respawn */
 BLWK_respawnTime = ("BLWK_respawnTime" call BIS_fnc_getParamValue);
