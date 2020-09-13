@@ -31,20 +31,22 @@ params [
 if (isNull _object) exitWith {false};
 
 // sell object
-_object addAction [ 
-	"<t color='#ff0000'>-- Sell Object Back --</t>",  
-	{
-		params ["_object","_caller"];
-		[_object,_caller] call BLWK_fnc_sell;
-	}, 
-	nil, 
-	90,  
-	false,  
-	false,  
-	"true", 
-	"!(_originalTarget getVariable ['BLWK_objectPickedUp',false])", 
-	5 
-];
+if (!_object isEqualTo bulwarkBox AND {!(_object isEqualTo lootBox)}) then {
+	_object addAction [ 
+		"<t color='#ff0000'>-- Sell Object Back --</t>",  
+		{
+			params ["_object","_caller"];
+			[_object,_caller] call BLWK_fnc_sell;
+		}, 
+		nil, 
+		90,  
+		false,  
+		false,  
+		"true", 
+		"!(_originalTarget getVariable ['BLWK_objectPickedUp',false])", 
+		5 
+	];
+};
 
 // move up
 _object addAction [ 

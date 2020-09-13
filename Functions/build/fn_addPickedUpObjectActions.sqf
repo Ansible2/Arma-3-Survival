@@ -56,18 +56,21 @@ private _placeActionID = _player addAction [
 	true
 ];
 
-// sell object
-private _sellActionID = _player addAction [ 
-	"<t color='#ff0000'>-- Sell (In Hand) Object Back --</t>",  
-	{
-		private _object = _this select 3;
-		[_object] call BLWK_fnc_sellObject;
-	}, 
-	_object, 
-	90,  
-	true,  
-	false
-];
+private "_sellActionID";
+if (!_object isEqualTo bulwarkBox AND {!(_object isEqualTo lootBox)}) then {
+	// sell object
+	_sellActionID = _player addAction [ 
+		"<t color='#ff0000'>-- Sell (In Hand) Object Back --</t>",  
+		{
+			private _object = _this select 3;
+			[_object] call BLWK_fnc_sellObject;
+		}, 
+		_object, 
+		90,  
+		true,  
+		false
+	];
+};
 
 // move up
 private _moveUpActionID = _player addAction [ 
