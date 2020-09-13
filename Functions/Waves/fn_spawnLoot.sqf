@@ -106,7 +106,7 @@ BLWK_spawnedLoot pushBackUnique BLWK_moneyPile;
 //////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////Everything else////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
-private _fn_decideLoot = {
+private _fn_addLoot = {
 	params ["_holder"];
 	
 	private _typeToSpawn = round random 6;
@@ -159,7 +159,7 @@ _sortedPositions apply {
 	private _spawnPosition = _x vectorAdd [0,0,0.1];
 
 	private _holder = createVehicle ["WeaponHolderSimulated_Scripted", _position, [], 0, "CAN_COLLIDE"];
-	[_holder] call _fn_decideLoot;
+	[_holder] call _fn_addLoot;
 	
 	BLWK_spawnedLoot pushBack _holder;
 };
