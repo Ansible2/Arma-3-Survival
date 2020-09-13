@@ -20,7 +20,7 @@ _vechAi    = (BLWK_buildableObjects_array select _index) select 5;
 if(_shopClass == "") exitWith {};
 
 if(missionNamespace getVariable ["BLWK_playerKillPoints",0] >= _shopPrice && !(player getVariable "buildItemHeld")) then {
-    [player, _shopPrice] remoteExec ["BLWK_fnc_spendPoints", 2];
+    [player, _shopPrice] remoteExec ["BLWK_fnc_subtractPoints", 2];
     if (_vechAi) then {
         _vechWithAi = [[0,0,300], 0, _shopClass, west] call BIS_fnc_spawnVehicle;
         shopVehic = _vechWithAi select 0;

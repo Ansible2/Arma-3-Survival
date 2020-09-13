@@ -55,7 +55,7 @@ if(BLWK_numMedKits > 0) then {
 	_points = _player getVariable 'killPoints';
 	if (_points >= 500) then {
 		[_player, 0] remoteExec ['setDamage', 0, true];
-		[_player, 500] remoteExec ['BLWK_fnc_spendPoints', 2];
+		[_player, 500] remoteExec ['BLWK_fnc_subtractPoints', 2];
 		[true] remoteExec ['disableUserInput', _player];
 		[_player, 'AinvPercMstpSnonWnonDnon_Putdown_AmovPercMstpSnonWnonDnon'] remoteExec ['switchMove', 0];
 		sleep 1;
@@ -144,7 +144,7 @@ publicVariable "lootBox";
 		_player = _this select 1;
 		_points = _player getVariable 'killPoints';
 		if(_points >= BLWK_costToSpinRandomBox) then {
-			[_player, BLWK_costToSpinRandomBox] remoteExec ['BLWK_fnc_spendPoints', 2];
+			[_player, BLWK_costToSpinRandomBox] remoteExec ['BLWK_fnc_subtractPoints', 2];
 			[[lootBoxPos, lootBoxPosATL, lootBoxDir], 'loot\spin\main.sqf'] remoteExec ['execVM', 2];
 		};
 	"

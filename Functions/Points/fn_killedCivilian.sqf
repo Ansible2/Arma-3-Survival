@@ -24,7 +24,7 @@ Author:
 ---------------------------------------------------------------------------- */
 params ["_killedCivilian"];
 
-[BLWK_pointsForKill * 10] call BLWK_fnc_spendPoints;
+[BLWK_pointsForKill * 10] call BLWK_fnc_subtractPoints;
 
 playSound "alarm";
 
