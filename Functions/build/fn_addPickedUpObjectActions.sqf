@@ -56,7 +56,7 @@ private _placeActionID = _player addAction [
 	true
 ];
 
-private "_sellActionID";
+private _sellActionID = nil;
 if (!_object isEqualTo bulwarkBox AND {!(_object isEqualTo lootBox)}) then {
 	// sell object
 	_sellActionID = _player addAction [ 
