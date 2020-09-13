@@ -19,10 +19,7 @@ Examples:
 
     (end)
 ---------------------------------------------------------------------------- */
-//spawn start loot
-if (isServer) then {
-	execVM "loot\spawnLoot.sqf";
-};
+call BLWK_fnc_spawnLoot;
 
 sleep 15;
 runMissionLoop = true;
