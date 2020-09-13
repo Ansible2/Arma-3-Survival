@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_spendPoints
+Function: BLWK_fnc_subtractPoints
 
 Description:
 	Subtracts a specified number of the player's points
@@ -14,7 +14,7 @@ Examples:
     (begin example)
 
 		// remove 10 points from player
-		[10] call BLWK_fnc_spendPoints;
+		[10] call BLWK_fnc_subtractPoints;
 
     (end)
 
