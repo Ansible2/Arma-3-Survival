@@ -25,6 +25,7 @@ Examples:
 //////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////Prepare Spawn Positions////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
+
 // get ALL buildings in area
 private _buildingsInPlayArea = BLWK_playAreaCenter nearObjects ["House", BLWK_playAreaRadius];
 // sort buildings that actually have cfg positions to spawn stuff
@@ -161,6 +162,7 @@ _sortedPositions apply {
 	private _holder = createVehicle ["WeaponHolderSimulated_Scripted", _position, [], 0, "CAN_COLLIDE"];
 	[_holder] call _fn_addLoot;
 	
+	_addToZeusArray pushBack _holder;
 	BLWK_spawnedLoot pushBack _holder;
 };
 
