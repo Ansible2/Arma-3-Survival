@@ -21,6 +21,13 @@ Examples:
 ---------------------------------------------------------------------------- */
 if (!canSuspend) exitWith {};
 
+// check if player has enough to use the box
+if ((missionNamespace getVariable ["BLWK_playerKillPoints",0]) < BLWK_costToSpinRandomBox) exitWith {
+	hint "You Do Not Enough Points To Spin The Box"
+};
+
+[BLWK_costToSpinRandomBox] call BLWK_fnc_subtractPoints;
+
 // so that others can't use the box
 missionNamespace setVariable ["BLWK_randomWeaponBoxInUse",true,true];
 
@@ -33,7 +40,6 @@ private _weaponHolder = createVehicle ["WeaponHolderSimulated_Scripted", _boxPos
 
 // so that people can't take a weapon while animation plays
 _weaponHolder enableSimulationGlobal false;
-
 
 // animate up
 private _incriment = 1/NUMBER_OF_FRAMES;

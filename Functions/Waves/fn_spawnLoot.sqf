@@ -19,9 +19,6 @@ Examples:
 
     (end)
 ---------------------------------------------------------------------------- */
-
-
-
 //////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////Prepare Spawn Positions////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
@@ -94,6 +91,15 @@ if (!BLWK_supportDishFound) then {
 	BLWK_spawnedLoot pushBackUnique BLWK_supportDish;
 };
 
+// RANDOM WEAPON BOX
+if (!BLWK_randomWeaponBoxFound) then {
+	BLWK_randomWeaponBox = createVehicle ["Land_WoodenBox_F", (call _fn_getASpawnPosition), [], 4];
+	publicVariable "BLWK_randomWeaponBox";
+	_addToZeusArray pushBackUnique BLWK_randomWeaponBox;
+
+	[BLWK_randomWeaponBox] remoteExec ["BLWK_fnc_addBuildObjectActions",BLWK_allPlayersTargetID,true];
+	BLWK_spawnedLoot pushBackUnique BLWK_randomWeaponBox;
+};
 
 // MONEY PILE
 BLWK_moneyPile = createVehicle ["Box_C_UAV_06_Swifd_F", (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
@@ -165,10 +171,5 @@ _sortedPositions apply {
 	_addToZeusArray pushBack _holder;
 	BLWK_spawnedLoot pushBack _holder;
 };
-
-
-
-
-
 
 BLWK_zeus addCuratorEditableObjects [_addToZeusArray, true];

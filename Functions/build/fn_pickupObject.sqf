@@ -51,6 +51,11 @@ if (_justPurchased) then {
 	[_object,_player,true] remoteExecCall ["BIS_fnc_attachToRelative",_object];
 };
 
+// special handle for BLWK_randomWeaponBox being found
+if (_object isEqualTo BLWK_randomWeaponBox AND {missionNamespace getVariable ["BLWK_randomWeaponBoxFound",false]}) then {
+	missionNamespace setVariable ["BLWK_randomWeaponBoxFound",true,true];
+};
+
 // make sure nobody else can manipulate the object through actions
 _object setVariable ["BLWK_objectPickedUp",true,true];
 
@@ -59,7 +64,6 @@ missionNamespace setVariable ["BLWK_heldObject",_object];
 
 // add every action to the player for or them to manipulate the object while it is being held
 [_object,_player] call BLWK_fnc_addPickedUpObjectActions;
-
 
 // this loop is checking to see if the player is unconcious or dead
 /// if they are, they drop the object
