@@ -43,6 +43,7 @@ for "_i" from 1 to NUMBER_OF_FRAMES do {
 	_tempWeapon = selectRandom _possibleWeapons;
 	_weaponHolder addWeaponCargoGlobal [_tempWeapon,1];
 	_weaponHolder setPosATL ((getPosATLVisual _weaponHolder) vectorAdd [0,0,_incriment]);
+	_weaponHolder setVectorDirAndUp [vectorDir BLWK_randomWeaponBox, vectorUp BLWK_randomWeaponBox];
 	
 	sleep SLEEP_TIME;
 
