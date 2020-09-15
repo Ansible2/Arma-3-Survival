@@ -62,6 +62,14 @@ class BLWK_numMedKits
 	default = 3;
 };
 
+class BLWK_faksToMakeMedkit
+{
+	title = "How many FAKs make a Medkit?";
+	values[] = {5, 10, 15};
+	texts[] = {"5", "10", "15"};
+	default = 2;
+};
+
 class BLWK_playersStartWith_map
 {
 	title = "Start with map";

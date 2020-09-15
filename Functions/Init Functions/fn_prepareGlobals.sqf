@@ -208,6 +208,7 @@ BLWK_randomizeHostileWeapons = [false,true] select ("BLWK_randomizeHostileWeapon
 
 /* Starter MediKits */
 BLWK_numMedKits = ("BLWK_numMedKits" call BIS_fnc_getParamValue);
+BLWK_faksToMakeMedkit = ("BLWK_faksToMakeMedkit" call BIS_fnc_getParamValue);
 
 BLWK_timeBetweenRounds = ("BLWK_timeBetweenRounds" call BIS_fnc_getParamValue);
 BLWK_useSpecialWaves = ("BLWK_useSpecialWaves" call BIS_fnc_getParamValue);
