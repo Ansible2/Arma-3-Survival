@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_faksToMedkit
+Function: BLWK_fnc_faksToMedkitLoop
 
 Description:
 	Loops while players are looking at the bulwark's inventory to see if a medkit should be made
@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn BLWK_fnc_faksToMedkit;
+		null = [] spawn BLWK_fnc_faksToMedkitLoop;
 
     (end)
 
