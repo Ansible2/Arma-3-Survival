@@ -313,6 +313,14 @@ class BLWK_reviveRequiredItems
 	function = "bis_fnc_paramReviveRequiredItems";
 };
 
+class BLWK_useACEMedical
+{
+	title = "Use ACE medical?";
+	values[] = {0, 1};
+	texts[] = {"No", "Yes"};
+	default = 0;
+};
+
 class BLWK_numRespawnTickets
 {
 	title = "Tickets";
