@@ -85,6 +85,7 @@ BLWK_spawnedLoot pushBackUnique BLWK_lootRevealerBox;
 if (!BLWK_supportDishFound) then {
 	BLWK_supportDish = createVehicle ["Land_SatelliteAntenna_01_F", (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
 	publicVariable "BLWK_supportDish";
+	BLWK_supportDish allowDamage false;
 	_addToZeusArray pushBackUnique BLWK_supportDish;
 
 	[BLWK_supportDish] remoteExec ["BLWK_fnc_addUnlockSupportAction",BLWK_allPlayersTargetID,true];
@@ -95,6 +96,7 @@ if (!BLWK_supportDishFound) then {
 if (!BLWK_randomWeaponBoxFound) then {
 	BLWK_randomWeaponBox = createVehicle ["Land_WoodenBox_F", (call _fn_getASpawnPosition), [], 4];
 	publicVariable "BLWK_randomWeaponBox";
+	BLWK_randomWeaponBox allowDamage false;
 	_addToZeusArray pushBackUnique BLWK_randomWeaponBox;
 
 	[BLWK_randomWeaponBox] remoteExec ["BLWK_fnc_addBuildObjectActions",BLWK_allPlayersTargetID,true];
@@ -104,10 +106,12 @@ if (!BLWK_randomWeaponBoxFound) then {
 // MONEY PILE
 BLWK_moneyPile = createVehicle ["Box_C_UAV_06_Swifd_F", (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
 publicVariable "BLWK_moneyPile";
+BLWK_moneyPile allowDamage false;
 _addToZeusArray pushBackUnique BLWK_moneyPile;
 
 [BLWK_moneyPile] remoteExec ["BLWK_fnc_addMoneyPileAction",BLWK_allPlayersTargetID,true];
 BLWK_spawnedLoot pushBackUnique BLWK_moneyPile;
+
 
 
 //////////////////////////////////////////////////////////////////////////////////
