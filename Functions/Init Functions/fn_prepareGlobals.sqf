@@ -227,6 +227,8 @@ BLWK_saveRespawnLoadout = [false,true] select ("BLWK_saveRespawnLoadout" call BI
 
 BLWK_magRepackEnabled = [false,true] select ("BLWK_magRepackEnabled" call BIS_fnc_getParamValue);
 
+BLWK_useACEMedical = [false,true] select ("BLWK_useACEMedical" call BIS_fnc_getParamValue);
+
 // CIPHER COMMENT: See about using a #include here, but I don't think it is possible within an if statement
 if (isServer OR {!hasInterface}) then {
     BLWK_civilianClass = "C_man_1";
