@@ -41,6 +41,8 @@ private _weaponHolder = createVehicle ["WeaponHolderSimulated_Scripted", _boxPos
 // so that people can't take a weapon while animation plays
 _weaponHolder enableSimulationGlobal false;
 
+
+// CIPHER COMMENT: Need to add the sound for the box spin
 // animate up
 private _incriment = 1/NUMBER_OF_FRAMES;
 private "_tempWeapon";
