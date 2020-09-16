@@ -128,7 +128,7 @@ BLWK_loot_backpackClasses   = List_Backpacks - BLWK_blacklist;
 
 /* Random Loot */
 BLWK_loot_cityDistribution = ("BLWK_loot_cityDistribution" call BIS_fnc_getParamValue);  // decides how many buildings will be marked as having loot in a city
-BLWK_loot_roomDistribution = ("BLWK_loot_roomDistribution" call BIS_fnc_getParamValue);   // decides how much loot will be in a building if it has any 
+BLWK_loot_roomDistribution = ("BLWK_loot_roomDistribution" call BIS_fnc_getParamValue);   // decides how much loot will be in a building if it has any at all
 BLWK_distributionOffset = 0; // Offset the position by this number. //Cipher Comment not used
 BLWK_supplyDropRadius = ("BLWK_supplyDropRadius" call BIS_fnc_getParamValue) / 100;        // Radius of supply drop
 BLWK_paratrooperCount = ("BLWK_paratrooperCount" call BIS_fnc_getParamValue);
