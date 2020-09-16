@@ -42,6 +42,8 @@ class BLWK
 		{};
 		class players
 		{};
+		class shuffle
+		{};
 		class taskPatrol
 		{};
 		class vectRotate3D
