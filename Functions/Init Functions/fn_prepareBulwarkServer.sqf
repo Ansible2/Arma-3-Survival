@@ -27,9 +27,3 @@ _bulwarkLaptop setDir 180;
 if (BLWK_numMedKits > 0) then {
 	bulwarkBox addItemCargoGlobal ["Medikit", BLWK_numMedKits];
 };
-
-
-private _marker1 = createMarker ["Mission Area", BLWK_playAreaCenter];
-_marker1 setMarkerShape "ELLIPSE";
-_marker1 setMarkerSize [BLWK_playAreaRadius, BLWK_playAreaRadius];
-_marker1 setMarkerColor "ColorWhite";
