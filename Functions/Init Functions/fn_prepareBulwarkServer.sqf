@@ -17,6 +17,8 @@ _bulwarkLaptop setObjectTextureGlobal [0,"preview.paa"];
 _bulwarkLaptop attachTo [bulwarkBox, [0,0.1,0.6]];
 _bulwarkLaptop setDir 180;
 
+// usue nearObjects to get the buildings around bulwark, much faster
+
 
 // push player relavent actions and the loop to show the bulwark icon
 [bulwarkBox] remoteExec ["BLWK_fnc_prepareBulwarkPlayer",BLWK_allPlayersTargetID,true];
