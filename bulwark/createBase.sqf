@@ -13,12 +13,12 @@ _bulMon = createVehicle ["Land_Laptop_device_F", [0,0,0], [], 0, "CAN_COLLIDE"];
 _bulMon allowDamage false;
 bulwarkBox allowDamage false;
 bulwarkFallDamage = {
-	_damage = 0;
-	if((_this select 4) != "") then
-	{
-	_damage = _this select 2;
-	};
-	_damage
+_damage = 0;
+if((_this select 4) != "") then
+{
+  _damage = _this select 2;
+};
+_damage
 };
 bulwarkBox addEventHandler ["HandleDamage", { _this call bulwarkFallDamage }];
 clearItemCargoGlobal bulwarkBox;
