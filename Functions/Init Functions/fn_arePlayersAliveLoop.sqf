@@ -23,14 +23,13 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-
 if (!isServer OR {!canSuspend}) exitWith {};
 
 private _players = call CBAP_fnc_players;
 private _return = 0;
 
 private _condition = {
-	_players = call CBAP_fnc_players
+	_players = call CBAP_fnc_players;
 	_return = _players findIf {
 		alive _x OR 
 		{(incapacitatedState _x isEqualTo "") AND {BLWK_numRespawnTickets <= 0}}
@@ -49,3 +48,13 @@ waitUntil {
 
 	false
 };
+
+/*
+if (BLWK_currentWaveNumber == BLWK_maxNumWaves) exitWith {
+	"End2" call BIS_fnc_endMissionServer;
+};
+
+missionNamespace setVariable ["buildPhase", true, true];
+
+[west, BLWK_numRespawnTickets] call BIS_fnc_respawnTickets;
+*/
