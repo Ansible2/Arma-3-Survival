@@ -1,3 +1,11 @@
+call BLWK_fnc_prepareGlobals;
+
+call BLWk_fnc_preparePlayArea;
+
+
+
+
+
 // variable to prevent players rejoining during a wave
 playersInWave = [];
 publicVariable "playersInWave";
