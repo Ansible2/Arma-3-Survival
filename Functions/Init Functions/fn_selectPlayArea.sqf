@@ -44,7 +44,7 @@ private _fn_checkLocation = {
 
 		// cycle through all buildings near the location which is within (BLWK_playAreaRadius * 2)
 		_buildingsNearLocationShuffled findIf {
-			// get all the buildings positions
+			// get all the building's positions
 			_buildingsPositions = _x buildingPos -1;
 
 			// at the current building, check if there are enough within the radius to satisfy BLWK_minNumberOfHousesInArea
@@ -61,14 +61,9 @@ private _fn_checkLocation = {
 	_isSuitable
 };
 
-
-
-
 _mapLocationPositions findIf {
 	[_x] call _fn_checkLocation
 };
-
-
 
 // exit if nothing found
 if (_mapLocationPositions isEqualTo -1)  exitWith {
@@ -79,11 +74,7 @@ if (_mapLocationPositions isEqualTo -1)  exitWith {
 	call BIS_fnc_endMissionServer;
 };
 
-
-
 sleep 1;
-
-
 
 if (missionNamespace getVariable ["BLWK_debug",false]) then {
 	_count = 0;
@@ -95,9 +86,6 @@ if (missionNamespace getVariable ["BLWK_debug",false]) then {
 		_count = _count + 1;
 	};
 };
-
-
-
 
 // create map marker for radius
 private _marker1 = createMarker ["Mission Area", _positionChosen];
