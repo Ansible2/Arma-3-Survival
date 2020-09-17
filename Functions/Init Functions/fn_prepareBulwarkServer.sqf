@@ -1,3 +1,28 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_prepareBulwarkServer
+
+Description:
+	Creates and sets up the bulwark, syncs the box global to all machines.
+	Also adds the desired number of medkits
+
+	Executed from ""
+
+Parameters:
+	NONE
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+
+		call BLWK_fnc_prepareBulwarkServer;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 
 // create bulwark
@@ -16,12 +41,6 @@ _bulwarkLaptop setObjectTextureGlobal [0,"preview.paa"];
 //[_bulwarkLaptop,[0,"preview.paa"]] remoteExec ["setObjectTexture",BLWK_allPlayersTargetID,true];
 _bulwarkLaptop attachTo [bulwarkBox, [0,0.1,0.6]];
 _bulwarkLaptop setDir 180;
-
-// usue nearObjects to get the buildings around bulwark, much faster
-
-
-// push player relavent actions and the loop to show the bulwark icon
-[bulwarkBox] remoteExec ["BLWK_fnc_prepareBulwarkPlayer",BLWK_allPlayersTargetID,true];
 
 // add medkits
 if (BLWK_numMedKits > 0) then {
