@@ -20,7 +20,7 @@ Examples:
     (end)
 ---------------------------------------------------------------------------- */
 //////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////Prepare Spawn Positions////////////////////////
+///////////////////////////Prepare Spawn Positions////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
 
 // get ALL buildings in area
@@ -32,9 +32,9 @@ BLWK_playAreaBuildings = _buildingsInPlayArea select {
 	!((_x buildingPos -1) isEqualTo []) AND
 	{!(_x getVariable ["BLWK_isABuiltObject",false])}
 };
-private _buildings = BLWK_playAreaBuildings;
-//private _numberOfBuildings = count _buildings;
 
+
+private _buildings = BLWK_playAreaBuildings;
 // sort through all available buildings and positions
 // to distribute to every building, every other building, every 3rd, etc.
 private _sortedPositions = [];
