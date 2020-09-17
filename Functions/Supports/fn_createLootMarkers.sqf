@@ -1,3 +1,27 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_createLootMarkers
+
+Description:
+	Creates the loot markers when a player finds the reveal loot box
+
+	Executed from ""
+
+Parameters:
+	NONE
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+
+		call BLWK_fnc_createLootMarkers;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 private _fn_setUpMarker = {
 	params ["_loot","_index"];
 

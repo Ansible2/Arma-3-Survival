@@ -1,3 +1,27 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_healPlayer
+
+Description:
+	Heals the player when they select the action ont he bulwark
+
+	Executed from ""
+
+Parameters:
+	0: _player : <OBJECT> - The person to heal
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+
+		[player] call BLWK_fnc_healPlayer;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 params [
 	["_player",player,[objNull]]
 ];

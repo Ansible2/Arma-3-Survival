@@ -20,7 +20,6 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-
 if (!hasInterface) exitWith {};
 
 player addEventHandler ["KILLED", {

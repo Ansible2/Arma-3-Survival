@@ -7,7 +7,7 @@ Description:
 	Executed from ""
 
 Parameters:
-	NONE
+	0: _player : <OBJECT> - The player to add diary entries to
 
 Returns:
 	NOTHING
