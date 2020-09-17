@@ -19,6 +19,8 @@ Examples:
 
     (end)
 ---------------------------------------------------------------------------- */
+if (hasInterface AND {!isServer}) exitWith {};
+
 #define NUM_CIVILIANS 20
 // CIPHER COMMENT: Consider adjusting this for dedicated and hosted server
 // CIPHER COMMENT: could just do an allunits select {side _x isEqualTo civilian} instead of deletion pile...
