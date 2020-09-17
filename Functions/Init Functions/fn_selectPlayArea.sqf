@@ -1,5 +1,32 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_selectPlayArea
+
+Description:
+	Searches through a maps's locations for a suitable play area that is within the player's parameters.
+
+	Will end mission if none exist
+
+	Executed from ""
+
+Parameters:
+	NONE
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+
+		null = [] spawn BLWK_fnc_selectPlayArea;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
-// get location positions and shuffle them
+
+// get all location positions on the map and shuffle them
 private _mapLocations = nearestlocations [[0,0,0],["nameVillage","nameCity","nameCityCapital","nameMarine","Airport"],worldsize * sqrt 2]; 
 private _shuffledLocations = [_mapLocations,false] call CBA_fnc_shuffle;
 private _mapLocationPositions = [];
@@ -61,20 +88,24 @@ private _fn_checkLocation = {
 	_isSuitable
 };
 
+// actually loop through the locations
 _mapLocationPositions findIf {
 	[_x] call _fn_checkLocation
 };
 
+
 // exit if nothing found
 if (_mapLocationPositions isEqualTo -1)  exitWith {
-	["No locations on map are within your selection parameters for Building numbers"] remoteExecCall ["hint",0,true];
+	["No locations on map are within your selection parameters for building numbers"] remoteExecCall ["hint",0,true];
 
 	sleep 10;
 
 	call BIS_fnc_endMissionServer;
 };
 
+
 sleep 1;
+
 
 if (missionNamespace getVariable ["BLWK_debug",false]) then {
 	_count = 0;
@@ -87,10 +118,5 @@ if (missionNamespace getVariable ["BLWK_debug",false]) then {
 	};
 };
 
-// create map marker for radius
-private _marker1 = createMarker ["Mission Area", _positionChosen];
-_marker1 setMarkerShape "ELLIPSE";
-_marker1 setMarkerSize [BLWK_playAreaRadius, BLWK_playAreaRadius];
-_marker1 setMarkerColor "ColorWhite";
 
-_positionChosen
+BLWK_playAreaCenter = _positionChosen;
