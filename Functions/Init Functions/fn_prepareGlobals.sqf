@@ -27,6 +27,9 @@ Examples:
 BLWK_allPlayersTargetID = [0,-2] select isDedicated;
 publicVariable "BLWK_allPlayersTargetID";
 
+// check if hedless client is loaded
+BLWK_whomIsChargeOfAI = [HC1,2] select (isNil "HC1");
+
 /* Attacker Waves */
 // cipher comment: why the use global vars to initialize global vars and then not clear the memory?
 /// PS, none of these are used, they only used the first ones (e.g. list_bandits,list_opfor)
@@ -259,6 +262,10 @@ BLWK_enforceArea = true;
 // for revealing loot and deleteing it at the end of the round
 BLWK_lootMarkers = [];
 BLWK_spawnedLoot = [];
+
+// the marker that denotes the play area on the map
+// this is used to potentially resize it at some point, might make a better special wave
+BLWK_playAreaMarker = "";
 
 /*
     POTENTIAL AI QUE
