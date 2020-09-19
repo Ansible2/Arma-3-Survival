@@ -158,6 +158,7 @@ class BLWK_playAreaRadius
 	default = 150;
 };
 
+/*
 class BLWK_minSpawnRoomSize
 {
 	title = "Minimum spawn room size";
@@ -165,7 +166,9 @@ class BLWK_minSpawnRoomSize
 	texts[] = {"10m²", "13m²", "15m²", "18m²", "20m²"};
 	default = 13;
 };
+*/
 
+/*
 class BLWK_minLandToWaterRatio
 {
 	title = "Minimum land area (To avoid spawning on a dock)";
@@ -173,6 +176,7 @@ class BLWK_minLandToWaterRatio
 	texts[] = {"60%","70%","80%","90%","100%"};
 	default = 80;
 };
+*/
 
 class BLWK_minNumberOfHousesInArea
 {

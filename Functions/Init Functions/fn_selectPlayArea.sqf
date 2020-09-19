@@ -27,8 +27,7 @@ Author:
 if (!isServer) exitWith {};
 
 // get all location positions on the map and shuffle them
-private _mapLocations = nearestlocations [[0,0,0],["nameVillage","nameCity","nameCityCapital","nameMarine","Airport"],worldsize * sqrt 2]; 
-private _shuffledLocations = [_mapLocations,false] call CBA_fnc_shuffle;
+private _shuffledLocations = [BLWK_locations,false] call CBA_fnc_shuffle;
 private _mapLocationPositions = [];
 _shuffledLocations apply {
 	_mapLocationPositions pushBack (locationPosition _x);

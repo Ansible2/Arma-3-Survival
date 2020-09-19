@@ -74,11 +74,11 @@ private _addToZeusArray = [];
 // these are global for future endeavors
 BLWK_lootRevealerBox = createVehicle ["Box_C_UAV_06_Swifd_F", (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
 publicVariable "BLWK_lootRevealerBox";
-_addToZeusArray pushBackUnique BLWK_lootRevealerBox;
+_addToZeusArray pushBack BLWK_lootRevealerBox;
 
 [BLWK_lootRevealerBox] remoteExec ["BLWK_fnc_addRevealLootAction",BLWK_allPlayersTargetID,true];
 // add to list to for cleanup
-BLWK_spawnedLoot pushBackUnique BLWK_lootRevealerBox;
+BLWK_spawnedLoot pushBack BLWK_lootRevealerBox;
 
 
 // SUPPORT UNLOCK DISH
@@ -86,10 +86,10 @@ if (!BLWK_supportDishFound) then {
 	BLWK_supportDish = createVehicle ["Land_SatelliteAntenna_01_F", (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
 	publicVariable "BLWK_supportDish";
 	BLWK_supportDish allowDamage false;
-	_addToZeusArray pushBackUnique BLWK_supportDish;
+	_addToZeusArray pushBack BLWK_supportDish;
 
 	[BLWK_supportDish] remoteExec ["BLWK_fnc_addUnlockSupportAction",BLWK_allPlayersTargetID,true];
-	BLWK_spawnedLoot pushBackUnique BLWK_supportDish;
+	BLWK_spawnedLoot pushBack BLWK_supportDish;
 };
 
 // RANDOM WEAPON BOX
@@ -97,23 +97,25 @@ if (!BLWK_randomWeaponBoxFound) then {
 	BLWK_randomWeaponBox = createVehicle ["Land_WoodenBox_F", (call _fn_getASpawnPosition), [], 4];
 	publicVariable "BLWK_randomWeaponBox";
 	BLWK_randomWeaponBox allowDamage false;
-	_addToZeusArray pushBackUnique BLWK_randomWeaponBox;
+	_addToZeusArray pushBack BLWK_randomWeaponBox;
 
 	[BLWK_randomWeaponBox] remoteExec ["BLWK_fnc_addBuildObjectActions",BLWK_allPlayersTargetID,true];
-	BLWK_spawnedLoot pushBackUnique BLWK_randomWeaponBox;
+	BLWK_spawnedLoot pushBack BLWK_randomWeaponBox;
 };
 
 // MONEY PILE
 BLWK_moneyPile = createVehicle ["Box_C_UAV_06_Swifd_F", (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
 publicVariable "BLWK_moneyPile";
 BLWK_moneyPile allowDamage false;
-_addToZeusArray pushBackUnique BLWK_moneyPile;
+_addToZeusArray pushBack BLWK_moneyPile;
 
 [BLWK_moneyPile] remoteExec ["BLWK_fnc_addMoneyPileAction",BLWK_allPlayersTargetID,true];
-BLWK_spawnedLoot pushBackUnique BLWK_moneyPile;
+BLWK_spawnedLoot pushBack BLWK_moneyPile;
 
-
-
+// CIPHER COMMENT:
+// items should probably never repeat themselves in a round
+// things such as compasses and GPSs will be annoying to find often, but, givent the amount of randomization
+// it may not be needed actually
 //////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////Everything else////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
@@ -151,15 +153,15 @@ private _fn_addLoot = {
 	// weapons
 	if (_typeToSpawn isEqualTo 5) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_weaponClasses;
-		private _potentialAmmo = getArray (configFile >> "CfgWeapons" >> _selectedItemClass >> "magazines");
+		private _magazineClass = selectRandom (getArray (configFile >> "CfgWeapons" >> _selectedItemClass >> "magazines"));
 		_holder addWeaponCargoGlobal [_selectedItemClass,1];
-		_holder addMagazineCargoGlobal [_potentialAmmo,round random [1,2,3]];  
+		_holder addMagazineCargoGlobal [_magazineClass,round random [1,2,3]];  
 	};
 	// magazines
 	if (_typeToSpawn isEqualTo 6) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_weaponClasses;
-		private _potentialAmmo = getArray (configFile >> "CfgWeapons" >> _selectedItemClass >> "magazines");
-		_holder addMagazineCargoGlobal [selectRandom _potentialAmmo,round random [1,2,3]]; 
+		private _magazineClass = selectRandom (getArray (configFile >> "CfgWeapons" >> _selectedItemClass >> "magazines"));
+		_holder addMagazineCargoGlobal [_magazineClass,round random [1,2,3]]; 
 	};
 };
 

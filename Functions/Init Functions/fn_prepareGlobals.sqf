@@ -28,7 +28,32 @@ BLWK_allPlayersTargetID = [0,-2] select isDedicated;
 publicVariable "BLWK_allPlayersTargetID";
 
 // check if hedless client is loaded
-BLWK_whomIsChargeOfAI = [HC1,2] select (isNil "HC1");
+BLWK_whomIsInChargeOfAI = [HC1,2] select (isNil "HC1");
+
+
+/* DLC exclusion */
+/*
+// need to get the DLC strigs returned by getAssetDLCInfo when 2.00 comes out
+BLWK_useableDLCs = [];
+
+BLWK_canUseApexDLC = [false,true] select ("BLWK_canUseApexDLC" call BIS_fnc_getParamValue); 
+if (BLWK_canUseApexDLC) then {BLWK_useableDLCs pushBack ""};
+
+BLWK_canUseLOWDLC = [false,true] select ("BLWK_canUseLOWDLC" call BIS_fnc_getParamValue);
+if (BLWK_canUseLOWDLC) then {BLWK_useableDLCs pushBack ""}; 
+
+BLWK_canUseMarksmanDLC = [false,true] select ("BLWK_canUseMarksmanDLC" call BIS_fnc_getParamValue);
+if (BLWK_canUseMarksmanDLC) then {BLWK_useableDLCs pushBack ""}; 
+
+BLWK_canUseContactDLC = [false,true] select ("BLWK_canUseContactDLC" call BIS_fnc_getParamValue);
+if (BLWK_canUseContactDLC) then {BLWK_useableDLCs pushBack ""}; 
+*/
+
+
+
+
+
+
 
 /* Attacker Waves */
 // cipher comment: why the use global vars to initialize global vars and then not clear the memory?
@@ -48,11 +73,11 @@ BLWK_maxPistolOnlyWaves = ("BLWK_maxPistolOnlyWaves" call BIS_fnc_getParamValue)
 // List_SpecificPoint - will start the mission on the "Specific Bulwark Pos" marker (move with mission editor). Location must meet BLWK_minLandToWaterRatio and BLWK_minNumberOfHousesInArea, BLWK_minSpawnRoomSize, etc requirements
 // List_LocationMarkers - for a location selected randomly from the Bulwark Zones in editor (Currently broken)
 // *IMPORTANT* If you get an error using List_SpecificPoint it means that there isn't a building that qualifies. Turning down the "Minimum spawn room size" parameter might help.
-BLWK_locations = List_AllCities;
+BLWK_locations = nearestlocations [[0,0,0],["nameVillage","nameCity","nameCityCapital","nameMarine","Airport"],worldsize * sqrt 2]; 
 
 BLWK_playAreaRadius = ("BLWK_playAreaRadius" call BIS_fnc_getParamValue); //Cipher Comment: Total play area radius in meters
-BLWK_minSpawnRoomSize = ("BLWK_minSpawnRoomSize" call BIS_fnc_getParamValue);   // Spawn room must be bigger than x square metres
-BLWK_minLandToWaterRatio = ("BLWK_minLandToWaterRatio" call BIS_fnc_getParamValue); //Cipher Comment: The ratio to ensure there isn't too much water.
+//BLWK_minSpawnRoomSize = ("BLWK_minSpawnRoomSize" call BIS_fnc_getParamValue);   // Spawn room must be bigger than x square metres
+//BLWK_minLandToWaterRatio = ("BLWK_minLandToWaterRatio" call BIS_fnc_getParamValue); //Cipher Comment: The ratio to ensure there isn't too much water.
 BLWK_minNumberOfHousesInArea = ("BLWK_minNumberOfHousesInArea" call BIS_fnc_getParamValue);
 
 BLWK_playersStartWith_pistol = [false,true] select ("BLWK_playersStartWith_pistol" call BIS_fnc_getParamValue);
@@ -64,70 +89,8 @@ BLWK_playersStartWith_NVGs = [false,true] select ("BLWK_playersStartWith_NVGs" c
 BLWK_respawnTime = ("BLWK_respawnTime" call BIS_fnc_getParamValue);
 BLWK_numRespawnTickets = ("BLWK_numRespawnTickets" call BIS_fnc_getParamValue);
 
-/* Loot Blacklist */
-BLWK_blacklist = [
-    "O_Static_Designator_02_weapon_F", // If players find and place CSAT UAVs they count as hostile units and round will not progress
-    "O_UAV_06_backpack_F",
-    "O_UAV_06_medical_backpack_F",
-    "O_UAV_01_backpack_F",
-    "B_IR_Grenade",
-    "O_IR_Grenade",
-    "I_IR_Grenade"
-];
-
-/* Whitelist modes */
-/* 0 = Off */
-/* 1 = Only Whitelist Items will spawn as loot */
-/* 2 = Whitelist items get added to existing loot (increases the chance of loot spawning */
-BLWK_loot_whiteListMode = 0;
-
-/* Loot Whitelists */
-/* Fill with classname arrays: ["example_item_1", "example_item_2"] */
-BLWK_whitelist_weaponClasses = [
-
-];
-BLWK_whitelist_vestClassess = [
-
-];
-BLWK_whitelist_clothingClasses = [
-
-];
-BLWK_whitelist_itemClasses = [
-
-];
-BLWK_whitelist_explosiveClasses = [
-
-];
-BLWK_whitelist_backpackClasses = [
-
-];
-
-// adjusut to white list mode
-if (BLWK_loot_whiteListMode isEqualTo 1) then {
-    BLWK_loot_backpackClasses = BLWK_whitelist_backpackClasses;
-    BLWK_loot_explosiveClasses = BLWK_whitelist_explosiveClasses;
-    BLWK_loot_itemClasses = BLWK_whitelist_itemClasses;
-    BLWK_loot_clothingClasses = BLWK_whitelist_clothingClasses;
-    BLWK_loot_vestClasses = BLWK_whitelist_vestClassess;
-	BLWK_loot_weaponClasses = BLWK_whitelist_weaponClasses;
-};
-if (BLWK_loot_whiteListMode isEqualTo 2) then {
-    BLWK_loot_backpackClasses append BLWK_whitelist_backpackClasses;
-    BLWK_loot_explosiveClasses append BLWK_whitelist_explosiveClasses;
-    BLWK_loot_itemClasses append BLWK_whitelist_itemClasses;
-    BLWK_loot_clothingClasses append BLWK_whitelist_clothingClasses;
-    BLWK_loot_vestClasses append BLWK_whitelist_vestClassess;
-	BLWK_loot_weaponClasses append BLWK_whitelist_weaponClasses;
-};
 
 
-/* Loot Spawn */
-BLWK_loot_weaponClasses    = List_AllWeapons - BLWK_blacklist;   
-BLWK_loot_vestClasses = List_Vests; //Cipher Comment: not used yet, need to implement instead of having it added to the clothing pool
-BLWK_loot_clothingClasses   = List_AllClothes /*+ List_Vests*/ - BLWK_blacklist;
-BLWK_loot_itemClasses      = List_Optics + List_Items - BLWK_blacklist;
-BLWK_loot_explosiveClasses = List_Mines + List_Grenades + List_Charges - BLWK_blacklist;
-BLWK_loot_backpackClasses   = List_Backpacks - BLWK_blacklist;
 
 /* Random Loot */
 BLWK_loot_cityDistribution = ("BLWK_loot_cityDistribution" call BIS_fnc_getParamValue);  // decides how many buildings will be marked as having loot in a city
