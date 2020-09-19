@@ -97,7 +97,7 @@ _roomCount = 0;
 								_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, 1 + (floor random 3)];
 							};
 							case 2: {
-								_clothes = selectRandom BLWK_loot_clothingClasses;
+								_clothes = selectRandom BLWK_loot_uniformClasses;
 								_lootHolder addItemCargoGlobal [_clothes, 1];
 							};
 							case 3: {

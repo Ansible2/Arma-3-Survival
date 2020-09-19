@@ -116,13 +116,14 @@ BLWK_spawnedLoot pushBack BLWK_moneyPile;
 // items should probably never repeat themselves in a round
 // things such as compasses and GPSs will be annoying to find often, but, givent the amount of randomization
 // it may not be needed actually
+//// Also, it may be adventageous to do a weighted random to avoid spawning so much junk or vice-versa
 //////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////Everything else////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
 private _fn_addLoot = {
 	params ["_holder"];
 	
-	private _typeToSpawn = round random 6;
+	private _typeToSpawn = round random 7;
 	
 	private "_selectedItemClass";
 	// backpack
@@ -135,9 +136,9 @@ private _fn_addLoot = {
 		_selectedItemClass = selectRandom BLWK_loot_vestClasses;
 		_holder addItemCargoGlobal [_selectedItemClass,1]; 
 	};
-	// clothes
+	// uniforms
 	if (_typeToSpawn isEqualTo 2) exitWith {
-		_selectedItemClass = selectRandom BLWK_loot_clothingClasses;
+		_selectedItemClass = selectRandom BLWK_loot_uniformClasses;
 		_holder addItemCargoGlobal [_selectedItemClass,1]; 
 	};
 	// items
@@ -162,6 +163,11 @@ private _fn_addLoot = {
 		_selectedItemClass = selectRandom BLWK_loot_weaponClasses;
 		private _magazineClass = selectRandom (getArray (configFile >> "CfgWeapons" >> _selectedItemClass >> "magazines"));
 		_holder addMagazineCargoGlobal [_magazineClass,round random [1,2,3]]; 
+	};
+	// headgear
+	if (_typeToSpawn isEqualTo 7) exitWith {
+		_selectedItemClass = selectRandom BLWK_loot_headGearClasses;
+		_holder addItemCargoGlobal [_selectedItemClass,1]; 
 	};
 };
 
