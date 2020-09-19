@@ -49,7 +49,7 @@ BLWK_canUseContactDLC = [false,true] select ("BLWK_canUseContactDLC" call BIS_fn
 if (BLWK_canUseContactDLC) then {BLWK_useableDLCs pushBack ""}; 
 */
 
-
+call BLWK_fnc_prepareLootClasses;
 
 
 

@@ -1,3 +1,25 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_prepareLootClasses
+
+Description:
+	Gets all the loot classes for spawning it during the mission.
+	
+	It is executed from the "BLWK_fnc_prepareGlobals".
+	
+Parameters:
+	NONE
+
+Returns:
+	BOOL
+
+Examples:
+    (begin example)
+
+		call BLWK_fnc_prepareLootClasses
+
+    (end)
+---------------------------------------------------------------------------- */
+if (!isServer) exitWith {false};
 /* Loot Blacklist */
 // items that will NOT be spawned in as loot
 BLWK_loot_blacklist = [
@@ -67,25 +89,34 @@ private _configHierarchy = "";
 // sort through clothes, vests, backpacks, headgear
 private _backpackClasses = [];
 private _vestClasses = [];
-private _clothesClasses = [];
+private _uniformClasses = [];
 private _headgearClasses = [];
 private _fn_sortEquipment = {
-
+	if (_tempItemType == "headgear") exitWith {_headgearClasses pushBack _tempClass};
+	if (_tempItemType == "vest") exitWith {_vestClasses pushBack _tempClass};
+	if (_tempItemType == "Uniform") exitWith {_uniformClasses pushBack _tempClass};
+	if (_tempItemType == "Backpack") exitWith {_backpackClasses pushBack _tempClass};
 };
+
+
 private _weaponClasses = [];
 private _fn_sortWeapons = {
 	_weaponClasses pushBack _tempClass;
 };
+
+
 // nvgs, gps, medkit, toolkit, compass, etc.
 private _itemClasses = [];
 private _fn_sortItems = {
 	_itemClasses pushBack _tempClass;
 };
 
+
 private _explosiveClasses = [];
 private _fn_sortExplosives = {
 	_explosiveClasses pushBack _tempClass;
 };
+
 
 private _magazineClasses = [];
 private _fn_sortMagazines = {
@@ -144,6 +175,14 @@ _publicMagazineConfigs apply {
 	[_x,"CfgMagazines"] call _fn_sortType;	
 };
 
+BLWK_loot_backpackClasses = _backpackClasses;
+BLWK_loot_explosiveClasses = _explosiveClasses;
+BLWK_loot_itemClasses = _itemClasses;
+BLWK_loot_uniformClasses = _uniformClasses;
+BLWK_loot_vestClasses = _vestClasses;
+BLWK_loot_headGearClasses = _headgearClasses;
+BLWK_loot_weaponClasses = _weaponClasses;
+
 
 if (BLWK_loot_whiteListMode isEqualTo 2) then {
     BLWK_loot_backpackClasses append _whitelist_backpackClasses;
@@ -155,29 +194,4 @@ if (BLWK_loot_whiteListMode isEqualTo 2) then {
 	BLWK_loot_weaponClasses append _whitelist_weaponClasses;
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+true
