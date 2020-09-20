@@ -4,7 +4,7 @@ Function: BLWK_fnc_prepareGlobals
 Description:
 	Does exactly what it says. Most globals in the scenario are initialized here.
 	
-	It is executed from the "init.sqf".
+	It is executed from the "initPlayerLocal.sqf & initServer.sqf".
 	
 Parameters:
 	NONE
@@ -28,7 +28,7 @@ BLWK_allPlayersTargetID = [0,-2] select isDedicated;
 publicVariable "BLWK_allPlayersTargetID";
 
 // check if hedless client is loaded
-BLWK_whomIsInChargeOfAI = [HC1,2] select (isNil "HC1");
+BLWK_theAIHandler = [HC1,2] select (isNil "HC1");
 
 
 /* DLC exclusion */
@@ -49,9 +49,21 @@ BLWK_canUseContactDLC = [false,true] select ("BLWK_canUseContactDLC" call BIS_fn
 if (BLWK_canUseContactDLC) then {BLWK_useableDLCs pushBack ""}; 
 */
 
-call BLWK_fnc_prepareLootClasses;
+BLWK_loot_whiteListMode = 0;
 
+private _lootClasses = call BLWK_fnc_prepareLootClasses;
 
+BLWK_loot_weaponClasses = _lootClasses select 0;
+BLWK_loot_backpackClasses = _lootClasses select 1;
+BLWK_loot_vestClasses = _lootClasses select 2;
+BLWK_loot_uniformClasses = _lootClasses select 3;
+BLWK_loot_headGearClasses = _lootClasses select 4;
+BLWK_loot_itemClasses = _lootClasses select 5;
+BLWK_loot_explosiveClasses = _lootClasses select 6;
+
+	
+
+BLWK_selectedEnemyTable = ("BLWK_selectedEnemyTable" call BIS_fnc_getParamValue);
 
 
 
@@ -98,8 +110,7 @@ BLWK_loot_roomDistribution = ("BLWK_loot_roomDistribution" call BIS_fnc_getParam
 BLWK_distributionOffset = 0; // Offset the position by this number. //Cipher Comment not used
 BLWK_supplyDropRadius = ("BLWK_supplyDropRadius" call BIS_fnc_getParamValue) / 100;        // Radius of supply drop
 BLWK_paratrooperCount = ("BLWK_paratrooperCount" call BIS_fnc_getParamValue);
-BLWK_paratroopClasses = List_NATO;
-BLWK_defectorClasses = List_NATO;
+
 
 /* Points */
 BLWK_pointsForKill = ("BLWK_pointsForKill" call BIS_fnc_getParamValue);                 // Base Points for a kill
