@@ -10,7 +10,7 @@ Parameters:
 	NONE
 
 Returns:
-	BOOL
+	ARRAY - Format [weapons,backpacks,vests,uniforms,headgear,items,explosives]
 
 Examples:
     (begin example)
@@ -20,9 +20,11 @@ Examples:
     (end)
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {false};
+
+
 /* Loot Blacklist */
 // items that will NOT be spawned in as loot
-BLWK_loot_blacklist = [
+private _loot_blacklist = [
     "O_Static_Designator_02_weapon_F", // If players find and place CSAT UAVs they count as hostile units and round will not progress
     "O_UAV_06_backpack_F",
     "O_UAV_06_medical_backpack_F",
@@ -32,16 +34,18 @@ BLWK_loot_blacklist = [
     "I_IR_Grenade"
 ];
 
+
+
 /* Whitelist modes */
 /* 0 = Off */
 /* 1 = Only Whitelist Items will spawn as loot */
 /* 2 = Whitelist items get added to existing loot (increases the chance of loot spawning */
-BLWK_loot_whiteListMode = 0;
-
-/* Loot Whitelists */
 private _whitelist_weaponClasses = [
-	//"example_item_1",
-	//"example_item_2"
+	//"example_weapon_1",
+	//"example_weapon_2"
+];
+private _whitelist_backpackClasses = [
+
 ];
 private _whitelist_vestClassess = [
 
@@ -59,21 +63,21 @@ private _whitelist_itemClasses = [
 private _whitelist_explosiveClasses = [
 
 ];
-private _whitelist_backpackClasses = [
-
-];
 
 
 // adjusut to white list mode
 if (BLWK_loot_whiteListMode isEqualTo 1) exitWith {
-    BLWK_loot_backpackClasses = _whitelist_backpackClasses;
-    BLWK_loot_explosiveClasses = _whitelist_explosiveClasses;
-    BLWK_loot_itemClasses = _whitelist_itemClasses;
-    BLWK_loot_uniformClasses = _whitelist_uniformClasses;
-	BLWK_loot_headGearClasses = _whitelist_headgearClasses;
-    BLWK_loot_vestClasses = _whitelist_vestClassess;
-	BLWK_loot_weaponClasses = _whitelist_weaponClasses;
+	[_whitelist_weaponClasses,
+	_whitelist_backpackClasses,
+	_whitelist_vestClassess,
+	_whitelist_uniformClasses,
+	_whitelist_headgearClasses,
+	_whitelist_itemClasses,
+	_whitelist_explosiveClasses]
 };
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////Functions///////////////////////////////
+///////////////////////////////////////////////////////////////////////
 
 
 // some of this is setup with the intention that things may be further broken down into more categories
@@ -138,7 +142,8 @@ private _fn_checkDLC = {
 
 private _fn_sortType = {
 	_tempClass = configName (_this select 0);
-	if (_tempClass in BLWK_loot_blacklist) exitWith {};
+	// exclude blacklist items
+	if (_tempClass in _loot_blacklist) exitWith {};
 
 	_configHierarchy = _this select 1;
 	// CIPHER COMMENT: DLC check is awaiting 2.0 release for getAssetDLCInfo command
@@ -175,23 +180,24 @@ _publicMagazineConfigs apply {
 	[_x,"CfgMagazines"] call _fn_sortType;	
 };
 
-BLWK_loot_backpackClasses = _backpackClasses;
-BLWK_loot_explosiveClasses = _explosiveClasses;
-BLWK_loot_itemClasses = _itemClasses;
-BLWK_loot_uniformClasses = _uniformClasses;
-BLWK_loot_vestClasses = _vestClasses;
-BLWK_loot_headGearClasses = _headgearClasses;
-BLWK_loot_weaponClasses = _weaponClasses;
 
-
+// check white list mode to see if we should add whitelisted items
 if (BLWK_loot_whiteListMode isEqualTo 2) then {
-    BLWK_loot_backpackClasses append _whitelist_backpackClasses;
-    BLWK_loot_explosiveClasses append _whitelist_explosiveClasses;
-    BLWK_loot_itemClasses append _whitelist_itemClasses;
-    BLWK_loot_uniformClasses append _whitelist_uniformClasses;
-    BLWK_loot_vestClasses append _whitelist_vestClassess;
-	BLWK_loot_headGearClasses append _whitelist_headgearClasses;
-	BLWK_loot_weaponClasses append _whitelist_weaponClasses;
+    _backpackClasses append _whitelist_backpackClasses;
+    _explosiveClasses append _whitelist_explosiveClasses;
+    _itemClasses append _whitelist_itemClasses;
+    _uniformClasses append _whitelist_uniformClasses;
+    _vestClasses append _whitelist_vestClassess;
+	_headgearClasses append _whitelist_headgearClasses;
+	_weaponClasses append _whitelist_weaponClasses;
 };
 
-true
+
+
+[_weaponClasses,
+_backpackClasses,
+_vestClasses,
+_uniformClasses,
+_headgearClasses,
+_itemClasses,
+_explosiveClasses]
