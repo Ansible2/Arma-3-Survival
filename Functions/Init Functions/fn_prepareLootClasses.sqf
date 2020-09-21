@@ -35,7 +35,6 @@ private _loot_blacklist = [
 ];
 
 
-
 /* Whitelist modes */
 /* 0 = Off */
 /* 1 = Only Whitelist Items will spawn as loot */

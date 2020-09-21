@@ -372,3 +372,249 @@ class BLWK_buildingsNearBulwarkAreIndestructable
 	texts[] = {"Off", "On"};
 	default = 0;
 };
+
+
+// FACTIONS
+class UNIT_TYPES_LABEL_SPACE
+{
+	title = "";
+	values[] = {0};
+	texts[] = {""};
+	default = 0;
+};
+
+class UNIT_TYPES_LABEL
+{
+	title = "===== Unit Type Settings ======";
+	values[] = {0};
+	texts[] = {""};
+	default = 0;
+};
+
+class BLWK_friendlyFaction
+{
+	title = "Friendly Faction";
+	values[] = texts[] = {
+		"NATO",
+		"NATO PACIFIC",
+		"NATO WOODLAND",
+		"CTRG PACIFIC",
+		"CSAT",
+		"CSAT PACIFIC",
+		"CSAT URBAN",
+		"VIPER",
+		"VIPER_PACIFIC",
+		"FIA",
+		"Syndikat",
+		"AAF",
+		"LDF",
+		"SPETSNAZ_VANILLA"
+	};
+	texts[] = {
+		"NATO",
+		"NATO PACIFIC",
+		"NATO WOODLAND",
+		"CTRG PACIFIC",
+		"CSAT",
+		"CSAT PACIFIC",
+		"CSAT URBAN",
+		"VIPER",
+		"VIPER_PACIFIC",
+		"FIA",
+		"Syndikat",
+		"AAF",
+		"LDF",
+		"SPETSNAZ_VANILLA"
+	};
+	default = "NATO";
+};
+
+class BLWK_level1Faction
+{
+	title = "Level 1 Enemy Faction";
+	values[] = texts[] = {
+		"NATO",
+		"NATO PACIFIC",
+		"NATO WOODLAND",
+		"CTRG PACIFIC",
+		"CSAT",
+		"CSAT PACIFIC",
+		"CSAT URBAN",
+		"VIPER",
+		"VIPER_PACIFIC",
+		"FIA",
+		"Syndikat",
+		"AAF",
+		"LDF",
+		"SPETSNAZ_VANILLA"
+	};
+	texts[] = {
+		"NATO",
+		"NATO PACIFIC",
+		"NATO WOODLAND",
+		"CTRG PACIFIC",
+		"CSAT",
+		"CSAT PACIFIC",
+		"CSAT URBAN",
+		"VIPER",
+		"VIPER_PACIFIC",
+		"FIA",
+		"Syndikat",
+		"AAF",
+		"LDF",
+		"SPETSNAZ_VANILLA"
+	};
+	default = "FIA";
+};
+
+class BLWK_level2Faction
+{
+	title = "Level 2 Enemy Faction";
+	values[] = texts[] = {
+		"NATO",
+		"NATO PACIFIC",
+		"NATO WOODLAND",
+		"CTRG PACIFIC",
+		"CSAT",
+		"CSAT PACIFIC",
+		"CSAT URBAN",
+		"VIPER",
+		"VIPER_PACIFIC",
+		"FIA",
+		"Syndikat",
+		"AAF",
+		"LDF",
+		"SPETSNAZ_VANILLA"
+	};
+	texts[] = {
+		"NATO",
+		"NATO PACIFIC",
+		"NATO WOODLAND",
+		"CTRG PACIFIC",
+		"CSAT",
+		"CSAT PACIFIC",
+		"CSAT URBAN",
+		"VIPER",
+		"VIPER_PACIFIC",
+		"FIA",
+		"Syndikat",
+		"AAF",
+		"LDF",
+		"SPETSNAZ_VANILLA"
+	};
+	default = "AAF";
+};
+
+class BLWK_level3Faction
+{
+	title = "Level 3 Enemy Faction";
+	values[] = texts[] = {
+		"NATO",
+		"NATO PACIFIC",
+		"NATO WOODLAND",
+		"CTRG PACIFIC",
+		"CSAT",
+		"CSAT PACIFIC",
+		"CSAT URBAN",
+		"VIPER",
+		"VIPER_PACIFIC",
+		"FIA",
+		"Syndikat",
+		"AAF",
+		"LDF",
+		"SPETSNAZ_VANILLA"
+	};
+	texts[] = {
+		"NATO",
+		"NATO PACIFIC",
+		"NATO WOODLAND",
+		"CTRG PACIFIC",
+		"CSAT",
+		"CSAT PACIFIC",
+		"CSAT URBAN",
+		"VIPER",
+		"VIPER_PACIFIC",
+		"FIA",
+		"Syndikat",
+		"AAF",
+		"LDF",
+		"SPETSNAZ_VANILLA"
+	};
+	default = "CSAT";
+};
+
+class BLWK_level4Faction
+{
+	title = "Level 4 Enemy Faction";
+	values[] = texts[] = {
+		"NATO",
+		"NATO PACIFIC",
+		"NATO WOODLAND",
+		"CTRG PACIFIC",
+		"CSAT",
+		"CSAT PACIFIC",
+		"CSAT URBAN",
+		"VIPER",
+		"VIPER_PACIFIC",
+		"FIA",
+		"Syndikat",
+		"AAF",
+		"LDF",
+		"SPETSNAZ_VANILLA"
+	};
+	texts[] = {
+		"NATO",
+		"NATO PACIFIC",
+		"NATO WOODLAND",
+		"CTRG PACIFIC",
+		"CSAT",
+		"CSAT PACIFIC",
+		"CSAT URBAN",
+		"VIPER",
+		"VIPER_PACIFIC",
+		"FIA",
+		"Syndikat",
+		"AAF",
+		"LDF",
+		"SPETSNAZ_VANILLA"
+	};
+	default = "CSAT URBAN";
+};
+
+class BLWK_level5Faction
+{
+	title = "Level 5 Enemy Faction";
+	values[] = texts[] = {
+		"NATO",
+		"NATO PACIFIC",
+		"NATO WOODLAND",
+		"CTRG PACIFIC",
+		"CSAT",
+		"CSAT PACIFIC",
+		"CSAT URBAN",
+		"VIPER",
+		"VIPER_PACIFIC",
+		"FIA",
+		"Syndikat",
+		"AAF",
+		"LDF",
+		"SPETSNAZ_VANILLA"
+	};
+	texts[] = {
+		"NATO",
+		"NATO PACIFIC",
+		"NATO WOODLAND",
+		"CTRG PACIFIC",
+		"CSAT",
+		"CSAT PACIFIC",
+		"CSAT URBAN",
+		"VIPER",
+		"VIPER_PACIFIC",
+		"FIA",
+		"Syndikat",
+		"AAF",
+		"LDF",
+		"SPETSNAZ_VANILLA"
+	};
+	default = "VIPER";
+};
