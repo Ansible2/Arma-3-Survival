@@ -33,6 +33,8 @@ BLWK_theAIHandler = [HC1,2] select (isNil "HC1");
 
 /* DLC exclusion */
 /*
+// all of theses still need to be added to missionParams
+
 // need to get the DLC strigs returned by getAssetDLCInfo when 2.00 comes out
 BLWK_useableDLCs = [];
 
@@ -47,12 +49,14 @@ if (BLWK_canUseMarksmanDLC) then {BLWK_useableDLCs pushBack ""};
 
 BLWK_canUseContactDLC = [false,true] select ("BLWK_canUseContactDLC" call BIS_fnc_getParamValue);
 if (BLWK_canUseContactDLC) then {BLWK_useableDLCs pushBack ""}; 
+
+BLWK_canUseTankstDLC = [false,true] select ("BLWK_canUseTankstDLC" call BIS_fnc_getParamValue);
+if (BLWK_canUseTankstDLC) then {BLWK_useableDLCs pushBack ""}; 
 */
 
 BLWK_loot_whiteListMode = 0;
 
 private _lootClasses = call BLWK_fnc_prepareLootClasses;
-
 BLWK_loot_weaponClasses = _lootClasses select 0;
 BLWK_loot_backpackClasses = _lootClasses select 1;
 BLWK_loot_vestClasses = _lootClasses select 2;
@@ -63,6 +67,9 @@ BLWK_loot_explosiveClasses = _lootClasses select 6;
 
 	
 
+BLWK_selectedEnemyTable = ("BLWK_selectedEnemyTable" call BIS_fnc_getParamValue);
+BLWK_selectedEnemyTable = ("BLWK_selectedEnemyTable" call BIS_fnc_getParamValue);
+BLWK_selectedEnemyTable = ("BLWK_selectedEnemyTable" call BIS_fnc_getParamValue);
 BLWK_selectedEnemyTable = ("BLWK_selectedEnemyTable" call BIS_fnc_getParamValue);
 
 

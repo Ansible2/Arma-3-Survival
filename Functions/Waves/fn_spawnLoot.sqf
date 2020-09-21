@@ -10,7 +10,7 @@ Parameters:
 	NONE
 
 Returns:
-	Nothing
+	NOTHING
 
 Examples:
     (begin example)

@@ -130,15 +130,6 @@ private _fn_sortMagazines = {
 	_magazineClasses pushBack _tempClass
 };
 
-private _fn_checkDLC = {
-	_dlcString = (getAssetDLCInfo [_tempClass,configFile >> _configHierarchy]) select 5;
-
-	if (_dlcString in BLWK_useableDLCs) then {
-		true
-	} else {
-		false
-	};
-};
 
 private _fn_sortType = {
 	_tempClass = configName (_this select 0);
@@ -147,11 +138,12 @@ private _fn_sortType = {
 
 	_configHierarchy = _this select 1;
 	// CIPHER COMMENT: DLC check is awaiting 2.0 release for getAssetDLCInfo command
-	//_dlcAllowed = call _fn_checkDLC;
+	//_dlcAllowed = [_tempClass,_configHierarchy] call BLWK_fnc_checkDLC;
 	if !(_dlcAllowed) exitWith {};
 
 	_tempReturn = [_tempClass] call BIS_fnc_itemType;
 	// some of the string checks are case sensetive
+	// CIPHER COMMENT: this may be uneccessary now to tolower it
 	_tempItemCategory = toLower (_tempReturn select 0);
 	_tempItemType = toLower (_tempReturn select 1);
 
@@ -181,7 +173,7 @@ _publicMagazineConfigs apply {
 };
 
 
-// check white list mode to see if we should add whitelisted items
+// check white list mode to see if we should add whitelisted items to arrays
 if (BLWK_loot_whiteListMode isEqualTo 2) then {
     _backpackClasses append _whitelist_backpackClasses;
     _explosiveClasses append _whitelist_explosiveClasses;
