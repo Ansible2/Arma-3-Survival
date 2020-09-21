@@ -5,7 +5,7 @@
 
 
 
-#include "headers/vanillaUnitTables.hpp"
+#include "Headers/Unit Tables/vanillaUnitTables.hpp"
 
 // prepare default factions just in case selected factions don't work
 private _defaultFactionClasses_friendly = _unitsNATO;
@@ -34,10 +34,8 @@ private _unitClassAvailable = true;
 
 
 
-
-
 ////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////// Functions /////////////////////////////////////////
+/////////////////////////////// Base Functions /////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 
 // check if a unit is an actual class and if they are dependent on exluded DLC
@@ -58,6 +56,8 @@ private _fn_sortFactionClasses = {
 	params ["_unitClassesToCheck"];
 	
 	private _allowedUnitClasses = [];
+	// seperate vehicle types
+	private _vehicleTypes = _unitClassesToCheck deleteAt (_unitClassesToCheck findIf {_x isEqualType []});
 	_unitClassesToCheck apply {
 
 		_tempUnitClass = _x;
@@ -80,10 +80,9 @@ private _fn_sortFactionClasses = {
 		// else, just load the default faction for that section
 			[_defaultFactionTypeClasses] call _fn_sortFactionClasses
 		};
-		
 	};
 
-	_allowedUnitClasses
+	[_allowedUnitClasses,_vehicleTypes];
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////
