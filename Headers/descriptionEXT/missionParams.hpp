@@ -104,6 +104,22 @@ class BLWK_playersStartWith_compass
 	default = 1;
 };
 
+class BLWK_playersStartWith_radio
+{
+	title = "Start with a radio (TFAR Compatabile)";
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
+	default = 1;
+};
+
+class BLWK_playersStartWith_mineDetector
+{
+	title = "Start with a mine detector";
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
+	default = 1;
+};
+
 class BLWK_playersStartWith_pistol
 {
 	title = "Players start with pistol";
