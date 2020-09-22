@@ -19,22 +19,7 @@
 		default = 0; \
 	};
 
-#define FACTION_STRINGS {
-	"NATO",
-	"NATO PACIFIC",
-	"NATO WOODLAND",
-	"CTRG PACIFIC",
-	"CSAT",
-	"CSAT PACIFIC",
-	"CSAT URBAN",
-	"VIPER",
-	"VIPER PACIFIC",
-	"FIA",
-	"SYNDIKAT",
-	"AAF",
-	"LDF",
-	"SPETSNAZ (CONTACT)"
-}
+#include "..\Faction Headers\Define Factions.hpp"
 
 A_SECTION_HEADER(WAVE);
 
@@ -375,47 +360,47 @@ A_SECTION_HEADER(Faction);
 class BLWK_friendlyFaction
 {
 	title = "Friendly Faction";
-	values[] = FACTION_STRINGS;
-	texts[] = FACTION_STRINGS;
+	values[] = {FACTION_STRINGS};
+	texts[] = {FACTION_STRINGS};
 	default = "NATO";
 };
 
 class BLWK_level1Faction
 {
 	title = "Level 1 Enemy Faction";
-	values[] = FACTION_STRINGS;
-	texts[] = FACTION_STRINGS;
+	values[] = {FACTION_STRINGS};
+	texts[] = {FACTION_STRINGS};
 	default = "FIA";
 };
 
 class BLWK_level2Faction
 {
 	title = "Level 2 Enemy Faction";
-	values[] = FACTION_STRINGS;
-	texts[] = FACTION_STRINGS;
+	values[] = {FACTION_STRINGS};
+	texts[] = {FACTION_STRINGS};
 	default = "AAF";
 };
 
 class BLWK_level3Faction
 {
 	title = "Level 3 Enemy Faction";
-	values[] = FACTION_STRINGS;
-	texts[] = FACTION_STRINGS;
+	values[] = {FACTION_STRINGS};
+	texts[] = {FACTION_STRINGS};
 	default = "CSAT";
 };
 
 class BLWK_level4Faction
 {
 	title = "Level 4 Enemy Faction";
-	values[] = FACTION_STRINGS;
-	texts[] = FACTION_STRINGS;
+	values[] = {FACTION_STRINGS};
+	texts[] = {FACTION_STRINGS};
 	default = "CSAT URBAN";
 };
 
 class BLWK_level5Faction
 {
 	title = "Level 5 Enemy Faction";
-	values[] = FACTION_STRINGS;
-	texts[] = FACTION_STRINGS;
+	values[] = {FACTION_STRINGS};
+	texts[] = {FACTION_STRINGS};
 	default = "VIPER";
 };
