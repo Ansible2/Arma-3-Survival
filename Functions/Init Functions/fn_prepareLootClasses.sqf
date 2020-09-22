@@ -64,15 +64,17 @@ private _whitelist_explosiveClasses = [
 ];
 
 
-// adjusut to white list mode
+// Check if we are in whitelisted items only mode
 if (BLWK_loot_whiteListMode isEqualTo 1) exitWith {
-	[_whitelist_weaponClasses,
-	_whitelist_backpackClasses,
-	_whitelist_vestClassess,
-	_whitelist_uniformClasses,
-	_whitelist_headgearClasses,
-	_whitelist_itemClasses,
-	_whitelist_explosiveClasses]
+	[
+		_whitelist_weaponClasses,
+		_whitelist_backpackClasses,
+		_whitelist_vestClassess,
+		_whitelist_uniformClasses,
+		_whitelist_headgearClasses,
+		_whitelist_itemClasses,
+		_whitelist_explosiveClasses
+	]
 };
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////Functions///////////////////////////////
@@ -101,12 +103,10 @@ private _fn_sortEquipment = {
 	if (_tempItemType == "Backpack") exitWith {_backpackClasses pushBack _tempClass};
 };
 
-
 private _weaponClasses = [];
 private _fn_sortWeapons = {
 	_weaponClasses pushBack _tempClass;
 };
-
 
 // nvgs, gps, medkit, toolkit, compass, etc.
 private _itemClasses = [];
@@ -114,19 +114,18 @@ private _fn_sortItems = {
 	_itemClasses pushBack _tempClass;
 };
 
-
 private _explosiveClasses = [];
 private _fn_sortExplosives = {
 	_explosiveClasses pushBack _tempClass;
 };
 
-
-private _magazineClasses = [];
+//CIPHER COMMENT: Haven't really used this, may just need to roll it inot explosive classes since it already does so with grenades
+//private _magazineClasses = [];
 private _fn_sortMagazines = {
 	// CIPHER COMMENT: possibly add more to this list. Depends on how you want to spawn magazines
 	if (_tempItemType in ["grenade","flare"]) exitWith {call _fn_sortExplosives};
 
-	_magazineClasses pushBack _tempClass
+	//_magazineClasses pushBack _tempClass
 };
 
 
@@ -150,7 +149,7 @@ private _fn_sortType = {
 	if (_tempItemCategory == "item") exitWith {call _fn_sorItems};
 	if (_tempItemCategory == "equipment") exitWith {call _fn_sortEquipment};
 	if (_tempItemCategory == "mine") exitWith {call _fn_sortExplosives};
-	if (_tempItemCategory == "magazine") exitWith {call _fn_sortExplosives};
+	if (_tempItemCategory == "magazine") exitWith {call _fn_sortMagazines};
 };
 
 
@@ -185,10 +184,12 @@ if (BLWK_loot_whiteListMode isEqualTo 2) then {
 
 
 
-[_weaponClasses,
-_backpackClasses,
-_vestClasses,
-_uniformClasses,
-_headgearClasses,
-_itemClasses,
-_explosiveClasses]
+[
+	_weaponClasses,
+	_backpackClasses,
+	_vestClasses,
+	_uniformClasses,
+	_headgearClasses,
+	_itemClasses,
+	_explosiveClasses
+]
