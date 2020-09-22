@@ -28,7 +28,7 @@ if (!BLWK_showHitPoints) exitWith {};
 
 params [ 
 	["_hitUnit",objNull,[objNull]], 
-	["_pointsToDisplay",22,[123]],
+	["_pointsToDisplay",100,[123]],
 	["_minusPoints",false,[true]] 
 ]; 
 
