@@ -2,36 +2,49 @@ params [
 	["_player",player]
 ];
 
-_player setCustomAimCoef 0.2;
-_player setUnitRecoilCoefficient 0.5;
-_player enableStamina false;
-"BLWK_startingKillPoints" call BIS_fnc_getParamValue;
-_player setVariable ["RevByMedikit", false, true];
-_player setVariable ["buildItemHeld", false];
+// Lower recoil, lower sway, remove stamina on respawn, make medic and engineer
+[_player] call BLWK_fnc_adjustPlayerTraits;
 
-// Lower recoil, lower sway, remove stamina on respawn
-_player addEventHandler ['Respawn',{
-    player setCustomAimCoef 0.2;
-    player setUnitRecoilCoefficient 0.5;
-    player enableStamina false;
-}];
+private _startingKillPoints ("BLWK_startingKillPoints" call BIS_fnc_getParamValue);
+_player setVariable ["RevByMedikit", false, true];
+
+[_player] call BLWK_fnc_addPlayerItems;
 
 [_player] call BLWK_fnc_addDiaryEntries;
+
+// vanilla mag repack
+if (BLWK_magRepackEnabled) then {
+    waituntil {!isNull (findDisplay 46)};
+    
+    (findDisplay 46) displayAddEventHandler ["KeyDown",{
+
+        // passes the pressed key and whether or not a ctrl key is down. The proper combo is ctrl+R
+        if ((_this select 0) isEqualTo 19 AND {_this select 3}) exitWith {
+            call BLWK_fnc_doMagRepack;
+        };
+    }];
+};
+
+waitUntil {!isNil "BLWK_playAreaCenter"};
+_player setVehiclePosition [bulwarkBox,[],2,"NONE"];
+
+null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
+
+
+
+
+
+
+
+
+
+
+
 
 //setup Kill Points
 _killPoints = ("BLWK_startingKillPoints" call BIS_fnc_getParamValue);
 _player setVariable ["killPoints", _killPoints, true];
 call killPoints_fnc_updateHud;
-
-// Delete all map markers on clients
-//CIPHER COMMENT: why are there map markers?
-{
-    _currMarker = toArray _x;
-    if(count _currMarker >= 4) then {
-        _currMarker resize 8; _currMarker = toString _currMarker;
-        if(_currMarker == "bulwark_") then{ deleteMarker _x; };
-    };
-} foreach allMapMarkers;
 
 
 //Make player immune to fall damage and immune to all damage while incapacitated
@@ -68,28 +81,3 @@ _player addEventHandler ["HandleDamage", {
     };
 }];
 
-waitUntil {!isNil "BLWK_playAreaCenter"};
-
-// kill player if they disconnected and rejoined during a wave
-_buildPhase = missionNamespace getVariable ["buildPhase", true];
-waitUntil {alive _player && !isnil "playersInWave" && !isnil "BLWK_currentWaveNumber"};
-
-if (getPlayerUID _player in playersInWave && BLWK_currentWaveNumber > 0 && !_buildPhase) then {
-    _player setDamage 1;
-};
-
-
-// vanilla mag repack
-if (BLWK_magRepackEnabled) then {
-    waituntil {!isNull (findDisplay 46)};
-    
-    (findDisplay 46) displayAddEventHandler ["KeyDown",{
-
-        // passes the pressed key and whether or not a ctrl key is down. The proper combo is ctrl+R
-        if ((_this select 0) isEqualTo 19 AND {_this select 3}) exitWith {
-            call BLWK_fnc_magRepack;
-        };
-    }];
-};
-
-null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
