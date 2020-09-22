@@ -2,17 +2,21 @@
 
 call BLWK_fnc_prepareGlobals;
 
+[west,BLWK_numRespawnTickets] call BIS_fnc_respawnTickets;
+
 ["<t size = '.5'>Preparing Play Area.<br/>Please wait...</t>", 0, 0, 10, 0] remoteExec ["BIS_fnc_dynamicText", 0];
 
+// find a location for the mission, setup area, create bulwark
 call BLWK_fnc_preparePlayArea;
-
 
 private _dayTimeHours = BLWK_timeOfDayMax - BLWK_timeOfDayMin;
 private _randTime = floor random _dayTimeHours;
 private _timeToSet = BLWK_timeOfDayMin + _randTime;
 setDate [2020, 7, 1, _timeToSet, 0];
 
+waitUntil {count (call CBAP_fnc_players) > 0};
 
+null = [] spawn BLWK_fnc_arePlayersAliveLoop;
 
 
 
