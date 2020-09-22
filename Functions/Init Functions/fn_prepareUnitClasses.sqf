@@ -56,12 +56,10 @@ private _fn_sortFactionClasses = {
 	params ["_unitClassesToCheck"];
 	
 	private _allowedUnitClasses = [];
-	// seperate vehicle types
-	private _vehicleTypes = _unitClassesToCheck deleteAt (_unitClassesToCheck findIf {_x isEqualType []});
 	_unitClassesToCheck apply {
 
 		_tempUnitClass = _x;
-		if (call _fn_checkTempClass) then {
+		if (_tempUnitClass isEqualType "" AND {call _fn_checkTempClass}) then {
 			_allowedUnitClasses pushBack _tempUnitClass;
 		};
 
@@ -82,8 +80,37 @@ private _fn_sortFactionClasses = {
 		};
 	};
 
+	// seperate vehicle types
+	private _finalVehcileTypes = [];
+	private _vehicleTypes = _unitClassesToCheck select (_unitClassesToCheck findIf {_x isEqualType []});
+
 	[_allowedUnitClasses,_vehicleTypes];
 };
+
+
+[,("BLWK_friendlyFaction" call BIS_fnc_getParamValue),_defaultFactiontypes]
+
+private _fn_checkFaction = {
+	_factionTypesToCheck = _this select 0;
+	_factionParamName = _this select 1;
+	_defaultFactionTypes = _this select 2;
+
+	
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////// Friendly Factions //////////////////////////////////
@@ -115,13 +142,13 @@ private _fn_friendlyFaction = {
 	if (_selectedFriendlyFaction == "VIPER") exitWith {
 		[_untisViper] call _fn_sortFactionClasses;
 	};
-	if (_selectedFriendlyFaction == "VIPER_PACIFIC") exitWith {
+	if (_selectedFriendlyFaction == "VIPER PACIFIC") exitWith {
 		[_unitsViperPacific] call _fn_sortFactionClasses;
 	};
 	if (_selectedFriendlyFaction == "FIA") exitWith {
 		[_unitsFIA] call _fn_sortFactionClasses;
 	};
-	if (_selectedFriendlyFaction == "Syndikat") exitWith {
+	if (_selectedFriendlyFaction == "SYNDIKAT") exitWith {
 		[_unitsSyndikat] call _fn_sortFactionClasses;
 	};
 	if (_selectedFriendlyFaction == "AAF") exitWith {
@@ -130,7 +157,7 @@ private _fn_friendlyFaction = {
 	if (_selectedFriendlyFaction == "LDF") exitWith {
 		[_unitsLDF] call _fn_sortFactionClasses;
 	};
-	if (_selectedFriendlyFaction == "SPETSNAZ_VANILLA") exitWith {
+	if (_selectedFriendlyFaction == "SPETSNAZ (CONTACT)") exitWith {
 		[_unitsSpetsnaz] call _fn_sortFactionClasses;
 	};
 /*
@@ -170,13 +197,13 @@ private _fn_level1Faction = {
 	if (_selectedLevel1Faction == "VIPER") exitWith {
 		[_untisViper] call _fn_sortFactionClasses;
 	};
-	if (_selectedLevel1Faction == "VIPER_PACIFIC") exitWith {
+	if (_selectedLevel1Faction == "VIPER PACIFIC") exitWith {
 		[_unitsViperPacific] call _fn_sortFactionClasses;
 	};
 	if (_selectedLevel1Faction == "FIA") exitWith {
 		[_unitsFIA] call _fn_sortFactionClasses;
 	};
-	if (_selectedLevel1Faction == "Syndikat") exitWith {
+	if (_selectedLevel1Faction == "SYNDIKAT") exitWith {
 		[_unitsSyndikat] call _fn_sortFactionClasses;
 	};
 	if (_selectedLevel1Faction == "AAF") exitWith {
@@ -185,7 +212,7 @@ private _fn_level1Faction = {
 	if (_selectedLevel1Faction == "LDF") exitWith {
 		[_unitsLDF] call _fn_sortFactionClasses;
 	};
-	if (_selectedLevel1Faction == "SPETSNAZ_VANILLA") exitWith {
+	if (_selectedLevel1Faction == "SPETSNAZ (CONTACT)") exitWith {
 		[_unitsSpetsnaz] call _fn_sortFactionClasses;
 	};
 /*
@@ -225,13 +252,13 @@ private _fn_level2Faction = {
 	if (_selectedLevel2Faction == "VIPER") exitWith {
 		[_untisViper] call _fn_sortFactionClasses;
 	};
-	if (_selectedLevel2Faction == "VIPER_PACIFIC") exitWith {
+	if (_selectedLevel2Faction == "VIPER PACIFIC") exitWith {
 		[_unitsViperPacific] call _fn_sortFactionClasses;
 	};
 	if (_selectedLevel2Faction == "FIA") exitWith {
 		[_unitsFIA] call _fn_sortFactionClasses;
 	};
-	if (_selectedLevel2Faction == "Syndikat") exitWith {
+	if (_selectedLevel2Faction == "SYNDIKAT") exitWith {
 		[_unitsSyndikat] call _fn_sortFactionClasses;
 	};
 	if (_selectedLevel2Faction == "AAF") exitWith {
@@ -240,7 +267,7 @@ private _fn_level2Faction = {
 	if (_selectedLevel2Faction == "LDF") exitWith {
 		[_unitsLDF] call _fn_sortFactionClasses;
 	};
-	if (_selectedLevel2Faction == "SPETSNAZ_VANILLA") exitWith {
+	if (_selectedLevel2Faction == "SPETSNAZ (CONTACT)") exitWith {
 		[_unitsSpetsnaz] call _fn_sortFactionClasses;
 	};
 /*
@@ -280,13 +307,13 @@ private _fn_level3Faction = {
 	if (_selectedLevel3Faction == "VIPER") exitWith {
 		[_untisViper] call _fn_sortFactionClasses;
 	};
-	if (_selectedLevel3Faction == "VIPER_PACIFIC") exitWith {
+	if (_selectedLevel3Faction == "VIPER PACIFIC") exitWith {
 		[_unitsViperPacific] call _fn_sortFactionClasses;
 	};
 	if (_selectedLevel3Faction == "FIA") exitWith {
 		[_unitsFIA] call _fn_sortFactionClasses;
 	};
-	if (_selectedLevel3Faction == "Syndikat") exitWith {
+	if (_selectedLevel3Faction == "SYNDIKAT") exitWith {
 		[_unitsSyndikat] call _fn_sortFactionClasses;
 	};
 	if (_selectedLevel3Faction == "AAF") exitWith {
@@ -295,7 +322,7 @@ private _fn_level3Faction = {
 	if (_selectedLevel3Faction == "LDF") exitWith {
 		[_unitsLDF] call _fn_sortFactionClasses;
 	};
-	if (_selectedLevel3Faction == "SPETSNAZ_VANILLA") exitWith {
+	if (_selectedLevel3Faction == "SPETSNAZ (CONTACT)") exitWith {
 		[_unitsSpetsnaz] call _fn_sortFactionClasses;
 	};
 /*
@@ -335,13 +362,13 @@ private _fn_level4Faction = {
 	if (_selectedLevel4Faction == "VIPER") exitWith {
 		[_untisViper] call _fn_sortFactionClasses;
 	};
-	if (_selectedLevel4Faction == "VIPER_PACIFIC") exitWith {
+	if (_selectedLevel4Faction == "VIPER PACIFIC") exitWith {
 		[_unitsViperPacific] call _fn_sortFactionClasses;
 	};
 	if (_selectedLevel4Faction == "FIA") exitWith {
 		[_unitsFIA] call _fn_sortFactionClasses;
 	};
-	if (_selectedLevel4Faction == "Syndikat") exitWith {
+	if (_selectedLevel4Faction == "SYNDIKAT") exitWith {
 		[_unitsSyndikat] call _fn_sortFactionClasses;
 	};
 	if (_selectedLevel4Faction == "AAF") exitWith {
@@ -350,7 +377,7 @@ private _fn_level4Faction = {
 	if (_selectedLevel4Faction == "LDF") exitWith {
 		[_unitsLDF] call _fn_sortFactionClasses;
 	};
-	if (_selectedLevel4Faction == "SPETSNAZ_VANILLA") exitWith {
+	if (_selectedLevel4Faction == "SPETSNAZ (CONTACT)") exitWith {
 		[_unitsSpetsnaz] call _fn_sortFactionClasses;
 	};
 /*
@@ -390,13 +417,13 @@ private _fn_level5Faction = {
 	if (_selectedLevel5Faction == "VIPER") exitWith {
 		[_untisViper] call _fn_sortFactionClasses;
 	};
-	if (_selectedLevel5Faction == "VIPER_PACIFIC") exitWith {
+	if (_selectedLevel5Faction == "VIPER PACIFIC") exitWith {
 		[_unitsViperPacific] call _fn_sortFactionClasses;
 	};
 	if (_selectedLevel5Faction == "FIA") exitWith {
 		[_unitsFIA] call _fn_sortFactionClasses;
 	};
-	if (_selectedLevel5Faction == "Syndikat") exitWith {
+	if (_selectedLevel5Faction == "SYNDIKAT") exitWith {
 		[_unitsSyndikat] call _fn_sortFactionClasses;
 	};
 	if (_selectedLevel5Faction == "AAF") exitWith {
@@ -405,7 +432,7 @@ private _fn_level5Faction = {
 	if (_selectedLevel5Faction == "LDF") exitWith {
 		[_unitsLDF] call _fn_sortFactionClasses;
 	};
-	if (_selectedLevel5Faction == "SPETSNAZ_VANILLA") exitWith {
+	if (_selectedLevel5Faction == "SPETSNAZ (CONTACT)") exitWith {
 		[_unitsSpetsnaz] call _fn_sortFactionClasses;
 	};
 /*

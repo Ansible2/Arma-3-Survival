@@ -1,10 +1,42 @@
-class HOSTILE_LABEL
-{
-	title = "======= Wave Settings =======";
-	values[] = {0};
-	texts[] = {""};
-	default = 0;
-};
+#define OFF_OR_ON {"OFF","ON"}
+#define NO_OR_YES {"NO","YES"}
+#define ZERO_OR_ONE {0,1}
+
+#define A_SECTION_HEADER(NAME)\
+	class NAME##_LABEL \
+	{ \
+		title = ======= ##NAME## Settings ======; \
+		values[] = {0}; \
+		texts[] = {""}; \
+		default = 0; \
+	};
+#define A_SPACE(NAME)\
+	class NAME##_SPACE \
+	{ \
+		title = " "; \
+		values[] = {0}; \
+		texts[] = {""}; \
+		default = 0; \
+	};
+
+#define FACTION_STRINGS {
+	"NATO",
+	"NATO PACIFIC",
+	"NATO WOODLAND",
+	"CTRG PACIFIC",
+	"CSAT",
+	"CSAT PACIFIC",
+	"CSAT URBAN",
+	"VIPER",
+	"VIPER PACIFIC",
+	"FIA",
+	"SYNDIKAT",
+	"AAF",
+	"LDF",
+	"SPETSNAZ (CONTACT)"
+}
+
+A_SECTION_HEADER(WAVE);
 
 class BLWK_enemiesPerWaveMultiplier
 {
@@ -14,12 +46,13 @@ class BLWK_enemiesPerWaveMultiplier
 	default = 1;
 };
 
+// CIPHER COMMENT: The utility of this value should be replaced with a simple: add this number of enemies per round per player in addition to the number already spawned
 class BLWK_enemiesPerPlayerMultiplier
 {
-	title = "Extra hostiles per player";
-	values[] = {50, 100, 150, 200};
+	title = "Extra Enemies Per Player";
+	values[] = {0.5, 1, 1.5, 2};
 	texts[] = {"0.5", "1", "1.5", "2"};
-	default = 50;
+	default = 0.5;
 };
 
 class BLWK_maxPistolOnlyWaves
@@ -73,40 +106,40 @@ class BLWK_faksToMakeMedkit
 class BLWK_playersStartWith_map
 {
 	title = "Start with map";
-	values[] = {0, 1};
-	texts[] = {"No", "Yes"};
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
 	default = 1;
 };
 
 class BLWK_playersStartWith_compass
 {
 	title = "Start with compass";
-	values[] = {0, 1};
-	texts[] = {"No", "Yes"};
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
 	default = 1;
 };
 
 class BLWK_playersStartWith_pistol
 {
 	title = "Players start with pistol";
-	values[] = {0, 1};
-	texts[] = {"No", "Yes"};
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
 	default = 0;
 };
 
 class BLWK_playersStartWith_NVGs
 {
 	title = "Players start with NVG";
-	values[] = {0, 1};
-	texts[] = {"No", "Yes"};
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
 	default = 0;
 };
 
 class BLWK_useSpecialWaves
 {
 	title = "Special Waves - suicide bombers, etc";
-	values[] = {0, 1};
-	texts[] = {"No", "Yes"};
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
 	default = 1;
 };
 
@@ -121,34 +154,21 @@ class BLWK_vehicleStartWave
 class BLWK_randomizeHostileWeapons
 {
 	title = "Randomize Hostile Weapons";
-	values[] = {0, 1};
-	texts[] = {"No", "Yes"};
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
 	default = 0;
 };
 
 class BLWK_showHitPoints
 {
 	title = "Point Hitmarkers on HUD";
-	values[] = {0, 1};
-	texts[] = {"No", "Yes"};
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
 	default = 1;
 };
 
-class BULWARK_LABEL_SPACE
-{
-	title = " ";
-	values[] = {0};
-	texts[] = {""};
-	default = 0;
-};
-
-class BULWARK_LABEL
-{
-	title = "===== Bulwark Settings ======";
-	values[] = {0};
-	texts[] = {""};
-	default = 0;
-};
+A_SPACE(Bulwark);
+A_SECTION_HEADER(Bulwark);
 
 class BLWK_playAreaRadius
 {
@@ -226,21 +246,8 @@ class BLWK_timeOfDayMax
 	default = 16;
 };
 
-class POWERUP_LABEL_SPACE
-{
-	title = " ";
-	values[] = {0};
-	texts[] = {""};
-	default = 0;
-};
-
-class POWERUP_LABEL
-{
-	title = "====== Powerup Settings =====";
-	values[] = {0};
-	texts[] = {""};
-	default = 0;
-};
+A_SPACE(Points And Supports);
+A_SECTION_HEADER(Points And Supports);
 
 class BLWK_startingKillPoints
 {
@@ -253,7 +260,7 @@ class BLWK_startingKillPoints
 class BLWK_supportDishFound
 {
 	title = "Find Satellite Dish to Unlock Supports";
-	values[] = {0, 1};
+	values[] = ZERO_OR_ONE;
 	texts[] = {"No, Supports are available from the begining of the mission", "Yes, find the Satellite Dish to unlock the Support Menu"};
 	default = 1;
 };
@@ -290,21 +297,8 @@ class BLWK_paratrooperCount
 	default = 3;
 };
 
-class REVIVE_LABEL_SPACE
-{
-	title = "";
-	values[] = {0};
-	texts[] = {""};
-	default = 0;
-};
-
-class REVIVE_LABEL
-{
-	title = "===== Revive Settings ======";
-	values[] = {0};
-	texts[] = {""};
-	default = 0;
-};
+A_SPACE(Revive);
+A_SECTION_HEADER(Revive);
 
 class BLWK_reviveRequiredItems
 {
@@ -328,8 +322,8 @@ class BLWK_reviveRequiredItems
 class BLWK_useACEMedical
 {
 	title = "Use ACE medical?";
-	values[] = {0, 1};
-	texts[] = {"No", "Yes"};
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
 	default = 0;
 };
 
@@ -352,269 +346,76 @@ class BLWK_respawnTime
 class BLWK_saveRespawnLoadout
 {
 	title = "Players Get Their Loadout If They Respawn";
-	values[] = {0, 1};
-	texts[] = {"Off", "On"};
+	values[] = ZERO_OR_ONE;
+	texts[] = OFF_OR_ON;
 	default = 0;
 };
 
 class BLWK_friendlyFireOn
 {
 	title = "Freindly Fire";
-	values[] = {0, 1};
-	texts[] = {"Off", "On"};
+	values[] = ZERO_OR_ONE;
+	texts[] = OFF_OR_ON;
 	default = 1;
 };
 
 class BLWK_buildingsNearBulwarkAreIndestructable
 {
 	title = "Buildings Near Bulwark Are Indestructable";
-	values[] = {0, 1};
-	texts[] = {"Off", "On"};
+	values[] = ZERO_OR_ONE;
+	texts[] = OFF_OR_ON;
 	default = 0;
 };
 
 
 // FACTIONS
-class UNIT_TYPES_LABEL_SPACE
-{
-	title = "";
-	values[] = {0};
-	texts[] = {""};
-	default = 0;
-};
-
-class UNIT_TYPES_LABEL
-{
-	title = "===== Unit Type Settings ======";
-	values[] = {0};
-	texts[] = {""};
-	default = 0;
-};
+A_SPACE(Faction);
+A_SECTION_HEADER(Faction);
 
 class BLWK_friendlyFaction
 {
 	title = "Friendly Faction";
-	values[] = texts[] = {
-		"NATO",
-		"NATO PACIFIC",
-		"NATO WOODLAND",
-		"CTRG PACIFIC",
-		"CSAT",
-		"CSAT PACIFIC",
-		"CSAT URBAN",
-		"VIPER",
-		"VIPER_PACIFIC",
-		"FIA",
-		"Syndikat",
-		"AAF",
-		"LDF",
-		"SPETSNAZ_VANILLA"
-	};
-	texts[] = {
-		"NATO",
-		"NATO PACIFIC",
-		"NATO WOODLAND",
-		"CTRG PACIFIC",
-		"CSAT",
-		"CSAT PACIFIC",
-		"CSAT URBAN",
-		"VIPER",
-		"VIPER_PACIFIC",
-		"FIA",
-		"Syndikat",
-		"AAF",
-		"LDF",
-		"SPETSNAZ_VANILLA"
-	};
+	values[] = FACTION_STRINGS;
+	texts[] = FACTION_STRINGS;
 	default = "NATO";
 };
 
 class BLWK_level1Faction
 {
 	title = "Level 1 Enemy Faction";
-	values[] = texts[] = {
-		"NATO",
-		"NATO PACIFIC",
-		"NATO WOODLAND",
-		"CTRG PACIFIC",
-		"CSAT",
-		"CSAT PACIFIC",
-		"CSAT URBAN",
-		"VIPER",
-		"VIPER_PACIFIC",
-		"FIA",
-		"Syndikat",
-		"AAF",
-		"LDF",
-		"SPETSNAZ_VANILLA"
-	};
-	texts[] = {
-		"NATO",
-		"NATO PACIFIC",
-		"NATO WOODLAND",
-		"CTRG PACIFIC",
-		"CSAT",
-		"CSAT PACIFIC",
-		"CSAT URBAN",
-		"VIPER",
-		"VIPER_PACIFIC",
-		"FIA",
-		"Syndikat",
-		"AAF",
-		"LDF",
-		"SPETSNAZ_VANILLA"
-	};
+	values[] = FACTION_STRINGS;
+	texts[] = FACTION_STRINGS;
 	default = "FIA";
 };
 
 class BLWK_level2Faction
 {
 	title = "Level 2 Enemy Faction";
-	values[] = texts[] = {
-		"NATO",
-		"NATO PACIFIC",
-		"NATO WOODLAND",
-		"CTRG PACIFIC",
-		"CSAT",
-		"CSAT PACIFIC",
-		"CSAT URBAN",
-		"VIPER",
-		"VIPER_PACIFIC",
-		"FIA",
-		"Syndikat",
-		"AAF",
-		"LDF",
-		"SPETSNAZ_VANILLA"
-	};
-	texts[] = {
-		"NATO",
-		"NATO PACIFIC",
-		"NATO WOODLAND",
-		"CTRG PACIFIC",
-		"CSAT",
-		"CSAT PACIFIC",
-		"CSAT URBAN",
-		"VIPER",
-		"VIPER_PACIFIC",
-		"FIA",
-		"Syndikat",
-		"AAF",
-		"LDF",
-		"SPETSNAZ_VANILLA"
-	};
+	values[] = FACTION_STRINGS;
+	texts[] = FACTION_STRINGS;
 	default = "AAF";
 };
 
 class BLWK_level3Faction
 {
 	title = "Level 3 Enemy Faction";
-	values[] = texts[] = {
-		"NATO",
-		"NATO PACIFIC",
-		"NATO WOODLAND",
-		"CTRG PACIFIC",
-		"CSAT",
-		"CSAT PACIFIC",
-		"CSAT URBAN",
-		"VIPER",
-		"VIPER_PACIFIC",
-		"FIA",
-		"Syndikat",
-		"AAF",
-		"LDF",
-		"SPETSNAZ_VANILLA"
-	};
-	texts[] = {
-		"NATO",
-		"NATO PACIFIC",
-		"NATO WOODLAND",
-		"CTRG PACIFIC",
-		"CSAT",
-		"CSAT PACIFIC",
-		"CSAT URBAN",
-		"VIPER",
-		"VIPER_PACIFIC",
-		"FIA",
-		"Syndikat",
-		"AAF",
-		"LDF",
-		"SPETSNAZ_VANILLA"
-	};
+	values[] = FACTION_STRINGS;
+	texts[] = FACTION_STRINGS;
 	default = "CSAT";
 };
 
 class BLWK_level4Faction
 {
 	title = "Level 4 Enemy Faction";
-	values[] = texts[] = {
-		"NATO",
-		"NATO PACIFIC",
-		"NATO WOODLAND",
-		"CTRG PACIFIC",
-		"CSAT",
-		"CSAT PACIFIC",
-		"CSAT URBAN",
-		"VIPER",
-		"VIPER_PACIFIC",
-		"FIA",
-		"Syndikat",
-		"AAF",
-		"LDF",
-		"SPETSNAZ_VANILLA"
-	};
-	texts[] = {
-		"NATO",
-		"NATO PACIFIC",
-		"NATO WOODLAND",
-		"CTRG PACIFIC",
-		"CSAT",
-		"CSAT PACIFIC",
-		"CSAT URBAN",
-		"VIPER",
-		"VIPER_PACIFIC",
-		"FIA",
-		"Syndikat",
-		"AAF",
-		"LDF",
-		"SPETSNAZ_VANILLA"
-	};
+	values[] = FACTION_STRINGS;
+	texts[] = FACTION_STRINGS;
 	default = "CSAT URBAN";
 };
 
 class BLWK_level5Faction
 {
 	title = "Level 5 Enemy Faction";
-	values[] = texts[] = {
-		"NATO",
-		"NATO PACIFIC",
-		"NATO WOODLAND",
-		"CTRG PACIFIC",
-		"CSAT",
-		"CSAT PACIFIC",
-		"CSAT URBAN",
-		"VIPER",
-		"VIPER_PACIFIC",
-		"FIA",
-		"Syndikat",
-		"AAF",
-		"LDF",
-		"SPETSNAZ_VANILLA"
-	};
-	texts[] = {
-		"NATO",
-		"NATO PACIFIC",
-		"NATO WOODLAND",
-		"CTRG PACIFIC",
-		"CSAT",
-		"CSAT PACIFIC",
-		"CSAT URBAN",
-		"VIPER",
-		"VIPER_PACIFIC",
-		"FIA",
-		"Syndikat",
-		"AAF",
-		"LDF",
-		"SPETSNAZ_VANILLA"
-	};
+	values[] = FACTION_STRINGS;
+	texts[] = FACTION_STRINGS;
 	default = "VIPER";
 };
