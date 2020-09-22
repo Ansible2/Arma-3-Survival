@@ -1,7 +1,6 @@
-_player = _this select 0;
-_buildPhase = missionNamespace getVariable "buildPhase";
+params ["_player"];
 
-if (!_buildPhase) then { // free respawn in build phase
+if !(missionNamespace getVariable ["BLWK_inBetweenRounds",false]) then { // free respawn in build phase
 	_respawnTickets = [west, -1] call BIS_fnc_respawnTickets;
 	if (_respawnTickets <= 0) then {
 		BLWK_respawnTime = 99999;
