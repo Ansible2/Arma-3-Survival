@@ -77,6 +77,7 @@ private _fn_getSelectedClasses = {
 };
 
 
+
 // get faction classes
 private _friendlyClasses = [("BLWK_friendlyFaction" call BIS_fnc_getParamValue),"NATO"] call _fn_getFactionClasses;
 private _level1Classes = [("BLWK_level1Faction" call BIS_fnc_getParamValue),"FIA"] call _fn_getFactionClasses;
@@ -86,4 +87,17 @@ private _level4Classes = [("BLWK_level4Faction" call BIS_fnc_getParamValue),"CSA
 private _level5Classes = [("BLWK_level5Faction" call BIS_fnc_getParamValue),"VIPER"] call _fn_getFactionClasses;
 
 // return for global var definition
-[_friendlyClasses,_level1Classes,_level2Classes,_level3Classes,_level4Classes,_level5Classes]
+[
+	_friendlyClasses select 0, // men
+	_friendlyClasses select 1, // vehicles
+	_level1Classes select 0,
+	_level1Classes select 1,
+	_level2Classes select 0,
+	_level2Classes select 1,
+	_level3Classes select 0,
+	_level3Classes select 1,
+	_level4Classes select 0,
+	_level4Classes select 1,
+	_level5Classes select 0,
+	_level5Classes select 1
+]

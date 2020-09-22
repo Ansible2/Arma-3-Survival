@@ -55,7 +55,7 @@ if (BLWK_canUseTankstDLC) then {BLWK_useableDLCs pushBack ""};
 */
 
 BLWK_loot_whiteListMode = 0;
-
+// loot classes
 private _lootClasses = call BLWK_fnc_prepareLootClasses;
 BLWK_loot_weaponClasses = _lootClasses select 0;
 BLWK_loot_backpackClasses = _lootClasses select 1;
@@ -65,13 +65,20 @@ BLWK_loot_headGearClasses = _lootClasses select 4;
 BLWK_loot_itemClasses = _lootClasses select 5;
 BLWK_loot_explosiveClasses = _lootClasses select 6;
 
-	
-
-BLWK_selectedEnemyTable = ("BLWK_selectedEnemyTable" call BIS_fnc_getParamValue);
-BLWK_selectedEnemyTable = ("BLWK_selectedEnemyTable" call BIS_fnc_getParamValue);
-BLWK_selectedEnemyTable = ("BLWK_selectedEnemyTable" call BIS_fnc_getParamValue);
-BLWK_selectedEnemyTable = ("BLWK_selectedEnemyTable" call BIS_fnc_getParamValue);
-
+// AI unit classes
+private _unitTypeInfo = call BLWK_fnc_prepareUnitClasses;
+BLWK_friendly_menClasses = _unitTypeInfo select 0;
+BLWK_friendly_vehicleClasses = _unitTypeInfo select 1;
+BLWK_level1_menClasses = _unitTypeInfo select 2;
+BLWK_level1_vehicleClasses = _unitTypeInfo select 3;
+BLWK_level2_menClasses = _unitTypeInfo select 4;
+BLWK_level2_vehicleClasses = _unitTypeInfo select 5;
+BLWK_level3_menClasses = _unitTypeInfo select 6;
+BLWK_level3_vehicleClasses = _unitTypeInfo select 7;
+BLWK_level4_menClasses = _unitTypeInfo select 8;
+BLWK_level4_vehicleClasses = _unitTypeInfo select 9;
+BLWK_level5_menClasses = _unitTypeInfo select 10;
+BLWK_level5_vehicleClasses = _unitTypeInfo select 11;
 
 
 /* Attacker Waves */
@@ -88,15 +95,9 @@ BLWK_enemiesPerPlayerMultiplier = ("BLWK_enemiesPerPlayerMultiplier" call BIS_fn
 BLWK_maxPistolOnlyWaves = ("BLWK_maxPistolOnlyWaves" call BIS_fnc_getParamValue);  //What wave enemies stop only using pistols
 
 /* LOCATION LIST OPTIONS */
-// List_AllCities - for any random City
-// List_SpecificPoint - will start the mission on the "Specific Bulwark Pos" marker (move with mission editor). Location must meet BLWK_minLandToWaterRatio and BLWK_minNumberOfHousesInArea, BLWK_minSpawnRoomSize, etc requirements
-// List_LocationMarkers - for a location selected randomly from the Bulwark Zones in editor (Currently broken)
-// *IMPORTANT* If you get an error using List_SpecificPoint it means that there isn't a building that qualifies. Turning down the "Minimum spawn room size" parameter might help.
 BLWK_locations = nearestlocations [[0,0,0],["nameVillage","nameCity","nameCityCapital","nameMarine","Airport"],worldsize * sqrt 2]; 
 
 BLWK_playAreaRadius = ("BLWK_playAreaRadius" call BIS_fnc_getParamValue); //Cipher Comment: Total play area radius in meters
-//BLWK_minSpawnRoomSize = ("BLWK_minSpawnRoomSize" call BIS_fnc_getParamValue);   // Spawn room must be bigger than x square metres
-//BLWK_minLandToWaterRatio = ("BLWK_minLandToWaterRatio" call BIS_fnc_getParamValue); //Cipher Comment: The ratio to ensure there isn't too much water.
 BLWK_minNumberOfHousesInArea = ("BLWK_minNumberOfHousesInArea" call BIS_fnc_getParamValue);
 
 BLWK_playersStartWith_pistol = [false,true] select ("BLWK_playersStartWith_pistol" call BIS_fnc_getParamValue);

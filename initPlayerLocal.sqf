@@ -4,7 +4,7 @@ params [
 
 _player setCustomAimCoef 0.2;
 _player setUnitRecoilCoefficient 0.5;
-_player enableStamina FALSE;
+_player enableStamina false;
 "BLWK_startingKillPoints" call BIS_fnc_getParamValue;
 _player setVariable ["RevByMedikit", false, true];
 _player setVariable ["buildItemHeld", false];

@@ -1,12 +1,12 @@
 #define killPoints_idc 99999
 
-class KillPointsHud {
+class BLWK_killPointsHud {
 	idd = -1;
     fadeout=0;
     fadein=0;
-	duration = 10000000000;
-	name= "KillPointsHud";
-	onLoad = "uiNamespace setVariable ['KillPointsHud', _this select 0]";
+	duration = 1e+011;
+	name= "BLWK_killPointsHud";
+	onLoad = "uiNamespace setVariable ['BLWK_killPointsHud', _this select 0]";
 
 	class controlsBackground {
 		class KillPointsHud_1:RscStructuredText

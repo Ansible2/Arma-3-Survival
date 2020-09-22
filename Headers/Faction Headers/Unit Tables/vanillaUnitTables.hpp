@@ -6,7 +6,7 @@
 	It could also give you the kind of individual selection on unit spawns (e.g. exclude grenediers).
 	
 	While that may come in the future, I find it less tedious to just use a mission param and the following
-	to achieve the level of customization I was looking for by just highlighting the units in the editor and
+	to achieve the level of customization I was looking for by highlighting the units in the editor and
 	right-click logging their classes to the clipboard
 */
 
