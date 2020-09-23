@@ -9,11 +9,17 @@ overviewPicture = "preview.paa";
 loadScreen = "preview.paa";
 
 respawn = 2;
-respawnOnStart = 1;
+respawnOnStart = -1;
 respawnDialog = 0;
 respawnTemplates[] = {"Base"};
+
+// Revive enabled
 ReviveMode = 1;
-BLWK_reviveRequiredItems = 2;
+// players can have either a medkit or first aid kit to revive
+ReviveRequiredItems = 2;
+ReviveRequiredItemsFakConsumed = 1;
+// players need not be medics to revive
+ReviveRequiredTrait  = 0;
 ReviveBleedOutDelay = 120;
 
 corpseManagerMode = 2;
@@ -33,52 +39,30 @@ class Header
 
 class CfgFunctions
 {
-	#include "headers\functions.hpp"
+	#include "Headers\descriptionEXT\functions.hpp"
 };
 
 class CfgSounds
 {
-	#include "headers\descriptionEXT\sounds.hpp"
+	#include "Headers\descriptionEXT\sounds.hpp"
 };
 
 class Params
 {
-	#include "headers\descriptionEXT\missionParams.hpp"
+	#include "Headers\descriptionEXT\missionParams.hpp"
+	// revive parameters
+	#include "\a3\Functions_F\Params\paramRevive.hpp"
+	// weather
+	#include "\a3\functions_f\Params\paramWeather.hpp"
 };
 
-#include "headers\descriptionEXT\defines.hpp"
+#include "Headers\descriptionEXT\defines.hpp"
 
 class RscTitles
 {
-	#include "headers\GUI\infoPanel.hpp"
+	#include "Headers\GUI\infoPanel.hpp"
 };
 
-/*
-cipher Comment: Why do these even need to be in cfgRemoteExec?
-*/
-/*
-class CfgRemoteExec
-{
-	class Functions
-	{
-		mode = 2;
-		class init {};
-		class add {};
-		class spend {};
-		class hit {};
-		class killed {};
-		class updateHud {};
-		class hitMarker {};
-		class supplyDrop {};
-		class support {};
-		class airStrike {};
-		class ragePack {};
-		class say3DGlobal {};
-		class createBlur {};
-		class suiExplode {};
-	};
-};
-*/
 
 class CfgDebriefing
 {
