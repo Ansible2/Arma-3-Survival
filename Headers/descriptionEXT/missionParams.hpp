@@ -231,20 +231,12 @@ class BLWK_supplyDropRadius
 	default = 25;
 };
 
-class BLWK_timeOfDayMin
+class BLWK_timeOfDay
 {
-	title = "Earliest time of day";
+	title = "The time of day";
 	values[] = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22};
-	texts[] = {"2am","4am","6am","8am","10am","Midday", "2pm", "4pm", "6pm", "8pm", "10pm"};
-	default = 8;
-};
-
-class BLWK_timeOfDayMax
-{
-	title = "Latest time of day";
-	values[] = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22};
-	texts[] = {"2am","4am","6am","8am","10am","Midday", "2pm", "4pm", "6pm", "8pm", "10pm"};
-	default = 16;
+	texts[] = {"0200","0400","0600","0800","1000","1200", "1400", "1600", "1800", "2000", "2200"};
+	default = 12;
 };
 
 A_SPACE(Points And Supports);
@@ -366,6 +358,14 @@ class BLWK_buildingsNearBulwarkAreIndestructable
 	values[] = ZERO_OR_ONE;
 	texts[] = OFF_OR_ON;
 	default = 0;
+};
+
+class BLWK_buildingsNearBulwarkAreIndestructable_radius
+{
+	title = "The radius of indestructable buildings around the Bulwark";
+	values[] = {5,10,15,20,25,30};
+	texts[] = {"5m","10m","15m","20m","25m","30m"};
+	default = 15;
 };
 
 

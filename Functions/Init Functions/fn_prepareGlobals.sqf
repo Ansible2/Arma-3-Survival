@@ -183,13 +183,7 @@ BLWK_buildableObjects_array = [
 ];
 
 /* Time of Day*/
-BLWK_timeOfDayMin = ("BLWK_timeOfDayMin" call BIS_fnc_getParamValue);
-BLWK_timeOfDayMax = ("BLWK_timeOfDayMax" call BIS_fnc_getParamValue);
-
-// Check for sneaky inverted configuration. FROM should always be before TO.
-if (BLWK_timeOfDayMin > BLWK_timeOfDayMax) then {
-    BLWK_timeOfDayMin = BLWK_timeOfDayMax - 2;
-};
+BLWK_timeOfDay = ("BLWK_timeOfDay" call BIS_fnc_getParamValue);
 
 BLWK_randomizeHostileWeapons = [false,true] select ("BLWK_randomizeHostileWeapons" call BIS_fnc_getParamValue);
 
@@ -210,6 +204,8 @@ BLWK_showHitPoints = [false,true] select ("BLWK_showHitPoints" call BIS_fnc_getP
 BLWK_vehicleStartWave = ("BLWK_vehicleStartWave" call BIS_fnc_getParamValue);
 
 BLWK_buildingsNearBulwarkAreIndestructable = [false,true] select ("BLWK_buildingsNearBulwarkAreIndestructable" call BIS_fnc_getParamValue);
+BLWK_buildingsNearBulwarkAreIndestructable_radius = ("BLWK_buildingsNearBulwarkAreIndestructable_radius" call BIS_fnc_getParamValue);
+
 
 BLWK_saveRespawnLoadout = [false,true] select ("BLWK_saveRespawnLoadout" call BIS_fnc_getParamValue);
 
@@ -220,6 +216,12 @@ BLWK_useACEMedical = [false,true] select ("BLWK_useACEMedical" call BIS_fnc_getP
 // define what the civillians will spawn with for the server and headless clients
 if (isServer OR {!hasInterface}) then {
     #include "..\Headers\civillianGearTables.hpp"
+    //CIPHER COMMENT: maybe this should be #defined when needed instead since it wont change
+    BLWK_civilianClass = "C_man_1";
+    BLWK_civHeadgear = VANILLA_CIV_HEADGEAR;
+    BLWK_civUniforms = VANILLA_CIV_UNIFORMS;
+    BLWK_civFaceWear = VANILLA_CIV_FACEWEAR;
+    BLWK_civVests = VANILLA_CIV_VESTS;
 };
 
 
