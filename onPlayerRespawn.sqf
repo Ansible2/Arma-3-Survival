@@ -13,6 +13,7 @@ if !(BLWK_saveRespawnLoadout) then {
     _player setUnitLoadout BLWK_savedLoadout;
 };
 
+[_player] call BLWK_fnc_handleDamagePlayer;
 
 
 

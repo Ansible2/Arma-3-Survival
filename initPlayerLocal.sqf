@@ -9,8 +9,7 @@ params [
 private _startingKillPoints = ("BLWK_startingKillPoints" call BIS_fnc_getParamValue);
 missionNamespace setVariable ["BLWK_playerKillPoints",_startingKillPoints];
 
-_player setVariable ["RevByMedikit", false, true];
-
+// adds starter items if selected (map, NVGs, pistol, etc.)
 [_player] call BLWK_fnc_addPlayerItems;
 
 [_player] call BLWK_fnc_addDiaryEntries;
@@ -31,8 +30,16 @@ if (BLWK_magRepackEnabled) then {
 waitUntil {!isNil "BLWK_playAreaCenter"};
 _player setVehiclePosition [bulwarkBox,[],2,"NONE"];
 
+// keeps the mission area
 null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
+// a loop that updates the info panel in the top left (respawn tickets, current wave #)
 null = [] spawn BLWK_fnc_infoPanelLoop;
+
+// for preventing damage under certain cirumstances (friendly fire for one)
+// also revives the player if they go down with medkit in inventory
+[_player] call BLWK_fnc_handleDamagePlayer;
+
+
 
 
 
