@@ -63,7 +63,7 @@ _bulwark addAction [
 
 
 _bulwark addEventHandler ["ContainerOpened",{
-	if !(BLWK_useACEMedical) then {
+	if !(BLWK_dontUseRevive) then {
 		hint "You can place 15 First Aid Kits in the Bulwark to make automatically make a Medkit";
 		// only show once
 		removeEventHandler ["ContainerOpened",_thisEventHandler];
@@ -71,13 +71,13 @@ _bulwark addEventHandler ["ContainerOpened",{
 }];
 // start and end medkit check loop on server when openned and closed
 _bulwark addEventHandler ["ContainerOpened",{
-	if !(BLWK_useACEMedical) then {
+	if !(BLWK_dontUseRevive) then {
 		player setVariable ["BLWK_lookingInBulwark",true,2];
 		remoteExec ["BLWK_fnc_faksToMedkitLoop",2];
 	};
 }];
 _bulwark addEventHandler ["ContainerClosed",{
-	if !(BLWK_useACEMedical) then {
+	if !(BLWK_dontUseRevive) then {
 		player setVariable ["BLWK_lookingInBulwark",false,2];
 	};
 }];

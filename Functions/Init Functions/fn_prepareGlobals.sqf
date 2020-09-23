@@ -211,7 +211,8 @@ BLWK_saveRespawnLoadout = [false,true] select ("BLWK_saveRespawnLoadout" call BI
 
 BLWK_magRepackEnabled = [false,true] select ("BLWK_magRepackEnabled" call BIS_fnc_getParamValue);
 
-BLWK_useACEMedical = [false,true] select ("BLWK_useACEMedical" call BIS_fnc_getParamValue);
+BLWK_dontUseRevive = (("ReviveMode" call BIS_fnc_getParamValue) isEqualTo 0);
+BLWK_isACELoaded = ["ACE_Medical_StateMachine"] call BLWK_fnc_isPatchLoaded;
 
 // define what the civillians will spawn with for the server and headless clients
 if (isServer OR {!hasInterface}) then {
