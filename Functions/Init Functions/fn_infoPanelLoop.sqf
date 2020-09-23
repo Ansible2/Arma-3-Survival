@@ -24,6 +24,10 @@ private _fn_updateInfoPanel = {
 	_playerPoints = BLWK_playerKillPoints;
 	_numRespawnTickets = BLWK_numRespawnTickets
 	_currentWave = BLWK_currentWaveNumber;
+
+	if (_numRespawnTickets < 0) then {
+		_numRespawnTickets = 0;
+	};
 	
 	_text = format [
 		"<t size='1.2' color='#ffffff'>%1</t>
