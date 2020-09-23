@@ -34,14 +34,6 @@ class Header
 class CfgFunctions
 {
 	#include "headers\functions.hpp"
-
-	#include "score\Functions.hpp"
-	#include "supports\Functions.hpp"
-	#include "bulwark\Functions.hpp"
-	#include "sound\Functions.hpp"
-	#include "build\Functions.hpp"
-	#include "hostiles\Functions.hpp"
-	#include "loot\Functions.hpp"
 };
 
 class CfgSounds
@@ -58,7 +50,7 @@ class Params
 
 class RscTitles
 {
-	#include "score\hud.hpp"
+	#include "headers\GUI\infoPanel.hpp"
 };
 
 /*
