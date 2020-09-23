@@ -9,15 +9,15 @@ call BLWK_fnc_prepareGlobals;
 // find a location for the mission, setup area, create bulwark
 call BLWK_fnc_preparePlayArea;
 
-private _dayTimeHours = BLWK_timeOfDayMax - BLWK_timeOfDayMin;
-private _randTime = floor random _dayTimeHours;
-private _timeToSet = BLWK_timeOfDayMin + _randTime;
-setDate [2020, 7, 1, _timeToSet, 0];
+setDate [2020, 7, 1, BLWK_timeOfDay, 0];
 
 waitUntil {count (call CBAP_fnc_players) > 0};
 
 null = [] spawn BLWK_fnc_arePlayersAliveLoop;
 
+if (BLWK_buildingsNearBulwarkAreIndestructable) then {
+	null = [] spawn BLWK_fnc_bulwarkBuildingsLoop;
+};
 
 
 
