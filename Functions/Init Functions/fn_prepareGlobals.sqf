@@ -217,25 +217,9 @@ BLWK_magRepackEnabled = [false,true] select ("BLWK_magRepackEnabled" call BIS_fn
 
 BLWK_useACEMedical = [false,true] select ("BLWK_useACEMedical" call BIS_fnc_getParamValue);
 
-// CIPHER COMMENT: See about using a #include here, but I don't think it is possible within an if statement
+// define what the civillians will spawn with for the server and headless clients
 if (isServer OR {!hasInterface}) then {
-    BLWK_civilianClass = "C_man_1";
-
-    BLWK_civUniforms = [
-
-    ];
-
-    BLWK_civHeadgear = [
-
-    ];
-
-    BLWK_civFaceWear = [
-
-    ];
-
-    BLWK_civVests = [
-
-    ];
+    #include "..\Headers\civillianGearTables.hpp"
 };
 
 
