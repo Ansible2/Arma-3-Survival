@@ -5,7 +5,10 @@ params [
 // Lower recoil, lower sway, remove stamina on respawn, make medic and engineer
 [_player] call BLWK_fnc_adjustPlayerTraits;
 
-private _startingKillPoints ("BLWK_startingKillPoints" call BIS_fnc_getParamValue);
+//setup Kill Points
+private _startingKillPoints = ("BLWK_startingKillPoints" call BIS_fnc_getParamValue);
+missionNamespace setVariable ["BLWK_playerKillPoints",_startingKillPoints];
+
 _player setVariable ["RevByMedikit", false, true];
 
 [_player] call BLWK_fnc_addPlayerItems;
@@ -29,22 +32,8 @@ waitUntil {!isNil "BLWK_playAreaCenter"};
 _player setVehiclePosition [bulwarkBox,[],2,"NONE"];
 
 null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
+null = [] spawn BLWK_fnc_infoPanelLoop;
 
-
-
-
-
-
-
-
-
-
-
-
-//setup Kill Points
-_killPoints = ("BLWK_startingKillPoints" call BIS_fnc_getParamValue);
-_player setVariable ["killPoints", _killPoints, true];
-call killPoints_fnc_updateHud;
 
 
 //Make player immune to fall damage and immune to all damage while incapacitated
