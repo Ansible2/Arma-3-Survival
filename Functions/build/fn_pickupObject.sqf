@@ -59,7 +59,7 @@ if (_object isEqualTo BLWK_randomWeaponBox AND {missionNamespace getVariable ["B
 // make sure nobody else can manipulate the object through actions
 _object setVariable ["BLWK_objectPickedUp",true,true];
 
-// marks the client as holding an object for other functions such as trying to access the bulwark
+// marks the client as holding an object for other functions such as trying to access the bulwark shop
 missionNamespace setVariable ["BLWK_heldObject",_object];
 
 // add every action to the player for or them to manipulate the object while it is being held
