@@ -32,12 +32,11 @@ BLWK_playAreaBuildings = _buildingsInPlayArea select {
 
 private _buildings = BLWK_playAreaBuildings;
 // sort through all available buildings and positions
-// to distribute to every building, every other building, every 3rd, etc.
 private _sortedPositions = [];
 {
 	private _currentBuilding = _x;
 	private _buildingIndex = _forEachIndex;
-
+	// to distribute to every building, every other building, every 3rd, etc.
 	if ((_buildingIndex mod BLWK_loot_cityDistribution) isEqualTo 0) then {
 		private _buildingsPositions = _currentBuilding buildingPos -1;
 		
@@ -54,8 +53,8 @@ private _fn_getASpawnPosition = {
 	private _spawnPosition = selectRandom _sortedPositions;
 	_positionIndex = _sortedPositions findIf {_x isEqualTo _spawnPosition};
 	// delete so we don't get repeat spawns
-	//CIPHER COMMENT: test againt deleteAt for performance
-	_sortedPositions deleteRange [_positionIndex,_positionIndex + 1];
+	_sortedPositions deleteAt _positionIndex;
+	//_sortedPositions deleteRange [_positionIndex,_positionIndex + 1];
 
 	_spawnPosition
 };
