@@ -65,7 +65,7 @@ class Params
 
 class RscTitles
 {
-	#include "Headers\GUI\infoPanel.hpp"
+	#include "Headers\descriptionEXT\GUI\infoPanel.hpp"
 };
 
 
@@ -93,7 +93,7 @@ class CfgDebriefing
 
 class CfgCommunicationMenu
 {
-	#include "supports\CommunicationMenu.h"
+	#include "Headera\descriptionEXT\commMenuSupports.h"
 };
 
 //Notification for Special Waves
@@ -109,4 +109,4 @@ class CfgNotifications
 	};
 };
 
-#include "bulwark\dialog.hpp"
+#include "Headers\descriptionEXT\GUI\bulwarkShopGUI.hpp";
