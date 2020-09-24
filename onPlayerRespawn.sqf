@@ -14,3 +14,6 @@ if !(BLWK_saveRespawnLoadout) then {
 };
 
 [_player] call BLWK_fnc_handleDamagePlayer;
+
+// Lower recoil, lower sway, remove stamina, make medic and engineer
+[_player] call BLWK_fnc_adjustPlayerTraits;
