@@ -24,15 +24,11 @@ Examples:
 //////////////////////////////////////////////////////////////////////////////////
 
 // get ALL buildings in area
-private _buildingsInPlayArea = BLWK_playAreaCenter nearObjects ["House", BLWK_playAreaRadius];
-// sort buildings that actually have cfg positions to spawn stuff
-// AND those that are NOT built by players
-//// this is done every wave because buildings are destroyed and can have different models and therefore positions
-BLWK_playAreaBuildings = _buildingsInPlayArea select {
-	!((_x buildingPos -1) isEqualTo []) AND
-	{!(_x getVariable ["BLWK_isABuiltObject",false])}
-};
+private _buildingsInPlayArea = nearestTerrainObjects [BLWK_playAreaCenter,["House"], BLWK_playAreaRadius, false, true];
 
+BLWK_playAreaBuildings = _buildingsInPlayArea select {
+	!((_x buildingPos -1) isEqualTo [])
+};
 
 private _buildings = BLWK_playAreaBuildings;
 // sort through all available buildings and positions
@@ -58,6 +54,7 @@ private _fn_getASpawnPosition = {
 	private _spawnPosition = selectRandom _sortedPositions;
 	_positionIndex = _sortedPositions findIf {_x isEqualTo _spawnPosition};
 	// delete so we don't get repeat spawns
+	//CIPHER COMMENT: test againt deleteAt for performance
 	_sortedPositions deleteRange [_positionIndex,_positionIndex + 1];
 
 	_spawnPosition
