@@ -4,6 +4,8 @@ params ["_player"];
 
 _player setVehiclePosition [bulwarkBox,[],2,"NONE"];
 
+
+
 //remove and add gear
 if !(BLWK_saveRespawnLoadout) then {
     // check if the player should have any default items (per mission params)
@@ -20,11 +22,6 @@ if !(BLWK_saveRespawnLoadout) then {
 
 
 
-
-
-
-waitUntil {!isNil "bulwarkBox"};
-player setVariable ["buildItemHeld", false];
 
 //Make player immune to fall damage and immune to all damage while incapacitated
 waitUntil {!isNil "BLWK_friendlyFireOn"};
@@ -87,5 +84,3 @@ _disarmMine =
     player playAction "PutDown";
 };
 player addAction ["Disarm Mine",_disarmMine,nil,2,false,true,"","(player distance2D nearestObject [player, 'mineBase']) <= 1.6"];
-
-[] remoteExec ["killPoints_fnc_updateHud", 0];
