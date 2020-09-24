@@ -55,7 +55,7 @@ for "_i" from 1 to NUMBER_OF_FRAMES do {
 	
 	sleep SLEEP_TIME;
 
-	// if on last step
+	// if on last frame add the ammo for the selected weapon and allow player to grab it
 	if (_i isEqualTo NUMBER_OF_FRAMES) exitWith {  
 		private _ammoArray = getArray (configFile >> "CfgWeapons" >> _tempWeapon >> "magazines");
   		_weaponHolder addMagazineCargoGlobal [selectRandom _ammoArray, 1];
@@ -68,11 +68,13 @@ for "_i" from 1 to NUMBER_OF_FRAMES do {
 
 sleep 5;
 
+// if weapon was taken, delete the holder, else animate down
 if ((weaponCargo _weaponHolder) isEqualTo []) then {
 	deleteVehicle _weaponHolder;
 } else {
 	_weaponHolder enableSimulationGlobal false;
 
+	// animate down
 	for "_i" from 1 to NUMBER_OF_FRAMES do {
 		_weaponHolder setPosATL ((getPosATLVisual _weaponHolder) vectorDiff [0,0,_incriment]);
 		_weaponHolder setVectorDirAndUp [vectorDir BLWK_randomWeaponBox, vectorUp BLWK_randomWeaponBox];
