@@ -44,6 +44,7 @@ private _playerKillpoints = missionNamespace getVariable ["BLWK_playerKillPoints
 
 // does the player have enough money and are they holding an object 
 // CIPHER COMMENT: Should probably just exit GUI fnc if the person is holding an object or make it unavailable
+// see fn_openShopGUI to change
 // CIPHER COMMENT: Potentially need to add the object to curator
 if (_playerKillpoints >= _price AND {!(isNil "BLWK_heldObject")}) then {
     if (_hasAi) then {
