@@ -91,7 +91,7 @@ BLWK_enemyClasses_armor = List_Armour;      //expects vehicles
 BLWK_enemyClasses_armedCars = List_ArmedCars; //expects vehicles
 
 BLWK_enemiesPerWaveMultiplier = ("BLWK_enemiesPerWaveMultiplier" call BIS_fnc_getParamValue);  // How many hostiles per wave (waveCount x BLWK_enemiesPerWaveMultiplier)
-BLWK_enemiesPerPlayerMultiplier = ("BLWK_enemiesPerPlayerMultiplier" call BIS_fnc_getParamValue) / 100;   // How many extra units are added per player
+BLWK_enemiesPerPlayerMultiplier = ("BLWK_enemiesPerPlayerMultiplier" call BIS_fnc_getParamValue);   // How many extra units are added per player
 BLWK_maxPistolOnlyWaves = ("BLWK_maxPistolOnlyWaves" call BIS_fnc_getParamValue);  //What wave enemies stop only using pistols
 
 /* LOCATION LIST OPTIONS */
@@ -117,8 +117,7 @@ BLWK_numRespawnTickets = ("BLWK_numRespawnTickets" call BIS_fnc_getParamValue);
 /* Random Loot */
 BLWK_loot_cityDistribution = ("BLWK_loot_cityDistribution" call BIS_fnc_getParamValue);  // decides how many buildings will be marked as having loot in a city
 BLWK_loot_roomDistribution = ("BLWK_loot_roomDistribution" call BIS_fnc_getParamValue);   // decides how much loot will be in a building if it has any at all
-BLWK_distributionOffset = 0; // Offset the position by this number. //Cipher Comment not used
-BLWK_supplyDropRadius = ("BLWK_supplyDropRadius" call BIS_fnc_getParamValue) / 100;        // Radius of supply drop
+BLWK_supplyDropRadius = ("BLWK_supplyDropRadius" call BIS_fnc_getParamValue);        // Radius of supply drop // CIPHER COMMENT: Not implimented
 BLWK_paratrooperCount = ("BLWK_paratrooperCount" call BIS_fnc_getParamValue);
 
 
@@ -229,7 +228,7 @@ if (isServer OR {!hasInterface}) then {
 BLWK_currentWaveNumber = 0;
 
 // this is to have potential supports that put the player outside the immediate radius
-// may also consider using remote controlled units if they work intstead
+// 
 BLWK_enforceArea = false;
 
 // for revealing loot and deleteing it at the end of the round

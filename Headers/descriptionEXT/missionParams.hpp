@@ -21,14 +21,14 @@
 
 #include "..\Faction Headers\Define Factions.hpp"
 
-A_SECTION_HEADER(WAVE);
+A_SECTION_HEADER(WAVES);
 
 class BLWK_enemiesPerWaveMultiplier
 {
-	title = "Number of hostiles per wave";
-	values[] = {0.5,1,2,3};
-	texts[] = {"Low (Easiest)", "Normal", "Double", "Tripple (Hardest)"};
-	default = 1;
+	title = "Enemies Per Wave Multiplier";
+	values[] = {0.5,1,1.5,2,2.5,3};
+	texts[] = {"0.5","1", "1.5", "2", "2.5", "3"};
+	default = 0.5;
 };
 
 // CIPHER COMMENT: The utility of this value should be replaced with a simple: add this number of enemies per round per player in addition to the number already spawned
@@ -37,7 +37,7 @@ class BLWK_enemiesPerPlayerMultiplier
 	title = "Extra Enemies Per Player";
 	values[] = {0.5, 1, 1.5, 2};
 	texts[] = {"0.5", "1", "1.5", "2"};
-	default = 0.5;
+	default = 1;
 };
 
 class BLWK_maxPistolOnlyWaves
@@ -67,9 +67,9 @@ class BLWK_timeBetweenRounds
 class BLWK_maxNumWaves
 {
 	title = "How Many Waves";
-	values[] = {"infinite", 20, 30, 40};
-	texts[] = {"Infinite", "20", "30", "40"};
-	default = "infinite";
+	values[] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+	texts[] = {"10", "20", "30", "40","50","60","70","80","90","100"};
+	default = 100;
 };
 
 class BLWK_numMedKits
@@ -226,9 +226,9 @@ class BLWK_loot_distributionInBuildings
 class BLWK_supplyDropRadius
 {
 	title = "Supply drop distance from centre";
-	values[] = {0, 25, 50, 75};
+	values[] = {0, 0.25, 0.50, 0.75};
 	texts[] = {"Dead centre", "25%", "50%", "75%"};
-	default = 25;
+	default = 0.25;
 };
 
 class BLWK_timeOfDay
