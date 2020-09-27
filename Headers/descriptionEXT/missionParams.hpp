@@ -149,7 +149,7 @@ class BLWK_vehicleStartWave
 	title = "Vehicles can spawn after wave";
 	values[] = {5, 10, 15, 20, 25, 9999};
 	texts[] = {"5", "10", "15", "20", "25", "Never"};
-	default = 5;
+	default = 10;
 };
 
 class BLWK_randomizeHostileWeapons
