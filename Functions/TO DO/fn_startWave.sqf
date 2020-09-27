@@ -207,7 +207,7 @@ for "_i" from 1 to _numEnemiesToSpawn do {
 		if (isServer) then {
 			// if there is nobody to spawn, exit
 			if (BLWK_AISpawnQue isEqualTo []) exitWith {};
-			// if we're not at capcity then there should be no reason that AI weren't already spawned
+
 			if (count BLWK_aliveEnemies <= BLWK_maxEnemiesAtOnce) then {
 				BLWK_aliveEnemies deleteAt (BLWK_aliveEnemies findIf {_x isEqualTo _unitKilled});
 				// needs to spawn the unit and then pushBack the new one into BLWK_aliveEnemies
@@ -219,10 +219,11 @@ for "_i" from 1 to _numEnemiesToSpawn do {
 			[_points] call BLWK_fnc_addPoints;
 		};
 
-		// need to remove the hit eventhandler of the unit too
+		// need to remove the hit eventhandler of the unit too (on all machines)
 		// possibly needs to be stored in the unit's namespace to get in the function
-		
+
 		// don't forget to pass _thisEventHandler to the function
+		// mp events need to be removed on the unit where they are local
 		if (local _unitKilled) then {
 			removeMPEventHandler ["mpKilled",_thisEventHandler];
 		};
