@@ -22,7 +22,7 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if (!isServer) exitWith {};
+if (!isServer OR {!canSuspend}) exitWith {};
 
 // find the location the mission will take place
 private _playAreaSelectionScript = [] spawn BLWK_fnc_selectPlayArea;
@@ -36,10 +36,18 @@ BLWK_playAreaMarker setMarkerShape "ELLIPSE";
 BLWK_playAreaMarker setMarkerSize [BLWK_playAreaRadius, BLWK_playAreaRadius];
 BLWK_playAreaMarker setMarkerColor "ColorWhite";
 
+// cache enemy infantry spawn positions
+private _AISpawnPositionsArray = [];
+private _positionToPushBack = [];
+while {count _AISpawnPositionsArray < 10} do {
+	_positionToPushBack = [BLWK_playAreaCenter, BLWK_playAreaRadius + 50, BLWK_playAreaRadius + 100, 0, 0] call BIS_fnc_findSafePos;
+	_AISpawnPositionsArray pushBackUnique _positionToPushBack;
+};
+BLWK_AISpawnPositions = _AISpawnPositionsArray;
+
 
 // create and setup the actual box
 call BLWK_fnc_prepareBulwarkServer;
-
 bulwarkBox setVehiclePosition [BLWK_playAreaCenter,[],2,"NONE"];
 
 // push player relavent actions and the loop to show the bulwark icon

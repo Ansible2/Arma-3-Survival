@@ -239,6 +239,13 @@ BLWK_spawnedLoot = [];
 // this is used to potentially resize it at some point, might make a better special wave
 BLWK_playAreaMarker = "";
 
+BLWK_AISpawnPositions = [];
+
+// this is used to only allow so many AI to be active at any time
+BLWK_AISpawnQue = [];
+BLWK_aliveEnemies = [];
+BLWK_maxEnemiesAtOnce = 30;
+
 /*
     POTENTIAL AI QUE
 

@@ -10,7 +10,7 @@
 
 // inform pepople the round has started and what kind it is/number
 
-//
+// need to decide on special waves
 
 if (!isServer) exitWith {};
 
@@ -133,11 +133,86 @@ private _fn_getAvailableEnemyLists = {
 
 private _availableMenClassesWeighted = call _fn_getAvailableEnemyLists;
 private _totalNumEnemiesToSpawn = BASE_ENEMY_NUMBER * ((BLWK_enemiesPerWaveMultiplier * BLWK_currentWaveNumber) + 1);
+_totalNumEnemiesToSpawn = _totalNumEnemiesToSpawn + (BLWK_enemiesPerPlayerMultiplier * (count (call CBAP_fnc_players)));
+_totalNumEnemiesToSpawn = round _totalNumEnemiesToSpawn;
 
-BLWK_theAIQue
-for "_i" from 1 to _totalNumEnemiesToSpawn do {
 
+
+
+private "_selectedEnemyLevelTemp";
+private _fn_selectEnemyType = {
+	// select enemy level
+	_selectedEnemyLevelTemp = selectRandomWeighted _availableMenClassesWeighted;
+	// return a random entry from the selected level's array
+	selectRandom _selectedEnemyLevelTemp
 };
+
+// cache AI info for spawns
+private ["_spawnPositionTemp","_typeTemp"];
+private _AISpawnQueArray = [];
+for "_i" from 1 to _totalNumEnemiesToSpawn do {
+	_spawnPositionTemp = selectRandom BLWK_AISpawnPositions;
+	_typeTemp = call _fn_selectEnemyType;
+
+	_AISpawnQueArray pushBack [_spawnPositionTemp,_typeTemp];
+};
+
+missionNamespace setVariable ["BLWK_AISpawnQue",_AISpawnQueArray,BLWK_theAIHandler];
+
+
+
+
+
+// need to adjust skill depending on round
+
+private _numEnemiesToSpawn = BLWK_maxEnemiesAtOnce;
+if (count _AISpawnQueArray < BLWK_maxEnemiesAtOnce) then {
+	_numEnemiesToSpawn = count _AISpawnQueArray;
+};
+private ["_groupTemp","_spawnedUnitTemp"];
+private _bulwarkPosition = getPosATL bulwarkBox;
+for "_i" from 1 to _numEnemiesToSpawn do {
+	(_AISpawnQueArray deleteAt 0) params ["_position","_type"];
+
+	_groupTemp = createGroup OPFOR;
+	_spawnedUnitTemp = _type createVehicle _position;
+
+	[_spawnedUnitTemp] joinSilent _groupTemp;
+
+	_groupTemp allowFleeing false;
+
+	[_groupTemp, _bulwarkPosition, 20, "SAD", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
+
+	BLWK_zeus addCuratorEditableObjects [[_spawnedUnitTemp],false];
+
+	BLWK_aliveEnemies pushBack _spawnedUnitTemp;
+
+
+	// add the hit eventhandler to every player locally
+	// make the body into a function and pass _this to reduce network load with remoteExec
+	_spawnedUnit addEventHandler ["Hit", {
+		private _insitgator = _this select 3;
+
+		if (_instigator isEqualTo player) then {
+			private _unit = _this select 0;
+			private _points = BLWK_pointsForHit + (BLWK_pointsMultiForDamage * _damage);
+			[_unit,_points] call BLWK_fnc_createHitMarker;
+			[_points] call BLWK_fnc_addPoints;
+		};
+	}];
+
+	_spawnedUnitTemp addMPEventHandler ["mpKilled",{
+		[] call BLWK_fnc_enemyKilledEvent;
+		// needs to update que
+		// need to give points to the local person
+		// need to create hit marker
+		// need to make sure the instigator is actually a player before adding points
+	}];
+	// need to add all the units eventhandlers
+	// hit event for points
+	// killed event for points and to spawn another AI if there are ones present in que
+};
+
 
 /*
 	- Base number of enemies is 2
@@ -147,3 +222,4 @@ for "_i" from 1 to _totalNumEnemiesToSpawn do {
 
 	- Lastly we multiply it by the base, so 2.5*2 = 5
 */
+

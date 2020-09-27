@@ -35,7 +35,7 @@ params [
 
 private _handleNumber = addMissionEventHandler ["EachFrame", { 
 
-private _globalVarString = "BLWK_hitPointHandleInfo_" + (str _thisEventHandler);  
+	private _globalVarString = "BLWK_hitPointHandleInfo_" + (str _thisEventHandler);  
 	if (!isNil _globalVarString) exitWith { 
 
 		private _iconInfo = missionNamespace getVariable _globalVarString; 
