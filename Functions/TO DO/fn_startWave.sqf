@@ -202,7 +202,31 @@ for "_i" from 1 to _numEnemiesToSpawn do {
 	}];
 
 	_spawnedUnitTemp addMPEventHandler ["mpKilled",{
-		[] call BLWK_fnc_enemyKilledEvent;
+		//_this call BLWK_fnc_enemyKilledEvent;
+
+		if (isServer) then {
+			// if there is nobody to spawn, exit
+			if (BLWK_AISpawnQue isEqualTo []) exitWith {};
+			// if we're not at capcity then there should be no reason that AI weren't already spawned
+			if (count BLWK_aliveEnemies <= BLWK_maxEnemiesAtOnce) then {
+				BLWK_aliveEnemies deleteAt (BLWK_aliveEnemies findIf {_x isEqualTo _unitKilled});
+				// needs to spawn the unit and then pushBack the new one into BLWK_aliveEnemies
+				call BLWK_fnc_updateAIQue;
+			};
+		};
+		if (local _instigator AND {isPlayer _instigator}) then {
+			[_unitKilled,BLWK_pointsForKill] call BLWK_fnc_createHitMarker;
+			[_points] call BLWK_fnc_addPoints;
+		};
+
+		// need to remove the hit eventhandler of the unit too
+		// possibly needs to be stored in the unit's namespace to get in the function
+		
+		// don't forget to pass _thisEventHandler to the function
+		if (local _unitKilled) then {
+			removeMPEventHandler ["mpKilled",_thisEventHandler];
+		};
+
 		// needs to update que
 		// need to give points to the local person
 		// need to create hit marker
