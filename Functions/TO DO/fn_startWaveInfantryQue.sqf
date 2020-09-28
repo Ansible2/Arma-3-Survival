@@ -64,8 +64,8 @@ missionNamespace setVariable ["BLWK_AISpawnQue",_AISpawnQueArray,BLWK_theAIHandl
 
 // need to adjust skill depending on round
 
-private _numEnemiesToSpawn = BLWK_maxEnemiesAtOnce;
-if (count _AISpawnQueArray < BLWK_maxEnemiesAtOnce) then {
+private _numEnemiesToSpawn = BLWK_maxEnemyInfantryAtOnce;
+if (count _AISpawnQueArray < BLWK_maxEnemyInfantryAtOnce) then {
 	_numEnemiesToSpawn = count _AISpawnQueArray;
 };
 
