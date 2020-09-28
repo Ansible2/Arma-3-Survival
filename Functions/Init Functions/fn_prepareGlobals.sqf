@@ -244,7 +244,7 @@ BLWK_AISpawnPositions = [];
 // this is used to only allow so many AI to be active at any time
 BLWK_AISpawnQue = [];
 BLWK_aliveEnemies = [];
-BLWK_maxEnemiesAtOnce = 30;
+BLWK_maxEnemyInfantryAtOnce = 30;
 
 /*
     POTENTIAL AI QUE
