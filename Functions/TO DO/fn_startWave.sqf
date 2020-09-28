@@ -131,13 +131,13 @@ private _fn_getAvailableEnemyLists = {
 	_returnedLists
 };
 
+// get the total enemy number for this round
 private _availableMenClassesWeighted = call _fn_getAvailableEnemyLists;
 private _totalNumEnemiesToSpawn = BASE_ENEMY_NUMBER * ((BLWK_enemiesPerWaveMultiplier * BLWK_currentWaveNumber) + 1);
 _totalNumEnemiesToSpawn = _totalNumEnemiesToSpawn + (BLWK_enemiesPerPlayerMultiplier * (count (call CBAP_fnc_players)));
 _totalNumEnemiesToSpawn = round _totalNumEnemiesToSpawn;
 
-
-
+[_totalNumEnemiesToSpawn] call 
 
 private "_selectedEnemyLevelTemp";
 private _fn_selectEnemyType = {
