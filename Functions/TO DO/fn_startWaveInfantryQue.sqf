@@ -2,8 +2,7 @@
 BLWK_enemiesPerWaveMultiplier = 0.5;
 BLWK_enemiesPerPlayerMultiplier = 1;
 
-// Each wave level will add to the previous ones, albeit, 
-// taking an ever larger percentage until we're at 50% for the current
+
 private _fn_getAvailableEnemyLists = {
 	private _returnedLists = [];
 
@@ -36,7 +35,6 @@ private _totalNumEnemiesToSpawn = BASE_ENEMY_NUMBER * ((BLWK_enemiesPerWaveMulti
 _totalNumEnemiesToSpawn = _totalNumEnemiesToSpawn + (BLWK_enemiesPerPlayerMultiplier * (count (call CBAP_fnc_players)));
 _totalNumEnemiesToSpawn = round _totalNumEnemiesToSpawn;
 
-[_totalNumEnemiesToSpawn] call 
 
 private "_selectedEnemyLevelTemp";
 private _fn_selectEnemyType = {
@@ -48,38 +46,21 @@ private _fn_selectEnemyType = {
 
 // cache AI info for spawns
 private ["_spawnPositionTemp","_typeTemp"];
-private _AISpawnQueArray = [];
 for "_i" from 1 to _totalNumEnemiesToSpawn do {
 	_spawnPositionTemp = selectRandom BLWK_AISpawnPositions;
 	_typeTemp = call _fn_selectEnemyType;
 
-	_AISpawnQueArray pushBack [_spawnPositionTemp,_typeTemp];
+	BLWK_AISpawnQue pushBack [_spawnPositionTemp,_typeTemp];
 };
 
-missionNamespace setVariable ["BLWK_AISpawnQue",_AISpawnQueArray,BLWK_theAIHandler];
-
-
-
-
-
-// need to adjust skill depending on round
-
+// adjust the immediate amount to spawn to either the max at once mission param
+// or to the total number in this wave if it is less then BLWK_maxEnemyInfantryAtOnce
 private _numEnemiesToSpawn = BLWK_maxEnemyInfantryAtOnce;
-if (count _AISpawnQueArray < BLWK_maxEnemyInfantryAtOnce) then {
-	_numEnemiesToSpawn = count _AISpawnQueArray;
+private _spawnQueCount = count BLWK_AISpawnQue;
+if (_spawnQueCount < BLWK_maxEnemyInfantryAtOnce) then {
+	_numEnemiesToSpawn = _spawnQueCount;
 };
 
 for "_i" from 1 to _numEnemiesToSpawn do {
-	remoteExec ["BLWK_fnc_createEnemyFromQue",BLWK_theAIHandler];
+	call BLWK_fnc_createEnemyFromQue;
 };
-
-
-/*
-	- Base number of enemies is 2
-	- We start with a multiplier of 1
-	- Each round adds 0.5 to that multiplier
-	- - So, round 3, the multiplier would be 2.5 ((0.5 * 3) + 1)
-
-	- Lastly we multiply it by the base, so 2.5*2 = 5
-*/
-
