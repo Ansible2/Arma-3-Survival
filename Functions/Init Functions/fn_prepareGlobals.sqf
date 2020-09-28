@@ -244,17 +244,4 @@ BLWK_AISpawnPositions = [];
 // this is used to only allow so many AI to be active at any time
 BLWK_AISpawnQue = [];
 BLWK_aliveEnemies = [];
-BLWK_maxEnemyInfantryAtOnce = 30;
-
-/*
-    POTENTIAL AI QUE
-
-    Have a while true loop run constantly on server, maybe check every second
-
-    There is a global array that contains other arrays that have:
-    [entity type, position to spawn, code to run]
-
-    Could have funtions that pushBack the info and pushToFront
-
-    There is a global setting of how many AI can be present at any given time
-*/
+BLWK_maxEnemyInfantryAtOnce = ("BLWK_maxEnemyInfantryAtOnce" call BIS_fnc_getParamValue);
