@@ -7,3 +7,5 @@ private _eventID = _unit addEventHandler ["Hit", {
 }];
 
 _unit setVariable ["BLWK_hitEH",["Hit",_eventID]];
+
+true
