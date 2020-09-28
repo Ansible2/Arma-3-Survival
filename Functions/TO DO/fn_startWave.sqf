@@ -99,4 +99,4 @@ if (BLWK_currentWaveNumber >= BLWK_vehicleStartWave) then {
 	};
 };
 
-call BLWK_fnc_startWaveInfantryQue;
+null = remoteExec ["BLWK_fnc_startWaveInfantryQue",BLWK_theAIHandler];
