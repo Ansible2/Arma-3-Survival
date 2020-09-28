@@ -18,32 +18,26 @@ BLWK_aliveEnemies pushBack _unit;
 
 // add the hit eventhandler to every player locally
 // make the body into a function and pass _this to reduce network load with remoteExec
-_unit addEventHandler ["Hit", {
-	private _insitgator = _this select 3;
+[_unit] remoteExecCall ["BLWK_fnc_addEnemyHitEH",BLWK_allClientsTargetID,true];
 
-	if (_instigator isEqualTo player) then {
-		private _unit = _this select 0;
-		private _points = BLWK_pointsForHit + (BLWK_pointsMultiForDamage * _damage);
-		[_unit,_points] call BLWK_fnc_createHitMarker;
-		[_points] call BLWK_fnc_addPoints;
-	};
-}];
 
 _unit addMPEventHandler ["mpKilled",{
-	//_this call BLWK_fnc_enemyKilledEvent;
+	[_this,_thisEventHandler] call BLWK_fnc_enemyKilledEvent;
 
-	if (isServer) then {
+	if (local BLWK_theAIHandler) then {
 		// if there is nobody to spawn, exit
-		if (BLWK_AISpawnQue isEqualTo []) exitWith {};
+		if !(BLWK_AISpawnQue isEqualTo []) then {
 
-		if (count BLWK_aliveEnemies <= BLWK_maxEnemiesAtOnce) then {
-			BLWK_aliveEnemies deleteAt (BLWK_aliveEnemies findIf {_x isEqualTo _unitKilled});
-			// needs to spawn the unit and then pushBack the new one into BLWK_aliveEnemies
-			call BLWK_fnc_updateAIQue;
+			//if (count BLWK_aliveEnemies <= BLWK_maxEnemiesAtOnce) then {
+				BLWK_aliveEnemies deleteAt (BLWK_aliveEnemies findIf {_x isEqualTo _killedUnit});
+				// needs to spawn the unit and then pushBack the new one into BLWK_aliveEnemies
+				call BLWK_fnc_createAnEnemyFromQue;
+			//};
+
 		};
 	};
 	if (local _instigator AND {isPlayer _instigator}) then {
-		[_unitKilled,BLWK_pointsForKill] call BLWK_fnc_createHitMarker;
+		[_killedUnit,BLWK_pointsForKill] call BLWK_fnc_createHitMarker;
 		[_points] call BLWK_fnc_addPoints;
 	};
 
@@ -52,7 +46,7 @@ _unit addMPEventHandler ["mpKilled",{
 
 	// don't forget to pass _thisEventHandler to the function
 	// mp events need to be removed on the unit where they are local
-	if (local _unitKilled) then {
+	if (local _killedUnit) then {
 		removeMPEventHandler ["mpKilled",_thisEventHandler];
 	};
 
@@ -64,14 +58,6 @@ _unit addMPEventHandler ["mpKilled",{
 // need to add all the units eventhandlers
 // hit event for points
 // killed event for points and to spawn another AI if there are ones present in que
-
-
-
-
-
-
-
-
 
 
 _unit
