@@ -27,8 +27,10 @@ Examples:
 BLWK_allClientsTargetID = [0,-2] select isDedicated;
 publicVariable "BLWK_allClientsTargetID";
 
-// check if hedless client is loaded
+// check if headless client is loaded
+// CIPHER COMMENT: may want to add an owner param too for use with setVariable
 BLWK_theAIHandler = [BLWK_headlessClient,BLWK_serverAIHandler] select (isNil "BLWK_headlessClient");
+BLWK_theAIHandlerOwnerID = owner BLWK_theAIHandler;
 
 
 /* DLC exclusion */
