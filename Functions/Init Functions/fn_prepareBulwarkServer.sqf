@@ -11,7 +11,7 @@ Parameters:
 	NONE
 
 Returns:
-	NOTHING
+	_bulwarkBox - <OBJECT>
 
 Examples:
     (begin example)
@@ -26,23 +26,25 @@ Author:
 if (!isServer) exitWith {};
 
 // create bulwark
-bulwarkBox = createVehicle ["B_supplyCrate_F", [0,0,0], [], 0, "NONE"];
-publicVariable "bulwarkBox";
+_bulwarkBox = createVehicle ["B_supplyCrate_F", [0,0,0], [], 0, "NONE"];
 
-clearItemCargoGlobal bulwarkBox;
-clearWeaponCargoGlobal bulwarkBox;
-clearMagazineCargoGlobal bulwarkBox;
-clearBackpackCargoGlobal bulwarkBox;
-bulwarkBox allowDamage false;
+clearItemCargoGlobal _bulwarkBox;
+clearWeaponCargoGlobal _bulwarkBox;
+clearMagazineCargoGlobal _bulwarkBox;
+clearBackpackCargoGlobal _bulwarkBox;
+_bulwarkBox allowDamage false;
 
 private _bulwarkLaptop = createVehicle ["Land_Laptop_device_F", [0,0,0], [], 0, "NONE"];
 _bulwarkLaptop allowDamage false;
 _bulwarkLaptop setObjectTextureGlobal [0,"preview.paa"];
 //[_bulwarkLaptop,[0,"preview.paa"]] remoteExec ["setObjectTexture",BLWK_allClientsTargetID,true];
-_bulwarkLaptop attachTo [bulwarkBox, [0,0.1,0.6]];
+_bulwarkLaptop attachTo [_bulwarkBox, [0,0.1,0.6]];
 _bulwarkLaptop setDir 180;
 
 // add medkits
 if (BLWK_numMedKits > 0) then {
-	bulwarkBox addItemCargoGlobal ["Medikit", BLWK_numMedKits];
+	_bulwarkBox addItemCargoGlobal ["Medikit", BLWK_numMedKits];
 };
+
+
+_bulwarkBox

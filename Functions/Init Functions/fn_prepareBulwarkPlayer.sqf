@@ -26,9 +26,11 @@ Author:
 ---------------------------------------------------------------------------- */
 //CIPHER COMMENT: it might be better to just have a waitUntil{!isNil "bulwarkBox"} from the publicvar and put this in the initPlayerLocal
 
-if (!hasInterface) exitWith {};
+if (!canSuspend) exitWith {};
 
 params ["_bulwark"];
+
+if (!hasInterface) exitWith {bulwarkBox = _bulwark};
 
 //CIPHER COMMENT: maybe make these into hold actions
 _bulwark addAction [ 
@@ -82,6 +84,11 @@ _bulwark addEventHandler ["ContainerClosed",{
 	};
 }];
 
+
+// hosted server will already have it defined
+if (isNil "bulwarkBox") then {
+	bulwarkBox = _bulwark;
+};
 
 // drawing bulwark icon
 waitUntil {!isNil "bulWarkBox"};
