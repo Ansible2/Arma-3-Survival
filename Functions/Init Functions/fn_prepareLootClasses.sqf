@@ -10,7 +10,7 @@ Parameters:
 	NONE
 
 Returns:
-	ARRAY - Format [weapons,backpacks,vests,uniforms,headgear,items,explosives]
+	ARRAY - Format [primary weapons, secondary weapons, launchers, backpacks, vests, uniforms, headgear, items, explosives]
 
 Examples:
     (begin example)
@@ -22,64 +22,28 @@ Examples:
 if (!isServer) exitWith {false};
 
 
-/* Loot Blacklist */
-// items that will NOT be spawned in as loot
-private _loot_blacklist = [
-    "O_Static_Designator_02_weapon_F", // If players find and place CSAT UAVs they count as hostile units and round will not progress
-    "O_UAV_06_backpack_F",
-    "O_UAV_06_medical_backpack_F",
-    "O_UAV_01_backpack_F",
-    "B_IR_Grenade",
-    "O_IR_Grenade",
-    "I_IR_Grenade"
-];
-
-
-/* Whitelist modes */
-/* 0 = Off */
-/* 1 = Only Whitelist Items will spawn as loot */
-/* 2 = Whitelist items get added to existing loot (increases the chance of loot spawning */
-private _whitelist_weaponClasses = [
-	//"example_weapon_1",
-	//"example_weapon_2"
-];
-private _whitelist_backpackClasses = [
-
-];
-private _whitelist_vestClassess = [
-
-];
-private _whitelist_uniformClasses = [
-
-];
-private _whitelist_headgearClasses = [
-
-];
-
-private _whitelist_itemClasses = [
-
-];
-private _whitelist_explosiveClasses = [
-
-];
-
+// get white and black lists for loot
+#include "..\Headers\Loot Lists.hpp"
 
 // Check if we are in whitelisted items only mode
 if (BLWK_loot_whiteListMode isEqualTo 1) exitWith {
 	[
-		_whitelist_weaponClasses,
-		_whitelist_backpackClasses,
-		_whitelist_vestClassess,
-		_whitelist_uniformClasses,
-		_whitelist_headgearClasses,
-		_whitelist_itemClasses,
-		_whitelist_explosiveClasses
+		WHITELIST_PRIMARY_WEAPONS,
+		WHITELIST_SECONDARY_WEAPONS,
+		WHITELIST_LAUNCHERS,
+		WHITELIST_BACKPACKS,
+		WHITELIST_VESTS,
+		WHITELIST_UNIFORMS,
+		WHITELIST_HEADGEAR,
+		WHITELIST_ITEMS,
+		WHITELIST_EXPLOSIVES
 	]
 };
+
+
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////Functions///////////////////////////////
 ///////////////////////////////////////////////////////////////////////
-
 
 // some of this is setup with the intention that things may be further broken down into more categories
 // this is why the functions are here that just pushback something
@@ -87,9 +51,9 @@ private _tempClass = "";
 private _tempReturn = [];
 private _tempItemCategory = "";
 private _tempItemType = "";
-private _dlcAllowed = true;
+private _dlcAllowedTemp = true;
 private _dlcString = "";
-private _configHierarchy = "";
+private _configHierarchyTemp = "";
 
 // sort through clothes, vests, backpacks, headgear
 private _backpackClasses = [];
@@ -103,9 +67,18 @@ private _fn_sortEquipment = {
 	if (_tempItemType == "Backpack") exitWith {_backpackClasses pushBack _tempClass};
 };
 
-private _weaponClasses = [];
+private _secondaryWeaponClasses = [];
+private _primaryWeaponClasses = [];
+private _launcherClasses = [];
 private _fn_sortWeapons = {
-	_weaponClasses pushBack _tempClass;
+	if (_tempItemType == "MissileLauncher" OR {_tempItemType == "Launcher"} OR {_tempItemType == "RocketLauncher"}) exitWith {_launcherClasses pushBack _tempClass};
+	if (_tempItemType == "Handgun") exitWith {_secondaryWeaponClasses pushBack _tempClass};
+	if (_tempItemType == "AssaultRifle" OR 
+		{_tempItemType == "MachineGun"} OR 
+		{_tempItemType == "Shotgun"} OR 
+		{_tempItemType == "Rifle"} OR 
+		{_tempItemType == "SubmachineGun"} OR 
+		{_tempItemType == "SniperRifle"}) exitWith {_primaryWeaponClasses pushBack _tempClass};
 };
 
 // nvgs, gps, medkit, toolkit, compass, etc.
@@ -119,7 +92,7 @@ private _fn_sortExplosives = {
 	_explosiveClasses pushBack _tempClass;
 };
 
-//CIPHER COMMENT: Haven't really used this, may just need to roll it inot explosive classes since it already does so with grenades
+//CIPHER COMMENT: Haven't really used this, may just need to roll it into explosive classes since it already does so with grenades
 //private _magazineClasses = [];
 private _fn_sortMagazines = {
 	// CIPHER COMMENT: possibly add more to this list. Depends on how you want to spawn magazines
@@ -128,22 +101,22 @@ private _fn_sortMagazines = {
 	//_magazineClasses pushBack _tempClass
 };
 
-
 private _fn_sortType = {
 	_tempClass = configName (_this select 0);
-	// exclude blacklist items
-	if (_tempClass in _loot_blacklist) exitWith {};
 
-	_configHierarchy = _this select 1;
+	if (_tempClass in LOOT_BLACKLIST) exitWith {};
+
 	// CIPHER COMMENT: DLC check is awaiting 2.0 release for getAssetDLCInfo command
-	//_dlcAllowed = [_tempClass,_configHierarchy] call BLWK_fnc_checkDLC;
-	if !(_dlcAllowed) exitWith {};
+	/*
+		_configHierarchyTemp = _this select 1;
+		_dlcAllowedTemp = [_tempClass,_configHierarchyTemp] call BLWK_fnc_checkDLC;
+		if !(_dlcAllowedTemp) exitWith {};
+	*/
 
 	_tempReturn = [_tempClass] call BIS_fnc_itemType;
-	// some of the string checks are case sensetive
-	// CIPHER COMMENT: this may be uneccessary now to tolower it
-	_tempItemCategory = toLower (_tempReturn select 0);
-	_tempItemType = toLower (_tempReturn select 1);
+
+	_tempItemCategory = _tempReturn select 0;
+	_tempItemType = _tempReturn select 1;
 
 	if (_tempItemCategory == "weapon") exitWith {call _fn_sortWeapons};
 	if (_tempItemCategory == "item") exitWith {call _fn_sorItems};
@@ -173,19 +146,23 @@ _publicMagazineConfigs apply {
 
 // check white list mode to see if we should add whitelisted items to arrays
 if (BLWK_loot_whiteListMode isEqualTo 2) then {
-    _backpackClasses append _whitelist_backpackClasses;
-    _explosiveClasses append _whitelist_explosiveClasses;
-    _itemClasses append _whitelist_itemClasses;
-    _uniformClasses append _whitelist_uniformClasses;
-    _vestClasses append _whitelist_vestClassess;
-	_headgearClasses append _whitelist_headgearClasses;
-	_weaponClasses append _whitelist_weaponClasses;
+    _backpackClasses append WHITELIST_BACKPACKS;
+    _explosiveClasses append WHITELIST_EXPLOSIVES;
+    _itemClasses append WHITELIST_ITEMS;
+    _uniformClasses append WHITELIST_UNIFORMS;
+    _vestClasses append WHITELIST_VESTS;
+	_headgearClasses append WHITELIST_HEADGEAR;
+	_primaryWeaponClasses append WHITELIST_PRIMARY_WEAPONS;
+	_secondaryWeaponClasses append WHITELIST_SECONDARY_WEAPONS;
+	_launcherClasses append WHITELIST_LAUNCHERS;
 };
 
 
 
 [
-	_weaponClasses,
+	_primaryWeaponClasses,
+	_secondaryWeaponClasses,
+	_launcherClasses,
 	_backpackClasses,
 	_vestClasses,
 	_uniformClasses,

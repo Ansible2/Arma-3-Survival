@@ -56,16 +56,31 @@ BLWK_canUseTankstDLC = [false,true] select ("BLWK_canUseTankstDLC" call BIS_fnc_
 if (BLWK_canUseTankstDLC) then {BLWK_useableDLCs pushBack ""}; 
 */
 
+/* Whitelist modes */
+/* 0 = Off */
+/* 1 = Only Whitelist Items will spawn as loot */
+/* 2 = Whitelist items get added to existing loot (increases the chance of loot spawning */
 BLWK_loot_whiteListMode = 0;
+
 // loot classes
 private _lootClasses = call BLWK_fnc_prepareLootClasses;
-BLWK_loot_weaponClasses = _lootClasses select 0;
-BLWK_loot_backpackClasses = _lootClasses select 1;
-BLWK_loot_vestClasses = _lootClasses select 2;
-BLWK_loot_uniformClasses = _lootClasses select 3;
-BLWK_loot_headGearClasses = _lootClasses select 4;
-BLWK_loot_itemClasses = _lootClasses select 5;
-BLWK_loot_explosiveClasses = _lootClasses select 6;
+// weapons are split up for when AI have random weapons
+// It makes it so that can easily grab a specific type easily
+BLWK_loot_weaponClasses = [];
+BLWK_loot_primaryWeapons = _lootClasses select 0;
+BLWK_loot_weaponClasses append BLWK_loot_primaryWeapons;
+BLWK_loot_secondaryWeapons = _lootClasses select 1;
+BLWK_loot_weaponClasses append BLWK_loot_secondaryWeapons;
+BLWK_loot_launchers = _lootClasses select 2;
+BLWK_loot_weaponClasses append BLWK_loot_launchers;
+
+BLWK_loot_backpackClasses = _lootClasses select 3;
+BLWK_loot_vestClasses = _lootClasses select 4;
+BLWK_loot_uniformClasses = _lootClasses select 5;
+BLWK_loot_headGearClasses = _lootClasses select 6;
+BLWK_loot_itemClasses = _lootClasses select 7;
+BLWK_loot_explosiveClasses = _lootClasses select 8;
+
 
 // AI unit classes
 private _unitTypeInfo = call BLWK_fnc_prepareUnitClasses;
@@ -83,6 +98,9 @@ BLWK_level5_menClasses = _unitTypeInfo select 10;
 BLWK_level5_vehicleClasses = _unitTypeInfo select 11;
 
 
+
+
+
 /* Attacker Waves */
 // cipher comment: why the use global vars to initialize global vars and then not clear the memory?
 /// PS, none of these are used, they only used the first ones (e.g. list_bandits,list_opfor)
@@ -91,6 +109,9 @@ BLWK_enemyClasses_level_2 = List_OPFOR;    // Wave 5 >
 BLWK_enemyClasses_level_3 = List_Viper;    // Wave 10 >
 BLWK_enemyClasses_armor = List_Armour;      //expects vehicles
 BLWK_enemyClasses_armedCars = List_ArmedCars; //expects vehicles
+
+
+
 
 BLWK_enemiesPerWaveMultiplier = ("BLWK_enemiesPerWaveMultiplier" call BIS_fnc_getParamValue);  // How many hostiles per wave (waveCount x BLWK_enemiesPerWaveMultiplier)
 BLWK_enemiesPerPlayerMultiplier = ("BLWK_enemiesPerPlayerMultiplier" call BIS_fnc_getParamValue);   // How many extra units are added per player
