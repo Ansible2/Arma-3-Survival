@@ -72,7 +72,7 @@ BLWK_lootRevealerBox = createVehicle ["Box_C_UAV_06_Swifd_F", (call _fn_getASpaw
 publicVariable "BLWK_lootRevealerBox";
 _addToZeusArray pushBack BLWK_lootRevealerBox;
 
-[BLWK_lootRevealerBox] remoteExec ["BLWK_fnc_addRevealLootAction",BLWK_allPlayersTargetID,true];
+[BLWK_lootRevealerBox] remoteExec ["BLWK_fnc_addRevealLootAction",BLWK_allClientsTargetID,true];
 // add to list to for cleanup
 BLWK_spawnedLoot pushBack BLWK_lootRevealerBox;
 
@@ -84,7 +84,7 @@ if (!BLWK_supportDishFound) then {
 	BLWK_supportDish allowDamage false;
 	_addToZeusArray pushBack BLWK_supportDish;
 
-	[BLWK_supportDish] remoteExec ["BLWK_fnc_addUnlockSupportAction",BLWK_allPlayersTargetID,true];
+	[BLWK_supportDish] remoteExec ["BLWK_fnc_addUnlockSupportAction",BLWK_allClientsTargetID,true];
 	BLWK_spawnedLoot pushBack BLWK_supportDish;
 };
 
@@ -95,7 +95,7 @@ if (!BLWK_randomWeaponBoxFound) then {
 	BLWK_randomWeaponBox allowDamage false;
 	_addToZeusArray pushBack BLWK_randomWeaponBox;
 
-	[BLWK_randomWeaponBox] remoteExec ["BLWK_fnc_addBuildObjectActions",BLWK_allPlayersTargetID,true];
+	[BLWK_randomWeaponBox] remoteExec ["BLWK_fnc_addBuildObjectActions",BLWK_allClientsTargetID,true];
 	BLWK_spawnedLoot pushBack BLWK_randomWeaponBox;
 };
 
@@ -105,7 +105,7 @@ publicVariable "BLWK_moneyPile";
 BLWK_moneyPile allowDamage false;
 _addToZeusArray pushBack BLWK_moneyPile;
 
-[BLWK_moneyPile] remoteExec ["BLWK_fnc_addMoneyPileAction",BLWK_allPlayersTargetID,true];
+[BLWK_moneyPile] remoteExec ["BLWK_fnc_addMoneyPileAction",BLWK_allClientsTargetID,true];
 BLWK_spawnedLoot pushBack BLWK_moneyPile;
 
 // CIPHER COMMENT:

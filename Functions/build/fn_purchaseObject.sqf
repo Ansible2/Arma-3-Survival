@@ -74,7 +74,7 @@ if (_playerKillpoints >= _price AND {!(isNil "BLWK_heldObject")}) then {
 	sleep 1;
 
 	// give all players the ability to manipulate the object
-	[_purchasedObject] remoteExecCall ["BLWK_fnc_addBuildableObjectActions",BLWK_allPlayersTargetID,true];
+	[_purchasedObject] remoteExecCall ["BLWK_fnc_addBuildableObjectActions",BLWK_allClientsTargetID,true];
 } else {
 	[format ["<t size='0.6' color='#ff3300'>Not enough points for: %1!</t>", _displayName], -0, -0.02, 2, 0.1] call BIS_fnc_dynamicText;
 };

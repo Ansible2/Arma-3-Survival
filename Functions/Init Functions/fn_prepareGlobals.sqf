@@ -24,11 +24,11 @@ Examples:
 
 // We don't need to constantly check if the server is dedicated, and we only want to run things like
 /// playSound and hud updates on a server with an interface (0) or just clients (-2)
-BLWK_allPlayersTargetID = [0,-2] select isDedicated;
-publicVariable "BLWK_allPlayersTargetID";
+BLWK_allClientsTargetID = [0,-2] select isDedicated;
+publicVariable "BLWK_allClientsTargetID";
 
 // check if hedless client is loaded
-BLWK_theAIHandler = [HC1,2] select (isNil "HC1");
+BLWK_theAIHandler = [BLWK_headlessClient,BLWK_serverAIHandler] select (isNil "BLWK_headlessClient");
 
 
 /* DLC exclusion */

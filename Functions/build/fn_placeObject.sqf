@@ -45,7 +45,7 @@ if (_snapToSurface) then {
 [_object,true] remoteExecCall ["enableSimulationGlobal",2];
 
 // sync collision to all players
-[_object] remoteExec ["BLWK_fnc_enableCollisionWithPlayer",BLWK_allPlayersTargetID,true];
+[_object] remoteExec ["BLWK_fnc_enableCollisionWithPlayer",BLWK_allClientsTargetID,true];
 
 missionName setVariable ["BLWK_heldObject",nil];
 

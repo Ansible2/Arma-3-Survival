@@ -51,4 +51,4 @@ call BLWK_fnc_prepareBulwarkServer;
 bulwarkBox setVehiclePosition [BLWK_playAreaCenter,[],2,"NONE"];
 
 // push player relavent actions and the loop to show the bulwark icon
-null = [bulwarkBox] remoteExec ["BLWK_fnc_prepareBulwarkPlayer",BLWK_allPlayersTargetID,true];
+null = [bulwarkBox] remoteExec ["BLWK_fnc_prepareBulwarkPlayer",BLWK_allClientsTargetID,true];
