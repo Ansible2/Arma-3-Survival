@@ -63,10 +63,12 @@ BLWK_level5_vehicleClasses
 */
 if (!isServer) exitWIth {};
 
-#define BASE_LIKlIHOOD_HEAVY_ARMOUR 0.10
-#define BASE_LIKlIHOOD_LIGHT_ARMOUR 0.15
-#define BASE_LIKlIHOOD_HEAVY_CAR 0.25
-#define BASE_LIKlIHOOD_LIGHT_CAR 0.50
+#define BASE_LIKELIHOOD_HEAVY_ARMOUR 0.10
+#define BASE_LIKELIHOOD_LIGHT_ARMOUR 0.15
+#define BASE_LIKELIHOOD_HEAVY_CAR 0.25
+#define BASE_LIKELIHOOD_LIGHT_CAR 0.50
+
+#define BASE_VEHICLE_SPAWN_LIKELIHOOD 0.05
 #define ROUNDS_SINCE_MINUS_TWO(TOTAL_ROUNDS_SINCE) TOTAL_ROUNDS_SINCE - 2 
 
 // CIPHER COMMENT: check for max wave upon end wave (the ting that will end the mission)
@@ -84,19 +86,36 @@ if (BLWK_currentWaveNumber >= BLWK_vehicleStartWave) then {
 	// wait until it has been at least two rounds to spawn another vehicle
 	if (_roundsSinceVehicleSpawned >= 2) then {
 		
-		// only the rounds after the two will contribute to the liklihood percentage (5% per round)
-		_howLikelyIsAVehicleToSpawn = ROUNDS_SINCE_MINUS_TWO(_roundsSinceVehicleSpawned) * 0.05;
+		// only the rounds after the two will contribute to the LIKELIHOOD percentage (5% per round)
+		private _howLikelyIsAVehicleToSpawn = ROUNDS_SINCE_MINUS_TWO(_roundsSinceVehicleSpawned) * BASE_VEHICLE_SPAWN_LIKELIHOOD;
 
+		private _vehcileWillSpawn = selectRandomWeighted [true,_howLikelyIsAVehicleToSpawn,false,1 - _howLikelyIsAVehicleToSpawn];
 		if (_vehicleWillSpawn) then {
-			private _likelihoodItsHeavyArmour = BASE_LIKlIHOOD_HEAVY_ARMOUR;
-			private _likelihoodItsLightArmour = BASE_LIKlIHOOD_LIGHT_ARMOUR;
-			private _likelihoodItsHeavyCar = BASE_LIKlIHOOD_HEAVY_CAR;
-			private _likelihoodItsLightCar = BASE_LIKlIHOOD_LIGHT_CAR;
+			missionNamespace setVariable ["BLWK_roundsSinceVehicleSpawned",0];
+			/*
+				just use base likelihoods in a weighted array to get the type
+				they will never change
+
+				also, check see what vehicles are available from the current levels to determine
+				what can actually be chosen.
+				Do a pushBack of the probability into an array if the vehicle type is available
+
+				Maybe ALL available levels should be used in the array of chances, not just the highest
+				level currently. Could also do a mini random check between all of the available types between
+				each level and then do one check between the winners of each type
+			*/
+			private _likelihoodItsHeavyArmour = BASE_LIKELIHOOD_HEAVY_ARMOUR;
+			private _likelihoodItsLightArmour = BASE_LIKELIHOOD_LIGHT_ARMOUR;
+			private _likelihoodItsHeavyCar = BASE_LIKELIHOOD_HEAVY_CAR;
+			private _likelihoodItsLightCar = BASE_LIKELIHOOD_LIGHT_CAR;
 			
 
 
 		};
 	};
 };
+
+
+//Cipher Comment: Special wave decsion should be added here
 
 null = remoteExec ["BLWK_fnc_startWaveInfantryQue",BLWK_theAIHandler];
