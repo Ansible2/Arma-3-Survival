@@ -251,7 +251,7 @@ if (isServer OR {!hasInterface}) then {
 BLWK_currentWaveNumber = 0;
 
 // this is to have potential supports that put the player outside the immediate radius
-// 
+// it is false until the play area is established
 BLWK_enforceArea = false;
 
 // for revealing loot and deleteing it at the end of the round
@@ -265,6 +265,4 @@ BLWK_playAreaMarker = "";
 BLWK_AISpawnPositions = [];
 
 // this is used to only allow so many AI to be active at any time
-BLWK_enemyInfantryQue = [];
-BLWK_aliveEnemies = [];
 BLWK_maxEnemyInfantryAtOnce = ("BLWK_maxEnemyInfantryAtOnce" call BIS_fnc_getParamValue);

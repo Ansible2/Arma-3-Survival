@@ -116,6 +116,8 @@ if (BLWK_currentWaveNumber >= BLWK_vehicleStartWave) then {
 };
 
 
-//Cipher Comment: Special wave decsion should be added here
+// Cipher Comment: Special wave decsion should be added here
 
-null = remoteExec ["BLWK_fnc_startWaveInfantryQue",BLWK_theAIHandler];
+null = remoteExec ["BLWK_fnc_handleWaveAI",BLWK_theAIHandler];
+
+// CIPHER COMMENT: might use a Gvar and waitUntil to have things spawned before the server continues

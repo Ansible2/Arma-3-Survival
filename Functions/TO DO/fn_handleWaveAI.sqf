@@ -1,0 +1,1 @@
+private _startingWaveUnits = call BLWK_fnc_createStdWaveInfantry;

@@ -1,3 +1,5 @@
+#include "..\Headers\Que Strings.hpp"
+
 // CIPHER COMMENT: need to add support for defector waves and also for pistol only waves
 
 
@@ -9,7 +11,9 @@ BLWK_enemiesPerPlayerMultiplier = 1;
 private _fn_getAvailableEnemyLists = {
 	private _returnedLists = [];
 
+	// classes
 	_returnedLists pushback BLWK_level1_menClasses;
+	// weight of class
 	_returnedLists pushBack 1;
 
 	if (BLWK_currentWaveNumber > 5) then {
@@ -39,6 +43,7 @@ _totalNumEnemiesToSpawnDuringWave = _totalNumEnemiesToSpawnDuringWave + (BLWK_en
 _totalNumEnemiesToSpawnDuringWave = round _totalNumEnemiesToSpawnDuringWave;
 
 
+
 private "_selectedEnemyLevelTemp";
 private _fn_selectEnemyType = {
 	// select enemy level
@@ -47,23 +52,28 @@ private _fn_selectEnemyType = {
 	selectRandom _selectedEnemyLevelTemp
 };
 
-
 // cache AI spawn info for que
 private ["_spawnPositionTemp","_typeTemp"];
 for "_i" from 1 to _totalNumEnemiesToSpawnDuringWave do {
 	_spawnPositionTemp = selectRandom BLWK_AISpawnPositions;
 	_typeTemp = call _fn_selectEnemyType;
 
-	BLWK_enemyInfantryQue pushBack [_spawnPositionTemp,_typeTemp];
+	[STANDARD_ENEMY_INFANTRY_QUE,_typeTemp,_spawnPositionTemp] call BLWK_fnc_addToQue;
 };
 
 
 // spawn the enemies for wave start
-private _numEnemiesToSpawnAtWaveStart = BLWK_maxEnemyInfantryAtOnce;
-private _spawnQueCount = count BLWK_enemyInfantryQue;
+private _numStartingEnemies = BLWK_maxEnemyInfantryAtOnce;
+private _spawnQueCount = count (missionNamespace getVariable [STANDARD_ENEMY_INFANTRY_QUE,[]]);
 if (_spawnQueCount < BLWK_maxEnemyInfantryAtOnce) then {
-	_numEnemiesToSpawnAtWaveStart = _spawnQueCount;
+	_numStartingEnemies = _spawnQueCount;
 };
-for "_i" from 1 to _numEnemiesToSpawnAtWaveStart do {
-	call BLWK_fnc_createEnemyFromQue;
+private _unit = objNull;
+private _units = [];
+for "_i" from 1 to _numStartingEnemies do {
+	_unit = [STANDARD_ENEMY_INFANTRY_QUE,BLWK_fnc_stdEnemyManCreateCode] call BLWK_fnc_createFromQue;
+	_units pushBack _unit;
 };
+
+
+_units
