@@ -18,8 +18,7 @@ _group allowFleeing false;
 BLWK_aliveEnemies pushBack _unit;
 
 
-// Didn't use MPHit event to avoid the networking of it to every preloadCamera
-// may try in the future
+// Didn't use MPHit event to avoid the networking of it to every client
 [_unit] remoteExecCall ["BLWK_fnc_addEnemyHitEH",BLWK_allClientsTargetID,true];
 
 _unit addMPEventHandler ["mpKilled",{
