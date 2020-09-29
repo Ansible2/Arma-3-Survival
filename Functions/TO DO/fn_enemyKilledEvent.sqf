@@ -5,7 +5,7 @@ private _instigator = _eventInfo select 3;
 
 if (local BLWK_theAIHandler) then {
 	// if there is nobody to spawn, exit
-	if !(BLWK_AISpawnQue isEqualTo []) then {
+	if !(BLWK_enemyInfantryQue isEqualTo []) then {
 
 		BLWK_aliveEnemies deleteAt (BLWK_aliveEnemies findIf {_x isEqualTo _killedUnit});
 		// needs to spawn the unit and then pushBack the new one into BLWK_aliveEnemies

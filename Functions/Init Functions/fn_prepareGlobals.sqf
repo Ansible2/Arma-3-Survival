@@ -69,8 +69,8 @@ private _lootClasses = call BLWK_fnc_prepareLootClasses;
 BLWK_loot_weaponClasses = [];
 BLWK_loot_primaryWeapons = _lootClasses select 0;
 BLWK_loot_weaponClasses append BLWK_loot_primaryWeapons;
-BLWK_loot_secondaryWeapons = _lootClasses select 1;
-BLWK_loot_weaponClasses append BLWK_loot_secondaryWeapons;
+BLWK_loot_handgunWeapons = _lootClasses select 1;
+BLWK_loot_weaponClasses append BLWK_loot_handgunWeapons;
 BLWK_loot_launchers = _lootClasses select 2;
 BLWK_loot_weaponClasses append BLWK_loot_launchers;
 
@@ -207,7 +207,7 @@ BLWK_buildableObjects_array = [
 /* Time of Day*/
 BLWK_timeOfDay = ("BLWK_timeOfDay" call BIS_fnc_getParamValue);
 
-BLWK_randomizeHostileWeapons = [false,true] select ("BLWK_randomizeHostileWeapons" call BIS_fnc_getParamValue);
+BLWK_randomizeEnemyWeapons = [false,true] select ("BLWK_randomizeEnemyWeapons" call BIS_fnc_getParamValue);
 
 /* Starter MediKits */
 BLWK_numMedKits = ("BLWK_numMedKits" call BIS_fnc_getParamValue);
@@ -265,6 +265,6 @@ BLWK_playAreaMarker = "";
 BLWK_AISpawnPositions = [];
 
 // this is used to only allow so many AI to be active at any time
-BLWK_AISpawnQue = [];
+BLWK_enemyInfantryQue = [];
 BLWK_aliveEnemies = [];
 BLWK_maxEnemyInfantryAtOnce = ("BLWK_maxEnemyInfantryAtOnce" call BIS_fnc_getParamValue);

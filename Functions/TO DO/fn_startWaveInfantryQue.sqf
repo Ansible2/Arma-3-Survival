@@ -1,3 +1,6 @@
+// CIPHER COMMENT: need to add support for defector waves and also for pistol only waves
+
+
 #define BASE_ENEMY_NUMBER 2
 BLWK_enemiesPerWaveMultiplier = 0.5;
 BLWK_enemiesPerPlayerMultiplier = 1;
@@ -31,9 +34,9 @@ private _fn_getAvailableEnemyLists = {
 
 // get the total enemy number for this round
 private _availableMenClassesWeighted = call _fn_getAvailableEnemyLists;
-private _totalNumEnemiesToSpawn = BASE_ENEMY_NUMBER * ((BLWK_enemiesPerWaveMultiplier * BLWK_currentWaveNumber) + 1);
-_totalNumEnemiesToSpawn = _totalNumEnemiesToSpawn + (BLWK_enemiesPerPlayerMultiplier * (count (call CBAP_fnc_players)));
-_totalNumEnemiesToSpawn = round _totalNumEnemiesToSpawn;
+private _totalNumEnemiesToSpawnDuringWave = BASE_ENEMY_NUMBER * ((BLWK_enemiesPerWaveMultiplier * BLWK_currentWaveNumber) + 1);
+_totalNumEnemiesToSpawnDuringWave = _totalNumEnemiesToSpawnDuringWave + (BLWK_enemiesPerPlayerMultiplier * (count (call CBAP_fnc_players)));
+_totalNumEnemiesToSpawnDuringWave = round _totalNumEnemiesToSpawnDuringWave;
 
 
 private "_selectedEnemyLevelTemp";
@@ -44,23 +47,23 @@ private _fn_selectEnemyType = {
 	selectRandom _selectedEnemyLevelTemp
 };
 
-// cache AI info for spawns
+
+// cache AI spawn info for que
 private ["_spawnPositionTemp","_typeTemp"];
-for "_i" from 1 to _totalNumEnemiesToSpawn do {
+for "_i" from 1 to _totalNumEnemiesToSpawnDuringWave do {
 	_spawnPositionTemp = selectRandom BLWK_AISpawnPositions;
 	_typeTemp = call _fn_selectEnemyType;
 
-	BLWK_AISpawnQue pushBack [_spawnPositionTemp,_typeTemp];
+	BLWK_enemyInfantryQue pushBack [_spawnPositionTemp,_typeTemp];
 };
 
-// adjust the immediate amount to spawn to either the max at once mission param
-// or to the total number in this wave if it is less then BLWK_maxEnemyInfantryAtOnce
-private _numEnemiesToSpawn = BLWK_maxEnemyInfantryAtOnce;
-private _spawnQueCount = count BLWK_AISpawnQue;
+
+// spawn the enemies for wave start
+private _numEnemiesToSpawnAtWaveStart = BLWK_maxEnemyInfantryAtOnce;
+private _spawnQueCount = count BLWK_enemyInfantryQue;
 if (_spawnQueCount < BLWK_maxEnemyInfantryAtOnce) then {
-	_numEnemiesToSpawn = _spawnQueCount;
+	_numEnemiesToSpawnAtWaveStart = _spawnQueCount;
 };
-
-for "_i" from 1 to _numEnemiesToSpawn do {
+for "_i" from 1 to _numEnemiesToSpawnAtWaveStart do {
 	call BLWK_fnc_createEnemyFromQue;
 };

@@ -28,7 +28,7 @@
 
 ]
 
-#define WHITELIST_SECONDARY_WEAPONS \
+#define WHITELIST_HANDGUN_WEAPONS \
 [\
 
 ]

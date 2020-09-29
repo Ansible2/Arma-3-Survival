@@ -1,9 +1,9 @@
-if (BLWK_AISpawnQue isEqualTo []) exitWith {objNull};
+if (BLWK_enemyInfantryQue isEqualTo []) exitWith {objNull};
 
 // CIPHER COMMENT: need to adjust skill depending on wave number
 
-// take the first available info in the que
-(BLWK_AISpawnQue deleteAt 0) params ["_position","_type"];
+// get the first available unit in the que
+(BLWK_enemyInfantryQue deleteAt 0) params ["_position","_type"];
 
 private _group = createGroup OPFOR;
 private _unit = _type createVehicle _position;
@@ -14,6 +14,7 @@ _group allowFleeing false;
 
 [BLWK_zeus, [[_unit],false]] remoteExec ["addCuratorEditableObjects",2];
 
+// CIPHER COMMENT: May not need this variable for anything at the moment
 BLWK_aliveEnemies pushBack _unit;
 
 
@@ -24,6 +25,29 @@ BLWK_aliveEnemies pushBack _unit;
 _unit addMPEventHandler ["mpKilled",{
 	[_this,_thisEventHandler] call BLWK_fnc_enemyKilledEvent;
 }];
+
+
+// keep items (maps, nvgs, binoculars, etc.) as needing to be loot pickups
+removeAllAssignedItems _unit;
+
+// handle pistol only wave and random weapons
+if (BWLK_currentWaveNumber <= BLWK_maxPistolOnlyWaves) then {
+	removeAllWeapons _unit;
+	private _pistolMagClass = "16Rnd_9x21_Mag";
+	_unit addMagazine _pistolMagClass;
+	_unit addMagazine _pistolMagClass;
+	_unit addWeaponGlobal "hgun_P07_F";
+	_unit addHandgunItem _pistolMagClass;
+
+	private _addFirstAidKit = selectRandomWeighted [true,0.5,false,0.5];
+	if (_addFirstAidKit) then {
+		_unit addItemCargoGlobal ["FirstAidKit",[0.51,2,3.49]];
+	};
+} else {
+	if (BLWK_randomizeEnemyWeapons) then {
+		[_unit] call BLWK_fnc_randomizeEnemyWeapons;
+	};
+};
 
 
 _unit

@@ -43,8 +43,8 @@ class BLWK_enemiesPerPlayerMultiplier
 class BLWK_maxPistolOnlyWaves
 {
 	title = "Hostiles only use pistols until wave";
-	values[] = {0, 1, 2, 3, 4, 5, 10, 15, 25, 30};
-	texts[] = {"Start Fully Armed", "One", "Two", "Three", "Four", "Five", "Ten", "Fifteen", "Twenty", "Twenty Five", "Thirty"};
+	values[] = {0, 1, 2, 3, 4, 5};
+	texts[] = {"Start Fully Armed", "One", "Two", "Three", "Four", "Five"};
 	default = 3;
 };
 
@@ -152,7 +152,7 @@ class BLWK_vehicleStartWave
 	default = 10;
 };
 
-class BLWK_randomizeHostileWeapons
+class BLWK_randomizeEnemyWeapons
 {
 	title = "Randomize Hostile Weapons";
 	values[] = ZERO_OR_ONE;

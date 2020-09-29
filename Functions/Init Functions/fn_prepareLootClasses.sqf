@@ -29,7 +29,7 @@ if (!isServer) exitWith {false};
 if (BLWK_loot_whiteListMode isEqualTo 1) exitWith {
 	[
 		WHITELIST_PRIMARY_WEAPONS,
-		WHITELIST_SECONDARY_WEAPONS,
+		WHITELIST_HANDGUN_WEAPONS,
 		WHITELIST_LAUNCHERS,
 		WHITELIST_BACKPACKS,
 		WHITELIST_VESTS,
@@ -67,12 +67,12 @@ private _fn_sortEquipment = {
 	if (_tempItemType == "Backpack") exitWith {_backpackClasses pushBack _tempClass};
 };
 
-private _secondaryWeaponClasses = [];
+private _handgunWeaponClasses = [];
 private _primaryWeaponClasses = [];
 private _launcherClasses = [];
 private _fn_sortWeapons = {
 	if (_tempItemType == "MissileLauncher" OR {_tempItemType == "Launcher"} OR {_tempItemType == "RocketLauncher"}) exitWith {_launcherClasses pushBack _tempClass};
-	if (_tempItemType == "Handgun") exitWith {_secondaryWeaponClasses pushBack _tempClass};
+	if (_tempItemType == "Handgun") exitWith {_handgunWeaponClasses pushBack _tempClass};
 	if (_tempItemType == "AssaultRifle" OR 
 		{_tempItemType == "MachineGun"} OR 
 		{_tempItemType == "Shotgun"} OR 
@@ -153,7 +153,7 @@ if (BLWK_loot_whiteListMode isEqualTo 2) then {
     _vestClasses append WHITELIST_VESTS;
 	_headgearClasses append WHITELIST_HEADGEAR;
 	_primaryWeaponClasses append WHITELIST_PRIMARY_WEAPONS;
-	_secondaryWeaponClasses append WHITELIST_SECONDARY_WEAPONS;
+	_handgunWeaponClasses append WHITELIST_HANDGUN_WEAPONS;
 	_launcherClasses append WHITELIST_LAUNCHERS;
 };
 
@@ -161,7 +161,7 @@ if (BLWK_loot_whiteListMode isEqualTo 2) then {
 
 [
 	_primaryWeaponClasses,
-	_secondaryWeaponClasses,
+	_handgunWeaponClasses,
 	_launcherClasses,
 	_backpackClasses,
 	_vestClasses,

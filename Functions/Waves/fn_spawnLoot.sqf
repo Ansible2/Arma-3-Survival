@@ -110,7 +110,7 @@ BLWK_spawnedLoot pushBack BLWK_moneyPile;
 
 // CIPHER COMMENT:
 // items should probably never repeat themselves in a round
-// things such as compasses and GPSs will be annoying to find often, but, givent the amount of randomization
+// things such as compasses and GPSs will be annoying to find often, but, given the amount of randomization
 // it may not be needed actually
 //// Also, it may be adventageous to do a weighted random to avoid spawning so much junk or vice-versa
 //////////////////////////////////////////////////////////////////////////////////
