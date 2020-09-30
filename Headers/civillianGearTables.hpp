@@ -1,4 +1,4 @@
-#define VANILLA_CIV_HEADGEAR \
+#define CIV_HEADGEAR \
 [ \
 	"H_Cap_Black_IDAP_F",\
 	"H_cap_blk",\
@@ -28,9 +28,9 @@
 	""\
 ]
 
-#define VANILLA_CIV_VESTS []
+#define CIV_VESTS []
 
-#define VANILLA_CIV_UNIFORMS \
+#define CIV_UNIFORMS \
 [\
 	"U_C_Poloshirt_blue",\
 	"U_C_Poloshirt_burgundy",\
@@ -60,4 +60,4 @@
 	"U_C_IDAP_Man_TeeShorts_F"\
 ]
 
-#define VANILLA_CIV_FACEWEAR []
+#define CIV_FACEWEAR []

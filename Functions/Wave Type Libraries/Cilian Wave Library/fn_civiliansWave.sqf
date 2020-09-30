@@ -19,9 +19,10 @@ Examples:
 
     (end)
 ---------------------------------------------------------------------------- */
-if (hasInterface AND {!isServer}) exitWith {};
+if (!isServer) exitWith {};
 
 #define NUM_CIVILIANS 20
+#define CIVILIAN_CLASS "C_man_1"
 // CIPHER COMMENT: Consider adjusting this for dedicated and hosted server
 // CIPHER COMMENT: could just do an allunits select {side _x isEqualTo civilian} instead of deletion pile...
 private _civilians = [];
@@ -30,7 +31,7 @@ for "_i" from 1 to NUM_CIVILIANS do {
 	private _spawnPosition = selectRandom (_randomBuilding buildingPos -1);
 
 	private _group = createGroup [civilian,true]
-	private _unit = _group createUnit [BLWK_civilianClass, _spawnPosition, [], 0.5, "NONE"];
+	private _unit = _group createUnit [CIVILIAN_CLASS, _spawnPosition, [], 0.5, "NONE"];
 
 	// give them a random look
 	[_unit] call BLWK_fnc_civRandomGear; 

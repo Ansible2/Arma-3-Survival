@@ -20,6 +20,7 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+#include "..\..\..\Headers\civillianGearTables.hpp"
 
 params [
 	["_unit",objNull,[objNull]]
@@ -59,35 +60,35 @@ private _fn_chooseGear = {
 // assign stuff
 
 // uniform
-if !((missionNamespace getVariable ["BLWK_civUniforms",[]]) isEqualTo []) then {
-	private _chosen_uniform = [BLWK_civUniforms] call _fn_chooseGear;
+if !(CIV_UNIFORMS isEqualTo []) then {
+	private _chosen_uniform = [CIV_UNIFORMS] call _fn_chooseGear;
 	
 	// adding "none" to the selection array will add the possibility of nothing at all being added
-	if (_chosen_uniform == "NONE") then {
+	if !(_chosen_uniform == "NONE") then {
 		_unit forceAddUniform _chosen_uniform;
 	};
 };
 // headgear
-if !((missionNamespace getVariable ["BLWK_civHeadgear",[]]) isEqualTo []) then {
-	private _chosen_headgear = [BLWK_civHeadgear] call _fn_chooseGear;
+if !(CIV_HEADGEAR isEqualTo []) then {
+	private _chosen_headgear = [CIV_HEADGEAR] call _fn_chooseGear;
 
-	if (_chosen_headgear == "NONE") then {
+	if !(_chosen_headgear == "NONE") then {
 		_unit addHeadgear _chosen_headgear;
 	};
 };
 // facewear
-if !((missionNamespace getVariable ["BLWK_civFaceWear",[]]) isEqualTo []) then {
-	private _chosen_facewear = [BLWK_civFaceWear] call _fn_chooseGear;
+if !(CIV_FACEWEAR isEqualTo []) then {
+	private _chosen_facewear = [CIV_FACEWEAR] call _fn_chooseGear;
 	
-	if (_chosen_facewear == "NONE") then {
+	if !(_chosen_facewear == "NONE") then {
 		_unit addGoggles _chosen_facewear;
 	};
 };
 // vest
-if !((missionNamespace getVariable ["BLWK_civVests",[]]) isEqualTo []) then {
-	private _chosen_vest = [BLWK_civVests] call _fn_chooseGear;
+if !(CIV_VESTS isEqualTo []) then {
+	private _chosen_vest = [CIV_VESTS] call _fn_chooseGear;
 
-	if (_chosen_vest == "NONE") then {
+	if !(_chosen_vest == "NONE") then {
 		_unit addVest _chosen_vest;
 	};
 };

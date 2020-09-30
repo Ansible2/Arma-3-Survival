@@ -13,6 +13,9 @@ _fn_decideWave = {
 	if (_waveType == AIR_ASSAULT_WAVE) exitWith {
 
 	};
+	if (_waveType == CIVILIAN_WAVE) exitWith {
+
+	};
 /*	if (_waveType == STANDARD_WAVE) exitWith {
 
 	};
