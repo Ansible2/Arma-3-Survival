@@ -1,4 +1,4 @@
-#include "..\Headers\Que Strings.hpp"
+#include "..\..\..\Headers\Que Strings.hpp"
 
 // CIPHER COMMENT: need to add support for defector waves and also for pistol only waves
 
@@ -55,7 +55,7 @@ private _fn_selectEnemyType = {
 // cache AI spawn info for que
 private ["_spawnPositionTemp","_typeTemp"];
 for "_i" from 1 to _totalNumEnemiesToSpawnDuringWave do {
-	_spawnPositionTemp = selectRandom BLWK_AISpawnPositions;
+	_spawnPositionTemp = selectRandom BLWK_infantrySpawnPositions;
 	_typeTemp = call _fn_selectEnemyType;
 
 	[STANDARD_ENEMY_INFANTRY_QUE,_typeTemp,_spawnPositionTemp] call BLWK_fnc_addToQue;

@@ -1,4 +1,4 @@
-#include "..\Headers\Que Strings.hpp"
+#include "..\..\..\Headers\Que Strings.hpp"
 
 params ["_eventInfo","_handlerID"];
 
@@ -18,14 +18,13 @@ if (local BLWK_theAIHandler) then {
 };
 
 // points fro players
-if (hasInterface) then {
-	if (local _instigator AND {isPlayer _instigator}) then {
-		[_killedUnit,BLWK_pointsForKill] call BLWK_fnc_createHitMarker;
-		[_points] call BLWK_fnc_addPoints;
-	};
-
-	[_unit] call BLWK_fnc_removeStdUnitsHitEvent;
+if (local _instigator AND {isPlayer _instigator} AND {hasInterface}) then {
+	[_killedUnit,BLWK_pointsForKill] call BLWK_fnc_createHitMarker;
+	[_points] call BLWK_fnc_addPoints;
 };
+
+[_unit] call BLWK_fnc_removeStdUnitsHitEvent;
+
 
 // mp events need to be removed on the unit where they are local
 if (local _killedUnit) then {

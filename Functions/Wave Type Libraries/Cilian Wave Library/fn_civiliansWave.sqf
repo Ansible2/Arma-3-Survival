@@ -35,19 +35,9 @@ for "_i" from 1 to NUM_CIVILIANS do {
 	// give them a random look
 	[_unit] call BLWK_fnc_civRandomGear; 
 
-	// CIPHER COMMENT: Should Multiplayer Event handlers be used?
-	/// if using locals, this may not be fast enough to gen a message to the user with the hit
-	/// plus, if it is always a server and you have a hosted one, it may be uneccessary strain
-	/// I think there is a case to at least TRY local handlers and see their network performance
-	
 	// if a player kills the civilian, remove points
-	_unit addEventHandler ["KILLED",{
-		private _killedUnit = _this select 0;
-		private _instigator = _this select 2;
-		
-		if (isPlayer _instigator) then {
-			[_killedUnit] remoteExecCall ["BLWK_fnc_killedCivilian",_instigator];
-		};
+	_unit addMpEventHandler ["MPKILLED",{
+		[_this,_thisEventhandler] call BLWK_fnc_killedCivllianEvent;
 	}];
 
 	// create cycle waypoints for them
