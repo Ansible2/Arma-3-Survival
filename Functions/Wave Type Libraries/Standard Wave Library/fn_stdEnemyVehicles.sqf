@@ -75,7 +75,7 @@ if (BLWK_currentWaveNumber > 20) then {
 	[BLWK_level5_vehicleClasses] call _fn_checkLevelsClasses;
 };
 
-// get all available vehicle types
+// get all available classes for each vehicle type
 private _vehicleTypeSelection = [];
 if !(_lightCarsArray isEqualTo []) then {
 	_vehicleTypeSelection append [_lightCarsArray,LIKELIHOOD_LIGHT_CAR];
@@ -118,6 +118,7 @@ private _fn_spawnAVehicle = {
 
 call _fn_spawnAVehicle;
 
+// do a role for a second vehicle
 private _howLikelyIsASecondVehicleToSpawn = _howLikelyIsAVehicleToSpawn / 2;
 private _secondVehcileWillSpawn = selectRandomWeighted [true,_howLikelyIsASecondVehicleToSpawn,false,1 - _howLikelyIsASecondVehicleToSpawn];
 if (_secondVehcileWillSpawn) then {
