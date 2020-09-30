@@ -259,10 +259,10 @@ BLWK_lootMarkers = [];
 BLWK_spawnedLoot = [];
 
 // the marker that denotes the play area on the map
-// this is used to potentially resize it at some point, might make a better special wave
 BLWK_playAreaMarker = "";
 
-BLWK_AISpawnPositions = [];
+BLWK_infantrySpawnPositions = [];
+BLWK_vehicleSpawnPositions = [];
 
 // this is used to only allow so many AI to be active at any time
 BLWK_maxEnemyInfantryAtOnce = ("BLWK_maxEnemyInfantryAtOnce" call BIS_fnc_getParamValue);
