@@ -98,21 +98,6 @@ BLWK_level5_menClasses = _unitTypeInfo select 10;
 BLWK_level5_vehicleClasses = _unitTypeInfo select 11;
 
 
-
-
-
-/* Attacker Waves */
-// cipher comment: why the use global vars to initialize global vars and then not clear the memory?
-/// PS, none of these are used, they only used the first ones (e.g. list_bandits,list_opfor)
-BLWK_enemyClasses_level_1 = List_Bandits;  // Wave 0 >
-BLWK_enemyClasses_level_2 = List_OPFOR;    // Wave 5 >
-BLWK_enemyClasses_level_3 = List_Viper;    // Wave 10 >
-BLWK_enemyClasses_armor = List_Armour;      //expects vehicles
-BLWK_enemyClasses_armedCars = List_ArmedCars; //expects vehicles
-
-
-
-
 BLWK_enemiesPerWaveMultiplier = ("BLWK_enemiesPerWaveMultiplier" call BIS_fnc_getParamValue);  // How many hostiles per wave (waveCount x BLWK_enemiesPerWaveMultiplier)
 BLWK_enemiesPerPlayerMultiplier = ("BLWK_enemiesPerPlayerMultiplier" call BIS_fnc_getParamValue);   // How many extra units are added per player
 BLWK_maxPistolOnlyWaves = ("BLWK_maxPistolOnlyWaves" call BIS_fnc_getParamValue);  //What wave enemies stop only using pistols
@@ -151,11 +136,13 @@ BLWK_pointsMultiForDamage = ("BLWK_pointsMultiForDamage" call BIS_fnc_getParamVa
 BLWK_costToSpinRandomBox = 950;  // Cost to spin the box
 
 /*Point multipliers of BLWK_pointsForKill for different waves */
-BLWK_pointMulti_men_level1 = 0.75;
-BLWK_pointMulti_men_level2 = 1;
-BLWK_pointMulti_men_level3 = 1.50;
-BLWK_pointMulti_car = 2;
-BLWK_pointMulti_armour = 4;
+BLWK_pointsMulti_man_level1 = 0.75;
+BLWK_pointsMulti_man_level2 = 1;
+BLWK_pointsMulti_man_level3 = 1.50;
+BLWK_pointsMulti_man_level4 = 1.50;
+BLWK_pointsMulti_man_level5 = 1.50;
+BLWK_pointsMulti_car = 2;
+BLWK_pointsMulti_armour = 4;
 
 
 BLWK_supports_array = [
