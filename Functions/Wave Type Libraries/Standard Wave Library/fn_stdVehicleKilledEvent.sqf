@@ -3,8 +3,6 @@ params ["_eventInfo","_handlerID"];
 private _killedUnit = _eventInfo select 0;
 private _instigator = _eventInfo select 3;
 
-// CIPHER COMMENT: Need to somehow differentiate between 1. Vehicle types for different point multipliers
-an
 
 // points for players
 if (local _instigator AND {isPlayer _instigator} AND {hasInterface}) then {
