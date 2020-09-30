@@ -7,14 +7,16 @@ _fn_decideWave = {
 		private _startingWaveUnits = call BLWK_fnc_createStdWaveInfantry;
 		[_startingWaveUnits] call BLWK_fnc_stdEnemyVehicles;
 	};
-	if (_waveType == SUICIDE_WAVE) exitWith {
+	if (BLWK_useSpecialWaves) then {
+		if (_waveType == SUICIDE_WAVE) exitWith {
 
-	};
-	if (_waveType == AIR_ASSAULT_WAVE) exitWith {
+		};
+		if (_waveType == AIR_ASSAULT_WAVE) exitWith {
 
-	};
-	if (_waveType == CIVILIAN_WAVE) exitWith {
-		private _startingWaveUnits = call BLWK_fnc_createStdWaveInfantry;
+		};
+		if (_waveType == CIVILIAN_WAVE) exitWith {
+			private _startingWaveUnits = call BLWK_fnc_createStdWaveInfantry;
+		};
 	};
 /*	if (_waveType == STANDARD_WAVE) exitWith {
 
