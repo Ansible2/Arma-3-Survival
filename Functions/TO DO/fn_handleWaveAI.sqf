@@ -14,7 +14,7 @@ _fn_decideWave = {
 
 	};
 	if (_waveType == CIVILIAN_WAVE) exitWith {
-
+		private _startingWaveUnits = call BLWK_fnc_createStdWaveInfantry;
 	};
 /*	if (_waveType == STANDARD_WAVE) exitWith {
 
