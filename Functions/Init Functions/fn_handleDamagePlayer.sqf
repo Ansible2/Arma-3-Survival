@@ -25,7 +25,7 @@ BLWK_dammagedEventHandler = _player addEventHandler ["HandleDamage", {
 					
 					// revives player for BIS revive system
 					["BLWK_reviveOnStateVar",1,_unit] call BIS_fnc_reviveOnState;
-					hint "Reived from your medkit"
+					hint "Reived from your medkit";
 					
 					// make the player invincible for 15 seconds to avoid BS
 					_unit allowDamage false;
@@ -39,9 +39,9 @@ BLWK_dammagedEventHandler = _player addEventHandler ["HandleDamage", {
 
 		/*
 			If the event returns 0, it means 0 damage will be dealt to the _unit
-			The checks below are for:
-				- is it friendly fire
-				- is the player in an incapcitated state already
+			The checks below are so that the player will be invincible if:
+				- it is friendly fire
+				- the player is in an incapcitated state already
 		*/
 		private _isIncapactated = !(incapacitatedState _unit isEqualTo "");
 		if ((side _unit) isEqualTo (side _instigator) OR {_isIncapactated}) then {0};
