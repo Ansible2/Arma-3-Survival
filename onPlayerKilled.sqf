@@ -1,8 +1,7 @@
 params ["_oldUnit"];
 
 // remove handle damage event from corpse as it will continue to fire otherwise
-_oldUnit removeEventHandler ["handleDamage",BLWK_dammagedEventHandler];
-BLWK_dammagedEventHandler = nil;
+[_oldUnit] call BLWK_fnc_removeReviveEhs;
 
 if !(missionNamespace getVariable ["BLWK_inBetweenRounds",false]) then { // free respawn in build phase
 	_respawnTickets = [west, -1] call BIS_fnc_respawnTickets;
@@ -16,6 +15,7 @@ if !(missionNamespace getVariable ["BLWK_inBetweenRounds",false]) then { // free
 };
 
 sleep 0.1;
+
 if(!isNull _oldUnit) then {
     ["Initialize", [_oldUnit, [west], false, true, true, false, true, true, true, true]] call BIS_fnc_EGSpectator;
 };

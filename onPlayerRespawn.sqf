@@ -13,7 +13,7 @@ if !(BLWK_saveRespawnLoadout) then {
     _player setUnitLoadout BLWK_savedLoadout;
 };
 
-[_player] call BLWK_fnc_handleDamagePlayer;
+[_player] call BLWK_fnc_addReviveEhs;
 
 // Lower recoil, lower sway, remove stamina, make medic and engineer
 [_player] call BLWK_fnc_adjustPlayerTraits;
