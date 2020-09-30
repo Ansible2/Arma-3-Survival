@@ -6,17 +6,18 @@
 #define VEHICLE_SPAWN_INCRIMENT 0.05
 #define ROUNDS_SINCE_MINUS_TWO(TOTAL_ROUNDS_SINCE) TOTAL_ROUNDS_SINCE - 2 
 
+params ["_availableInfantry"];
 
-if (!local BLWK_theAIHandler) exitWith {[]};
+if (!local BLWK_theAIHandler) exitWith {false};
 
-if !(BLWK_currentWaveNumber >= BLWK_vehicleStartWave) exitWith {[]};
+if !(BLWK_currentWaveNumber >= BLWK_vehicleStartWave) exitWith {false};
 
 // special waves will not contriubute to this count
 private _roundsSinceVehicleSpawned = missionNamespace getVariable ["BLWK_roundsSinceVehicleSpawned",2];
 // wait until it has been at least two rounds since a vehicle spawn to get another one
 if (_roundsSinceVehicleSpawned >= 2) exitWith {
 	BLWK_roundsSinceVehicleSpawned = _roundsSinceVehicleSpawned + 1;
-	[]
+	false
 };
 	
 // only the rounds after the two will contribute to the LIKELIHOOD percentage (5% per round, with a starting percentage of 10%)
@@ -26,7 +27,7 @@ private _howLikelyIsAVheicleNOTToSpawn = 1 - _howLikelyIsAVehicleToSpawn;
 private _vehcileWillSpawn = selectRandomWeighted [true,_howLikelyIsAVehicleToSpawn,false,_howLikelyIsAVheicleNOTToSpawn];
 if !(_vehicleWillSpawn) exitWith {
 	BLWK_roundsSinceVehicleSpawned = _roundsSinceVehicleSpawned + 1;
-	[]
+	false
 };
 
 
@@ -95,8 +96,20 @@ private _fn_spawnAVehicle = {
 	private _selectedVehicleClass = selectRandom _selectedTypeArray;
 	private _spawnPosition = selectRandom BLWK_vehicleSpawnPositions;
 	private _createdVehicle = _selectedVehicleClass createVehicle _spawnPosition;
+
+	private _crew = _availableInfantry select [0,3];
+	_availableInfantry deleteRange [0,3];
 	
-	_returnedVehicles pushBack _createdVehicle;
+	private _group = createGroup (side (_crew select 0))
+	_group deleteGroupWhenEmpty true;
+	_group allowFleeing false;
+	
+	// CIPHER COMMENT: May need to clear the crews previous waypoints
+	_crew joinSilent _group;
+	[_group,_createdVehicle] call BLWK_fnc_setCrew;
+	[_group, bulwarkBox, 20, "SAD", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
+
+	[BLWK_zeus, [[_createdVehicle],false]] remoteExec ["addCuratorEditableObjects",2];
 };
 
 call _fn_spawnAVehicle;
@@ -108,4 +121,4 @@ if (_secondVehcileWillSpawn) then {
 };
 
 
-_returnedVehicles
+true

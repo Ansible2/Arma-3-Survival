@@ -20,6 +20,7 @@ if (isNull _group) then {
 };
 private _unit = _type createVehicle _position;
 [_unit] joinSilent _group;
+_group deleteGroupWhenEmpty true;
 
 
 if !(_codeToRun isEqualTo {}) then {

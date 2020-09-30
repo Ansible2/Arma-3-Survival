@@ -5,7 +5,7 @@ params ["_waveType"];
 _fn_decideWave = {
 	if (_waveType == STANDARD_WAVE) exitWith {
 		private _startingWaveUnits = call BLWK_fnc_createStdWaveInfantry;
-		call BLWK_fnc_stdEnemyVehicles;
+		[_startingWaveUnits] call BLWK_fnc_stdEnemyVehicles;
 	};
 	if (_waveType == SUICIDE_WAVE) exitWith {
 
@@ -21,3 +21,5 @@ _fn_decideWave = {
 	};
 */
 };
+
+call _fn_decideWave;
