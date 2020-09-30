@@ -7,15 +7,16 @@
 #define ROUNDS_SINCE_MINUS_TWO(TOTAL_ROUNDS_SINCE) TOTAL_ROUNDS_SINCE - 2 
 
 
-if (!local BLWK_theAIHandler) exitWith {false};
+if (!local BLWK_theAIHandler) exitWith {[]};
 
-if !(BLWK_currentWaveNumber >= BLWK_vehicleStartWave) exitWith {false};
+if !(BLWK_currentWaveNumber >= BLWK_vehicleStartWave) exitWith {[]};
 
+// special waves will not contriubute to this count
 private _roundsSinceVehicleSpawned = missionNamespace getVariable ["BLWK_roundsSinceVehicleSpawned",2];
 // wait until it has been at least two rounds since a vehicle spawn to get another one
 if (_roundsSinceVehicleSpawned >= 2) exitWith {
 	BLWK_roundsSinceVehicleSpawned = _roundsSinceVehicleSpawned + 1;
-	false
+	[]
 };
 	
 // only the rounds after the two will contribute to the LIKELIHOOD percentage (5% per round, with a starting percentage of 10%)
@@ -25,7 +26,7 @@ private _howLikelyIsAVheicleNOTToSpawn = 1 - _howLikelyIsAVehicleToSpawn;
 private _vehcileWillSpawn = selectRandomWeighted [true,_howLikelyIsAVehicleToSpawn,false,_howLikelyIsAVheicleNOTToSpawn];
 if !(_vehicleWillSpawn) exitWith {
 	BLWK_roundsSinceVehicleSpawned = _roundsSinceVehicleSpawned + 1;
-	false
+	[]
 };
 
 
@@ -58,7 +59,7 @@ private _fn_checkLevelsClasses = {
 	} forEach _levelToCheck;
 };
 
-// get all available vehicle types
+// get all available vehicle types depending on round
 [BLWK_level1_vehicleClasses] call _fn_checkLevelsClasses;
 if (BLWK_currentWaveNumber > 5) then {
 	[BLWK_level2_vehicleClasses] call _fn_checkLevelsClasses;
@@ -88,17 +89,23 @@ if !(_heavyArmourArray isEqualTo []) then {
 	_vehicleTypeSelection append [_heavyArmourArray,LIKELIHOOD_HEAVY_ARMOUR];
 };
 
-
+private _returnedVehicles = [];
 private _fn_spawnAVehicle = {
 	private _selectedTypeArray = selectRandomWeighted _vehicleTypeSelection;
 	private _selectedVehicleClass = selectRandom _selectedTypeArray;
 	private _spawnPosition = selectRandom BLWK_vehicleSpawnPositions;
 	private _createdVehicle = _selectedVehicleClass createVehicle _spawnPosition;
 	
-	_createdVehicle
+	_returnedVehicles pushBack _createdVehicle;
 };
 
 call _fn_spawnAVehicle;
 
+private _howLikelyIsASecondVehicleToSpawn = _howLikelyIsAVehicleToSpawn / 2;
+private _secondVehcileWillSpawn = selectRandomWeighted [true,_howLikelyIsASecondVehicleToSpawn,false,1 - _howLikelyIsASecondVehicleToSpawn];
+if (_secondVehcileWillSpawn) then {
+	call _fn_spawnAVehicle;
+};
 
 
+_returnedVehicles
