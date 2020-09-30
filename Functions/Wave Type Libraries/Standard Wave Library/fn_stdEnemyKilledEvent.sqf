@@ -17,9 +17,10 @@ if (local BLWK_theAIHandler) then {
 	};
 };
 
-// points fro players
+// points for players
 if (local _instigator AND {isPlayer _instigator} AND {hasInterface}) then {
-	[_killedUnit,BLWK_pointsForKill] call BLWK_fnc_createHitMarker;
+	private _points = [_killedUnit] call BLWK_fnc_getPointsForKill;
+	[_killedUnit,_points] call BLWK_fnc_createHitMarker;
 	[_points] call BLWK_fnc_addPoints;
 };
 
