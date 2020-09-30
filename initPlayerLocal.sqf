@@ -27,14 +27,16 @@ if (BLWK_magRepackEnabled) then {
     }];
 };
 
+// wait till the play area is defined
 waitUntil {!isNil "BLWK_playAreaCenter"};
 _player setVehiclePosition [bulwarkBox,[],2,"NONE"];
 
-// keeps the mission area
 null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
-// a loop that updates the info panel in the top left (respawn tickets, current wave #)
+// a loop that updates the info panel in the top left (respawn tickets, current wave #, points)
 null = [] spawn BLWK_fnc_infoPanelLoop;
 
 // for preventing damage under certain cirumstances (friendly fire for one)
 // also revives the player if they go down with a medkit in inventory
-[_player] call BLWK_fnc_handleDamagePlayer;
+[_player] call BLWK_fnc_addReviveEhs;
+
+[_player] call BLWK_fnc_initDragSystem;
