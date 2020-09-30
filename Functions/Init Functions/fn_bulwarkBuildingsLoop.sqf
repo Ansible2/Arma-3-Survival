@@ -1,7 +1,8 @@
 if (!isServer OR {!canSuspend}) exitWith {};
 
 private _invincibleBuildings = [];
-private _buildingsCurrentlyNear = nearestTerrainObjects [position player,["house"],20,false,true];
+// get "houses" within the mission param radius (in 2d space) of bulwark that are terrain objects
+private _buildingsCurrentlyNear = nearestTerrainObjects [bulwarkBox,["house"],BLWK_buildingsNearBulwarkAreIndestructable_radius,false,true];
 private _buildingsToMakeVulnerable = [];
 
 while {BLWK_buildingsNearBulwarkAreIndestructable} do {
@@ -14,7 +15,7 @@ while {BLWK_buildingsNearBulwarkAreIndestructable} do {
 			_x allowDamage true;
 		};
 		_buildingsCurrentlyNear apply {
-			if !(isDamageAllowed _x) then {
+			if (isDamageAllowed _x) then {
 				_x allowDamage false;
 			};
 		};
