@@ -42,6 +42,10 @@ class BLWK
 		{};
 		class players
 		{};
+		class randPos
+		{};
+		class randPosArea
+		{};
 		class shuffle
 		{};
 		class taskPatrol
