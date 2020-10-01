@@ -1,7 +1,8 @@
 #include "..\..\..\Headers\Que Strings.hpp"
 
-// CIPHER COMMENT: need to add support for defector waves and also for pistol only waves
-
+params [
+	["_isDefectorWave",false,[true]]
+];
 
 #define BASE_ENEMY_NUMBER 2
 BLWK_enemiesPerWaveMultiplier = 0.5;
@@ -10,6 +11,10 @@ BLWK_enemiesPerPlayerMultiplier = 1;
 
 private _fn_getAvailableEnemyLists = {
 	private _returnedLists = [];
+
+	if (_isDefectorWave) exitWith {
+		_returnedLists pushback BLWK_friendly_menClasses;
+	};
 
 	// classes
 	_returnedLists pushback BLWK_level1_menClasses;

@@ -2,7 +2,6 @@
 
 params ["_waveType"];
 
-
 private _fn_getWave = {
 	private "_startingWaveUnits";
 	if (_waveType == STANDARD_WAVE) exitWith {
@@ -30,6 +29,14 @@ private _fn_getWave = {
 			_startingWaveUnits = call BLWK_fnc_createStdWaveInfantry;
 			[_startingWaveUnits select 0] call BLWK_fnc_createMortarWave;
 		};
+		if (_waveType == DEFECTOR_WAVE) exitWith {
+			_startingWaveUnits = [true] call BLWK_fnc_createStdWaveInfantry;
+			[_startingWaveUnits,true] call BLWK_fnc_stdEnemyVehicles;
+		};
+		if (_waveType == OVERRUN_WAVE) exitWith {
+			_startingWaveUnits = call BLWK_fnc_createStdWaveInfantry;
+			
+		}; 
 	};
 /*	if (_waveType == STANDARD_WAVE) exitWith {
 

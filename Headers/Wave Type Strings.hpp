@@ -4,3 +4,4 @@
 #define CIVILIAN_WAVE "civlian wave"
 #define DRONE_WAVE "drone wave"
 #define MORTAR_WAVE "mortar wave"
+#define DEFECTOR_WAVE "defector wave

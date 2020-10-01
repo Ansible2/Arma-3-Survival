@@ -6,7 +6,10 @@
 #define VEHICLE_SPAWN_INCRIMENT 0.05
 #define ROUNDS_SINCE_MINUS_TWO(TOTAL_ROUNDS_SINCE) TOTAL_ROUNDS_SINCE - 2 
 
-params ["_availableInfantry"];
+params [
+	"_availableInfantry",
+	["_isDefectorWave",false,[true]]
+];
 
 if (!local BLWK_theAIHandler) exitWith {false};
 
@@ -61,19 +64,24 @@ private _fn_checkLevelsClasses = {
 };
 
 // get all available vehicle types depending on round
-[BLWK_level1_vehicleClasses] call _fn_checkLevelsClasses;
-if (BLWK_currentWaveNumber > 5) then {
-	[BLWK_level2_vehicleClasses] call _fn_checkLevelsClasses;
+if !(_isDefectorWave) then {
+	[BLWK_level1_vehicleClasses] call _fn_checkLevelsClasses;
+	if (BLWK_currentWaveNumber > 5) then {
+		[BLWK_level2_vehicleClasses] call _fn_checkLevelsClasses;
+	};
+	if (BLWK_currentWaveNumber > 10) then {
+		[BLWK_level3_vehicleClasses] call _fn_checkLevelsClasses;
+	};
+	if (BLWK_currentWaveNumber > 15) then {
+		[BLWK_level4_vehicleClasses] call _fn_checkLevelsClasses;
+	};
+	if (BLWK_currentWaveNumber > 20) then {
+		[BLWK_level5_vehicleClasses] call _fn_checkLevelsClasses;
+	};
+} else {
+	[BLWK_friendly_vehicleClasses] call _fn_checkLevelsClasses;
 };
-if (BLWK_currentWaveNumber > 10) then {
-	[BLWK_level3_vehicleClasses] call _fn_checkLevelsClasses;
-};
-if (BLWK_currentWaveNumber > 15) then {
-	[BLWK_level4_vehicleClasses] call _fn_checkLevelsClasses;
-};
-if (BLWK_currentWaveNumber > 20) then {
-	[BLWK_level5_vehicleClasses] call _fn_checkLevelsClasses;
-};
+
 
 // get all available classes for each vehicle type
 private _vehicleTypeSelection = [];
