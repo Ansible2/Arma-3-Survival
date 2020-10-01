@@ -9,7 +9,7 @@ removeAllWeapons _unit;
 
 // primary
 private _primaryWeaponClass = selectRandom BLWK_loot_primaryWeapons;
-_unit addWeaponGlobal _primaryWeaponClass;
+_unit addweapon _primaryWeaponClass;
 _unit selectWeapon _primaryWeaponClass;
 private _primaryMagazineClass = selectRandom (getArray (configFile >> "CfgWeapons" >> _primaryWeaponClass >> "magazines"));
 _unit addPrimaryWeaponItem _primaryMagazineClass;
@@ -19,7 +19,7 @@ _unit addMagazineCargoGlobal [_primaryMagazineClass,round random RANDOM_345];
 private _addHandgunWeapon = selectRandomWeighted [true,0.3,false,0.7];
 if (_addHandgunWeapon) then {
 	private _handgunWeaponClass = selectRandom BLWK_loot_primaryWeapons;
-	_unit addWeaponGlobal _handgunWeaponClass;
+	_unit addweapon _handgunWeaponClass;
 	private _handgunMagazineClass = selectRandom (getArray (configFile >> "CfgWeapons" >> _handgunWeaponClass >> "magazines"));
 	_unit addHandgunItem _handgunMagazineClass;
 	_unit addMagazineCargoGlobal [_handgunMagazineClass,round random RANOM_234];
@@ -29,7 +29,7 @@ if (_addHandgunWeapon) then {
 private _addLauncher = selectRandomWeighted [true,0.1,false,0.9];
 if (_addLauncher) then {
 	private _launcherClass = selectRandom BLWK_loot_primaryWeapons;
-	_unit addWeaponGlobal _launcherClass;
+	_unit addweapon _launcherClass;
 	private _launcherMagazineClass = selectRandom (getArray (configFile >> "CfgWeapons" >> _launcherClass >> "magazines"));
 	_unit addSecondaryWeaponItem _launcherMagazineClass;
 	_unit addMagazineCargoGlobal [_launcherMagazineClass,1];
