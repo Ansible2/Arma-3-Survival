@@ -9,7 +9,7 @@ Parameters:
 
 Example:
     (begin example)
-    [group player] call CBAP_fnc_clearWaypoints
+        [group player] call CBAP_fnc_clearWaypoints
     (end)
 
 Returns:
