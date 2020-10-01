@@ -26,6 +26,10 @@ private _fn_getWave = {
 			call BLWK_fnc_createStdWaveInfantry;
 			call BLWK_fnc_createDroneWave;
 		};
+		if (_waveType == MORTAR_WAVE) exitWith {
+			_startingWaveUnits = call BLWK_fnc_createStdWaveInfantry;
+			[_startingWaveUnits select 0] call BLWK_fnc_createMortarWave;
+		};
 	};
 /*	if (_waveType == STANDARD_WAVE) exitWith {
 
