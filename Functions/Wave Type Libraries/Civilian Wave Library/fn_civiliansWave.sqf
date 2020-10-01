@@ -21,7 +21,7 @@ Examples:
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 
-#define NUM_CIVILIANS 10
+#define NUM_CIVILIANS 12
 #define CIVILIAN_CLASS "C_man_1"
 // CIPHER COMMENT: Consider adjusting the amount of ai for dedicated and hosted server
 // CIPHER COMMENT: might be worth trying this with agents too
