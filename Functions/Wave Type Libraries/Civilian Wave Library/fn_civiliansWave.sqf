@@ -21,7 +21,7 @@ Examples:
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 
-#define NUM_CIVILIANS 20
+#define NUM_CIVILIANS 10
 #define CIVILIAN_CLASS "C_man_1"
 // CIPHER COMMENT: Consider adjusting this for dedicated and hosted server
 // CIPHER COMMENT: could just do an allunits select {side _x isEqualTo civilian} instead of deletion pile...
