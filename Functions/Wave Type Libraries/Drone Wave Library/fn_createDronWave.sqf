@@ -32,4 +32,6 @@ for "_i" from 1 to DRONE_NUMBER do {
 
 [_droneGroup, bulwarkBox, 20, "SAD", "AWARE"] call CBAP_fnc_addWaypoint; 
 
+null = [_droneGroup] spawn BLWK_fnc_droneAttackLoop;
+
 [BLWK_zeus,[units _droneGroup, true]] remoteExec ["addCuratorEditableObjects",2]; 
