@@ -84,7 +84,7 @@ class BLWK
 	class Waves
 	{
 		file = "functions\waves";
-		class explodeSuicideBomber
+		class explodeSuicideBomberEvent
 		{};
 		
 	};
