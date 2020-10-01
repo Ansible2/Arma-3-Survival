@@ -35,7 +35,7 @@ private _fn_getWave = {
 		};
 		if (_waveType == OVERRUN_WAVE) exitWith {
 			_startingWaveUnits = call BLWK_fnc_createStdWaveInfantry;
-			
+			[_startingWaveUnits] call BWLK_fnc_overrunBulwarkWave;
 		}; 
 	};
 /*	if (_waveType == STANDARD_WAVE) exitWith {
