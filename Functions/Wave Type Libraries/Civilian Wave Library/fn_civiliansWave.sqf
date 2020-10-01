@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn BLWK_fnc_civiliansWave;
+		call BLWK_fnc_civiliansWave;
 
     (end)
 ---------------------------------------------------------------------------- */
@@ -23,7 +23,8 @@ if (!isServer) exitWith {};
 
 #define NUM_CIVILIANS 10
 #define CIVILIAN_CLASS "C_man_1"
-// CIPHER COMMENT: Consider adjusting this for dedicated and hosted server
+// CIPHER COMMENT: Consider adjusting the amount of ai for dedicated and hosted server
+// CIPHER COMMENT: might be worth trying this with agents too
 // CIPHER COMMENT: could just do an allunits select {side _x isEqualTo civilian} instead of deletion pile...
 private _civilians = [];
 for "_i" from 1 to NUM_CIVILIANS do {
@@ -49,7 +50,6 @@ for "_i" from 1 to NUM_CIVILIANS do {
 
 	_civilians pushBack _unit;
 	
-	sleep 0.5;
 };
 
 BLWK_zeus addCuratorEditableObjects [_civilians, true];

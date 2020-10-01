@@ -19,8 +19,12 @@ private _fn_getWave = {
 
 		};
 		if (_waveType == CIVILIAN_WAVE) exitWith {
-			_startingWaveUnits = call BLWK_fnc_createStdWaveInfantry;
+			call BLWK_fnc_createStdWaveInfantry;
 			remoteExecCall ["BLWK_fnc_civilianWave",2];
+		};
+		if (_waveType == DRONE_WAVE) exitWith {
+			call BLWK_fnc_createStdWaveInfantry;
+			call BLWK_fnc_createDroneWave;
 		};
 	};
 /*	if (_waveType == STANDARD_WAVE) exitWith {
