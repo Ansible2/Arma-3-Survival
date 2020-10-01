@@ -4,7 +4,7 @@ params ["_unit","_queName","_group"]
 
 _unit setVariable ["BLWK_cameFromQue",_queName];
 
-_group allowFleeing false;
+_group allowFleeing 0;
 [_group, bulwarkBox, 20, "SAD", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
 
 [BLWK_zeus, [[_unit],false]] remoteExec ["addCuratorEditableObjects",2];

@@ -106,7 +106,7 @@ private _fn_spawnAVehicle = {
 	
 	private _group = createGroup (side (_crew select 0))
 	_group deleteGroupWhenEmpty true;
-	_group allowFleeing false;
+	_group allowFleeing 0;
 	
 	// CIPHER COMMENT: May need to clear the crews previous waypoints
 	_crew joinSilent _group;
