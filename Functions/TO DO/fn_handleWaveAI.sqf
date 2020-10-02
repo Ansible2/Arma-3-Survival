@@ -13,9 +13,11 @@ private _fn_getWave = {
 		_startingWaveUnits = call BLWK_fnc_createStdWaveInfantry;
 		[_startingWaveUnits] call BLWK_fnc_createSuicideWave;
 	};
+/*
 	if (_waveType == AIR_ASSAULT_WAVE) exitWith {
 
 	};
+*/
 	if (_waveType == CIVILIAN_WAVE) exitWith {
 		call BLWK_fnc_createStdWaveInfantry;
 		remoteExecCall ["BLWK_fnc_civilianWave",2];
