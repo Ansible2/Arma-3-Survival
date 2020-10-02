@@ -56,6 +56,7 @@ BLWK_canUseTankstDLC = [false,true] select ("BLWK_canUseTankstDLC" call BIS_fnc_
 if (BLWK_canUseTankstDLC) then {BLWK_useableDLCs pushBack ""}; 
 */
 
+
 /* Whitelist modes */
 /* 0 = Off */
 /* 1 = Only Whitelist Items will spawn as loot */
@@ -243,3 +244,4 @@ BLWK_vehicleSpawnPositions = [];
 BLWK_maxEnemyInfantryAtOnce = ("BLWK_maxEnemyInfantryAtOnce" call BIS_fnc_getParamValue);
 
 BLWK_deadBodies = [];
+BLWK_roundsBeforeBodyDeletion = ("BLWK_roundsBeforeBodyDeletion" call BIS_fnc_getParamValue);

@@ -1,0 +1,2 @@
+BLWK_deadBodies
+BLWK_roundsBeforeBodyDeletion

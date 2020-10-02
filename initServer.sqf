@@ -21,7 +21,9 @@ if (BLWK_buildingsNearBulwarkAreIndestructable) then {
 
 call BLWK_fnc_spawnLoot;
 
-// CIPHER COMMENT: Need to add countdown to wave start
+sleep (BLWK_timeBetweenRounds - 15);
+null = remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
+sleep 15;
 
 call BLWK_fnc_startWave;
 

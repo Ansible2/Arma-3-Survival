@@ -33,10 +33,6 @@ _players apply {
 
 // count down to next wave
 sleep (BLWK_timeBetweenRounds - 15);
-private _countDown = 15;
-while {_countDown > 0} do {
-
-};
-
-
+null = remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
+sleep 15;
 call BLWK_fnc_startWave;
