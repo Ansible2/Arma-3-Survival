@@ -10,7 +10,7 @@ Parameters:
 	NONE
 
 Returns:
-	NOTHING
+	BOOL
 
 Examples:
     (begin example)
@@ -19,6 +19,20 @@ Examples:
 
     (end)
 ---------------------------------------------------------------------------- */
+if (!isServer) exitWith {false};
+
+// clear out existing loot
+if !((missionNamespace getVariable ["BLWK_lootMarkers",[]]) isEqualTo []) then {
+	BLWK_lootMarkers apply {
+		deleteMarker _x;
+	};
+};
+if !((missionNamespace getVariable ["BLWK_spawnedLoot",[]]) isEqualTo []) then {
+	BLWK_spawnedLoot apply {
+		deleteVehicle _x;
+	};
+};
+
 //////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////Prepare Spawn Positions////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
@@ -181,3 +195,6 @@ _sortedPositions apply {
 };
 
 BLWK_zeus addCuratorEditableObjects [_addToZeusArray, true];
+
+
+true

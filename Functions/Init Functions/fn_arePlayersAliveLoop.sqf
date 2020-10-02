@@ -5,7 +5,7 @@ Description:
 	Checks players to see if any are still alive and respawns are left.
 	Will end the mission if not.
 
-	Executed from ""
+	Executed from "initServer.sqf"
 
 Parameters:
 	NONE
@@ -35,26 +35,21 @@ private _condition = {
 		{(incapacitatedState _x isEqualTo "") AND {BLWK_numRespawnTickets <= 0}}
 	};
 
-	_return
+	if (_return isEqualTo -1) then {
+		true
+	} else {
+		false
+	};
 };
 
+
 waitUntil {
-	if ((call _condition) isEqualTo -1) exitWith {
+	if (call _condition) exitWith {
 		"End1" call BIS_fnc_endMissionServer;
 		true
 	};
 
-	sleep 4;
+	sleep 5;
 
 	false
 };
-
-/*
-if (BLWK_currentWaveNumber == BLWK_maxNumWaves) exitWith {
-	"End2" call BIS_fnc_endMissionServer;
-};
-
-missionNamespace setVariable ["buildPhase", true, true];
-
-[west, BLWK_numRespawnTickets] call BIS_fnc_respawnTickets;
-*/

@@ -1,7 +1,5 @@
 params ["_player"];
 
-// CIPHER COMMENT: this is also exec'd on all machines by the server at the end of a wave
-// decide where to actually put it
 ["Terminate"] call BIS_fnc_EGSpectator;
 
 _player setVehiclePosition [bulwarkBox,[],2,"NONE"];

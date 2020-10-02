@@ -2,7 +2,7 @@
 
 call BLWK_fnc_prepareGlobals;
 
-[west,BLWK_numRespawnTickets] call BIS_fnc_respawnTickets;
+[BLUFOR,BLWK_numRespawnTickets] call BIS_fnc_respawnTickets;
 
 ["<t size = '.5'>Preparing Play Area.<br/>Please wait...</t>", 0, 0, 10, 0] remoteExec ["BIS_fnc_dynamicText", 0];
 
@@ -19,6 +19,11 @@ if (BLWK_buildingsNearBulwarkAreIndestructable) then {
 	null = [] spawn BLWK_fnc_bulwarkBuildingsLoop;
 };
 
+call BLWK_fnc_spawnLoot;
+
+// CIPHER COMMENT: Need to add countdown to wave start
+
+call BLWK_fnc_startWave;
 
 
 
