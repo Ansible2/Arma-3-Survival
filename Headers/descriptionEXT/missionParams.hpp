@@ -136,7 +136,7 @@ class BLWK_playersStartWith_NVGs
 	default = 0;
 };
 
-class BLWK_useSpecialWaves
+class BLWK_allowSpecialWaves
 {
 	title = "Special Waves - suicide bombers, etc";
 	values[] = ZERO_OR_ONE;

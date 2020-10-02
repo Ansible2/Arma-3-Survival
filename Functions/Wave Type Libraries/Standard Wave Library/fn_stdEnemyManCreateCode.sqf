@@ -7,12 +7,13 @@ _unit setVariable ["BLWK_cameFromQue",_queName];
 _group allowFleeing 0;
 [_group, bulwarkBox, 20, "SAD", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
 
-[BLWK_zeus, [[_unit],false]] remoteExec ["addCuratorEditableObjects",2];
+// add to server's list of units that must be dead before the round can end
+null = [_unit] remoteExec ["BLWK_fnc_addToMustKillArray",2];
+null = [BLWK_zeus, [[_unit],false]] remoteExec ["addCuratorEditableObjects",2];
 
 
 // keep items (maps, nvgs, binoculars, etc.) so that they can just be loot drops
 removeAllAssignedItems _unit;
-
 
 // hit and killed events
 [_unit] call BLWK_fnc_addStdEnemyManEHs;

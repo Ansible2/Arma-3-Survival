@@ -77,8 +77,6 @@ private _unit = objNull;
 private _units = [];
 for "_i" from 1 to _numStartingEnemies do {
 	_unit = [STANDARD_ENEMY_INFANTRY_QUE,BLWK_fnc_stdEnemyManCreateCode] call BLWK_fnc_createFromQue;
-	// add to server's list of units that must be dead before the round can end
-	null = [_unit] remoteExec ["BLWK_fnc_addToMustKillArray",2];
 	_units pushBack _unit;
 };
 

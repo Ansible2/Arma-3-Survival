@@ -1,4 +1,4 @@
-#include "..\..\Headers\String Constants.hpp.hpp"
+#include "..\..\Headers\String Constants.hpp"
 
 params ["_waveType"];
 
