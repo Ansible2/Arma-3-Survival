@@ -28,6 +28,8 @@ for "_i" from 1 to DRONE_NUMBER do {
 		_explosion setdamage 1;
 		deleteVehicle _unit;
 	}];
+
+	null = [_droneTemp] remoteExec ["BLWK_fnc_addToMustKillArray",2];
 };
 
 [_droneGroup, bulwarkBox, 20, "SAD", "AWARE"] call CBAP_fnc_addWaypoint; 
