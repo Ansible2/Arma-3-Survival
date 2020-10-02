@@ -1,0 +1,2 @@
+_startingWaveUnits = call BLWK_fnc_createStdWaveInfantry;
+[_startingWaveUnits] call BLWK_fnc_stdEnemyVehicles;
