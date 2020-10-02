@@ -243,5 +243,5 @@ BLWK_vehicleSpawnPositions = [];
 // this is used to only allow so many AI to be active at any time
 BLWK_maxEnemyInfantryAtOnce = ("BLWK_maxEnemyInfantryAtOnce" call BIS_fnc_getParamValue);
 
-BLWK_deadBodies = [];
+BLWK_deadBodies = [[],[]];
 BLWK_roundsBeforeBodyDeletion = ("BLWK_roundsBeforeBodyDeletion" call BIS_fnc_getParamValue);
