@@ -2,7 +2,7 @@ class BLWK
 {
 	class Build
 	{
-		file = "functions\build";
+		file = "functions\Build";
 		class addBuildObjectActions 
 		{};
 		class addPickedUpObjectActions 
@@ -54,9 +54,40 @@ class BLWK
 		{};
 	};
 
+	class Drag System
+	{
+		file = "Functions\Drag system";
+		class addDragAction
+		{};
+		class addDragKilledEh
+		{};
+		class addReleaseDragAction
+		{};
+		class dragUnitEvent
+		{};
+		class initDragSystem
+		{};
+		class releaseDragEvent
+		{};
+		class removeDragAction
+		{};
+	};
+
 	class Init
 	{
 		file = "functions\init";
+		class addDiaryEntries
+		{};
+		class addReviveEhs
+		{};
+		class arePlayersAliveLoop
+		{};
+		class bulwarkBuildingsLoop
+		{};
+		class faksToMedkitLoop
+		{};
+		class infoPanelLoop
+		{};
 		class keepPlayerInGroup
 		{
 			postInit = 1;
@@ -67,29 +98,196 @@ class BLWK
 		};
 		class playAreaEnforcementLoop
 		{};
+		class prepareBulwarkPlayer
+		{};
+		class prepareBulwarkServer
+		{};
 		class prepareGlobals
+		{};
+		class prepareLootClasses
+		{};
+		class preparePlayArea
+		{};
+		class prepareUnitClasses
+		{};
+		class selectPlayArea
 		{};
 	};
 
 	class Other
 	{
-		file = "functions\other";
-		class civRandomGear 
+		file = "Functions\Other";
+		class addPlayerItems
 		{};
-	}
+		class adjustPlayerTraits
+		{};
+		class checkDLC
+		{};
+		class doMagRepack
+		{};
+		class handleEnemyWeapons
+		{};
+		class isPatchLoaded
+		{};
+		class openShopGUI
+		{};
+		class randomizeWeapons
+		{};
+		class removeReviveEhs
+		{};
+		class spinRandomWeaponBox
+		{};
+	};
+
+	class Other Actions
+	{
+		file = "Functions\Other Actions";
+		class addMoneyPileAction
+		{};
+		class addRevealLootAction
+		{};
+		class addUnlockSupportAction
+		{};
+		class addWeaponBoxSpinAction
+		{};
+	};
 	
 	class Points
 	{
 		file = "functions\Points";
-		class spendPoints 
+		class addPoints 
+		{};
+		class createHitmarker
+		{};
+		class getPointsForKill 
+		{};
+		class subtractPoints 
+		{};
+	};
+
+	class Que
+	{
+		file = "Functions\Que";
+		class addtoQue
+		{};
+		class createFromQue
+		{};
+	};
+
+	class Supports
+	{
+		file = "Functions\Supports";
+		class createLootMarkers
+		{};
+		class healPlayer
+		{};
+	};
+
+	// Wave Type Librariers
+	class Civilian Wave Library
+	{
+		file = "Functions\Wave Type Libraries\Civilian Wave Library";
+		class civiliansWave
+		{};
+		class civRandomGear
+		{};
+		class killedCivilianEvent
+		{};
+	};
+
+	class Drone Wave Library
+	{
+		file = "Functions\Wave Type Libraries\Drone Wave Library";
+		class createDroneWave
+		{};
+		class droneAttackLoop
+		{};
+		class handleDroneWave
+		{};
+	};
+
+	class Mortar Wave Library
+	{
+		file = "Functions\Wave Type Libraries\Mortar Wave Library";
+		class createMortarWave
+		{};
+		class handleMortarWave
+		{};
+	};
+
+	class Overrun Wave Library
+	{
+		file = "Functions\Wave Type Libraries\Overrun Wave Library";
+		class handleOverrunWave
+		{};
+		class overrunBulwarkWave
+		{};
+	};
+
+	class Standard Wave Library
+	{
+		file = "Functions\Wave Type Libraries\Standard Wave Library";
+		class addStdEnemyHitEH
+		{};
+		class addStdEnemyManEHs
+		{};
+		class createStdWaveInfantry
+		{};
+		class handleDefectorWave
+		{};
+		class handleStandardWave
+		{};
+		class removeStdEnemyHitEvent
+		{};
+		class stdEnemyHitEvent
+		{};
+		class stdEnemyKilledEvent
+		{};
+		class stdEnemyManCreateCode
+		{};
+		class stdEnemyVehicles
+		{};
+		class stdVehicleKilledEvent
+		{};
+	};
+
+	class Suicide Wave Library
+	{
+		file = "Functions\Wave Type Libraries\Suicide Wave Library";
+		class createSuicideWave
+		{};
+		class explodeSuicideBomberEvent
+		{};
+		class handleSuicideWave
+		{};
+		class suicideBomberLoop
 		{};
 	};
 
 	class Waves
 	{
-		file = "functions\waves";
-		class explodeSuicideBomberEvent
+		file = "Functions\Waves";
+		class addToMustKillArray
 		{};
-		
+		class cleanUpTheDead
+		{};		
+		class clearMustKillArray
+		{};
+		class decideWaveType
+		{};
+		class endWave
+		{};
+		class isWaveCleared
+		{};
+		class setCrew
+		{};
+		class setSkill
+		{};
+		class spawnLoot
+		{};
+		class startWave
+		{};
+		class startWaveCountdownFinal
+		{};
 	};
-}
+};
