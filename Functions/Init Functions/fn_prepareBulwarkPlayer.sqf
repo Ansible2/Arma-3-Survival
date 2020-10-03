@@ -65,10 +65,11 @@ _bulwark addAction [
 
 
 _bulwark addEventHandler ["ContainerOpened",{
+	params ["_bulwark"];
 	if !(BLWK_dontUseRevive) then {
 		hint "You can place 15 First Aid Kits in the Bulwark to make automatically make a Medkit";
 		// only show once
-		removeEventHandler ["ContainerOpened",_thisEventHandler];
+		_bulwark removeEventHandler ["ContainerOpened",_thisEventHandler];
 	};
 }];
 // start and end medkit check loop on server when openned and closed

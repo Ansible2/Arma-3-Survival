@@ -25,7 +25,6 @@ Author:
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {false};
 
-
 // get white and black lists for loot
 #include "..\..\Headers\Loot Lists.hpp"
 

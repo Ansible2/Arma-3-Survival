@@ -47,7 +47,7 @@ private _fn_someoneLookingInBulwark = {
 private ["_bulwarkItems","_numberOfFAKs"];
 while {(call _fn_lookingInBulwark) AND {!BLWK_dontUseRevive}} do {
 	_bulwarkItems = itemCargo bulwarkBox;
-	_numberOfFAKs = count (_bulwarkItems select {_x == "FirstAidKit"})
+	_numberOfFAKs = count (_bulwarkItems select {_x == "FirstAidKit"});
 	
 	if (_numberOfFAKs >= BLWK_faksToMakeMedkit) then {
 		

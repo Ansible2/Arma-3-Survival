@@ -123,7 +123,7 @@ _object addAction [
 _object addAction [
 	"<t color='#7e33ff'>-- Rotate Object Right --</t>",
 	{
-		params ["_object"]
+		params ["_object"];
 		[_object,true] call BLWK_fnc_rotateObject;
 	},
 	nil,

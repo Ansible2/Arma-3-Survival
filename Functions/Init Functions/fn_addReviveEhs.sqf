@@ -30,7 +30,7 @@ params [
 	["_player",player]
 ];
 
-BLWK_animStateChangedEh_ID = _player addEventHandler ["AnimStateChanged"{
+BLWK_animStateChangedEh_ID = _player addEventHandler ["AnimStateChanged",{
 	params ["_unit", "_anim"];
 	
 	if (_anim == "unconsciousrevivedefault" AND {alive _unit}) then {

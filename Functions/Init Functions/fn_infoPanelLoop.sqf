@@ -49,7 +49,7 @@ private "_text";
 
 private _fn_updateInfoPanel = {
 	_playerPoints = BLWK_playerKillPoints;
-	_numRespawnTickets = BLWK_numRespawnTickets
+	_numRespawnTickets = BLWK_numRespawnTickets;
 	_currentWave = BLWK_currentWaveNumber;
 
 	if (_numRespawnTickets < 0) then {
