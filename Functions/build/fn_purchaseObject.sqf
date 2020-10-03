@@ -1,10 +1,10 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_pickupObject
+Function: BLWK_fnc_purchaseObject
 
 Description:
 	Creates the object purchased from the bulwark 
 
-	Executed from ""
+	Executed from "bulwarkShopGUI.hpp" under the "bulwarkShopDialog_buildButton" class
 
 Parameters:
 	NONE
@@ -22,9 +22,9 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+if (!hasInterface OR {!canSuspend}) exitWith {};
 // get the current slected list index from the purchase GUI when you press the button
 private _selectedIndex = lbCurSel 1500;
-
 if (isNil _selectedIndex) exitWith {
 	hint "Invalid selection";
 };

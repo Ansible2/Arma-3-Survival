@@ -1,6 +1,3 @@
-// clean the dead bodies or create an array of those that died THIS round to be deleted later
-
-// start loop for countdown to the next round that will need to have a print out on screen for the final ten seconds
 if (!isServer OR {!canSuspend}) exitWith {false};
 
 // check for mission complete

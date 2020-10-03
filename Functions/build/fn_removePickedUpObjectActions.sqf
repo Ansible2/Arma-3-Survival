@@ -4,7 +4,7 @@ Function: BLWK_fnc_removePickedUpObjectActions
 Description:
 	Removes all the actions from the player that are used for manipulating objects in hand
 
-	Executed from ""
+	Executed from "BLWK_fnc_sellObject"
 
 Parameters:
 	NONE
@@ -29,5 +29,6 @@ BLWK_heldObjectActionIDs apply {
 };
 
 missionNamespace setVariable ["BLWK_heldObjectActionIDs",nil];
+
 
 true

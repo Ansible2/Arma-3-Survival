@@ -1,3 +1,29 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_releaseDragEvent
+
+Description:
+	The actual action of releasing a dragged unit.
+	Resets animations and global variables involved
+
+	Executed from "BLWK_fnc_addReleaseDragAction" & "BLWK_fnc_dragUnitEvent"
+
+Parameters:
+	0: _draggedUnit : <OBJECT> - The unit being dragged
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+
+		[player] call BLWK_fnc_releaseDragEvent;
+
+    (end)
+
+Author:
+	BangaBob (H8erMaker),
+	Modified By: Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};
 
 params ["_draggedUnit"];

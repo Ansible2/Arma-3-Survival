@@ -1,3 +1,30 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_dragUnitEvent
+
+Description:
+	Handles the actual dragging of a unit.
+	Attaches the dragged unit to the player and perfroms andimations
+	Adds the release action too.
+
+	Executed from "BLWK_fnc_addDragAction"
+
+Parameters:
+	0: _unitToDrag : <OBJECT> - The person to be dragged
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+
+		[_unitToDrag] call BLWK_fnc_dragUnitEvent;
+
+    (end)
+
+Author:
+	BangaBob (H8erMaker),
+	Modified By: Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};
 
 params ["_unitToDrag"];

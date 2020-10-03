@@ -4,13 +4,13 @@ Function: BLWK_fnc_sellObject;
 Description:
 	Sells the selected object, adds the cost of it back into the player's pool
 
-	Executed from ""
+	Executed from "BLWK_fnc_addBuildableObjectActions" & "BLWK_fnc_addPickedUpObjectActions"
 
 Parameters:
 	0: _object : <OBJECT> - The object to sell
 
 Returns:
-	Nothing
+	BOOL
 
 Examples:
     (begin example)
@@ -40,5 +40,6 @@ private _price = (BLWK_buildableObjects_array select _indexOfType) select 0;
 [_price] call BLWK_fnc_addPoints;
 
 deleteVehicle _object;
+
 
 true

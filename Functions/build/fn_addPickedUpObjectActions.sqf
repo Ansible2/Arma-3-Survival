@@ -6,7 +6,7 @@ Description:
 	Why the player? To avoid an inability to perform an action if you are not looking
 	at the object.
 
-	Executed from ""
+	Executed from "BLWK_fnc_pickUpObject"
 
 Parameters:
 	0: _object : <OBJECT> - The picked up object

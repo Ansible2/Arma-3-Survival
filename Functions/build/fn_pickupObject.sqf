@@ -2,9 +2,9 @@
 Function: BLWK_fnc_pickupObject
 
 Description:
-	Executes the action to pick up a building object
+	Executes the action to pick up a player built object
 
-	Executed from ""
+	Executed from "BLWK_fnc_purchaseObject" & "BLWK_fnc_addBuildableObjectActions"
 
 Parameters:
 	0: _object : <OBJECT> - The object to pickup
@@ -12,7 +12,7 @@ Parameters:
 	2: _justPurchased : <BOOL> - Was the item just purchased from the Bulwark?
 
 Returns:
-	Nothing
+	BOOL
 
 Examples:
     (begin example)
@@ -87,5 +87,6 @@ missionNamespace setVariable ["BLWK_heldObject",_object];
 		false
 	};
 };
+
 
 true

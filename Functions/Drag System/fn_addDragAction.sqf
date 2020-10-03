@@ -1,3 +1,28 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_addDragAction
+
+Description:
+	Adds an action to drag a unit if they are downed
+
+	Executed from "BLWK_fnc_initDragSystem" & "BLWK_fnc_addReviveEhs"
+
+Parameters:
+	0: _unit : <OBJECT> - The unit to be able to drag
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+
+		null = [player] spawn BLWK_fnc_addDragAction;
+
+    (end)
+
+Author:
+	BangaBob (H8erMaker),
+	Modified By: Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!hasInterface OR {!canSuspend} OR {BLWK_dontUseRevive}) exitWith {};
 
 params ["_unit"];

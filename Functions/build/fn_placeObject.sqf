@@ -4,7 +4,8 @@ Function: BLWK_fnc_placeObject
 Description:
 	Either snaps object to surface or places it floating
 
-	Executed from ""
+	Executed from "BLWK_fnc_addPickedUpObjectActions" and
+		"BLWK_fnc_pickUpObject" (in the event that the player is downed)
 
 Parameters:
 	0: _object : <OBJECT> - The object to place
@@ -48,5 +49,6 @@ if (_snapToSurface) then {
 [_object] remoteExec ["BLWK_fnc_enableCollisionWithPlayer",BLWK_allClientsTargetID,true];
 
 missionName setVariable ["BLWK_heldObject",nil];
+
 
 true

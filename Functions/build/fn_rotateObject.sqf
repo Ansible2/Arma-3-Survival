@@ -4,7 +4,7 @@ Function: BLWK_fnc_rotateObject
 Description:
 	Rotates an object either left or right while keeping it's vectorUp intact
 
-	Executed from ""
+	Executed from "BLWK_fnc_addBuildObjectActions" & "BLWK_fnc_addPickedUpObjectActions"
 
 Parameters:
 	0: _object : <OBJECT> - The object to rotate
@@ -13,7 +13,7 @@ Parameters:
 	3: _player : <OBJECT> - if _beingCarried is true, this is the person who it will be attached to
 
 Returns:
-	Nothing
+	NOTHING
 
 Examples:
     (begin example)

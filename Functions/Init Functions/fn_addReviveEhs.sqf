@@ -1,3 +1,28 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_addDiaryEntries
+
+Description:
+	Adds diary entries at the start of the mission to the player
+
+	Executed from ""
+
+Parameters:
+	0: _player : <OBJECT> - The player to add diary entries to
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+
+		call BLWK_fnc_addDiaryEntries;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher,
+	Hilltop & omNomios
+---------------------------------------------------------------------------- */
 if (!hasInterface OR {BLWK_dontUseRevive}) exitWith {};
 
 params [

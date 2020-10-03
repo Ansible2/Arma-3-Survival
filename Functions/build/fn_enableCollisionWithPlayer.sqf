@@ -2,13 +2,13 @@
 Function: BLWK_fnc_enableCollisionWithPlayer
 
 Description:
-	When an object is picked up, it's collision is disabled.
+	When an object is picked up, it's collision is disabled to avoid hitting other players.
 	This resets it.
 
-	Executed from ""
+	Executed from "BLWK_fnc_placeObject"
 
 Parameters:
-	NONE
+	0: _object : <OBJECT> - The object to enable collision with
 
 Returns:
 	NOTHING
@@ -16,14 +16,14 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn BLWK_fnc_enableCollisionWithPlayer;
+		null = [myObject] spawn BLWK_fnc_enableCollisionWithPlayer;
 
     (end)
 
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if !(hasInterface) exitWith {};
+if !(hasInterface OR !{canSuspend}) exitWith {};
 
 params ["_object"];
 

@@ -4,7 +4,7 @@ Function: BLWK_fnc_addBuildableObjectActions
 Description:
 	Adds all the actions to an object in order to manipulate it in the world.
 
-	Executed from ""
+	Executed from "BLWK_fnc_purchaseObject"
 
 Parameters:
 	0: _object : <OBJECT> - The object to add the actions to
@@ -42,7 +42,7 @@ if (!_object isEqualTo bulwarkBox AND {!(_object isEqualTo lootBox)}) then {
 				hint "You can't sell this item";
 			};
 
-			[_object,_caller] call BLWK_fnc_sell;
+			[_object,_caller] call BLWK_fnc_sellObject;
 		}, 
 		nil, 
 		90,  
@@ -92,7 +92,7 @@ _object addAction [
 	"<t color='#ffffff'>-- Pickup Object --</t>",  
 	{
 		params ["_object","_caller"];
-		[_object,_caller] call BLWK_fnc_pickup;
+		[_object,_caller] call BLWK_fnc_pickupObject;
 	}, 
 	nil, 
 	100,  
@@ -150,5 +150,6 @@ _object addAction [
 	"!(_originalTarget getVariable ['BLWK_objectPickedUp',false])", 
 	5
 ];
+
 
 true

@@ -163,6 +163,7 @@ BLWK_supports_array = [
 BLWK_buildableObjects_array = [
 	//1. Price //2. Displayed Name //3. ClassName //4. Default rotation //5. Object Radius (meters) //6. Has AI
 	//Cipher Comment The object radius is used to prevent AI from glitching through and triggers suicide bombers.......that seems dumb
+    // CIPHER COMMENT: Still need to check attachTo arrays for all of these
     [25,   "Long Plank (8m)",      "Land_Plank_01_8m_F",                /*0,   4,*/ false, [0, [0,0,0]]      ],
     [50,   "Junk Barricade",       "Land_Barricade_01_4m_F",            /*0, 1.5,*/ false, [0, [0,0,0]]      ],
     [75,   "Small Ramp (1m)",      "Land_Obstacle_Ramp_F",            /*180, 1.5,*/ false, [180, [0,0,0]]    ],
