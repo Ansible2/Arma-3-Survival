@@ -1,6 +1,3 @@
-/*
-
-*/
 #define FACTION_STRINGS \
 	"NATO", \
 	"NATO PACIFIC", \

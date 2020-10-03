@@ -25,35 +25,6 @@ class BLWK
 		{};
 	};
 
-	class CBAP //ported CBA functions 
-	{
-		file = "functions\CBAP";
-		class addWaypoint
-		{};
-		class clearWaypoints
-		{};
-		class getGroup
-		{};
-		class getItemConfig
-		{};
-		class getPos
-		{};
-		class inheritsFrom
-		{};
-		class players
-		{};
-		class randPos
-		{};
-		class randPosArea
-		{};
-		class shuffle
-		{};
-		class taskPatrol
-		{};
-		class vectRotate3D
-		{};
-	};
-
 	class DragSystem
 	{
 		file = "Functions\Drag system";
@@ -290,6 +261,38 @@ class BLWK
 		class startWave
 		{};
 		class startWaveCountdownFinal
+		{};
+	};
+};
+
+class CBAP //ported CBA functions 
+{
+	class ported
+	{
+		file = "functions\CBAP";
+		class addWaypoint
+		{};
+		class clearWaypoints
+		{};
+		class getGroup
+		{};
+		class getItemConfig
+		{};
+		class getPos
+		{};
+		class inheritsFrom
+		{};
+		class players
+		{};
+		class randPos
+		{};
+		class randPosArea
+		{};
+		class shuffle
+		{};
+		class taskPatrol
+		{};
+		class vectRotate3D
 		{};
 	};
 };

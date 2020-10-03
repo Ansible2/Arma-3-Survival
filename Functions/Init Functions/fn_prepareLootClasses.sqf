@@ -124,7 +124,7 @@ private _fn_sortType = {
 	_tempItemType = _tempReturn select 1;
 
 	if (_tempItemCategory == "weapon") exitWith {call _fn_sortWeapons};
-	if (_tempItemCategory == "item") exitWith {call _fn_sorItems};
+	if (_tempItemCategory == "item") exitWith {call _fn_sortItems};
 	if (_tempItemCategory == "equipment") exitWith {call _fn_sortEquipment};
 	if (_tempItemCategory == "mine") exitWith {call _fn_sortExplosives};
 	if (_tempItemCategory == "magazine") exitWith {call _fn_sortMagazines};
