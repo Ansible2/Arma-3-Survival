@@ -1,3 +1,28 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_addPlayerItems
+
+Description:
+	Adds a number of potential items to a
+	Based on mission params.
+
+	Executed from "initPlayerLocal.sqf" & "onPlayerRespawn.sqf"
+
+Parameters:
+	0: _player : <OBJECT> - The person to add items to
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+
+		[player] call BLWK_fnc_addPlayerItems;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 params [
 	["_player",player,[objNull]]
 ];
@@ -14,9 +39,6 @@ if (BLWK_playersStartWith_NVGs) then {
 	_player linkItem "Integrated_NVG_F";
 };
 if (BLWK_playersStartWith_compass) then {
-	_player linkItem "itemCompass";
-};
-if (BLWK_playersStartWith_radio) then {
 	_player linkItem "itemCompass";
 };
 if (BLWK_playersStartWith_radio) then {

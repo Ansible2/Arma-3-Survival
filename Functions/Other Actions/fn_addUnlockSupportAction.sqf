@@ -2,9 +2,9 @@
 Function: BLWK_fnc_addUnlockSupportAction
 
 Description:
-	Adds the action to unlock the bulwark support menu
+	Adds the action to unlock the bulwark support menu to a sattelite dish
 
-	Executed from ""
+	Executed from "BLWK_fnc_spawnLoot"
 
 Parameters:
 	0: _satelliteDish : <OBJECT> - The dish to add the action to

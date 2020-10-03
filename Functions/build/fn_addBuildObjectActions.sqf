@@ -32,13 +32,13 @@ if (isNull _object) exitWith {false};
 
 // CIPHER COMMENT: maybe make sell into a hold action?
 // sell object
-if (!_object isEqualTo bulwarkBox AND {!(_object isEqualTo lootBox)}) then {
+if (!_object isEqualTo bulwarkBox AND {!(_object isEqualTo BLWK_randomWeaponBox)}) then {
 	_object addAction [ 
 		"<t color='#ff0000'>-- Sell Object Back --</t>",  
 		{
 			params ["_object","_caller"];
 
-			if (_object isEqualTo bulwarkBox OR {(_object isEqualTo lootBox)}) exitWith {
+			if (_object isEqualTo bulwarkBox OR {(_object isEqualTo BLWK_randomWeaponBox)}) exitWith {
 				hint "You can't sell this item";
 			};
 

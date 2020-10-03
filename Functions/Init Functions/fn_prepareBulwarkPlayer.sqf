@@ -50,8 +50,7 @@ _bulwark addAction [
 _bulwark addAction [ 
 	"<t color='#00ff00'>-- Open Shop --</t>",  
 	{
-		// CIPHER COMMENT: needs updated function
-		[_this select 1] spawn bulwark_fnc_purchaseGui;
+		null = [] spawn BLWK_fnc_openShopGUI;
 	}, 
 	nil, 
 	1.5,  

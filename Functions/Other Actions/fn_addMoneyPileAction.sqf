@@ -2,9 +2,9 @@
 Function: BLWK_fnc_addMoneyPileAction
 
 Description:
-	Adds the action to get the points from a money pile
+	Adds the action to get the points from a money pile.
 
-	Executed from ""
+	Executed from "BLWK_fnc_spawnLoot"
 
 Parameters:
 	0: _moneyPile : <OBJECT> - The pile of money to add the action to
@@ -20,7 +20,8 @@ Examples:
     (end)
 
 Author:
-	Ansible2 // Cipher
+	Hilltop & omNomios,
+	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};
 

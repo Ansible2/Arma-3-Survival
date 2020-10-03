@@ -1,4 +1,32 @@
-// random numbers are to increase the chance of the extremses like 1 or 3 but impossible to get to 0 or 4
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_randomizeWeapons
+
+Description:
+	Uses loot lists to give a unit an random assortment of weapons.
+	The unit will always get a primary but will only have certain
+	 chances to get things such as grenades, launchers, pistols, etc.
+
+	Executed from "BLWK_fnc_handleEnemyWeapons"
+
+Parameters:
+	0: _unit : <OBJECT> - The unit to give random weapons to
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+
+		[theUnit] call BLWK_fnc_randomizeWeapons;
+
+    (end)
+
+Author:
+	Hilltop & omNomios,
+	Modified by: Ansible2 // Cipher
+---------------------------------------------------------------------------- */
+// these random numbers are to increase the chance of the extremses like 1 or 3 
+//  but keep it impossible to get to 0 or 4
 #define RANOM_123 [0.51,2,3.49]
 #define RANDOM_345 [2.51,4,5.49]
 #defin RANOM_234 [1.51,3,4.49]

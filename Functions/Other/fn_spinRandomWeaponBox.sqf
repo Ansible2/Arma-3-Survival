@@ -1,23 +1,28 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_animateRandomWeaponBox
+Function: BLWK_fnc_spinRandomWeaponBox
 
 Description:
-	Performs the "animation" for the box and handles creating and deleting the weapon
+	Performs the "animation" for the box and handles 
+	 creating and deleting the weapon.
 	
-	It is executed from the "".
+	Executed from the action added in "BLWK_fnc_addWeaponBoxSpinAction"
 	
 Parameters:
 	NONE
 
 Returns:
-	Nothing
+	NOTHING
 
 Examples:
     (begin example)
 
-		null = [BLWK_randomWeapon] spawn BLWK_fnc_spinRandomWeaponBox;
+		null = [] spawn BLWK_fnc_spinRandomWeaponBox;
 
     (end)
+
+Author:
+	Hilltop & omNomios,
+	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if (!canSuspend) exitWith {};
 

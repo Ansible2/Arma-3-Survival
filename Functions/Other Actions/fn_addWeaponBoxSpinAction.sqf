@@ -4,7 +4,7 @@ Function: BLWK_fnc_addWeaponBoxSpinAction
 Description:
 	Adds the action to the weapon box to... spin it... imagine that...
 
-	Executed from ""
+	Executed from "BLWK_fnc_spawnLoot"
 
 Parameters:
 	0: _randomWeaponBox : <OBJECT> - The box to add the action to

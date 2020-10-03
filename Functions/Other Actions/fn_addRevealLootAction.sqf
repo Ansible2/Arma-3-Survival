@@ -2,12 +2,12 @@
 Function: BLWK_fnc_addRevealLootAction
 
 Description:
-	Adds the action to the weapon box to... spin it... imagine that...
+	Adds the action to the box that adds loot location markers to the map
 
-	Executed from ""
+	Executed from "BLWK_fnc_spawnLoot"
 
 Parameters:
-	0: _randomWeaponBox : <OBJECT> - The box to add the action to
+	0: _lootRevealBox : <OBJECT> - The box to add the action to
 
 Returns:
 	NOTHING
@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		call BLWK_fnc_addRevealLootAction;
+		[myBox] call BLWK_fnc_addRevealLootAction;
 
     (end)
 
@@ -34,7 +34,7 @@ removeAllActions _lootRevealBox;
 _lootRevealBox addAction [ 
 	"<t color='#ff00ff'>-- Reveal Loot Locations --</t>",  
 	{
-		["IntelAdded",["Loot locations added to map"]] remoteExec ["BIS_fnc_showNotification",(call CBAP_fnc_players),true];
+		["IntelAdded",["Loot locations added to map"]] remoteExec ["BIS_fnc_showNotification",(call CBAP_fnc_players)];
 		missionNamespace setVariable ["BLWK_lootRevealerBox",nil,true];
 		remoteExec ["BLWK_fnc_createLootMarkers",2];
 

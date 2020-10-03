@@ -2,7 +2,10 @@
 Function: BLWK_fnc_doMagRepack
 
 Description:
-	Completes a repack on the units current weapon
+	Completes a repack on the units current weapon.
+
+	Executed from a displayAddEventHandler for Ctrl+R
+	 that is added in the "initPlayerLocal.sqf"
 
 Parameters:
 	0: _player : <OBJECT> - The person doing the repack
@@ -19,7 +22,8 @@ Examples:
 
 Author:
 	Quicksilver,
-	Ansible2 // Cipher
+	Hilltop & omNomios,
+	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 params [
 	["_player",player,[objNull]]

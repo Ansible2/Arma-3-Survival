@@ -4,7 +4,7 @@ Function: BLWK_fnc_checkDLC
 Description:
 	Checks a className to see if it is from any of the excluded DLCs
 	
-	It is executed from the "".
+	Executed from "BLWK_fnc_prepareLootClasses" & "BLWK_fnc_prepareUnitClasses"
 	
 Parameters:
 	0: _class : <STRING> - The className of the item to search for

@@ -28,6 +28,11 @@ if !((missionNamespace getVariable ["BLWK_lootMarkers",[]]) isEqualTo []) then {
 	};
 };
 if !((missionNamespace getVariable ["BLWK_spawnedLoot",[]]) isEqualTo []) then {
+	if (BLWK_randomWeaponBoxFound) then {
+		if (BLWK_randomWeaponBox in BLWK_spawnedLoot) then {
+			BLWK_spawnedLoot deleteAt (BLWK_spawnedLoot findIf {_x isEqualTo BLWK_randomWeaponBox});
+		};
+	};
 	BLWK_spawnedLoot apply {
 		deleteVehicle _x;
 	};
@@ -110,6 +115,7 @@ if (!BLWK_randomWeaponBoxFound) then {
 	_addToZeusArray pushBack BLWK_randomWeaponBox;
 
 	[BLWK_randomWeaponBox] remoteExec ["BLWK_fnc_addBuildObjectActions",BLWK_allClientsTargetID,true];
+	[BLWK_randomWeaponBox] remoteExec ["BLWK_fnc_addWeaponBoxSpinAction",BLWK_allClientsTargetID,true];
 	BLWK_spawnedLoot pushBack BLWK_randomWeaponBox;
 };
 

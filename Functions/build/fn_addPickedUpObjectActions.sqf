@@ -57,7 +57,7 @@ private _placeActionID = _player addAction [
 ];
 
 private _sellActionID = nil;
-if (!_object isEqualTo bulwarkBox AND {!(_object isEqualTo lootBox)}) then {
+if (!_object isEqualTo bulwarkBox AND {!(_object isEqualTo BLWK_randomWeaponBox)}) then {
 	// sell object
 	_sellActionID = _player addAction [ 
 		"<t color='#ff0000'>-- Sell (In Hand) Object Back --</t>",  

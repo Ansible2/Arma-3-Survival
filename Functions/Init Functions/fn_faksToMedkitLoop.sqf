@@ -2,9 +2,11 @@
 Function: BLWK_fnc_faksToMedkitLoop
 
 Description:
-	Loops while players are looking at the bulwark's inventory to see if a medkit should be made
+	Loops while players are looking at the bulwark's inventory 
+	 to see if a medkit should be made out of 15 first aid kits
 
-	Executed from ""
+	Executed from players with a ContainerOpened event 
+	 in the "BLWK_fnc_prepareBulwarkPlayer"
 
 Parameters:
 	NONE
@@ -20,7 +22,8 @@ Examples:
     (end)
 
 Author:
-	Ansible2 // Cipher
+	Hilltop & omNomios,
+	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 
@@ -33,12 +36,16 @@ private ["_players","_return"];
 private _fn_someoneLookingInBulwark = {
 	_players = call CBAP_fnc_players;
 	_return = _players findIf {_x getVariable ["BLWK_lookingInBulwark",false]};
-	
-	_return
+
+	if (_return isEqualTo -1) then {
+		false
+	} else {
+		true
+	};
 };
 
 private ["_bulwarkItems","_numberOfFAKs"];
-while {(call _fn_lookingInBulwark) != -1 AND {!BLWK_dontUseRevive}} do {
+while {(call _fn_lookingInBulwark) AND {!BLWK_dontUseRevive}} do {
 	_bulwarkItems = itemCargo bulwarkBox;
 	_numberOfFAKs = count (_bulwarkItems select {_x == "FirstAidKit"})
 	
