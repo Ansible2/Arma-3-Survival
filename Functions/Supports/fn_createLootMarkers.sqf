@@ -51,7 +51,7 @@ private _fn_setUpMarker = {
 	private _type = _configAndType select 1;
 	
 	private _marker = createMarker ["BLWK_lootMarker_" + str _index,getPos _loot];
-	_marker setMarkerText ([_config] call BIS_fnc_displayName;);
+	_marker setMarkerText ([_config] call BIS_fnc_displayName);
 	
 	if (_type == "CfgWeapons") exitWith {
 		_marker setMarkerColor "ColorPink";

@@ -25,14 +25,15 @@ Author:
 	Hilltop & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+// CIPHER COMMENT: This is in need of general optimizations
 params [
 	["_player",player,[objNull]]
 ];
 
-_playerFullMags = magazinesAmmo _player;
+private _playerFullMags = magazinesAmmo _player;
 
-_fullAmmoCountArr = [];
-_foundMags = [];
+private _fullAmmoCountArr = [];
+private _foundMags = [];
 {
 	_magName = (_x select 0);
 
@@ -40,7 +41,7 @@ _foundMags = [];
 		_fullAmmoCountArr pushback [_magName, 0];
 		_foundMags pushback _magName;
 	};
-}forEach _playerFullMags;
+} forEach _playerFullMags;
 
 {
 	_aMagArray = _x;

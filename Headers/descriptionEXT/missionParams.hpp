@@ -420,3 +420,11 @@ class BLWK_maxEnemyInfantryAtOnce
 	texts[] = {"10","15","20","25","30","35","40","45","50"};
 	default = 30;
 };
+
+class BLWK_magRepackEnabled
+{
+	title = "Enable Vanilla MagRepack";
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
+	default = 1;
+};

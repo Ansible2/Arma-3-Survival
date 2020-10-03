@@ -139,7 +139,7 @@ private _fn_spawnAVehicle = {
 	private _crew = _availableInfantry select [0,3];
 	_availableInfantry deleteRange [0,3];
 	
-	private _group = createGroup (side (_crew select 0))
+	private _group = createGroup (side (_crew select 0));
 	_group deleteGroupWhenEmpty true;
 	_group allowFleeing 0;
 	

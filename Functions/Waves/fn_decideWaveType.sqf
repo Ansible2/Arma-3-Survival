@@ -70,7 +70,7 @@ private _fn_execWave = {
 
 		[SPECIAL_WARNING_TEMPLATE, [CIVILIAN_WAVE_NOTIFICATION]]
 	};
-	if (_selectedWaveType == DRONE_WAVE exitWith {
+	if (_selectedWaveType == DRONE_WAVE) exitWith {
 		null = remoteExec ["BLWK_fnc_handleDroneWave",BLWK_theAIHandler];
 
 		[SPECIAL_WARNING_TEMPLATE, [DRONE_WAVE_NOTIFICATION]]

@@ -34,7 +34,7 @@ for "_i" from 1 to NUM_CIVILIANS do {
 	private _randomBuilding = selectRandom BLWK_playAreaBuildings;
 	private _spawnPosition = selectRandom (_randomBuilding buildingPos -1);
 
-	private _group = createGroup [civilian,true]
+	private _group = createGroup [civilian,true];
 	private _unit = _group createUnit [CIVILIAN_CLASS, _spawnPosition, [], 0.5, "NONE"];
 
 	// give them a random look

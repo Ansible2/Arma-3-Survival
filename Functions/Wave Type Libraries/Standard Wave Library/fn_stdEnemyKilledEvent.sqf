@@ -60,5 +60,5 @@ if (local _instigator AND {isPlayer _instigator} AND {hasInterface}) then {
 
 // mp events need to be removed on the unit where they are local
 if (local _killedUnit) then {
-	removeMPEventHandler ["mpKilled",_handlerID];
+	_killedUnit removeMPEventHandler ["mpKilled",_handlerID];
 };

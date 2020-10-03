@@ -22,7 +22,7 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-params ["_unit","_queName","_group"]
+params ["_unit","_queName","_group"];
 
 [_unit] call BLWK_fnc_setSkill;
 

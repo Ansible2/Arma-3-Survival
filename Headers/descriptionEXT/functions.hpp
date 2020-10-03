@@ -121,8 +121,10 @@ class BLWK
 		{};
 		class adjustPlayerTraits
 		{};
+	/*	
 		class checkDLC
 		{};
+	*/
 		class doMagRepack
 		{};
 		class handleEnemyWeapons
