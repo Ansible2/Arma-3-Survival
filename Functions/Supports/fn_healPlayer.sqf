@@ -4,7 +4,7 @@ Function: BLWK_fnc_healPlayer
 Description:
 	Heals the player when they select the action ont he bulwark
 
-	Executed from ""
+	Executed from the action added in "BLWK_fnc_prepareBulwarkPlayer"
 
 Parameters:
 	0: _player : <OBJECT> - The person to heal

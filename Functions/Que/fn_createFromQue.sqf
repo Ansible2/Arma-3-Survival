@@ -1,3 +1,28 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_addToQue
+
+Description:
+	Spawns the first available unit in the specified que 
+
+Parameters:
+	0: _queName : <STRING> - The name of the que from which to spawn
+	1: _codeToRun : <CODE> - What code should run when the unit is created (passed args are [_unit,_queName,_group])
+	2: _side : <SIDE> - The side the unit will be on
+	3: _group : <GROUP> - The group the unit can be in; if empty, a new one is made
+
+Returns:
+	BOOL
+
+Examples:
+    (begin example)
+
+		["BLWK_standardInfantryQue",{},OPFOR] call BLWK_fnc_addToQue;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 params [
 	["_queName","",[""]],
 	["_codeToRun",{},[{}]],

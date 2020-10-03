@@ -20,7 +20,8 @@ Examples:
     (end)
 
 Author:
-	Ansible2 // Cipher
+	Hilltop & omNomios,
+	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};
 

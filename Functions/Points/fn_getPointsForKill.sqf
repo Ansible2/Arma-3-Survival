@@ -1,3 +1,26 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_getPointsForKill
+
+Description:
+	Designed to return the appropriate amount of points for a kill based upon
+	 the multipliers for a unit's level or type.
+
+Parameters:
+	0: _unit : <OBJECT> - The vehicle or unit killed
+
+Returns:
+	NUMBER - The amount the unit kill is worth
+
+Examples:
+    (begin example)
+
+		_pointsToAdd = [killedUnits] call BLWK_fnc_getPointsForKill;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 params ["_unit"];
 
 // CIPHER COMMENT: it might be better to just cache the unit's multiplier in their namespace

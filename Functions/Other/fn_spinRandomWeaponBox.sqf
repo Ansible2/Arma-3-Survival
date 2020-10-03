@@ -24,6 +24,10 @@ Author:
 	Hilltop & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+// CIPHER COMMENT: might be worth just passing the box as an arguement instead
+//  of using the global var synced over the network. It would already be available in the
+//  action 
+
 if (!canSuspend) exitWith {};
 
 // check if player has enough to use the box

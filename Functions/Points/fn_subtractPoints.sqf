@@ -27,11 +27,11 @@ params [
 	["_pointsSpent",0,[123]]
 ];
 
+if (_pointsSpent isEqualTo 0) exitWith {false};
+
 private _killPoints = missionNamespace getVariable ["BLWK_playerKillPoints",0];
 _killPoints = _killPoints - _pointsSpent;
 missionNamespace setVariable ["BLWK_playerKillPoints",_killPoints];
 
-// CIPHER COMMENT: Why do you need to know the player here? Why scheduled?
-null = [_player] spawn killPoints_fnc_updateHud;
 
 true

@@ -2,9 +2,9 @@
 Function: BLWK_fnc_createLootMarkers
 
 Description:
-	Creates the loot markers when a player finds the reveal loot box
+	Creates the loot markers when a player finds the reveal loot box.
 
-	Executed from ""
+	Executed from "BLWK_fnc_addRevealLootAction"
 
 Parameters:
 	NONE

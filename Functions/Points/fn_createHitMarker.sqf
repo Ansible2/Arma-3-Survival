@@ -4,11 +4,10 @@ Function: BLWK_fnc_createHitMarker
 Description:
 	Spawns the points to show when a unit is hit
 
-	Executed from ""
-
 Parameters:
 	0: _hitUnit : <OBJECT> - The unit that number will display off of
 	1: _pointsToDisplay : <NUMBER> - The number of points to display
+	2: _minusPoints : <BOOL> - Is this subtracting points
 
 Returns:
 	NOTHING
@@ -22,7 +21,8 @@ Examples:
     (end)
 
 Author:
-	Ansible2 // Cipher
+	Hilltop & omNomios,
+	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if (!BLWK_showHitPoints) exitWith {};
 
