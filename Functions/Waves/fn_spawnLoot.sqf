@@ -2,7 +2,7 @@
 Function: BLWK_fnc_spawnLoot
 
 Description:
-	Creates loot for a wave
+	Creates loot for a wave.
 	
 	It is executed from the "initServer.sqf".
 	
@@ -18,6 +18,10 @@ Examples:
 		call BLWK_fnc_spawnLoot;
 
     (end)
+
+Author:
+	Hilltop & omNomios,
+	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {false};
 
@@ -38,10 +42,11 @@ if !((missionNamespace getVariable ["BLWK_spawnedLoot",[]]) isEqualTo []) then {
 	};
 };
 
-//////////////////////////////////////////////////////////////////////////////////
-///////////////////////////Prepare Spawn Positions////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////
+/* ----------------------------------------------------------------------------
 
+	Prepare Spawn Positions
+
+---------------------------------------------------------------------------- */
 // get ALL buildings in area
 private _buildingsInPlayArea = nearestTerrainObjects [BLWK_playAreaCenter,["House"], BLWK_playAreaRadius, false, true];
 
@@ -81,9 +86,11 @@ private _fn_getASpawnPosition = {
 
 private _addToZeusArray = [];
 
-//////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////Unique Items///////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////
+/* ----------------------------------------------------------------------------
+
+	Unique Items
+
+---------------------------------------------------------------------------- */
 
 // LOOT REVEAL BOX
 // these are global for future endeavors
@@ -133,9 +140,11 @@ BLWK_spawnedLoot pushBack BLWK_moneyPile;
 // things such as compasses and GPSs will be annoying to find often, but, given the amount of randomization
 // it may not be needed actually
 //// Also, it may be adventageous to do a weighted random to avoid spawning so much junk or vice-versa
-//////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////Everything else////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////
+/* ----------------------------------------------------------------------------
+
+	Everything else
+
+---------------------------------------------------------------------------- */
 private _fn_addLoot = {
 	params ["_holder"];
 	

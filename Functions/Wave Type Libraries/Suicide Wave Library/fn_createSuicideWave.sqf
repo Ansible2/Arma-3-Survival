@@ -1,3 +1,28 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_createSuicideWave
+
+Description:
+	creates the suicide bombers and sends them towards the Bulwark
+
+	Executed from "BLWK_fnc_handleSuicideWave"
+
+Parameters:
+	0: _unitsToWorkWith : <ARRAY> - Units to potentially turn into bombers
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+
+		[unitsArray] call BLWK_fnc_createSuicideWave;
+
+    (end)
+
+Author:
+	Hilltop & omNomios,
+	Modified by: Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 params ["_unitsToWorkWith"];
 
 private _numberOfBombers = round (count _unitsToWorkWith / 4);

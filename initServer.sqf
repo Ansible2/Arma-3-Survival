@@ -25,7 +25,7 @@ sleep (BLWK_timeBetweenRounds - 15);
 null = remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
 sleep 15;
 
-call BLWK_fnc_startWave;
+null = [] spawn BLWK_fnc_startWave;
 
 
 

@@ -1,3 +1,28 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_decideWaveType
+
+Description:
+	Decides what type of wave will be next if there are special waves allowed.
+
+	Executed from "BLWK_fnc_startWave"
+
+Parameters:
+	NONE
+
+Returns:
+	BOOL
+
+Examples:
+    (begin example)
+
+		call BLWK_fnc_decideWaveType;
+
+    (end)
+
+Author:
+	Hilltop & omNomios,
+	Modified by: Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!isServer) exitWith {false};
 #include "..\..\Headers\String Constants.hpp"
 #define STANDARD_WAVE_LIKELIHOOD 1

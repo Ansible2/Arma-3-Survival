@@ -4,7 +4,7 @@ Function: BLWK_fnc_explodeSuicideBomberEvent
 Description:
 	Creates the explosion at a suicide bomber's position
 
-	Executed from ""
+	Executed from the event added in "BLWK_fnc_createSuicideWave" & "BLWK_fnc_suicideBomberLoop"
 
 Parameters:
 	0: _bomber : <OBJECT> - The suicide bomber

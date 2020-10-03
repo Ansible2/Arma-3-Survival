@@ -27,6 +27,7 @@ ReviveBleedOutDelay = 120;
 
 // CIPHER COMMENT: this will manage only objects that can respawn... e.g. players...
 // see about changing this
+/*
 corpseManagerMode = 2;
 corpseLimit = 5;
 wreckLimit = 2;
@@ -34,6 +35,7 @@ corpseRemovalMinTime = 180;
 corpseRemovalMaxTime = 181;
 wreckRemovalMinTime = 30;
 wreckRemovalMaxTime = 50;
+*/
 
 class Header
 {
@@ -93,10 +95,10 @@ class CfgDebriefing
 
 class CfgCommunicationMenu
 {
-	#include "Headera\descriptionEXT\commMenuSupports.h"
+	//#include "Headera\descriptionEXT\commMenuSupports.h"
 };
 
-//Notification for Special Waves
+//Notifications for Special Waves
 class CfgNotifications
 {
 	class SpecialWarning

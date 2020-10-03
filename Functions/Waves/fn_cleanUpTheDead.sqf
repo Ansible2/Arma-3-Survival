@@ -1,3 +1,30 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_cleanUpTheDead
+
+Description:
+	Cleans up dead bodies after the next wave begins.
+	Also handles heaping the bodies into piles based upon the mission params
+	 for how long the dead should last.
+
+	Executed from "BLWK_fnc_startWave"
+
+Parameters:
+	NONE
+
+Returns:
+	BOOL
+
+Examples:
+    (begin example)
+
+		call BLWK_fnc_cleanUpTheDead;
+
+    (end)
+
+Author:
+	Hilltop & omNomios,
+	Modified by: Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!isServer) exitWIth {false};
 
 private _allDeadMen = allDeadMen;

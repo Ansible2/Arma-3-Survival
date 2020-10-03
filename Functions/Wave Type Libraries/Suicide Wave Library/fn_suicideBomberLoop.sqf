@@ -1,3 +1,28 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_suicideBomberLoop
+
+Description:
+	Starts the loop that checks a bombers surroundings to see if they should explode.
+	Also plays their weird audio.
+
+	Executed from "BLWK_fnc_createSuicideWave"
+
+Parameters:
+	NONE
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+
+		null = [myBomber] spawn BLWK_fnc_suicideBomberLoop;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!canSuspend) exitWith {};
 
 params ["_bomber"];
