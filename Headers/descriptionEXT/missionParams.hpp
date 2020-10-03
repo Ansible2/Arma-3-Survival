@@ -215,7 +215,7 @@ class BLWK_loot_cityDistribution
 	default = 2;
 };
 
-class BLWK_loot_distributionInBuildings
+class BLWK_loot_roomDistribution
 {
 	title = "Loot Within Building Distribution";
 	values[] = {1, 2, 3, 4};

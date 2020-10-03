@@ -91,8 +91,6 @@ if (isNil "bulwarkBox") then {
 	bulwarkBox = _bulwark;
 };
 
-// drawing bulwark icon
-waitUntil {!isNil "bulWarkBox"};
-addMissionEventHandler [{
+addMissionEventHandler ["EachFrame",{
 	drawIcon3D ["", [1,1,1,0.5], (getPosATLVisual bulwarkBox) vectorAdd [0, 0, 1.5], 1, 1, 0, "Bulwark", 0, 0.04, "RobotoCondensed", "center", true];
 }];

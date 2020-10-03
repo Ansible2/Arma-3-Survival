@@ -44,7 +44,7 @@ Author:
 
 // set up MACRO vars that can be used between files and make changes easier
 #include "..\..\Headers\Faction Headers\Define Factions.hpp"
-//#include "..\..\Headers\Faction Headers\Unit Tables\vanillaUnitTables.hpp"
+#include "..\..\Headers\Faction Headers\Unit Tables\vanillaUnitTables.hpp"
 
 
 // to save on allocation time for memory, we are going to use temp values
@@ -104,11 +104,11 @@ private _fn_getSelectedClasses = {
 	params ["_factionString","_defaultFactionString"];
 
 	// get faction to check
-	private _index = FACTION_STRINGS findIf {_x == _factionString};
+	private _index = [FACTION_STRINGS] findIf {_x == _factionString};
 	private _classes = FACTION_VARS select _index;
 
 	// setup default fall through faction
-	_index = FACTION_STRINGS findIf {_x == _defaultFactionString};
+	_index = [FACTION_STRINGS] findIf {_x == _defaultFactionString};
 	_defaultFactionTypeClasses = FACTION_VARS select _index;
 
 	private _return = [_classes] call _fn_sortFactionClasses;

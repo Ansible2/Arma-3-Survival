@@ -9,6 +9,8 @@ class BLWK
 		{};
 		class enableCollisionWithPlayer 
 		{};
+		class moveUpOrDown
+		{};
 		class pickupObject 
 		{};
 		class placeObject 

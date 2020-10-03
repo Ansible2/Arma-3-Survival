@@ -158,7 +158,7 @@ if (hasInterface) then {
     /* Starting Items */
     BLWK_playersStartWith_pistol = [false,true] select ("BLWK_playersStartWith_pistol" call BIS_fnc_getParamValue);
     BLWK_playersStartWith_compass = [false,true] select ("BLWK_playersStartWith_compass" call BIS_fnc_getParamValue);
-    BLWK_playersStartWith_mineDetectors = [false,true] select ("BLWK_playersStartWith_mineDetectors" call BIS_fnc_getParamValue);
+    BLWK_playersStartWith_mineDetector = [false,true] select ("BLWK_playersStartWith_mineDetector" call BIS_fnc_getParamValue);
     BLWK_playersStartWith_radio = [false,true] select ("BLWK_playersStartWith_radio" call BIS_fnc_getParamValue);
     BLWK_playersStartWith_map = [false,true] select ("BLWK_playersStartWith_map" call BIS_fnc_getParamValue); 
     BLWK_playersStartWith_NVGs = [false,true] select ("BLWK_playersStartWith_NVGs" call BIS_fnc_getParamValue);

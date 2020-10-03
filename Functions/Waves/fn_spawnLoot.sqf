@@ -65,7 +65,7 @@ private _sortedPositions = [];
 		private _buildingsPositions = _currentBuilding buildingPos -1;
 		
 		{
-			if ((_forEachIndex mod BLWK_loot_distributionInBuildings) isEqualTo 0) then {
+			if ((_forEachIndex mod BLWK_loot_roomDistribution) isEqualTo 0) then {
 				_sortedPositions pushBack _x
 			};
 		} forEach _buildingsPositions;
