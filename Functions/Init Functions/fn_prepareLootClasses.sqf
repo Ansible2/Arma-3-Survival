@@ -27,7 +27,7 @@ if (!isServer) exitWith {false};
 
 
 // get white and black lists for loot
-#include "..\Headers\Loot Lists.hpp"
+#include "..\..\Headers\Loot Lists.hpp"
 
 // Check if we are in whitelisted items only mode
 if (BLWK_loot_whiteListMode isEqualTo 1) exitWith {

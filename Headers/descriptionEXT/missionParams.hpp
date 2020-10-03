@@ -239,8 +239,8 @@ class BLWK_timeOfDay
 	default = 12;
 };
 
-A_SPACE(Points And Supports);
-A_SECTION_HEADER(Points And Supports);
+A_SPACE(Points_And_Supports);
+A_SECTION_HEADER(Points_And_Supports);
 
 class BLWK_startingKillPoints
 {

@@ -54,7 +54,7 @@ class BLWK
 		{};
 	};
 
-	class Drag System
+	class DragSystem
 	{
 		file = "Functions\Drag system";
 		class addDragAction
@@ -75,7 +75,7 @@ class BLWK
 
 	class Init
 	{
-		file = "functions\init";
+		file = "Functions\Init Functions";
 		class addDiaryEntries
 		{};
 		class addReviveEhs
@@ -139,7 +139,7 @@ class BLWK
 		{};
 	};
 
-	class Other Actions
+	class OtherActions
 	{
 		file = "Functions\Other Actions";
 		class addMoneyPileAction
@@ -184,7 +184,7 @@ class BLWK
 	};
 
 	// Wave Type Librariers
-	class Civilian Wave Library
+	class CivilianWaveLibrary
 	{
 		file = "Functions\Wave Type Libraries\Civilian Wave Library";
 		class civiliansWave
@@ -195,7 +195,7 @@ class BLWK
 		{};
 	};
 
-	class Drone Wave Library
+	class DroneWaveLibrary
 	{
 		file = "Functions\Wave Type Libraries\Drone Wave Library";
 		class createDroneWave
@@ -206,7 +206,7 @@ class BLWK
 		{};
 	};
 
-	class Mortar Wave Library
+	class MortarWaveLibrary
 	{
 		file = "Functions\Wave Type Libraries\Mortar Wave Library";
 		class createMortarWave
@@ -215,7 +215,7 @@ class BLWK
 		{};
 	};
 
-	class Overrun Wave Library
+	class OverrunWaveLibrary
 	{
 		file = "Functions\Wave Type Libraries\Overrun Wave Library";
 		class handleOverrunWave
@@ -224,7 +224,7 @@ class BLWK
 		{};
 	};
 
-	class Standard Wave Library
+	class StandardWaveLibrary
 	{
 		file = "Functions\Wave Type Libraries\Standard Wave Library";
 		class addStdEnemyHitEH
@@ -251,7 +251,7 @@ class BLWK
 		{};
 	};
 
-	class Suicide Wave Library
+	class SuicideWaveLibrary
 	{
 		file = "Functions\Wave Type Libraries\Suicide Wave Library";
 		class createSuicideWave

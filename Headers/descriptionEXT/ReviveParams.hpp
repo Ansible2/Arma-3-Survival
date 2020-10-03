@@ -161,7 +161,7 @@ class ReviveBleedOutDuration
 		45,
 		60,
 		90,
-		120.
+		120,
 		180
 	};
 	texts[] = {
