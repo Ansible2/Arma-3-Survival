@@ -8,7 +8,7 @@ Parameters:
 	NONE
 
 Returns:
-	BOOL
+	NOTHING
 
 Examples:
     (begin example)

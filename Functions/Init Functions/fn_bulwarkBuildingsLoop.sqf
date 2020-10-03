@@ -1,3 +1,27 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_bulwarkBuildingsLoop
+
+Description:
+	Makes (terrain) buildings within the selected radius of the Bulwark indestructable
+
+	Executed from "initServer.sqf"
+
+Parameters:
+	NONE
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+
+		null = [] spawn BLWK_fnc_bulwarkBuildingsLoop;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!isServer OR {!canSuspend}) exitWith {};
 
 private _invincibleBuildings = [];

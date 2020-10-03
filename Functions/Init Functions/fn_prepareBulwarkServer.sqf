@@ -5,13 +5,13 @@ Description:
 	Creates and sets up the bulwark, syncs the box global to all machines.
 	Also adds the desired number of medkits
 
-	Executed from ""
+	Executed from "BLWK_fnc_preparePlayArea"
 
 Parameters:
 	NONE
 
 Returns:
-	_bulwarkBox - <OBJECT>
+	OBJECT - the bulwark object
 
 Examples:
     (begin example)
@@ -21,7 +21,8 @@ Examples:
     (end)
 
 Author:
-	Ansible2 // Cipher
+	Hilltop & omNomios,
+	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 

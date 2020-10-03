@@ -2,11 +2,12 @@
 Function: BLWK_fnc_selectPlayArea
 
 Description:
-	Searches through a maps's locations for a suitable play area that is within the player's parameters.
+	Searches through a maps's locations for a suitable 
+	 play area that is within the player's parameters.
 
-	Will end mission if none exist
+	Will end mission if none exist.
 
-	Executed from ""
+	Executed from "BLWK_fnc_preparePlayArea"
 
 Parameters:
 	NONE
@@ -24,7 +25,7 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if (!isServer) exitWith {};
+if (!isServer OR {!canSuspend}) exitWith {};
 
 // get all location positions on the map and shuffle them
 private _shuffledLocations = [BLWK_locations,false] call CBA_fnc_shuffle;

@@ -6,7 +6,7 @@ Description:
 	Adds actions for the bulwark manipulation
 	Adds an event to tell players how to make medkits with it
 
-	Executed from ""
+	Executed from "BLWK_fnc_preparePlayArea"
 
 Parameters:
 	0: _bulwark : <OBJECT> - The bulwark
@@ -22,7 +22,8 @@ Examples:
     (end)
 
 Author:
-	Ansible2 // Cipher
+	Hilltop & omNomios,
+	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 //CIPHER COMMENT: it might be better to just have a waitUntil{!isNil "bulwarkBox"} from the publicvar and put this in the initPlayerLocal
 
@@ -92,7 +93,6 @@ if (isNil "bulwarkBox") then {
 
 // drawing bulwark icon
 waitUntil {!isNil "bulWarkBox"};
-
 addMissionEventHandler [{
 	drawIcon3D ["", [1,1,1,0.5], (getPosATLVisual bulwarkBox) vectorAdd [0, 0, 1.5], 1, 1, 0, "Bulwark", 0, 0.04, "RobotoCondensed", "center", true];
 }];

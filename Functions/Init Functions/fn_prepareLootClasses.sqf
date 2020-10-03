@@ -2,7 +2,8 @@
 Function: BLWK_fnc_prepareLootClasses
 
 Description:
-	Gets all the loot classes for spawning it during the mission.
+	Gets all the loot classes for spawning it during the mission and caches them.
+	Also handles the exclusion of items for DLC.
 	
 	It is executed from the "BLWK_fnc_prepareGlobals".
 	
@@ -18,6 +19,9 @@ Examples:
 		call BLWK_fnc_prepareLootClasses
 
     (end)
+Author:
+	Hilltop & omNomios,
+	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {false};
 
@@ -41,10 +45,12 @@ if (BLWK_loot_whiteListMode isEqualTo 1) exitWith {
 };
 
 
-///////////////////////////////////////////////////////////////////////
-///////////////////////////////Functions///////////////////////////////
-///////////////////////////////////////////////////////////////////////
 
+/* ----------------------------------------------------------------------------
+
+	Functions
+
+---------------------------------------------------------------------------- */
 // some of this is setup with the intention that things may be further broken down into more categories
 // this is why the functions are here that just pushback something
 private _tempClass = "";
@@ -127,7 +133,11 @@ private _fn_sortType = {
 
 
 
+/* ----------------------------------------------------------------------------
 
+	Execution
+
+---------------------------------------------------------------------------- */
 private _publicWeaponConfigs = "getNumber (_x >> 'scope') isEqualTo 2" configClasses (configFile >> "CfgWeapons");
 _publicWeaponConfigs apply {
 	[_x,"CfgWeapons"] call _fn_sortType;	

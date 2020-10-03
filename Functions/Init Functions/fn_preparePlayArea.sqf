@@ -2,9 +2,10 @@
 Function: BLWK_fnc_preparePlayArea
 
 Description:
-	Creates the marker for the play area on the map and sets the center starting point for the mission
+	Creates the marker for the play area on the map and 
+	 sets the center starting point for the mission.
 
-	Executed from ""
+	Executed from "initServer.sqf"
 
 Parameters:
 	NONE
@@ -15,12 +16,13 @@ Returns:
 Examples:
     (begin example)
 
-		call BLWK_fnc_preparePlayArea;
+		null = [] spawn BLWK_fnc_preparePlayArea;
 
     (end)
 
 Author:
-	Ansible2 // Cipher
+	Hilltop & omNomios,
+	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if (!isServer OR {!canSuspend}) exitWith {};
 

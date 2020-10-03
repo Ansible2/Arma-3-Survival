@@ -1,9 +1,36 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_infoPanelLoop
+
+Description:
+	Runs a loop that constanly checks for changes in the the info
+	 displayed on the users upper left info panel.
+
+	Executed from "initPlayerLocal.sqf"
+
+Parameters:
+	0: _player : <OBJECT> - For whom to update the panel (used to display the user's name)
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+
+		null = [player] spawn BLWK_fnc_infoPanelLoop;
+
+    (end)
+
+Author:
+	Hilltop & omNomios,
+	Modified by: Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 // This may be replaced in the future with an update function that simply acts as an event that must be called
 // I am curious to see if the performance of this loop is negligible enough though, 
 /// that it would be more effective to just have these update automatically
 
 if (!hasInterface) exitWith {};
 
+// CIPHER COMMENT: it would be worth removing the player name in the future, not much point in having it
 params [
 	["_player",player,[objNull]]
 ];

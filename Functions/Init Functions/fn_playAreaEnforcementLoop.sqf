@@ -10,7 +10,7 @@ Parameters:
 	NONE
 
 Returns:
-	Nothing
+	NOTHING
 
 Examples:
     (begin example)
@@ -18,6 +18,9 @@ Examples:
 		null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
 
     (end)
+Author:
+	Hilltop & omNomios,
+	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};
 // In the interest of potentially changing the play area dynamically, these percentages of the play area radius will not be cached

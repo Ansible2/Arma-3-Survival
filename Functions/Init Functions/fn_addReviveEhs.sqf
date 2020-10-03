@@ -1,13 +1,14 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_addDiaryEntries
+Function: BLWK_fnc_addReviveEhs
 
 Description:
-	Adds diary entries at the start of the mission to the player
+	Adds eventhandlers relavent to the vanilla revive system.
+	Includes revive from Medkit, friendly fire handling, and adding a drag action when downed
 
-	Executed from ""
+	Executed from "initPlayerLocal.sqf" & "onPlayerRespawn.sqf"
 
 Parameters:
-	0: _player : <OBJECT> - The player to add diary entries to
+	0: _player : <OBJECT> - The player to add the eventhandlers
 
 Returns:
 	NOTHING
@@ -15,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		call BLWK_fnc_addDiaryEntries;
+		call BLWK_fnc_addReviveEhs;
 
     (end)
 
@@ -54,7 +55,6 @@ BLWK_animStateChangedEh_ID = _player addEventHandler ["AnimStateChanged"{
 			} else {
 				// if unit is not revided by medkit add the drag action to them for all players
 				[_unit] remoteExecCall ["BLWK_fnc_addDragAction",BLWK_allClientsTargetID,true];
-				
 			};
 		};
 	};
@@ -70,6 +70,6 @@ BLWK_handleDamageEh_ID = _player addEventHandler ["HandleDamage", {
 		private _instigator = _this select 6;
 		// check if it is friendly fire or the player is already downed
 		// in which case, the damage will be 0
-		if ((side _unit) isEqualTo (side _instigator) OR {!(incapacitatedState _unit isEqualTo "")}) then {0};
+		if ((BLWK_friendlyFireOn AND {(side _unit) isEqualTo (side _instigator)}) OR {!(incapacitatedState _unit isEqualTo "")}) then {0};
 	};
 }];

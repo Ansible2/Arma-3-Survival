@@ -1,5 +1,45 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_prepareUnitClasses
+
+Description:
+	Gets the user selected unit class tables to use for each level
+	 and returns them in several arrays within a master.
+	Also handles DLC exclusion.
+
+	Executed from "BLWK_fnc_prepareGlobals"
+
+Parameters:
+	NONE
+
+Returns:
+	ARRAY - Formatted as: (these are arrays)
+		- friendly men classes
+		- friendly vehicle classes
+		- level 1 enemy man classes
+		- level 1 enemy vehicle classes
+		- level 2 enemy man classes
+		- level 2 enemy vehicle classes
+		- level 3 enemy man classes
+		- level 3 enemy vehicle classes
+		- level 4 enemy man classes
+		- level 4 enemy vehicle classes
+		- level 5 enemy man classes
+		- level 5 enemy vehicle classes
+
+Examples:
+    (begin example)
+
+		_classes = call BLWK_fnc_prepareUnitClasses;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher,
+	Hilltop & omNomios
+---------------------------------------------------------------------------- */
 /*
-	It will be replaced by a GUI in the future in all likelihood that dynamically gets all loaded factions on the server
+	It will be replaced by a GUI in the future in all likelihood that 
+	 dynamically gets all loaded factions on the server
 */
 
 // set up MACRO vars that can be used between files and make changes easier

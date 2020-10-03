@@ -8,7 +8,7 @@ Parameters:
 	NONE
 
 Returns:
-	BOOL
+	NOTHING
 
 Examples:
     (begin example)
@@ -21,6 +21,8 @@ Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};
+
+waitUntil {!isNull player};
 
 player addEventHandler ["KILLED", {
 	params ["_corpse"];
