@@ -18,7 +18,7 @@ class BLWK_infoPanel {
 			size = 0.040;
 			x = (SafeZoneX + 0);
 			y = (SafeZoneY + 0.015);
-			w = 0.2; h = 0.18;
+			w = 0.2; h = 0.20;
 			colorText[] = {1,1,1,1};
 			lineSpacing = 3;
 			colorBackground[] = {0,0,0,0.3};

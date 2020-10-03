@@ -59,6 +59,10 @@ class BLWK
 		{};
 		class infoPanelLoop
 		{};
+		class initClientAlias
+		{};
+		class initServerAlias
+		{};
 		class keepPlayerInGroup
 		{
 			postInit = 1;
