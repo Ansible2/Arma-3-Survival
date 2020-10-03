@@ -41,7 +41,7 @@ private _fn_execWave = {
 	};
 	if (_selectedWaveType == CIVILIAN_WAVE) exitWith {
 		null = remoteExec ["BLWK_fnc_createStdWaveInfantry",BLWK_theAIHandler];
-		call BLWK_fnc_civilianWave;
+		call BLWK_fnc_civiliansWave;
 
 		[SPECIAL_WARNING_TEMPLATE, [CIVILIAN_WAVE_NOTIFICATION]]
 	};

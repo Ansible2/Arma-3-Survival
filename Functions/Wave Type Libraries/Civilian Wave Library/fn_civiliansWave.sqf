@@ -4,13 +4,13 @@ Function: BLWK_fnc_civiliansWave
 Description:
 	Creates the civilians during a special wave.
 	
-	It is executed from the "".
+	It is executed from the "BLWK_fnc_decideWaveType".
 	
 Parameters:
 	NONE
 
 Returns:
-	Nothing
+	NOTHING
 
 Examples:
     (begin example)
@@ -18,6 +18,9 @@ Examples:
 		call BLWK_fnc_civiliansWave;
 
     (end)
+Author:
+	Hilltop & omNomios,
+	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 
@@ -38,6 +41,7 @@ for "_i" from 1 to NUM_CIVILIANS do {
 	[_unit] call BLWK_fnc_civRandomGear; 
 
 	// if a player kills the civilian, remove points
+	// CIPHER COMMENT: make sure you need MP event instead of local one
 	_unit addMpEventHandler ["MPKILLED",{
 		[_this,_thisEventhandler] call BLWK_fnc_killedCivllianEvent;
 	}];
@@ -49,7 +53,6 @@ for "_i" from 1 to NUM_CIVILIANS do {
     _unit setBehaviour "CARELESS";
 
 	_civilians pushBack _unit;
-	
 };
 
 BLWK_zeus addCuratorEditableObjects [_civilians, true];

@@ -1,3 +1,27 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_addStdEnemyManEHs
+
+Description:
+	Executes the addEventhandler to all machines for a standard units events.
+
+	Executed from "BLWK_fnc_stdEnemyManCreateCode"
+
+Parameters:
+	0: _unit : <OBJECT> - The unit to add the events to
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+
+		[aUnit] call BLWK_fnc_addStdEnemyManEHs;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 params ["_unit"];
 
 if (!local _unit) exitWith {false};
@@ -8,5 +32,6 @@ if (!local _unit) exitWith {false};
 _unit addMPEventHandler ["mpKilled",{
 	[_this,_thisEventHandler] call BLWK_fnc_stdEnemyKilledEvent;
 }];
+
 
 true

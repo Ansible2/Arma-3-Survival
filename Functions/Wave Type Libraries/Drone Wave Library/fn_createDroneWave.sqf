@@ -1,3 +1,28 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_createDroneWave
+
+Description:
+	Creates the the wave of drones that drop bombs from overhead
+
+	Executed from "BLWK_fnc_handleDroneWave"
+
+Parameters:
+	NONE
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+
+		call BLWK_fnc_createDroneWave;
+
+    (end)
+
+Author:
+	Hilltop & omNomios,
+	Modified by: Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 #define DRONE_CLASS "C_IDAP_UAV_06_antimine_F"
 #define DRONE_NUMBER 12
 
@@ -34,6 +59,7 @@ for "_i" from 1 to DRONE_NUMBER do {
 
 [_droneGroup, bulwarkBox, 20, "SAD", "AWARE"] call CBAP_fnc_addWaypoint; 
 
+// make the drones drop bombs every so often
 null = [_droneGroup] spawn BLWK_fnc_droneAttackLoop;
 
 [BLWK_zeus,[units _droneGroup, true]] remoteExec ["addCuratorEditableObjects",2]; 

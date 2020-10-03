@@ -1,0 +1,5 @@
+#define SKILL_LEVEL_1 0.1
+#define SKILL_LEVEL_2 0.2
+#define SKILL_LEVEL_3 0.3
+#define SKILL_LEVEL_4 0.4
+#define SKILL_LEVEL_5 0.5

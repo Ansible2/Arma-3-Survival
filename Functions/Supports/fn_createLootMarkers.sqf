@@ -4,7 +4,7 @@ Function: BLWK_fnc_createLootMarkers
 Description:
 	Creates the loot markers when a player finds the reveal loot box.
 
-	Executed from "BLWK_fnc_addRevealLootAction"
+	Executed from the action added in "BLWK_fnc_addRevealLootAction"
 
 Parameters:
 	NONE
@@ -35,6 +35,12 @@ private _fn_setUpMarker = {
 	if (_loot isEqualTo BLWK_moneyPile) exitWith {
 		private _marker = createMarker ["BLWK_lootMarker_" + str _index,getPos _loot];
 		_marker setMarkerText "Money Pile";
+		_marker setMarkerColor "ColorBlack";
+		_marker
+	};
+	if (_loot isEqualTo BLWK_randomWeaponBox) exitWith {
+		private _marker = createMarker ["BLWK_lootMarker_" + str _index,getPos _loot];
+		_marker setMarkerText "Random Weapon Box";
 		_marker setMarkerColor "ColorBlack";
 		_marker
 	};
@@ -79,5 +85,3 @@ private _fn_setUpMarker = {
 	
 	BLWK_lootMarkers pushBack _marker;
 } forEach BLWK_spawnedLoot;
-
-//CIPHER COMMENT: Don't forget these need to be deleted at round end

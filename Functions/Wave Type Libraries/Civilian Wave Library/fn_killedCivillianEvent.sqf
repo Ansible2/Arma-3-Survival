@@ -4,7 +4,7 @@ Function: BLWK_fnc_killedCivilianEvent
 Description:
 	Docks points from player when they kill a civilian
 
-	Executed from ""
+	Executed from the eventhandeler added in "BLWK_fnc_civiliansWave"
 
 Parameters:
 	0: _eventInfo : <ARRAY> - The default params passed through a MPKILLED event handler
@@ -21,7 +21,8 @@ Examples:
     (end)
 
 Author:
-	Ansible2 // Cipher
+	Hilltop & omNomios,
+	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 params ["_eventInfo","_handlerID"];
 private _killedUnit = _eventInfo select 0;

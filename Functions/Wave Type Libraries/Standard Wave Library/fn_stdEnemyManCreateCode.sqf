@@ -1,9 +1,36 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_stdEnemyManCreateCode
+
+Description:
+	The code to run on units created for the standard library.
+
+Parameters:
+	0: _unit : <OBJECT> - The actual unit
+	1: _queName : <STRING> - The name of the que the unit belongs to (used for spawning a new unit in que)
+	2: _group : <GROUP> - The group the unit belongs to (OPTIONAL)
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+
+		[aUnit,"myQue",group aUnit] call BLWK_fnc_stdEnemyManCreateCode;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 params ["_unit","_queName","_group"]
 
-// CIPHER COMMENT: need to adjust skill depending on wave number
+[_unit] call BLWK_fnc_setSkill;
 
 _unit setVariable ["BLWK_cameFromQue",_queName];
 
+if (isNil "_group") then {
+	_group = group _unit
+};
 _group allowFleeing 0;
 [_group, bulwarkBox, 20, "SAD", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
 

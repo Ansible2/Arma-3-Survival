@@ -1,3 +1,29 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_createStdWaveInfantry
+
+Description:
+	Creates the standard infantry for a normal wave.
+	
+	Also has the ability to que up units based upon the mission param size of
+	 units allowed at once.
+	 
+Parameters:
+	0: _isDefectorWave : <BOOL> - Will this be a wave of defectors
+
+Returns:
+	ARRAY - the units created
+
+Examples:
+    (begin example)
+
+		[false] call BLWK_fnc_createStdWaveInfantry;
+
+    (end)
+
+Author:
+	Hilltop & omNomios,
+	Modified by: Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 #include "..\..\..\Headers\String Constants.hpp"
 
 params [
@@ -79,5 +105,6 @@ for "_i" from 1 to _numStartingEnemies do {
 	_unit = [STANDARD_ENEMY_INFANTRY_QUE,BLWK_fnc_stdEnemyManCreateCode] call BLWK_fnc_createFromQue;
 	_units pushBack _unit;
 };
+
 
 _units

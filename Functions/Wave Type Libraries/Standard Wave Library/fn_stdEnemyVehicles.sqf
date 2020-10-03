@@ -1,3 +1,30 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_stdEnemyVehicles
+
+Description:
+	Roles for the chance of vehicles spawning during a wave.
+	Automatically sifts through available classes based on levels/wave number.
+
+	Will not spawn more then two vehicles which is already rare.
+
+Parameters:
+	0: _availableInfantry : <ARRAY> - An array of units to choose from to crew the vehicles
+	1: _isDefectorWave : <BOOL> - Creates vehicles from friendly vehicle classes if used
+
+Returns:
+	ARRAY - The spawned vehicles
+
+Examples:
+    (begin example)
+
+		_vehiclesArray = [myUnits,false] call BLWK_fnc_stdEnemyVehicles;
+
+    (end)
+
+Author:
+	Hilltop & omNomios,
+	Modified by: Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 #define LIKELIHOOD_HEAVY_ARMOUR 0.10
 #define LIKELIHOOD_LIGHT_ARMOUR 0.15
 #define LIKELIHOOD_HEAVY_CAR 0.25
@@ -11,16 +38,16 @@ params [
 	["_isDefectorWave",false,[true]]
 ];
 
-if (!local BLWK_theAIHandler) exitWith {false};
+if (!local BLWK_theAIHandler) exitWith {[]};
 
-if !(BLWK_currentWaveNumber >= BLWK_vehicleStartWave) exitWith {false};
+if !(BLWK_currentWaveNumber >= BLWK_vehicleStartWave) exitWith {[]};
 
 // special waves will not contriubute to this count
 private _roundsSinceVehicleSpawned = missionNamespace getVariable ["BLWK_roundsSinceVehicleSpawned",2];
 // wait until it has been at least two rounds since a vehicle spawn to get another one
 if (_roundsSinceVehicleSpawned >= 2) exitWith {
 	BLWK_roundsSinceVehicleSpawned = _roundsSinceVehicleSpawned + 1;
-	false
+	[]
 };
 	
 // only the rounds after the two will contribute to the LIKELIHOOD percentage (5% per round, with a starting percentage of 10%)
@@ -30,7 +57,7 @@ private _howLikelyIsAVheicleNOTToSpawn = 1 - _howLikelyIsAVehicleToSpawn;
 private _vehcileWillSpawn = selectRandomWeighted [true,_howLikelyIsAVehicleToSpawn,false,_howLikelyIsAVheicleNOTToSpawn];
 if !(_vehicleWillSpawn) exitWith {
 	BLWK_roundsSinceVehicleSpawned = _roundsSinceVehicleSpawned + 1;
-	false
+	[]
 };
 
 
@@ -122,10 +149,12 @@ private _fn_spawnAVehicle = {
 	[_group, bulwarkBox, 20, "SAD", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
 
 	[BLWK_zeus, [[_createdVehicle],false]] remoteExec ["addCuratorEditableObjects",2];
+
+	_returnedVehicles pushBack _createdVehicle
 };
 
-call _fn_spawnAVehicle;
 
+call _fn_spawnAVehicle;
 // do a role for a second vehicle
 private _howLikelyIsASecondVehicleToSpawn = _howLikelyIsAVehicleToSpawn / 2;
 private _secondVehcileWillSpawn = selectRandomWeighted [true,_howLikelyIsASecondVehicleToSpawn,false,1 - _howLikelyIsASecondVehicleToSpawn];
@@ -134,4 +163,4 @@ if (_secondVehcileWillSpawn) then {
 };
 
 
-true
+_returnedVehicles
