@@ -90,6 +90,7 @@ if (isServer) then {
     private _logicGroup = createGroup _logicCenter;
     private _serverlogic = _logicGroup createUnit ["Logic", [0,0,0], [], 0, "NONE"];
     BLWK_theAIHandlerEntity = [_headless,_serverlogic] select (isNull _headless);
+    publicVariable "BLWK_theAIHandlerEntity";
     BLWK_theAIHandlerOwnerID = owner BLWK_theAIHandlerEntity;
 
     /* Whitelist Loot Modes */

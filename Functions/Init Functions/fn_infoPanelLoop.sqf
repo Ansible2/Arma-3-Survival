@@ -28,7 +28,7 @@ Author:
 // I am curious to see if the performance of this loop is negligible enough though, 
 /// that it would be more effective to just have these update automatically
 
-if (!hasInterface) exitWith {};
+if (!hasInterface OR {!canSuspend}) exitWith {};
 
 // CIPHER COMMENT: it would be worth removing the player name in the future, not much point in having it
 params [
@@ -39,7 +39,11 @@ params [
 
 disableSerialization;
 
-waitUntil {!isNil "BLWK_playerKillPoints" AND {!isNil "BLWK_numRespawnTickets"} AND {!isNil "BLWK_currentWaveNumber"}};
+waitUntil {
+	if (!(isNil "BLWK_playerKillPoints") AND {!isNil "BLWK_numRespawnTickets"} AND {!isNil "BLWK_currentWaveNumber"}) exitWith {true};
+	sleep 1;
+	false
+};
 
 private _playerName = name _player;
 private _playerPoints = BLWK_playerKillPoints;

@@ -127,7 +127,7 @@ if (!_randomWeaponBoxFound) then {
 };
 
 // MONEY PILE
-BLWK_moneyPile = createVehicle ["Box_C_UAV_06_Swifd_F", (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
+BLWK_moneyPile = createVehicle ["Land_Money_F", (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
 publicVariable "BLWK_moneyPile";
 BLWK_moneyPile allowDamage false;
 _addToZeusArray pushBack BLWK_moneyPile;

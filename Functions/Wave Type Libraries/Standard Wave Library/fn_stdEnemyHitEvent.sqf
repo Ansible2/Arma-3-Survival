@@ -11,7 +11,7 @@ Description:
 Parameters:
 	0: _unit : <OBJECT> - Object the event handler is assigned to
 	1: _source : <OBJECT> - Object that caused the damage – contains unit in case of collisions (not used)
-	2: _damage : <NUMBER> - Level of damage caused by the hit (not used)
+	2: _damage : <NUMBER> - Level of damage caused by the hit
 	3: _instigator : <OBJECT> - Person who pulled the trigger
 
 Returns:
@@ -35,7 +35,7 @@ private _instigator = _this select 3;
 if (_instigator isEqualTo player) then {
 	private _unit = _this select 0;
 	
-	private _points = BLWK_pointsForHit + (BLWK_pointsMultiForDamage * _damage);
+	private _points = BLWK_pointsForHit + (BLWK_pointsMultiForDamage * (_this select 2));
 	[_unit,_points] call BLWK_fnc_createHitMarker;
 	[_points] call BLWK_fnc_addPoints;
 };

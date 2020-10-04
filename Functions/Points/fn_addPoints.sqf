@@ -22,7 +22,7 @@ Author:
 	Hilltop & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if !(hasInterface) exitWith {false};
+if (!hasInterface) exitWith {false};
 
 params [
 	["_pointsToAdd",0,[123]]
@@ -31,7 +31,7 @@ params [
 if (_pointsToAdd isEqualTo 0) exitWith {false};
 
 private _killPoints = missionNamespace getVariable ["BLWK_playerKillPoints",0];
-_killPoints = _killPoints + _pointsSpent;
+_killPoints = _killPoints + _pointsToAdd;
 missionNamespace setVariable ["BLWK_playerKillPoints",_killPoints];
 
 

@@ -10,9 +10,10 @@ Description:
 Parameters:
 	0: _eventInfo: <ARRAY> -
 		0: _unit : <OBJECT> - Object the event handler is assigned to
-		1: _source : <OBJECT> - Object that caused the damage – contains unit in case of collisions (not used)
-		2: _damage : <NUMBER> - Level of damage caused by the hit (not used)
-		3: _instigator : <OBJECT> - Person who pulled the trigger
+		1: _killer : <OBJECT> - Object that killed _unit – contains unit itself in case of collisions (not used)
+		2: _instigator : <OBJECT> - Person who pulled the trigger
+		3: _useEffects : <BOOL> - same as useEffects in setDamage alt syntax (not used)
+		
 	1: _handlerID : <NUMBER> - The eventhandler's id number
 
 Returns:
@@ -29,15 +30,14 @@ Author:
 	Hilltop & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#include "..\..\..\Headers\String Constants.hpp"
-
 params ["_eventInfo","_handlerID"];
 
 private _killedUnit = _eventInfo select 0;
-private _instigator = _eventInfo select 2;
+private _instigator = _eventInfo select 3;
 
 // spawn the next in que
 if (local BLWK_theAIHandlerEntity) then {
+	#include "..\..\..\Headers\String Constants.hpp"
 	
 	// if the spawn que is not empty
 	if !((missionNamespace getVariable [STANDARD_ENEMY_INFANTRY_QUE,[]]) isEqualTo []) then {

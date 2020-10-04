@@ -25,40 +25,40 @@ params ["_unit"];
 
 // CIPHER COMMENT: it might be better to just cache the unit's multiplier in their namespace
 
-if (isNull _unit) exitWith {BLWK_pointsForKill};
-
 private _unitInfo = [_unit] call BIS_fnc_objectType;
 private _category = _unitInfo select 0;
 private _type = _unitInfo select 1;
 
-private _unitClass =  typeOf _unit;
-
 if (_category == "soldier") exitWith {
+	private _unitClass =  typeOf _unit;
 	if !((BLWK_level5_menClasses findIf {_x == _unitClass}) isEqualTo -1) exitWith {
-		BLWK_pointMulti_men_level5
+		round (BLWK_pointsForKill * BLWK_pointMulti_men_level5)
 	};
 	if !((BLWK_level4_menClasses findIf {_x == _unitClass}) isEqualTo -1) exitWith {
-		BLWK_pointMulti_men_level4
+		round (BLWK_pointsForKill * BLWK_pointMulti_men_level4)
 	};
 	if !((BLWK_level3_menClasses findIf {_x == _unitClass}) isEqualTo -1) exitWith {
-		BLWK_pointMulti_men_level3
+		round (BLWK_pointsForKill * BLWK_pointMulti_men_level3)
 	};
 	if !((BLWK_level2_menClasses findIf {_x == _unitClass}) isEqualTo -1) exitWith {
-		BLWK_pointMulti_men_level2
+		round (BLWK_pointsForKill * BLWK_pointMulti_men_level2)
 	};
 	if !((BLWK_level1_menClasses findIf {_x == _unitClass}) isEqualTo -1) exitWith {
-		BLWK_pointMulti_men_level1
+		round (BLWK_pointsForKill * BLWK_pointMulti_men_level1)
 	};
 };
 
 if (_type == "car") exitWith {
-	BLWK_pointsMulti_car
+	round (BLWK_pointsForKill * BLWK_pointsMulti_car)
 };
 
 if (_type == "TrackedAPC" OR {_category == "Tank"} OR {_category == "WheeledAPC"}) exitWith {
-	BLWK_pointsMulti_armour
+	round (BLWK_pointsForKill * BLWK_pointsMulti_armour)
 };
 
 if (_type == "Helicopter") exitWith {
-	BLWK_pointsMulti_car
+	round (BLWK_pointsForKill * BLWK_pointsMulti_car)
 };
+
+// if nothing else, return default kill points
+BLWK_pointsForKill
