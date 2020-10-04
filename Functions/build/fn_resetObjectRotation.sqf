@@ -24,4 +24,5 @@ Author:
 ---------------------------------------------------------------------------- */
 params ["_object"];
 
-[_object,[[0,0,0],[0,0,0]]] remoteExecCall ["setVectorDirAndUp",_object];
+// must be executed where local
+[_object,0] remoteExecCall ["setDir",_object];
