@@ -37,7 +37,7 @@ if (BLWK_magRepackEnabled) then {
 };
 
 // wait till the play area is defined
-waitUntil {!isNil "BLWK_playAreaCenter"};
+waitUntil {!isNil "BLWK_playAreaCenter" AND {!isNil "bulwarkBox"}};
 _player setVehiclePosition [bulwarkBox,[],2,"NONE"];
 
 null = [] spawn BLWK_fnc_playAreaEnforcementLoop;

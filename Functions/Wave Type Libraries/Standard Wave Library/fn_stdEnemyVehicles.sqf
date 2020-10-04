@@ -38,7 +38,7 @@ params [
 	["_isDefectorWave",false,[true]]
 ];
 
-if (!local BLWK_theAIHandler) exitWith {[]};
+if (!local BLWK_theAIHandlerEntity) exitWith {[]};
 
 if !(BLWK_currentWaveNumber >= BLWK_vehicleStartWave) exitWith {[]};
 

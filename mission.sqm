@@ -16,7 +16,7 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={14552.92,773.99341,17181.77};
+		pos[]={4.0656343,34.734196,-20.433704};
 		dir[]={0,-0.70710683,0.70710683};
 		up[]={0,0.70710677,0.70710677};
 		aside[]={0.99999994,0,0};
@@ -32,14 +32,13 @@ addons[]=
 	"A3_Characters_F_Exp_Civil",
 	"A3_Characters_F_Exp",
 	"A3_Modules_F_Curator_Curator",
-	"A3_Structures_F_Naval_Piers",
-	"A3_Modules_F"
+	"A3_Structures_F_Naval_Piers"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=6;
+		items=5;
 		class Item0
 		{
 			className="A3_Characters_F";
@@ -72,13 +71,6 @@ class AddonsMetaData
 		{
 			className="A3_Structures_F";
 			name="Arma 3 - Buildings and Structures";
-			author="Bohemia Interactive";
-			url="https://www.arma3.com";
-		};
-		class Item5
-		{
-			className="A3_Modules_F";
-			name="Arma 3 Alpha - Scripted Modules";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
@@ -228,7 +220,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=5;
+		items=4;
 		class Item0
 		{
 			dataType="Group";
@@ -1120,18 +1112,6 @@ class Mission
 			};
 		};
 		class Item3
-		{
-			dataType="Logic";
-			class PositionInfo
-			{
-				position[]={3.694,0.29800415,6.7379999};
-			};
-			name="BLWK_serverAIHandler";
-			id=186;
-			type="Logic";
-			atlOffset=0.0002822876;
-		};
-		class Item4
 		{
 			dataType="Logic";
 			class PositionInfo

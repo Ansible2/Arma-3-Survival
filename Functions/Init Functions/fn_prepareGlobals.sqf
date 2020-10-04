@@ -83,8 +83,12 @@ if (isServer) then {
 
     // check if headless client is loaded
     // CIPHER COMMENT: may want to add an owner param too for use with setVariable
-    BLWK_theAIHandler = [BLWK_headlessClient,BLWK_serverAIHandler] select (isNil "BLWK_headlessClient");
-    BLWK_theAIHandlerOwnerID = owner BLWK_theAIHandler;
+    private _headless = call BLWK_fnc_getHeadless;
+    private _logicCenter = createCenter sideLogic;
+    private _logicGroup = createGroup _logicCenter;
+    private _serverlogic = _logicGroup createUnit ["Logic", [0,0,0], [], 0, "NONE"];
+    BLWK_theAIHandlerEntity = [_headless,_serverlogic] select (isNull _headless);
+    BLWK_theAIHandlerOwnerID = owner BLWK_theAIHandlerEntity;
 
     /* Whitelist Loot Modes */
     /* 0 = Off */
@@ -136,7 +140,7 @@ if (isServer) then {
     BLWK_faksToMakeMedkit = ("BLWK_faksToMakeMedkit" call BIS_fnc_getParamValue);
 
     BLWK_timeBetweenRounds = ("BLWK_timeBetweenRounds" call BIS_fnc_getParamValue);
-    BLWK_allowSpecialWaves = ("BLWK_allowSpecialWaves" call BIS_fnc_getParamValue);
+    BLWK_allowSpecialWaves = [false,true] select ("BLWK_allowSpecialWaves" call BIS_fnc_getParamValue);
     BLWK_maxNumWaves = ("BLWK_maxNumWaves" call BIS_fnc_getParamValue);
 
     BLWK_supportDishFound = [false,true] select ("BLWK_supportDishFound" call BIS_fnc_getParamValue);

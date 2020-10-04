@@ -61,13 +61,7 @@
 	"B_Patrol_Soldier_M_F", \
 	"B_Patrol_Soldier_AT_F", \
 	"B_Patrol_Soldier_TL_F", \
-	[ \
-		"B_LSV_01_armed_F", \
-		"B_MRAP_01_hmg_F", \
-		"B_APC_Wheeled_01_cannon_F", \
-		"B_MBT_01_cannon_F", \
-		"B_Heli_Transport_01_F" \
-	] \
+	["B_LSV_01_armed_F","B_MRAP_01_hmg_F","B_APC_Wheeled_01_cannon_F","B_MBT_01_cannon_F","B_Heli_Transport_01_F"]\
 ]
 
 #define NATO_PACIFIC_UNITS \
@@ -103,13 +97,7 @@
 	"B_T_Recon_F", \
 	"B_T_Recon_LAT_F", \
 	"B_T_Recon_TL_F", \
-	[ \
-		"B_T_LSV_01_armed_F", \
-		"B_T_MRAP_01_hmg_F", \
-		"B_T_APC_Wheeled_01_cannon_F", \
-		"B_MBT_01_cannon_F", \
-		"B_Heli_Transport_01_F" \
-	] \
+	["B_T_LSV_01_armed_F","B_T_MRAP_01_hmg_F","B_T_APC_Wheeled_01_cannon_F","B_MBT_01_cannon_F","B_Heli_Transport_01_F"]\
 ]
 
 #define NATO_WOODLAND_UNITS \
@@ -139,13 +127,7 @@
 	"B_W_Soldier_LAT2_F", \
 	"B_W_Soldier_SL_F", \
 	"B_W_Soldier_TL_F", \
-	[ \
-		"B_T_LSV_01_armed_F", \
-		"B_T_MRAP_01_hmg_F", \
-		"B_T_APC_Wheeled_01_cannon_F", \
-		"B_MBT_01_cannon_F", \
-		"B_Heli_Transport_01_F" \
-	] \
+	["B_T_LSV_01_armed_F","B_T_MRAP_01_hmg_F","B_T_APC_Wheeled_01_cannon_F","B_MBT_01_cannon_F","B_Heli_Transport_01_F"]\
 ]
 
 #define CTRG_PACIFIC_UNITS \
@@ -159,13 +141,7 @@
 	"B_CTRG_Soldier_tna_F", \
 	"B_CTRG_Soldier_LAT_tna_F", \
 	"B_CTRG_Soldier_TL_tna_F", \
-	[ \
-		"B_T_LSV_01_armed_F", \
-		"B_T_MRAP_01_hmg_F", \
-		"B_T_APC_Wheeled_01_cannon_F", \
-		"B_MBT_01_cannon_F", \
-		"B_CTRG_Heli_Transport_01_sand_F" \
-	] \
+	["B_T_LSV_01_armed_F","B_T_MRAP_01_hmg_F","B_T_APC_Wheeled_01_cannon_F","B_MBT_01_cannon_F","B_CTRG_Heli_Transport_01_sand_F"]\
 ]
 
 #define CSAT_UNITS \
@@ -205,15 +181,9 @@
 	"O_recon_F", \
 	"O_recon_LAT_F", \
 	"O_recon_TL_F", \
-	[ \
-		"O_LSV_02_armed_F", \
-		"O_MRAP_02_hmg_F", \
-		"O_APC_Wheeled_02_rcws_v2_F", \
-		"O_MBT_02_cannon_F", \
-		"O_Heli_Light_02_unarmed_F" \
-	] \
+	["O_LSV_02_armed_F","O_MRAP_02_hmg_F","O_APC_Wheeled_02_rcws_v2_F","O_MBT_02_cannon_F","O_Heli_Light_02_unarmed_F"]\
 ]
-/*
+
 #define CSAT_PACIFIC_UNITS \
 [ \
 	"O_T_Soldier_A_F", \
@@ -248,17 +218,12 @@
 	"O_T_Recon_F", \
 	"O_T_Recon_LAT_F", \
 	"O_T_Recon_TL_F", \
-	[ \
-		"O_T_LSV_02_armed_F", \
-		"O_T_MRAP_02_hmg_ghex_F", \
-		"O_T_APC_Wheeled_02_rcws_v2_ghex_F", \
-		"O_T_MBT_02_cannon_F", \
-		"O_Heli_Light_02_unarmed_F" \	
-	] \
+	["O_T_LSV_02_armed_F","O_T_MRAP_02_hmg_ghex_F","O_T_APC_Wheeled_02_rcws_v2_ghex_F","O_T_MBT_02_cannon_F","O_Heli_Light_02_unarmed_F"]\
 ]
-*/
+
+
 #define CSAT_URBAN_UNITS \
-[ \
+[\
 	"O_soldierU_A_F", \
 	"O_soldierU_AAR_F", \
 	"O_soldierU_AAA_F", \
@@ -278,13 +243,7 @@
 	"O_Urban_Sharpshooter_F", \
 	"O_SoldierU_SL_F", \
 	"O_soldierU_TL_F", \
-	[ \
-		"O_LSV_02_armed_F", \
-		"O_MRAP_02_hmg_F", \
-		"O_APC_Wheeled_02_rcws_v2_F", \
-		"O_MBT_02_cannon_F", \
-		"O_Heli_Light_02_unarmed_F" \	
-	] \
+	["O_LSV_02_armed_F","O_MRAP_02_hmg_F","O_APC_Wheeled_02_rcws_v2_F","O_MBT_02_cannon_F","O_Heli_Light_02_unarmed_F"]\
 ]
 
 #define VIPER_UNITS \
@@ -296,13 +255,7 @@
 	"O_V_Soldier_Medic_hex_F", \
 	"O_V_Soldier_LAT_hex_F", \
 	"O_V_Soldier_TL_hex_F", \
-	[ \
-		"O_LSV_02_armed_F", \
-		"", \
-		"O_APC_Wheeled_02_rcws_v2_F", \
-		"", \
-		"O_Heli_Light_02_unarmed_F" \
-	] \
+	["O_LSV_02_armed_F","","O_APC_Wheeled_02_rcws_v2_F","","O_Heli_Light_02_unarmed_F"]\
 ]
 
 #define VIPER_PACIFIC_UNITS \
@@ -314,13 +267,7 @@
 	"O_V_Soldier_Medic_ghex_F", \
 	"O_V_Soldier_LAT_ghex_F", \
 	"O_V_Soldier_TL_ghex_F", \
-	[ \
-		"O_T_LSV_02_armed_F", \
-		"", \
-		"O_T_APC_Wheeled_02_rcws_v2_ghex_F", \
-		"", \
-		"O_Heli_Light_02_unarmed_F" \
-	] \
+	["O_T_LSV_02_armed_F","","O_T_APC_Wheeled_02_rcws_v2_ghex_F","","O_Heli_Light_02_unarmed_F"]\
 ]
 
 #define FIA_UNITS \
@@ -339,13 +286,7 @@
 	"B_G_Sharpshooter_F", \
 	"B_G_Soldier_SL_F", \
 	"B_G_Soldier_TL_F", \
-	[ \
-		"B_G_Offroad_01_armed_F", \
-		"B_G_Offroad_01_AT_F", \
-		"", \
-		"", \
-		"I_C_Heli_Light_01_civil_F" \
-	] \
+	["B_G_Offroad_01_armed_F","B_G_Offroad_01_AT_F","","","I_C_Heli_Light_01_civil_F"]\
 ]
 
 #define SYNDIKAT_UNITS \
@@ -365,13 +306,7 @@
 	"I_C_Soldier_Para_1_F", \
 	"I_C_Soldier_Para_5_F", \
 	"I_C_Soldier_Bandit_4_F", \
-	[ \
-		"I_C_Offroad_02_LMG_F", \
-		"I_C_Offroad_02_AT_F", \
-		"", \
-		"", \
-		"I_C_Heli_Light_01_civil_F" \
-	] \
+	["I_C_Offroad_02_LMG_F","I_C_Offroad_02_AT_F","","","I_C_Heli_Light_01_civil_F"]\
 ]
 
 #define AAF_UNITS \
@@ -401,13 +336,7 @@
 	"I_Soldier_lite_F", \
 	"I_Soldier_SL_F", \
 	"I_Soldier_TL_F", \
-	[ \
-		"B_T_LSV_01_armed_F", \
-		"I_MRAP_03_hmg_F", \
-		"I_APC_Wheeled_03_cannon_F", \
-		"I_MBT_03_cannon_F", \
-		"I_Heli_light_03_unarmed_F" \
-	] \
+	["B_T_LSV_01_armed_F","I_MRAP_03_hmg_F","I_APC_Wheeled_03_cannon_F","I_MBT_03_cannon_F","I_Heli_light_03_unarmed_F"]\
 ]
 
 #define LDF_UNITS \
@@ -439,13 +368,7 @@
 	"I_E_Soldier_lite_F", \
 	"I_E_Soldier_SL_F", \
 	"I_E_Soldier_TL_F", \
-	[ \
-		"B_T_LSV_01_armed_F", \
-		"B_T_MRAP_01_hmg_F", \
-		"I_E_APC_tracked_03_cannon_F", \
-		"O_T_MBT_04_cannon_F", \
-		"I_E_Heli_light_03_unarmed_F" \
-	] \
+	["B_T_LSV_01_armed_F","B_T_MRAP_01_hmg_F","I_E_APC_tracked_03_cannon_F","O_T_MBT_04_cannon_F","I_E_Heli_light_03_unarmed_F"]\
 ]
 
 #define SPETZNAS_CONTACT_UNITS \
@@ -476,11 +399,5 @@
 	"O_R_recon_medic_F", \
 	"O_R_recon_LAT_F", \
 	"O_R_recon_TL_F", \
-	[ \
-		"O_T_LSV_02_armed_F", \
-		"", \
-		"O_T_APC_Wheeled_02_rcws_v2_ghex_F", \
-		"", \
-		"O_Heli_Light_02_unarmed_F" \
-	] \
+	["O_T_LSV_02_armed_F","","O_T_APC_Wheeled_02_rcws_v2_ghex_F","","O_Heli_Light_02_unarmed_F"]\
 ]

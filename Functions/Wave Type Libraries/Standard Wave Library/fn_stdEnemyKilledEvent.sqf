@@ -37,7 +37,7 @@ private _killedUnit = _eventInfo select 0;
 private _instigator = _eventInfo select 3;
 
 // spawn the next in que
-if (local BLWK_theAIHandler) then {
+if (local BLWK_theAIHandlerEntity) then {
 	
 	// if the spawn que is not empty
 	if !((missionNamespace getVariable [STANDARD_ENEMY_INFANTRY_QUE,[]]) isEqualTo []) then {

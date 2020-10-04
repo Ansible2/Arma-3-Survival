@@ -31,8 +31,9 @@ if !((missionNamespace getVariable ["BLWK_lootMarkers",[]]) isEqualTo []) then {
 		deleteMarker _x;
 	};
 };
+private _randomWeaponBoxFound = missionNamespace getVariable ["BLWK_randomWeaponBoxFound",false];
 if !((missionNamespace getVariable ["BLWK_spawnedLoot",[]]) isEqualTo []) then {
-	if (BLWK_randomWeaponBoxFound) then {
+	if (_randomWeaponBoxFound) then {
 		if (BLWK_randomWeaponBox in BLWK_spawnedLoot) then {
 			BLWK_spawnedLoot deleteAt (BLWK_spawnedLoot findIf {_x isEqualTo BLWK_randomWeaponBox});
 		};
@@ -65,7 +66,7 @@ private _sortedPositions = [];
 		private _buildingsPositions = _currentBuilding buildingPos -1;
 		
 		{
-			if ((_forEachIndex mod BLWK_loot_roomDistribution) isEqualTo 0) then {
+			if (_forEachIndex isEqualTo 0 OR {(_forEachIndex mod BLWK_loot_roomDistribution) isEqualTo 0}) then {
 				_sortedPositions pushBack _x
 			};
 		} forEach _buildingsPositions;
@@ -115,7 +116,7 @@ if (!BLWK_supportDishFound) then {
 };
 
 // RANDOM WEAPON BOX
-if (!BLWK_randomWeaponBoxFound) then {
+if (!_randomWeaponBoxFound) then {
 	BLWK_randomWeaponBox = createVehicle ["Land_WoodenBox_F", (call _fn_getASpawnPosition), [], 4];
 	publicVariable "BLWK_randomWeaponBox";
 	BLWK_randomWeaponBox allowDamage false;
@@ -186,7 +187,9 @@ private _fn_addLoot = {
 	// magazines
 	if (_typeToSpawn isEqualTo 6) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_weaponClasses;
+		diag_log _selectedItemClass;
 		private _magazineClass = selectRandom (getArray (configFile >> "CfgWeapons" >> _selectedItemClass >> "magazines"));
+		diag_log _magazineClass;
 		_holder addMagazineCargoGlobal [_magazineClass,round random [1,2,3]]; 
 	};
 	// headgear
@@ -202,7 +205,7 @@ _sortedPositions apply {
 	// CIPHER COMMENT: See if this is needed
 	private _spawnPosition = _x vectorAdd [0,0,0.1];
 
-	private _holder = createVehicle ["WeaponHolderSimulated_Scripted", _position, [], 0, "CAN_COLLIDE"];
+	private _holder = createVehicle ["WeaponHolderSimulated_Scripted", _spawnPosition, [], 0, "CAN_COLLIDE"];
 	[_holder] call _fn_addLoot;
 	
 	_addToZeusArray pushBack _holder;

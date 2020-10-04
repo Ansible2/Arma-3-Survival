@@ -26,7 +26,7 @@ Author:
 params [
 	["_queName","",[""]],
 	["_codeToRun",{},[{}]],
-	["_side",OPFOR,[sideNull]],
+	["_side",OPFOR,[BLUFOR]],
 	["_group",grpNull,[grpNull]]
 ];
 

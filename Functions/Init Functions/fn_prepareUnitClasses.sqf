@@ -57,7 +57,7 @@ private _unitClassAvailable = true;
 private _fn_checkTempClass = {
 
 	if (isClass (configFile >> "CfgVehicles" >> _tempUnitClass)) then {
-		_unitClassAvailable = [_tempUnitClass,"CfgVehicles"] call BLWK_fnc_checkDLC;
+		//_unitClassAvailable = [_tempUnitClass,"CfgVehicles"] call BLWK_fnc_checkDLC;
 	} else {
 		_unitClassAvailable = false;
 	};
@@ -99,7 +99,6 @@ private _fn_sortFactionClasses = {
 	[_allowedUnitClasses,_vehicleTypes];
 };
 
-
 private _fn_getSelectedClasses = {
 	params ["_factionString","_defaultFactionString"];
 
@@ -116,15 +115,19 @@ private _fn_getSelectedClasses = {
 	_return
 };
 
+private _fn_getFactionString = {
+	params ["_paramValue"];
+	[FACTION_STRINGS] select _paramValue
+};
 
 
 // get faction classes
-private _friendlyClasses = [("BLWK_friendlyFaction" call BIS_fnc_getParamValue),"NATO"] call _fn_getSelectedClasses;
-private _level1Classes = [("BLWK_level1Faction" call BIS_fnc_getParamValue),"FIA"] call _fn_getSelectedClasses;
-private _level2Classes = [("BLWK_level2Faction" call BIS_fnc_getParamValue),"AAF"] call _fn_getSelectedClasses;
-private _level3Classes = [("BLWK_level3Faction" call BIS_fnc_getParamValue),"CSAT"] call _fn_getSelectedClasses;
-private _level4Classes = [("BLWK_level4Faction" call BIS_fnc_getParamValue),"CSAT URBAN"] call _fn_getSelectedClasses;
-private _level5Classes = [("BLWK_level5Faction" call BIS_fnc_getParamValue),"VIPER"] call _fn_getSelectedClasses;
+private _friendlyClasses = [["BLWK_friendlyFaction" call BIS_fnc_getParamValue] call _fn_getFactionString,"NATO"] call _fn_getSelectedClasses;
+private _level1Classes = [["BLWK_level1Faction" call BIS_fnc_getParamValue] call _fn_getFactionString,"FIA"] call _fn_getSelectedClasses;
+private _level2Classes = [["BLWK_level2Faction" call BIS_fnc_getParamValue] call _fn_getFactionString,"AAF"] call _fn_getSelectedClasses;
+private _level3Classes = [["BLWK_level3Faction" call BIS_fnc_getParamValue] call _fn_getFactionString,"CSAT"] call _fn_getSelectedClasses;
+private _level4Classes = [["BLWK_level4Faction" call BIS_fnc_getParamValue] call _fn_getFactionString,"CSAT URBAN"] call _fn_getSelectedClasses;
+private _level5Classes = [["BLWK_level5Faction" call BIS_fnc_getParamValue] call _fn_getFactionString,"VIPER"] call _fn_getSelectedClasses;
 
 // return for global var definition
 [

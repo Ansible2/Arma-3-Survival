@@ -21,14 +21,14 @@
 
 #include "..\Faction Headers\Define Factions.hpp"
 
-A_SECTION_HEADER(WAVES);
+A_SECTION_HEADER(WAVE);
 
 class BLWK_enemiesPerWaveMultiplier
 {
 	title = "Enemies Per Wave Multiplier";
 	values[] = {0.5,1,1.5,2,2.5,3};
-	texts[] = {"0.5","1", "1.5", "2", "2.5", "3"};
-	default = 0.5;
+	texts[] = {"0.5","1","1.5","2","2.5","3"};
+	default = 1;
 };
 
 // CIPHER COMMENT: The utility of this value should be replaced with a simple: add this number of enemies per round per player in addition to the number already spawned
@@ -368,49 +368,49 @@ A_SECTION_HEADER(Faction);
 class BLWK_friendlyFaction
 {
 	title = "Friendly Faction";
-	values[] = {FACTION_STRINGS};
+	values[] = {FACTION_COUNT};
 	texts[] = {FACTION_STRINGS};
-	default = "NATO";
+	default = 0;
 };
 
 class BLWK_level1Faction
 {
 	title = "Level 1 Enemy Faction";
-	values[] = {FACTION_STRINGS};
+	values[] = {FACTION_COUNT};
 	texts[] = {FACTION_STRINGS};
-	default = "FIA";
+	default = 9;
 };
 
 class BLWK_level2Faction
 {
 	title = "Level 2 Enemy Faction";
-	values[] = {FACTION_STRINGS};
+	values[] = {FACTION_COUNT};
 	texts[] = {FACTION_STRINGS};
-	default = "AAF";
+	default = 11;
 };
 
 class BLWK_level3Faction
 {
 	title = "Level 3 Enemy Faction";
-	values[] = {FACTION_STRINGS};
+	values[] = {FACTION_COUNT};
 	texts[] = {FACTION_STRINGS};
-	default = "CSAT";
+	default = 4;
 };
 
 class BLWK_level4Faction
 {
 	title = "Level 4 Enemy Faction";
-	values[] = {FACTION_STRINGS};
+	values[] = {FACTION_COUNT};
 	texts[] = {FACTION_STRINGS};
-	default = "CSAT URBAN";
+	default = 6;
 };
 
 class BLWK_level5Faction
 {
 	title = "Level 5 Enemy Faction";
-	values[] = {FACTION_STRINGS};
+	values[] = {FACTION_COUNT};
 	texts[] = {FACTION_STRINGS};
-	default = "VIPER";
+	default = 7;
 };
 
 class BLWK_maxEnemyInfantryAtOnce
