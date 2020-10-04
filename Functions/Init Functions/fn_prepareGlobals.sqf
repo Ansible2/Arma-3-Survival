@@ -101,7 +101,7 @@ if (isServer) then {
     // loot classes
     private _lootClasses = call BLWK_fnc_prepareLootClasses;
     // weapons are split up for when AI have random weapons
-    // It makes it so that can easily grab a specific type easily
+    // It makes it so that can easily grab a specific type
     BLWK_loot_weaponClasses = [];
     BLWK_loot_primaryWeapons = _lootClasses select 0;
     BLWK_loot_weaponClasses append BLWK_loot_primaryWeapons;

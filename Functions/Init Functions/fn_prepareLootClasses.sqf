@@ -76,6 +76,7 @@ private _handgunWeaponClasses = [];
 private _primaryWeaponClasses = [];
 private _launcherClasses = [];
 private _fn_sortWeapons = {
+	if ((getArray (configFile >> "CfgWeapons" >> _tempClass >> "magazines")) isEqualTo []) exitWith {};
 	if (_tempItemType == "MissileLauncher" OR {_tempItemType == "Launcher"} OR {_tempItemType == "RocketLauncher"}) exitWith {_launcherClasses pushBack _tempClass};
 	if (_tempItemType == "Handgun") exitWith {_handgunWeaponClasses pushBack _tempClass};
 	if (_tempItemType == "AssaultRifle" OR 
@@ -139,7 +140,7 @@ private _fn_sortType = {
 ---------------------------------------------------------------------------- */
 private _publicWeaponConfigs = "getNumber (_x >> 'scope') isEqualTo 2" configClasses (configFile >> "CfgWeapons");
 _publicWeaponConfigs apply {
-	[_x,"CfgWeapons"] call _fn_sortType;	
+	[_x,"CfgWeapons"] call _fn_sortType;
 };
 // things such as vests and backpacks are located in CfgVehicles
 private _publicVehicleConfigs = "getNumber (_x >> 'scope') isEqualTo 2" configClasses (configFile >> "CfgVehicles");
