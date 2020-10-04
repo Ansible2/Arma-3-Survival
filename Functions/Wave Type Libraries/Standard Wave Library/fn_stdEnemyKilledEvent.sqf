@@ -33,7 +33,7 @@ Author:
 params ["_eventInfo","_handlerID"];
 
 private _killedUnit = _eventInfo select 0;
-private _instigator = _eventInfo select 3;
+private _instigator = _eventInfo select 2;
 
 // spawn the next in que
 if (local BLWK_theAIHandlerEntity) then {
@@ -51,8 +51,8 @@ if (local BLWK_theAIHandlerEntity) then {
 // points for players
 if (local _instigator AND {isPlayer _instigator} AND {hasInterface}) then {
 	private _points = [_killedUnit] call BLWK_fnc_getPointsForKill;
-	[_killedUnit,_points] call BLWK_fnc_createHitMarker;
 	[_points] call BLWK_fnc_addPoints;
+	[_killedUnit,_points] call BLWK_fnc_createHitMarker;
 };
 
 [_unit] call BLWK_fnc_removeStdEnemyHitEvent;

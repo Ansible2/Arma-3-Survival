@@ -35,7 +35,7 @@ private _instigator = _this select 3;
 if (_instigator isEqualTo player) then {
 	private _unit = _this select 0;
 	
-	private _points = BLWK_pointsForHit + (BLWK_pointsMultiForDamage * (_this select 2));
-	[_unit,_points] call BLWK_fnc_createHitMarker;
+	private _points = round (BLWK_pointsForHit + (BLWK_pointsMultiForDamage * (_this select 2)));
 	[_points] call BLWK_fnc_addPoints;
+	[_unit,_points] call BLWK_fnc_createHitMarker;
 };

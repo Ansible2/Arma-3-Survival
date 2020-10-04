@@ -38,7 +38,7 @@ if (BLWK_magRepackEnabled) then {
 
 // wait till the play area is defined
 waitUntil {!isNil "BLWK_playAreaCenter" AND {!isNil "bulwarkBox"}};
-_player setVehiclePosition [bulwarkBox,[],2,"NONE"];
+_player setVehiclePosition [bulwarkBox,[],5,"NONE"];
 
 null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
 // a loop that updates the info panel in the top left (respawn tickets, current wave #, points)
