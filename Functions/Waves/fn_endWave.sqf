@@ -35,7 +35,7 @@ if (BLWK_currentWaveNumber isEqualTo BLWK_maxNumWaves) exitWith {
 
 missionNamespace setVariable ["BLWK_inBetweenWaves",true,true];
 private _players = call CBAP_fnc_players;
-[TASK_COMPLETE_TEMPLATE,["",COMPLETED_WAVE_NOTIFICATION(BLWK_currentWaveNumber)]] remoteExec ["BIS_fnc_showNotification",_players];
+[TASK_COMPLETE_TEMPLATE,["",COMPLETED_WAVE_NOTIFICATION(str BLWK_currentWaveNumber)]] remoteExec ["BIS_fnc_showNotification",_players];
 
 
 private "_playerTemp";

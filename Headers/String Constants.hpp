@@ -19,8 +19,8 @@
 #define TASK_ASSIGNED_TEMPLATE "TaskAssigned"
 #define TASK_COMPLETE_TEMPLATE "TaskSucceeded"
 
-#define COMPLETED_WAVE_NOTIFICATION(WAVE_NUM) ("Wave " + #WAVE_NUM + " Complete")
-#define INCOMING_WAVE_NOTIFICATION(WAVE_NUM) ("Incoming Wave: " + #WAVE_NUM)
+#define COMPLETED_WAVE_NOTIFICATION(WAVE_NUM_STRING) ("Wave " + WAVE_NUM_STRING + " Complete")
+#define INCOMING_WAVE_NOTIFICATION(WAVE_NUM_STRING) ("Incoming Wave: " + WAVE_NUM_STRING)
 #define DEFECTORS_WAVE_NOTIFICATION "Defectors Are Attacking!"
 #define DRONE_WAVE_NOTIFICATION "Enemy Drones Inbound!"
 #define OVERRUN_WAVE_NOTIFICATION "The Bulwark Was Overrun!"
