@@ -92,7 +92,6 @@ private _addToZeusArray = [];
 	Unique Items
 
 ---------------------------------------------------------------------------- */
-
 // LOOT REVEAL BOX
 // these are global for future endeavors
 BLWK_lootRevealerBox = createVehicle ["Box_C_UAV_06_Swifd_F", (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];

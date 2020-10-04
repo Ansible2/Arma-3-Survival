@@ -22,7 +22,8 @@
     "O_UAV_01_backpack_F", \
     "B_IR_Grenade", \
     "O_IR_Grenade", \
-    "I_IR_Grenade" \
+    "I_IR_Grenade", \
+    "TrainingMine_Mag" \
 ]
 
 
