@@ -179,6 +179,9 @@ if (hasInterface) then {
     // this is to have potential supports that put the player outside the immediate radius
     // it is false until the play area is established
     BLWK_enforceArea = false;
+
+    // used for queing up kill points since two events can simaltaneously add points
+    BLWK_killPointsQue = [];
 };
 
 BLWK_currentWaveNumber = 0;

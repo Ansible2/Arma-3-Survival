@@ -32,19 +32,19 @@ private _type = _unitInfo select 1;
 if (_category == "soldier") exitWith {
 	private _unitClass =  typeOf _unit;
 	if !((BLWK_level5_menClasses findIf {_x == _unitClass}) isEqualTo -1) exitWith {
-		round (BLWK_pointsForKill * BLWK_pointMulti_men_level5)
+		round (BLWK_pointsForKill * BLWK_pointsMulti_man_level5)
 	};
 	if !((BLWK_level4_menClasses findIf {_x == _unitClass}) isEqualTo -1) exitWith {
-		round (BLWK_pointsForKill * BLWK_pointMulti_men_level4)
+		round (BLWK_pointsForKill * BLWK_pointsMulti_man_level4)
 	};
 	if !((BLWK_level3_menClasses findIf {_x == _unitClass}) isEqualTo -1) exitWith {
-		round (BLWK_pointsForKill * BLWK_pointMulti_men_level3)
+		round (BLWK_pointsForKill * BLWK_pointsMulti_man_level3)
 	};
 	if !((BLWK_level2_menClasses findIf {_x == _unitClass}) isEqualTo -1) exitWith {
-		round (BLWK_pointsForKill * BLWK_pointMulti_men_level2)
+		round (BLWK_pointsForKill * BLWK_pointsMulti_man_level2)
 	};
 	if !((BLWK_level1_menClasses findIf {_x == _unitClass}) isEqualTo -1) exitWith {
-		round (BLWK_pointsForKill * BLWK_pointMulti_men_level1)
+		round (BLWK_pointsForKill * BLWK_pointsMulti_man_level1)
 	};
 };
 
