@@ -40,7 +40,9 @@ if (BLWK_currentWaveNumber <= BLWK_maxPistolOnlyWaves) then {
 
 	private _addFirstAidKit = selectRandomWeighted [true,0.5,false,0.5];
 	if (_addFirstAidKit) then {
-		_unit addItemCargoGlobal ["FirstAidKit",round random [0.51,2,3.49]];
+		for "_i" from 1 to (round random [0.51,2,3.49]) do {
+			_unit addItem "FirstAidKit";
+		};
 	};
 } else {
 	if (BLWK_randomizeEnemyWeapons) then {
