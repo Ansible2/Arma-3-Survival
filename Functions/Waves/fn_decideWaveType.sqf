@@ -57,7 +57,7 @@ private _fn_execWave = {
 	if (_selectedWaveType == STANDARD_WAVE) exitWith {
 		null = remoteExec ["BLWK_fnc_handleStandardWave",BLWK_theAIHandlerEntity];
 		
-		[TASK_ASSIGNED_TEMPLATE, [INCOMING_WAVE_NOTIFICATION(str BLWK_currentWaveNumber)]]
+		[TASK_ASSIGNED_TEMPLATE, ["",INCOMING_WAVE_NOTIFICATION(str BLWK_currentWaveNumber)]]
 	};
 	if (_selectedWaveType == SUICIDE_WAVE) exitWith {
 		null = remoteExec ["BLWK_fnc_handleSuicideWave",BLWK_theAIHandlerEntity];

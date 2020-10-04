@@ -37,14 +37,13 @@ if (_queArray isEqualTo []) exitWith {objNull};
 
 
 // get the first available unit in the que
-diag_log (_queArray select 0);
-(_queArray deleteAt 0) params ["_position","_type"];
+(_queArray deleteAt 0) params ["_type","_position"];
 
 
 if (isNull _group) then {
 	_group = createGroup _side;
 };
-private _unit = _type createVehicle _position;
+private _unit = _group createUnit [_type, _position, [], 0, "NONE"];
 [_unit] joinSilent _group;
 _group deleteGroupWhenEmpty true;
 

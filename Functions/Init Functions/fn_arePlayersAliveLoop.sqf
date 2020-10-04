@@ -25,14 +25,11 @@ Author:
 ---------------------------------------------------------------------------- */
 if (!isServer OR {!canSuspend}) exitWith {};
 
-private _players = call CBAP_fnc_players;
-private _return = 0;
-
+private ["_players","_return"];
 private _condition = {
 	_players = call CBAP_fnc_players;
 	_return = _players findIf {
-		alive _x OR 
-		{(incapacitatedState _x isEqualTo "") AND {BLWK_numRespawnTickets <= 0}}
+		((incapacitatedState _x) isEqualTo "") AND {BLWK_numRespawnTickets <= 0}
 	};
 
 	if (_return isEqualTo -1) then {

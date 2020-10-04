@@ -12,7 +12,7 @@ Parameters:
 	0: _unit : <OBJECT> - Object the event handler is assigned to
 	1: _source : <OBJECT> - Object that caused the damage – contains unit in case of collisions (not used)
 	2: _damage : <NUMBER> - Level of damage caused by the hit (not used)
-	3: _insitgator : <OBJECT> - Person who pulled the trigger
+	3: _instigator : <OBJECT> - Person who pulled the trigger
 
 Returns:
 	NOTHING
@@ -30,7 +30,7 @@ Author:
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};
 
-private _insitgator = _this select 3;
+private _instigator = _this select 3;
 
 if (_instigator isEqualTo player) then {
 	private _unit = _this select 0;

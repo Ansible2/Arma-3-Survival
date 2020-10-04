@@ -46,30 +46,30 @@ private _fn_setUpMarker = {
 	};
 
 	// see what type of loot it is
-	private _configAndType = [typeOf _loot] call CBAP_fnc_getItemConfig;
-	private _config = _configAndType select 0;
-	private _type = _configAndType select 1;
+	private _categoryAndType = [typeOf _loot] call BIS_fnc_itemType;
+	private _category = _categoryAndType select 0;
+	private _type = _categoryAndType select 1; // error zero devisor
 	
 	private _marker = createMarker ["BLWK_lootMarker_" + str _index,getPos _loot];
 	_marker setMarkerText ([_config] call BIS_fnc_displayName);
 	
-	if (_type == "CfgWeapons") exitWith {
+	if (_category == "weapon") exitWith {
 		_marker setMarkerColor "ColorPink";
 		_marker
 	};
-	if (_type == "CfgMagazines") exitWith {
+	if (_category == "magazine") exitWith {
 		_marker setMarkerColor "ColorBlue";
 		_marker
 	};
-	if (_type == "CfgGlasses") exitWith {
+	if (_type == "headgear") exitWith {
 		_marker setMarkerColor "ColorGreen";
 		_marker
 	};
-	if (_type == "isItem") exitWith {
+	if (_category == "item") exitWith {
 		_marker setMarkerColor "ColorGreen";
 		_marker
 	};
-	if (_type == "isBackpack") exitWith {
+	if (_type == "backpack") exitWith {
 		_marker setMarkerColor "ColorYellow";
 		_marker
 	};

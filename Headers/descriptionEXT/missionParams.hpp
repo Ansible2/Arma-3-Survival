@@ -85,7 +85,7 @@ class BLWK_faksToMakeMedkit
 	title = "How many FAKs make a Medkit?";
 	values[] = {5, 10, 15};
 	texts[] = {"5", "10", "15"};
-	default = 2;
+	default = 10;
 };
 
 class BLWK_playersStartWith_map
@@ -338,7 +338,7 @@ class BLWK_saveRespawnLoadout
 
 class BLWK_friendlyFireOn
 {
-	title = "Freindly Fire";
+	title = "Friendly Fire";
 	values[] = ZERO_OR_ONE;
 	texts[] = OFF_OR_ON;
 	default = 1;
@@ -423,7 +423,7 @@ class BLWK_maxEnemyInfantryAtOnce
 
 class BLWK_magRepackEnabled
 {
-	title = "Enable Vanilla MagRepack";
+	title = "Enable Vanilla QS MagRepack";
 	values[] = ZERO_OR_ONE;
 	texts[] = NO_OR_YES;
 	default = 1;

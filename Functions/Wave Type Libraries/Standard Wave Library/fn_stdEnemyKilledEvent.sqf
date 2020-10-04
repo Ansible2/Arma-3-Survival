@@ -12,7 +12,7 @@ Parameters:
 		0: _unit : <OBJECT> - Object the event handler is assigned to
 		1: _source : <OBJECT> - Object that caused the damage – contains unit in case of collisions (not used)
 		2: _damage : <NUMBER> - Level of damage caused by the hit (not used)
-		3: _insitgator : <OBJECT> - Person who pulled the trigger
+		3: _instigator : <OBJECT> - Person who pulled the trigger
 	1: _handlerID : <NUMBER> - The eventhandler's id number
 
 Returns:
@@ -34,7 +34,7 @@ Author:
 params ["_eventInfo","_handlerID"];
 
 private _killedUnit = _eventInfo select 0;
-private _instigator = _eventInfo select 3;
+private _instigator = _eventInfo select 2;
 
 // spawn the next in que
 if (local BLWK_theAIHandlerEntity) then {

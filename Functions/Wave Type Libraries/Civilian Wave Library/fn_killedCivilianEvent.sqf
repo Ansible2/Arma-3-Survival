@@ -26,7 +26,7 @@ Author:
 ---------------------------------------------------------------------------- */
 params ["_eventInfo","_handlerID"];
 private _killedUnit = _eventInfo select 0;
-private _instigator = _eventInfo select 3;
+private _instigator = _eventInfo select 2;
 
 
 if (local _instigator AND {isPlayer _instigator} AND {hasInterface}) then {
