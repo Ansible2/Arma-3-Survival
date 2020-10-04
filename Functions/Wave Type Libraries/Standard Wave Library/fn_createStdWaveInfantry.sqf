@@ -40,6 +40,7 @@ private _fn_getAvailableEnemyLists = {
 
 	if (_isDefectorWave) exitWith {
 		_returnedLists pushback BLWK_friendly_menClasses;
+		_returnedLists pushBack 1;
 	};
 
 	// classes

@@ -26,7 +26,7 @@ private _fn_setUpMarker = {
 	params ["_loot","_index"];
 
 	// checking unique items first
-	if (_loot isEqualTo BLWK_supportDish) exitWith {
+	if (!BLWK_supportDishFound AND {_loot isEqualTo BLWK_supportDish}) exitWith {
 		private _marker = createMarker ["BLWK_lootMarker_" + str _index,getPos _loot];
 		_marker setMarkerText "Support Dish";
 		_marker setMarkerColor "ColorBlack";
@@ -38,7 +38,7 @@ private _fn_setUpMarker = {
 		_marker setMarkerColor "ColorBlack";
 		_marker
 	};
-	if (_loot isEqualTo BLWK_randomWeaponBox) exitWith {
+	if (!BLWK_randomWeaponBoxFound AND {_loot isEqualTo BLWK_randomWeaponBox}) exitWith {
 		private _marker = createMarker ["BLWK_lootMarker_" + str _index,getPos _loot];
 		_marker setMarkerText "Random Weapon Box";
 		_marker setMarkerColor "ColorBlack";

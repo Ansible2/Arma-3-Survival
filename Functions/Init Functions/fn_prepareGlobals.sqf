@@ -68,6 +68,8 @@ if (isServer OR {!hasInterface}) then {
     BLWK_randomizeEnemyWeapons = [false,true] select ("BLWK_randomizeEnemyWeapons" call BIS_fnc_getParamValue);
 
     BLWK_vehicleStartWave = ("BLWK_vehicleStartWave" call BIS_fnc_getParamValue);
+    BLWK_specialWavesStartAt = ("BLWK_specialWavesStartAt" call BIS_fnc_getParamValue);
+
 
     BLWK_infantrySpawnPositions = [];
     BLWK_vehicleSpawnPositions = [];
@@ -140,10 +142,7 @@ if (isServer) then {
     BLWK_faksToMakeMedkit = ("BLWK_faksToMakeMedkit" call BIS_fnc_getParamValue);
 
     BLWK_timeBetweenRounds = ("BLWK_timeBetweenRounds" call BIS_fnc_getParamValue);
-    BLWK_allowSpecialWaves = [false,true] select ("BLWK_allowSpecialWaves" call BIS_fnc_getParamValue);
     BLWK_maxNumWaves = ("BLWK_maxNumWaves" call BIS_fnc_getParamValue);
-
-    BLWK_supportDishFound = [false,true] select ("BLWK_supportDishFound" call BIS_fnc_getParamValue);
 
     BLWK_buildingsNearBulwarkAreIndestructable = [false,true] select ("BLWK_buildingsNearBulwarkAreIndestructable" call BIS_fnc_getParamValue);
     BLWK_buildingsNearBulwarkAreIndestructable_radius = ("BLWK_buildingsNearBulwarkAreIndestructable_radius" call BIS_fnc_getParamValue);
@@ -188,6 +187,9 @@ BLWK_pointsForKill = ("BLWK_pointsForKill" call BIS_fnc_getParamValue);         
 BLWK_pointsForHit = ("BLWK_pointsForHit" call BIS_fnc_getParamValue);                   // Every Bullet hit that doesn't result in a kill
 BLWK_pointsMultiForDamage = ("BLWK_pointsMultiForDamage" call BIS_fnc_getParamValue);   // Extra points awarded for damage. 100% = BLWK_pointsMultiForDamage. 50% = BLWK_pointsMultiForDamage/2
 BLWK_costToSpinRandomBox = 950;  // Cost to spin the box
+BLWK_supportDishFound = [false,true] select ("BLWK_supportDishFound" call BIS_fnc_getParamValue);
+BLWK_randomWeaponBoxFound = false;
+
 // Point multipliers of BLWK_pointsForKill for different waves
 BLWK_pointsMulti_man_level1 = 0.75;
 BLWK_pointsMulti_man_level2 = 1;

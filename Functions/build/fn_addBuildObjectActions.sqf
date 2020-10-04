@@ -58,8 +58,7 @@ if (!(_object isEqualTo bulwarkBox) AND {!(_object isEqualTo BLWK_randomWeaponBo
 _object addAction [ 
 	"<t color='#00ffff'>-- Move Object Up --</t>",  
 	{
-		params ["_object"];
-		[_object,true] call BLWK_fnc_moveUpOrDown;
+		[_this select 0,true] call BLWK_fnc_moveUpOrDown;
 	}, 
 	nil, 
 	95,  
@@ -75,8 +74,7 @@ _object addAction [
 _object addAction [ 
 	"<t color='#00ff00'>-- Move Object Down --</t>",  
 	{
-		params ["_object"];
-		[_object,false] call BLWK_fnc_moveUpOrDown;
+		[_this select 0,false] call BLWK_fnc_moveUpOrDown;
 	}, 
 	nil, 
 	94,  
@@ -107,8 +105,7 @@ _object addAction [
 _object addAction [
 	"<t color='#ff00bf'>-- Rotate Object Left --</t>",
 	{
-		params ["_object"];
-		[_object,false] call BLWK_fnc_rotateObject;
+		[_this select 0,false] call BLWK_fnc_rotateObject;
 	},
 	_object,
 	92,
@@ -123,8 +120,7 @@ _object addAction [
 _object addAction [
 	"<t color='#7e33ff'>-- Rotate Object Right --</t>",
 	{
-		params ["_object"];
-		[_object,true] call BLWK_fnc_rotateObject;
+		[_this select 0,true] call BLWK_fnc_rotateObject;
 	},
 	nil,
 	93,
@@ -139,8 +135,7 @@ _object addAction [
 _object addAction [ 
 	"<t color='#ffff00'>-- Reset Object Rotation --</t>",  
 	{
-		params ["_object"];
-		[_object] call BLWK_fnc_resetObjectRotation;
+		[_this select 0] call BLWK_fnc_resetObjectRotation;
 	}, 
 	nil, 
 	91,  

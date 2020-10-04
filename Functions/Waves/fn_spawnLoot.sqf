@@ -151,7 +151,7 @@ private _fn_addLoot = {
 	
 	private _typeToSpawn = round random 7;
 	
-	private "_selectedItemClass";
+	private ["_selectedItemClass","_magazineClass"];
 	// backpack
 	if (_typeToSpawn isEqualTo 0) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_backpackClasses;
@@ -180,7 +180,7 @@ private _fn_addLoot = {
 	// weapons
 	if (_typeToSpawn isEqualTo 5) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_weaponClasses;
-		private _magazineClass = selectRandom (getArray (configFile >> "CfgWeapons" >> _selectedItemClass >> "magazines"));
+		_magazineClass = selectRandom (getArray (configFile >> "CfgWeapons" >> _selectedItemClass >> "magazines"));
 		_holder addWeaponCargoGlobal [_selectedItemClass,1];
 		_holder addMagazineCargoGlobal [_magazineClass,round random [1,2,3]];  
 	};
@@ -188,7 +188,7 @@ private _fn_addLoot = {
 	if (_typeToSpawn isEqualTo 6) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_weaponClasses;
 		diag_log _selectedItemClass;
-		private _magazineClass = selectRandom (getArray (configFile >> "CfgWeapons" >> _selectedItemClass >> "magazines"));
+		_magazineClass = selectRandom (getArray (configFile >> "CfgWeapons" >> _selectedItemClass >> "magazines"));
 		diag_log _magazineClass;
 		_holder addMagazineCargoGlobal [_magazineClass,round random [1,2,3]]; 
 	};

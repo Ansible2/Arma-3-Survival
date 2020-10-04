@@ -25,7 +25,7 @@ Author:
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {false};
 #include "..\..\Headers\String Constants.hpp"
-#define STANDARD_WAVE_LIKELIHOOD 1
+#define STANDARD_WAVE_LIKELIHOOD 3
 #define SUICIDE_WAVE_LIKELIHOOD 0.1
 #define CIVILIAN_WAVE_LIKELIHOOD 0.25
 #define DRONE_WAVE_LIKELIHOOD 0.1
@@ -37,7 +37,7 @@ private _fn_getWaveType = {
 	private _decideArray = [];
 	_decideArray append [STANDARD_WAVE, STANDARD_WAVE_LIKELIHOOD];
 	// these aren't cache'd for the desire to have this be a toggle option mid-session in the future
-	if (BLWK_allowSpecialWaves) then {
+	if (BLWK_currentWaveNumber >= BLWK_specialWavesStartAt) then {
 		_decideArray append [SUICIDE_WAVE, SUICIDE_WAVE_LIKELIHOOD];
 		_decideArray append [CIVILIAN_WAVE, CIVILIAN_WAVE_LIKELIHOOD];
 		_decideArray append [DRONE_WAVE, DRONE_WAVE_LIKELIHOOD];

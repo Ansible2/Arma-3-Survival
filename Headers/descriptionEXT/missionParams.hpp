@@ -136,20 +136,20 @@ class BLWK_playersStartWith_NVGs
 	default = 0;
 };
 
-class BLWK_allowSpecialWaves
-{
-	title = "Special Waves - suicide bombers, etc";
-	values[] = ZERO_OR_ONE;
-	texts[] = NO_OR_YES;
-	default = 1;
-};
-
 class BLWK_vehicleStartWave
 {
 	title = "Vehicles can spawn after wave";
 	values[] = {5, 10, 15, 20, 25, 9999};
 	texts[] = {"5", "10", "15", "20", "25", "Never"};
 	default = 10;
+};
+
+class BLWK_specialWavesStartAt
+{
+	title = "Special Wave Possibility Starts At Wave";
+	values[] = {5, 10, 15, 20, 25, 9999};
+	texts[] = {"5", "10", "15", "20", "25", "Never"};
+	default = 5;
 };
 
 class BLWK_randomizeEnemyWeapons
@@ -254,8 +254,8 @@ class BLWK_supportDishFound
 {
 	title = "Find Satellite Dish to Unlock Supports";
 	values[] = ZERO_OR_ONE;
-	texts[] = {"No, Supports are available from the begining of the mission", "Yes, find the Satellite Dish to unlock the Support Menu"};
-	default = 1;
+	texts[] = {"Yes, find the Satellite Dish to unlock the Support Menu", "No, Supports are available from the begining of the mission"};
+	default = 0;
 };
 
 class BLWK_pointsForKill

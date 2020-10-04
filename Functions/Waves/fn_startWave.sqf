@@ -25,6 +25,8 @@ Author:
 ---------------------------------------------------------------------------- */
 if (!isServer OR {!canSuspend}) exitWith {};
 
+#include "..\..\Headers\String Constants.hpp"
+
 // update wave number
 private _previousWaveNum = missionNamespace getVariable ["BLWK_currentWaveNumber",0];
 missionNamespace setVariable ["BLWK_currentWaveNumber", _previousWaveNum + 1,true];
@@ -41,6 +43,12 @@ if (BLWK_currentWaveNumber > 1) then {
 
 call BLWK_fnc_cleanUpTheDead;
 
+// check to make sure there are actually units inside the wave array before looping
+waitUntil {
+	if !(missionNamespace getVariable [WAVE_ENEMIES_ARRAY,[]] isEqualTo []) exitWith {true};
+	sleep 1;
+	false
+};
 // loop to check wave end
 waitUntil {
 	if (call BLWK_fnc_isWaveCleared) exitWith {

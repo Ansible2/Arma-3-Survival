@@ -37,6 +37,7 @@ if (_queArray isEqualTo []) exitWith {objNull};
 
 
 // get the first available unit in the que
+diag_log (_queArray select 0);
 (_queArray deleteAt 0) params ["_position","_type"];
 
 
