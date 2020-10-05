@@ -29,6 +29,9 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+if (!hasInterface) exitWith {};
+
+#define ROTATION_INCRIMENT 15
 params [
 	"_object",
 	"_direction",
@@ -40,7 +43,7 @@ private _currVectDir = vectorDir _object;
 private _currVectUp = vectorUp _object;
 // rotate clockwise if true
 // this means we are either adding or subtracting 10 degrees from the current angle
-private _addToAngle = [10,-10] select _direction;
+private _addToAngle = [ROTATION_INCRIMENT,-ROTATION_INCRIMENT] select _direction;
 
 private _newVector = [_currVectDir,_currVectUp,_addToAngle] call CBAP_fnc_vectRotate3D;
 
