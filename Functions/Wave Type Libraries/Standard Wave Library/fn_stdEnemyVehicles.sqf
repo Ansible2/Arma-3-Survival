@@ -30,7 +30,7 @@ Author:
 #define LIKELIHOOD_HEAVY_CAR 0.25
 #define LIKELIHOOD_LIGHT_CAR 0.50
 #define BASE_VEHICLE_SPAWN_LIKELIHOOD 0.10
-#define VEHICLE_SPAWN_INCRIMENT 0.05
+#define VEHICLE_SPAWN_INCREMENT 0.05
 #define ROUNDS_SINCE_MINUS_TWO(TOTAL_ROUNDS_SINCE) TOTAL_ROUNDS_SINCE - 2 
 
 params [
@@ -51,7 +51,7 @@ if (_roundsSinceVehicleSpawned >= 2) exitWith {
 };
 	
 // only the rounds after the two will contribute to the LIKELIHOOD percentage (5% per round, with a starting percentage of 10%)
-private _howLikelyIsAVehicleToSpawn = (ROUNDS_SINCE_MINUS_TWO(_roundsSinceVehicleSpawned) * VEHICLE_SPAWN_INCRIMENT) + BASE_VEHICLE_SPAWN_LIKELIHOOD;
+private _howLikelyIsAVehicleToSpawn = (ROUNDS_SINCE_MINUS_TWO(_roundsSinceVehicleSpawned) * VEHICLE_SPAWN_INCREMENT) + BASE_VEHICLE_SPAWN_LIKELIHOOD;
 private _howLikelyIsAVheicleNOTToSpawn = 1 - _howLikelyIsAVehicleToSpawn;
 
 private _vehcileWillSpawn = selectRandomWeighted [true,_howLikelyIsAVehicleToSpawn,false,_howLikelyIsAVheicleNOTToSpawn];

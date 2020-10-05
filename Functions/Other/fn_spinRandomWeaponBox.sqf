@@ -53,13 +53,13 @@ _weaponHolder enableSimulationGlobal false;
 
 // CIPHER COMMENT: Need to add the sound for the box spin
 // animate up
-private _incriment = 1/NUMBER_OF_FRAMES;
+private _increment = 1/NUMBER_OF_FRAMES;
 private "_tempWeapon";
 private _possibleWeapons = BLWK_loot_weaponClasses;
 for "_i" from 1 to NUMBER_OF_FRAMES do {
 	_tempWeapon = selectRandom _possibleWeapons;
 	_weaponHolder addWeaponCargoGlobal [_tempWeapon,1];
-	_weaponHolder setPosATL ((getPosATLVisual _weaponHolder) vectorAdd [0,0,_incriment]);
+	_weaponHolder setPosATL ((getPosATLVisual _weaponHolder) vectorAdd [0,0,_increment]);
 	_weaponHolder setVectorDirAndUp [vectorDir BLWK_randomWeaponBox, vectorUp BLWK_randomWeaponBox];
 	
 	sleep SLEEP_TIME;
@@ -85,7 +85,7 @@ if ((weaponCargo _weaponHolder) isEqualTo []) then {
 
 	// animate down
 	for "_i" from 1 to NUMBER_OF_FRAMES do {
-		_weaponHolder setPosATL ((getPosATLVisual _weaponHolder) vectorDiff [0,0,_incriment]);
+		_weaponHolder setPosATL ((getPosATLVisual _weaponHolder) vectorDiff [0,0,_increment]);
 		_weaponHolder setVectorDirAndUp [vectorDir BLWK_randomWeaponBox, vectorUp BLWK_randomWeaponBox];
 
 		sleep SLEEP_TIME;
