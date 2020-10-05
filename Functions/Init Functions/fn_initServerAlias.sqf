@@ -17,7 +17,7 @@ waitUntil {count (call CBAP_fnc_players) > 0};
 
 null = [] spawn BLWK_fnc_arePlayersAliveLoop;
 
-if (BLWK_buildingsNearBulwarkAreIndestructable) then {
+if (BLWK_buildingsNearBulwarkAreIndestructable_radius > 0) then {
 	null = [] spawn BLWK_fnc_bulwarkBuildingsLoop;
 };
 

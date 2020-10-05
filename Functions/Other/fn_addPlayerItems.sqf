@@ -27,7 +27,7 @@ params [
 	["_player",player,[objNull]]
 ];
 
-if(BLWK_playersStartWith_pistol) then {
+if (BLWK_playersStartWith_pistol) then {
 	_player addMagazine "16Rnd_9x21_Mag";
 	_player addMagazine "16Rnd_9x21_Mag";
 	_player addWeapon "hgun_P07_F";

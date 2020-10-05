@@ -145,7 +145,6 @@ if (isServer) then {
     BLWK_timeBetweenRounds = ("BLWK_timeBetweenRounds" call BIS_fnc_getParamValue);
     BLWK_maxNumWaves = ("BLWK_maxNumWaves" call BIS_fnc_getParamValue);
 
-    BLWK_buildingsNearBulwarkAreIndestructable = [false,true] select ("BLWK_buildingsNearBulwarkAreIndestructable" call BIS_fnc_getParamValue);
     BLWK_buildingsNearBulwarkAreIndestructable_radius = ("BLWK_buildingsNearBulwarkAreIndestructable_radius" call BIS_fnc_getParamValue);
 
     // for revealing loot and deleteing it at the end of the round
@@ -155,6 +154,7 @@ if (isServer) then {
     // the marker that denotes the play area on the map
     BLWK_playAreaMarker = "";
 
+    // used to delete dead bodies after the parameter set amount of time
     BLWK_deadBodies = [[],[]];
     BLWK_roundsBeforeBodyDeletion = ("BLWK_roundsBeforeBodyDeletion" call BIS_fnc_getParamValue);
 };

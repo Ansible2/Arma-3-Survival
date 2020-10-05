@@ -293,28 +293,9 @@ class BLWK_paratrooperCount
 A_SPACE(Revive);
 A_SECTION_HEADER(Revive);
 
-class BLWK_reviveRequiredItems
-{
-	title = "Required items";
-	isGlobal = 1;
-
-	values[] = {
-		0,
-		1,
-		2
-	};
-	texts[] = {
-		"None",
-		"Medikit",
-		"First Aid Kit / Medikit"
-	};
-	default = 2;
-	function = "bis_fnc_paramReviveRequiredItems";
-};
-
 class BLWK_numRespawnTickets
 {
-	title = "Tickets";
+	title = "Respawn Tickets";
 	values[] = {0, 5, 10, 15, 20};
 	texts[] = {"0", "5", "10", "15", "20"};
 	default = 0;
@@ -344,20 +325,12 @@ class BLWK_friendlyFireOn
 	default = 1;
 };
 
-class BLWK_buildingsNearBulwarkAreIndestructable
-{
-	title = "Buildings Near Bulwark Are Indestructable";
-	values[] = ZERO_OR_ONE;
-	texts[] = OFF_OR_ON;
-	default = 0;
-};
-
 class BLWK_buildingsNearBulwarkAreIndestructable_radius
 {
 	title = "The radius of indestructable buildings around the Bulwark";
-	values[] = {5,10,15,20,25,30};
-	texts[] = {"5m","10m","15m","20m","25m","30m"};
-	default = 15;
+	values[] = {0,5,10,15,20,25,30};
+	texts[] = {"OFF","5m","10m","15m","20m","25m","30m"};
+	default = 0;
 };
 
 

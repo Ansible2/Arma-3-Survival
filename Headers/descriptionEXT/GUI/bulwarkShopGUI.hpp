@@ -47,7 +47,7 @@ class bulwarkShopDialog
             y = 0.58 * safezoneH + safezoneY;
             w = 0.185 * safezoneW;
             h = 0.04 * safezoneH;
-            action = "call BLWK_fnc_purchaseObject";
+            action = "null = [] spawn BLWK_fnc_purchaseObject";
         };
 
         class bulwarkShopDialog_supportLst: RscListbox

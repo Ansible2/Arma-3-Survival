@@ -29,7 +29,7 @@ private _invincibleBuildings = [];
 private _buildingsCurrentlyNear = nearestTerrainObjects [bulwarkBox,["house"],BLWK_buildingsNearBulwarkAreIndestructable_radius,false,true];
 private _buildingsToMakeVulnerable = [];
 
-while {BLWK_buildingsNearBulwarkAreIndestructable} do {
+while {BLWK_buildingsNearBulwarkAreIndestructable_radius > 0} do {
 	_buildingsCurrentlyNear = nearestTerrainObjects [bulwarkBox,["house"],BLWK_buildingsNearBulwarkAreIndestructable_radius,false,true];
 
 	if !(_buildingsCurrentlyNear isEqualTo _invincibleBuildings) then {
