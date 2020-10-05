@@ -39,6 +39,7 @@ if !((missionNamespace getVariable ["BLWK_spawnedLoot",[]]) isEqualTo []) then {
 		};
 	};
 	BLWK_spawnedLoot apply {
+		_x setVariable ["BLWK_primaryLootClass",nil];
 		deleteVehicle _x;
 	};
 };
@@ -155,46 +156,60 @@ private _fn_addLoot = {
 	if (_typeToSpawn isEqualTo 0) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_backpackClasses;
 		_holder addBackpackCargoGlobal [_selectedItemClass,1];
+
+		_selectedItemClass
 	};
 	// vest
 	if (_typeToSpawn isEqualTo 1) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_vestClasses;
-		_holder addItemCargoGlobal [_selectedItemClass,1]; 
+		_holder addItemCargoGlobal [_selectedItemClass,1];
+
+		_selectedItemClass 
 	};
 	// uniforms
 	if (_typeToSpawn isEqualTo 2) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_uniformClasses;
-		_holder addItemCargoGlobal [_selectedItemClass,1]; 
+		_holder addItemCargoGlobal [_selectedItemClass,1];
+
+		_selectedItemClass 
 	};
 	// items
 	if (_typeToSpawn isEqualTo 3) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_itemClasses;
-		_holder addItemCargoGlobal [_selectedItemClass,1]; 
+		_holder addItemCargoGlobal [_selectedItemClass,1];
+
+		_selectedItemClass 
 	};
 	// explosives
 	if (_typeToSpawn isEqualTo 4) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_explosiveClasses;
-		_holder addMagazineCargoGlobal [_selectedItemClass,round random [1,2,3]]; 
+		_holder addMagazineCargoGlobal [_selectedItemClass,round random [1,2,3]];
+
+		_selectedItemClass 
 	};
 	// weapons
 	if (_typeToSpawn isEqualTo 5) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_weaponClasses;
 		_magazineClass = selectRandom (getArray (configFile >> "CfgWeapons" >> _selectedItemClass >> "magazines"));
 		_holder addWeaponCargoGlobal [_selectedItemClass,1];
-		_holder addMagazineCargoGlobal [_magazineClass,round random [1,2,3]];  
+		_holder addMagazineCargoGlobal [_magazineClass,round random [1,2,3]];
+
+		_selectedItemClass  
 	};
 	// magazines
 	if (_typeToSpawn isEqualTo 6) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_weaponClasses;
-		diag_log _selectedItemClass;
 		_magazineClass = selectRandom (getArray (configFile >> "CfgWeapons" >> _selectedItemClass >> "magazines"));
-		diag_log _magazineClass;
-		_holder addMagazineCargoGlobal [_magazineClass,round random [1,2,3]]; 
+		_holder addMagazineCargoGlobal [_magazineClass,round random [1,2,3]];
+		
+		_magazineClass 
 	};
 	// headgear
 	if (_typeToSpawn isEqualTo 7) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_headGearClasses;
-		_holder addItemCargoGlobal [_selectedItemClass,1]; 
+		_holder addItemCargoGlobal [_selectedItemClass,1];
+		
+		_selectedItemClass 
 	};
 };
 
@@ -205,7 +220,9 @@ _sortedPositions apply {
 	private _spawnPosition = _x vectorAdd [0,0,0.1];
 
 	private _holder = createVehicle ["WeaponHolderSimulated_Scripted", _spawnPosition, [], 0, "CAN_COLLIDE"];
-	[_holder] call _fn_addLoot;
+	private _primaryLootClass = [_holder] call _fn_addLoot;
+	// used for displaying loot markers in BLWK_fnc_createLootMarkers
+	_holder setVariable ["BLWK_primaryLootClass",_primaryLootClass];
 	
 	_addToZeusArray pushBack _holder;
 	BLWK_spawnedLoot pushBack _holder;

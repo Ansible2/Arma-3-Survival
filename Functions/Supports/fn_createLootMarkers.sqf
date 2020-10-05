@@ -23,42 +23,42 @@ Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 private _fn_setUpMarker = {
-	params ["_loot","_index"];
+	params ["_lootHolder","_index"];
 
 	// checking unique items first
-	if (!BLWK_supportDishFound AND {_loot isEqualTo BLWK_supportDish}) exitWith {
-		private _marker = createMarker ["BLWK_lootMarker_" + str _index,getPos _loot];
+	if (!BLWK_supportDishFound AND {_lootHolder isEqualTo BLWK_supportDish}) exitWith {
+		private _marker = createMarker ["BLWK_lootMarker_" + str _index,getPos _lootHolder];
 		_marker setMarkerText "Support Dish";
 		_marker setMarkerType "hd_dot";
 		_marker setMarkerColor "ColorBlack";
 		_marker
 	};
-	if (_loot isEqualTo BLWK_moneyPile) exitWith {
-		private _marker = createMarker ["BLWK_lootMarker_" + str _index,getPos _loot];
+	if (_lootHolder isEqualTo BLWK_moneyPile) exitWith {
+		private _marker = createMarker ["BLWK_lootMarker_" + str _index,getPos _lootHolder];
 		_marker setMarkerText "Money Pile";
 		_marker setMarkerType "hd_dot";
 		_marker setMarkerColor "ColorBlack";
 		_marker
 	};
-	if (!BLWK_randomWeaponBoxFound AND {_loot isEqualTo BLWK_randomWeaponBox}) exitWith {
-		private _marker = createMarker ["BLWK_lootMarker_" + str _index,getPos _loot];
+	if (!BLWK_randomWeaponBoxFound AND {_lootHolder isEqualTo BLWK_randomWeaponBox}) exitWith {
+		private _marker = createMarker ["BLWK_lootMarker_" + str _index,getPos _lootHolder];
 		_marker setMarkerText "Random Weapon Box";
 		_marker setMarkerType "hd_dot";
 		_marker setMarkerColor "ColorBlack";
 		_marker
 	};
 
-	private _marker = createMarker ["BLWK_lootMarker_" + str _index,getPos _loot];
+	private _marker = createMarker ["BLWK_lootMarker_" + str _index,getPos _lootHolder];
 	_marker setMarkerType "hd_dot";
-	_marker setMarkerAlpha 0.5;
+	_marker setMarkerAlpha 0.65;
+	
+	// see what type of loot it is
+	private _lootClassName = _lootHolder getVariable "BLWK_primaryLootClass";
 	private _config = ([_lootClassName] call CBAP_fnc_getItemConfig) select 0;
 	_marker setMarkerText ([_config] call BIS_fnc_displayName);
-
-	// see what type of loot it is
-	private _lootClassName = typeOf _loot;
 	private _categoryAndType = [_lootClassName] call BIS_fnc_itemType;
 	private _category = _categoryAndType select 0;
-	private _type = _categoryAndType select 1; // error zero devisor
+	private _type = _categoryAndType select 1;
 		
 	if (_category == "weapon") exitWith {
 		_marker setMarkerColor "ColorPink";
@@ -80,9 +80,14 @@ private _fn_setUpMarker = {
 		_marker setMarkerColor "ColorYellow";
 		_marker
 	};
-
+	if (_type == "vest") exitWith {
+		_marker setMarkerColor "ColorOrange";
+		_marker
+	};
 	// set red if nothing else
 	_marker setMarkerColor "ColorRed";
+	
+	
 	_marker
 };
 
