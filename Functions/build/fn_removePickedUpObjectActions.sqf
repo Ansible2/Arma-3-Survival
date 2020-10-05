@@ -25,7 +25,10 @@ Author:
 if !(hasInterface) exitWith {false};
 
 BLWK_heldObjectActionIDs apply {
-	player removeAction _x;
+	// accounts for actions such as selling action not being added
+	if !(_x isEqualTo -1) then {
+		player removeAction _x;
+	};
 };
 
 missionNamespace setVariable ["BLWK_heldObjectActionIDs",nil];
