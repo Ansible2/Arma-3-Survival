@@ -23,7 +23,7 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if !(hasInterface OR !{canSuspend}) exitWith {};
+if (!hasInterface OR {!canSuspend}) exitWith {};
 
 params ["_object"];
 
