@@ -2,7 +2,7 @@
 Function: BLWK_fnc_moveUpOrDown
 
 Description:
-	Moves and object up or down based on an incriment
+	Moves and object up or down based on an increment
 
 Parameters:
 	0: _object : <OBJECT> - The object to move
@@ -33,24 +33,35 @@ params [
 	"_object",
 	["_downOrUp",false,[true]],
 	["_beingCarried",false,[true]],
-	["_player",player,[objNull]]
+	["_personCarrying",player,[objNull]]
 ];
 
-#define MOVEMENT_INCRIMENT 0.25
+#define MOVEMENT_INCREMENT 0.25
+
+private _objectPosition = getPosWorld _object;
+private _increment = [-MOVEMENT_INCREMENT,MOVEMENT_INCREMENT] select _downOrUp;
+private _newPosition = _objectPosition vectorAdd [0,0,_increment];
 
 if (_beingCarried) then {
-	detach _object;
+	_object setPosWorld _newPosition;
+	_object attachTo [_personCarrying];
+} else {
+	private _currentVectorUp = vectorUpVisual _object;
+	private _currentVectorDir = vectorDirVisual _object;
+	[_object,[_currentVectorDir,_currentVectorUp]] remoteExecCall ["setVectorDirAndUp",_object];
+	_object setPosWorld _newPosition;
 };
 
-private _objectPosition = getPosWorldVisual _object;
+/*
 private _currentVectorUp = vectorUpVisual _object;
 private _currentVectorDir = vectorDirVisual _object;
 
-private _incriment = [-MOVEMENT_INCRIMENT,MOVEMENT_INCRIMENT] select _downOrUp;
-private _newPosition = _objectPosition vectorAdd [0,0,_incriment];
+private _newPosition = _objectPosition vectorAdd [0,0,_increment];
 _object setPosWorld _newPosition;
 
-[_object,[_currentVectorDir,_currentVectorUp]] remoteExecCall ["setVectorDirAndUp",_object];
 if (_beingCarried) then {
 	[_object,_player,true] call BIS_fnc_attachToRelative;
 };
+
+[_object,[_currentVectorDir,_currentVectorUp]] remoteExecCall ["setVectorDirAndUp",_object];
+*/
