@@ -40,7 +40,7 @@ private _instigator = _eventInfo select 2;
 if (local _instigator AND {isPlayer _instigator} AND {hasInterface}) then {
 	private _points = [_killedUnit] call BLWK_fnc_getPointsForKill;
 	[_points] call BLWK_fnc_addPoints;
-	[_killedUnit,_points] call BLWK_fnc_createHitMarker;
+	[_killedUnit,_points,true] call BLWK_fnc_createHitMarker;
 };
 
 // mp events need to be removed on the unit where they are local
