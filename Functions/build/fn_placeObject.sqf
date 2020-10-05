@@ -34,8 +34,13 @@ detach _object;
 if (_snapToSurface) then {
 	private _objectPositionATL = getPosATL _object;
 	private _ATLBeneathObject = _objectPositionATL vectorDiff [0,0,_objectPositionATL select 2];
+	private _ASLBeneathObject = ATLToASL _ATLBeneathObject;
 
-	private _closestIntersect = (lineIntersectsSurfaces [ATLToASL _objectPositionATL,ATLToASL _ATLBeneathObject,_object]) select 0;
+	private _closestIntersect = (lineIntersectsSurfaces [ATLToASL _objectPositionATL,_ASLBeneathObject,_object]) select 0;
+	// if there is just terrain below
+	if (isNil "_closestIntersect") then {
+		_closestIntersect = [_ASLBeneathObject,surfaceNormal _ATLBeneathObject]
+	};
 	_closestIntersect params ["_intersectPosASL","_intersectPosSurfaceNormal"];
 
 	_object setPosASL _intersectPosASL;
