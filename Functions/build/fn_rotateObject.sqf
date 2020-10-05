@@ -48,8 +48,9 @@ private _addToAngle = [ROTATION_INCREMENT,-ROTATION_INCREMENT] select _direction
 
 private _newVector = [_currVectDir,_currVectUp,_addToAngle] call CBAP_fnc_vectRotate3D;
 
+
 if (_beingCarried) then {
-	[_object,[_player vectorModelToWorld _newVector,_currVectUp]] remoteExecCall ["setVectorDirAndUp",_object];
+	[_object,[_player vectorWorldToModelVisual _newVector,_currVectUp]] remoteExecCall ["setVectorDirAndUp",_object];
 } else {
 	[_object,[_newVector,_currVectUp]] remoteExecCall ["setVectorDirAndUp",_object];
 };
