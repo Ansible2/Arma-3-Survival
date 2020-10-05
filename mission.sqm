@@ -16,20 +16,18 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={6.1398058,58.843452,-78.155754};
-		dir[]={0,-0.70710683,0.70710683};
-		up[]={0,0.70710677,0.70710677};
-		aside[]={0.99999994,0,0};
+		pos[]={7.3229146,13.578456,1.3057055};
+		dir[]={-0.59554493,-0.80324775,0.011372711};
+		up[]={-0.8031013,0.5956443,0.015336002};
+		aside[]={0.019092463,-1.1845987e-007,0.99982101};
 	};
 };
 binarizationWanted=0;
 addons[]=
 {
 	"A3_Characters_F",
-	"A3_Weapons_F_Pistols_P07",
-	"A3_Weapons_F",
-	"A3_Weapons_F_Items",
 	"A3_Characters_F_Exp_Civil",
+	"A3_Weapons_F",
 	"A3_Characters_F_Exp",
 	"A3_Modules_F_Curator_Curator",
 	"A3_Structures_F_Naval_Piers"
@@ -48,15 +46,15 @@ class AddonsMetaData
 		};
 		class Item1
 		{
-			className="A3_Weapons_F";
-			name="Arma 3 Alpha - Weapons and Accessories";
+			className="A3_Characters_F_Exp";
+			name="Arma 3 Apex - Characters and Clothing";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
 		class Item2
 		{
-			className="A3_Characters_F_Exp";
-			name="Arma 3 Apex - Characters and Clothing";
+			className="A3_Weapons_F";
+			name="Arma 3 Alpha - Weapons and Accessories";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
@@ -241,45 +239,6 @@ class Mission
 					{
 						description="Survivor";
 						isPlayable=1;
-						class Inventory
-						{
-							class handgun
-							{
-								name="hgun_P07_F";
-								class primaryMuzzleMag
-								{
-									name="16Rnd_9x21_Mag";
-									ammoLeft=16;
-								};
-							};
-							class uniform
-							{
-								typeName="U_C_Commoner1_1";
-								isBackpack=0;
-								class MagazineCargo
-								{
-									items=1;
-									class Item0
-									{
-										name="16Rnd_9x21_Mag";
-										count=2;
-										ammoLeft=16;
-									};
-								};
-								class ItemCargo
-								{
-									items=1;
-									class Item0
-									{
-										name="FirstAidKit";
-										count=1;
-									};
-								};
-							};
-							map="ItemMap";
-							compass="ItemCompass";
-							watch="ItemWatch";
-						};
 					};
 					id=10;
 					type="C_man_1_1_F";
