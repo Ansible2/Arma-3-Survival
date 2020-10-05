@@ -45,15 +45,19 @@ if (_snapToSurface) then {
 
 	_object setPosASL _intersectPosASL;
 	[_object,_intersectPosSurfaceNormal] remoteExecCall ["setVectorUp",_object];
-};
 
-// enable object physics detach 
-[_object,true] remoteExecCall ["enableSimulationGlobal",2];
+	// enable object physics 
+	[_object,true] remoteExecCall ["enableSimulationGlobal",2];
+};
 
 // sync collision to all players
 [_object] remoteExec ["BLWK_fnc_enableCollisionWithPlayer",BLWK_allClientsTargetID,true];
 
+// make sure people can manipulate up the object now
 missionNamespace setVariable ["BLWK_heldObject",nil];
+_object setVariable ["BLWK_objectPickedUp",false,true];
 
+// remove the actions tied to the player
+call BLWK_fnc_removePickedUpObjectActions;
 
 true
