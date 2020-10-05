@@ -76,7 +76,7 @@ missionNamespace setVariable ["BLWK_heldObject",_object];
 			// check to see if object was already dropped (if the fnc was already called, BLWK_heldObjectActionIDs will have been set to nil)
 			if (!isNil "BLWK_heldObjectActionIDs") then {
 				//CIPHER COMMENT: the actions will be removed from the player via BLWK_heldObjectActionIDs. delete comment once done
-				[_object,_player] call BLWK_fnc_placeObject;
+				[_object] call BLWK_fnc_placeObject;
 			};
 
 			true
