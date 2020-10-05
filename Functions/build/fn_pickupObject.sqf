@@ -43,7 +43,7 @@ private _objectType = typeOf _object;
 
 private "_attachmentInfo";
 if (_justPurchased) then {
-	private _index = BLWK_buildableObjects_array findIf {_x select 0 == _objectType};
+	private _index = BLWK_buildableObjects_array findIf {(_x select 2) == _objectType};
 	_attachmentInfo = (BLWK_buildableObjects_array select _index) select 4;
 	_object attachTo [_player,_attachmentInfo select 1];
 	_object setDir (_attachmentInfo select 0);
