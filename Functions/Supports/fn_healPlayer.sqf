@@ -38,6 +38,6 @@ missionNamespace setVariable ["BLWK_playerKillPoints",_killPoints];
 
 _player setDamage 0;
 
-if (BLWK_dontUseRevive AND {BLWK_isACELoaded}) then {
+if (BLWK_dontUseRevive AND {BLWK_ACELoaded}) then {
 	[_player] call ace_medical_treatment_fnc_fullHealLocal;
 };

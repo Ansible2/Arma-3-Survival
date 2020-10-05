@@ -101,10 +101,9 @@ if (isServer) then {
 
     // loot classes
     private _lootClasses = call BLWK_fnc_prepareLootClasses;
-    // weapons are split up for when AI have random weapons
-    // It makes it so that can easily grab a specific type
-    BLWK_loot_weaponClasses = [];
-    BLWK_loot_primaryWeapons = _lootClasses select 0;
+
+    BLWK_loot_weaponClasses = []; // for spawning loot
+    BLWK_loot_primaryWeapons = _lootClasses select 0; // for use with BLWK_fnc_randomizeWeapons
     BLWK_loot_weaponClasses append BLWK_loot_primaryWeapons;
     BLWK_loot_handgunWeapons = _lootClasses select 1;
     BLWK_loot_weaponClasses append BLWK_loot_handgunWeapons;
@@ -174,7 +173,7 @@ if (hasInterface) then {
     BLWK_magRepackEnabled = [false,true] select ("BLWK_magRepackEnabled" call BIS_fnc_getParamValue);
     BLWK_dontUseRevive = (("ReviveMode" call BIS_fnc_getParamValue) isEqualTo 0);
 
-    BLWK_isACELoaded = ["ACE_Medical_StateMachine"] call BLWK_fnc_isPatchLoaded;
+    BLWK_ACELoaded = ["ACE_Medical_StateMachine"] call BLWK_fnc_isPatchLoaded;
 
     // this is to have potential supports that put the player outside the immediate radius
     // it is false until the play area is established
