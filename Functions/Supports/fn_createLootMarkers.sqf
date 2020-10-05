@@ -50,7 +50,7 @@ private _fn_setUpMarker = {
 
 	private _marker = createMarker ["BLWK_lootMarker_" + str _index,getPos _lootHolder];
 	_marker setMarkerType "hd_dot";
-	_marker setMarkerAlpha 0.65;
+	_marker setMarkerAlpha 0.60;
 	
 	// see what type of loot it is
 	private _lootClassName = _lootHolder getVariable "BLWK_primaryLootClass";
