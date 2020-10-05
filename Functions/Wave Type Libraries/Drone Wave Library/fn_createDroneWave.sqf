@@ -46,7 +46,7 @@ for "_i" from 1 to DRONE_NUMBER do {
 		if (isPlayer _instigator) then {
 			private _points = [_unitKilled] call BLWK_fnc_getPointsForKill;
 			[_points] remoteExecCall ["BLWK_fnc_addPoints",_instigator];
-			[_points] remoteExecCall ["BLWK_fnc_createHitMarker",_instigator];
+			[_unitKilled,_points,true] remoteExecCall ["BLWK_fnc_createHitMarker",_instigator];
 		};
 
 		private _explosion = "HandGrenade" createVehicle (getPos _unitKilled);
