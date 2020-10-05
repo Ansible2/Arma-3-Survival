@@ -25,7 +25,7 @@ Author:
 if (!hasInterface OR {!canSuspend}) exitWith {};
 // get the current slected list index from the purchase GUI when you press the button
 private _selectedIndex = lbCurSel 1500;
-if (isNil _selectedIndex) exitWith {
+if (isNil "_selectedIndex") exitWith {
 	hint "Invalid selection";
 };
 
@@ -39,14 +39,13 @@ if (isNil _selectedIndex) exitWith {
 // Script was passed an invalid number
 if (_className isEqualTo "") exitWith {};
 
-private "_purchasedObject";
-private _playerKillpoints = missionNamespace getVariable ["BLWK_playerKillPoints",0];
-
-// does the player have enough money and are they holding an object 
-// CIPHER COMMENT: Should probably just exit GUI fnc if the person is holding an object or make it unavailable
-// see fn_openShopGUI to change
 // CIPHER COMMENT: Potentially need to add the object to curator
-if (_playerKillpoints >= _price AND {!(isNil "BLWK_heldObject")}) then {
+if !(isNil "BLWK_heldObject") exitWith {
+	hint "Make sure you are not carrying an object before purchasing another one";
+};
+if ((missionNamespace getVariable ["BLWK_playerKillPoints",0]) >= _price) then {
+	private "_purchasedObject";
+
     if (_hasAi) then {
       	_purchasedObject = ([[0,0,300], 0, _className, west] call BIS_fnc_spawnVehicle) select 0;
 	} else {
