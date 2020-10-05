@@ -51,17 +51,3 @@ if (_beingCarried) then {
 	[_object,[_currentVectorDir,_currentVectorUp]] remoteExecCall ["setVectorDirAndUp",_object];
 	_object setPosWorld _newPosition;
 };
-
-/*
-private _currentVectorUp = vectorUpVisual _object;
-private _currentVectorDir = vectorDirVisual _object;
-
-private _newPosition = _objectPosition vectorAdd [0,0,_increment];
-_object setPosWorld _newPosition;
-
-if (_beingCarried) then {
-	[_object,_player,true] call BIS_fnc_attachToRelative;
-};
-
-[_object,[_currentVectorDir,_currentVectorUp]] remoteExecCall ["setVectorDirAndUp",_object];
-*/
