@@ -42,13 +42,13 @@ if (_snapToSurface) then {
 	[_object,_intersectPosSurfaceNormal] remoteExecCall ["setVectorUp",_object];
 };
 
-// enable object physics  detach 
+// enable object physics detach 
 [_object,true] remoteExecCall ["enableSimulationGlobal",2];
 
 // sync collision to all players
 [_object] remoteExec ["BLWK_fnc_enableCollisionWithPlayer",BLWK_allClientsTargetID,true];
 
-missionName setVariable ["BLWK_heldObject",nil];
+missionNamespace setVariable ["BLWK_heldObject",nil];
 
 
 true
