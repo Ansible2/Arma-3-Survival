@@ -48,7 +48,7 @@ private _displayNameTemp = "";
 BLWK_buildableObjects_array apply {
 	_classTemp = _x select 1;
 	_displayNameTemp = [configFile >> "cfgVehicles" >> _classTemp] call BIS_fnc_displayName;
-	_buildableObjectsControl lbAdd format [PRICE_NAME_FORMAT, ,_classTemp];
+	_buildableObjectsControl lbAdd format [PRICE_NAME_FORMAT,_x select 0,_displayNameTemp];
 };
 
 // show buildable object preview
