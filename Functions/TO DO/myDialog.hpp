@@ -1,60 +1,54 @@
-#define BUTTON_COLOR_BACKGROUND {}
-#define SLIDER_cOLOR {}
-#define TEXT_BOX_COLOR {}
+#include "viewDistanceLimiterBases.hpp"
 
-class myDialog 
+class VIEW_DISTANCE_LIMITER_DIALOG 
 {
-	idd = 1234
+	idd = VIEW_DISTANCE_LIMITER_DIALOG_IDD
 	movingEnabled = true;
 	enableSimulation = true;
+	
 	class controls
 	{
-		class RscFrame_1800: RscFrame
+		/* -------------------------------------------------------------------------
+			General Controls
+		------------------------------------------------------------------------- */
+		class VDL_FRAME: BLWK_viewDistanceLimiter_RscFrame
 		{
-			idc = 1800;
+			idc = VDL_FRAME_IDC;
 
 			x = 0.699219 * safezoneW + safezoneX;
-			y = 0.260416 * safezoneH + safezoneY;
+			y = 0.260417 * safezoneH + safezoneY;
 			w = 0.140625 * safezoneW;
 			h = 0.458333 * safezoneH;
 			colorText[] = {-1,-1,-1,1};
 			colorBackground[] = {1,1,1,1};
 			colorActive[] = {-1,-1,-1,1};
 		};
-		class headerText: RscText
+		class VDL_HEADER_TEXT: VDL_RSC_TEXT_BASE
 		{
-			idc = 1000;
+			idc = VDL_HEADER_TEXT_IDC;
 
 			text = "View Distance Limiter"; //--- ToDo: Localize;
 			x = 0.699219 * safezoneW + safezoneX;
 			y = 0.260417 * safezoneH + safezoneY;
 			w = 0.140625 * safezoneW;
 			h = 0.0208333 * safezoneH;
-			colorBackground[] = {-1,-1,-1,1};
+			colorBackground[] = PROFILE_BACKGROUND_COLOR
+			onload = "hint str (_this select 0)";
 		};
-		class setFPSButton: RscButton
+		class VDL_CLOSE_DIALOG_BUTTON: VDL_RSC_BUTTON_BASE
 		{
-			idc = 1604;
-
-			text = "Set FPS Target"; //--- ToDo: Localize;
-			x = 0.699219 * safezoneW + safezoneX;
-			y = 0.3125 * safezoneH + safezoneY;
-			w = 0.140625 * safezoneW;
-			h = 0.0208333 * safezoneH;
-		};
-		class closeDiagButton: RscButton
-		{
-			idc = 1606;
+			idc = VDL_CLOSE_DIALOG_BUTTON_IDC;
 
 			text = "Close GUI"; //--- ToDo: Localize;
 			x = 0.757813 * safezoneW + safezoneX;
 			y = 0.28125 * safezoneH + safezoneY;
 			w = 0.0820313 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			onButtonClick = "closeDialog 2";
 		};
-		class setAllChangesButton: RscButton
+		class VDL_SET_ALL_BUTTON: VDL_RSC_BUTTON_BASE
 		{
-			idc = 1607;
+			idc = VDL_SET_ALL_BUTTON_IDC;
 
 			text = "Set All Changes"; //--- ToDo: Localize;
 			x = 0.699219 * safezoneW + safezoneX;
@@ -62,20 +56,22 @@ class myDialog
 			w = 0.140625 * safezoneW;
 			h = 0.03125 * safezoneH;
 		};
-		class systemOnCheckBox: RscCheckbox
+		class VDL_SYSTEM_ON_CHECKBOX: VDL_RSC_CHECKBOX_BASE
 		{
-			idc = 2800;
+			idc = VDL_SYSTEM_ON_CHECKBOX_IDC;
+
 			x = 0.746094 * safezoneW + safezoneX;
 			y = 0.28125 * safezoneH + safezoneY;
 			w = 0.0117188 * safezoneW;
 			h = 0.0208333 * safezoneH;
 			colorText[] = {-1,-1,-1,1};
-			colorBackground[] = {-1,-1,-1,-1};
 			colorActive[] = {-1,-1,-1,1};
+			onCheckedChanged = "hint str (_this select 1)"
 		};
-		class systemOnText: RscText
+		class VDL_SYSTEM_ON_TEXT: VDL_RSC_TEXT_BASE
 		{
-			idc = 1001;
+			idc = VDL_SYSTEM_ON_TEXT_IDC;
+
 			text = "System On:"; //--- ToDo: Localize;
 			x = 0.699219 * safezoneW + safezoneX;
 			y = 0.28125 * safezoneH + safezoneY;
@@ -83,20 +79,45 @@ class myDialog
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = {-1,-1,-1,1};
 		};
-		class FPSText: RscText
+		/* -------------------------------------------------------------------------
+			Target FPS
+		------------------------------------------------------------------------- */
+		class VDL_SET_FPS_BUTTON: VDL_RSC_BUTTON_BASE
 		{
-			idc = 1002;
-			text = "12345"; //--- ToDo: Localize;
-			x = 0.810546 * safezoneW + safezoneX;
-			y = 0.34375 * safezoneH + safezoneY;
-			w = 0.0292969 * safezoneW;
+			idc = VDL_SET_FPS_BUTTON_IDC;
+
+			text = "Set FPS Target"; //--- ToDo: Localize;
+			x = 0.699219 * safezoneW + safezoneX;
+			y = 0.3125 * safezoneH + safezoneY;
+			w = 0.140625 * safezoneW;
 			h = 0.0208333 * safezoneH;
-			colorBackground[] = {-1,-1,-1,1};
+		};
+		class VDL_FPS_TEXT: VDL_RSC_EDIT_BASE
+		{
+			idc = VDL_FPS_TEXT_IDC;
+
+			text = "12345"; //--- ToDo: Localize;
+			x = 0.804687 * safezoneW + safezoneX;
+			y = 0.34375 * safezoneH + safezoneY;
+			w = 0.0351563 * safezoneW;
+			h = 0.0208333 * safezoneH;
 			tooltip = "FPS Target"; //--- ToDo: Localize;
 		};
-		class setFrequencyButton: RscButton
+		class VDL_FPS_SLIDER: VDL_RSC_SLIDER_BASE
 		{
-			idc = 1604;
+			idc = VDL_FPS_SLIDER_IDC;
+
+			x = 0.705078 * safezoneW + safezoneX;
+			y = 0.34375 * safezoneH + safezoneY;
+			w = 0.0996094 * safezoneW;
+			h = 0.0208333 * safezoneH;
+		};
+		/* -------------------------------------------------------------------------
+			Check Frequency
+		------------------------------------------------------------------------- */
+		class VDL_SET_FREQ_BUTTON: VDL_RSC_BUTTON_BASE
+		{
+			idc = VDL_SET_FREQ_BUTTON_IDC;
 
 			text = "Set Check Frequency"; //--- ToDo: Localize;
 			x = 0.699219 * safezoneW + safezoneX;
@@ -105,40 +126,36 @@ class myDialog
 			h = 0.0208333 * safezoneH;
 			tooltip = "How often to check/make view distance changes"; //--- ToDo: Localize;
 		};
-		class FPSSlider: RscXSliderH
+		class VDL_FREQ_SLIDER: VDL_RSC_SLIDER_BASE
 		{
-			idc = 1900;
-			x = 0.705078 * safezoneW + safezoneX;
-			y = 0.34375 * safezoneH + safezoneY;
-			w = 0.0996094 * safezoneW;
-			h = 0.0208333 * safezoneH;
-		};
-		class frequencySlider: RscXSliderH
-		{
-			idc = 1901;
-			x = 0.705078 * safezoneW + safezoneX;
-			y = 0.40625 * safezoneH + safezoneY;
-			w = 0.0996094 * safezoneW;
-			h = 0.0208333 * safezoneH;
+			idc = VDL_FREQ_SLIDER_IDC;
 			sliderPosition = 5;
-            sliderRange[] = {1,10};
-            sliderStep = 1;
-            lineSize = 1;
+			sliderRange[] = {1,10};
+			sliderStep = 1;
+			lineSize = 1;
 			onSliderPosChanged = "hint str (_this select 1)";
-		};
-		class frequencyText: RscText
-		{
-			idc = 1003;
-			text = "12345"; //--- ToDo: Localize;
-			x = 0.810546 * safezoneW + safezoneX;
+
+			x = 0.705078 * safezoneW + safezoneX;
 			y = 0.40625 * safezoneH + safezoneY;
-			w = 0.0292969 * safezoneW;
+			w = 0.0996094 * safezoneW;
 			h = 0.0208333 * safezoneH;
-			colorBackground[] = {-1,-1,-1,1};
 		};
-		class setMinObjViewButton: RscButton
+		class VDL_FREQ_TEXT: VDL_RSC_EDIT_BASE
 		{
-			idc = 1604;
+			idc = VDL_FREQ_TEXT_IDC;
+
+			text = "12345"; //--- ToDo: Localize;
+			x = 0.804688 * safezoneW + safezoneX;
+			y = 0.40625 * safezoneH + safezoneY;
+			w = 0.0351563 * safezoneW;
+			h = 0.0208333 * safezoneH;
+		};
+		/* -------------------------------------------------------------------------
+			Min Obj View Distance
+		------------------------------------------------------------------------- */
+		class VDL_MIN_OBJ_DIST_BUTTON: VDL_RSC_BUTTON_BASE
+		{
+			idc = VDL_MIN_OBJ_DIST_BUTTON_IDC;
 
 			text = "Set Min Object Distance"; //--- ToDo: Localize;
 			x = 0.699219 * safezoneW + safezoneX;
@@ -146,27 +163,31 @@ class myDialog
 			w = 0.140625 * safezoneW;
 			h = 0.0208333 * safezoneH;
 		};
-		class minObjViewSlider: RscXSliderH
+		class VDL_MIN_OBJ_DIST_SLIDER: VDL_RSC_SLIDER_BASE
 		{
-			idc = 1902;
+			idc = VDL_MIN_OBJ_DIST_SLIDER_IDC;
+
 			x = 0.705078 * safezoneW + safezoneX;
 			y = 0.46875 * safezoneH + safezoneY;
 			w = 0.0996094 * safezoneW;
 			h = 0.0208333 * safezoneH;
 		};
-		class minObjViewText: RscText
+		class VDL_MIN_OBJ_DIST_TEXT: VDL_RSC_EDIT_BASE
 		{
-			idc = 1004;
+			idc = VDL_MIN_OBJ_DIST_TEXT_IDC;
+
 			text = "12345"; //--- ToDo: Localize;
-			x = 0.810546 * safezoneW + safezoneX;
+			x = 0.804687 * safezoneW + safezoneX;
 			y = 0.46875 * safezoneH + safezoneY;
-			w = 0.0292969 * safezoneW;
+			w = 0.0351563 * safezoneW;
 			h = 0.0208333 * safezoneH;
-			colorBackground[] = {-1,-1,-1,1};
 		};
-		class setMaxObjViewButton: RscButton
+		/* -------------------------------------------------------------------------
+			Max Obj View Distance
+		------------------------------------------------------------------------- */
+		class VDL_MAX_OBJ_DIST_BUTTON: VDL_RSC_BUTTON_BASE
 		{
-			idc = 1604;
+			idc = VDL_MAX_OBJ_DIST_BUTTON_IDC;
 
 			text = "Set Max Object Distance"; //--- ToDo: Localize;
 			x = 0.699219 * safezoneW + safezoneX;
@@ -174,27 +195,31 @@ class myDialog
 			w = 0.140625 * safezoneW;
 			h = 0.0208333 * safezoneH;
 		};
-		class maxObjViewSlider: RscXSliderH
+		class VDL_MAX_OBJ_DIST_SLIDER: VDL_RSC_SLIDER_BASE
 		{
-			idc = 1903;
+			idc = VDL_MAX_OBJ_DIST_SLIDER_IDC;
+
 			x = 0.705078 * safezoneW + safezoneX;
 			y = 0.53125 * safezoneH + safezoneY;
 			w = 0.0996094 * safezoneW;
 			h = 0.0208333 * safezoneH;
 		};
-		class maxObjViewText: RscText
+		class VDL_MAX_OBJ_DIST_TEXT: VDL_RSC_EDIT_BASE
 		{
-			idc = 1005;
+			idc = VDL_MAX_OBJ_DIST_TEXT_IDC;
+
 			text = "12345"; //--- ToDo: Localize;
-			x = 0.810546 * safezoneW + safezoneX;
+			x = 0.804687 * safezoneW + safezoneX;
 			y = 0.53125 * safezoneH + safezoneY;
-			w = 0.0292969 * safezoneW;
+			w = 0.0351563 * safezoneW;
 			h = 0.0208333 * safezoneH;
-			colorBackground[] = {-1,-1,-1,1};
 		};
-		class setIncrementButton: RscButton
+		/* -------------------------------------------------------------------------
+			Increment Size
+		------------------------------------------------------------------------- */
+		class VDL_INCREMENT_BUTTON: VDL_RSC_BUTTON_BASE
 		{
-			idc = 1604;
+			idc = VDL_INCREMENT_BUTTON_IDC;
 
 			text = "Set Increment Size"; //--- ToDo: Localize;
 			x = 0.699219 * safezoneW + safezoneX;
@@ -203,27 +228,31 @@ class myDialog
 			h = 0.0208333 * safezoneH;
 			tooltip = "This is how much each check frequency drops/increases the view distance until the FPS target is met"; //--- ToDo: Localize;
 		};
-		class incrementSlider: RscXSliderH
+		class VDL_INCREMENT_SLIDER: VDL_RSC_SLIDER_BASE
 		{
-			idc = 1904;
+			idc = VDL_INCREMENT_SLIDER_IDC;
+
 			x = 0.705078 * safezoneW + safezoneX;
 			y = 0.59375 * safezoneH + safezoneY;
 			w = 0.0996094 * safezoneW;
 			h = 0.0208333 * safezoneH;
 		};
-		class incrementText: RscText
+		class VDL_INCREMENT_TEXT: VDL_RSC_EDIT_BASE
 		{
-			idc = 1006;
+			idc = VDL_INCREMENT_TEXT_IDC;
+
 			text = "12345"; //--- ToDo: Localize;
-			x = 0.810547 * safezoneW + safezoneX;
+			x = 0.804687 * safezoneW + safezoneX;
 			y = 0.59375 * safezoneH + safezoneY;
-			w = 0.0292969 * safezoneW;
+			w = 0.0351563 * safezoneW;
 			h = 0.0208333 * safezoneH;
-			colorBackground[] = {-1,-1,-1,1};
 		};
-		class setTerrainViewButton: RscButton
+		/* -------------------------------------------------------------------------
+			Terrain View Distance
+		------------------------------------------------------------------------- */
+		class VDL_TERRAIN_BUTTON: VDL_RSC_BUTTON_BASE
 		{
-			idc = 1604;
+			idc = VDL_TERRAIN_BUTTON_IDC;
 
 			text = "Set Terrain View Distance"; //--- ToDo: Localize;
 			x = 0.699219 * safezoneW + safezoneX;
@@ -232,23 +261,24 @@ class myDialog
 			h = 0.0208333 * safezoneH;
 			tooltip = "This is terrain view distance (how far the wall of fog is). In general, this can be rather large without an issue."; //--- ToDo: Localize;
 		};
-		class terrainViewSlider: RscXSliderH
+		class VDL_TERRAIN_SLIDER: VDL_RSC_SLIDER_BASE
 		{
-			idc = 1905;
+			idc = VDL_TERRAIN_SLIDER_IDC;
+
 			x = 0.705078 * safezoneW + safezoneX;
 			y = 0.65625 * safezoneH + safezoneY;
 			w = 0.0996094 * safezoneW;
 			h = 0.0208333 * safezoneH;
 		};
-		class terrainViewText: RscText
+		class VDL_TERRAIN_TEXT: VDL_RSC_EDIT_BASE
 		{
-			idc = 1007;
+			idc = VDL_TERRAIN_TEXT_IDC;
+
 			text = "12345"; //--- ToDo: Localize;
-			x = 0.810546 * safezoneW + safezoneX;
+			x = 0.804687 * safezoneW + safezoneX;
 			y = 0.65625 * safezoneH + safezoneY;
-			w = 0.0292969 * safezoneW;
+			w = 0.0351563 * safezoneW;
 			h = 0.0208333 * safezoneH;
-			colorBackground[] = {-1,-1,-1,1};
 		};
 	};
 };
@@ -260,6 +290,13 @@ class myDialog
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT START (by Gill, v1.063, #Nufele)
 ////////////////////////////////////////////////////////
+
+["gui_bcg_rgb_r","gui_titletext_rgb_b","gui_titletext_rgb_g","igui_tactping_rgb_b","igui_tactping_rgb_g","gui_titletext_rgb_r","igui_error_rgb_b","igui_text_rgb_b","igui_warning_rgb_b","igui_bcg_rgb_b","igui_error_rgb_g","igui_text_rgb_g","igui_tactping_rgb_r","igui_bcg_rgb_g","igui_warning_rgb_g","gui_bcg_rgb_b","igui_error_rgb_r","igui_text_rgb_r","igui_bcg_rgb_r","igui_warning_rgb_r","gui_bcg_rgb_g"]
+
+
+["0.804687 * safezoneW + safezoneX","0.34375 * safezoneH + safezoneY","0.0351563 * safezoneW","0.0208333 * safezoneH"]
+// old
+["0.810547 * safezoneW + safezoneX","0.40625 * safezoneH + safezoneY","0.0292969 * safezoneW","0.0208333 * safezoneH"]
 
 class RscFrame_1800: RscFrame
 {
@@ -273,7 +310,7 @@ class RscFrame_1800: RscFrame
 	colorBackground[] = {1,1,1,1};
 	colorActive[] = {-1,-1,-1,1};
 };
-class headerText: RscText
+class headerText: BLWK_viewDistance_RscText
 {
 	idc = 1000;
 
@@ -284,7 +321,7 @@ class headerText: RscText
 	h = 0.0208333 * safezoneH;
 	colorBackground[] = {-1,-1,-1,1};
 };
-class setFPSButton: RscButton
+class setFPSButton: VDL_RSC_BUTTON_BASE
 {
 	idc = 1604;
 
@@ -294,7 +331,7 @@ class setFPSButton: RscButton
 	w = 0.140625 * safezoneW;
 	h = 0.0208333 * safezoneH;
 };
-class closeDiagButton: RscButton
+class closeDiagButton: VDL_RSC_BUTTON_BASE
 {
 	idc = 1606;
 
@@ -304,7 +341,7 @@ class closeDiagButton: RscButton
 	w = 0.0820313 * safezoneW;
 	h = 0.0208333 * safezoneH;
 };
-class setAllChangesButton: RscButton
+class setAllChangesButton: VDL_RSC_BUTTON_BASE
 {
 	idc = 1607;
 
@@ -325,7 +362,7 @@ class systemOnCheckBox: RscCheckbox
 	colorBackground[] = {-1,-1,1,1};
 	colorActive[] = {-1,-1,-1,1};
 };
-class systemOnText: RscText
+class systemOnText: BLWK_viewDistance_RscText
 {
 	idc = 1001;
 	text = "System On:"; //--- ToDo: Localize;
@@ -335,7 +372,7 @@ class systemOnText: RscText
 	h = 0.0208333 * safezoneH;
 	colorBackground[] = {-1,-1,-1,1};
 };
-class FPSText: RscText
+class FPSText: BLWK_viewDistance_RscText
 {
 	idc = 1002;
 	text = "12345"; //--- ToDo: Localize;
@@ -346,7 +383,7 @@ class FPSText: RscText
 	colorBackground[] = {-1,-1,-1,1};
 	tooltip = "FPS Target"; //--- ToDo: Localize;
 };
-class setFrequencyButton: RscButton
+class setFrequencyButton: VDL_RSC_BUTTON_BASE
 {
 	idc = 1604;
 
@@ -373,7 +410,7 @@ class frequencySlider: RscSlider
 	w = 0.0996094 * safezoneW;
 	h = 0.0208333 * safezoneH;
 };
-class frequencyText: RscText
+class frequencyText: BLWK_viewDistance_RscText
 {
 	idc = 1003;
 	text = "12345"; //--- ToDo: Localize;
@@ -383,7 +420,7 @@ class frequencyText: RscText
 	h = 0.0208333 * safezoneH;
 	colorBackground[] = {-1,-1,-1,1};
 };
-class setMinObjViewButton: RscButton
+class setMinObjViewButton: VDL_RSC_BUTTON_BASE
 {
 	idc = 1604;
 
@@ -401,7 +438,7 @@ class minObjViewSlider: RscSlider
 	w = 0.0996094 * safezoneW;
 	h = 0.0208333 * safezoneH;
 };
-class minObjViewText: RscText
+class minObjViewText: BLWK_viewDistance_RscText
 {
 	idc = 1004;
 	text = "12345"; //--- ToDo: Localize;
@@ -411,7 +448,7 @@ class minObjViewText: RscText
 	h = 0.0208333 * safezoneH;
 	colorBackground[] = {-1,-1,-1,1};
 };
-class setMaxObjViewButton: RscButton
+class setMaxObjViewButton: VDL_RSC_BUTTON_BASE
 {
 	idc = 1604;
 
@@ -429,7 +466,7 @@ class maxObjViewSlider: RscSlider
 	w = 0.0996094 * safezoneW;
 	h = 0.0208333 * safezoneH;
 };
-class maxObjViewText: RscText
+class maxObjViewText: BLWK_viewDistance_RscText
 {
 	idc = 1005;
 	text = "12345"; //--- ToDo: Localize;
@@ -439,7 +476,7 @@ class maxObjViewText: RscText
 	h = 0.0208333 * safezoneH;
 	colorBackground[] = {-1,-1,-1,1};
 };
-class setIncrementButton: RscButton
+class setIncrementButton: VDL_RSC_BUTTON_BASE
 {
 	idc = 1604;
 
@@ -458,7 +495,7 @@ class incrementSlider: RscSlider
 	w = 0.0996094 * safezoneW;
 	h = 0.0208333 * safezoneH;
 };
-class incrementText: RscText
+class incrementText: BLWK_viewDistance_RscText
 {
 	idc = 1006;
 	text = "12345"; //--- ToDo: Localize;
@@ -468,7 +505,7 @@ class incrementText: RscText
 	h = 0.0208333 * safezoneH;
 	colorBackground[] = {-1,-1,-1,1};
 };
-class setTerrainViewButton: RscButton
+class setTerrainViewButton: VDL_RSC_BUTTON_BASE
 {
 	idc = 1604;
 
@@ -487,7 +524,7 @@ class terrainViewSlider: RscSlider
 	w = 0.0996094 * safezoneW;
 	h = 0.0208333 * safezoneH;
 };
-class terrainViewText: RscText
+class terrainViewText: BLWK_viewDistance_RscText
 {
 	idc = 1007;
 	text = "12345"; //--- ToDo: Localize;
