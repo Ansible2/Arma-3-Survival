@@ -38,16 +38,14 @@ disableSerialization;
 
 
 createDialog "bulwarkShopDialog";
-waitUntil {!isNull (findDisplay 9999);};
+waitUntil {!isNull (findDisplay 9999)};
 
 
 // buildable objects
 private _buildableObjectsControl = (findDisplay 9999) displayCtrl 1500;
-private _classTemp = "";
 private _displayNameTemp = "";
 BLWK_buildableObjects_array apply {
-	_classTemp = _x select 1;
-	_displayNameTemp = [configFile >> "cfgVehicles" >> _classTemp] call BIS_fnc_displayName;
+	_displayNameTemp = [configFile >> "cfgVehicles" >> (_x select 1)] call BIS_fnc_displayName;
 	_buildableObjectsControl lbAdd format [PRICE_NAME_FORMAT,_x select 0,_displayNameTemp];
 };
 
