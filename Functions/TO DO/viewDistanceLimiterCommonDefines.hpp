@@ -70,3 +70,12 @@
 #define VDL_RSC_BUTTON_BASE BLWK_viewDistanceLimiter_RscButton
 #define VDL_RSC_CHECKBOX_BASE BLWK_viewDistanceLimiter_RscCheckBox
 #define VDL_RSC_SLIDER_BASE BLWK_viewDistanceLimiter_RscXSliderH
+
+// GLOBAL STRINGS
+#define VDL_GLOBAL_RUN "KISKA_CDL_run"
+#define VDL_GLOBAL_FPS "KISKA_VDL_fps"
+#define VDL_GLOBAL_FREQ "KISKA_VDL_freq"
+#define VDL_GLOBAL_MIN_DIST "KISKA_VDL_minDist"
+#define VDL_GLOBAL_MAX_DIST "KISKA_VDL_maxDist"
+#define VDL_GLOBAL_INC "KISKA_VDL_inc"
+#define VDL_GLOBAL_VIEW_DIST "KISKA_VDL_viewDist"

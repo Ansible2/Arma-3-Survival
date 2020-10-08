@@ -52,6 +52,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.6875 * safezoneH + safezoneY;
 			w = 0.140625 * safezoneW;
 			h = 0.03125 * safezoneH;
+			onButtonClick = "_this call KISKA_fnc_setAllVDL";
 		};
 		class VDL_SYSTEM_ON_CHECKBOX: VDL_RSC_CHECKBOX_BASE
 		{
@@ -63,8 +64,8 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			h = 0.0208333 * safezoneH;
 			colorText[] = {-1,-1,-1,1};
 			colorActive[] = {-1,-1,-1,1};
-			onCheckedChanged = "";
-			onload = "";
+			onCheckedChanged = "_this call KISKA_fnc_handleGUICheckBox";
+			onload = "(_this select 0) cbSetChecked (call KISKA_fnc_isVDLSystemRunning)";
 		};
 		class VDL_SYSTEM_ON_TEXT: VDL_RSC_TEXT_BASE
 		{
@@ -131,7 +132,6 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 		{
 			idc = VDL_FREQ_SLIDER_IDC;
 			lineSize = 1;
-			onSliderPosChanged = "hint str (_this select 1)";
 
 			x = 0.705078 * safezoneW + safezoneX;
 			y = 0.40625 * safezoneH + safezoneY;
@@ -172,8 +172,8 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.46875 * safezoneH + safezoneY;
 			w = 0.0996094 * safezoneW;
 			h = 0.0208333 * safezoneH;
-			sliderPosition = 1000;
-            sliderRange[] = {100,6000};
+			sliderPosition = 500;
+            sliderRange[] = {100,3000};
             sliderStep = 10;
 		};
 		class VDL_MIN_OBJ_DIST_TEXT_EDIT: VDL_RSC_EDIT_BASE
@@ -208,7 +208,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			w = 0.0996094 * safezoneW;
 			h = 0.0208333 * safezoneH;
 			sliderPosition = 1000;
-            sliderRange[] = {100,6000};
+            sliderRange[] = {200,5000};
             sliderStep = 10;
 		};
 		class VDL_MAX_OBJ_DIST_TEXT_EDIT: VDL_RSC_EDIT_BASE
