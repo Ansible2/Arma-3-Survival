@@ -5,13 +5,14 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 	idd = VIEW_DISTANCE_LIMITER_DIALOG_IDD
 	movingEnabled = true;
 	enableSimulation = true;
-	
+	onLoad = "[_this select 0] call KISKA_fnc_handleVDLDialogOpen"
+
 	class controls
 	{
 		/* -------------------------------------------------------------------------
 			General Controls
 		------------------------------------------------------------------------- */
-		class VDL_FRAME: BLWK_viewDistanceLimiter_RscFrame
+		class VDL_FRAME: VDL_RSC_FRAME_BASE
 		{
 			idc = VDL_FRAME_IDC;
 
@@ -19,27 +20,23 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.260417 * safezoneH + safezoneY;
 			w = 0.140625 * safezoneW;
 			h = 0.458333 * safezoneH;
-			colorText[] = {-1,-1,-1,1};
-			colorBackground[] = {1,1,1,1};
-			colorActive[] = {-1,-1,-1,1};
 		};
 		class VDL_HEADER_TEXT: VDL_RSC_TEXT_BASE
 		{
 			idc = VDL_HEADER_TEXT_IDC;
 
-			text = "View Distance Limiter"; //--- ToDo: Localize;
+			text = "VIEW DISTANCE LIMITER"; //--- ToDo: Localize;
 			x = 0.699219 * safezoneW + safezoneX;
 			y = 0.260417 * safezoneH + safezoneY;
 			w = 0.140625 * safezoneW;
 			h = 0.0208333 * safezoneH;
-			colorBackground[] = PROFILE_BACKGROUND_COLOR
-			onload = "hint str (_this select 0)";
+			colorBackground[] = PROFILE_BACKGROUND_COLOR(0.65);
 		};
 		class VDL_CLOSE_DIALOG_BUTTON: VDL_RSC_BUTTON_BASE
 		{
 			idc = VDL_CLOSE_DIALOG_BUTTON_IDC;
 
-			text = "Close GUI"; //--- ToDo: Localize;
+			text = "Close Interface"; //--- ToDo: Localize;
 			x = 0.757813 * safezoneW + safezoneX;
 			y = 0.28125 * safezoneH + safezoneY;
 			w = 0.0820313 * safezoneW;
@@ -66,7 +63,8 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			h = 0.0208333 * safezoneH;
 			colorText[] = {-1,-1,-1,1};
 			colorActive[] = {-1,-1,-1,1};
-			onCheckedChanged = "hint str (_this select 1)"
+			onCheckedChanged = "";
+			onload = "";
 		};
 		class VDL_SYSTEM_ON_TEXT: VDL_RSC_TEXT_BASE
 		{
@@ -92,9 +90,9 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			w = 0.140625 * safezoneW;
 			h = 0.0208333 * safezoneH;
 		};
-		class VDL_FPS_TEXT: VDL_RSC_EDIT_BASE
+		class VDL_FPS_TEXT_EDIT: VDL_RSC_EDIT_BASE
 		{
-			idc = VDL_FPS_TEXT_IDC;
+			idc = VDL_FPS_TEXT_EDIT_IDC;
 
 			text = "12345"; //--- ToDo: Localize;
 			x = 0.804687 * safezoneW + safezoneX;
@@ -111,6 +109,9 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.34375 * safezoneH + safezoneY;
 			w = 0.0996094 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			sliderPosition = 60;
+            sliderRange[] = {15,120};
+            sliderStep = 1;
 		};
 		/* -------------------------------------------------------------------------
 			Check Frequency
@@ -129,9 +130,6 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 		class VDL_FREQ_SLIDER: VDL_RSC_SLIDER_BASE
 		{
 			idc = VDL_FREQ_SLIDER_IDC;
-			sliderPosition = 5;
-			sliderRange[] = {1,10};
-			sliderStep = 1;
 			lineSize = 1;
 			onSliderPosChanged = "hint str (_this select 1)";
 
@@ -139,10 +137,13 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.40625 * safezoneH + safezoneY;
 			w = 0.0996094 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			sliderPosition = 3;
+            sliderRange[] = {1,10};
+            sliderStep = 1;
 		};
-		class VDL_FREQ_TEXT: VDL_RSC_EDIT_BASE
+		class VDL_FREQ_TEXT_EDIT: VDL_RSC_EDIT_BASE
 		{
-			idc = VDL_FREQ_TEXT_IDC;
+			idc = VDL_FREQ_TEXT_EDIT_IDC;
 
 			text = "12345"; //--- ToDo: Localize;
 			x = 0.804688 * safezoneW + safezoneX;
@@ -171,10 +172,13 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.46875 * safezoneH + safezoneY;
 			w = 0.0996094 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			sliderPosition = 1000;
+            sliderRange[] = {100,6000};
+            sliderStep = 10;
 		};
-		class VDL_MIN_OBJ_DIST_TEXT: VDL_RSC_EDIT_BASE
+		class VDL_MIN_OBJ_DIST_TEXT_EDIT: VDL_RSC_EDIT_BASE
 		{
-			idc = VDL_MIN_OBJ_DIST_TEXT_IDC;
+			idc = VDL_MIN_OBJ_DIST_TEXT_EDIT_IDC;
 
 			text = "12345"; //--- ToDo: Localize;
 			x = 0.804687 * safezoneW + safezoneX;
@@ -203,10 +207,13 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.53125 * safezoneH + safezoneY;
 			w = 0.0996094 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			sliderPosition = 1000;
+            sliderRange[] = {100,6000};
+            sliderStep = 10;
 		};
-		class VDL_MAX_OBJ_DIST_TEXT: VDL_RSC_EDIT_BASE
+		class VDL_MAX_OBJ_DIST_TEXT_EDIT: VDL_RSC_EDIT_BASE
 		{
-			idc = VDL_MAX_OBJ_DIST_TEXT_IDC;
+			idc = VDL_MAX_OBJ_DIST_TEXT_EDIT_IDC;
 
 			text = "12345"; //--- ToDo: Localize;
 			x = 0.804687 * safezoneW + safezoneX;
@@ -236,10 +243,13 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.59375 * safezoneH + safezoneY;
 			w = 0.0996094 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			sliderPosition = 25;
+            sliderRange[] = {1,100};
+            sliderStep = 1;
 		};
-		class VDL_INCREMENT_TEXT: VDL_RSC_EDIT_BASE
+		class VDL_INCREMENT_TEXT_EDIT: VDL_RSC_EDIT_BASE
 		{
-			idc = VDL_INCREMENT_TEXT_IDC;
+			idc = VDL_INCREMENT_TEXT_EDIT_IDC;
 
 			text = "12345"; //--- ToDo: Localize;
 			x = 0.804687 * safezoneW + safezoneX;
@@ -269,10 +279,13 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.65625 * safezoneH + safezoneY;
 			w = 0.0996094 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			sliderPosition = 200;
+            sliderRange[] = {100,6000};
+            sliderStep = 10;
 		};
-		class VDL_TERRAIN_TEXT: VDL_RSC_EDIT_BASE
+		class VDL_TERRAIN_TEXT_EDIT: VDL_RSC_EDIT_BASE
 		{
-			idc = VDL_TERRAIN_TEXT_IDC;
+			idc = VDL_TERRAIN_TEXT_EDIT_IDC;
 
 			text = "12345"; //--- ToDo: Localize;
 			x = 0.804687 * safezoneW + safezoneX;

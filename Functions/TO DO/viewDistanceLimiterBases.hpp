@@ -106,15 +106,17 @@
 #define GRID_W (pixelW * pixelGrid * pixelScale)
 #define GRID_H (pixelH * pixelGrid * pixelScale)
 
-#define PROFILE_BACKGROUND_COLOR\
+#define PROFILE_BACKGROUND_COLOR(ALPHA)\
 {\
 	"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])",\
 	"(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])",\
 	"(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])",\
-	1\
-};
+	ALPHA\
+}
 
-
+#define TOOLTIP_COLOR_BOX tooltipColorBox[] = {1,1,1,1} // the box frame
+#define TOOLTIP_COLOR_TEXT tooltipColorText[] = {1,1,1,1}
+#define TOOLTIP_COLOR_SHADE tooltipColorShade[] = PROFILE_BACKGROUND_COLOR(0.65) // the interior fill of the box
 
 
 class VDL_RSC_EDIT_BASE
@@ -130,13 +132,7 @@ class VDL_RSC_EDIT_BASE
 	colorBackground[] = {1,1,1,0.25};
 	colorText[] = {0.95,0.95,0.95,1};
 	colorDisabled[] = {1,1,1,0.25};
-	colorSelection[] =
-	{
-		"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])",
-		"(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])",
-		"(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])",
-		1
-	};
+	colorSelection[] = PROFILE_BACKGROUND_COLOR(1);
 	autocomplete = "";
 	text = "";
 	size = 0.2;
@@ -145,9 +141,9 @@ class VDL_RSC_EDIT_BASE
 	shadow = 2;
 	sizeEx = GUI_TEXT_SIZE_MEDIUM;
 	canModify = 1;
-	tooltipColorText[] = {1,1,1,1};
-	tooltipColorBox[] = {1,1,1,1};
-	tooltipColorShade[] = {0,0,0,0.65};
+	TOOLTIP_COLOR_BOX;
+	TOOLTIP_COLOR_TEXT;
+	TOOLTIP_COLOR_SHADE;
 };
 class VDL_RSC_SLIDER_BASE
 {
@@ -168,9 +164,12 @@ class VDL_RSC_SLIDER_BASE
 	arrowFull = "\A3\ui_f\data\gui\cfg\slider\arrowFull_ca.paa";
 	border = "\A3\ui_f\data\gui\cfg\slider\border_ca.paa";
 	thumb = "\A3\ui_f\data\gui\cfg\slider\thumb_ca.paa";
-	tooltipColorText[] = {1,1,1,1};
-	tooltipColorBox[] = {1,1,1,1};
-	tooltipColorShade[] = {0,0,0,0.65};
+	TOOLTIP_COLOR_BOX;
+	TOOLTIP_COLOR_TEXT;
+	TOOLTIP_COLOR_SHADE;
+	sliderPosition = 5;
+	sliderRange[] = {1,10};
+	sliderStep = 1;
 };
 class VDL_RSC_BUTTON_BASE
 {
@@ -187,6 +186,9 @@ class VDL_RSC_BUTTON_BASE
 	colorFocused[] = {0,0,0,1};
 	colorShadow[] = {0,0,0,0};
 	colorBorder[] = {0,0,0,1};
+	TOOLTIP_COLOR_BOX;
+	TOOLTIP_COLOR_TEXT;
+	TOOLTIP_COLOR_SHADE;
 	soundEnter[] =
 	{
 		"\A3\ui_f\data\sound\RscButton\soundEnter",
@@ -248,9 +250,9 @@ class VDL_RSC_TEXT_BASE
 	font = "RobotoCondensed";
 	SizeEx = GUI_TEXT_SIZE_MEDIUM;
 	linespacing = 1;
-	tooltipColorText[] = {1,1,1,1};
-	tooltipColorBox[] = {1,1,1,1};
-	tooltipColorShade[] = {0,0,0,0.65};
+	TOOLTIP_COLOR_BOX;
+	TOOLTIP_COLOR_TEXT;
+	TOOLTIP_COLOR_SHADE;
 };
 class VDL_RSC_FRAME_BASE
 {
@@ -259,8 +261,9 @@ class VDL_RSC_FRAME_BASE
 	deletable = 0;
 	style = ST_FRAME;
 	shadow = 2;
-	colorBackground[] = {0,0,0,0};
-	colorText[] = {1,1,1,1};
+	colorText[] = {-1,-1,-1,1};
+	colorBackground[] = {1,1,1,1};
+	colorActive[] = {-1,-1,-1,1};
 	font = "RobotoCondensed";
 	sizeEx = 0.02;
 	text = "";
@@ -300,13 +303,13 @@ class VDL_RSC_CHECKBOX_BASE
 	texturePressedUnchecked = "A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_unchecked_ca.paa";
 	textureDisabledChecked = "A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_checked_ca.paa";
 	textureDisabledUnchecked = "A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_unchecked_ca.paa";
-	tooltipColorText[] = {1,1,1,1};
-	tooltipColorBox[] = {1,1,1,1};
-	tooltipColorShade[] = {0,0,0,0.65};
+	TOOLTIP_COLOR_BOX;
+	TOOLTIP_COLOR_TEXT;
+	TOOLTIP_COLOR_SHADE;
 	soundEnter[] =
 	{
-		"",
-		0.1,
+		"\A3\ui_f\data\sound\RscButton\soundEnter",
+		0.09,
 		1
 	};
 	soundPush[] =
@@ -323,8 +326,8 @@ class VDL_RSC_CHECKBOX_BASE
 	};
 	soundEscape[] =
 	{
-		"",
-		0.1,
+		"\A3\ui_f\data\sound\RscButton\soundEscape",
+		0.09,
 		1
 	};
 };
@@ -360,14 +363,7 @@ class VDL_RSC_CHECKBOX_BASE
 	shadow = 0;
 */
 
-#define TOOLTIP_COLOR_BOX {}
-#define TOOLTIP_COLOR_TEXT {}
-#define TOOLTIP_COLOR_SHADE {}
-/*
-	tooltipColorText[] = {1,1,1,1};
-	tooltipColorBox[] = {1,1,1,1};
-	tooltipColorShade[] = {0,0,0,0.65};
-*/
+
 
 #define EDIT_BOX_COLOR_BACKGROUND {}
 #define EDIT_BOX_COLOR_TEXT {}

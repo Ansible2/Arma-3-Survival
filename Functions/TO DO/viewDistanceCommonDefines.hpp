@@ -18,50 +18,50 @@
 // FPS
 #define VDL_SET_FPS_BUTTON BLWK_viewDistance_setFPSButton_1603
 #define VDL_SET_FPS_BUTTON_IDC 1603
-#define VDL_FPS_TEXT BLWK_viewDistance_FPSText_1002 
-#define VDL_FPS_TEXT_IDC 1002
 #define VDL_FPS_SLIDER BLWK_viewDistance_FPSSlider_1900
 #define VDL_FPS_SLIDER_IDC 1900
+#define VDL_FPS_TEXT_EDIT BLWK_viewDistance_FPSText_1002 
+#define VDL_FPS_TEXT_EDIT_IDC 1002
 
 // Check Freq
 #define VDL_SET_FREQ_BUTTON BLWK_viewDistance_setFrequencyButton_1604 
 #define VDL_SET_FREQ_BUTTON_IDC 1604
 #define VDL_FREQ_SLIDER BLWK_viewDistance_frequencySlider_1901
 #define VDL_FREQ_SLIDER_IDC 1901
-#define VDL_FREQ_TEXT BLWK_viewDistance_frequencyText_1003 
-#define VDL_FREQ_TEXT_IDC 1003
+#define VDL_FREQ_TEXT_EDIT BLWK_viewDistance_frequencyText_1003 
+#define VDL_FREQ_TEXT_EDIT_IDC 1003
 
 // Min Obj Dist
 #define VDL_MIN_OBJ_DIST_BUTTON BLWK_viewDistance_setMinObjViewButton_1605
 #define VDL_MIN_OBJ_DIST_BUTTON_IDC 1605
 #define VDL_MIN_OBJ_DIST_SLIDER BLWK_viewDistance_minObjViewSlider_1902
 #define VDL_MIN_OBJ_DIST_SLIDER_IDC 1902
-#define VDL_MIN_OBJ_DIST_TEXT BLWK_viewDistance_minObjViewText_1004
-#define VDL_MIN_OBJ_DIST_TEXT_IDC 1004
+#define VDL_MIN_OBJ_DIST_TEXT_EDIT BLWK_viewDistance_minObjViewText_1004
+#define VDL_MIN_OBJ_DIST_TEXT_EDIT_IDC 1004
 
 // Max Obj Dist
 #define VDL_MAX_OBJ_DIST_BUTTON BLWK_viewDistance_setMaxObjViewButton_1608
 #define VDL_MAX_OBJ_DIST_BUTTON_IDC 1608
 #define VDL_MAX_OBJ_DIST_SLIDER BLWK_viewDistance_maxObjViewSlider_1903
 #define VDL_MAX_OBJ_DIST_SLIDER_IDC 1903
-#define VDL_MAX_OBJ_DIST_TEXT BLWK_viewDistance_maxObjViewText_1005
-#define VDL_MAX_OBJ_DIST_TEXT_IDC 1005
+#define VDL_MAX_OBJ_DIST_TEXT_EDIT BLWK_viewDistance_maxObjViewText_1005
+#define VDL_MAX_OBJ_DIST_TEXT_EDIT_IDC 1005
 
 // Increment
 #define VDL_INCREMENT_BUTTON BLWK_viewDistance_setIncrementButton_1609
 #define VDL_INCREMENT_BUTTON_IDC 1609
 #define VDL_INCREMENT_SLIDER BLWK_viewDistance_incrementSlider_1904
 #define VDL_INCREMENT_SLIDER_IDC 1904
-#define VDL_INCREMENT_TEXT BLWK_viewDistance_incrementText_1006
-#define VDL_INCREMENT_TEXT_IDC 1006
+#define VDL_INCREMENT_TEXT_EDIT BLWK_viewDistance_incrementText_1006
+#define VDL_INCREMENT_TEXT_EDIT_IDC 1006
 
 // Terrain
 #define VDL_TERRAIN_BUTTON BLWK_viewDistance_setTerrainViewButton_1610
 #define VDL_TERRAIN_BUTTON_IDC 1610
 #define VDL_TERRAIN_SLIDER BLWK_viewDistance_terrainViewSlider_1905
 #define VDL_TERRAIN_SLIDER_IDC 1905
-#define VDL_TERRAIN_TEXT BLWK_viewDistance_terrainViewText_1007
-#define VDL_TERRAIN_TEXT_IDC 1007
+#define VDL_TERRAIN_TEXT_EDIT BLWK_viewDistance_terrainViewText_1007
+#define VDL_TERRAIN_TEXT_EDIT_IDC 1007
 
 // Base classes
 #define VDL_RSC_EDIT_BASE BLWK_viewDistanceLimiter_RscEdit
