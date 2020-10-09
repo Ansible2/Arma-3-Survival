@@ -64,7 +64,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			h = 0.0208333 * safezoneH;
 			colorText[] = {-1,-1,-1,1};
 			colorActive[] = {-1,-1,-1,1};
-			onCheckedChanged = "_this call KISKA_fnc_handleGUICheckBox";
+			onCheckedChanged = "_this call KISKA_fnc_handleVdlGUICheckBox";
 			onload = "(_this select 0) cbSetChecked (call KISKA_fnc_isVDLSystemRunning)";
 		};
 		class VDL_SYSTEM_ON_TEXT: VDL_RSC_TEXT_BASE
@@ -323,7 +323,7 @@ class RscFrame_1800: RscFrame
 	colorBackground[] = {1,1,1,1};
 	colorActive[] = {-1,-1,-1,1};
 };
-class headerText: BLWK_viewDistance_RscText
+class headerText: KISKA_viewDistance_RscText
 {
 	idc = 1000;
 
@@ -375,7 +375,7 @@ class systemOnCheckBox: RscCheckbox
 	colorBackground[] = {-1,-1,1,1};
 	colorActive[] = {-1,-1,-1,1};
 };
-class systemOnText: BLWK_viewDistance_RscText
+class systemOnText: KISKA_viewDistance_RscText
 {
 	idc = 1001;
 	text = "System On:"; //--- ToDo: Localize;
@@ -385,7 +385,7 @@ class systemOnText: BLWK_viewDistance_RscText
 	h = 0.0208333 * safezoneH;
 	colorBackground[] = {-1,-1,-1,1};
 };
-class FPSText: BLWK_viewDistance_RscText
+class FPSText: KISKA_viewDistance_RscText
 {
 	idc = 1002;
 	text = "12345"; //--- ToDo: Localize;
@@ -423,7 +423,7 @@ class frequencySlider: RscSlider
 	w = 0.0996094 * safezoneW;
 	h = 0.0208333 * safezoneH;
 };
-class frequencyText: BLWK_viewDistance_RscText
+class frequencyText: KISKA_viewDistance_RscText
 {
 	idc = 1003;
 	text = "12345"; //--- ToDo: Localize;
@@ -451,7 +451,7 @@ class minObjViewSlider: RscSlider
 	w = 0.0996094 * safezoneW;
 	h = 0.0208333 * safezoneH;
 };
-class minObjViewText: BLWK_viewDistance_RscText
+class minObjViewText: KISKA_viewDistance_RscText
 {
 	idc = 1004;
 	text = "12345"; //--- ToDo: Localize;
@@ -479,7 +479,7 @@ class maxObjViewSlider: RscSlider
 	w = 0.0996094 * safezoneW;
 	h = 0.0208333 * safezoneH;
 };
-class maxObjViewText: BLWK_viewDistance_RscText
+class maxObjViewText: KISKA_viewDistance_RscText
 {
 	idc = 1005;
 	text = "12345"; //--- ToDo: Localize;
@@ -508,7 +508,7 @@ class incrementSlider: RscSlider
 	w = 0.0996094 * safezoneW;
 	h = 0.0208333 * safezoneH;
 };
-class incrementText: BLWK_viewDistance_RscText
+class incrementText: KISKA_viewDistance_RscText
 {
 	idc = 1006;
 	text = "12345"; //--- ToDo: Localize;
@@ -537,7 +537,7 @@ class terrainViewSlider: RscSlider
 	w = 0.0996094 * safezoneW;
 	h = 0.0208333 * safezoneH;
 };
-class terrainViewText: BLWK_viewDistance_RscText
+class terrainViewText: KISKA_viewDistance_RscText
 {
 	idc = 1007;
 	text = "12345"; //--- ToDo: Localize;

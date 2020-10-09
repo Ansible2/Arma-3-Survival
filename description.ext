@@ -47,6 +47,7 @@ class Header
 class CfgFunctions
 {
 	#include "Headers\descriptionEXT\functions.hpp"
+	#include "KISKA Systems\KISKA Functions.hpp"
 };
 
 class CfgSounds
@@ -114,3 +115,4 @@ class CfgNotifications
 };
 
 #include "Headers\descriptionEXT\GUI\bulwarkShopGUI.hpp"
+#include "View Distance Limiter\ViewDistanceLimiterDialog.hpp"
