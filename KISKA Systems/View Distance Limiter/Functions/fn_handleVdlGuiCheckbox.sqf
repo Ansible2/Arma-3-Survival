@@ -27,6 +27,8 @@ if (!hasInterface) exitWith {};
 
 params ["_control","_checked"];
 
+_checked = [false,true] select _checked;
+
 if (_checked) then {
 	if !(call KISKA_fnc_isVDLSystemRunning) then {
 		null = [] spawn KISKA_fnc_viewDistanceLimiter;

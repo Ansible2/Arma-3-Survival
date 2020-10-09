@@ -3,6 +3,10 @@ class KISKA
 	class DynamicViewDistance
 	{
 		file = "KISKA Systems\View Distance Limiter\Functions";
+		class addOpenVdlGuiAction
+		{
+			postInit = 1;
+		};
 		class adjustVdlControls
 		{};
 		class findVdlPartnerControl

@@ -31,6 +31,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			w = 0.140625 * safezoneW;
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = PROFILE_BACKGROUND_COLOR(0.65);
+			style = ST_CENTER;
 		};
 		class VDL_CLOSE_DIALOG_BUTTON: VDL_RSC_BUTTON_BASE
 		{
@@ -41,7 +42,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.28125 * safezoneH + safezoneY;
 			w = 0.0820313 * safezoneW;
 			h = 0.0208333 * safezoneH;
-			onButtonClick = "closeDialog 2";
+			onMouseButtonClick = "closeDialog 2";
 		};
 		class VDL_SET_ALL_BUTTON: VDL_RSC_BUTTON_BASE
 		{
@@ -100,7 +101,6 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.34375 * safezoneH + safezoneY;
 			w = 0.0351563 * safezoneW;
 			h = 0.0208333 * safezoneH;
-			tooltip = "FPS Target"; //--- ToDo: Localize;
 		};
 		class VDL_FPS_SLIDER: VDL_RSC_SLIDER_BASE
 		{
@@ -113,6 +113,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			sliderPosition = 60;
             sliderRange[] = {15,120};
             sliderStep = 1;
+			tooltip = "Your target FPS that you want to achieve"; //--- ToDo: Localize;
 		};
 		/* -------------------------------------------------------------------------
 			Check Frequency
@@ -126,7 +127,6 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.375 * safezoneH + safezoneY;
 			w = 0.140625 * safezoneW;
 			h = 0.0208333 * safezoneH;
-			tooltip = "How often to check/make view distance changes"; //--- ToDo: Localize;
 		};
 		class VDL_FREQ_SLIDER: VDL_RSC_SLIDER_BASE
 		{
@@ -140,6 +140,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			sliderPosition = 3;
             sliderRange[] = {1,10};
             sliderStep = 1;
+			tooltip = "This is how often the view distance will be adjusted in seconds"; //--- ToDo: Localize;
 		};
 		class VDL_FREQ_TEXT_EDIT: VDL_RSC_EDIT_BASE
 		{
@@ -233,7 +234,6 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.5625 * safezoneH + safezoneY;
 			w = 0.140625 * safezoneW;
 			h = 0.0208333 * safezoneH;
-			tooltip = "This is how much each check frequency drops/increases the view distance until the FPS target is met"; //--- ToDo: Localize;
 		};
 		class VDL_INCREMENT_SLIDER: VDL_RSC_SLIDER_BASE
 		{
@@ -246,6 +246,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			sliderPosition = 25;
             sliderRange[] = {1,100};
             sliderStep = 1;
+			tooltip = "By how much will the view distance be adjusted in meters to achieve FPS?"; //--- ToDo: Localize;
 		};
 		class VDL_INCREMENT_TEXT_EDIT: VDL_RSC_EDIT_BASE
 		{
@@ -269,7 +270,6 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.625 * safezoneH + safezoneY;
 			w = 0.140625 * safezoneW;
 			h = 0.0208333 * safezoneH;
-			tooltip = "This is terrain view distance (how far the wall of fog is). In general, this can be rather large without an issue."; //--- ToDo: Localize;
 		};
 		class VDL_TERRAIN_SLIDER: VDL_RSC_SLIDER_BASE
 		{
@@ -282,6 +282,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			sliderPosition = 200;
             sliderRange[] = {100,6000};
             sliderStep = 10;
+			tooltip = "The overall (static) view distance; this can be rather high without an issue."; //--- ToDo: Localize;
 		};
 		class VDL_TERRAIN_TEXT_EDIT: VDL_RSC_EDIT_BASE
 		{

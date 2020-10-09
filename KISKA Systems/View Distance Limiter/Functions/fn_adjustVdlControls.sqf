@@ -30,7 +30,7 @@ if (!hasInterface) exitWith {};
 params ["_control","_value"];
 
 private _controlType = ctrlType _control;
-//hint str _controlType;
+
 if (_controlType isEqualTo CT_EDIT) exitWith {
 	private _text = ctrlText _control;
 	private _number = ([_text] call BIS_fnc_parseNumberSafe) select 0;

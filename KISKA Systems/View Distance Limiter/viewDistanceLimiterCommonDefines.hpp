@@ -1,7 +1,7 @@
 // general
 #define VIEW_DISTANCE_LIMITER_DIALOG KISKA_viewDistanceLimiter_Dialog
 #define VIEW_DISTANCE_LIMITER_DIALOG_STR "KISKA_viewDistanceLimiter_Dialog"
-#define VIEW_DISTANCE_LIMITER_DIALOG_IDD 1234
+#define VIEW_DISTANCE_LIMITER_DIALOG_IDD 2154
 
 #define VDL_FRAME KISKA_viewDistanceLimiter_Frame_1800
 #define VDL_FRAME_IDC 1800

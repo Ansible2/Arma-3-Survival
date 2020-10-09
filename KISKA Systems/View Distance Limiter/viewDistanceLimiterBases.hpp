@@ -80,7 +80,7 @@
 
 #define TOOLTIP_COLOR_BOX tooltipColorBox[] = {1,1,1,1} // the box frame
 #define TOOLTIP_COLOR_TEXT tooltipColorText[] = {1,1,1,1}
-#define TOOLTIP_COLOR_SHADE tooltipColorShade[] = PROFILE_BACKGROUND_COLOR(0.65) // the interior fill of the box
+#define TOOLTIP_COLOR_SHADE tooltipColorShade[] = {-1,-1,-1,1} // the interior fill of the box
 
 
 class VDL_RSC_EDIT_BASE
@@ -148,8 +148,8 @@ class VDL_RSC_BUTTON_BASE
 	colorDisabled[] = {1,1,1,0.25};
 	colorBackground[] = {0,0,0,0.5};
 	colorBackgroundDisabled[] = {0,0,0,0.5};
-	colorBackgroundActive[] = {0,0,0,1};
-	colorFocused[] = {0,0,0,1};
+	colorBackgroundActive[] = PROFILE_BACKGROUND_COLOR(1);
+	colorFocused[] = {0,0,0,0.5};
 	colorShadow[] = {0,0,0,0};
 	colorBorder[] = {0,0,0,1};
 	TOOLTIP_COLOR_BOX;
