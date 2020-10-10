@@ -25,13 +25,18 @@ Author:
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {false};
 
-// clear out existing loot
+/* ----------------------------------------------------------------------------
+
+	Delete Previous Loot
+
+---------------------------------------------------------------------------- */
 if !((missionNamespace getVariable ["BLWK_lootMarkers",[]]) isEqualTo []) then {
 	BLWK_lootMarkers apply {
 		deleteMarker _x;
 	};
 };
 private _randomWeaponBoxFound = missionNamespace getVariable ["BLWK_randomWeaponBoxFound",false];
+// check if there is any loot to delete
 if !((missionNamespace getVariable ["BLWK_spawnedLoot",[]]) isEqualTo []) then {
 	if (_randomWeaponBoxFound) then {
 		if (BLWK_randomWeaponBox in BLWK_spawnedLoot) then {
@@ -86,13 +91,13 @@ private _fn_getASpawnPosition = {
 };
 
 
-private _addToZeusArray = [];
-
 /* ----------------------------------------------------------------------------
 
 	Unique Items
 
 ---------------------------------------------------------------------------- */
+private _addToZeusArray = [];
+
 // LOOT REVEAL BOX
 // these are global for future endeavors
 BLWK_lootRevealerBox = createVehicle ["Box_C_UAV_06_Swifd_F", (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
@@ -219,7 +224,7 @@ _sortedPositions apply {
 	// CIPHER COMMENT: See if this is needed
 	private _spawnPosition = _x vectorAdd [0,0,0.1];
 
-	private _holder = createVehicle ["WeaponHolderSimulated_Scripted", _spawnPosition, [], 0, "CAN_COLLIDE"];
+	private _holder = createVehicle ["WeaponHolderSimulated_Scripted", _spawnPosition, [], 0, "NONE"];
 	private _primaryLootClass = [_holder] call _fn_addLoot;
 	// used for displaying loot markers in BLWK_fnc_createLootMarkers
 	_holder setVariable ["BLWK_primaryLootClass",_primaryLootClass];
