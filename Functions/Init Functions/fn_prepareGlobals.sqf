@@ -124,7 +124,6 @@ if (isServer) then {
 
     /* Respawn */
     BLWK_respawnTime = ("BLWK_respawnTime" call BIS_fnc_getParamValue);
-    BLWK_numRespawnTickets = ("BLWK_numRespawnTickets" call BIS_fnc_getParamValue);
 
     /* Random Loot */
     BLWK_loot_cityDistribution = ("BLWK_loot_cityDistribution" call BIS_fnc_getParamValue);  // decides how many buildings will be marked as having loot in a city
@@ -185,6 +184,7 @@ if (hasInterface) then {
 
 BLWK_currentWaveNumber = 0;
 BLWK_inBetweenWaves = true;
+BLWK_numRespawnTickets = ("BLWK_numRespawnTickets" call BIS_fnc_getParamValue);
 
 /* Points */
 BLWK_pointsForKill = ("BLWK_pointsForKill" call BIS_fnc_getParamValue);                 // Base Points for a kill

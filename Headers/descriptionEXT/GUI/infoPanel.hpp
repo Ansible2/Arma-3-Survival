@@ -21,6 +21,7 @@ class BLWK_infoPanel {
 	};
 
 	class controls {
+		// player name
 		class BLWK_infoPanel_playerName_static: RscText
 		{
 			idc = 2003;
@@ -31,7 +32,9 @@ class BLWK_infoPanel {
 			h = 0.03125 * safezoneH;
 			onLoad = "(_this select 0) ctrlSetText (name player)"
 			colorBackground[] = {-1,-1,-1,-1};
+			sizeEx = 0.03125 * safezoneH;
 		};
+		// player points
 		class BLWK_infoPanel_playerPoints_shower: RscText
 		{
 			idc = INFO_PANEL_PLAYER_POINTS_IDC;
@@ -41,7 +44,10 @@ class BLWK_infoPanel {
 			w = 0.0878906 * safezoneW;
 			h = 0.03125 * safezoneH;
 			colorBackground[] = {-1,-1,-1,-1};
+			sizeEx = 0.03125 * safezoneH;
 		};
+
+		// wave number
 		class BLWK_infoPanel_wave_static: RscText
 		{
 			idc = 2004;
@@ -51,7 +57,7 @@ class BLWK_infoPanel {
 			w = 0.0644531 * safezoneW;
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = {-1,-1,-1,-1};
-			sizeEx = 0.75 * GUI_GRID_H;
+			sizeEx = 0.75 * (0.0208333 * safezoneH);
 		};
 		class BLWK_infoPanel_wave_number: RscText
 		{
@@ -62,7 +68,9 @@ class BLWK_infoPanel {
 			w = 0.0234375 * safezoneW;
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = {-1,-1,-1,-1};
+			sizeEx = 0.0208333 * safezoneH;
 		};
+		// respawns
 		class BLWK_infoPanel_respawnsLeft_number: RscText
 		{
 			idc = INFO_PANEL_RESPAWNS_NUM_IDC;
@@ -72,6 +80,7 @@ class BLWK_infoPanel {
 			w = 0.0234375 * safezoneW;
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = {-1,-1,-1,-1};
+			sizeEx = 0.0208333 * safezoneH;
 		};
 		class BLWK_infoPanel_respawnsLeft_static: RscText
 		{
@@ -82,8 +91,9 @@ class BLWK_infoPanel {
 			w = 0.0644531 * safezoneW;
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = {-1,-1,-1,-1};
-			sizeEx = 0.75 * GUI_GRID_H;
+			sizeEx = 0.75 * (0.0208333 * safezoneH);
 		};
+		// wave status
 		class BLWK_infoPanel_waveStatus_static: RscText
 		{
 			idc = 2006;
@@ -93,7 +103,7 @@ class BLWK_infoPanel {
 			w = 0.0410156 * safezoneW;
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = {-1,-1,-1,-1};
-			sizeEx = 0.75 * GUI_GRID_H;
+			sizeEx = 0.75 * (0.0208333 * safezoneH);
 		};
 		class BLWK_infoPanel_waveStatus_shower: RscText
 		{
@@ -104,7 +114,7 @@ class BLWK_infoPanel {
 			w = 0.046875 * safezoneW;
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = {-1,-1,-1,-1};
-			sizeEx = 0.75 * GUI_GRID_H;
+			sizeEx = 0.75 * (0.0208333 * safezoneH);
 		};
 	};
 };
