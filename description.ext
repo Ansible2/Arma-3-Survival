@@ -61,7 +61,7 @@ class Params
 	// revive parameters
 	#include "Headers\descriptionEXT\ReviveParams.hpp"
 	// weather
-	#include "\a3\functions_f\Params\paramWeather.hpp"
+	#include "Headers\descriptionEXT\paramWeather.hpp"
 };
 
 #include "Headers\descriptionEXT\defines.hpp"

@@ -1,5 +1,5 @@
 // keys
-#include "\a3\ui_f\hpp\definedikcodes.inc"
+#include "dikCodes.hpp"
 // Control types
 #define CT_STATIC           0
 #define CT_BUTTON           1

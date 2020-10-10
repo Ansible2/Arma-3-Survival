@@ -27,7 +27,9 @@ if (!isServer OR {!canSuspend}) exitWith {};
 
 private ["_players","_return"];
 private _condition = {
-	_players = call CBAP_fnc_players;
+	
+	waitUntil {!((_players = call CBAP_fnc_players) isEqualTo [])};
+
 	_return = _players findIf {
 		((incapacitatedState _x) isEqualTo "") AND {BLWK_numRespawnTickets <= 0}
 	};
