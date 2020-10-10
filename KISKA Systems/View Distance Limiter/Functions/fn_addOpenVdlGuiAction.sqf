@@ -33,7 +33,7 @@ player addEventHandler ["RESPAWN",{
 
 	KISKA_vdl_dialogOpenAction = [	
 		_unit,
-		"<t color='#4287f5'>Open VDL Dialog</t>", 
+		"<t color='#4287f5'>Edit Dynamic View Distance</t>", 
 		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
 		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
 		"true", 
@@ -54,22 +54,22 @@ player addEventHandler ["RESPAWN",{
 }];
 
 KISKA_vdl_dialogOpenAction = [	
-		player,
-		"<t color='#4287f5'>Open VDL Dialog</t>", 
-		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
-		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
-		"true", 
-		"true", 
-		{}, 
-		{}, 
-		{
-			call KISKA_fnc_openVdlDialog;
-		}, 
-		{}, 
-		[], 
-		1, 
-		1, 
-		false, 
-		false, 
-		false
-	] call BIS_fnc_holdActionAdd;
+	player,
+	"<t color='#4287f5'>Edit Dynamic View Distance</t>", 
+	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
+	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
+	"true", 
+	"true", 
+	{}, 
+	{}, 
+	{
+		call KISKA_fnc_openVdlDialog;
+	}, 
+	{}, 
+	[], 
+	1, 
+	1, 
+	false, 
+	false, 
+	false
+] call BIS_fnc_holdActionAdd;
