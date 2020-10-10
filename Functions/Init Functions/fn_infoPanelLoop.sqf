@@ -27,9 +27,76 @@ Author:
 // This may be replaced in the future with an update function that simply acts as an event that must be called
 // I am curious to see if the performance of this loop is negligible enough though, 
 /// that it would be more effective to just have these update automatically
-
 if (!hasInterface OR {!canSuspend}) exitWith {};
 
+disableSerialization;
+
+#include "..\..\Headers\descriptionEXT\GUI\infoPanelCommonDefines.hpp"
+
+waitUntil {
+	if ((!isNil "BLWK_playerKillPoints") AND {!isNil "BLWK_numRespawnTickets"} AND {!isNil "BLWK_currentWaveNumber"}) exitWith {true};
+	sleep 1;
+	false
+};
+
+
+
+private "_infoPanelDisplay";
+waitUntil {
+	_infoPanelDisplay = findDisplay INFO_PANEL_IDD;
+	if (!isNull _infoPanelDisplay) exitWith {true};
+	false
+};
+
+// player points
+private _playerPoints = BLWK_playerKillPoints;
+private _pointsCtrl = _infoPanelDisplay displayCtrl INFO_PANEL_PLAYER_POINTS_IDC;
+private _fn_updatePlayerPoints = {	
+	_pointsCtrl ctrlSetText (str BLWK_playerKillPoints);
+	_playerPoints = BLWK_playerKillPoints;
+};
+
+// respawn tickets
+private _numRespawnTickets = BLWK_numRespawnTickets;
+private _ticketsCtrl = _infoPanelDisplay displayCtrl INFO_PANEL_RESPAWNS_NUM_IDC;
+private _fn_updateRespawnTickets = {
+	_ticketsCtrl ctrlSetText (str BLWK_numRespawnTickets);
+	_numRespawnTickets = BLWK_numRespawnTickets;
+};
+
+// current wave number
+private _currentWave = BLWK_currentWaveNumber;
+private _currentWaveCtrl = _infoPanelDisplay displayCtrl INFO_PANEL_WAVE_NUM_IDC;
+private _fn_updateCurrentWave = {
+	_currentWaveCtrl ctrlSetText (str BLWK_currentWaveNumber);
+	_currentWave = BLWK_currentWaveNumber;
+};
+
+// in between waves notice
+private _inBetweenWaves = BLWK_inBetweenWaves;
+private _inbetweenWavesCtrl = _infoPanelDisplay displayCtrl INFO_PANEL_WAVE_STATUS_IDC;
+private _fn_updateInbetweenWaves = {
+	if (BLWK_inBetweenWaves) then {
+		_inbetweenWavesCtrl ctrlSetText "IN BETWEEN";
+		_inbetweenWavesCtrl ctrlSetTextColor [0,0.75,0.22,0.7];
+	} else {
+		_inbetweenWavesCtrl ctrlSetText "IN PROGRESS";
+		_inbetweenWavesCtrl ctrlSetTextColor [1,0.1,0,0.57];
+	};
+	_inBetweenWaves = BLWK_inBetweenWaves;
+};
+
+1000 cutRsc ["BLWK_infoPanel","PLAIN"];
+
+while {sleep 2; true} do {
+	if (_playerPoints != BLWK_playerKillPoints) then {call _fn_updatePlayerPoints};
+	if (_numRespawnTickets != BLWK_numRespawnTickets) then {call _fn_updateRespawnTickets};
+	if (_currentWave != BLWK_currentWaveNumber) then {call _fn_updateCurrentWave};
+	if (_inBetweenWaves != BLWK_inBetweenWaves) then {call _fn_updateInbetweenWaves};
+};
+
+
+/*
 // CIPHER COMMENT: it would be worth removing the player name in the future, not much point in having it
 params [
 	["_player",player,[objNull]]
@@ -52,6 +119,7 @@ private _currentWave = BLWK_currentWaveNumber;
 private "_text";
 
 private _fn_updateInfoPanel = {
+	hint "panel updated";
 	_playerPoints = BLWK_playerKillPoints;
 	_numRespawnTickets = BLWK_numRespawnTickets;
 	_currentWave = BLWK_currentWaveNumber;
@@ -92,3 +160,4 @@ while {sleep 2; true} do {
 		call _fn_updateInfoPanel
 	};
 };
+*/
