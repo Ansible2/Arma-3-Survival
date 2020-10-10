@@ -49,16 +49,14 @@ if (local BLWK_theAIHandlerEntity) then {
 };
 
 // points for players
-if (local _instigator AND {isPlayer _instigator} AND {hasInterface}) then {
+if ((hasInterface) AND {local _instigator} AND {isPlayer _instigator}) then {
 	private _points = [_killedUnit] call BLWK_fnc_getPointsForKill;
 	[_points] call BLWK_fnc_addPoints;
 	[_killedUnit,_points,true] call BLWK_fnc_createHitMarker;
 };
 
-[_unit] call BLWK_fnc_removeStdEnemyHitEvent;
-
-
 // mp events need to be removed on the unit where they are local
 if (local _killedUnit) then {
 	_killedUnit removeMPEventHandler ["mpKilled",_handlerID];
+	_killedUnit removeMPEventHandler ["mpHit",_killedUnit getVariable "BLWK_stdHitEH"];
 };

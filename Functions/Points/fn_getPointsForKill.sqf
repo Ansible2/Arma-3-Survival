@@ -46,6 +46,9 @@ if (_category == "soldier") exitWith {
 	if !((BLWK_level1_menClasses findIf {_x == _unitClass}) isEqualTo -1) exitWith {
 		round (BLWK_pointsForKill * BLWK_pointsMulti_man_level1)
 	};
+	if !((BLWK_friendly_menClasses findIf {_x == _unitClass}) isEqualTo -1) exitWith {
+		round (BLWK_pointsForKill * BLWK_pointsMulti_man_level5)
+	};
 };
 
 if (_type == "car") exitWith {

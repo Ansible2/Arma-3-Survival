@@ -26,10 +26,16 @@ params ["_unit"];
 
 if (!local _unit) exitWith {false};
 
-// Didn't use MPHit event to avoid the networking of it to every client
-[_unit] remoteExecCall ["BLWK_fnc_addStdEnemyHitEH",BLWK_allClientsTargetID,true];
+// CIPHER COMMENT: This may be better off just being a local hit handler that remoteExec's onto the instigator
+// It may spam the network in this case
+private _hitEvent = _unit addMPEventHandler ["mpHit",{
+	_this call BLWK_fnc_stdEnemyHitEvent;
+}];
+// so we can remove it on death of the unit
+_unit setVariable ["BLWK_stdHitEH",_hitEvent];
 
 _unit addMPEventHandler ["mpKilled",{
+	hint "killed";
 	[_this,_thisEventHandler] call BLWK_fnc_stdEnemyKilledEvent;
 }];
 

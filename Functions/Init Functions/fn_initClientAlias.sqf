@@ -50,3 +50,6 @@ null = [] spawn BLWK_fnc_infoPanelLoop;
 [_player] call BLWK_fnc_initDragSystem;
 
 null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
+
+player allowDamage false;
+player setCaptive true;

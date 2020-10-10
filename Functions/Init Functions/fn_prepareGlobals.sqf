@@ -48,18 +48,25 @@ if (isServer OR {!hasInterface}) then {
     */
 
     // AI unit classes
+    // some of these are public to be used with BLWK_fnc_getPointsForKill
     private _unitTypeInfo = call BLWK_fnc_prepareUnitClasses;
     BLWK_friendly_menClasses = _unitTypeInfo select 0;
+    publicVariable "BLWK_friendly_menClasses";
     BLWK_friendly_vehicleClasses = _unitTypeInfo select 1;
     BLWK_level1_menClasses = _unitTypeInfo select 2;
+    publicVariable "BLWK_level1_menClasses";
     BLWK_level1_vehicleClasses = _unitTypeInfo select 3;
     BLWK_level2_menClasses = _unitTypeInfo select 4;
+    publicVariable "BLWK_level2_menClasses";
     BLWK_level2_vehicleClasses = _unitTypeInfo select 5;
     BLWK_level3_menClasses = _unitTypeInfo select 6;
+    publicVariable "BLWK_level3_menClasses";
     BLWK_level3_vehicleClasses = _unitTypeInfo select 7;
     BLWK_level4_menClasses = _unitTypeInfo select 8;
+    publicVariable "BLWK_level4_menClasses";
     BLWK_level4_vehicleClasses = _unitTypeInfo select 9;
     BLWK_level5_menClasses = _unitTypeInfo select 10;
+    publicVariable "BLWK_level5_menClasses";
     BLWK_level5_vehicleClasses = _unitTypeInfo select 11;
 
     BLWK_enemiesPerWaveMultiplier = ("BLWK_enemiesPerWaveMultiplier" call BIS_fnc_getParamValue);  // How many hostiles per wave (waveCount x BLWK_enemiesPerWaveMultiplier)

@@ -28,7 +28,7 @@ if (!BLWK_showHitPoints) exitWith {};
 
 params [ 
 	["_hitUnit",objNull,[objNull]], 
-	["_pointsToDisplay",100,[123]],
+	["_pointsToDisplay",123,[123]],
 	["_redPoints",false,[true]] 
 ]; 
 
@@ -48,7 +48,7 @@ private _handleNumber = addMissionEventHandler ["EachFrame", {
 			"_textSize"
 		]; 
 
-		// kill event handler if it's been 110 frames 
+		// kill event handler if it's been 110 frames
 		if (_frameNo isEqualTo 111) exitWith { 
 			removeMissionEventHandler ["EachFrame",_thisEventHandler]; 
 		}; 
