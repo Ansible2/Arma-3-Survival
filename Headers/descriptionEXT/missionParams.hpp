@@ -5,7 +5,7 @@
 #define A_SECTION_HEADER(NAME)\
 	class NAME##_LABEL \
 	{ \
-		title = ======= ##NAME## Settings ======; \
+		title = ======= ##NAME## Settings =======; \
 		values[] = {0}; \
 		texts[] = {""}; \
 		default = 0; \
@@ -21,48 +21,8 @@
 
 #include "..\Faction Headers\Define Factions.hpp"
 
+// waves
 A_SECTION_HEADER(WAVE);
-
-class BLWK_enemiesPerWaveMultiplier
-{
-	title = "Enemies Per Wave Multiplier";
-	values[] = {0.5,1,1.5,2,2.5,3};
-	texts[] = {"0.5","1","1.5","2","2.5","3"};
-	default = 1;
-};
-
-// CIPHER COMMENT: The utility of this value should be replaced with a simple: add this number of enemies per round per player in addition to the number already spawned
-class BLWK_enemiesPerPlayerMultiplier
-{
-	title = "Extra Enemies Per Player";
-	values[] = {0.5, 1, 1.5, 2};
-	texts[] = {"0.5", "1", "1.5", "2"};
-	default = 1;
-};
-
-class BLWK_maxPistolOnlyWaves
-{
-	title = "Hostiles only use pistols until wave";
-	values[] = {0, 1, 2, 3, 4, 5};
-	texts[] = {"Start Fully Armed", "One", "Two", "Three", "Four", "Five"};
-	default = 3;
-};
-
-class BLWK_roundsBeforeBodyDeletion
-{
-	title = "Dead bodies remain for how many waves (dead bodies impact perfomance)";
-	values[] = {0, 1, 2};
-	texts[] = {"0 (until next round begins)", "1", "2"};
-	default = 1;
-};
-
-class BLWK_timeBetweenRounds
-{
-	title = "Time between rounds";
-	values[] = {0, 15, 30, 60, 90, 120, 180, 240, 300};
-	texts[] = {"0", "15 Seconds", "30 Seconds", "1 Minute", "1 Minute 30 Seconds", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
-	default = 120;
-};
 
 class BLWK_maxNumWaves
 {
@@ -71,71 +31,13 @@ class BLWK_maxNumWaves
 	texts[] = {"10", "20", "30", "40","50","60","70","80","90","100"};
 	default = 100;
 };
-
-class BLWK_numMedKits
+class BLWK_timeBetweenRounds
 {
-	title = "Medikits in Bulwark";
-	values[] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
-	texts[] = {"None", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight"};
-	default = 3;
+	title = "Time between rounds";
+	values[] = {0, 15, 30, 60, 90, 120, 180, 240, 300};
+	texts[] = {"0", "15 Seconds", "30 Seconds", "1 Minute", "1 Minute 30 Seconds", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
+	default = 120;
 };
-
-class BLWK_faksToMakeMedkit
-{
-	title = "How many FAKs make a Medkit?";
-	values[] = {5, 10, 15};
-	texts[] = {"5", "10", "15"};
-	default = 10;
-};
-
-class BLWK_playersStartWith_map
-{
-	title = "Start with map";
-	values[] = ZERO_OR_ONE;
-	texts[] = NO_OR_YES;
-	default = 1;
-};
-
-class BLWK_playersStartWith_compass
-{
-	title = "Start with compass";
-	values[] = ZERO_OR_ONE;
-	texts[] = NO_OR_YES;
-	default = 1;
-};
-
-class BLWK_playersStartWith_radio
-{
-	title = "Start with a radio (TFAR Compatabile)";
-	values[] = ZERO_OR_ONE;
-	texts[] = NO_OR_YES;
-	default = 0;
-};
-
-class BLWK_playersStartWith_mineDetector
-{
-	title = "Start with a mine detector";
-	values[] = ZERO_OR_ONE;
-	texts[] = NO_OR_YES;
-	default = 1;
-};
-
-class BLWK_playersStartWith_pistol
-{
-	title = "Players start with pistol";
-	values[] = ZERO_OR_ONE;
-	texts[] = NO_OR_YES;
-	default = 0;
-};
-
-class BLWK_playersStartWith_NVGs
-{
-	title = "Players start with NVG";
-	values[] = ZERO_OR_ONE;
-	texts[] = NO_OR_YES;
-	default = 0;
-};
-
 class BLWK_vehicleStartWave
 {
 	title = "Vehicles can spawn after wave";
@@ -143,7 +45,6 @@ class BLWK_vehicleStartWave
 	texts[] = {"5", "10", "15", "20", "25", "Never"};
 	default = 10;
 };
-
 class BLWK_specialWavesStartAt
 {
 	title = "Special Wave Possibility Starts At Wave";
@@ -151,7 +52,13 @@ class BLWK_specialWavesStartAt
 	texts[] = {"5", "10", "15", "20", "25", "Never"};
 	default = 15;
 };
-
+class BLWK_maxEnemyInfantryAtOnce
+{
+	title = "Max Enemy Infantry At Once (AI will wait in a que until there is room)";
+	values[] = {10,15,20,25,30,35,40,45,50};
+	texts[] = {"10","15","20","25","30","35","40","45","50"};
+	default = 30;
+};
 class BLWK_randomizeEnemyWeapons
 {
 	title = "Randomize Hostile Weapons";
@@ -159,70 +66,41 @@ class BLWK_randomizeEnemyWeapons
 	texts[] = NO_OR_YES;
 	default = 0;
 };
-
-class BLWK_showHitPoints
+class BLWK_maxPistolOnlyWaves
 {
-	title = "Point Hitmarkers on HUD";
-	values[] = ZERO_OR_ONE;
-	texts[] = NO_OR_YES;
+	title = "Hostiles only use pistols until wave";
+	values[] = {0, 1, 2, 3, 4, 5};
+	texts[] = {"Start Fully Armed", "One", "Two", "Three", "Four", "Five"};
+	default = 3;
+};
+class BLWK_enemiesPerWaveMultiplier
+{
+	title = "Enemies Per Wave Multiplier";
+	values[] = {0.5,1,1.5,2,2.5,3};
+	texts[] = {"0.5","1","1.5","2","2.5","3"};
+	default = 1;
+};
+// CIPHER COMMENT: The utility of this value should be replaced with a simple: add this number of enemies per round per player in addition to the number already spawned
+class BLWK_enemiesPerPlayerMultiplier
+{
+	title = "Extra Enemies Per Player";
+	values[] = {0.5, 1, 1.5, 2};
+	texts[] = {"0.5", "1", "1.5", "2"};
+	default = 1;
+};
+class BLWK_roundsBeforeBodyDeletion
+{
+	title = "Dead bodies remain for how many waves (dead bodies impact perfomance)";
+	values[] = {0, 1, 2};
+	texts[] = {"0 (until next round begins)", "1", "2"};
 	default = 1;
 };
 
-A_SPACE(Bulwark);
-A_SECTION_HEADER(Bulwark);
-
-class BLWK_playAreaRadius
-{
-	title = "Mission area size";
-	values[] = {50, 100, 150, 200, 250};
-	texts[] = {"(50m) Tiny", "(100m) Small", "(150m) Normal", "(200m) Large", "(250m) Huge"};
-	default = 250;
-};
-
-class BLWK_minNumberOfHousesInArea
-{
-	title = "Minimum number of buildings in Bulwark radius";
-	values[] = {5, 10, 15, 20, 30};
-	texts[] = {"5","10","15","20","30"};
-	default = 20;
-};
-
-class BLWK_loot_cityDistribution
-{
-	title = "Loot City distribution";
-	values[] = {1, 2, 3, 4};
-	texts[] = {"Every building", "Every second building", "Every third building", "Every fourth building"};
-	default = 1;
-};
-
-class BLWK_loot_roomDistribution
-{
-	title = "Loot Within Building Distribution";
-	values[] = {1, 2, 3, 4};
-	texts[] = {"Every location", "Every second location", "Every third location", "Every fourth location"};
-	default = 2;
-};
 
 
-class BLWK_supplyDropRadius
-{
-	title = "Supply drop distance from centre NOT IMPLEMENTED";
-	values[] = {0, 0.25, 0.50, 0.75};
-	texts[] = {"Dead centre", "25%", "50%", "75%"};
-	default = 0;
-};
-
-
-class BLWK_timeOfDay
-{
-	title = "The time of day";
-	values[] = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22};
-	texts[] = {"0200","0400","0600","0800","1000","1200", "1400", "1600", "1800", "2000", "2200"};
-	default = 12;
-};
-
-A_SPACE(Points_And_Supports);
-A_SECTION_HEADER(Points_And_Supports);
+// start
+A_SPACE(Start);
+A_SECTION_HEADER(Start);
 
 class BLWK_startingKillPoints
 {
@@ -239,7 +117,125 @@ class BLWK_supportDishFound
 	texts[] = {"Yes, find the Satellite Dish to unlock the Support Menu", "No, Supports are available from the begining of the mission"};
 	default = 0;
 };
+class BLWK_numMedKits
+{
+	title = "Medikits in Bulwark";
+	values[] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+	texts[] = {"None", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight"};
+	default = 3;
+};
+class BLWK_playersStartWith_map
+{
+	title = "Start with map";
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
+	default = 1;
+};
+class BLWK_playersStartWith_compass
+{
+	title = "Start with compass";
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
+	default = 1;
+};
+class BLWK_playersStartWith_radio
+{
+	title = "Start with a radio (TFAR Compatabile)";
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
+	default = 0;
+};
+class BLWK_playersStartWith_mineDetector
+{
+	title = "Start with a mine detector";
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
+	default = 1;
+};
+class BLWK_playersStartWith_pistol
+{
+	title = "Players start with pistol";
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
+	default = 0;
+};
+class BLWK_playersStartWith_NVGs
+{
+	title = "Players start with NVG";
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
+	default = 0;
+};
 
+
+
+// area
+A_SPACE(Area);
+A_SECTION_HEADER(Area);
+
+class BLWK_playAreaRadius
+{
+	title = "Mission area size";
+	values[] = {50, 100, 150, 200, 250};
+	texts[] = {"(50m) Tiny", "(100m) Small", "(150m) Normal", "(200m) Large", "(250m) Huge"};
+	default = 250;
+};
+class BLWK_minNumberOfHousesInArea
+{
+	title = "Minimum number of buildings in Bulwark radius";
+	values[] = {5, 10, 15, 20, 30};
+	texts[] = {"5","10","15","20","30"};
+	default = 20;
+};
+class BLWK_loot_cityDistribution
+{
+	title = "Loot City distribution";
+	values[] = {1, 2, 3, 4};
+	texts[] = {"Every building", "Every second building", "Every third building", "Every fourth building"};
+	default = 1;
+};
+class BLWK_loot_roomDistribution
+{
+	title = "Loot Within Building Distribution";
+	values[] = {1, 2, 3, 4};
+	texts[] = {"Every location", "Every second location", "Every third location", "Every fourth location"};
+	default = 2;
+};
+class BLWK_buildingsNearBulwarkAreIndestructable_radius
+{
+	title = "The radius of indestructable buildings around the Bulwark";
+	values[] = {0,5,10,15,20,25,30};
+	texts[] = {"OFF","5m","10m","15m","20m","25m","30m"};
+	default = 20;
+};
+
+
+
+// ambient
+A_SPACE(Ambient);
+A_SECTION_HEADER(Ambient);
+class BLWK_timeOfDay
+{
+	title = "The Time Of Day";
+	values[] = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22};
+	texts[] = {"0200","0400","0600","0800","1000","1200", "1400", "1600", "1800", "2000", "2200"};
+	default = 12;
+};
+// weather
+#include "paramWeather.hpp"
+
+
+
+// Points
+A_SPACE(Points);
+A_SECTION_HEADER(Points);
+class BLWK_showHitPoints
+{
+	title = "Point Hitmarkers on HUD";
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
+	default = 1;
+};
 class BLWK_pointsForKill
 {
 	title = "Base Points For Kill";
@@ -247,7 +243,6 @@ class BLWK_pointsForKill
 	texts[] = {"10","50","100","150","200","300"};
 	default = 100;
 };
-
 class BLWK_pointsForHit
 {
 	title = "Base Points per Hit";
@@ -255,7 +250,6 @@ class BLWK_pointsForHit
 	texts[] = {"0","10","20","50","100"};
 	default = 20;
 };
-
 class BLWK_pointsMultiForDamage
 {
 	title = "Damage bonus points";
@@ -264,16 +258,10 @@ class BLWK_pointsMultiForDamage
 	default = 20;
 };
 
-class BLWK_paratrooperCount
-{
-	title = "Paratrooper count";
-	values[] = {1, 2, 3, 4, 5, 6};
-	texts[] = {"1","2","3","4","5","6"};
-	default = 3;
-};
 
-A_SPACE(Revive);
-A_SECTION_HEADER(Revive);
+// respawn
+A_SPACE(Respawn);
+A_SECTION_HEADER(Respawn);
 
 class BLWK_numRespawnTickets
 {
@@ -307,13 +295,12 @@ class BLWK_friendlyFireOn
 	default = 1;
 };
 
-class BLWK_buildingsNearBulwarkAreIndestructable_radius
-{
-	title = "The radius of indestructable buildings around the Bulwark";
-	values[] = {0,5,10,15,20,25,30};
-	texts[] = {"OFF","5m","10m","15m","20m","25m","30m"};
-	default = 20;
-};
+
+
+A_SPACE(Revive);
+A_SECTION_HEADER(Revive);
+#include "reviveParams.hpp"
+
 
 
 // FACTIONS
@@ -368,13 +355,11 @@ class BLWK_level5Faction
 	default = 7;
 };
 
-class BLWK_maxEnemyInfantryAtOnce
-{
-	title = "Max Enemy Infantry At Once (AI will wait in a que until there is room)";
-	values[] = {10,15,20,25,30,35,40,45,50};
-	texts[] = {"10","15","20","25","30","35","40","45","50"};
-	default = 30;
-};
+
+
+// Other
+A_SPACE(Other);
+A_SECTION_HEADER(Other);
 
 class BLWK_magRepackEnabled
 {
@@ -382,4 +367,25 @@ class BLWK_magRepackEnabled
 	values[] = ZERO_OR_ONE;
 	texts[] = NO_OR_YES;
 	default = 1;
+};
+class BLWK_faksToMakeMedkit
+{
+	title = "How many FAKs make a Medkit?";
+	values[] = {5, 10, 15};
+	texts[] = {"5", "10", "15"};
+	default = 10;
+};
+class BLWK_supplyDropRadius
+{
+	title = "Supply drop distance from centre NOT IMPLEMENTED";
+	values[] = {0, 0.25, 0.50, 0.75};
+	texts[] = {"Dead centre", "25%", "50%", "75%"};
+	default = 0;
+};
+class BLWK_paratrooperCount
+{
+	title = "Paratrooper count";
+	values[] = {1, 2, 3, 4, 5, 6};
+	texts[] = {"1","2","3","4","5","6"};
+	default = 3;
 };

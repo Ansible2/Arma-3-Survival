@@ -58,10 +58,6 @@ class CfgSounds
 class Params
 {
 	#include "Headers\descriptionEXT\missionParams.hpp"
-	// revive parameters
-	#include "Headers\descriptionEXT\ReviveParams.hpp"
-	// weather
-	#include "Headers\descriptionEXT\paramWeather.hpp"
 };
 
 #include "Headers\descriptionEXT\defines.hpp"

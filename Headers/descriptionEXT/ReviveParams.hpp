@@ -28,7 +28,7 @@ class ReviveMode
 		$STR_A3_Disabled,
 		$STR_A3_EnabledForAllPlayers
 	};
-	default = -100;
+	default = 1;
 	function = "bis_fnc_paramReviveMode";
 };
 
@@ -78,7 +78,7 @@ class ReviveRequiredTrait
 		$STR_A3_None,
 		$STR_A3_Medic
 	};
-	default = -100;
+	default = 0;
 	function = "bis_fnc_paramReviveRequiredTrait";
 };
 
@@ -103,7 +103,7 @@ class ReviveMedicSpeedMultiplier
 		"2.5x",
 		"3x"
 	};
-	default = -100;
+	default = 1;
 	function = "bis_fnc_paramReviveMedicSpeedMultiplier";
 };
 
@@ -124,7 +124,7 @@ class ReviveRequiredItems
 		$STR_A3_Medikit,
 		$STR_A3_FirstAidKitOrMedikit
 	};
-	default = -100;
+	default = 2;
 	function = "bis_fnc_paramReviveRequiredItems";
 };
 
