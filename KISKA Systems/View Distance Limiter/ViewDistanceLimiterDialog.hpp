@@ -32,6 +32,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = PROFILE_BACKGROUND_COLOR(0.65);
 			style = ST_CENTER;
+			sizeEx = 0.0208333 * safezoneH;
 		};
 		class VDL_CLOSE_DIALOG_BUTTON: VDL_RSC_BUTTON_BASE
 		{
@@ -43,6 +44,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			w = 0.0820313 * safezoneW;
 			h = 0.0208333 * safezoneH;
 			onMouseButtonClick = "closeDialog 2";
+			sizeEx = 0.0208333 * safezoneH;
 		};
 		class VDL_SET_ALL_BUTTON: VDL_RSC_BUTTON_BASE
 		{
@@ -54,6 +56,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			w = 0.140625 * safezoneW;
 			h = 0.03125 * safezoneH;
 			onButtonClick = "_this call KISKA_fnc_setAllVDL";
+			sizeEx = 0.03125 * safezoneH;
 		};
 		class VDL_SYSTEM_ON_CHECKBOX: VDL_RSC_CHECKBOX_BASE
 		{
@@ -78,6 +81,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			w = 0.046875 * safezoneW;
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = {-1,-1,-1,1};
+			sizeEx = 0.0208333 * safezoneH;
 		};
 		/* -------------------------------------------------------------------------
 			Target FPS
@@ -91,6 +95,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.3125 * safezoneH + safezoneY;
 			w = 0.140625 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			sizeEx = 0.0208333 * safezoneH;
 		};
 		class VDL_FPS_TEXT_EDIT: VDL_RSC_EDIT_BASE
 		{
@@ -101,6 +106,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.34375 * safezoneH + safezoneY;
 			w = 0.0351563 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			sizeEx = 0.0208333 * safezoneH;
 		};
 		class VDL_FPS_SLIDER: VDL_RSC_SLIDER_BASE
 		{
@@ -127,6 +133,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.375 * safezoneH + safezoneY;
 			w = 0.140625 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			sizeEx = 0.0208333 * safezoneH;
 		};
 		class VDL_FREQ_SLIDER: VDL_RSC_SLIDER_BASE
 		{
@@ -151,6 +158,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.40625 * safezoneH + safezoneY;
 			w = 0.0351563 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			sizeEx = 0.0208333 * safezoneH;
 		};
 		/* -------------------------------------------------------------------------
 			Min Obj View Distance
@@ -164,6 +172,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.4375 * safezoneH + safezoneY;
 			w = 0.140625 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			sizeEx = 0.0208333 * safezoneH;
 		};
 		class VDL_MIN_OBJ_DIST_SLIDER: VDL_RSC_SLIDER_BASE
 		{
@@ -186,6 +195,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.46875 * safezoneH + safezoneY;
 			w = 0.0351563 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			sizeEx = 0.0208333 * safezoneH;
 		};
 		/* -------------------------------------------------------------------------
 			Max Obj View Distance
@@ -199,6 +209,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.5 * safezoneH + safezoneY;
 			w = 0.140625 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			sizeEx = 0.0208333 * safezoneH;
 		};
 		class VDL_MAX_OBJ_DIST_SLIDER: VDL_RSC_SLIDER_BASE
 		{
@@ -221,6 +232,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.53125 * safezoneH + safezoneY;
 			w = 0.0351563 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			sizeEx = 0.0208333 * safezoneH;
 		};
 		/* -------------------------------------------------------------------------
 			Increment Size
@@ -234,6 +246,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.5625 * safezoneH + safezoneY;
 			w = 0.140625 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			sizeEx = 0.0208333 * safezoneH;
 		};
 		class VDL_INCREMENT_SLIDER: VDL_RSC_SLIDER_BASE
 		{
@@ -257,6 +270,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.59375 * safezoneH + safezoneY;
 			w = 0.0351563 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			sizeEx = 0.0208333 * safezoneH;
 		};
 		/* -------------------------------------------------------------------------
 			Terrain View Distance
@@ -270,6 +284,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.625 * safezoneH + safezoneY;
 			w = 0.140625 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			sizeEx = 0.0208333 * safezoneH;
 		};
 		class VDL_TERRAIN_SLIDER: VDL_RSC_SLIDER_BASE
 		{
@@ -293,6 +308,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.65625 * safezoneH + safezoneY;
 			w = 0.0351563 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			sizeEx = 0.0208333 * safezoneH;
 		};
 	};
 };
