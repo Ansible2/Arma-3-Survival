@@ -184,7 +184,7 @@ if (hasInterface) then {
 };
 
 BLWK_currentWaveNumber = 0;
-BLWK_inBetweenWaves = false;
+BLWK_inBetweenWaves = true;
 
 /* Points */
 BLWK_pointsForKill = ("BLWK_pointsForKill" call BIS_fnc_getParamValue);                 // Base Points for a kill

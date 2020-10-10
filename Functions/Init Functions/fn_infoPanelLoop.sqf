@@ -40,19 +40,15 @@ waitUntil {
 };
 
 
-
-private "_infoPanelDisplay";
-waitUntil {
-	_infoPanelDisplay = findDisplay INFO_PANEL_IDD;
-	if (!isNull _infoPanelDisplay) exitWith {true};
-	false
-};
+"infoPanelLayer" cutRsc [INFO_PANEL_DISPLAYNAME,"PLAIN"];
+private _infoPanelDisplay = uiNamespace getVariable INFO_PANEL_DISPLAYNAME;
 
 // player points
 private _playerPoints = BLWK_playerKillPoints;
 private _pointsCtrl = _infoPanelDisplay displayCtrl INFO_PANEL_PLAYER_POINTS_IDC;
 private _fn_updatePlayerPoints = {	
 	_pointsCtrl ctrlSetText (str BLWK_playerKillPoints);
+	_pointsCtrl ctrlCommit 0;
 	_playerPoints = BLWK_playerKillPoints;
 };
 
@@ -61,6 +57,7 @@ private _numRespawnTickets = BLWK_numRespawnTickets;
 private _ticketsCtrl = _infoPanelDisplay displayCtrl INFO_PANEL_RESPAWNS_NUM_IDC;
 private _fn_updateRespawnTickets = {
 	_ticketsCtrl ctrlSetText (str BLWK_numRespawnTickets);
+	_ticketsCtrl ctrlCommit 0;
 	_numRespawnTickets = BLWK_numRespawnTickets;
 };
 
@@ -69,6 +66,7 @@ private _currentWave = BLWK_currentWaveNumber;
 private _currentWaveCtrl = _infoPanelDisplay displayCtrl INFO_PANEL_WAVE_NUM_IDC;
 private _fn_updateCurrentWave = {
 	_currentWaveCtrl ctrlSetText (str BLWK_currentWaveNumber);
+	_currentWaveCtrl ctrlCommit 0;
 	_currentWave = BLWK_currentWaveNumber;
 };
 
@@ -83,81 +81,26 @@ private _fn_updateInbetweenWaves = {
 		_inbetweenWavesCtrl ctrlSetText "IN PROGRESS";
 		_inbetweenWavesCtrl ctrlSetTextColor [1,0.1,0,0.57];
 	};
+	_inbetweenWavesCtrl ctrlCommit 0;
 	_inBetweenWaves = BLWK_inBetweenWaves;
 };
 
-1000 cutRsc ["BLWK_infoPanel","PLAIN"];
+call _fn_updatePlayerPoints;
+call _fn_updateRespawnTickets;
+call _fn_updateCurrentWave;
+call _fn_updateInbetweenWaves;
 
 while {sleep 2; true} do {
-	if (_playerPoints != BLWK_playerKillPoints) then {call _fn_updatePlayerPoints};
-	if (_numRespawnTickets != BLWK_numRespawnTickets) then {call _fn_updateRespawnTickets};
-	if (_currentWave != BLWK_currentWaveNumber) then {call _fn_updateCurrentWave};
-	if (_inBetweenWaves != BLWK_inBetweenWaves) then {call _fn_updateInbetweenWaves};
-};
-
-
-/*
-// CIPHER COMMENT: it would be worth removing the player name in the future, not much point in having it
-params [
-	["_player",player,[objNull]]
-];
-
-#define INFO_PANEL_IDC 99999
-
-disableSerialization;
-
-waitUntil {
-	if ((!isNil "BLWK_playerKillPoints") AND {!isNil "BLWK_numRespawnTickets"} AND {!isNil "BLWK_currentWaveNumber"}) exitWith {true};
-	sleep 1;
-	false
-};
-
-private _playerName = name _player;
-private _playerPoints = BLWK_playerKillPoints;
-private _numRespawnTickets = BLWK_numRespawnTickets;
-private _currentWave = BLWK_currentWaveNumber;
-private "_text";
-
-private _fn_updateInfoPanel = {
-	hint "panel updated";
-	_playerPoints = BLWK_playerKillPoints;
-	_numRespawnTickets = BLWK_numRespawnTickets;
-	_currentWave = BLWK_currentWaveNumber;
-
-	if (_numRespawnTickets < 0) then {
-		_numRespawnTickets = 0;
+	if (_playerPoints != BLWK_playerKillPoints) then {
+		call _fn_updatePlayerPoints
 	};
-	
-	_text = format [
-		"<t size='1.2' color='#ffffff'>%1</t>
-		<br/>
-		<t size='1.5' color='#dddddd'>%2</t>
-		<br/>
-		<t size='0.9' color='#cee5d0'>Wave: %3</t>
-		<br/>
-		<t size='0.9' color='#cee5d0'>Tickets: %4</t>"
-		,_playerName, _playerPoints, _currentWave, _numRespawnTickets
-	];
-
-    // CIPHER COMMENT: why are we redisplaying this value instead of just updating it?
-    // is this constantly adding another layer on top?
-    1000 cutRsc ["BLWK_infoPanel","PLAIN"];
-    private _infoPanelDisplay = uiNameSpace getVariable "BLWK_infoPanel";
-    private _infoPanelControl = _infoPanelDisplay displayCtrl INFO_PANEL_IDC;
-    _infoPanelControl ctrlSetStructuredText parseText _text;
-    _infoPanelControl ctrlCommit 0;
-};
-
-// make the panel display initially
-call _fn_updateInfoPanel;
-
-while {sleep 2; true} do {
-	if (
-		_playerPoints != BLWK_playerKillPoints OR 
-		{_numRespawnTickets != BLWK_numRespawnTickets} OR
-		{_currentWave != BLWK_currentWaveNumber}
-	) then {
-		call _fn_updateInfoPanel
+	if (_numRespawnTickets != BLWK_numRespawnTickets) then {
+		call _fn_updateRespawnTickets
+	};
+	if (_currentWave != BLWK_currentWaveNumber) then {
+		call _fn_updateCurrentWave
+	};
+	if !(_inBetweenWaves isEqualTo BLWK_inBetweenWaves) then {
+		call _fn_updateInbetweenWaves
 	};
 };
-*/
