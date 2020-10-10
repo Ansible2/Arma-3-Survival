@@ -52,7 +52,7 @@ if (_justPurchased) then {
 };
 
 // special handle for BLWK_randomWeaponBox being found
-if (_object isEqualTo BLWK_randomWeaponBox AND {missionNamespace getVariable ["BLWK_randomWeaponBoxFound",false]}) then {
+if (_object isEqualTo BLWK_randomWeaponBox AND {!(missionNamespace getVariable ["BLWK_randomWeaponBoxFound",false])}) then {
 	missionNamespace setVariable ["BLWK_randomWeaponBoxFound",true,true];
 };
 
