@@ -53,7 +53,7 @@ class BLWK_roundsBeforeBodyDeletion
 	title = "Dead bodies remain for how many waves (dead bodies impact perfomance)";
 	values[] = {0, 1, 2};
 	texts[] = {"0 (until next round begins)", "1", "2"};
-	default = 0;
+	default = 1;
 };
 
 class BLWK_timeBetweenRounds
@@ -61,7 +61,7 @@ class BLWK_timeBetweenRounds
 	title = "Time between rounds";
 	values[] = {0, 15, 30, 60, 90, 120, 180, 240, 300};
 	texts[] = {"0", "15 Seconds", "30 Seconds", "1 Minute", "1 Minute 30 Seconds", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
-	default = 60;
+	default = 120;
 };
 
 class BLWK_maxNumWaves
@@ -109,7 +109,7 @@ class BLWK_playersStartWith_radio
 	title = "Start with a radio (TFAR Compatabile)";
 	values[] = ZERO_OR_ONE;
 	texts[] = NO_OR_YES;
-	default = 1;
+	default = 0;
 };
 
 class BLWK_playersStartWith_mineDetector
@@ -149,7 +149,7 @@ class BLWK_specialWavesStartAt
 	title = "Special Wave Possibility Starts At Wave";
 	values[] = {5, 10, 15, 20, 25, 9999};
 	texts[] = {"5", "10", "15", "20", "25", "Never"};
-	default = 5;
+	default = 15;
 };
 
 class BLWK_randomizeEnemyWeapons
@@ -176,35 +176,15 @@ class BLWK_playAreaRadius
 	title = "Mission area size";
 	values[] = {50, 100, 150, 200, 250};
 	texts[] = {"(50m) Tiny", "(100m) Small", "(150m) Normal", "(200m) Large", "(250m) Huge"};
-	default = 150;
+	default = 250;
 };
-
-/*
-class BLWK_minSpawnRoomSize
-{
-	title = "Minimum spawn room size";
-	values[] = {10, 13, 15, 18, 20};
-	texts[] = {"10m²", "13m²", "15m²", "18m²", "20m²"};
-	default = 13;
-};
-*/
-
-/*
-class BLWK_minLandToWaterRatio
-{
-	title = "Minimum land area (To avoid spawning on a dock)";
-	values[] = {60, 70, 80, 90, 100};
-	texts[] = {"60%","70%","80%","90%","100%"};
-	default = 80;
-};
-*/
 
 class BLWK_minNumberOfHousesInArea
 {
 	title = "Minimum number of buildings in Bulwark radius";
 	values[] = {5, 10, 15, 20, 30};
 	texts[] = {"5","10","15","20","30"};
-	default = 10;
+	default = 20;
 };
 
 class BLWK_loot_cityDistribution
@@ -212,7 +192,7 @@ class BLWK_loot_cityDistribution
 	title = "Loot City distribution";
 	values[] = {1, 2, 3, 4};
 	texts[] = {"Every building", "Every second building", "Every third building", "Every fourth building"};
-	default = 2;
+	default = 1;
 };
 
 class BLWK_loot_roomDistribution
@@ -223,13 +203,15 @@ class BLWK_loot_roomDistribution
 	default = 2;
 };
 
+
 class BLWK_supplyDropRadius
 {
-	title = "Supply drop distance from centre";
+	title = "Supply drop distance from centre NOT IMPLEMENTED";
 	values[] = {0, 0.25, 0.50, 0.75};
 	texts[] = {"Dead centre", "25%", "50%", "75%"};
-	default = 0.25;
+	default = 0;
 };
+
 
 class BLWK_timeOfDay
 {
@@ -260,7 +242,7 @@ class BLWK_supportDishFound
 
 class BLWK_pointsForKill
 {
-	title = "Points per kill";
+	title = "Base Points For Kill";
 	values[] = {10, 50, 100, 150, 200, 300};
 	texts[] = {"10","50","100","150","200","300"};
 	default = 100;
@@ -268,7 +250,7 @@ class BLWK_pointsForKill
 
 class BLWK_pointsForHit
 {
-	title = "Points per hit";
+	title = "Base Points per Hit";
 	values[] = {0, 10, 20, 50, 100};
 	texts[] = {"0","10","20","50","100"};
 	default = 20;
@@ -298,7 +280,7 @@ class BLWK_numRespawnTickets
 	title = "Respawn Tickets";
 	values[] = {0, 5, 10, 15, 20};
 	texts[] = {"0", "5", "10", "15", "20"};
-	default = 0;
+	default = 10;
 };
 
 class BLWK_respawnTime
@@ -330,7 +312,7 @@ class BLWK_buildingsNearBulwarkAreIndestructable_radius
 	title = "The radius of indestructable buildings around the Bulwark";
 	values[] = {0,5,10,15,20,25,30};
 	texts[] = {"OFF","5m","10m","15m","20m","25m","30m"};
-	default = 0;
+	default = 20;
 };
 
 
