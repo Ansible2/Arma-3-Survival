@@ -120,3 +120,4 @@ if (missionNamespace getVariable ["BLWK_debug",false]) then {
 
 
 BLWK_playAreaCenter = _positionChosen;
+publicVariable "BLWK_playAreaCenter";
