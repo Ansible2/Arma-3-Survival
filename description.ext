@@ -60,7 +60,7 @@ class Params
 	#include "Headers\descriptionEXT\missionParams.hpp"
 };
 
-#include "Headers\descriptionEXT\defines.hpp"
+#include "Headers\descriptionEXT\GUI\defines.hpp"
 
 class RscTitles
 {
