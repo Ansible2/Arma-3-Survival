@@ -225,3 +225,32 @@
 	"LM_OPCAN_FRI_TL", \
 	["LM_OPCAN_Rake_FRI_AT","LM_OPCAN_Rake_FRI_HMG","I_APC_Wheeled_03_cannon_F","LM_OPCAN_M350_FRI","LM_OPCAN_D77_U_FRI"]\
 ]
+
+#define OPCAN_CMA_UNITS \
+[ \
+	"LM_OPCAN_CMA_AutoRifleman",\
+	"LM_OPCAN_CMA_Breacher", \
+	"LM_OPCAN_CMA_Medic", \
+	"LM_OPCAN_CMA_Engineer", \
+	"LM_OPCAN_CMA_GL", \
+	"LM_OPCAN_CMA_Marksman", \
+	"LM_OPCAN_CMA_Officer", \
+	"LM_OPCAN_CMA_Rifleman", \
+	"LM_OPCAN_CMA_Rifleman_AT", \
+	"LM_OPCAN_CMA_RTO", \
+	"LM_OPCAN_CMA_SL", \
+	"LM_OPCAN_CMA_TL", \
+	["LM_OPCAN_HOG_MG_CMA_WDL","LM_OPCAN_ARV_CMA_HMG_WDL","I_E_APC_tracked_03_cannon_F","B_T_MBT_01_cannon_F","OPTRE_Pelican_unarmed"]\
+]
+
+#define OPCAN_CPF_UNITS \
+[ \
+	"LM_OPCAN_CPD_Breacher", \
+	"LM_OPCAN_CPD_Commissioner", \
+	"LM_OPCAN_CPD_Marksman", \
+	"LM_OPCAN_CPD_Officer_SWAT", \
+	"LM_OPCAN_CPD_Officer_M45", \
+	"LM_OPCAN_CPD_Officer_SMG", \
+	"LM_OPCAN_CPD_TL", \
+	["LM_OPCAN_HOG_MG_CMA_WDL","LM_OPCAN_ARV_CMA_HMG_WDL","","",""]\
+]

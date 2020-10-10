@@ -45,6 +45,8 @@ Author:
 // set up MACRO vars that can be used between files and make changes easier
 #include "..\..\Headers\Faction Headers\Define Factions.hpp"
 #include "..\..\Headers\Faction Headers\Unit Tables\vanillaUnitTables.hpp"
+#include "..\..\Headers\Faction Headers\Unit Tables\optreUnitTables.hpp"
+#include "..\..\Headers\Faction Headers\Unit Tables\opcanUnitTables.hpp"
 
 
 // to save on allocation time for memory, we are going to use temp values

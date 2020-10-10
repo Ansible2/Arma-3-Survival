@@ -31,7 +31,9 @@
 	29,\
 	30,\
 	31,\
-	32
+	32,\
+	33,\
+	34
 
 #define FACTION_STRINGS \
 	"NATO", \
@@ -47,10 +49,11 @@
 	"SYNDIKAT", \
 	"AAF", \
 	"LDF", \
+	"Spetznas (Contact)", \
 	"UNSC Marines (OPTRE)", \
 	"ODSTs (OPTRE)", \
 	"UNSC Army Snow (OPTRE)", \
-	"URF (OPTRE)", \
+	"United Rebel Front (OPTRE)", \
 	"Battle Jumpers Urban (OPTRE)", \
 	"Insurgents (OPTRE)", \
 	"Covenant (OPTRE-FC)", \
@@ -65,7 +68,9 @@
 	"Koslovics (OPCAN)", \
 	"Fridens Woodland (OPCAN)", \
 	"Fridens Desert (OPCAN)", \
-	"Fridens(OPCAN)"
+	"Fridens (OPCAN)", \
+	"Colonial Military Authority (OPCAN)", \
+	"Colonial Police Force (OPCAN)" \
 
 #define FACTION_VARS \
 [ \
@@ -101,5 +106,7 @@
 	OPCAN_KOSLOVICS_UNITS, \
 	OPCAN_FRIDENS_WDL_UNITS, \
 	OPCAN_FRIDENS_DES_UNITS, \
-	OPCAN_FRIDENS_UNITS \
+	OPCAN_FRIDENS_UNITS, \
+	OPCAN_CMA_UNITS, \
+	OPCAN_CPF_UNITS \
 ]
