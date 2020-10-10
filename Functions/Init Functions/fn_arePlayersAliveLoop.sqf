@@ -26,14 +26,17 @@ Author:
 if (!isServer OR {!canSuspend}) exitWith {};
 
 private ["_players","_return"];
+// wait till the first round has started
+waitUntil {
+	if ((missionNamespace getVariable ["BLWK_currentWaveNumber",0]) isEqualTo 1) exitWith {true};
+	sleep 1;
+	false
+};
 private _condition = {
-	
-	waitUntil {!((_players = call CBAP_fnc_players) isEqualTo [])};
-
+	_players = call CBAP_fnc_players;
 	_return = _players findIf {
-		((incapacitatedState _x) isEqualTo "") AND {BLWK_numRespawnTickets <= 0}
+		((incapacitatedState _x) isEqualTo "") OR {BLWK_numRespawnTickets > 0}
 	};
-
 	if (_return isEqualTo -1) then {
 		true
 	} else {
