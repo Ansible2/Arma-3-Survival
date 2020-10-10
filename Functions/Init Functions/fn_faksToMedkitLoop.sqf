@@ -45,7 +45,7 @@ private _fn_someoneLookingInBulwark = {
 };
 
 private ["_bulwarkItems","_numberOfFAKs"];
-while {(call _fn_someoneLookingInBulwark) AND {!BLWK_dontUseRevive}} do {
+while {sleep 2; (call _fn_someoneLookingInBulwark) AND {!BLWK_dontUseRevive}} do {
 	_bulwarkItems = itemCargo bulwarkBox;
 	_numberOfFAKs = count (_bulwarkItems select {_x == "FirstAidKit"});
 	
@@ -64,8 +64,6 @@ while {(call _fn_someoneLookingInBulwark) AND {!BLWK_dontUseRevive}} do {
 		};	
 		bulwarkBox addItemCargoGlobal ["Medikit", 1];
 	};
-
-	sleep 2;
 };
 
 BLWK_faksToMedkitLooprunning = false;
