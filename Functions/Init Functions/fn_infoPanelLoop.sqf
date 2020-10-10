@@ -40,7 +40,7 @@ params [
 disableSerialization;
 
 waitUntil {
-	if (!(isNil "BLWK_playerKillPoints") AND {!isNil "BLWK_numRespawnTickets"} AND {!isNil "BLWK_currentWaveNumber"}) exitWith {true};
+	if ((!isNil "BLWK_playerKillPoints") AND {!isNil "BLWK_numRespawnTickets"} AND {!isNil "BLWK_currentWaveNumber"}) exitWith {true};
 	sleep 1;
 	false
 };
@@ -80,8 +80,10 @@ private _fn_updateInfoPanel = {
     _infoPanelControl ctrlCommit 0;
 };
 
+// make the panel display initially
+call _fn_updateInfoPanel;
 
-while {true} do {
+while {sleep 2; true} do {
 	if (
 		_playerPoints != BLWK_playerKillPoints OR 
 		{_numRespawnTickets != BLWK_numRespawnTickets} OR
@@ -89,6 +91,4 @@ while {true} do {
 	) then {
 		call _fn_updateInfoPanel
 	};
-
-	sleep 2;
 };

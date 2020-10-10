@@ -40,7 +40,6 @@ if (BLWK_magRepackEnabled) then {
 waitUntil {!isNil "BLWK_playAreaCenter" AND {!isNil "bulwarkBox"}};
 _player setVehiclePosition [bulwarkBox,[],5,"NONE"];
 
-null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
 // a loop that updates the info panel in the top left (respawn tickets, current wave #, points)
 null = [] spawn BLWK_fnc_infoPanelLoop;
 
@@ -49,3 +48,5 @@ null = [] spawn BLWK_fnc_infoPanelLoop;
 [_player] call BLWK_fnc_addReviveEhs;
 
 [_player] call BLWK_fnc_initDragSystem;
+
+null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
