@@ -59,7 +59,7 @@ class ReviveDuration
 		25,
 		30
 	};
-	default = -100;
+	default = 8;
 	function = "bis_fnc_paramReviveDuration";
 };
 
@@ -176,7 +176,7 @@ class ReviveBleedOutDuration
 		120,
 		180
 	};
-	default = -100;
+	default = 120;
 	function = "bis_fnc_paramReviveBleedOutDuration";
 };
 
