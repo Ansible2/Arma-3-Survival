@@ -31,7 +31,6 @@ if (isNil "_selectedIndex") exitWith {
 
 (BLWK_buildableObjects_array select _selectedIndex) params [
 	"_price",
-	"_displayName",
 	"_className",
 	"_hasAi"
 ];
@@ -75,5 +74,6 @@ if ((missionNamespace getVariable ["BLWK_playerKillPoints",0]) >= _price) then {
 	// give all players the ability to manipulate the object
 	[_purchasedObject] remoteExecCall ["BLWK_fnc_addBuildableObjectActions",BLWK_allClientsTargetID,true];
 } else {
+	private _displayName = [configFile >> "cfgVehicles" >> _className] call BIS_fnc_displayName;
 	[format ["<t size='0.6' color='#ff3300'>Not enough points for: %1!</t>", _displayName], -0, -0.02, 2, 0.1] call BIS_fnc_dynamicText;
 };

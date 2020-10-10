@@ -45,6 +45,9 @@ waitUntil {!isNull (findDisplay 9999)};
 private _buildableObjectsControl = (findDisplay 9999) displayCtrl 1500;
 private _displayNameTemp = "";
 BLWK_buildableObjects_array apply {
+	systemChat str _x;
+	systemChat str (_x select 0);
+	systemChat str (_x select 1);
 	_displayNameTemp = [configFile >> "cfgVehicles" >> (_x select 1)] call BIS_fnc_displayName;
 	_buildableObjectsControl lbAdd format [PRICE_NAME_FORMAT,_x select 0,_displayNameTemp];
 };
@@ -52,7 +55,7 @@ BLWK_buildableObjects_array apply {
 // show buildable object preview
 ((findDisplay 9999) displayCtrl 1500) ctrlAddEventHandler ['LBSelChanged', {
 	private _currentlySelectedIndex = lbCurSel 1500;
-  	private _previewPic = getText (configFile >> "CfgVehicles" >> ((BLWK_buildableObjects_array select _currentlySelectedIndex) select 2) >> "editorPreview");
+  	private _previewPic = getText (configFile >> "CfgVehicles" >> ((BLWK_buildableObjects_array select _currentlySelectedIndex) select 1) >> "editorPreview");
 
   	ctrlSetText [1502, _previewPic];
 }];
