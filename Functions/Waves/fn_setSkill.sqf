@@ -21,7 +21,11 @@ Author:
 	Hilltop & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#include "..\..\Headers\Skill Table.hpp"
+#define SKILL_LEVEL_1 0.1
+#define SKILL_LEVEL_2 0.3
+#define SKILL_LEVEL_3 0.45
+#define SKILL_LEVEL_4 0.6
+#define SKILL_LEVEL_5 0.75
 #define AIM_SPEED_MULTIPLIER 0.75
 params ["_unit"];
 
@@ -38,4 +42,7 @@ private _skillLevel = call _fn_getBaseSkill;
 _unit setSkill ["aimingAccuracy", _skillLevel];
 _unit setSkill ["aimingSpeed", (_skillLevel * AIM_SPEED_MULTIPLIER)];
 _unit setSkill ["aimingShake", _skillLevel];
-_unit setSkill ["spotTime", SKILL_LEVEL_1];
+_unit setSkill ["spotTime", SKILL_LEVEL_2];
+_unit setSkill ["general", _skillLevel];
+_unit setSkill ["commanding",1];
+_unit setSkill ["courage",1];
