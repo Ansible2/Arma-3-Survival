@@ -50,21 +50,17 @@ Author:
 
 
 // to save on allocation time for memory, we are going to use temp values
-private "_defaultFactionTypeClasses";
+private "_defaultFactionClasses";
 private _tempUnitClass = "";
-private _unitClassAvailable = true;
 
 
 // check if a unit is an actual class and if they are dependent on exluded DLC
 private _fn_checkTempClass = {
-
-	if (isClass (configFile >> "CfgVehicles" >> _tempUnitClass)) then {
-		//_unitClassAvailable = [_tempUnitClass,"CfgVehicles"] call BLWK_fnc_checkDLC;
+	if (isClass (configFile >> "CfgVehicles" >> _tempUnitClass) /*AND {[_tempUnitClass,"CfgVehicles"] call BLWK_fnc_checkDLC}*/) then {
+		true;
 	} else {
-		_unitClassAvailable = false;
+		false;
 	};
-
-	_unitClassAvailable
 };
 
 
@@ -75,6 +71,7 @@ private _fn_sortFactionClasses = {
 	private _allowedUnitClasses = [];
 	_unitClassesToCheck apply {
 		_tempUnitClass = _x;
+		// exclude the vehicle array and make sure unit actual exists
 		if (_tempUnitClass isEqualType "" AND {call _fn_checkTempClass}) then {
 			_allowedUnitClasses pushBack _tempUnitClass;
 		};
@@ -83,20 +80,25 @@ private _fn_sortFactionClasses = {
 	if (_allowedUnitClasses isEqualTo []) exitWith {
 		// if the faction turns up empty based upon sorting, AND it is the default
 		// exit the mission
-		if (_unitClassesToCheck isEqualTo _defaultFactionTypeClasses) then {
+		if (_unitClassesToCheck isEqualTo _defaultFactionClasses) then {
 			null = [] spawn {
-				["One of the selected factions unfortunately came up empty, the mission will end to allow you to reconfigure params"] remoteExecCall ["hint",0,true];
+				null = ["A default faction appears to be empty, the mission will now end to reconfigure parameters"] remoteExec ["hint",0,true];
 				sleep 20;
 				call BIS_fnc_endMissionServer;
 			};
 		} else {
-		// else, just load the default faction for that section
-			[_defaultFactionTypeClasses] call _fn_sortFactionClasses
+		// else, just load the default faction for that level
+			["A faction you selected does not have any of units available. It may not be loaded on the server. The mission will use that level's default faction instead"] remoteExecCall ["hint",0,true];
+			[_defaultFactionClasses] call _fn_sortFactionClasses
 		};
 	};
 
 	// seperate vehicle types
-	private _vehicleTypes = _unitClassesToCheck select (_unitClassesToCheck findIf {_x isEqualType []});
+	private _vehicleArrayIndex = _unitClassesToCheck findIf {_x isEqualType []};
+	private _vehicleTypes = ["","","","",""];
+	if (_vehicleArrayIndex isEqualTo -1) then {
+		_vehicleTypes = _unitClassesToCheck select _vehicleArrayIndex;
+	};
 
 	[_allowedUnitClasses,_vehicleTypes];
 };
@@ -110,7 +112,7 @@ private _fn_getSelectedClasses = {
 
 	// setup default fall through faction
 	_index = [FACTION_STRINGS] findIf {_x == _defaultFactionString};
-	_defaultFactionTypeClasses = FACTION_VARS select _index;
+	_defaultFactionClasses = FACTION_VARS select _index;
 
 	private _return = [_classes] call _fn_sortFactionClasses;
 	
@@ -118,18 +120,29 @@ private _fn_getSelectedClasses = {
 };
 
 private _fn_getFactionString = {
-	params ["_paramValue"];
-	[FACTION_STRINGS] select _paramValue
+	params ["_missionParamValue"];
+	[FACTION_STRINGS] select _missionParamValue;
 };
 
 
 // get faction classes
-private _friendlyClasses = [["BLWK_friendlyFaction" call BIS_fnc_getParamValue] call _fn_getFactionString,"NATO"] call _fn_getSelectedClasses;
-private _level1Classes = [["BLWK_level1Faction" call BIS_fnc_getParamValue] call _fn_getFactionString,"FIA"] call _fn_getSelectedClasses;
-private _level2Classes = [["BLWK_level2Faction" call BIS_fnc_getParamValue] call _fn_getFactionString,"AAF"] call _fn_getSelectedClasses;
-private _level3Classes = [["BLWK_level3Faction" call BIS_fnc_getParamValue] call _fn_getFactionString,"CSAT"] call _fn_getSelectedClasses;
-private _level4Classes = [["BLWK_level4Faction" call BIS_fnc_getParamValue] call _fn_getFactionString,"CSAT URBAN"] call _fn_getSelectedClasses;
-private _level5Classes = [["BLWK_level5Faction" call BIS_fnc_getParamValue] call _fn_getFactionString,"VIPER"] call _fn_getSelectedClasses;
+private _selectedClassString_friendly = ["BLWK_friendlyFaction" call BIS_fnc_getParamValue] call _fn_getFactionString;
+private _friendlyClasses = [_selectedClassString_friendly,"NATO"] call _fn_getSelectedClasses;
+
+private _selectedClassString_level_1 = ["BLWK_friendlyFaction" call BIS_fnc_getParamValue] call _fn_getFactionString;
+private _level1Classes = [_selectedClassString_level_1,"FIA"] call _fn_getSelectedClasses;
+
+private _selectedClassString_level_2 = ["BLWK_friendlyFaction" call BIS_fnc_getParamValue] call _fn_getFactionString;
+private _level2Classes = [_selectedClassString_level_2,"AAF"] call _fn_getSelectedClasses;
+
+private _selectedClassString_level_3 = ["BLWK_friendlyFaction" call BIS_fnc_getParamValue] call _fn_getFactionString;
+private _level3Classes = [_selectedClassString_level_3,"CSAT"] call _fn_getSelectedClasses;
+
+private _selectedClassString_level_4 = ["BLWK_friendlyFaction" call BIS_fnc_getParamValue] call _fn_getFactionString;
+private _level4Classes = [_selectedClassString_level_4,"CSAT URBAN"] call _fn_getSelectedClasses;
+
+private _selectedClassString_level_5 = ["BLWK_friendlyFaction" call BIS_fnc_getParamValue] call _fn_getFactionString;
+private _level5Classes = [_selectedClassString_level_5,"VIPER"] call _fn_getSelectedClasses;
 
 // return for global var definition
 [
