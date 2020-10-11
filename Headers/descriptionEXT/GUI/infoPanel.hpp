@@ -12,9 +12,9 @@ class BLWK_infoPanel {
 		{
 			idc = 2002;
 			x = 0.00781247 * safezoneW + safezoneX;
-			y = 0.0104166 * safezoneH + safezoneY;
-			w = 0.0996094 * safezoneW;
-			h = 0.145833 * safezoneH;
+			y = 0.0104172 * safezoneH + safezoneY;
+			w = 0.152344 * safezoneW;
+			h = 0.104167 * safezoneH;
 			colorBackground[] = {0,0,0,0.3};
 			shadow = 2;
 		};
@@ -28,7 +28,7 @@ class BLWK_infoPanel {
 			text = ""; //--- ToDo: Localize;
 			x = 0.0136719 * safezoneW + safezoneX;
 			y = 0.0208333 * safezoneH + safezoneY;
-			w = 0.0878906 * safezoneW;
+			w = 0.0527344 * safezoneW;
 			h = 0.03125 * safezoneH;
 			onLoad = "(_this select 0) ctrlSetText (name player)"
 			colorBackground[] = {-1,-1,-1,-1};
@@ -39,9 +39,9 @@ class BLWK_infoPanel {
 		{
 			idc = INFO_PANEL_PLAYER_POINTS_IDC;
 			text = ""; //--- ToDo: Localize;
-			x = 0.0136718 * safezoneW + safezoneX;
-			y = 0.0520833 * safezoneH + safezoneY;
-			w = 0.0878906 * safezoneW;
+			x = 0.0136719 * safezoneW + safezoneX;
+			y = 0.0729166 * safezoneH + safezoneY;
+			w = 0.0527344 * safezoneW;
 			h = 0.03125 * safezoneH;
 			colorBackground[] = {-1,-1,-1,-1};
 			sizeEx = 0.03125 * safezoneH;
@@ -52,8 +52,8 @@ class BLWK_infoPanel {
 		{
 			idc = 2004;
 			text = "Wave:"; //--- ToDo: Localize;
-			x = 0.0136718 * safezoneW + safezoneX;
-			y = 0.104167 * safezoneH + safezoneY;
+			x = 0.0664062 * safezoneW + safezoneX;
+			y = 0.0520833 * safezoneH + safezoneY;
 			w = 0.0644531 * safezoneW;
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = {-1,-1,-1,-1};
@@ -63,8 +63,8 @@ class BLWK_infoPanel {
 		{
 			idc = INFO_PANEL_WAVE_NUM_IDC;
 			text = ""; //--- ToDo: Localize;
-			x = 0.078125 * safezoneW + safezoneX;
-			y = 0.104167 * safezoneH + safezoneY;
+			x = 0.130859 * safezoneW + safezoneX;
+			y = 0.0520833 * safezoneH + safezoneY;
 			w = 0.0234375 * safezoneW;
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = {-1,-1,-1,-1};
@@ -75,8 +75,8 @@ class BLWK_infoPanel {
 		{
 			idc = INFO_PANEL_RESPAWNS_NUM_IDC;
 			text = ""; //--- ToDo: Localize;
-			x = 0.078125 * safezoneW + safezoneX;
-			y = 0.125 * safezoneH + safezoneY;
+			x = 0.130859 * safezoneW + safezoneX;
+			y = 0.0833333 * safezoneH + safezoneY;
 			w = 0.0234375 * safezoneW;
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = {-1,-1,-1,-1};
@@ -86,8 +86,8 @@ class BLWK_infoPanel {
 		{
 			idc = 2005;
 			text = "Respawns Left:"; //--- ToDo: Localize;
-			x = 0.0136718 * safezoneW + safezoneX;
-			y = 0.125 * safezoneH + safezoneY;
+			x = 0.0664062 * safezoneW + safezoneX;
+			y = 0.0833333 * safezoneH + safezoneY;
 			w = 0.0644531 * safezoneW;
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = {-1,-1,-1,-1};
@@ -98,8 +98,8 @@ class BLWK_infoPanel {
 		{
 			idc = 2006;
 			text = "Wave Status:"; //--- ToDo: Localize;
-			x = 0.0136718 * safezoneW + safezoneX;
-			y = 0.0833333 * safezoneH + safezoneY;
+			x = 0.0664062 * safezoneW + safezoneX;
+			y = 0.0208333 * safezoneH + safezoneY;
 			w = 0.0410156 * safezoneW;
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = {-1,-1,-1,-1};
@@ -109,8 +109,8 @@ class BLWK_infoPanel {
 		{
 			idc = INFO_PANEL_WAVE_STATUS_IDC;
 			text = ""; //--- ToDo: Localize;
-			x = 0.0546875 * safezoneW + safezoneX;
-			y = 0.0833333 * safezoneH + safezoneY;
+			x = 0.107422 * safezoneW + safezoneX;
+			y = 0.0208333 * safezoneH + safezoneY;
 			w = 0.046875 * safezoneW;
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = {-1,-1,-1,-1};
