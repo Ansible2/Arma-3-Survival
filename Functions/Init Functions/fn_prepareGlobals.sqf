@@ -160,7 +160,9 @@ if (isServer) then {
     BLWK_playAreaMarker = "";
 
     // used to delete dead bodies after the parameter set amount of time
-    BLWK_deadBodies = [[],[]];
+    BLWK_deadBodies_1 = [];
+    BLWK_deadBodies_2 = [];
+    
     BLWK_roundsBeforeBodyDeletion = ("BLWK_roundsBeforeBodyDeletion" call BIS_fnc_getParamValue);
 };
 if (hasInterface) then {

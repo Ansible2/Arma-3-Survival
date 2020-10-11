@@ -30,33 +30,42 @@ if (!isServer) exitWIth {false};
 private _allDeadMen = allDeadMen;
 
 if (BLWK_roundsBeforeBodyDeletion isEqualTo 0) exitWith {
+	systemChat "all bodies deleted after 0 rounds";
 	_allDeadMen apply {
 		deleteVehicle _x;
 	};
 };
 
 
-private _killed1WaveAgo = BLWK_deadBodies select 0;
-if (_killed1WaveAgo isEqualTo []) then {
-	BLWK_deadBodies = [_allDeadMen,[]];
+if (BLWK_deadBodies_1 isEqualTo []) then {
+	systemChat "BLWK_deadBodies_1 isEqualTo [], saving allDead to BLWK_deadBodies_1";
+	BLWK_deadBodies_1 = _allDeadMen;
 } else {
+	hint "BLWK_deadBodies_1 is NOT equal to []";
 	if (BLWK_roundsBeforeBodyDeletion isEqualTo 1) then {
-		_killed1WaveAgo apply {
+		private _killed1WaveAgo = _allDeadMen select {!(_x in BLWK_deadBodies_1)};
+		systemChat "deleteing all BLWK_deadBodies_1";
+		BLWK_deadBodies_1 apply {
 			deleteVehicle _x;
 		};
+
+		BLWK_deadBodies_1 = _killed1WaveAgo;
 	};
 };
 
 
 if (BLWK_roundsBeforeBodyDeletion isEqualTo 2) then {
-	private _killed2WavesAgo = BLWK_deadBodies select 1;
-	if (_killed2WavesAgo isEqualTo []) then {
-		BLWK_deadBodies = [_allDeadMen - _killed1WaveAgo,_killed1WaveAgo];
+
+	if (BLWK_deadBodies_2 isEqualTo []) then {
+		// get all the guys who weren't already added to BLWK_deadBodies_1 the last wave
+		private _killed1WaveAgo = _allDeadMen select {!(_x in BLWK_deadBodies_1)};
+		BLWK_deadBodies_2 = BLWK_deadBodies_1;
+		BLWK_deadBodies_1 = _killed1WaveAgo;
 	} else {
-		_killed2WavesAgo apply {
+		BLWK_deadBodies_2 apply {
 			deleteVehicle _x;
 		};
-		BLWK_deadBodies = [[],_killed1WaveAgo];
+		BLWK_deadBodies_2 = [];
 	};
 };
 
