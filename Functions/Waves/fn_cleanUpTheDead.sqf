@@ -30,7 +30,6 @@ if (!isServer) exitWIth {false};
 private _allDeadMen = allDeadMen;
 
 if (BLWK_roundsBeforeBodyDeletion isEqualTo 0) exitWith {
-	systemChat "all bodies deleted after 0 rounds";
 	_allDeadMen apply {
 		deleteVehicle _x;
 	};
@@ -38,13 +37,10 @@ if (BLWK_roundsBeforeBodyDeletion isEqualTo 0) exitWith {
 
 
 if (BLWK_deadBodies_1 isEqualTo []) then {
-	systemChat "BLWK_deadBodies_1 isEqualTo [], saving allDead to BLWK_deadBodies_1";
 	BLWK_deadBodies_1 = _allDeadMen;
 } else {
-	hint "BLWK_deadBodies_1 is NOT equal to []";
 	if (BLWK_roundsBeforeBodyDeletion isEqualTo 1) then {
 		private _killed1WaveAgo = _allDeadMen select {!(_x in BLWK_deadBodies_1)};
-		systemChat "deleteing all BLWK_deadBodies_1";
 		BLWK_deadBodies_1 apply {
 			deleteVehicle _x;
 		};
