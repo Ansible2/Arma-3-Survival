@@ -30,9 +30,9 @@ if (!hasInterface) exitWith {};
 params ["_unitToDrag"];
 
 // set dragged units animations
-[_unitToDrag,"AinjPpneMrunSnonWnonDb_grab"] remoteExec ["switchMove",0,true];
+null = [_unitToDrag,"AinjPpneMrunSnonWnonDb_grab"] remoteExecCall ["switchMove",0,true];
 _unitToDrag attachTo [player,[0,1.2,0]];
-_unitToDrag setDir 180;
+null = [_unitToDrag,180] remoteExecCall ["setDir",_unitToDrag];
 
 // set players animations
 player playAction "grabDrag";

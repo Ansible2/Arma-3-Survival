@@ -30,7 +30,7 @@ params ["_draggedUnit"];
 
 private _playerAnimationState = animationState player;
 // only reset player animation if they are in the dragging animtions (i.e. not shot and going into injured anim)
-if (_playerAnimationState == "acinpknlmstpsraswrfldnon" OR {_playerAnimationState == "acinpknlmwlksraswrfldb"}) then {
+if (incapacitatedState player isEqualTo "") then {
 	player switchMove "";
 };
 
