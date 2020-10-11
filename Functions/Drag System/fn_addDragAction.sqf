@@ -31,6 +31,8 @@ waitUntil {player isEqualTo player};
 // make sure a player can't drag themself
 if (_unit isEqualTo player) exitWith {};
 
+sleep 1;
+
 private _actionId = _unit addAction [ 
 	"<t color='#02b016'>-- Drag Unit --</t>",  
 	{
@@ -41,7 +43,7 @@ private _actionId = _unit addAction [
 	true,  
 	false,  
 	"true", 
-	"!(_originalTarget getVariable ['BLWK_beingDragged',false]) AND {!(incapacitatedState _originalTarget isEqualTo "")}", 
+	"(!(_originalTarget getVariable ['BLWK_beingDragged',false])) AND {!(incapacitatedState _target isEqualTo '')}", 
 	3 
 ];
 
