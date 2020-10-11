@@ -5,7 +5,7 @@ Description:
 	Completes a repack on the units current weapon.
 
 	Executed from a displayAddEventHandler for Ctrl+R
-	 that is added in the "initPlayerLocal.sqf"
+	 that is added in the "initClientAlias.sqf"
 
 Parameters:
 	0: _player : <OBJECT> - The person doing the repack
@@ -25,7 +25,6 @@ Author:
 	Hilltop & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-// CIPHER COMMENT: This is in need of general optimizations
 params [
 	["_player",player,[objNull]]
 ];
@@ -34,30 +33,34 @@ private _playerFullMags = magazinesAmmo _player;
 
 private _fullAmmoCountArr = [];
 private _foundMags = [];
-{
+_playerFullMags apply {
 	_magName = (_x select 0);
 
-	if ((_foundMags find _magName) == -1) then {
+	if ((_foundMags find _magName) isEqualTo -1) then {
 		_fullAmmoCountArr pushback [_magName, 0];
 		_foundMags pushback _magName;
 	};
-} forEach _playerFullMags;
+};
 
-{
-	_aMagArray = _x;
-	_magClassName = (_aMagArray select 0);
+
+private ["_magArrayTemp","_magClassName","_currentRoundCount","_roundsinCurrentMag","_totalRounds"];
+_playerFullMags apply {
+	_magArrayTemp = _x;
+	_magClassName = (_magArrayTemp select 0);
 	{
 		if (_magClassName isEqualTo (_x select 0)) then {
 			_currentRoundCount = _x select 1; // get rounds currently in array
-			_roundsinCurrentMag = _aMagArray select 1; // get rounds in current mag
+			_roundsinCurrentMag = _magArrayTemp select 1; // get rounds in current mag
 			_totalRounds = _currentRoundCount + _roundsinCurrentMag; //add them
 			(_fullAmmoCountArr select _forEachIndex) set [1, _totalRounds]; //delete current entry in array
 		};
-	}forEach _fullAmmoCountArr;
-}forEach _playerFullMags;
+	} forEach _fullAmmoCountArr;
+};
+
 _fullAmmoCountArr = _fullAmmoCountArr - [["test",0]];
 
-{
+private ["_roundCount","_magCapacity","_roundsDivByMagCap"];
+_fullAmmoCountArr apply {
 	_magClassName = (_x select 0);
 	_roundCount = (_x select 1);
 	_magCapacity = getNumber (configFile >> "CfgMagazines" >> _magClassName >> "Count");
@@ -72,7 +75,7 @@ _fullAmmoCountArr = _fullAmmoCountArr - [["test",0]];
 			_player addMagazine [_magClassName, _remainingRounds];
 		};
 	};
-}forEach _fullAmmoCountArr;
+};
 
 if (!(_foundMags isEqualTo [])) then {
 	_player playMove "AinvPknlMstpSnonWnonDr_medic2";
