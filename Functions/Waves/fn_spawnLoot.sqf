@@ -222,9 +222,9 @@ private _fn_addLoot = {
 _sortedPositions apply {
 	// in order to spawn stuff like weapons on the ground, we create holders
 	// CIPHER COMMENT: See if this is needed
-	private _spawnPosition = _x vectorAdd [0,0,0.1];
+	private _spawnPosition = _x vectorAdd [0,0,0.2];
 
-	private _holder = createVehicle ["WeaponHolderSimulated_Scripted", _spawnPosition, [], 0, "NONE"];
+	private _holder = createVehicle ["WeaponHolderSimulated_Scripted", _spawnPosition, [], 0, "CAN_COLLIDE"];
 	private _primaryLootClass = [_holder] call _fn_addLoot;
 	// used for displaying loot markers in BLWK_fnc_createLootMarkers
 	_holder setVariable ["BLWK_primaryLootClass",_primaryLootClass];
