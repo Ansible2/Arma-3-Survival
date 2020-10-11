@@ -30,8 +30,8 @@ if (BLWK_magRepackEnabled) then {
     (findDisplay 46) displayAddEventHandler ["KeyDown",{
 
         // passes the pressed key and whether or not a ctrl key is down. The proper combo is ctrl+R
-        if ((_this select 0) isEqualTo 19 AND {_this select 3}) exitWith {
-            call BLWK_fnc_doMagRepack;
+        if ((_this select 1) isEqualTo 19 AND {_this select 3}) exitWith {
+            [_player] call BLWK_fnc_doMagRepack;
         };
     }];
 };
@@ -51,5 +51,3 @@ null = [] spawn BLWK_fnc_infoPanelLoop;
 
 null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
 
-player allowDamage false;
-player setCaptive true;
