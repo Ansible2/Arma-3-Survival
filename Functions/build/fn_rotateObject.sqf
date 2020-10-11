@@ -4,7 +4,7 @@ Function: BLWK_fnc_rotateObject
 Description:
 	Rotates an object either left or right while keeping it's vectorUp intact
 
-	Executed from "BLWK_fnc_addBuildObjectActions" & "BLWK_fnc_addPickedUpObjectActions"
+	Executed from "BLWK_fnc_addBuildableObjectActions" & "BLWK_fnc_addPickedUpObjectActions"
 
 Parameters:
 	0: _object : <OBJECT> - The object to rotate

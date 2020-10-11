@@ -236,7 +236,7 @@ BLWK_buildableObjects_array = [
     [50,   "Land_BagFence_Short_F",              false, [0, [0,3,1]]],
     [50,   "Land_BagFence_Corner_F",             false, [0, [0,3,1]]],
     [75,   "Land_Obstacle_Ramp_F",              false, [180, [0,3,1]]],
-    [80,   "Land_BagFence_Round_F",              false, [0, [0,3,1]]],
+    [80,   "Land_BagFence_Round_F",              false, [180, [0,3,1]]],
     [80,   "Land_BagFence_Long_F",               false, [0, [0,3,1]]],
     [85,   "Land_DomeDebris_01_hex_green_F",    false, [180, [0,3,0.75]]],
     [100,  "Land_SandbagBarricade_01_half_F",   false, [0, [0,3,1]]],

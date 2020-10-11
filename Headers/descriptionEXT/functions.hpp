@@ -3,7 +3,7 @@ class BLWK
 	class Build
 	{
 		file = "functions\Build";
-		class addBuildObjectActions 
+		class addBuildableObjectActions 
 		{};
 		class addPickedUpObjectActions 
 		{};

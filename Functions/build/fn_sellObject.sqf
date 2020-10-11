@@ -32,7 +32,7 @@ if !(isNull attachedTo _object) then {
 };
 
 private _objectType = typeOf _object;
-private _indexOfType = BLWK_buildableObjects_array findIf {(_x select 2) == _objectType};
+private _indexOfType = BLWK_buildableObjects_array findIf {(_x select 1) == _objectType};
 
 // add the cost back to player's total
 private _price = (BLWK_buildableObjects_array select _indexOfType) select 0;

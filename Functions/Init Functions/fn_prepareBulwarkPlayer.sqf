@@ -61,7 +61,7 @@ _bulwark addAction [
 	2.5 
 ];
 
-[_bulwark] call BLWK_fnc_addBuildObjectActions;
+[_bulwark] call BLWK_fnc_addBuildableObjectActions;
 
 
 _bulwark addEventHandler ["ContainerOpened",{

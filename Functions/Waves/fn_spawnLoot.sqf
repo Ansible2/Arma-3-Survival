@@ -127,7 +127,7 @@ if (!_randomWeaponBoxFound) then {
 	BLWK_randomWeaponBox allowDamage false;
 	_addToZeusArray pushBack BLWK_randomWeaponBox;
 
-	[BLWK_randomWeaponBox] remoteExec ["BLWK_fnc_addBuildObjectActions",BLWK_allClientsTargetID,true];
+	[BLWK_randomWeaponBox] remoteExec ["BLWK_fnc_addBuildableObjectActions",BLWK_allClientsTargetID,true];
 	[BLWK_randomWeaponBox] remoteExec ["BLWK_fnc_addWeaponBoxSpinAction",BLWK_allClientsTargetID,true];
 	BLWK_spawnedLoot pushBack BLWK_randomWeaponBox;
 };
