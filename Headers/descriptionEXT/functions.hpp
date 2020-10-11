@@ -7,7 +7,11 @@ class BLWK
 		{};
 		class addPickedUpObjectActions 
 		{};
+		class disableCollisionWithAllPlayers
+		{};
 		class enableCollisionWithPlayer 
+		{};
+		class enableCollisionWithAllPlayers
 		{};
 		class moveUpOrDown
 		{};
