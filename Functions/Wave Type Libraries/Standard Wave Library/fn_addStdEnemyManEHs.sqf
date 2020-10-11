@@ -35,7 +35,6 @@ private _hitEvent = _unit addMPEventHandler ["mpHit",{
 _unit setVariable ["BLWK_stdHitEH",_hitEvent];
 
 _unit addMPEventHandler ["mpKilled",{
-	hint "killed";
 	[_this,_thisEventHandler] call BLWK_fnc_stdEnemyKilledEvent;
 }];
 
