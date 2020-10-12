@@ -16,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		call BLWK_fnc_doMagRepack;
+		[player] call BLWK_fnc_doMagRepack;
 
     (end)
 
