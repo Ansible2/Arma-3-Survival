@@ -26,6 +26,9 @@ Author:
 ---------------------------------------------------------------------------- */
 if (!BLWK_showHitPoints) exitWith {};
 
+//#define PLAYER_FOV_SCALE (getObjectFOV player / (getResolution select 6))
+#define TEXT_SIZE_CONSTANT 0.0025
+
 params [ 
 	["_hitUnit",objNull,[objNull]], 
 	["_pointsToDisplay",123,[123]],
@@ -58,7 +61,7 @@ private _handleNumber = addMissionEventHandler ["EachFrame", {
 
 		// controls max text size
 		if (_frameNo > 0 AND {_frameNo <= 15}) then { 
-			_textSize = 0.0035 * _frameNo; 
+			_textSize = TEXT_SIZE_CONSTANT * _frameNo;
 		}; 
 		// fade the icon out by eventually setting it's alpha to 0; 
 		if (_frameNo > 100 AND {_frameNo <= 110}) then { 
@@ -86,4 +89,4 @@ private _textPositionStart = (getPosATLVisual _hitUnit) vectorAdd [_randomStartP
 
 // If minus, show points as red, else show as green
 private _color = [[0.1,1,0,1],[1,0.1,0.1,1]] select _redPoints;
-missionNamespace setVariable [_globalVarString,[0,str _pointsToDisplay, _color, 1,_textPositionStart,0.0035]];
+missionNamespace setVariable [_globalVarString,[0,str _pointsToDisplay, _color, 1,_textPositionStart,TEXT_SIZE_CONSTANT]];
