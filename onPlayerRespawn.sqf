@@ -19,3 +19,5 @@ if !(BLWK_saveRespawnLoadout) then {
 [_player] call BLWK_fnc_adjustPlayerTraits;
 
 [_player] call BLWK_fnc_initDragSystem;
+
+[_player] joinSilent BLWK_playerGroup;

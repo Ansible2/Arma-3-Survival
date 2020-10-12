@@ -73,7 +73,7 @@ class BLWK
 		{};
 		class keepPlayerInGroup
 		{
-			postInit = 1;
+			//postInit = 1;
 		};
 		class keepPlayerLoadout
 		{
