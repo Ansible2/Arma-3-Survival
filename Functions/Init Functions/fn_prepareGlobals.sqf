@@ -166,8 +166,9 @@ if (isServer) then {
     BLWK_deadBodies_1 = [];
     BLWK_deadBodies_2 = [];
     BLWK_roundsBeforeBodyDeletion = ("BLWK_roundsBeforeBodyDeletion" call BIS_fnc_getParamValue);
-
-    BLWK_playerGroup = createGroup BLUFOR;
+    
+    createCenter BLUFOR;
+    BLWK_playerGroup = createGroup [BLUFOR,false];
     publicVariable "BLWK_playerGroup";
 };
 if (hasInterface) then {
