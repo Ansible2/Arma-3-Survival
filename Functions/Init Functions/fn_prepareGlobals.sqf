@@ -165,8 +165,10 @@ if (isServer) then {
     // used to delete dead bodies after the parameter set amount of time
     BLWK_deadBodies_1 = [];
     BLWK_deadBodies_2 = [];
-    
     BLWK_roundsBeforeBodyDeletion = ("BLWK_roundsBeforeBodyDeletion" call BIS_fnc_getParamValue);
+
+    BLWK_playerGroup = createGroup BLUFOR;
+    publicVariable "BLWK_playerGroup";
 };
 if (hasInterface) then {
     /* Starting Items */
@@ -191,7 +193,7 @@ if (hasInterface) then {
     BLWK_enforceArea = false;
 
     // used for queing up kill points since two events can simaltaneously add points
-    BLWK_killPointsQue = [];
+    //BLWK_killPointsQue = [];
 };
 
 BLWK_currentWaveNumber = 0;

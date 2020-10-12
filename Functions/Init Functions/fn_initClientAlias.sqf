@@ -51,3 +51,6 @@ null = [] spawn BLWK_fnc_infoPanelLoop;
 
 null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
 
+waitUntil {!isNil "BLWK_playerGroup"};
+
+[_player] joinSilent BLWK_playerGroup;

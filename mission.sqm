@@ -1097,7 +1097,6 @@ class Mission
 			};
 			class Attributes
 			{
-				name="BLWK_playerGroup";
 			};
 			id=0;
 			atlOffset=7.6293945e-006;
