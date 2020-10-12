@@ -45,11 +45,11 @@ private _increment = [-MOVEMENT_INCREMENT,MOVEMENT_INCREMENT] select _downOrUp;
 private _newPosition = _objectPosition vectorAdd [0,0,_increment];
 
 if (_beingCarried) then {
-	_object getPosWorld _newPosition;
+	_object setPosWorld _newPosition;
 	_object attachTo [_personCarrying];
 } else {
 	private _currentVectorUp = vectorUpVisual _object;
 	private _currentVectorDir = vectorDirVisual _object;
 	[_object,[_currentVectorDir,_currentVectorUp]] remoteExecCall ["setVectorDirAndUp",_object];
-	_object getPosWorld _newPosition;
+	_object setPosWorld _newPosition;
 };
