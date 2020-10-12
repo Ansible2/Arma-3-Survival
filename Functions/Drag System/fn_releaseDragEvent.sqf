@@ -26,21 +26,22 @@ Author:
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};
 
+#define DRAG_ANIMATIONS ["amovpercmstpslowwrfldnon_acinpknlmwlkslowwrfldb_2", "amovpercmstpsraswpstdnon_acinpknlmwlksnonwpstdb_2", "amovpercmstpsnonwnondnon_acinpknlmwlksnonwnondb_2", "acinpknlmstpsraswrfldnon", "acinpknlmstpsnonwpstdnon", "acinpknlmstpsnonwnondnon", "acinpknlmwlksraswrfldb", "acinpknlmwlksnonwnondb", "AinjPpneMrunSnonWnonDb_grab"]
+
 params ["_draggedUnit"];
 
-private _playerAnimationState = animationState player;
 // only reset player animation if they are in the dragging animtions (i.e. not shot and going into injured anim)
 if (incapacitatedState player isEqualTo "") then {
-	player switchMove "";
+	player playActionNow "released";
+};
+
+detach _draggedUnit;
+if (animationState _draggedUnit in DRAG_ANIMATIONS) then {
+	[_draggedUnit,"Unconscious"] remoteExecCall ["playActionNow",_draggedUnit];
 };
 
 player forceWalk false;
 
-detach _draggedUnit;
-
-if (animationState _draggedUnit == "AinjPpneMrunSnonWnonDb_grab") then {
-	[_draggedUnit,"AinjPpneMstpSnonWrflDb_release"] remoteExec ["switchMove",0,true];
-};
 _draggedUnit setVariable ["BLWK_beingDragged",false,true];
 
 missionNamespace setVariable ["BLWK_draggingUnit",false];

@@ -44,6 +44,8 @@ class BLWK
 		{};
 		class dragUnitEvent
 		{};
+		class handleReviveAfterDrag
+		{};
 		class initDragSystem
 		{};
 		class releaseDragEvent

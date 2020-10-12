@@ -34,6 +34,8 @@ null = [_unitToDrag,"AinjPpneMrunSnonWnonDb_grab"] remoteExecCall ["switchMove",
 _unitToDrag attachTo [player,[0,1.2,0]];
 null = [_unitToDrag,180] remoteExecCall ["setDir",_unitToDrag];
 
+null = [_unitToDrag] remoteExec ["BLWK_fnc_handleReviveAfterDrag",_unitToDrag];
+
 // set players animations
 player playAction "grabDrag";
 player forceWalk true;

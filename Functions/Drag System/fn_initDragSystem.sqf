@@ -34,3 +34,6 @@ params [
 
 // add an event handler to remove the action from all machines if you die
 [_player] call BLWK_fnc_addDragKilledEh;
+
+// used for reseting animations of player if dragged in BLWK_fnc_handleReviveAfterDrag
+BLWK_handleReviveLoopRunning = false;
