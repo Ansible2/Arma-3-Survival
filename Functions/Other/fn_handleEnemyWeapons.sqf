@@ -48,6 +48,7 @@ if (BLWK_currentWaveNumber <= BLWK_maxPistolOnlyWaves) then {
 	if (BLWK_randomizeEnemyWeapons) then {
 		[_unit] call BLWK_fnc_randomizeWeapons;
 	};
+	[_unit] call BLWK_fnc_optreMedicalToVanilla;
 };
 
 

@@ -83,6 +83,9 @@ if (isServer OR {!hasInterface}) then {
 
     // this is used to only allow so many AI to be active at any time
     BLWK_maxEnemyInfantryAtOnce = ("BLWK_maxEnemyInfantryAtOnce" call BIS_fnc_getParamValue);
+
+    // used for chaning medical items of OPTRE units (biofoam to FAKs)
+    BLWK_isOptreLoaded = ["OPTRE_core"] call BLWK_fnc_isPatchLoaded;
 };
 if (isServer) then {
     // We don't need to constantly check if the server is dedicated, and we only want to run things like
