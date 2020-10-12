@@ -79,6 +79,10 @@ class BLWK
 		{
 			postInit = 1;
 		};
+		class optreMedicalToVanilla
+		{
+			postInit = 1;
+		};
 		class playAreaEnforcementLoop
 		{};
 		class prepareBulwarkPlayer
