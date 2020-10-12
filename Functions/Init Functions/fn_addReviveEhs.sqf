@@ -47,9 +47,10 @@ BLWK_animStateChangedEh_ID = _player addEventHandler ["AnimStateChanged",{
 				hint "Reived from your medkit";
 
 				// make the player invincible for 15 seconds to avoid BS
-				null = [] spawn {
+				null = [_unit] spawn {
+					params ["_unit"];
 					_unit allowDamage false;
-					sleep 15;
+					sleep 30;
 					_unit allowDamage true;
 				};
 			} else {
@@ -59,7 +60,6 @@ BLWK_animStateChangedEh_ID = _player addEventHandler ["AnimStateChanged",{
 		};
 	};
 }];
-
 
 // handle damage events fire even on dead bodies, we will remove it in the onPlayerKilled.sqf
 // while it can be persisant on player object, the persistence is somewhat unreliable
