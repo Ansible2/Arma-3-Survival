@@ -27,8 +27,8 @@ A_SECTION_HEADER(WAVE);
 class BLWK_maxNumWaves
 {
 	title = "How Many Waves";
-	values[] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
-	texts[] = {"10", "20", "30", "40","50","60","70","80","90","100"};
+	values[] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 125, 150, 999999};
+	texts[] = {"10", "20", "30", "40","50","60","70","80","90","100", "125", "150", "Infinite"};
 	default = 100;
 };
 class BLWK_timeBetweenRounds
