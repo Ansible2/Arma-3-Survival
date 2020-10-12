@@ -40,16 +40,16 @@ params [
 
 #define MOVEMENT_INCREMENT 0.25
 
-private _objectPosition = getPosATL _object;
+private _objectPosition = getPosWorld _object;
 private _increment = [-MOVEMENT_INCREMENT,MOVEMENT_INCREMENT] select _downOrUp;
 private _newPosition = _objectPosition vectorAdd [0,0,_increment];
 
 if (_beingCarried) then {
-	_object setPosATL _newPosition;
+	_object getPosWorld _newPosition;
 	_object attachTo [_personCarrying];
 } else {
 	private _currentVectorUp = vectorUpVisual _object;
 	private _currentVectorDir = vectorDirVisual _object;
 	[_object,[_currentVectorDir,_currentVectorUp]] remoteExecCall ["setVectorDirAndUp",_object];
-	_object setPosATL _newPosition;
+	_object getPosWorld _newPosition;
 };
