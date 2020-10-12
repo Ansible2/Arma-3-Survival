@@ -129,19 +129,19 @@ private _fn_getFactionString = {
 private _selectedClassString_friendly = ["BLWK_friendlyFaction" call BIS_fnc_getParamValue] call _fn_getFactionString;
 private _friendlyClasses = [_selectedClassString_friendly,"NATO"] call _fn_getSelectedClasses;
 
-private _selectedClassString_level_1 = ["BLWK_friendlyFaction" call BIS_fnc_getParamValue] call _fn_getFactionString;
+private _selectedClassString_level_1 = ["BLWK_level1Faction" call BIS_fnc_getParamValue] call _fn_getFactionString;
 private _level1Classes = [_selectedClassString_level_1,"FIA"] call _fn_getSelectedClasses;
 
-private _selectedClassString_level_2 = ["BLWK_friendlyFaction" call BIS_fnc_getParamValue] call _fn_getFactionString;
+private _selectedClassString_level_2 = ["BLWK_level2Faction" call BIS_fnc_getParamValue] call _fn_getFactionString;
 private _level2Classes = [_selectedClassString_level_2,"AAF"] call _fn_getSelectedClasses;
 
-private _selectedClassString_level_3 = ["BLWK_friendlyFaction" call BIS_fnc_getParamValue] call _fn_getFactionString;
+private _selectedClassString_level_3 = ["BLWK_level3Faction" call BIS_fnc_getParamValue] call _fn_getFactionString;
 private _level3Classes = [_selectedClassString_level_3,"CSAT"] call _fn_getSelectedClasses;
 
-private _selectedClassString_level_4 = ["BLWK_friendlyFaction" call BIS_fnc_getParamValue] call _fn_getFactionString;
+private _selectedClassString_level_4 = ["BLWK_level4Faction" call BIS_fnc_getParamValue] call _fn_getFactionString;
 private _level4Classes = [_selectedClassString_level_4,"CSAT URBAN"] call _fn_getSelectedClasses;
 
-private _selectedClassString_level_5 = ["BLWK_friendlyFaction" call BIS_fnc_getParamValue] call _fn_getFactionString;
+private _selectedClassString_level_5 = ["BLWK_level5Faction" call BIS_fnc_getParamValue] call _fn_getFactionString;
 private _level5Classes = [_selectedClassString_level_5,"VIPER"] call _fn_getSelectedClasses;
 
 // return for global var definition
