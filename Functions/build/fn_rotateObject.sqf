@@ -40,6 +40,8 @@ params [
 	["_player",player,[objNull]]
 ];
 
+[_object] call BLWK_fnc_locality;
+
 private _currVectDir = vectorDir _object;
 private _currVectUp = vectorUp _object;
 // rotate clockwise if true

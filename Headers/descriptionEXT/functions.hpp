@@ -13,6 +13,8 @@ class BLWK
 		{};
 		class enableCollisionWithAllPlayers
 		{};
+		class locality
+		{};
 		class moveUpOrDown
 		{};
 		class pickupObject 
@@ -71,10 +73,12 @@ class BLWK
 		{};
 		class initServerAlias
 		{};
+	/*
 		class keepPlayerInGroup
 		{
 			//postInit = 1;
 		};
+	*/
 		class keepPlayerLoadout
 		{
 			postInit = 1;

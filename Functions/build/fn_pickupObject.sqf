@@ -38,6 +38,8 @@ params [
 	["_justPurchased",false,[true]]
 ];
 
+[_object] call BLWK_fnc_locality;
+
 // get attachment info from global build objects array
 private _objectType = typeOf _object;
 
