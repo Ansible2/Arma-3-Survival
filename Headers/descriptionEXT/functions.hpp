@@ -79,8 +79,6 @@ class BLWK
 		{
 			postInit = 1;
 		};
-		class optreMedicalToVanilla
-		{};
 		class playAreaEnforcementLoop
 		{};
 		class prepareBulwarkPlayer
@@ -117,6 +115,8 @@ class BLWK
 		class isPatchLoaded
 		{};
 		class openShopGUI
+		{};
+		class optreMedicalToVanilla
 		{};
 		class randomizeWeapons
 		{};
