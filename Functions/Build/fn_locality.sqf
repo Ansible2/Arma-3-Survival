@@ -25,7 +25,7 @@ params ["_object"];
 
 if !(local _object) then {
 	[_object,clientOwner] remoteExecCall ["setOwner",2];
-	hint (parseText "This object is not local to your computer. <br></br>A transfer request has been sent to the server.<br></br>But it may be slow to respond to your actions.");
+	hint (parseText "This object is not local to your computer.<br></br>A transfer request has been sent to the server.<br></br>But it may be slow to respond to your actions.");
 	
 	false
 } else {
