@@ -31,7 +31,7 @@ if (isNull _randomWeaponBox) exitWith {};
 _randomWeaponBox addAction [ 
 	"<t color='#FF0000'>-- Spin The Box --</t>",  
 	{
-		null = [] spawn BLWK_fnc_spinRandomWeaponBox; 
+		null = remoteExec ["BLWK_fnc_spinRandomWeaponBox",2]; 
 	}, 
 	nil, 
 	100,  

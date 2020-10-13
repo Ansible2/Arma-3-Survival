@@ -41,11 +41,11 @@ if ((missionNamespace getVariable ["BLWK_playerKillPoints",0]) < BLWK_costToSpin
 missionNamespace setVariable ["BLWK_randomWeaponBoxInUse",true,true];
 
 #define SLEEP_TIME 0.1
-#define NUMBER_OF_FRAMES 60
+#define NUMBER_OF_FRAMES 25
 
 // create weapon holder
-private _boxPositiion = getPosATL BLWK_randomWeaponBox;
-private _weaponHolder = createVehicle ["WeaponHolderSimulated_Scripted", _boxPositiion, [], 0, "can_collide"];
+private _boxPosition = getPosATL BLWK_randomWeaponBox;
+private _weaponHolder = createVehicle ["GroundWeaponHolder_scripted", _boxPosition, [], 0, "can_collide"];
 
 // so that people can't take a weapon while animation plays
 _weaponHolder enableSimulationGlobal false;
@@ -53,14 +53,18 @@ _weaponHolder enableSimulationGlobal false;
 
 // CIPHER COMMENT: Need to add the sound for the box spin
 // animate up
+
+private _boxPosition_X = _boxPosition select 0;
+private _boxPosition_Y = _boxPosition select 1;
 private _increment = 1/NUMBER_OF_FRAMES;
-private "_tempWeapon";
+private ["_tempWeapon","_weaponHolderPosition"];
 private _possibleWeapons = BLWK_loot_weaponClasses;
 for "_i" from 1 to NUMBER_OF_FRAMES do {
 	_tempWeapon = selectRandom _possibleWeapons;
 	_weaponHolder addWeaponCargoGlobal [_tempWeapon,1];
-	_weaponHolder setPosATL ((getPosATLVisual _weaponHolder) vectorAdd [0,0,_increment]);
-	_weaponHolder setVectorDirAndUp [vectorDir BLWK_randomWeaponBox, vectorUp BLWK_randomWeaponBox];
+	_weaponHolderPosition = getPosATLVisual _weaponHolder;
+	_weaponHolder setPosATL [_boxPosition_X,_boxPosition_Y,(_weaponHolderPosition select 2) + _increment];
+	//_weaponHolder setVectorDirAndUp [vectorDir BLWK_randomWeaponBox, vectorUp BLWK_randomWeaponBox];
 	
 	sleep SLEEP_TIME;
 
@@ -75,7 +79,7 @@ for "_i" from 1 to NUMBER_OF_FRAMES do {
 	clearWeaponCargoGlobal _weaponHolder;
 };
 
-sleep 5;
+sleep 10;
 
 // if weapon was taken, delete the holder, else animate down
 if ((weaponCargo _weaponHolder) isEqualTo []) then {
