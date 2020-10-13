@@ -12,14 +12,10 @@ if !(missionNamespace getVariable ["BLWK_inBetweenWaves",false]) then {
 		//missionNamespace setVariable ["BLWK_respawnTime",99999,true];
 		//[BLWK_respawnTime] remoteExec ["setPlayerRespawnTime", 0];
 	} else {
-		[BLUFOR,-1] call BIS_fnc_respawnTickets;
-		missionNamespace setVariable ["BLWK_numRespawnTickets",_respawnTickets - 1,true];
 		setPlayerRespawnTime BLWK_respawnTime;
 	};
 };
 
 sleep 0.1;
 
-if(!isNull _oldUnit) then {
-    ["Initialize", [_oldUnit, [west], false, true, true, false, true, true, true, true]] call BIS_fnc_EGSpectator;
-};
+["Initialize", [player, [west], false, true, true, false, true, true, true, true]] call BIS_fnc_EGSpectator;

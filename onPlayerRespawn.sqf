@@ -2,6 +2,9 @@ params ["_player"];
 
 ["Terminate"] call BIS_fnc_EGSpectator;
 
+private _remainingTickets = [BLUFOR,-1] call BIS_fnc_respawnTickets;
+missionNamespace setVariable ["BLWK_numRespawnTickets",_remainingTickets,true];
+
 _player setVehiclePosition [bulwarkBox,[],5,"NONE"];
 
 //remove and add gear
