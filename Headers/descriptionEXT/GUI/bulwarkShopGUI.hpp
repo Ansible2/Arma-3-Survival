@@ -1,3 +1,11 @@
+#define PROFILE_BACKGROUND_COLOR(ALPHA)\
+{\
+	"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])",\
+	"(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])",\
+	"(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])",\
+	ALPHA\
+}
+
 class bulwarkShopDialog
 {
     idd = 9999;
@@ -5,11 +13,6 @@ class bulwarkShopDialog
 
     class controls
     {
-    ////////////////////////////////////////////////////////
-    // GUI EDITOR OUTPUT START (by Hilltop, v1.063, #Hofuqe)
-    // Modified by: Ansible // Cipher
-    ////////////////////////////////////////////////////////
-
         class bulwarkShopDialog_rscPicture: RscPicture
         {
             idc = 1200;
@@ -48,6 +51,8 @@ class bulwarkShopDialog
             w = 0.185 * safezoneW;
             h = 0.04 * safezoneH;
             action = "null = [] spawn BLWK_fnc_purchaseObject";
+            colorBackground[] = PROFILE_BACKGROUND_COLOR(0.65);
+            colorBackgroundActive[] = PROFILE_BACKGROUND_COLOR(1);
         };
 
         class bulwarkShopDialog_supportLst: RscListbox
@@ -69,10 +74,5 @@ class bulwarkShopDialog
             // CIPHER COMMENT: need to pass the new function here when done
             action = "_nil=[]ExecVM ""supports\purchase.sqf""";
         };
-
-        ////////////////////////////////////////////////////////
-        // GUI EDITOR OUTPUT END
-        ////////////////////////////////////////////////////////
-
-  };
+    };
 };
