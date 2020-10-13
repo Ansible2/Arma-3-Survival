@@ -73,6 +73,8 @@ class bulwarkShopDialog
             h = 0.04 * safezoneH;
             // CIPHER COMMENT: need to pass the new function here when done
             action = "_nil=[]ExecVM ""supports\purchase.sqf""";
+            colorBackground[] = PROFILE_BACKGROUND_COLOR(0.65);
+            colorBackgroundActive[] = PROFILE_BACKGROUND_COLOR(1);
         };
     };
 };
