@@ -23,7 +23,8 @@
     "B_IR_Grenade", \
     "O_IR_Grenade", \
     "I_IR_Grenade", \
-    "TrainingMine_Mag" \
+    "TrainingMine_Mag", \
+    "ChemicalDetector_01_watch_F" \
 ]
 
 
