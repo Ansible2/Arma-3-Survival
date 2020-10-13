@@ -2,9 +2,6 @@ params ["_player"];
 
 ["Terminate"] call BIS_fnc_EGSpectator;
 
-private _remainingTickets = [BLUFOR,-1] call BIS_fnc_respawnTickets;
-missionNamespace setVariable ["BLWK_numRespawnTickets",_remainingTickets,true];
-
 _player setVehiclePosition [bulwarkBox,[],5,"NONE"];
 
 //remove and add gear
@@ -24,3 +21,9 @@ if !(BLWK_saveRespawnLoadout) then {
 [_player] call BLWK_fnc_initDragSystem;
 
 [_player] joinSilent BLWK_playerGroup;
+
+// should be free respawns unless it is during a wave
+if !(missionNamespace getVariable ["BLWK_inBetweenWaves",false]) then { 
+    private _remainingTickets = [BLUFOR,-1] call BIS_fnc_respawnTickets;
+    missionNamespace setVariable ["BLWK_numRespawnTickets",_remainingTickets,true];
+};

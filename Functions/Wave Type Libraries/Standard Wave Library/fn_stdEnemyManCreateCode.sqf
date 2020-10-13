@@ -32,7 +32,11 @@ if (isNil "_group") then {
 	_group = group _unit
 };
 _group allowFleeing 0;
-[_group, bulwarkBox, 20, "SAD", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
+//[_group, bulwarkBox, 20, "SAD", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
+
+null = [_group] spawn BLWK_fnc_stalkPlayers;
+
+
 
 // add to server's list of units that must be dead before the round can end
 null = [_unit] remoteExec ["BLWK_fnc_addToMustKillArray",2];
