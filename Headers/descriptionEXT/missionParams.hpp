@@ -150,7 +150,7 @@ class BLWK_playersStartWith_mineDetector
 	title = "Start with a mine detector";
 	values[] = ZERO_OR_ONE;
 	texts[] = NO_OR_YES;
-	default = 1;
+	default = 0;
 };
 class BLWK_playersStartWith_pistol
 {
