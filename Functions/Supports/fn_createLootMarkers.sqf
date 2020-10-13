@@ -33,7 +33,7 @@ private _fn_setUpMarker = {
 		_marker setMarkerColor "ColorBlack";
 		_marker
 	};
-	if (_lootHolder isEqualTo BLWK_moneyPile) exitWith {
+	if (!(isNil "BLWK_moneyPile") AND {_lootHolder isEqualTo BLWK_moneyPile}) exitWith {
 		private _marker = createMarker ["BLWK_lootMarker_" + str _index,getPos _lootHolder];
 		_marker setMarkerText "Money Pile";
 		_marker setMarkerType "hd_dot";
