@@ -27,7 +27,7 @@ params ["_unit"];
 private _unitsItems = (items _unit);
 if (_unitsItems isEqualTo []) exitWith {};
 
-private _numberOfMedkits = _unitsItems count {_x == "OPTRE_MedKit"};
+private _numberOfMedkits = {_x == "OPTRE_MedKit"} count _unitsItems;
 if (_numberOfMedkits > 0) then {
 	for "_i" from 1 to _numberOfMedkits do {
 		_unit removeItem "OPTRE_MedKit";
@@ -35,7 +35,7 @@ if (_numberOfMedkits > 0) then {
 	};
 };
 
-private _numberOfBiofoams = _unitsItems count {_x == "OPTRE_Biofoam"};
+private _numberOfBiofoams = {_x == "OPTRE_Biofoam"} count _unitsItems;
 if (_numberOfBiofoams > 0) then {
 	for "_i" from 1 to _numberOfBiofoams do {
 		_unit removeItem "OPTRE_Biofoam";
