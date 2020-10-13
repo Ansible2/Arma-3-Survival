@@ -47,7 +47,7 @@ BLWK_playAreaMarker setMarkerColor "ColorWhite";
 private _AISpawnPositionsArray = [];
 private _positionToPushBack = [];
 while {count _AISpawnPositionsArray < NUMBER_OF_INFANTRY_SPAWN_POSITIONS} do {
-	_positionToPushBack = [BLWK_playAreaCenter, BLWK_playAreaRadius + 50, BLWK_playAreaRadius + 150, 0, 0] call BIS_fnc_findSafePos;
+	_positionToPushBack = [BLWK_playAreaCenter, BLWK_playAreaRadius + 50, BLWK_playAreaRadius + 100, 0, 0] call BIS_fnc_findSafePos;
 	_AISpawnPositionsArray pushBackUnique _positionToPushBack;
 };
 // give the spawn positions to whomever will be handling AI (server or headless client)
@@ -65,7 +65,10 @@ missionNamespace setVariable ["BLWK_vehicleSpawnPositions",_vehicleSpawnPosition
 
 // create and setup the actual box
 bulwarkBox = call BLWK_fnc_prepareBulwarkServer;
-bulwarkBox setVehiclePosition [BLWK_playAreaCenter,[],2,"NONE"];
+private _bulwarkSpawn = [BLWK_playAreaCenter,0.1,20,1] call BIS_fnc_findSafePos;
+waitUntil {
+	bulwarkBox setVehiclePosition [_bulwarkSpawn,[],3,"NONE"]
+};
 
 // push player relavent actions and the loop to show the bulwark icon
 null = [bulwarkBox] remoteExec ["BLWK_fnc_prepareBulwarkPlayer",BLWK_allClientsTargetID,true];
