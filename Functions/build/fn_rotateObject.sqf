@@ -31,6 +31,8 @@ Author:
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};
 
+#include "..\..\Headers\Wait For Transfer Inline.hpp"
+
 #define ROTATION_INCREMENT 15
 
 params [
@@ -40,7 +42,8 @@ params [
 	["_player",player,[objNull]]
 ];
 
-[_object] call BLWK_fnc_locality;
+WAIT_FOR_OWNERSHIP(_object)
+//[_object] call BLWK_fnc_locality;
 
 private _currVectDir = vectorDir _object;
 private _currVectUp = vectorUp _object;

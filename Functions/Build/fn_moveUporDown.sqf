@@ -29,6 +29,8 @@ Author:
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};
 
+#include "..\..\Headers\Wait For Transfer Inline.hpp"
+
 params [
 	"_object",
 	["_downOrUp",false,[true]],
@@ -36,7 +38,8 @@ params [
 	["_personCarrying",player,[objNull]]
 ];
 
-[_object] call BLWK_fnc_locality;
+WAIT_FOR_OWNERSHIP(_object)
+//[_object] call BLWK_fnc_locality;
 
 #define MOVEMENT_INCREMENT 0.25
 
