@@ -84,9 +84,21 @@ private _handleNumber = addMissionEventHandler ["EachFrame", {
 
 // setup a unique global variable so we can pass params to the eventhandler 
 private _globalVarString = "BLWK_hitPointHandleInfo_" + (str _handleNumber);
-private _randomStartPosition = random [-1.35,0,1.35];
+
+// this is used to try and get numbers to not crowd together so much
+#define RANOM_NUMBER_SPACING_BASE random [-1.35,0,1.35]
+#define DISTANCE_MULTIPLIER 0.025
+
+private _distanceToShooter = _hitUnit distance player;
+private _randomStartPosition = RANOM_NUMBER_SPACING_BASE;
+if (_distanceToShooter > 10) then {
+	_randomStartPosition = _randomStartPosition * (_distanceToShooter * DISTANCE_MULTIPLIER);
+};
+
 private _textPositionStart = (getPosATLVisual _hitUnit) vectorAdd [_randomStartPosition,_randomStartPosition,1.25];
 
 // If minus, show points as red, else show as green
 private _color = [[0.1,1,0,1],[1,0.1,0.1,1]] select _redPoints;
 missionNamespace setVariable [_globalVarString,[0,str _pointsToDisplay, _color, 1,_textPositionStart,TEXT_SIZE_CONSTANT]];
+
+hint str _distanceToShooter;
