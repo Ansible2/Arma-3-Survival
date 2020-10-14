@@ -132,9 +132,6 @@ if (isServer) then {
     BLWK_playAreaRadius = ("BLWK_playAreaRadius" call BIS_fnc_getParamValue); // Total play area radius in meters
     BLWK_minNumberOfHousesInArea = ("BLWK_minNumberOfHousesInArea" call BIS_fnc_getParamValue);
 
-    /* Respawn */
-    BLWK_respawnTime = ("BLWK_respawnTime" call BIS_fnc_getParamValue);
-
     /* Random Loot */
     BLWK_loot_cityDistribution = ("BLWK_loot_cityDistribution" call BIS_fnc_getParamValue);  // decides how many buildings will be marked as having loot in a city
     BLWK_loot_roomDistribution = ("BLWK_loot_roomDistribution" call BIS_fnc_getParamValue);  // decides how much loot will be in a building if it has any at all
