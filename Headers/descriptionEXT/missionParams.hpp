@@ -271,14 +271,6 @@ class BLWK_numRespawnTickets
 	default = 10;
 };
 
-class BLWK_respawnTime
-{
-	title = "Respawn Time";
-	values[] = {0, 5, 10, 20, 30};
-	texts[] = {"0", "5", "10", "20", "30"};
-	default = 10;
-};
-
 class BLWK_saveRespawnLoadout
 {
 	title = "Players Get Their Loadout If They Respawn";
