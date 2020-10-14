@@ -63,7 +63,7 @@ private _supportsControl = (findDisplay 9999) displayCtrl 1501;
 // if support dish was found, display purachasable support, else show message
 if (BLWK_supportDishFound) then {
 	BLWK_supports_array apply {
-		_supportsControl lbAdd format [PRICE_NAME_FORMAT, _x select 0, _x select 1];
+		_supportsControl lbAdd format [PRICE_NAME_FORMAT, _x select 0, _x select 2];
 	};
 } else {
   	SUPPORT_DISH_NOT_FOUND_MESSAGE(_supportsControl);

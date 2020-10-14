@@ -216,22 +216,27 @@ BLWK_pointsMulti_car = 2;
 BLWK_pointsMulti_armour = 4;
 
 /* Supports */
+#include "..\..\Headers\descriptionEXT\supportClassesDefines.hpp"
 BLWK_supports_array = [
-	//1. Price //2. Displayed Name //3. className
-    [800,  "Recon UAV",             "reconUAV"],
-    [1680, "Emergency Teleport",   "telePlode"],
-    [1950, "Paratroopers",          "paraDrop"],
-    [3850, "Missile CAS",          "airStrike"],
-    [4220, "Mine Cluster Shell",   "mineField"],
-    [4690, "Rage Stimpack",         "ragePack"],
-    [5930, "Mind Control Gas",    "mindConGas"],
-    [6666, "ARMAKART TM",           "armaKart"],
-    [7500, "Predator Drone",    "droneControl"]
+	//1. Price //2. Displayed Name in shop //3. itemClass in commMenuSupports.h
+    // you can enter in your own supports anywhere in the BLWK_supports_array as it is sorted by price below
+    [800, "reconUAV", "Recon UAV"],
+    [1680, "telePlode", "Emergency Teleport"],
+    [1950, "paraDrop", "Paratroopers"],
+    [3850, "airStrike", "Missile CAS"],
+    [4220, "mineField", "Mine Cluster Shell"],
+    [4690, "ragePack", "Rage Stimpack"],
+    [5930, "mindConGas", "Mind Control Gas"],
+    [6666, "armaKart", "ARMAKART TM"],
+    [7500, "droneControl", "Predator Drone"],
+    [1500, TO_STRING(CRUISE_MISSILE_CLASS), "Cruise Missile Strike"]
 ];
+BLWK_supports_array sort true; // will sort by the price
+
 
 /* Build Objects */
 BLWK_buildableObjects_array = [
-	//1. Price //2. ClassName //3. Does it have AI? //4. attachment info (when you buy an object) [defaultRotation,attachToArray]
+	//1. Price //2. ClassName //3. Does it have AI? //4. attachment info (when you buy an object) [defaultRotation,attachToArray] 5. is it indestructable? (default: false)
 	//Cipher Comment The object radius is used to prevent AI from glitching through and triggers suicide bombers.......that seems dumb
     [25,   "Land_Plank_01_8m_F",                false, [0, [0,6,1]]],
     [25,   "Land_BagFence_End_F",                false, [0, [0,3,1]]],
@@ -259,13 +264,14 @@ BLWK_buildableObjects_array = [
     [1000, "Land_HBarrierWall4_F",              false, [0, [0,5,1]]],   
     [1000, "BlockConcrete_F",                   false, [0, [0,8,0.5]]],
     [1200, "Box_NATO_AmmoVeh_F",                false, [0, [0,3,1]]],
-    [2500, "B_HMG_01_high_F",                   false, [0, [0.25,2,2]]],
+    [2500, "B_HMG_01_high_F",                   false, [0, [0.25,2,2]], true],
     [3000, "Land_BagBunker_Small_F",            false, [180, [0,4,1]]],
     [4500, "Land_PillboxBunker_01_hex_F",       false, [90, [0,4,1]]],
     [6000, "Land_Cargo_Patrol_V3_F",            false, [180, [0,6,5]]],
-    [7500, "B_HMG_01_A_F",                      true, [180, [0.25,2,2]]],
+    [7500, "B_HMG_01_A_F",                      true, [180, [0.25,2,2]], true],
     [9500, "Land_Bunker_01_Small_F",            false, [180, [0.5,6,0]]]
 ];
+BLWK_buildableObjects_array sort true;
 
 if (isServer) then {
     missionNamespace setVariable ["BLWK_serverGlobalsInitialized",true,true];

@@ -172,7 +172,11 @@ class BLWK
 		file = "Functions\Supports";
 		class createLootMarkers
 		{};
+		class cruiseMissileStrike
+		{};
 		class healPlayer
+		{};
+		class purchaseSupport
 		{};
 	};
 

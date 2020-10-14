@@ -32,7 +32,8 @@ if (isNil "_selectedIndex") exitWith {
 (BLWK_buildableObjects_array select _selectedIndex) params [
 	"_price",
 	"_className",
-	"_hasAi"
+	"_hasAi",
+	["_indestructable",false]
 ];
 
 // Script was passed an invalid number
@@ -51,7 +52,7 @@ if ((missionNamespace getVariable ["BLWK_playerKillPoints",0]) >= _price) then {
 		_purchasedObject = _className createVehicle [0,0,0];
 	};
 
-	if (_className == "B_HMG_01_A_F") then {
+	if (_indestructable) then {
 		_purchasedObject allowDamage false;
 	};
 

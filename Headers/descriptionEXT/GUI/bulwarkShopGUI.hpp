@@ -71,8 +71,7 @@ class bulwarkShopDialog
             y = 0.58 * safezoneH + safezoneY;
             w = 0.185 * safezoneW;
             h = 0.04 * safezoneH;
-            // CIPHER COMMENT: need to pass the new function here when done
-            action = "_nil=[]ExecVM ""supports\purchase.sqf""";
+            action = "call BLWK_fnc_purchaseSupport";
             colorBackground[] = PROFILE_BACKGROUND_COLOR(0.65);
             colorBackgroundActive[] = PROFILE_BACKGROUND_COLOR(1);
         };

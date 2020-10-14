@@ -66,7 +66,7 @@ class CfgDebriefing
 {
 	class End1
 	{
-		title = [END];
+		title = "[END]";
 		subtitle = "You were wiped out";
 		description = "Game Over";
 		pictureBackground = "";
@@ -87,7 +87,7 @@ class CfgDebriefing
 
 class CfgCommunicationMenu
 {
-	//#include "Headera\descriptionEXT\commMenuSupports.h"
+	#include "Headers\descriptionEXT\commMenuSupports.h"
 };
 
 

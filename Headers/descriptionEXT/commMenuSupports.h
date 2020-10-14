@@ -1,3 +1,46 @@
+#include "supportClassesDefines.hpp"
+
+#define SUPPORT_CURSOR "\a3\Ui_f\data\IGUI\Cfg\Cursors\iconCursorSupport_ca.paa"
+#define ARTILLERY_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\artillery_ca.paa"
+#define ATTACK_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\attack_ca.paa"
+#define CALL_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\call_ca.paa"
+#define CAS_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\cas_ca.paa"
+#define CAS_HELI_ICON"\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\casheli_ca.paa"
+#define DEFEND_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\defend_ca.paa"
+#define INTRUCTOR_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\instructor_ca.paa"
+#define MORTAR_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\mortar_ca.paa"
+#define SUPPLY_DROP_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\supplydrop_ca.paa"
+#define TRANSPORT_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\transport_ca.paa"
+
+/*
+// expression arguments
+
+[caller, pos, target, is3D, id]
+    caller: Object - unit which called the item, usually player
+    pos: Array in format Position - cursor position
+    target: Object - cursor target
+    is3D: Boolean - true when in 3D scene, false when in map
+    id: String - item ID as returned by BIS_fnc_addCommMenuItem function
+*/
+
+class basicSupport
+{
+    text = "I'm a support!";
+    subMenu = "";
+    expression = "";
+    icon = CALL_ICON;
+    curosr = SUPPORT_CURSOR;
+    enable = "1";
+    removeAfterExpressionCall = 1;
+};
+
+class CRUISE_MISSILE_CLASS : basicSupport
+{
+    text = "Cruise Missile Strike";
+    expression = "null = [_this select 1] spawn BLWK_fnc_cruiseMissileStrike";
+    icon = CAS_ICON;
+};
+
 class paraDrop
 {
     text = "Paratroops";
