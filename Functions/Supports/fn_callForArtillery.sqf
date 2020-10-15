@@ -38,7 +38,7 @@ if (_ammoType == "Flare_82mm_AMOS_White") exitWith {
 // create markers
 private _chemlight = createvehicle ["Chemlight_green_infinite",_fireAtPosition,[],0,"NONE"];
 private _smoke = createvehicle ["G_40mm_SmokeRed_infinite",_fireAtPosition,[],0,"NONE"];
-private _flare = createvehicle ["F_40mm_Red",_fireAtPosition,[],0,"NONE"];
+//private _flare = createvehicle ["F_40mm_Red",_fireAtPosition,[],0,"NONE"];
 
 sleep 5;
 
@@ -47,7 +47,7 @@ null = [_fireAtPosition,_ammoType,40,3,5,{},nil,1300] spawn BIS_fnc_fireSupportV
 sleep 20;
 deleteVehicle _chemlight;
 deleteVehicle _smoke;
-deleteVehicle _flare;
+//deleteVehicle _flare;
 
 
 //BIS_fnc_fireSupportVirtual
