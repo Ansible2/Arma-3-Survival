@@ -115,7 +115,7 @@ class BLWK_supportDishFound
 	title = "Find Satellite Dish to Unlock Supports";
 	values[] = ZERO_OR_ONE;
 	texts[] = {"Yes, find the Satellite Dish to unlock the Support Menu", "No, Supports are available from the begining of the mission"};
-	default = 0;
+	default = 1;
 };
 class BLWK_numMedKits
 {
@@ -140,10 +140,10 @@ class BLWK_playersStartWith_compass
 };
 class BLWK_playersStartWith_radio
 {
-	title = "Start with a radio (TFAR Compatabile)";
+	title = "Start with a radio (TFAR Compatabile) (You must have one to get support radio messages)";
 	values[] = ZERO_OR_ONE;
 	texts[] = NO_OR_YES;
-	default = 0;
+	default = 1;
 };
 class BLWK_playersStartWith_mineDetector
 {

@@ -12,7 +12,7 @@
 #define SUPPLY_DROP_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\supplydrop_ca.paa"
 #define TRANSPORT_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\transport_ca.paa"
 
-#define ARTY_EXPRESSION(AMMO_TYPE) "[_this select 1,"##AMMO_TYPE##"] call BLWK_fnc_callForArtillery"
+#define ARTY_EXPRESSION(AMMO_TYPE) "null = [_this select 1,"##AMMO_TYPE##"] spawn BLWK_fnc_callForArtillery"
 
 /*
 // expression arguments
