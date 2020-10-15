@@ -33,6 +33,7 @@ if (isNil "_selectedIndex") exitWith {
 	"_price",
 	"_className",
 	"_hasAi",
+	"", // don't need attachment info
 	["_indestructable",false]
 ];
 
