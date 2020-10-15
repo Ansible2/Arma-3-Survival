@@ -12,7 +12,7 @@
 #define SUPPLY_DROP_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\supplydrop_ca.paa"
 #define TRANSPORT_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\transport_ca.paa"
 
-#define ARTY_155MM_EXPRESSION(AMMO_TYPE) "[_this select 1,"##AMMO_TYPE##"] call BLWK_fnc_155mmArtilleryStrike"
+#define ARTY_EXPRESSION(AMMO_TYPE) "[_this select 1,"##AMMO_TYPE##"] call BLWK_fnc_callForArtillery"
 
 /*
 // expression arguments
@@ -48,35 +48,81 @@ class CRUISE_MISSILE_CLASS : basicSupport
 class ARTILLERY_STRIKE_155MM_HE_CLASS : basicSupport
 {
     text = ARTILLERY_STRIKE_155MM_HE_TEXT;
-    expression = ARTY_155MM_EXPRESSION("Sh_155mm_AMOS");
+    expression = ARTY_EXPRESSION("Sh_155mm_AMOS");
     icon = ARTILLERY_ICON;
 };
 class ARTILLERY_STRIKE_155MM_CLUSTER_CLASS : basicSupport
 {
     text = ARTILLERY_STRIKE_155MM_CLUSTER_TEXT;
-    expression = ARTY_155MM_EXPRESSION("Cluster_155mm_AMOS");
+    expression = ARTY_EXPRESSION("Cluster_155mm_AMOS");
     icon = ARTILLERY_ICON;
 };
 class ARTILLERY_STRIKE_155MM_MINES_CLASS : basicSupport
 {
     text = ARTILLERY_STRIKE_155MM_MINES_TEXT;
-    expression = ARTY_155MM_EXPRESSION("Mine_155mm_AMOS_range");
+    expression = ARTY_EXPRESSION("Mine_155mm_AMOS_range");
     icon = ARTILLERY_ICON;
 };
 class ARTILLERY_STRIKE_155MM_AT_MINES_CLASS : basicSupport
 {
     text = ARTILLERY_STRIKE_155MM_AT_MINES_TEXT;
-    expression = ARTY_155MM_EXPRESSION("AT_Mine_155mm_AMOS_range");
+    expression = ARTY_EXPRESSION("AT_Mine_155mm_AMOS_range");
     icon = ARTILLERY_ICON;
 };
 
-
+// mortars
 class MORTAR_STRIKE_82MM_HE_CLASS : basicSupport
 {
     text = MORTAR_STRIKE_82MM_HE_TEXT;
-    expression = "";
+    expression = ARTY_EXPRESSION("Sh_82mm_AMOS");
     icon = MORTAR_ICON;
 };
+class MORTAR_STRIKE_82MM_SMOKE_CLASS : basicSupport
+{
+    text = MORTAR_STRIKE_82MM_SMOKE_TEXT;
+    expression = ARTY_EXPRESSION("Smoke_82mm_AMOS_White");
+    icon = MORTAR_ICON;
+};
+class MORTAR_STRIKE_82MM_FLARE_CLASS : basicSupport
+{
+    text = MORTAR_STRIKE_82MM_FLARE_TEXT;
+    expression = ARTY_EXPRESSION("Flare_82mm_AMOS_White");
+    icon = MORTAR_ICON;
+};
+
+
+// 120mm cannon
+class CANNON_120MM_HE_CLASS : basicSupport
+{
+    text = CANNON_120MM_HE_TEXT;
+    expression = ARTY_EXPRESSION("ammo_ShipCannon_120mm_HE");
+    icon = ARTILLERY_ICON;
+};
+class CANNON_120MM_CLUSTER_CLASS : basicSupport
+{
+    text = CANNON_120MM_CLUSTER_TEXT;
+    expression = ARTY_EXPRESSION("ammo_ShipCannon_120mm_HE_cluster");
+    icon = ARTILLERY_ICON;
+};
+class CANNON_120MM_AT_MINES_CLASS : basicSupport
+{
+    text = CANNON_120MM_AT_MINES_TEXT;
+    expression = ARTY_EXPRESSION("ammo_ShipCannon_120mm_AT_mine");
+    icon = ARTILLERY_ICON;
+};
+class CANNON_120MM_MINES_CLASS : basicSupport
+{
+    text = CANNON_120MM_MINES_TEXT;
+    expression = ARTY_EXPRESSION("ammo_ShipCannon_120mm_mine");
+    icon = ARTILLERY_ICON;
+};
+class CANNON_120MM_SMOKE_CLASS : basicSupport
+{
+    text = CANNON_120MM_SMOKE_TEXT;
+    expression = ARTY_EXPRESSION("ammo_ShipCannon_120mm_smoke");
+    icon = ARTILLERY_ICON;
+};
+
 
 class paraDrop
 {

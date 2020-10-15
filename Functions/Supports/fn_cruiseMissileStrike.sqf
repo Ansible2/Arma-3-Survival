@@ -29,6 +29,9 @@ params [
 	["_target",objNull,[objNull,[]]]
 ];
 
+#include "..\..\Headers\descriptionEXT\supportDefines.hpp"
+[TYPE_STRIKE] call BLWK_fnc_supportRadioGlobal;
+
 // get firing position and give it some alititude
 private _missileLaunchPosition = [BLWK_playAreaMarker,true] call CBAP_fnc_randPosArea;
 _missileLaunchPosition = _missileLaunchPosition vectorAdd [0,0,1000];

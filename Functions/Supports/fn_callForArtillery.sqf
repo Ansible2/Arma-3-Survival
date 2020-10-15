@@ -1,8 +1,8 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_155mmArtilleryStrike
+Function: BLWK_fnc_callForArtillery
 
 Description:
-	Spawns a cruise missile at designated "launcher" and then guides it to a target 
+	Calls for an artillery or mortart strike at players cursor position
 
 Parameters:
 	0: _target <OBJECT, ARRAY, or STRING(marker)> - The target you want to cluter fire around
@@ -14,12 +14,10 @@ Returns:
 Examples:
     (begin example)
 
-		[target_1,"Sh_155mm_AMOS] call BLWK_fnc_155mmArtilleryStrike;
+		[target_1,"Sh_155mm_AMOS"] call BLWK_fnc_callForArtillery;
 
     (end)
-Smoke_120mm_AMOS_White
-Smoke_82mm_AMOS_White
-Flare_82mm_AMOS_White
+
 Authors:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
@@ -27,6 +25,15 @@ params [
 	"_fireAtPosition",
 	["_ammoType","Sh_155mm_AMOS",[""]]
 ];
+
+// flare round need to fall slower
+if (_ammoType == "Flare_82mm_AMOS_White") exitWith {
+	null = [_fireAtPosition,_ammoType,15,1,1,{},nil,250,1] spawn BIS_fnc_fireSupportVirtual;
+};
+
+
+#include "..\..\Headers\descriptionEXT\supportDefines.hpp"
+[TYPE_ARTILLERY] call BLWK_fnc_supportRadioGlobal;
 
 null = [_fireAtPosition,_ammoType,40,3,5,{},nil,1300] spawn BIS_fnc_fireSupportVirtual;
 

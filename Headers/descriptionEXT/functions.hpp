@@ -170,7 +170,7 @@ class BLWK
 	class Supports
 	{
 		file = "Functions\Supports";
-		class 155mmArtilleryStrike
+		class callForArtillery
 		{};
 		class createLootMarkers
 		{};
@@ -179,6 +179,8 @@ class BLWK
 		class healPlayer
 		{};
 		class purchaseSupport
+		{};
+		class supportRadioGlobal
 		{};
 	};
 
