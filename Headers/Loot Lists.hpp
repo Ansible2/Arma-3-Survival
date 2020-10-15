@@ -24,7 +24,8 @@
     "O_IR_Grenade", \
     "I_IR_Grenade", \
     "TrainingMine_Mag", \
-    "ChemicalDetector_01_watch_F" \
+    "ChemicalDetector_01_watch_F", \
+    "ChemicalDetector_01_olive_F" \
 ]
 
 
