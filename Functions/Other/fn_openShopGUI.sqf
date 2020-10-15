@@ -28,6 +28,7 @@ if (!hasInterface OR {!canSuspend}) exitWith {};
 
 disableSerialization;
 
+// CIPHER COMMENT: this message method is a litle dumb and should be changed to just a dedicated text box on top that is either shown or not
 #define SUPPORT_DISH_NOT_FOUND_MESSAGE(CTRL)\
 	CTRL lbAdd " ";\
 	CTRL lbAdd "";\
@@ -60,10 +61,12 @@ BLWK_buildableObjects_array apply {
 
 // supports
 private _supportsControl = (findDisplay 9999) displayCtrl 1501;
-// if support dish was found, display purachasable support, else show message
+// if support dish was found, display purchasable support, else show message
 if (BLWK_supportDishFound) then {
+	private "_nameOfSupport"; 
 	BLWK_supports_array apply {
-		_supportsControl lbAdd format [PRICE_NAME_FORMAT, _x select 0, _x select 2];
+		_nameOfSupport = getText(missionConfigFile >> "cfgCommunicationMenu" >> (_x select 1) >> "text");
+		_supportsControl lbAdd format [PRICE_NAME_FORMAT, _x select 0,_nameOfSupport];
 	};
 } else {
   	SUPPORT_DISH_NOT_FOUND_MESSAGE(_supportsControl);

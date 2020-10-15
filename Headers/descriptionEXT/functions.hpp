@@ -170,6 +170,8 @@ class BLWK
 	class Supports
 	{
 		file = "Functions\Supports";
+		class 155mmArtilleryStrike
+		{};
 		class createLootMarkers
 		{};
 		class cruiseMissileStrike

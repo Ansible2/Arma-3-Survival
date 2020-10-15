@@ -216,20 +216,16 @@ BLWK_pointsMulti_car = 2;
 BLWK_pointsMulti_armour = 4;
 
 /* Supports */
-#include "..\..\Headers\descriptionEXT\supportClassesDefines.hpp"
+#include "..\..\Headers\descriptionEXT\supportDefines.hpp"
 BLWK_supports_array = [
-	//1. Price //2. Displayed Name in shop //3. itemClass in commMenuSupports.h
+	//1. Price //2. item class in commMenuSupports.h
     // you can enter in your own supports anywhere in the BLWK_supports_array as it is sorted by price below
-    [800, "reconUAV", "Recon UAV"],
-    [1680, "telePlode", "Emergency Teleport"],
-    [1950, "paraDrop", "Paratroopers"],
-    [3850, "airStrike", "Missile CAS"],
-    [4220, "mineField", "Mine Cluster Shell"],
-    [4690, "ragePack", "Rage Stimpack"],
-    [5930, "mindConGas", "Mind Control Gas"],
-    [6666, "armaKart", "ARMAKART TM"],
-    [7500, "droneControl", "Predator Drone"],
-    [1500, TO_STRING(CRUISE_MISSILE_CLASS), "Cruise Missile Strike"]
+    [1500, TO_STRING(CRUISE_MISSILE_CLASS)],
+    [1500, TO_STRING(ARTILLERY_STRIKE_155MM_HE_CLASS)],
+    [1500, TO_STRING(ARTILLERY_STRIKE_155MM_CLUSTER_CLASS)],
+    [1000, TO_STRING(ARTILLERY_STRIKE_155MM_MINES_CLASS)],
+    [1000, TO_STRING(ARTILLERY_STRIKE_155MM_AT_MINES_CLASS)],
+    [1500, TO_STRING(MORTAR_STRIKE_82MM_HE_CLASS)]
 ];
 BLWK_supports_array sort true; // will sort by the price
 

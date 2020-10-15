@@ -1,4 +1,4 @@
-#include "supportClassesDefines.hpp"
+#include "supportDefines.hpp"
 
 #define SUPPORT_CURSOR "\a3\Ui_f\data\IGUI\Cfg\Cursors\iconCursorSupport_ca.paa"
 #define ARTILLERY_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\artillery_ca.paa"
@@ -11,6 +11,8 @@
 #define MORTAR_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\mortar_ca.paa"
 #define SUPPLY_DROP_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\supplydrop_ca.paa"
 #define TRANSPORT_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\transport_ca.paa"
+
+#define ARTY_155MM_EXPRESSION(AMMO_TYPE) "[_this select 1,"##AMMO_TYPE##"] call BLWK_fnc_155mmArtilleryStrike"
 
 /*
 // expression arguments
@@ -34,11 +36,46 @@ class basicSupport
     removeAfterExpressionCall = 1;
 };
 
+// cruise missile
 class CRUISE_MISSILE_CLASS : basicSupport
 {
-    text = "Cruise Missile Strike";
+    text = CRUISE_MISSILE_TEXT;
     expression = "null = [_this select 1] spawn BLWK_fnc_cruiseMissileStrike";
     icon = CAS_ICON;
+};
+
+// 155 artillery
+class ARTILLERY_STRIKE_155MM_HE_CLASS : basicSupport
+{
+    text = ARTILLERY_STRIKE_155MM_HE_TEXT;
+    expression = ARTY_155MM_EXPRESSION("Sh_155mm_AMOS");
+    icon = ARTILLERY_ICON;
+};
+class ARTILLERY_STRIKE_155MM_CLUSTER_CLASS : basicSupport
+{
+    text = ARTILLERY_STRIKE_155MM_CLUSTER_TEXT;
+    expression = ARTY_155MM_EXPRESSION("Cluster_155mm_AMOS");
+    icon = ARTILLERY_ICON;
+};
+class ARTILLERY_STRIKE_155MM_MINES_CLASS : basicSupport
+{
+    text = ARTILLERY_STRIKE_155MM_MINES_TEXT;
+    expression = ARTY_155MM_EXPRESSION("Mine_155mm_AMOS_range");
+    icon = ARTILLERY_ICON;
+};
+class ARTILLERY_STRIKE_155MM_AT_MINES_CLASS : basicSupport
+{
+    text = ARTILLERY_STRIKE_155MM_AT_MINES_TEXT;
+    expression = ARTY_155MM_EXPRESSION("AT_Mine_155mm_AMOS_range");
+    icon = ARTILLERY_ICON;
+};
+
+
+class MORTAR_STRIKE_82MM_HE_CLASS : basicSupport
+{
+    text = MORTAR_STRIKE_82MM_HE_TEXT;
+    expression = "";
+    icon = MORTAR_ICON;
 };
 
 class paraDrop
