@@ -44,7 +44,8 @@
 #define CANNON_120MM_MINES_TEXT "120mm Cannon AP Mines"
 // 120mm Smoke
 #define CANNON_120MM_SMOKE_CLASS cannonStrike120mmSmoke_commMenu
-#define CANNON_120MM_SMOKE_TEXT "120mm Cannon Smoke"
+#define CANNON_120MM_SMOKE_TEXT "120mm Cannon Smoke (3)"
+
 
 
 // support radio message types
