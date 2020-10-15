@@ -100,5 +100,3 @@ private _textPositionStart = (getPosATLVisual _hitUnit) vectorAdd [_randomStartP
 // If minus, show points as red, else show as green
 private _color = [[0.1,1,0,1],[1,0.1,0.1,1]] select _redPoints;
 missionNamespace setVariable [_globalVarString,[0,str _pointsToDisplay, _color, 1,_textPositionStart,TEXT_SIZE_CONSTANT]];
-
-hint str _distanceToShooter;

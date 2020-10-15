@@ -54,6 +54,3 @@ null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
 waitUntil {!isNil "BLWK_playerGroup"};
 
 [_player] joinSilent BLWK_playerGroup;
-
-player setCaptive true;
-player addItem "FirstAidKit";
