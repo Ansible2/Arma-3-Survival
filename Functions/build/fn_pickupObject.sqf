@@ -53,7 +53,8 @@ if (_justPurchased) then {
 	_object setDir (_attachmentInfo select 0);
 } else {
 	WAIT_FOR_OWNERSHIP(_object)
-	[_object,_player,true] remoteExecCall ["BIS_fnc_attachToRelative",_object];
+	[_object,_player,true] call BIS_fnc_attachToRelative;
+	//[_object,_player,true] remoteExecCall ["BIS_fnc_attachToRelative",_object];
 };
 
 // special handle for BLWK_randomWeaponBox being found
