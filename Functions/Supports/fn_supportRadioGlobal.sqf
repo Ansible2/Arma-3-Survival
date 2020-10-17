@@ -112,4 +112,4 @@ switch _messageType do {
 
 private _message = selectRandom _messageArray;
 
-[_caller,_message] remoteExec ["commandRadio",BLWK_allClientsTargetID];
+[_caller,_message] remoteExec ["sideRadio",BLWK_allClientsTargetID];
