@@ -53,6 +53,7 @@ class bulwarkShopDialog
             action = "null = [] spawn BLWK_fnc_purchaseObject";
             colorBackground[] = PROFILE_BACKGROUND_COLOR(0.65);
             colorBackgroundActive[] = PROFILE_BACKGROUND_COLOR(1);
+            colorFocused[] = PROFILE_BACKGROUND_COLOR(0.65);
         };
 
         class bulwarkShopDialog_supportLst: RscListbox
@@ -74,6 +75,7 @@ class bulwarkShopDialog
             action = "call BLWK_fnc_purchaseSupport";
             colorBackground[] = PROFILE_BACKGROUND_COLOR(0.65);
             colorBackgroundActive[] = PROFILE_BACKGROUND_COLOR(1);
+            colorFocused[] = PROFILE_BACKGROUND_COLOR(0.65);
         };
     };
 };
