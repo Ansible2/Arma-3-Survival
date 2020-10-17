@@ -172,6 +172,8 @@ class BLWK
 		file = "Functions\Supports";
 		class callForArtillery
 		{};
+		class callingForSupportMaster
+		{};
 		class createLootMarkers
 		{};
 		class cruiseMissileStrike

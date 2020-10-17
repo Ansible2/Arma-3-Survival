@@ -12,7 +12,7 @@
 #define SUPPLY_DROP_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\supplydrop_ca.paa"
 #define TRANSPORT_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\transport_ca.paa"
 
-#define ARTY_EXPRESSION(AMMO_TYPE) "null = [_this select 1,"##AMMO_TYPE##"] spawn BLWK_fnc_callForArtillery"
+#define CALL_SUPPORT_MASTER(CLASS) "[_this select 0,_this select 1,"#CLASS"] call BLWK_fnc_callingForSupportMaster"
 
 /*
 // expression arguments
@@ -40,7 +40,7 @@ class basicSupport
 class CRUISE_MISSILE_CLASS : basicSupport
 {
     text = CRUISE_MISSILE_TEXT;
-    expression = "null = [_this select 1] spawn BLWK_fnc_cruiseMissileStrike";
+    expression = CALL_SUPPORT_MASTER(CRUISE_MISSILE_CLASS);
     icon = CAS_ICON;
 };
 
@@ -48,25 +48,25 @@ class CRUISE_MISSILE_CLASS : basicSupport
 class ARTILLERY_STRIKE_155MM_HE_CLASS : basicSupport
 {
     text = ARTILLERY_STRIKE_155MM_HE_TEXT;
-    expression = ARTY_EXPRESSION("Sh_155mm_AMOS");
+    expression = CALL_SUPPORT_MASTER(ARTILLERY_STRIKE_155MM_HE_CLASS);
     icon = ARTILLERY_ICON;
 };
 class ARTILLERY_STRIKE_155MM_CLUSTER_CLASS : basicSupport
 {
     text = ARTILLERY_STRIKE_155MM_CLUSTER_TEXT;
-    expression = ARTY_EXPRESSION("Cluster_155mm_AMOS");
+    expression = CALL_SUPPORT_MASTER(ARTILLERY_STRIKE_155MM_CLUSTER_CLASS);
     icon = ARTILLERY_ICON;
 };
 class ARTILLERY_STRIKE_155MM_MINES_CLASS : basicSupport
 {
     text = ARTILLERY_STRIKE_155MM_MINES_TEXT;
-    expression = ARTY_EXPRESSION("Mine_155mm_AMOS_range");
+    expression = CALL_SUPPORT_MASTER(ARTILLERY_STRIKE_155MM_MINES_CLASS);
     icon = ARTILLERY_ICON;
 };
 class ARTILLERY_STRIKE_155MM_AT_MINES_CLASS : basicSupport
 {
     text = ARTILLERY_STRIKE_155MM_AT_MINES_TEXT;
-    expression = ARTY_EXPRESSION("AT_Mine_155mm_AMOS_range");
+    expression = CALL_SUPPORT_MASTER(ARTILLERY_STRIKE_155MM_AT_MINES_CLASS);
     icon = ARTILLERY_ICON;
 };
 
@@ -74,56 +74,59 @@ class ARTILLERY_STRIKE_155MM_AT_MINES_CLASS : basicSupport
 class MORTAR_STRIKE_82MM_HE_CLASS : basicSupport
 {
     text = MORTAR_STRIKE_82MM_HE_TEXT;
-    expression = ARTY_EXPRESSION("Sh_82mm_AMOS");
+    expression = CALL_SUPPORT_MASTER(MORTAR_STRIKE_82MM_HE_CLASS);
     icon = MORTAR_ICON;
 };
 class MORTAR_STRIKE_82MM_SMOKE_CLASS : basicSupport
 {
     text = MORTAR_STRIKE_82MM_SMOKE_TEXT;
-    expression = ARTY_EXPRESSION("Smoke_82mm_AMOS_White");
+    expression = CALL_SUPPORT_MASTER(MORTAR_STRIKE_82MM_SMOKE_CLASS);
     icon = MORTAR_ICON;
 };
 class MORTAR_STRIKE_82MM_FLARE_CLASS : basicSupport
 {
     text = MORTAR_STRIKE_82MM_FLARE_TEXT;
-    expression = ARTY_EXPRESSION("Flare_82mm_AMOS_White");
+    expression = CALL_SUPPORT_MASTER(MORTAR_STRIKE_82MM_FLARE_CLASS);
     icon = MORTAR_ICON;
 };
-
 
 // 120mm cannon
 class CANNON_120MM_HE_CLASS : basicSupport
 {
     text = CANNON_120MM_HE_TEXT;
-    expression = ARTY_EXPRESSION("ammo_ShipCannon_120mm_HE");
+    expression = CALL_SUPPORT_MASTER(CANNON_120MM_HE_CLASS);
     icon = ARTILLERY_ICON;
 };
 class CANNON_120MM_CLUSTER_CLASS : basicSupport
 {
     text = CANNON_120MM_CLUSTER_TEXT;
-    expression = ARTY_EXPRESSION("ammo_ShipCannon_120mm_HE_cluster");
+    expression = CALL_SUPPORT_MASTER(CANNON_120MM_CLUSTER_CLASS);
     icon = ARTILLERY_ICON;
 };
 class CANNON_120MM_AT_MINES_CLASS : basicSupport
 {
     text = CANNON_120MM_AT_MINES_TEXT;
-    expression = ARTY_EXPRESSION("ammo_ShipCannon_120mm_AT_mine");
+    expression = CALL_SUPPORT_MASTER(CANNON_120MM_AT_MINES_CLASS);
     icon = ARTILLERY_ICON;
 };
 class CANNON_120MM_MINES_CLASS : basicSupport
 {
     text = CANNON_120MM_MINES_TEXT;
-    expression = ARTY_EXPRESSION("ammo_ShipCannon_120mm_mine");
+    expression = CALL_SUPPORT_MASTER(CANNON_120MM_MINES_CLASS);
     icon = ARTILLERY_ICON;
 };
 class CANNON_120MM_SMOKE_CLASS : basicSupport
 {
     text = CANNON_120MM_SMOKE_TEXT;
-    expression = ARTY_EXPRESSION("ammo_ShipCannon_120mm_smoke");
+    expression = CALL_SUPPORT_MASTER(CANNON_120MM_SMOKE_CLASS);
     icon = ARTILLERY_ICON;
 };
 
 
+
+
+
+/*
 class paraDrop
 {
     text = "Paratroops";
@@ -222,3 +225,4 @@ class telePlode
     enable = "1";
     removeAfterExpressionCall = 1;
 };
+*/
