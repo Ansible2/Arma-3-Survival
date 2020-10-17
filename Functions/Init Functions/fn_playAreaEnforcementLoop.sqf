@@ -25,7 +25,7 @@ Author:
 if (!hasInterface) exitWith {};
 // In the interest of potentially changing the play area dynamically, these percentages of the play area radius will not be cached
 
-waitUntil {!isNil "bulwarkBox"};
+waitUntil {!isNil "bulwarkBox" AND {!isNil "BLWK_playAreaCenter"}};
 
 /*
  Each one of these functions checks the successive distance percentage to see if the player is farther away.

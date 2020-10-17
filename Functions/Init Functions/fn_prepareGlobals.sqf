@@ -129,7 +129,6 @@ if (isServer) then {
 
     /* LOCATION LIST OPTIONS */
     BLWK_locations = nearestlocations [[0,0,0],["nameVillage","nameCity","nameCityCapital","nameMarine","Airport"],worldsize * sqrt 2]; 
-    BLWK_playAreaRadius = ("BLWK_playAreaRadius" call BIS_fnc_getParamValue); // Total play area radius in meters
     BLWK_minNumberOfHousesInArea = ("BLWK_minNumberOfHousesInArea" call BIS_fnc_getParamValue);
 
     /* Random Loot */
@@ -164,6 +163,7 @@ if (isServer) then {
     BLWK_deadBodies_2 = [];
     BLWK_roundsBeforeBodyDeletion = ("BLWK_roundsBeforeBodyDeletion" call BIS_fnc_getParamValue);
     
+    // keeping players in the same group upon respawn
     createCenter BLUFOR;
     BLWK_playerGroup = createGroup [BLUFOR,false];
     publicVariable "BLWK_playerGroup";
@@ -188,23 +188,38 @@ if (hasInterface) then {
 
     // this is to have potential supports that put the player outside the immediate radius
     // it is false until the play area is established
-    BLWK_enforceArea = false;
+    if (isNil "BLWK_enforceArea") then {
+        BLWK_enforceArea = false;
+    };
 
     // used for queing up kill points since two events can simaltaneously add points
     //BLWK_killPointsQue = [];
 };
-
-BLWK_currentWaveNumber = 0;
-BLWK_inBetweenWaves = true;
-BLWK_numRespawnTickets = ("BLWK_numRespawnTickets" call BIS_fnc_getParamValue);
+if (isNil "BLWK_currentWaveNumber") then {
+    BLWK_currentWaveNumber = 0;
+};
+if (isNil "BLWK_inBetweenWaves") then {
+    BLWK_inBetweenWaves = true;
+};
+if (isNil "BLWK_numRespawnTickets") then {
+    BLWK_numRespawnTickets = ("BLWK_numRespawnTickets" call BIS_fnc_getParamValue);
+};
+if (isNil "BLWK_playAreaRadius") then {
+    BLWK_playAreaRadius = ("BLWK_playAreaRadius" call BIS_fnc_getParamValue); // Total play area radius in meters
+};
 
 /* Points */
 BLWK_pointsForKill = ("BLWK_pointsForKill" call BIS_fnc_getParamValue);                 // Base Points for a kill
 BLWK_pointsForHit = ("BLWK_pointsForHit" call BIS_fnc_getParamValue);                   // Every Bullet hit
 BLWK_pointsMultiForDamage = ("BLWK_pointsMultiForDamage" call BIS_fnc_getParamValue);   // Extra points awarded for damage. 100% = BLWK_pointsMultiForDamage. 50% = BLWK_pointsMultiForDamage/2
 BLWK_costToSpinRandomBox = 950; 
-BLWK_supportDishFound = [false,true] select ("BLWK_supportDishFound" call BIS_fnc_getParamValue);
-BLWK_randomWeaponBoxFound = false;
+if (isNil "BLWK_supportDishFound") then {
+    BLWK_supportDishFound = [false,true] select ("BLWK_supportDishFound" call BIS_fnc_getParamValue);
+};
+if (isNil "BLWK_randomWeaponBoxFound") then {
+    BLWK_randomWeaponBoxFound = false;
+};
+
 
 // Point multipliers of BLWK_pointsForKill for different waves
 BLWK_pointsMulti_man_level1 = 0.75;
