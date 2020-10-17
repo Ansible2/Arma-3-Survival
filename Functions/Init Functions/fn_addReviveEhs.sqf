@@ -55,7 +55,7 @@ BLWK_animStateChangedEh_ID = _player addEventHandler ["AnimStateChanged",{
 				};
 			} else {
 				// if unit is not revided by medkit add the drag action to them for all players
-				[_unit] remoteExecCall ["BLWK_fnc_addDragAction",BLWK_allClientsTargetID,true];
+				[_unit] remoteExec ["BLWK_fnc_addDragAction",BLWK_allClientsTargetID,true];
 			};
 		};
 	};
