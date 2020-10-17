@@ -39,7 +39,6 @@ params [
 ];
 
 WAIT_FOR_OWNERSHIP(_object)
-//[_object] call BLWK_fnc_locality;
 
 #define MOVEMENT_INCREMENT 0.25
 

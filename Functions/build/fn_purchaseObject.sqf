@@ -69,7 +69,7 @@ if ((missionNamespace getVariable ["BLWK_playerKillPoints",0]) >= _price) then {
 	waitUntil {player isEqualTo player};
 
 	// attach object to player
-	[_purchasedObject,player,true] call BLWK_fnc_pickupObject;
+	null = [_purchasedObject,player,true] spawn BLWK_fnc_pickupObject;
 	
 	sleep 1;
 

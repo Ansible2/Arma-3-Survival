@@ -90,7 +90,7 @@ _object addAction [
 	"<t color='#ffffff'>-- Pickup Object --</t>",  
 	{
 		params ["_object","_caller"];
-		[_object,_caller] call BLWK_fnc_pickupObject;
+		null = [_object,_caller] spawn BLWK_fnc_pickupObject;
 	}, 
 	nil, 
 	100,  

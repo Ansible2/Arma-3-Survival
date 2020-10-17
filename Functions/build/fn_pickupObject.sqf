@@ -17,14 +17,14 @@ Returns:
 Examples:
     (begin example)
 
-		[myObject,player] call BLWK_fnc_pickupObject;
+		null = [myObject,player] spawn BLWK_fnc_pickupObject;
 
     (end)
 
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if !(hasInterface) exitWith {};
+if (!hasInterface OR {!canSuspend}) exitWith {};
 
 // if they have an object in hand
 if !(isNil "BLWK_heldObject") exitWith {
@@ -32,13 +32,15 @@ if !(isNil "BLWK_heldObject") exitWith {
 	false
 };
 
+#include "..\..\Headers\Wait For Transfer Inline.hpp"
+
 params [
 	["_object",objNull,[objNull]],
 	["_player",player,[objNull]],
 	["_justPurchased",false,[true]]
 ];
 
-[_object] call BLWK_fnc_locality;
+//[_object] call BLWK_fnc_locality;
 
 // get attachment info from global build objects array
 private _objectType = typeOf _object;
@@ -50,6 +52,7 @@ if (_justPurchased) then {
 	_object attachTo [_player,_attachmentInfo select 1];
 	_object setDir (_attachmentInfo select 0);
 } else {
+	WAIT_FOR_OWNERSHIP(_object)
 	[_object,_player,true] remoteExecCall ["BIS_fnc_attachToRelative",_object];
 };
 
@@ -79,7 +82,6 @@ missionNamespace setVariable ["BLWK_heldObject",_object];
 			
 			// check to see if object was already dropped (if the fnc was already called, BLWK_heldObjectActionIDs will have been set to nil)
 			if (!isNil "BLWK_heldObjectActionIDs") then {
-				//CIPHER COMMENT: the actions will be removed from the player via BLWK_heldObjectActionIDs. delete comment once done
 				[_object] call BLWK_fnc_placeObject;
 			};
 
