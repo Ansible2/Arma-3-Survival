@@ -23,6 +23,8 @@ Author:
 	BangaBob (H8erMaker),
 	Modified By: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+waitUntil {!isNil "BLWK_dontUseRevive"};
+
 if (!hasInterface OR {!canSuspend} OR {BLWK_dontUseRevive}) exitWith {};
 
 params ["_unit"];
