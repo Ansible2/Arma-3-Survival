@@ -41,6 +41,8 @@ private ["_currentMagazineClass_temp","_magType_temp","_numberOfMags_temp","_mag
 private _fn_pushToSorted = {
 	_sortedMagClasses pushBack _currentMagazineClass_temp;
 };
+
+// sort the mags in on the player to find those that can be repacked
 private "_totalBulletsForClass_temp";
 private _playerMagsSorted = [];
 _playerMags apply {
@@ -50,7 +52,7 @@ _playerMags apply {
 	// see if mag class was already sorted
 	if !(_currentMagazineClass_temp in _sortedMagClasses) then {
 		_magType_temp = ([_currentMagazineClass_temp] call BIS_fnc_itemType) select 1;
-		// sort through mags that are grenades, flares, etc.
+		// sort through mags to get those that aren't are grenades, flares, etc.
 		if (_magType_temp == "Bullet" OR {_magType_temp == "Missile"} OR {_magType_temp == "Rocket"}) then {
 			// check to make sure there are multiple mags of this type in the units inventory
 			_allMagsOfClass_temp = _playerMags select {(_x select 0) == _currentMagazineClass_temp};
@@ -68,6 +70,26 @@ _playerMags apply {
 	};
 };
 
+
+private _fn_magTypeInWeapon = {
+	if (_magClassnameTemp == _primaryWeaponMagClass) exitWith {
+		_player removePrimaryWeaponItem _magClassnameTemp;
+		_player addPrimaryWeaponItem _magClassnameTemp;
+		true
+	};
+	if (_magClassnameTemp == _handgunWeaponMagClass) exitWith {
+		_player removeHandgunItem _magClassnameTemp;
+		_player addHandgunItem _magClassnameTemp;
+		true
+	};
+	if (_magClassnameTemp == _secondaryWeaponMagClass) exitWith {
+		_player removeSecondaryWeaponItem _magClassnameTemp;
+		_player addSecondaryWeaponItem _magClassnameTemp;
+		true
+	};
+
+	false
+};
 // if there are no mags to repack, just hint
 if !(_playerMagsSorted isEqualTo []) then {
 	_player playMove "AinvPknlMstpSnonWnonDr_medic2";
@@ -81,35 +103,37 @@ if !(_playerMagsSorted isEqualTo []) then {
 	_playerMagsSorted apply {
 		_magClassnameTemp = _x select 0;
 		_totalBulletCountForClass = _x select 1;
-		
 		_magCapacity = getNumber (configFile >> "CfgMagazines" >> _magClassnameTemp >> "Count");
-		_numberOfFullMagsToAdd = floor (_totalBulletCountForClass / _magCapacity);
 		
-		// if these are the chambered ammos, take one full mag and insert it into the proper gun
-		if (_magClassnameTemp == _primaryWeaponMagClass) then {
-			_player removePrimaryWeaponItem _magClassnameTemp;
-			_player addPrimaryWeaponItem _magClassnameTemp;
-			_numberOfFullMagsToAdd = _numberOfFullMagsToAdd - 1;
-		};
-		if (_magClassnameTemp == _handgunWeaponMagClass) then {
-			_player removeHandgunItem _magClassnameTemp;
-			_player addHandgunItem _magClassnameTemp;
-			_numberOfFullMagsToAdd = _numberOfFullMagsToAdd - 1;
-		};
-		if (_magClassnameTemp == _secondaryWeaponMagClass) then {
-			_player removeSecondaryWeaponItem _magClassnameTemp;
-			_player addSecondaryWeaponItem _magClassnameTemp;
-			_numberOfFullMagsToAdd = _numberOfFullMagsToAdd - 1;
-		};
-		
-		// remove every mag (that's not in the gun) including empty ones
-		_player removeMagazines _magClassnameTemp;
-		_player addMagazines [_magClassnameTemp,_numberOfFullMagsToAdd];
+		// if the total bullets for the mag are not going to equal more than one mag
+		if (_totalBulletCountForClass <= _magCapacity) then {
+			if (call _fn_magTypeInWeapon) then {
+				private _index = [_primaryWeaponMagClass,_handgunWeaponMagClass,_secondaryWeaponMagClass] findIf {_x == _magClassnameTemp};
+				switch _index do {
+					case 0: {_player setAmmo [primaryWeapon _player,_totalBulletCountForClass]};
+					case 1: {_player setAmmo [handgunWeapon _player,_totalBulletCountForClass]};
+					case 2: {_player setAmmo [secondaryWeapon _player,_totalBulletCountForClass]};
+				};
+			} else {
+				_player addMagazine [_magClassnameTemp,_totalBulletCountForClass];
+			};
+		} else {		
+			_numberOfFullMagsToAdd = floor (_totalBulletCountForClass / _magCapacity);
+			
+			// if the mag type is currently inserted into a weapon
+			if (call _fn_magTypeInWeapon) then {
+				_numberOfFullMagsToAdd = _numberOfFullMagsToAdd - 1;
+			};
+			
+			// remove every mag (that's not in the gun) including empty ones
+			_player removeMagazines _magClassnameTemp;
+			_player addMagazines [_magClassnameTemp,_numberOfFullMagsToAdd];
 
-		// check for if we need that one not full mag to hold the excess ammo
-		_remainderMagBulletCount = _totalBulletCountForClass mod _magCapacity;
-		if !(_remainderMagBulletCount isEqualTo 0) then {
-			_player addMagazine [_magClassnameTemp,_remainderMagBulletCount];
+			// check for if we need that one not full mag to hold the excess ammo
+			_remainderMagBulletCount = _totalBulletCountForClass mod _magCapacity;
+			if !(_remainderMagBulletCount isEqualTo 0) then {
+				_player addMagazine [_magClassnameTemp,_remainderMagBulletCount];
+			};
 		};
 	};
 
