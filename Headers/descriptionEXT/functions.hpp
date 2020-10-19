@@ -65,6 +65,8 @@ class BLWK
 		{};
 		class bulwarkBuildingsLoop
 		{};
+		class createBattleAmbienceSound
+		{};
 		class faksToMedkitLoop
 		{};
 		class getHeadless
