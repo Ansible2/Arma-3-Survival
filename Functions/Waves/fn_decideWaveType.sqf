@@ -50,9 +50,6 @@ private _fn_getWaveType = {
 };
 
 private _selectedWaveType = call _fn_getWaveType;
-
-
-
 private _fn_execWave = {
 	if (_selectedWaveType == STANDARD_WAVE) exitWith {
 		null = remoteExec ["BLWK_fnc_handleStandardWave",BLWK_theAIHandlerEntity];
@@ -95,7 +92,9 @@ private _fn_execWave = {
 private _notification = call _fn_execWave;
 private _players = call CBAP_fnc_players;
 _notification remoteExec ["BIS_fnc_showNotification", _players];
-["Alarm"] remoteExec ["playSound", _players];
+if (_selectedWaveType != STANDARD_WAVE) then {
+	["Alarm"] remoteExec ["playSound", _players];
+};
 
 
 true
