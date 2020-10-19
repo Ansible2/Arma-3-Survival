@@ -96,8 +96,8 @@ if (isServer) then {
     // check if headless client is loaded
     // CIPHER COMMENT: may want to add an owner param too for use with setVariable
     private _headless = call BLWK_fnc_getHeadless;
-    private _logicCenter = createCenter sideLogic;
-    private _logicGroup = createGroup _logicCenter;
+    BLWK_logicCenter = createCenter sideLogic;
+    private _logicGroup = createGroup BLWK_logicCenter;
     private _serverlogic = _logicGroup createUnit ["Logic", [0,0,0], [], 0, "NONE"];
     BLWK_theAIHandlerEntity = [_headless,_serverlogic] select (isNull _headless);
     publicVariable "BLWK_theAIHandlerEntity";

@@ -21,6 +21,8 @@ if (BLWK_buildingsNearBulwarkAreIndestructable_radius > 0) then {
 
 call BLWK_fnc_spawnLoot;
 
+null = [] spawn BLWK_fnc_createBattleAmbienceSound;
+
 sleep (BLWK_timeBetweenRounds - 15);
 null = remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
 sleep 15;

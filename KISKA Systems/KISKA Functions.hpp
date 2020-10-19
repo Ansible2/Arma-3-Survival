@@ -3,7 +3,7 @@ class KISKA
 	class DynamicViewDistance
 	{
 		file = "KISKA Systems\View Distance Limiter\Functions";
-		class addOpenVdlGuiAction
+		class addOpenVdlGuiDiary
 		{
 			postInit = 1;
 		};
@@ -24,6 +24,12 @@ class KISKA
 		class setVdlValue
 		{};
 		class viewDistanceLimiter
+		{};
+	};
+	class KISKA_sounds
+	{
+		file = "KISKA Systems\KISKA Sound Functions";
+		class battleSound
 		{};
 	};
 };
