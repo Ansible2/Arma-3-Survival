@@ -1,10 +1,8 @@
 /* ----------------------------------------------------------------------------
-Function: KISKA_fnc_addOpenVdlGuiAction
+Function: KISKA_fnc_addOpenVdlGuiDiary
 
 Description:
-	Creates a diary entry to open the VDL dialog
-
-	Executed from an action added in "BLWK_fnc_prepareBulwarkPlayer"
+	Creates a diary entry to open the VDL dialog.
 
 Parameters:
 	NONE
@@ -20,8 +18,7 @@ Examples:
     (end)
 
 Author:
-	Hilltop & omNomios,
-	Modified by: Ansible2 // Cipher
+	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 waitUntil {!isNull player};
 
