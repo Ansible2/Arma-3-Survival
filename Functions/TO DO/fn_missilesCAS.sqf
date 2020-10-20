@@ -321,6 +321,28 @@ if (_weaponsToUse isEqualTo []) exitwith {
 };
 
 
+
+
+BLWK_fnc_casAttack = {
+	params ["_plane","_dummyTarget","_weaponsToUse","_attackTypeID"];
+	if (_attackTypeID isEqualTo GUN_RUN_ID) exitWith {
+		
+	};
+	if (_attackTypeID isEqualTo ROCKETS_ID) exitWith {
+
+	};
+	if (_attackTypeID isEqualTo GUNS_AND_ROCKETS_ID) exitWith {
+
+	};
+	if (_attackTypeID isEqualTo BOMBS_ID) exitWith {
+
+	};
+};
+
+
+
+
+
 #define ATTACK_HEIGHT 1000
 #define ATTACK_DISTANCE 3000
 
@@ -399,11 +421,7 @@ while {!(_plane getVariable ["BLWK_completedFiring",false])} do {
 			_plane dowatch lasertarget _dummyTarget;
 			_plane dotarget lasertarget _dummyTarget;
 
-			null = [_plane,_dummyTarget,_weaponsToUse,_attackTypeID] spawn {
-				params ["_plane","_dummyTarget","_weaponsToUse","_attackTypeID"];
-
-
-			};
+			null = [_plane,_dummyTarget,_weaponsToUse,_attackTypeID] spawn BLWK_fnc_casAttack;
 		} else {
 			// ensures strafing effect with the above setVelocityTransformation
 			if !("bomblauncher" in _attackTypesString) then {
