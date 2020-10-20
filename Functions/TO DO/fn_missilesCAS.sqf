@@ -335,7 +335,7 @@ _plane setcombatmode "blue";
 
 // angling the plane towards the target
 if (_attackPosition isEqualType objNull) then {
-	_attackPosition = getPosATL _attackPosition;
+	_attackPosition = getPosASL _attackPosition;
 };
 // yaw
 private _planeVectorDir = _planeSpawnPosition vectorFromTo _attackPosition;
@@ -345,7 +345,7 @@ private _planePitch = atan (ATTACK_DISTANCE / ATTACK_HEIGHT);
 [_plane,-90 + _planePitch,0] call BIS_fnc_setPitchBank;
 
 // set plane's speed to 200 km/h
-#define PLANE_SPEED 55.55556
+#define PLANE_SPEED 55.55556 // m/s
 #define PLANE_VELOCITY(THE_SPEED) [0,THE_SPEED,0]
 _plane setVelocityModelSpace PLANE_VELOCITY(PLANE_SPEED);
 
@@ -357,48 +357,39 @@ _planeVectorDir = vectorDirVisual _plane;
 
 // the absolute max distance between target and plane to avoid a crash
 #define BREAK_OFF_DISTANCE 500
-private _angleToPlane = abs (acos ((_attackPosition distance2D _plane) / (_attackPosition distance _plane)));
-
-
-
-_dist = player distance myplane;
-_dist2d = player distance2d myplane;
-_distToPoint = _dist / 6;
-
-private _angleToPlane = abs (acos(_dist2d / _dist));
-
-private _theX = _distToPoint * (cos _angleToPlane) * (sin (player getRelDir myplane));
-private _theY = _distToPoint * (sin _angleToPlane) * (sin (player getRelDir myplane));
-private _theZ = _distToPoint * (cos _angleToPlane)
-
-_newpos = [_thex,_theY,_theZ];
-
-player setPosATL _newpos
+private _angleToPlane = abs (acos ((_attackPosition distance2D _plane) / (_attackPosition vectorDistance _plane)));
 
 
 
 
-private _breakOffPosition = (_attackPosition getPos [BREAK_OFF_DISTANCE,_attackPosition getRelDir _plane]);
 private _distanceToTarget = _attackPosition distance _plane;
-private _flightTime = _distanceToTarget - BREAK_OFF_DISTANCE;
+private _flightTime = (_distanceToTarget - BREAK_OFF_DISTANCE) / PLANE_SPEED;
+private _startTime = time;
+private _timeAfterFlight = time + _flightTime;
 
 
 private _completedFiring = false;
+private "_interval";
 _plane setVariable ["_fireProgress",0];
 while {!_completedFiring} do {
 	//--- Set the plane approach vector
+	_interval = linearConversion [_startTime,_timeAfterFlight,time,0,1];
 	_plane setVelocityTransformation [
 		_planeSpawnPosition, _attackPosition,
 		PLANE_VELOCITY(PLANE_SPEED), PLANE_VELOCITY(PLANE_SPEED),
 		_planeVectorDir,_planeVectorDir,
 		_planeVectorUp, _planeVectorUp,
-		(time - _time) / _attackDuration
+		_interval
 	];
-	// ensures strafing effect
-	if !("bomblauncher" in _attackTypesString) then {
-		_attackPosition = _attackPosition + 1;
+	if ((getPosASLVisual _plane) vectorDistance _attackPosition <= 1000) then {
+		// ensures strafing effect
+		if !("bomblauncher" in _attackTypesString) then {
+			_attackPosition = _attackPosition + 1;
+		};
+		//_plane setVelocityModelSpace PLANE_VELOCITY(PLANE_SPEED);
+
+		
 	};
-	_plane setvelocity velocity _plane;
 
 
 
@@ -409,8 +400,7 @@ while {!_completedFiring} do {
 
 
 
-
-
+	sleep 0.01;
 };
 
 
