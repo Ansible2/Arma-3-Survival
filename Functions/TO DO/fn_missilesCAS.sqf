@@ -268,7 +268,7 @@ params [
 	["_attackPosition",objNull,[[],objNull]],
 	["_planeClass","B_Plane_CAS_01_F",[""]],
 	["_attackDirection",0,[123]],
-	["_attackTypes",0,[123]]
+	["_attackTypeID",0,[123]]
 ];
 
 if (_attackPosition isEqualType objNull AND {isNull _attackPosition}) exitWith {
@@ -283,11 +283,16 @@ if !(isclass _planeCfg) exitwith {
 	false
 };
 
-private _attackTypesString = switch _attackTypes do {
-	case 0: {["machinegun"]};
-	case 1: {["missilelauncher"]};
-	case 2: {["machinegun","missilelauncher"]};
-	case 3: {["bomblauncher"]};
+
+#define GUN_RUN_ID 0
+#define ROCKETS_ID 1
+#define GUNS_AND_ROCKETS_ID 2
+#define BOMBS_ID 3
+private _attackTypesString = switch _attackTypeID do {
+	case GUN_RUN_ID: {["machinegun"]};
+	case ROCKETS_ID: {["missilelauncher"]};
+	case GUNS_AND_ROCKETS_ID: {["machinegun","missilelauncher"]};
+	case BOMBS_ID: {["bomblauncher"]};
 	default {[]};
 };
 
@@ -296,8 +301,8 @@ private _weaponsToUse = [];
 private _planeClassWeapons = _planeClass call bis_fnc_weaponsEntityType;
 private ["_modes_temp","_mode_temp"];
 _planeClassWeapons apply {
-	// get weapon type to see if it matches any in the _attackTypes array
-	if (tolower ((_x call bis_fnc_itemType) select 1) in _attackTypes) then {
+	// get weapon type to see if it matches any in the _attackTypesString array
+	if (tolower ((_x call bis_fnc_itemType) select 1) in _attackTypesString) then {
 		// get the weapon's modes
 		_modes_temp = getarray (configfile >> "cfgweapons" >> _x >> "modes");
 		if (count _modes_temp > 0) then {
@@ -310,7 +315,7 @@ _planeClassWeapons apply {
 	};
 };
 if (_weaponsToUse isEqualTo []) exitwith {
-	["No weapon of types %2 wound on '%1'",_planeClass,_attackTypes] call BIS_fnc_error; 
+	["No weapon of types %2 wound on '%1'",_planeClass,_attackTypesString] call BIS_fnc_error; 
 	
 	false
 };
@@ -350,28 +355,23 @@ private _planePitch = atan (ATTACK_DISTANCE / ATTACK_HEIGHT);
 _plane setVelocityModelSpace PLANE_VELOCITY(PLANE_SPEED);
 
 // time on target
-//private _time = time;
-//private _offset = [0,20] select ("missilelaunscher" in _attackTypesString);
+// private _time = time;
+// private _offset = [0,20] select ("missilelaunscher" in _attackTypesString);
 private _planeVectorUp = vectorUpVisual _plane;
 _planeVectorDir = vectorDirVisual _plane;
 
-// the absolute max distance between target and plane to avoid a crash
+// get flight characteristics to steer the plane onto target
 #define BREAK_OFF_DISTANCE 500
 private _angleToPlane = abs (acos ((_attackPosition distance2D _plane) / (_attackPosition vectorDistance _plane)));
-
-
-
-
 private _distanceToTarget = _attackPosition distance _plane;
 private _flightTime = (_distanceToTarget - BREAK_OFF_DISTANCE) / PLANE_SPEED;
 private _startTime = time;
 private _timeAfterFlight = time + _flightTime;
 
 
-private _completedFiring = false;
+
 private "_interval";
-_plane setVariable ["_fireProgress",0];
-while {!_completedFiring} do {
+while {!(_plane getVariable ["BLWK_completedFiring",false])} do {
 	//--- Set the plane approach vector
 	_interval = linearConversion [_startTime,_timeAfterFlight,time,0,1];
 	_plane setVelocityTransformation [
@@ -381,14 +381,36 @@ while {!_completedFiring} do {
 		_planeVectorUp, _planeVectorUp,
 		_interval
 	];
-	if ((getPosASLVisual _plane) vectorDistance _attackPosition <= 1000) then {
-		// ensures strafing effect
-		if !("bomblauncher" in _attackTypesString) then {
-			_attackPosition = _attackPosition + 1;
-		};
-		//_plane setVelocityModelSpace PLANE_VELOCITY(PLANE_SPEED);
+	//_plane setVelocityModelSpace PLANE_VELOCITY(PLANE_SPEED);
 
+
+	// start firing
+	// check if plane is 1000m from target and hasn't already started shooting
+	if ((getPosASLVisual _plane) vectorDistance _attackPosition <= 1000) then {
 		
+		private "_dummyTarget";
+		if !(_plane getVariable ["BLWK_startedFiring",false]) then {
+			_plane setVariable ["BLWK_startedFiring",true];
+			// create a target to shoot at
+			private _dummyTargetClass = ["LaserTargetE","LaserTargetW"] select (_planeSide getfriend west > 0.6);
+			_dummyTarget = createvehicle [_dummyTargetClass,[0,0,0],[],0,"NONE"];
+			_dummyTarget setPosASL _attackPosition;	
+			_plane reveal lasertarget _dummyTarget;
+			_plane dowatch lasertarget _dummyTarget;
+			_plane dotarget lasertarget _dummyTarget;
+
+			null = [_plane,_dummyTarget,_weaponsToUse,_attackTypeID] spawn {
+				params ["_plane","_dummyTarget","_weaponsToUse","_attackTypeID"];
+
+
+			};
+		} else {
+			// ensures strafing effect with the above setVelocityTransformation
+			if !("bomblauncher" in _attackTypesString) then {
+				_attackPosition = AGLToASL(_dummyTarget getPos [1,getDir _plane])
+				_dummyTarget setPosASL _attackPosition;
+			};
+		};
 	};
 
 
@@ -403,14 +425,3 @@ while {!_completedFiring} do {
 	sleep 0.01;
 };
 
-
-
-
-
-
-
-
-
-
-private _attackVelocity = _planeVectorDir vectorMultiply ATTACK_SPEED;
-private _attackDuration = ([0,0] distance [ATTACK_DISTANCE,ATTACK_HEIGHT]) / _speed;
