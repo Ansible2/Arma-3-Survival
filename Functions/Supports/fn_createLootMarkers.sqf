@@ -53,9 +53,14 @@ private _fn_setUpMarker = {
 	_marker setMarkerAlpha 0.60;
 	
 	// see what type of loot it is
-	private _lootClassName = _lootHolder getVariable "BLWK_primaryLootClass";
-	private _config = ([_lootClassName] call CBAP_fnc_getItemConfig) select 0;
-	_marker setMarkerText ([_config] call BIS_fnc_displayName);
+	private _lootClassName = _lootHolder getVariable ["BLWK_primaryLootClass",""];
+	if (_lootClassName isEqualTo "") then {
+		_marker setMarkerText "Unknown";
+	} else {
+		private _config = ([_lootClassName] call CBAP_fnc_getItemConfig) select 0;
+		_marker setMarkerText ([_config] call BIS_fnc_displayName);
+	};
+	
 	private _categoryAndType = [_lootClassName] call BIS_fnc_itemType;
 	private _category = _categoryAndType select 0;
 	private _type = _categoryAndType select 1;
