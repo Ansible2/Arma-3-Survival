@@ -30,5 +30,5 @@ for "_i" from 1 to 3 do {
 	_logicPosition = BLWK_playAreaCenter getPos [_distanceFromCenter, random 360]; 
 	_logic setPos _logicPosition;
 
-	null = [_logic,_distanceFromCenter + 175,999999,1] spawn KISKA_fnc_battleSound;
+	null = [_logic,_distanceFromCenter + 225,999999,1] spawn KISKA_fnc_battleSound;
 };
