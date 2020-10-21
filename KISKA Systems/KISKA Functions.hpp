@@ -32,4 +32,16 @@ class KISKA
 		class battleSound
 		{};
 	};
+	class KISKA_utillities
+	{
+		file = "KISKA Systems\KISKA Utility Functions";
+		class addArsenal
+		{};
+		class isPatchLoaded
+		{};
+		class removeArsenal
+		{};
+		class supplyDrop
+		{};
+	};
 };

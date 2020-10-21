@@ -85,7 +85,7 @@ if (isServer OR {!hasInterface}) then {
     BLWK_maxEnemyInfantryAtOnce = ("BLWK_maxEnemyInfantryAtOnce" call BIS_fnc_getParamValue);
 
     // used for chaning medical items of OPTRE units (biofoam to FAKs)
-    BLWK_isOptreLoaded = ["OPTRE_core"] call BLWK_fnc_isPatchLoaded;
+    BLWK_isOptreLoaded = ["OPTRE_core"] call KISKA_fnc_ispatchLoaded;
 };
 if (isServer) then {
     // We don't need to constantly check if the server is dedicated, and we only want to run things like
@@ -183,7 +183,7 @@ if (hasInterface) then {
     BLWK_magRepackEnabled = [false,true] select ("BLWK_magRepackEnabled" call BIS_fnc_getParamValue);
     BLWK_dontUseRevive = (("ReviveMode" call BIS_fnc_getParamValue) isEqualTo 0);
 
-    BLWK_ACELoaded = ["ACE_Medical_StateMachine"] call BLWK_fnc_isPatchLoaded;
+    BLWK_ACELoaded = ["ACE_Medical_StateMachine"] call KISKA_fnc_ispatchLoaded;
 
     // this is to have potential supports that put the player outside the immediate radius
     // it is false until the play area is established
@@ -191,8 +191,6 @@ if (hasInterface) then {
         BLWK_enforceArea = false;
     };
 
-    // used for queing up kill points since two events can simaltaneously add points
-    //BLWK_killPointsQue = [];
 };
 if (isNil "BLWK_currentWaveNumber") then {
     BLWK_currentWaveNumber = 0;

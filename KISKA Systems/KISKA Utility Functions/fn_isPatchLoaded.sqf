@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: KISKA_fnc_ispatchLoaded
+Function: KISKA_fnc_isPatchLoaded
 
 Description:
 	Simply checks a config name to see if it is loaded under CFGPatches
@@ -13,7 +13,7 @@ Returns:
 Examples:
     (begin example)
 
-		["OPTRE_Core"] call KISKA_fnc_ispatchLoaded;
+		["OPTRE_Core"] call KISKA_fnc_isPatchLoaded;
 
     (end)
 

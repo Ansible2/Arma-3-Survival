@@ -120,8 +120,6 @@ class BLWK
 		{};
 		class handleEnemyWeapons
 		{};
-		class isPatchLoaded
-		{};
 		class openShopGUI
 		{};
 		class optreMedicalToVanilla
