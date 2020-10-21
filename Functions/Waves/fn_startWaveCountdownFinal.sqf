@@ -28,11 +28,7 @@ if (!hasInterface) exitWith {};
 
 private _countDown = 15;
 while {_countDown >= 0} do {
-/*	
-	if (_countDown isEqualTo 0) exitWith {
-		playSound "Alarm";
-	};
-*/
+
 	if (_countDown <= 10) then {
 		playSound "beep_target";
 	};
