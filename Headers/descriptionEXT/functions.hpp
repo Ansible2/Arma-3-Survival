@@ -128,6 +128,8 @@ class BLWK
 		{};
 		class randomizeWeapons
 		{};
+		class reassignCurator
+		{};
 		class removeReviveEhs
 		{};
 		class spinRandomWeaponBox

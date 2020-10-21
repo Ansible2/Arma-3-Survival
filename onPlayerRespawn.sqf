@@ -28,15 +28,4 @@ if !(missionNamespace getVariable ["BLWK_inBetweenWaves",false]) then {
     missionNamespace setVariable ["BLWK_numRespawnTickets",_remainingTickets,true];
 };
 
-
-// sometimes zeus can be lost on respawn
-if ((call BIS_fnc_admin) > 0 AND {isNull (getAssignedCuratorUnit BLWK_zeus)}) then {  
-    waitUntil {
-        if !(isNull (getAssignedCuratorLogic _player)) exitWith {
-            true
-        };
-        [BLWK_zeus,_player] remoteExec ["assignCurator",2];
-        sleep 2;
-        false
-    };
-};
+call BLWK_fnc_reassignCurator;
