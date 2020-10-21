@@ -28,7 +28,7 @@ if (!hasInterface OR {BLWK_dontUseRevive}) exitWith {};
 params [
 	["_player",player,[objNull]]
 ];
-// add a drag action to every player to be ablet to drag you
+// add a drag action to every player to be able to drag you
 // the action will have a condition to keep it from always being shown
 [_player] remoteExec ["BLWK_fnc_addDragAction",BLWK_allClientsTargetID,true];
 
