@@ -73,6 +73,8 @@ missionNamespace setVariable ["BLWK_heldObject",_object];
 // add every action to the player for or them to manipulate the object while it is being held
 [_object,_player] call BLWK_fnc_addPickedUpObjectActions;
 
+
+
 // this loop is checking to see if the player is unconcious or dead
 /// if they are, they drop the object
 [_object,_player] spawn {
