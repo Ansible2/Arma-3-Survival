@@ -60,15 +60,6 @@ _missile setShotParents [_launcher,gunner _launcher];
 
 _missile setMissileTarget _laserTarget;
 
-[_missile] spawn {
-	params ["_missile"];
-	while {alive _missile} do {
-		sleep 1;
-
-		hint str (getPosATL _missile)
-	};
-};
-
 waitUntil {
 	if (!alive _missile) exitWith {true};
 	sleep 5;
