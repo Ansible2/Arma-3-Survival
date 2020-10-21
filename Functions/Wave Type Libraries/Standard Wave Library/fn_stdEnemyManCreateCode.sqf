@@ -37,7 +37,6 @@ _group allowFleeing 0;
 null = [_group] spawn BLWK_fnc_stalkPlayers;
 
 
-
 // add to server's list of units that must be dead before the round can end
 null = [_unit] remoteExec ["BLWK_fnc_addToMustKillArray",2];
 null = [BLWK_zeus, [[_unit],false]] remoteExec ["addCuratorEditableObjects",2];
