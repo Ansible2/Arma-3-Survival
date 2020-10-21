@@ -67,7 +67,8 @@ _bulwark addAction [
 _bulwark addEventHandler ["ContainerOpened",{
 	params ["_bulwark"];
 	if !(BLWK_dontUseRevive) then {
-		hint "You can place 15 First Aid Kits in the Bulwark to make automatically make a Medkit";
+		
+		hint (format ["You can place %1 First Aid Kits in the Bulwark to make automatically make a Medkit",BLWK_faksToMakeMedkit]);
 		// only show once
 		_bulwark removeEventHandler ["ContainerOpened",_thisEventHandler];
 	};

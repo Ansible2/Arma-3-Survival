@@ -144,7 +144,6 @@ if (isServer) then {
 
     /* Starter MediKits */
     BLWK_numMedKits = ("BLWK_numMedKits" call BIS_fnc_getParamValue);
-    BLWK_faksToMakeMedkit = ("BLWK_faksToMakeMedkit" call BIS_fnc_getParamValue);
 
     BLWK_timeBetweenRounds = ("BLWK_timeBetweenRounds" call BIS_fnc_getParamValue);
     BLWK_maxNumWaves = ("BLWK_maxNumWaves" call BIS_fnc_getParamValue);
@@ -206,6 +205,9 @@ if (isNil "BLWK_numRespawnTickets") then {
 };
 if (isNil "BLWK_playAreaRadius") then {
     BLWK_playAreaRadius = ("BLWK_playAreaRadius" call BIS_fnc_getParamValue); // Total play area radius in meters
+};
+if (isNil "BLWK_faksToMakeMedkit") then {
+    BLWK_faksToMakeMedkit = ("BLWK_faksToMakeMedkit" call BIS_fnc_getParamValue);
 };
 
 /* Points */
