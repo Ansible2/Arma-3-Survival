@@ -2,7 +2,7 @@
 Function: BLWK_fnc_arsenalSupplyDrop
 
 Description:
-	Sets the unit's skill based upon the current wave number
+	Spawns in an aircraft that flies over a DZ to drop off an arsenal.
 
 Parameters:
 	0: _dropPosition : <ARRAY> - The position (area) to drop the arsenal
@@ -22,8 +22,8 @@ Author:
 	Hilltop & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define DROP_ALT 700
-#define FLY_RADIUS 1000
+#define DROP_ALT 200
+#define FLY_RADIUS 2000
 #define ARSENAL_LIFETIME 300
 params [
 	"_dropPosition",
@@ -32,51 +32,59 @@ params [
 
 // get directions for vehicle to fly 
 private _flyDirection = round (random 360);
-private _flyFromDirection = [_flyDirection] call CBAP_fnc_simplifyAngle;
+private _flyFromDirection = [_flyDirection + 180] call CBAP_fnc_simplifyAngle;
 private _spawnPosition = _dropPosition getPos [FLY_RADIUS,_flyFromDirection];
 _spawnPosition set [2,DROP_ALT];
 
+private _relativeDirection = _spawnPosition getDir _dropPosition;
+
 // spawn vehicle
-private _vehicleArray = [_spawnPosition,_flyDirection,_vehicleClass,BLUFOR] call BIS_fnc_spawnVehicle
+private _vehicleArray = [_spawnPosition,_relativeDirection,_vehicleClass,BLUFOR] call BIS_fnc_spawnVehicle;
 private _aircraft = _vehicleArray select 0;
 private _aircraftCrew = _vehicleArray select 1;
+
 _aircraftCrew apply {
 	_x setCaptive true;
 };
 private _aircraftGroup = _vehicleArray select 2;
 _aircraft flyInHeight DROP_ALT;
 
-// give it a waypoint and delete it after it gets there
-private _flyToPosition = _dropPosition getPos [FLY_RADIUS,_flyDirection];
-[
-	_aircraftGroup,
-	_flyToPosition,
-	-1,
-	"MOVE",
-	"SAFE",
-	"BLUE",
-	"FULL",
-	"NO CHANGE",
-	"
-		private _aircraft = objectParent this;
-		thisList apply {
-			_aircraft deleteVehicleCrew _x;
-		};
-		deleteVehicle _aircraft;
-	",
-	[0,0,0],
-	50
-] call CBAP_fnc_addWaypoint;
+_airCraft move _dropPosition;
 
-null = [_aircraft,_dropPosition] spawn {
-	params ["_aircraft","_dropPosition"];
+// give it a waypoint and delete it after it gets there
+private _flyToPosition = _dropPosition getPos [FLY_RADIUS,_relativeDirection];
+
+null = [_aircraft,_dropPosition,_aircraftGroup,_flyToPosition] spawn {
+	params ["_aircraft","_dropPosition","_aircraftGroup","_flyToPosition"];
 	waitUntil {
-		if (_aircraft distance2D _dropPosition < 20) exitWith {true};
-		sleep 1;
+		if (_aircraft distance2D _dropPosition < 40) exitWith {true};
+		sleep 0.25;
 		false
 	};
 
-	sleep 1;
+	// go to deletion point
+	[
+		_aircraftGroup,
+		_flyToPosition,
+		-1,
+		"MOVE",
+		"SAFE",
+		"BLUE",
+		"NORMAL",
+		"NO CHANGE",
+		"
+			private _aircraft = objectParent this;
+			thisList apply {
+				_aircraft deleteVehicleCrew _x;
+			};
+			deleteVehicle _aircraft;
+		",
+		[0,0,0],
+		50
+	] call CBAP_fnc_addWaypoint;
+
+
+	sleep 0.1;
 	
 	private _aircraftAlt = (getPosATL _aircraft) select 2;
 	private _boxSpawnPosition = _aircraft getRelPos [15,180];
