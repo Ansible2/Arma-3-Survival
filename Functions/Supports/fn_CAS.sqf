@@ -3,6 +3,7 @@ params [
 	["_attackTypeID",0,[123]],
 	["_attackDirection",0,[123]],
 	["_planeClass","B_Plane_CAS_01_F",[""]]
+	
 ];
 
 if (_attackPosition isEqualType objNull AND {isNull _attackPosition} OR {_attackPosition isEqualTo []}) exitWith {
@@ -13,9 +14,10 @@ if (_attackPosition isEqualType objNull AND {isNull _attackPosition} OR {_attack
 
 private _planeCfg = configfile >> "cfgvehicles" >> _planeClass;
 if !(isclass _planeCfg) exitwith {
-	["Vehicle class '%1' not found",_planeClass] call bis_fnc_error;
+	["Vehicle class '%1' not found",_planeClass] call BIS_fnc_error; 
 	false
 };
+
 
 #define GUN_RUN_ID 0
 #define ROCKETS_ID 1
@@ -29,24 +31,18 @@ private _attackTypesString = switch _attackTypeID do {
 	default {[]};
 };
 
-if (_attackTypesString isEqualTo []) exitWith {
-	["Attack type ID %1 is invalid",_attackTypeID] call BIS_fnc_error;
-
-	false
-};
-
 // get planes weapon lists
 private _weaponsToUse = [];
-private _planeClassWeapons = _planeClass call bis_fnc_weaponsEntityType;
+private _planeClassWeapons = _planeClass call BIS_fnc_weaponsEntityType;
 private ["_fireModes_temp","_mode_temp","_weaponType_temp"];
 _planeClassWeapons apply {
 
 	// get weapon type to see if it matches any in the _attackTypesString array
 	// "in" command is CASE SENSETIVE
-	_weaponType_temp = tolower ((_x call bis_fnc_itemType) select 1);
+	_weaponType_temp = tolower ((_x call BIS_fnc_itemType) select 1);
 	if (_weaponType_temp in _attackTypesString) then {
 		// get the weapon's modes
-		_fireModes_temp = getarray (configfile >> "cfgweapons" >> _x >> "modes");
+		_fireModes_temp = getarray(configfile >> "cfgweapons" >> _x >> "modes");
 		if (count _fireModes_temp > 0) then {
 			_mode_temp = _fireModes_temp select 0;
 			if (_mode_temp == "this") then {
@@ -58,8 +54,8 @@ _planeClassWeapons apply {
 	};
 };
 if (_weaponsToUse isEqualTo []) exitwith {
-	["No weapon of types %2 found on '%1'",_planeClass,_attackTypesString] call BIS_fnc_error;
-
+	["No weapon of types %2 found on '%1'",_planeClass,_attackTypesString] call BIS_fnc_error; 
+	
 	false
 };
 
@@ -67,11 +63,13 @@ if (_weaponsToUse isEqualTo []) exitwith {
 #define ATTACK_HEIGHT 1000
 #define ATTACK_DISTANCE 3000
 
-private _planeSpawnPosition = AGLToASL(_attackPosition getPos [ATTACK_DISTANCE,_attackDirection + 180]);
-_planeSpawnPosition = _planeSpawnPosition vectorAdd [0,0,ATTACK_HEIGHT];
+private _planeSpawnPosition = _attackPosition getPos [ATTACK_DISTANCE,_attackDirection + 180];
+_planeSpawnPosition set [2,ATTACK_HEIGHT];
 private _planeSide = (getnumber (_planeCfg >> "side")) call BIS_fnc_sideType;
 private _planeArray = [_planeSpawnPosition,_attackDirection,_planeClass,_planeSide] call BIS_fnc_spawnVehicle;
 private _plane = _planeArray select 0;
+_plane setPosASL _planeSpawnPosition;
+_plane setDir _attackDirection;
 
 // telling the plane to ultimately fly past the target after we're done controlling it
 _plane move (_attackPosition getPos [ATTACK_DISTANCE,_attackDirection]);
@@ -83,12 +81,13 @@ _plane setcombatmode "blue";
 
 // angling the plane towards the target
 if (_attackPosition isEqualType objNull) then {
-	_attackPosition = getPosASL _attackPosition;
+	_attackPosition = getPosASLVisual _attackPosition;
 };
 //_attackPosition = AGLToASL(_attackPosition getPos [100,_attackDirection + 180]);
 
 // yaw
-private _planeVectorDir = _planeSpawnPosition vectorFromTo _attackPosition;
+private _planePositionASL = getPosASLVisual _plane;
+private _planeVectorDir = _planePositionASL vectorFromTo _attackPosition;
 _plane setVectorDir _planeVectorDir;
 // pitch
 private _planePitch = atan (ATTACK_DISTANCE / ATTACK_HEIGHT);
@@ -107,9 +106,8 @@ _planeVectorDir = vectorDirVisual _plane;
 
 // get flight characteristics to steer the plane onto target
 #define BREAK_OFF_DISTANCE 500
-private _planePositionASL = getPosASLVisual _plane;
-private _angleToPlane = abs (acos ((_attackPosition distance2D _plane) / (_attackPosition vectorDistance _planePositionASL)));
-private _distanceToTarget = _attackPosition distance _plane;
+private _distanceToTarget = _attackPosition vectorDistance _planePositionASL;
+private _angleToPlane = abs (acos ((_attackPosition distance2D _plane) / _distanceToTarget));
 private _flightTime = (_distanceToTarget - BREAK_OFF_DISTANCE) / PLANE_SPEED;
 private _startTime = time;
 private _timeAfterFlight = time + _flightTime;
@@ -117,40 +115,42 @@ private _timeAfterFlight = time + _flightTime;
 
 BLWK_fnc_casAttack = {
 	params ["_plane","_dummyTarget","_weaponsToUse","_attackTypeID"];
-
+	
 	private ["_weapon_temp","_weaponArray_temp"];
 	private _pilot = currentPilot _plane;
-
+	
 	private _fn_fireGun = {
+		params ["_numRounds"];
 		// find gun to fire
 		_weaponArray_temp = _weaponsToUse select (_weaponsToUse findIf {(_x select 2) == "machinegun"});
 		_weapon_temp = _weaponArray_temp select 0;
-		for "_i" from 1 to 200 do {
+		for "_i" from 1 to _numRounds do {
 			_pilot fireAtTarget [_dummyTarget,_weapon_temp];
 			sleep 0.03;
 		};
 	};
 	private _fn_fireRockets = {
+		params ["_numRounds"];
 		// find rocket launcher
 		_weaponArray_temp = _weaponsToUse select (_weaponsToUse findIf {(_x select 2) == "rocketlauncher"});
 		_weapon_temp = _weaponArray_temp select 0;
-		for "_i" from 1 to 8 do {
+		for "_i" from 1 to _numRounds do {
 			_pilot fireAtTarget [_dummyTarget,_weapon_temp];
 			sleep 0.5;
 		};
 	};
-
+	
 	if (_attackTypeID isEqualTo GUN_RUN_ID) exitWith {
-		call _fn_fireGun;
+		[200] call _fn_fireGun;
 		_plane setVariable ["BLWK_completedFiring",true];
 	};
 	if (_attackTypeID isEqualTo ROCKETS_ID) exitWith {
-		call _fn_fireRockets;
+		[8] call _fn_fireRockets;
 		_plane setVariable ["BLWK_completedFiring",true];
 	};
 	if (_attackTypeID isEqualTo GUNS_AND_ROCKETS_ID) exitWith {
-		call _fn_fireGun;
-		call _fn_fireRockets;
+		[100] call _fn_fireGun;
+		[4] call _fn_fireRockets;
 		_plane setVariable ["BLWK_completedFiring",true];
 	};
 	if (_attackTypeID isEqualTo BOMBS_ID) exitWith {
@@ -163,27 +163,28 @@ BLWK_fnc_casAttack = {
 
 
 
-private "_interval";
+private ["_interval","_planeVectorDirTo","_planeVectorDirFrom"];
 while {!(_plane getVariable ["BLWK_completedFiring",false])} do {
 	//--- Set the plane approach vector
 	_interval = linearConversion [_startTime,_timeAfterFlight,time,0,1];
-
+	_planeVectorDirTo = _planePositionASL vectorFromTo _attackPosition;
+	_planeVectorDirFrom = vectorDirVisual _plane;
 	_plane setVelocityTransformation [
 		_planeSpawnPosition, _attackPosition,
 		PLANE_VELOCITY(PLANE_SPEED), PLANE_VELOCITY(PLANE_SPEED),
-		_planeVectorDir,_planeVectorDir,
+		_planeVectorDirFrom,_planeVectorDirTo,
 		_planeVectorUp, _planeVectorUp,
 		_interval
 	];
 	_planePositionASL = getPosASLVisual _plane;
-	//_plane setVelocityModelSpace PLANE_VELOCITY(PLANE_SPEED);
+	_plane setVelocityModelSpace PLANE_VELOCITY(PLANE_SPEED);
 
 
 	// start firing
 	// check if plane is 1000m from target and hasn't already started shooting
 	if ((_planePositionASL vectorDistance _attackPosition) <= 1000) then {
-
-
+		
+		
 		//private "_dummyTarget";
 		if !(_plane getVariable ["BLWK_startedFiring",false]) then {
 			_plane setVariable ["BLWK_startedFiring",true];
@@ -191,10 +192,10 @@ while {!(_plane getVariable ["BLWK_completedFiring",false])} do {
 			private _dummyTargetClass = ["LaserTargetE","LaserTargetW"] select (_planeSide getfriend west > 0.6);
 			private _dummyTarget = createvehicle [_dummyTargetClass,[0,0,0],[],0,"NONE"];
 			_plane setVariable ["BLWK_casDummyTarget",_dummyTarget];
-			_dummyTarget setPosASL _attackPosition;
-			_plane reveal lasertarget _dummyTarget;
-			_plane dowatch lasertarget _dummyTarget;
-			_plane dotarget lasertarget _dummyTarget;
+			_dummyTarget setPosASL _attackPosition;	
+			_plane reveal laserTarget _dummyTarget;
+			_plane dowatch laserTarget _dummyTarget;
+			_plane dotarget laserTarget _dummyTarget;
 
 			null = [_plane,_dummyTarget,_weaponsToUse,_attackTypeID] spawn BLWK_fnc_casAttack;
 		} else {
@@ -202,9 +203,8 @@ while {!(_plane getVariable ["BLWK_completedFiring",false])} do {
 			if !("bomblauncher" in _attackTypesString) then {
 				// for some reason, private variables outside the main if here do not work
 				// had to use this method of storing the target instead
-
 				private _dummyTarget = _plane getVariable "BLWK_casDummyTarget";
-				_attackPosition = AGLToASL(_dummyTarget getPos [0.1,_attackDirection]);
+				_attackPosition = AGLToASL(_dummyTarget getPos [0.1,(getDirVisual _plane)]);
 				_dummyTarget setPosASL _attackPosition;
 			};
 		};
@@ -212,8 +212,9 @@ while {!(_plane getVariable ["BLWK_completedFiring",false])} do {
 
 	sleep 0.01;
 };
-hint "exited loop";
 
+// forces plane to keep flying in the general direction they currently are
+// if not, once the setVelocityTransformation loop is done, it can rapidly change course
 _plane setVelocityModelSpace PLANE_VELOCITY(PLANE_SPEED);
 
 // after fire is complete
@@ -234,11 +235,10 @@ if (alive _plane) then {
 	private _crew = crew _plane;
 	_crew apply {
 		_plane deleteVehicleCrew _x;
-	};
+	};	
 	deletevehicle _plane;
 	deletegroup _group;
 };
-
 
 
 
