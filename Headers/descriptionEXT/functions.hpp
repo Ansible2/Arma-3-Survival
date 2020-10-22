@@ -172,6 +172,8 @@ class BLWK
 	class Supports
 	{
 		file = "Functions\Supports";
+		class arsenalSupplyDrop
+		{};
 		class callForArtillery
 		{};
 		class callingForSupportMaster
