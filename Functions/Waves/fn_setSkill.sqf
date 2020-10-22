@@ -23,9 +23,9 @@ Author:
 ---------------------------------------------------------------------------- */
 #define SKILL_LEVEL_1 0.1
 #define SKILL_LEVEL_2 0.3
-#define SKILL_LEVEL_3 0.45
-#define SKILL_LEVEL_4 0.6
-#define SKILL_LEVEL_5 0.75
+#define SKILL_LEVEL_3 0.4
+#define SKILL_LEVEL_4 0.5
+#define SKILL_LEVEL_5 0.6
 #define AIM_SPEED_MULTIPLIER 0.75
 params ["_unit"];
 
