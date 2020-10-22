@@ -24,8 +24,9 @@ Author:
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {false};
+
 #include "..\..\Headers\String Constants.hpp"
-#define STANDARD_WAVE_LIKELIHOOD 3
+#define STANDARD_WAVE_LIKELIHOOD 1
 #define SUICIDE_WAVE_LIKELIHOOD 0.1
 #define CIVILIAN_WAVE_LIKELIHOOD 0.25
 #define DRONE_WAVE_LIKELIHOOD 0.1
@@ -53,7 +54,7 @@ private _selectedWaveType = call _fn_getWaveType;
 private _fn_execWave = {
 	if (_selectedWaveType == STANDARD_WAVE) exitWith {
 		null = remoteExec ["BLWK_fnc_handleStandardWave",BLWK_theAIHandlerEntity];
-		
+
 		[TASK_ASSIGNED_TEMPLATE, ["",INCOMING_WAVE_NOTIFICATION(str BLWK_currentWaveNumber)]]
 	};
 	if (_selectedWaveType == SUICIDE_WAVE) exitWith {
