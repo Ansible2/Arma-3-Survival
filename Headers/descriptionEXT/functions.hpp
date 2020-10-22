@@ -326,6 +326,10 @@ class CBAP //ported CBA functions
 		{};
 		class shuffle
 		{};
+		class simplifyAngle
+		{};
+		class simplifyAngle180
+		{};
 		class taskPatrol
 		{};
 		class vectRotate3D
