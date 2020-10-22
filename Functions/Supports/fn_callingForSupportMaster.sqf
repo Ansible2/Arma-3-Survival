@@ -121,6 +121,7 @@ if (CHECK_SUPPORT_CLASS(SUPPLY_ARSENAL_DROP_CLASS)) exitWith {
 	null = [_targetPosition,CAS_TYPE,getDir _caller,_friendlyAttackAircraftClass] spawn BLWK_fnc_CAS;\
 	CAS_RADIO
 
+
 if (CHECK_SUPPORT_CLASS(CAS_GUN_RUN_CLASS)) exitWith {
 	CAS_EXPRESSSION(0)
 };
