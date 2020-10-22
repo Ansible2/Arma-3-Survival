@@ -25,13 +25,15 @@ Author:
 	Hilltop & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+if !(BLWK_currentWaveNumber >= BLWK_vehicleStartWave) exitWith {[]};
+
 #define LIKELIHOOD_HEAVY_ARMOUR 0.10
 #define LIKELIHOOD_LIGHT_ARMOUR 0.15
 #define LIKELIHOOD_HEAVY_CAR 0.25
 #define LIKELIHOOD_LIGHT_CAR 0.50
-#define BASE_VEHICLE_SPAWN_LIKELIHOOD 0.10
+#define BASE_VEHICLE_SPAWN_LIKELIHOOD 0.35
 #define VEHICLE_SPAWN_INCREMENT 0.05
-#define ROUNDS_SINCE_MINUS_TWO(TOTAL_ROUNDS_SINCE) TOTAL_ROUNDS_SINCE - 2 
+#define ROUNDS_SINCE_MINUS_TWO(TOTAL_ROUNDS_SINCE) TOTAL_ROUNDS_SINCE - 2
 
 params [
 	"_availableInfantry",
@@ -40,17 +42,15 @@ params [
 
 if (!local BLWK_theAIHandlerEntity) exitWith {[]};
 
-if !(BLWK_currentWaveNumber >= BLWK_vehicleStartWave) exitWith {[]};
-
-// special waves will not contriubute to this count
+// special waves will not contribute to this count
 private _roundsSinceVehicleSpawned = missionNamespace getVariable ["BLWK_roundsSinceVehicleSpawned",2];
 // wait until it has been at least two rounds since a vehicle spawn to get another one
 if (_roundsSinceVehicleSpawned >= 2) exitWith {
 	BLWK_roundsSinceVehicleSpawned = _roundsSinceVehicleSpawned + 1;
 	[]
 };
-	
-// only the rounds after the two will contribute to the LIKELIHOOD percentage (5% per round, with a starting percentage of 10%)
+
+// only the rounds after the two will contribute to the LIKELIHOOD percentage (5% per round, with a starting percentage of 35%)
 private _howLikelyIsAVehicleToSpawn = (ROUNDS_SINCE_MINUS_TWO(_roundsSinceVehicleSpawned) * VEHICLE_SPAWN_INCREMENT) + BASE_VEHICLE_SPAWN_LIKELIHOOD;
 private _howLikelyIsAVheicleNOTToSpawn = 1 - _howLikelyIsAVehicleToSpawn;
 
@@ -68,8 +68,9 @@ private _heavyCarsArray = [];
 private _lightArmourArray = [];
 private _heavyArmourArray = [];
 private _fn_checkLevelsClasses = {
-	params ["_levelToCheck"];
+	params ["_levelsVehicleArray"];
 	{
+		// if the vehicle type is not empty
 		if !(_x isEqualTo "") then {
 			switch (_forEachIndex) do {
 				case 0:{
@@ -87,7 +88,7 @@ private _fn_checkLevelsClasses = {
 				default {};
 			};
 		};
-	} forEach _levelToCheck;
+	} forEach _levelsVehicleArray;
 };
 
 // get all available vehicle types depending on round
@@ -138,11 +139,11 @@ private _fn_spawnAVehicle = {
 
 	private _crew = _availableInfantry select [0,3];
 	_availableInfantry deleteRange [0,3];
-	
+
 	private _group = createGroup (side (_crew select 0));
 	_group deleteGroupWhenEmpty true;
 	_group allowFleeing 0;
-	
+
 	// CIPHER COMMENT: May need to clear the crews previous waypoints
 	_crew joinSilent _group;
 	[_group,_createdVehicle] call BLWK_fnc_setCrew;
