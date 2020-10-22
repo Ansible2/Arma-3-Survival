@@ -28,4 +28,4 @@ if !(missionNamespace getVariable ["BLWK_inBetweenWaves",false]) then {
     missionNamespace setVariable ["BLWK_numRespawnTickets",_remainingTickets,true];
 };
 
-call BLWK_fnc_reassignCurator;
+[false] call BLWK_fnc_reassignCurator;
