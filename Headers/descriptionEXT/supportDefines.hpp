@@ -46,6 +46,10 @@
 #define CANNON_120MM_SMOKE_CLASS cannonStrike120mmSmoke_commMenu
 #define CANNON_120MM_SMOKE_TEXT "120mm Cannon Smoke (3)"
 
+// Arsenal drop
+#define SUPPLY_ARSENAL_DROP_CLASS supplyDropArsenal_commMenu
+#define SUPPLY_ARSENAL_DROP_TEXT "Arsenal Box Drop (5 min)"
+
 
 
 // support radio message types

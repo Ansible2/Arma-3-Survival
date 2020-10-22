@@ -24,7 +24,7 @@ Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 params [
-	["_classNames",[],[[]]],
+	["_classNames",["B_supplyCrate_F"],[[]]],
 	["_altittude",100,[1]],
     ["_dropPosition",objNull,[objNull,[],grpNull,locationNull,taskNull]]
 ];
@@ -38,10 +38,6 @@ private ["_container_temp","_dropZone_temp_temp","_chute_temp"];
 _classNames apply {
     // create Container
     _container_temp = createVehicle [_x,[0,0,0],[],0];
-/*	clearMagazineCargoGlobal _x;
-	clearWeaponCargoGlobal _x;
-	clearBackpackCargoGlobal _x;
-	clearItemCargoGlobal _x;*/
 
     _containersArray pushBack _container_temp;
 

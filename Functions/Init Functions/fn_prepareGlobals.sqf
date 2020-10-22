@@ -25,7 +25,7 @@ Examples:
 
 if (isServer OR {!hasInterface}) then {
     /* DLC exclusion */
-    /*
+/*
     // all of theses still need to be added to missionParams
 
     // need to get the DLC strigs returned by getAssetDLCInfo when 2.00 comes out
@@ -45,7 +45,7 @@ if (isServer OR {!hasInterface}) then {
 
     BLWK_canUseTankstDLC = [false,true] select ("BLWK_canUseTankstDLC" call BIS_fnc_getParamValue);
     if (BLWK_canUseTankstDLC) then {BLWK_useableDLCs pushBack ""}; 
-    */
+*/
 
     // AI unit classes
     // some of these are public to be used with BLWK_fnc_getPointsForKill
@@ -53,6 +53,7 @@ if (isServer OR {!hasInterface}) then {
     BLWK_friendly_menClasses = _unitTypeInfo select 0;
     publicVariable "BLWK_friendly_menClasses";
     BLWK_friendly_vehicleClasses = _unitTypeInfo select 1;
+    publicVariable "BLWK_friendly_vehicleClasses";
     BLWK_level1_menClasses = _unitTypeInfo select 2;
     publicVariable "BLWK_level1_menClasses";
     BLWK_level1_vehicleClasses = _unitTypeInfo select 3;

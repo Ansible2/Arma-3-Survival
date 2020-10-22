@@ -19,7 +19,7 @@
     "OPTRE_UNSC_Marine_Soldier_TeamLead", \
     "OPTRE_UNSC_Marine_Soldier_Autorifleman", \
     "OPTRE_UNSC_Marine_Soldier_Assist_Autorifleman", \
-    ["OPTRE_M12_LRV","OPTRE_M12G1_LRV","","","OPTRE_Pelican_unarmed"]\
+    ["OPTRE_M12_LRV","OPTRE_M12G1_LRV","","","OPTRE_Pelican_unarmed","",""]\
 ]
 
 #define OPTRE_NAVY_UNITS \
@@ -28,7 +28,7 @@
     "OPTRE_UNSC_Navy_Soldier_Red", \
     "OPTRE_UNSC_Navy_Soldier_Orange", \
     "OPTRE_UNSC_Navy_Soldier_Gray", \
-    ["","","","",""]\
+    ["","","","","","",""]\
 ]
 
 #define OPTRE_ODST_UNITS \
@@ -44,7 +44,7 @@
     "OPTRE_UNSC_ODST_Soldier_Scout_AT", \
     "OPTRE_UNSC_ODST_Soldier_Scout_Sniper", \
     "OPTRE_UNSC_ODST_Soldier_TeamLeader", \
-    ["","","","",""]\
+    ["","","","","","",""]\
 ]
 
 #define OPTRE_ARMY_SNOW_UNITS \
@@ -68,7 +68,7 @@
     "OPTRE_UNSC_Army_Soldier_SquadLead_SNO", \
     "OPTRE_UNSC_Army_Soldier_TeamLead_SNO", \
     "OPTRE_UNSC_Army_Soldier_Assist_Autorifleman_SNO", \
-    ["","","","",""]\
+    ["","","","","","",""]\
 ]
 
 #define OPTRE_URF_UNITS \
@@ -93,7 +93,7 @@
 	"OPTRE_Ins_URF_Rifleman_AR", \
 	"OPTRE_Ins_URF_SquadLead", \
 	"OPTRE_Ins_URF_TeamLead", \
-	["OPTRE_M12_LRV_ins","","I_E_APC_tracked_03_cannon_F","","OPTRE_Pelican_unarmed_ins"]\
+	["OPTRE_M12_LRV_ins","","I_E_APC_tracked_03_cannon_F","","OPTRE_Pelican_unarmed_ins","",""]\
 ]
 
 #define OPTRE_BATTLEJUMPERS_URBAN_UNITS \
@@ -107,7 +107,7 @@
 	"OPTRE_Ins_BJ_Soldier_URB_Scout", \
 	"OPTRE_Ins_BJ_Soldier_URB_TeamLeader", \
 	"OPTRE_Ins_BJ_Soldier_URB_Corpsman", \
-	["","","","",""]\
+	["","","","","","",""]\
 ]
 
 #define OPTRE_INSURGENTS_UNITS \
@@ -122,7 +122,7 @@
 	"OPTRE_Ins_ER_Terrorist", \
 	"OPTRE_Ins_ER_Warlord", \
 	"OPTRE_Ins_ER_Deserter_GL", \
-	["OPTRE_M12_LRV_ins","","I_E_APC_tracked_03_cannon_F","","OPTRE_Pelican_unarmed_ins"]\
+	["OPTRE_M12_LRV_ins","","I_E_APC_tracked_03_cannon_F","","OPTRE_Pelican_unarmed_ins","",""]\
 ]
 
 #define OPTRE_COVENANT_UNITS \
@@ -134,5 +134,5 @@
 	"OPTRE_FC_Elite_SpecOps", \
 	"OPTRE_FC_Elite_Ultra", \
 	"OPTRE_FC_Elite_Zealot", \
-	["","","","",""] \
+	["","","","","","",""] \
 ]

@@ -123,6 +123,13 @@ class CANNON_120MM_SMOKE_CLASS : basicSupport
 };
 
 
+class SUPPLY_ARSENAL_DROP_CLASS : basicSupport
+{
+    text = SUPPLY_ARSENAL_DROP_TEXT;
+    expression = CALL_SUPPORT_MASTER(SUPPLY_ARSENAL_DROP_CLASS);
+    icon = ARTILLERY_ICON;
+};
+
 
 
 

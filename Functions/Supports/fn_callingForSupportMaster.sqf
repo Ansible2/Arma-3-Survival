@@ -37,6 +37,7 @@ if (_targetPosition isEqualTo []) exitWith {
 // cruise missile
 if (CHECK_SUPPORT_CLASS(CRUISE_MISSILE_CLASS)) exitWith {
 	null = [_targetPosition] spawn BLWK_fnc_cruiseMissileStrike;
+	[TYPE_STRIKE] call BLWK_fnc_supportRadioGlobal;
 };
 
 // 155 HE
@@ -90,4 +91,18 @@ if (CHECK_SUPPORT_CLASS(MORTAR_STRIKE_82MM_SMOKE_CLASS)) exitWith {
 // 82 Flare
 if (CHECK_SUPPORT_CLASS(MORTAR_STRIKE_82MM_FLARE_CLASS)) exitWith {
 	ARTY_EXPRESSION("Flare_82mm_AMOS_White")
+};
+
+
+// arsenal supply drop
+if (CHECK_SUPPORT_CLASS(SUPPLY_ARSENAL_DROP_CLASS)) exitWith {
+	
+	private _friendlyDropAircraftClass = BLWK_friendly_vehicleClasses select 5;
+	// if class is undefined in unit table, use the default class
+	if (_friendlyDropAircraftClass isEqualTo "") then {
+		_friendlyDropAircraftClass = "B_T_VTOL_01_vehicle_F"
+	};
+
+	[_targetPosition,_friendlyDropAircraftClass] call BLWK_fnc_arsenalSupplyDrop;
+	[TYPE_SUPPLY_DROP_REQUEST] call BLWK_fnc_supportRadioGlobal;
 };
