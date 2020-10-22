@@ -48,7 +48,21 @@
 
 // Arsenal drop
 #define SUPPLY_ARSENAL_DROP_CLASS supplyDropArsenal_commMenu
-#define SUPPLY_ARSENAL_DROP_TEXT "Arsenal Box Drop (5 min)"
+#define SUPPLY_ARSENAL_DROP_TEXT "Arsenal Box Drop (5 Min Access)"
+
+// CAS Gun Run
+#define SUPPLY_ARSENAL_DROP_CLASS supplyDropArsenal_commMenu
+#define SUPPLY_ARSENAL_DROP_TEXT "Arsenal Box Drop (5 Min Access)"
+
+// CAS Gun Run
+#define CAS_GUN_RUN_CLASS casGunRun_commMenu
+#define CAS_GUN_RUN_TEXT "CAS - Gun Run"
+// CAS Rockets
+#define CAS_ROCKETS_CLASS casRockets_commMenu
+#define CAS_ROCKETS_TEXT "CAS - Rockets"
+// CAS Gun Run
+#define CAS_GUNS_AND_ROCKETS_CLASS casGunsAndRockets_commMenu
+#define CAS_GUNS_AND_ROCKETS_TEXT "CAS - Guns & Rockets"
 
 
 

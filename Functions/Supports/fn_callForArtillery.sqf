@@ -2,7 +2,7 @@
 Function: BLWK_fnc_callForArtillery
 
 Description:
-	Calls for an artillery or mortart strike at players cursor position
+	Calls for an artillery or mortart strike at players cursor position.
 
 Parameters:
 	0: _target <OBJECT, ARRAY, or STRING(marker)> - The target you want to cluter fire around

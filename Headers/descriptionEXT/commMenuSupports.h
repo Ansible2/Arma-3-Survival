@@ -122,12 +122,33 @@ class CANNON_120MM_SMOKE_CLASS : basicSupport
     icon = ARTILLERY_ICON;
 };
 
-
+// supply
 class SUPPLY_ARSENAL_DROP_CLASS : basicSupport
 {
     text = SUPPLY_ARSENAL_DROP_TEXT;
     expression = CALL_SUPPORT_MASTER(SUPPLY_ARSENAL_DROP_CLASS);
-    icon = ARTILLERY_ICON;
+    icon = SUPPLY_DROP_ICON;
+};
+
+
+// CAS
+class CAS_GUN_RUN_CLASS : basicSupport
+{
+    text = CAS_GUN_RUN_TEXT;
+    expression = CALL_SUPPORT_MASTER(CAS_GUN_RUN_CLASS);
+    icon = CAS_ICON;
+};
+class CAS_ROCKETS_CLASS : basicSupport
+{
+    text = CAS_ROCKETS_TEXT;
+    expression = CALL_SUPPORT_MASTER(CAS_ROCKETS_CLASS);
+    icon = CAS_ICON;
+};
+class CAS_GUNS_AND_ROCKETS_CLASS : basicSupport
+{
+    text = CAS_GUNS_AND_ROCKETS_TEXT;
+    expression = CALL_SUPPORT_MASTER(CAS_GUNS_AND_ROCKETS_CLASS);
+    icon = CAS_ICON;
 };
 
 

@@ -30,7 +30,6 @@ if (_targetPosition isEqualTo []) exitWith {
 
 #include "..\..\Headers\descriptionEXT\supportDefines.hpp"
 
-#define ARTY_EXPRESSION(AMMO_TYPE) null = [_targetPosition,AMMO_TYPE] spawn BLWK_fnc_callForArtillery
 #define CHECK_SUPPORT_CLASS(SUPPORT_CLASS_COMPARE) _supportClass == TO_STRING(SUPPORT_CLASS_COMPARE)
 
 
@@ -39,6 +38,9 @@ if (CHECK_SUPPORT_CLASS(CRUISE_MISSILE_CLASS)) exitWith {
 	null = [_targetPosition] spawn BLWK_fnc_cruiseMissileStrike;
 	[TYPE_STRIKE] call BLWK_fnc_supportRadioGlobal;
 };
+
+
+#define ARTY_EXPRESSION(AMMO_TYPE) null = [_targetPosition,AMMO_TYPE] spawn BLWK_fnc_callForArtillery
 
 // 155 HE
 if (CHECK_SUPPORT_CLASS(ARTILLERY_STRIKE_155MM_HE_CLASS)) exitWith {
@@ -105,4 +107,26 @@ if (CHECK_SUPPORT_CLASS(SUPPLY_ARSENAL_DROP_CLASS)) exitWith {
 
 	[_targetPosition,_friendlyDropAircraftClass] call BLWK_fnc_arsenalSupplyDrop;
 	[TYPE_SUPPLY_DROP_REQUEST] call BLWK_fnc_supportRadioGlobal;
+};
+
+
+// CAS
+#define CAS_RADIO [TYPE_CAS_REQUEST] call BLWK_fnc_supportRadioGlobal;
+#define CAS_EXPRESSSION(CAS_TYPE) \
+	_targetPosition = AGLToASL(_targetPosition);\
+	private _friendlyAttackAircraftClass = BLWK_friendly_vehicleClasses select 6;
+	if (_friendlyAttackAircraftClass isEqualTo "") then {\
+		_friendlyAttackAircraftClass = "B_Plane_CAS_01_F"\
+	};\
+	null = [_targetPosition,CAS_TYPE,getDir _caller,_friendlyAttackAircraftClass] spawn BLWK_fnc_CAS;\
+	CAS_RADIO
+
+if (CHECK_SUPPORT_CLASS(CAS_GUN_RUN_CLASS)) exitWith {
+	CAS_EXPRESSSION(0)
+};
+if (CHECK_SUPPORT_CLASS(CAS_ROCKETS_CLASS)) exitWith {
+	CAS_EXPRESSSION(1)
+};
+if (CHECK_SUPPORT_CLASS(CAS_GUNS_AND_ROCKETS_CLASS)) exitWith {
+	CAS_EXPRESSSION(2)
 };
