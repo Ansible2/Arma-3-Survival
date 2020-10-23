@@ -21,7 +21,7 @@ Examples:
     (end)
 
 Author:
-	BangaBob (H8erMaker),
+	Bohemia Interactive,
 	Modified By: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 params [
