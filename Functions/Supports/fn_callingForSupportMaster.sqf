@@ -98,15 +98,20 @@ if (CHECK_SUPPORT_CLASS(MORTAR_STRIKE_82MM_FLARE_CLASS)) exitWith {
 
 // arsenal supply drop
 if (CHECK_SUPPORT_CLASS(SUPPLY_ARSENAL_DROP_CLASS)) exitWith {
-	
-	private _friendlyDropAircraftClass = BLWK_friendly_vehicleClasses select 5;
-	// if class is undefined in unit table, use the default class
-	if (_friendlyDropAircraftClass isEqualTo "") then {
-		_friendlyDropAircraftClass = "B_T_VTOL_01_vehicle_F"
+	if !(missionNamespace getVariable ["BLWK_arsenalOut",false]) then {
+		private _friendlyDropAircraftClass = BLWK_friendly_vehicleClasses select 5;
+		// if class is undefined in unit table, use the default class
+		if (_friendlyDropAircraftClass isEqualTo "") then {
+			_friendlyDropAircraftClass = "B_T_VTOL_01_vehicle_F"
+		};
+		
+		missionNamespace getVariable ["BLWK_arsenalOut",true,true];
+		[_targetPosition,_friendlyDropAircraftClass] call BLWK_fnc_arsenalSupplyDrop;
+		[TYPE_SUPPLY_DROP_REQUEST] call BLWK_fnc_supportRadioGlobal;
+	} else {
+		hint "An arsenal is already in use";
+		[_caller,_supportClass,nil,nil,""] call BIS_fnc_addCommMenuItem;
 	};
-
-	[_targetPosition,_friendlyDropAircraftClass] call BLWK_fnc_arsenalSupplyDrop;
-	[TYPE_SUPPLY_DROP_REQUEST] call BLWK_fnc_supportRadioGlobal;
 };
 
 

@@ -101,7 +101,31 @@ null = [_aircraft,_dropPosition,_aircraftGroup,_flyToPosition] spawn {
 		false
 	};
 
-	sleep ARSENAL_LIFETIME;
+
+	// notify players of arsenal status
+	_arsenalBox addEventHandler ["Deleted", {
+		hint "Arsenal is deleted";
+		missionNamespace setVariable ["BLWK_arsenalOut",true,true];
+	}];
+	
+	private _timeBetweenMessages = ARSENAL_LIFETIME / 5;
+	private ["_increment","_timeLeft","_message"];
+	for "_i" from 1 to 5 do {
+		
+		_increment = switch _i do {
+			case 1: {5};
+			case 2: {4};
+			case 3: {3};
+			case 4: {2};
+			case 5: {1};
+		};
+		_timeLeft = floor (_timeBetweenMessages * _increment);
+		_message = "Arsenal Has " + _timeLeft + " Seconds Left"
+		
+		null = [_message] remoteExec ["hint",BLWK_allClientsTargetID];
+		
+		sleep _timeBetweenMessages;
+	};
 	
 	[[_arsenalBox]] call KISKA_fnc_removeArsenal;
 	sleep 2;
