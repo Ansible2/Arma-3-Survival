@@ -33,44 +33,64 @@
 	31,\
 	32,\
 	33,\
-	34
+	34,\
+	35,\
+	36,\
+	37,\
+	38,\
+	39,\
+	40,\
+	41,\
+	42,\
+	43,\
+	44
 
 #define FACTION_STRINGS \
-	"NATO", \
-	"NATO PACIFIC", \
-	"NATO WOODLAND", \
-	"CTRG PACIFIC", \
-	"CSAT", \
-	"CSAT PACIFIC", \
-	"CSAT URBAN", \
-	"VIPER", \
-	"VIPER PACIFIC", \
-	"FIA", \
-	"SYNDIKAT", \
-	"AAF", \
-	"LDF", \
-	"Spetznas (Contact)", \
-	"UNSC Marines (OPTRE)", \
-	"ODSTs (OPTRE)", \
-	"UNSC Army Snow (OPTRE)", \
-	"United Rebel Front (OPTRE)", \
-	"Battle Jumpers Urban (OPTRE)", \
-	"Insurgents (OPTRE)", \
-	"Covenant (OPTRE-FC)", \
-	"Colonial Guard Corps (OPCAN)", \
-	"UNSC Army Desert (OPCAN)", \
-	"UNSC Army Woodland (OPCAN)", \
-	"UNSC Marine CE-A (OPCAN)", \
-	"UNSC Marine Desert (OPCAN)", \
-	"UNSC Marine Infinite (OPCAN)", \
-	"UNSC Marine Woodland (OPCAN)", \
-	"United Rebel Army (OPCAN)", \
-	"Koslovics (OPCAN)", \
-	"Fridens Woodland (OPCAN)", \
-	"Fridens Desert (OPCAN)", \
-	"Fridens (OPCAN)", \
-	"Colonial Military Authority (OPCAN)", \
-	"Colonial Police Force (OPCAN)" \
+	"VANILLA - NATO", \
+	"APEX - NATO PACIFIC", \
+	"CONTACT - NATO WOODLAND", \
+	"APEX - CTRG PACIFIC", \
+	"VANILLA - CSAT", \
+	"APEX - CSAT PACIFIC", \
+	"VANILLA - CSAT URBAN", \
+	"APEX - VIPER", \
+	"APEX - VIPER PACIFIC", \
+	"VANILLA - FIA", \
+	"APEX - SYNDIKAT", \
+	"VANILLA - AAF", \
+	"CONTACT - LDF", \
+	"CONTACT - Spetznas", \
+	"OPTRE - UNSC Marines", \
+	"OPTRE - ODSTs", \
+	"OPTRE - UNSC Army Snow", \
+	"OPTRE - United Rebel Front", \
+	"OPTRE - Battle Jumpers Urban", \
+	"OPTRE - Insurgents", \
+	"OPTRE FC - Covenant", \
+	"OPCAN - Colonial Guard Corps", \
+	"OPCAN - UNSC Army Desert", \
+	"OPCAN - UNSC Army Woodland", \
+	"OPCAN - UNSC Marine CE-A", \
+	"OPCAN - UNSC Marine Desert", \
+	"OPCAN - UNSC Marine Infinite", \
+	"OPCAN - UNSC Marine Woodland", \
+	"OPCAN - United Rebel Army", \
+	"OPCAN - Koslovics", \
+	"OPCAN - Fridens Woodland", \
+	"OPCAN - Fridens Desert", \
+	"OPCAN - Fridens", \
+	"OPCAN - Colonial Military Authority", \
+	"OPCAN - Colonial Police Force", \
+	"RHS AFRF - Russia MSV (EMR)", \
+	"RHS AFRF - Russia MSV (Flora)", \
+	"RHS AFRF - Russia VDV (EMR)", \
+	"RHS AFRF - Russia VDV (EMR-Des)", \
+	"RHS AFRF - Russia VDV (Flora)", \
+	"RHS AFRF - Russia VDV (M-Flora)", \
+	"RHS AFRF - Russia VDV (RECON)", \
+	"RHS AFRF - Russia VMF (RECON)", \
+	"RHS AFRF - Russia VMF (Flora)", \
+	"RHS AFRF - Russia VMF (OSN)" \
 
 #define FACTION_VARS \
 [ \
@@ -108,5 +128,15 @@
 	OPCAN_FRIDENS_DES_UNITS, \
 	OPCAN_FRIDENS_UNITS, \
 	OPCAN_CMA_UNITS, \
-	OPCAN_CPF_UNITS \
+	OPCAN_CPF_UNITS, \
+	RHS_AFRF_RUS_MSV_EMR_UNITS, \
+	RHS_AFRF_RUS_MSV_FLORA_UNITS, \
+	RHS_AFRF_RUS_VDV_EMR_UNITS, \
+	RHS_AFRF_RUS_VDV_EMR_DES_UNITS, \
+	RHS_AFRF_RUS_VDV_FLORA_UNITS, \
+	RHS_AFRF_RUS_VDV_MFLORA_UNITS, \
+	RHS_AFRF_RUS_VDV_RECON_UNITS, \
+	RHS_AFRF_RUS_VMF_RECON_UNITS, \
+	RHS_AFRF_RUS_VMF_FLORA_UNITS, \
+	RHS_AFRF_RUS_VV_OSN_UNITS \
 ]
