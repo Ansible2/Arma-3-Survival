@@ -1,3 +1,5 @@
+#include "..\..\Headers\Stalker Global Strings.hpp"
+
 params [
 	["_unit",objNull,[objNull]],
 	["_stalkerGroup",grpNull,[grpNull]]

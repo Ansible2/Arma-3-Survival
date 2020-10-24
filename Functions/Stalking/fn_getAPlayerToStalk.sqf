@@ -1,4 +1,4 @@
-#define STALKER_COUNT_VAR "BLWK_playerStalkerAmount"
+#include "..\..\Headers\Stalker Global Strings.hpp"
 
 private _players = call CBAP_fnc_players;
 // sort players that can be stalked
@@ -12,5 +12,6 @@ _players apply {
 };
 private _lowestStalkerCount = selectMin _playerStalkerCounts;
 private _playerWithLowestStalkers = _players select (_playerStalkerCounts findIf {_x isEqualTo _lowestStalkerCount});
+
 
 _playerWithLowestStalkers
