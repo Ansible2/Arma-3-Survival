@@ -38,7 +38,6 @@
 	["rhs_tigr_sts_msv","rhs_btr70_msv","rhs_bmp3_msv","rhs_t80um","rhs_ka60_c","RHS_Mi8mt_vvsc","RHS_Su25SM_vvsc"]\
 ]
 
-
 // VDV
 #define RHS_AFRF_RUS_VDV_EMR_UNITS \
 [\
@@ -142,6 +141,8 @@
 	"rhs_vdv_recon_sergeant",\
 	["rhs_tigr_sts_vdv","rhs_btr80a_vdv","rhs_bmd4_vdv","rhs_sprut_vdv","rhs_ka60_c","RHS_Mi8mt_vdv","RHS_Su25SM_vvsc"]\
 ]
+
+// VMF
 #define RHS_AFRF_RUS_VMF_RECON_UNITS \
 [\
 	"rhs_vmf_recon_arifleman",\
@@ -182,6 +183,8 @@
 	"rhs_vmf_flora_sergeant",\
 	["rhs_tigr_sts_vdv","rhs_btr80a_vdv","rhs_bmd4_vdv","rhs_sprut_vdv","rhs_ka60_c","RHS_Mi8mt_vdv","RHS_Su25SM_vvsc"]\
 ]
+
+// VV
 #define RHS_AFRF_RUS_VV_OSN_UNITS \
 [\
 	"rhs_mvd_izlom_arifleman",\
