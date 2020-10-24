@@ -294,8 +294,6 @@ class BLWK
 		{};
 		class spawnLoot
 		{};
-		class stalkPlayers
-		{};
 		class startWave
 		{};
 		class startWaveCountdownFinal
