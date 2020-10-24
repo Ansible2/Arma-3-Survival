@@ -69,7 +69,7 @@ while { !isNull _stalkerGroup AND {_stalkerGroup getVariable DO_STALK_VAR} } do 
 	sleep _checkRate;
 
 	// check if player is worth stalking and if not, get another player to stalk
-	if !([_playerToStalk] call BWLK_fnc_canUnitBeStalked) then {
+	if !([_playerToStalk] call BLWK_fnc_canUnitBeStalked) then {
 		_playerToStalk = call BLWK_fnc_getAPlayerToStalk;
 	};
 

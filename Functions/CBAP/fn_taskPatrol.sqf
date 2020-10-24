@@ -29,8 +29,8 @@ Returns:
     Nil
 
 Author:
-    Rommel
-
+    Rommel,
+    Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 
 params [

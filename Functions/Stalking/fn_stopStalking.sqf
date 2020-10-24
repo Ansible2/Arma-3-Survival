@@ -10,7 +10,7 @@ if (isNull _stalkerGroup) exitWith {
 
 	false
 };
-if (isNil {_stalkerGroup setVariable DO_STALK_VAR}) exitWIth {
+if (isNil {_stalkerGroup getVariable DO_STALK_VAR}) exitWIth {
 	"BLWK_fnc_stopStalking _stalkerGroup was not stalking" call BIS_fnc_error;
 
 	false
@@ -39,7 +39,8 @@ _stalkerGroupUnits apply {
 
 // move units to default position if defined
 if (!isNull _defaultPosition) then {
-	[_stalkerGroup, _defaultPosition, 10, "MOVE", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
+	[_stalkerGroup, _defaultPosition] call CBAP_fnc_taskPatrol;
+	//[_stalkerGroup, _defaultPosition, 10, "MOVE", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
 };
 
 
