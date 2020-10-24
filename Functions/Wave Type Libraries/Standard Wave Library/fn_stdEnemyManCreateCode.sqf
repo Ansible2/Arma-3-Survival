@@ -34,7 +34,7 @@ if (isNil "_group") then {
 _group allowFleeing 0;
 //[_group, bulwarkBox, 20, "SAD", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
 
-null = [_group] spawn BLWK_fnc_stalkPlayers;
+null = [_group] spawn BLWK_fnc_startStalkingPlayers;
 
 
 // add to server's list of units that must be dead before the round can end

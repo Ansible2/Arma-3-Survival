@@ -35,7 +35,7 @@ _stalkerGroup setVariable [STALKED_UNIT_VAR,_playerToStalk];
 
 
 // update units stalker numbers
-private _stalkerGroupUnits = units _stalkerGroup
+private _stalkerGroupUnits = units _stalkerGroup;
 private "_id_temp";
 _stalkerGroupUnits apply {
 	_id_temp = _x addEventHandler ["KILLED",{

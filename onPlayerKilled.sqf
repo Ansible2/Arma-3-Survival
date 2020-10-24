@@ -1,8 +1,5 @@
 params ["_oldUnit"];
 
-// see BLWK_fnc_stalkPlayers: used for getting an even distribution of AI to move to players
-player setVariable ["BLWK_stalkerAmount",0];
-
 // remove handle damage event from corpse as it will continue to fire otherwise
 [_oldUnit] call BLWK_fnc_removeReviveEhs;
 

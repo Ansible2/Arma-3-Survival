@@ -192,6 +192,20 @@ class BLWK
 		{};
 	};
 
+	class Stalking
+	{
+		class canUnitBeStalked
+		{};
+		class getAPlayerToStalk
+		{};
+		class registerStalkers
+		{};
+		class startStalkingPlayers
+		{};
+		class stopStalking
+		{};
+	};
+
 	// Wave Type Librariers
 	class CivilianWaveLibrary
 	{

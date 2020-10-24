@@ -120,7 +120,7 @@ null = [_aircraft,_dropPosition,_aircraftGroup,_flyToPosition] spawn {
 			case 5: {1};
 		};
 		_timeLeft = floor (_timeBetweenMessages * _increment);
-		_message = "Arsenal Has " + _timeLeft + " Seconds Left"
+		_message = "Arsenal Has " + _timeLeft + " Seconds Left";
 		
 		null = [_message] remoteExec ["hint",BLWK_allClientsTargetID];
 		
