@@ -304,7 +304,7 @@ class BLWK_friendlyFaction
 	title = "Friendly Faction";
 	values[] = {FACTION_COUNT};
 	texts[] = {FACTION_STRINGS};
-	default = 0;
+	default = 0; // NATO
 };
 
 class BLWK_level1Faction
@@ -312,7 +312,7 @@ class BLWK_level1Faction
 	title = "Level 1 Enemy Faction";
 	values[] = {FACTION_COUNT};
 	texts[] = {FACTION_STRINGS};
-	default = 9;
+	default = 2; // FIA
 };
 
 class BLWK_level2Faction
@@ -320,7 +320,7 @@ class BLWK_level2Faction
 	title = "Level 2 Enemy Faction";
 	values[] = {FACTION_COUNT};
 	texts[] = {FACTION_STRINGS};
-	default = 11;
+	default = 1; // AAF
 };
 
 class BLWK_level3Faction
@@ -328,7 +328,7 @@ class BLWK_level3Faction
 	title = "Level 3 Enemy Faction";
 	values[] = {FACTION_COUNT};
 	texts[] = {FACTION_STRINGS};
-	default = 4;
+	default = 3; // CSAT
 };
 
 class BLWK_level4Faction
@@ -336,7 +336,7 @@ class BLWK_level4Faction
 	title = "Level 4 Enemy Faction";
 	values[] = {FACTION_COUNT};
 	texts[] = {FACTION_STRINGS};
-	default = 6;
+	default = 4; // CSAT Urban
 };
 
 class BLWK_level5Faction
@@ -344,7 +344,7 @@ class BLWK_level5Faction
 	title = "Level 5 Enemy Faction";
 	values[] = {FACTION_COUNT};
 	texts[] = {FACTION_STRINGS};
-	default = 7;
+	default = 13; // Contact Spetsnaz 
 };
 
 
