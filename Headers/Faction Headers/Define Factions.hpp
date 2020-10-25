@@ -43,7 +43,16 @@
 	41,\
 	42,\
 	43,\
-	44
+	44,\
+	45,\
+	46,\
+	47,\
+	48,\
+	49,\
+	50,\
+	51,\
+	52,\
+	53
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -90,7 +99,16 @@
 	"RHS AFRF - Russia VDV (RECON)", \
 	"RHS AFRF - Russia VMF (RECON)", \
 	"RHS AFRF - Russia VMF (Flora)", \
-	"RHS AFRF - Russia VMF (OSN)" \
+	"RHS AFRF - Russia VMF (OSN)", \
+	"RHS USAF - US ARMY (Desert)", \
+	"RHS USAF - US ARMY (Desert CRYE)", \
+	"RHS USAF - US ARMY (Woodland)", \
+	"RHS USAF - US ARMY (Woodland CRYE)", \
+	"RHS USAF - MARSOC", \
+	"RHS USAF - USMC RECON (Desert)", \
+	"RHS USAF - USMC Infantry (Desert)", \
+	"RHS USAF - USMC Infantry (Woodland)", \
+	"RHS USAF - USMC RECON (Woodland)"
 
 #define FACTION_VARS \
 [ \
@@ -138,5 +156,14 @@
 	RHS_AFRF_RUS_VDV_RECON_UNITS, \
 	RHS_AFRF_RUS_VMF_RECON_UNITS, \
 	RHS_AFRF_RUS_VMF_FLORA_UNITS, \
-	RHS_AFRF_RUS_VV_OSN_UNITS \
+	RHS_AFRF_RUS_VV_OSN_UNITS, \
+	RHS_USF_ARMY_DES_UNITS, \
+	RHS_USF_ARMY_DES_CRYE_UNITS, \
+	RHS_USF_ARMY_WOODLAND_UNITS, \
+	RHS_USF_ARMY_WOODLAND_CRYE_UNITS, \
+	RHS_USF_MARSOC_UNITS, \
+	RHS_USF_USMC_DES_RECON_UNITS, \
+	RHS_USF_USMC_DES_UNITS, \
+	RHS_USF_USMC_WOODLAND_UNITS, \
+	RHS_USF_USMC_WOODLAND_RECON_UNITS\
 ]

@@ -37,17 +37,13 @@ Author:
 	Ansible2 // Cipher,
 	Hilltop & omNomios
 ---------------------------------------------------------------------------- */
-/*
-	It will be replaced by a GUI in the future in all likelihood that 
-	 dynamically gets all loaded factions on the server
-*/
-
 // set up MACRO vars that can be used between files and make changes easier
 #include "..\..\Headers\Faction Headers\Define Factions.hpp"
 #include "..\..\Headers\Faction Headers\Unit Tables\vanillaUnitTables.hpp"
 #include "..\..\Headers\Faction Headers\Unit Tables\optreUnitTables.hpp"
 #include "..\..\Headers\Faction Headers\Unit Tables\opcanUnitTables.hpp"
 #include "..\..\Headers\Faction Headers\Unit Tables\RHS_AFRF Unit Tables.hpp"
+#include "..\..\Headers\Faction Headers\Unit Tables\RHS_USAF Unit Tables.hpp"
 
 
 // to save on allocation time for memory, we are going to use temp values
