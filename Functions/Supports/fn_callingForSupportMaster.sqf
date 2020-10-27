@@ -142,7 +142,7 @@ if (CHECK_SUPPORT_CLASS(TURRET_DOOR_GUNNER_CLASS)) exitWith {
 };
 if (CHECK_SUPPORT_CLASS(TURRET_ATTACK_HELI_GUNNER_CLASS)) exitWith {
 	private _friendlyAttackHeliClass = [7] call BLWK_fnc_getFriendlyVehicleClass;
-	TURRET_EXPRESSION(_friendlyAttackHeliClass,500,400,"B_Heli_Attack_01_dynamicLoadout_F")
+	TURRET_EXPRESSION(_friendlyAttackHeliClass,400,550,"B_Heli_Attack_01_dynamicLoadout_F")
 };
 if (CHECK_SUPPORT_CLASS(TURRET_GUNSHIP_CLASS)) exitWith {
 	private _friendlyGunshipClass = [8] call BLWK_fnc_getFriendlyVehicleClass;
