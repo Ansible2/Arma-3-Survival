@@ -40,7 +40,6 @@ _stalkerGroupUnits apply {
 // move units to default position if defined
 if (!isNull _defaultPosition) then {
 	[_stalkerGroup, _defaultPosition] call CBAP_fnc_taskPatrol;
-	//[_stalkerGroup, _defaultPosition, 10, "MOVE", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
 };
 
 
