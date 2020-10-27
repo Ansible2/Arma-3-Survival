@@ -92,8 +92,9 @@ private _fn_sortFactionClasses = {
 
 	// seperate vehicle types
 	private _vehicleArrayIndex = _unitClassesToCheck findIf {_x isEqualType []};
-	private _vehicleTypes = ["","","","","","",""];
-	if (_vehicleArrayIndex isEqualTo -1) then {
+	private _vehicleTypes = [];
+	// if the vehicle array is found
+	if !(_vehicleArrayIndex isEqualTo -1) then {
 		_vehicleTypes = _unitClassesToCheck select _vehicleArrayIndex;
 	};
 

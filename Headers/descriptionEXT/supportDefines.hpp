@@ -50,9 +50,6 @@
 #define SUPPLY_ARSENAL_DROP_CLASS supplyDropArsenal_commMenu
 #define SUPPLY_ARSENAL_DROP_TEXT "Arsenal Box Drop (5 Min Access)"
 
-// CAS Gun Run
-#define SUPPLY_ARSENAL_DROP_CLASS supplyDropArsenal_commMenu
-#define SUPPLY_ARSENAL_DROP_TEXT "Arsenal Box Drop (5 Min Access)"
 
 // CAS Gun Run
 #define CAS_GUN_RUN_CLASS casGunRun_commMenu
@@ -60,9 +57,21 @@
 // CAS Rockets
 #define CAS_ROCKETS_CLASS casRockets_commMenu
 #define CAS_ROCKETS_TEXT "CAS - Rockets"
-// CAS Gun Run
+// CAS Guns and Rockets
 #define CAS_GUNS_AND_ROCKETS_CLASS casGunsAndRockets_commMenu
 #define CAS_GUNS_AND_ROCKETS_TEXT "CAS - Guns & Rockets"
+
+
+
+// Transport heli gunner
+#define TURRET_DOOR_GUNNER_CLASS turretTransportHeli_commMenu
+#define TURRET_DOOR_GUNNER_TEXT "Helicopter Door Gunner"
+// Attack heli gunner
+#define TURRET_ATTACK_HELI_GUNNER_CLASS turretAttackHeli_commMenu
+#define TURRET_ATTACK_HELI_GUNNER_TEXT "Attack Helicopter Gunner"
+// Gunship gunner
+#define TURRET_GUNSHIP_CLASS turretGunship_commMenu
+#define TURRET_GUNSHIP_TEXT "Heavy CAS Gunship"
 
 
 

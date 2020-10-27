@@ -99,13 +99,9 @@ if (CHECK_SUPPORT_CLASS(MORTAR_STRIKE_82MM_FLARE_CLASS)) exitWith {
 // arsenal supply drop
 if (CHECK_SUPPORT_CLASS(SUPPLY_ARSENAL_DROP_CLASS)) exitWith {
 	if !(missionNamespace getVariable ["BLWK_arsenalOut",false]) then {
-		private _friendlyDropAircraftClass = BLWK_friendly_vehicleClasses select 5;
-		// if class is undefined in unit table, use the default class
-		if (_friendlyDropAircraftClass isEqualTo "") then {
-			_friendlyDropAircraftClass = "B_T_VTOL_01_vehicle_F"
-		};
-		
 		missionNamespace getVariable ["BLWK_arsenalOut",true,true];
+
+		private _friendlyDropAircraftClass = [5] call BLWK_fnc_getFriendlyVehicleClass;
 		[_targetPosition,_friendlyDropAircraftClass] call BLWK_fnc_arsenalSupplyDrop;
 		[TYPE_SUPPLY_DROP_REQUEST] call BLWK_fnc_supportRadioGlobal;
 	} else {
@@ -119,13 +115,9 @@ if (CHECK_SUPPORT_CLASS(SUPPLY_ARSENAL_DROP_CLASS)) exitWith {
 #define CAS_RADIO [TYPE_CAS_REQUEST] call BLWK_fnc_supportRadioGlobal;
 #define CAS_EXPRESSSION(CAS_TYPE) \
 	_targetPosition = AGLToASL(_targetPosition);\
-	private _friendlyAttackAircraftClass = BLWK_friendly_vehicleClasses select 6;
-	if (_friendlyAttackAircraftClass isEqualTo "") then {\
-		_friendlyAttackAircraftClass = "B_Plane_CAS_01_F"\
-	};\
+	private _friendlyAttackAircraftClass = [6] call BLWK_fnc_getFriendlyVehicleClass;\
 	null = [_targetPosition,CAS_TYPE,getDir _caller,_friendlyAttackAircraftClass] spawn BLWK_fnc_CAS;\
 	CAS_RADIO
-
 
 if (CHECK_SUPPORT_CLASS(CAS_GUN_RUN_CLASS)) exitWith {
 	CAS_EXPRESSSION(0)
@@ -135,4 +127,24 @@ if (CHECK_SUPPORT_CLASS(CAS_ROCKETS_CLASS)) exitWith {
 };
 if (CHECK_SUPPORT_CLASS(CAS_GUNS_AND_ROCKETS_CLASS)) exitWith {
 	CAS_EXPRESSSION(2)
+};
+
+
+
+// turret supports
+#define TURRET_EXPRESSION(AIRCRAFT_TYPE,HEIGHT,RADIUS,DEFAULT_AIRCRAFT_TYPE) \
+	[AIRCRAFT_TYPE,HEIGHT,RADIUS,DEFAULT_AIRCRAFT_TYPE] call BLWK_fnc_aircraftGunner;\
+	CAS_RADIO
+	
+if (CHECK_SUPPORT_CLASS(TURRET_DOOR_GUNNER_CLASS)) exitWith {
+	private _friendlyTransportHeliClass = [4] call BLWK_fnc_getFriendlyVehicleClass;
+	TURRET_EXPRESSION(_friendlyTransportHeliClass,BLWK_playAreaRadius * 2,BLWK_playAreaRadius * 1.5,"B_Heli_Transport_01_F")
+};
+if (CHECK_SUPPORT_CLASS(TURRET_ATTACK_HELI_GUNNER_CLASS)) exitWith {
+	private _friendlyAttackHeliClass = [7] call BLWK_fnc_getFriendlyVehicleClass;
+	TURRET_EXPRESSION(_friendlyAttackHeliClass,800,400,"B_Heli_Attack_01_dynamicLoadout_F")
+};
+if (CHECK_SUPPORT_CLASS(TURRET_GUNSHIP_CLASS)) exitWith {
+	private _friendlyGunshipClass = [8] call BLWK_fnc_getFriendlyVehicleClass;
+	TURRET_EXPRESSION(_friendlyGunshipClass,1000,800,"B_T_VTOL_01_armed_F")
 };

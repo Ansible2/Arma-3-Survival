@@ -257,7 +257,11 @@ BLWK_supports_array = [
     // CAS
     [400, TO_STRING(CAS_ROCKETS_CLASS)],
     [600, TO_STRING(CAS_GUNS_AND_ROCKETS_CLASS)],
-    [400, TO_STRING(CAS_GUN_RUN_CLASS)]
+    [400, TO_STRING(CAS_GUN_RUN_CLASS)],
+    // Turrets
+    [3000, TO_STRING(TURRET_GUNSHIP_CLASS)],
+    [2000, TO_STRING(TURRET_ATTACK_HELI_GUNNER_CLASS)],
+    [500, TO_STRING(TURRET_DOOR_GUNNER_CLASS)]
 ];
 BLWK_supports_array sort true; // will sort by the price
 

@@ -7,7 +7,7 @@
 #define CAS_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\cas_ca.paa"
 #define CAS_HELI_ICON"\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\casheli_ca.paa"
 #define DEFEND_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\defend_ca.paa"
-#define INTRUCTOR_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\instructor_ca.paa"
+#define INTSRUCTOR_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\instructor_ca.paa"
 #define MORTAR_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\mortar_ca.paa"
 #define SUPPLY_DROP_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\supplydrop_ca.paa"
 #define TRANSPORT_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\transport_ca.paa"
@@ -152,6 +152,25 @@ class CAS_GUNS_AND_ROCKETS_CLASS : basicSupport
 };
 
 
+// Turrets 
+class TURRET_DOOR_GUNNER_CLASS : basicSupport
+{
+    text = TURRET_DOOR_GUNNER_TEXT;
+    expression = CALL_SUPPORT_MASTER(TURRET_DOOR_GUNNER_CLASS);
+    icon = CAS_HELI_ICON;
+};
+class TURRET_ATTACK_HELI_GUNNER_CLASS : basicSupport
+{
+    text = TURRET_ATTACK_HELI_GUNNER_TEXT;
+    expression = CALL_SUPPORT_MASTER(TURRET_ATTACK_HELI_GUNNER_CLASS);
+    icon = CAS_HELI_ICON;
+};
+class TURRET_GUNSHIP_CLASS : basicSupport
+{
+    text = TURRET_GUNSHIP_TEXT;
+    expression = CALL_SUPPORT_MASTER(TURRET_GUNSHIP_CLASS);
+    icon = CAS_ICON;
+};
 
 
 /*

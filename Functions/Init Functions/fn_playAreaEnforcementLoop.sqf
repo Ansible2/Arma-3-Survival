@@ -88,8 +88,7 @@ private _fn_200percentFromCenter = {
 	hint "Get back here you...";
 };
 
-// this is to have potential supports that put the player outside the immediate radius
-// may also consider using remote controlled units if they work intstead
+// this global is to have potential supports that put the player outside the immediate play radius
 if !(missionNamespace getVariable ["BLWK_enforceArea",false]) then {
 	BLWK_enforceArea = true;
 };

@@ -118,6 +118,8 @@ class BLWK
 	*/
 		class doMagRepack
 		{};
+		class getFriendlyVehicleClass
+		{};
 		class handleEnemyWeapons
 		{};
 		class openShopGUI
@@ -172,6 +174,8 @@ class BLWK
 	class Supports
 	{
 		file = "Functions\Supports";
+		class aircraftGunner
+		{};
 		class arsenalSupplyDrop
 		{};
 		class callForArtillery
@@ -194,6 +198,8 @@ class BLWK
 
 	class Stalking
 	{
+		class adjustStalkable
+		{};
 		class canUnitBeStalked
 		{};
 		class getAPlayerToStalk
