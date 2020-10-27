@@ -150,7 +150,7 @@ BLWK_fnc_casAttack = {
 
 ---------------------------------------------------------------------------- */
 #define ATTACK_HEIGHT 1000
-#define ATTACK_DISTANCE 3000
+#define ATTACK_DISTANCE 2000
 
 private _planeSpawnPosition = _attackPosition getPos [ATTACK_DISTANCE,_attackDirection + 180];
 _planeSpawnPosition set [2,ATTACK_HEIGHT];
@@ -161,7 +161,7 @@ _plane setPosASL _planeSpawnPosition;
 _plane setDir _attackDirection;
 
 // telling the plane to ultimately fly past the target after we're done controlling it
-_plane move (_attackPosition getPos [ATTACK_DISTANCE,_attackDirection]);
+_plane move (_attackPosition getPos [5000,_attackDirection]);
 _plane disableai "move";
 _plane disableai "target";
 _plane disableai "autotarget";
@@ -220,7 +220,7 @@ while {!(_plane getVariable ["BLWK_completedFiring",false])} do {
 
 	// start firing
 	// check if plane is 1000m from target and hasn't already started shooting
-	if ((_planePositionASL vectorDistance _attackPosition) <= 1000) then {
+	if ((_planePositionASL vectorDistance _attackPosition) <= 1200) then {
 		
 		
 		//private "_dummyTarget";
@@ -271,7 +271,8 @@ for "_i" from 1 to 4 do {
 	sleep 1
 };
 
-sleep 20;
+// give the plane some time to get out of audible distance before deletion
+sleep 45;
 
 // delete
 if (alive _plane) then {
