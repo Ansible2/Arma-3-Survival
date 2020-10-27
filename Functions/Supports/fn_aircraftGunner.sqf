@@ -13,7 +13,7 @@ _allVehicleTurrets apply {
 	if !(_turretWeapons_temp isEqualTo []) then {
 		// some turrets are just optics, need to see they actually have ammo to shoot
 		_return_temp = _turretWeapons_temp findIf {
-			!([_x] call BIS_fnc_compatibleMagazines isEqualTo []);
+			!([_x] call BIS_fnc_compatibleMagazines isEqualTo [])
 		};
 		if !(_return_temp isEqualTo -1) then {
 			_turretsWithWeapons pushBack _turretPath_temp;
@@ -133,6 +133,7 @@ private ["_turretAction_temp","_turretMagazines_temp","_turretPath_temp"];
 
 		moveOut _caller;
 		_caller setVehiclePosition [bulwarkBox,[],5,"NONE"];
+		_caller setVelocity [0,0,0];
 		[_caller,true] call BLWK_fnc_adjustStalkable;
 
 		// add this action id to list of switch turret actions for removal
@@ -151,9 +152,11 @@ private ["_turretAction_temp","_turretMagazines_temp","_turretPath_temp"];
 		deleteGroup _vehicleGroup;
 		deleteVehicle _vehicle;
 		
-		player allowDamage true;
-
 		null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
+
+		sleep 10;
+
+		_caller allowDamage true;
 	}, 
 	{}, 
 	[_turretSwitchActions,_vehicle,_vehicleGroup], 
