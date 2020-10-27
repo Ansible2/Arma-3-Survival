@@ -7,7 +7,7 @@ if (!canSuspend) exitWith {
 params [
 	["_stalkerGroup",grpNull,[objNull,grpNull]],
 	["_defaultPosition",bulwarkBox,[objNull,grpNull,[]]],
-	["_checkRate",10,[123]],
+	["_checkRate",20,[123]],
 	["_conditionToEndStalking",{false},[{}]]
 ];
 
@@ -39,10 +39,6 @@ private _stalkerGroupUnits = units _stalkerGroup;
 private "_id_temp";
 _stalkerGroupUnits apply {
 	_id_temp = _x addEventHandler ["KILLED",{
-		if (isServer) then {
-			hint "stalker count updated";
-		};
-	
 		private _stalkedPlayer = (group _x) getVariable STALKED_UNIT_VAR;
 		private _numberOfStalkers = _stalkedPlayer getVariable STALKER_COUNT_VAR;
 		_numberOfStalkers = _numberOfStalkers - 1;
