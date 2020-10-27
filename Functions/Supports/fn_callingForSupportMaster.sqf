@@ -138,13 +138,13 @@ if (CHECK_SUPPORT_CLASS(CAS_GUNS_AND_ROCKETS_CLASS)) exitWith {
 	
 if (CHECK_SUPPORT_CLASS(TURRET_DOOR_GUNNER_CLASS)) exitWith {
 	private _friendlyTransportHeliClass = [4] call BLWK_fnc_getFriendlyVehicleClass;
-	TURRET_EXPRESSION(_friendlyTransportHeliClass,BLWK_playAreaRadius * 2,BLWK_playAreaRadius * 1.5,"B_Heli_Transport_01_F")
+	TURRET_EXPRESSION(_friendlyTransportHeliClass,125,BLWK_playAreaRadius * 1.5,"B_Heli_Transport_01_F")
 };
 if (CHECK_SUPPORT_CLASS(TURRET_ATTACK_HELI_GUNNER_CLASS)) exitWith {
 	private _friendlyAttackHeliClass = [7] call BLWK_fnc_getFriendlyVehicleClass;
-	TURRET_EXPRESSION(_friendlyAttackHeliClass,800,400,"B_Heli_Attack_01_dynamicLoadout_F")
+	TURRET_EXPRESSION(_friendlyAttackHeliClass,500,400,"B_Heli_Attack_01_dynamicLoadout_F")
 };
 if (CHECK_SUPPORT_CLASS(TURRET_GUNSHIP_CLASS)) exitWith {
 	private _friendlyGunshipClass = [8] call BLWK_fnc_getFriendlyVehicleClass;
-	TURRET_EXPRESSION(_friendlyGunshipClass,1000,800,"B_T_VTOL_01_armed_F")
+	TURRET_EXPRESSION(_friendlyGunshipClass,700,1200,"B_T_VTOL_01_armed_F")
 };

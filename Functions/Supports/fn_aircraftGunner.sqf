@@ -8,10 +8,9 @@ private _turretsWithWeapons =  [];
 private ["_turretWeapons_temp","_return_temp","_turretPath_temp"];
 _allVehicleTurrets apply {
 	_turretPath_temp = _x;
-	_turretWeapons_temp = getArray([_vehicleClass, _x] call BIS_fnc_turretConfig >> "weapons") isEqualTo [];
+	_turretWeapons_temp = getArray([_vehicleClass,_turretPath_temp] call BIS_fnc_turretConfig >> "weapons");
 	// if turrets are found
 	if !(_turretWeapons_temp isEqualTo []) then {
-		
 		// some turrets are just optics, need to see they actually have ammo to shoot
 		_return_temp = _turretWeapons_temp findIf {
 			!([_x] call BIS_fnc_compatibleMagazines isEqualTo []);
@@ -27,6 +26,7 @@ if (_turretsWithWeapons isEqualTo []) exitWith {
 
 // create vehicle
 private _spawnPosition = [BLWK_playAreaMarker, true] call CBAP_fnc_randPosArea;
+_spawnPosition set [2,_loiterHeight];
 private _vehicleArray = [_spawnPosition,0,_vehicleClass,BLUFOR] call BIS_fnc_spawnVehicle;
 private _vehicle = _vehicleArray select 0;
 _vehicle allowDamage false;
@@ -51,13 +51,29 @@ _vehicleGroup setCombatMode "BLUE";
 private _loiterWaypoint = _vehicleGroup addWaypoint [BLWK_playAreaCenter,0];
 _loiterWaypoint setWaypointType "LOITER";
 _loiterWaypoint setWaypointLoiterRadius _loiterRadius;
-_loiterWaypoint setWaypointLoiterType "CIRCLE";
+_loiterWaypoint setWaypointLoiterType "CIRCLE_L";
 _loiterWaypoint setWaypointLoiterAltitude _loiterHeight;
+_vehicle flyInHeight _loiterHeight;
 _loiterWaypoint setWaypointSpeed "LIMITED";
 
 
-// allow player outside of play area
+// handle view distances so things aren't cloudy
+private _estimatedDistance = round (sqrt ((_loiterHeight^2) + (_loiterRadius^2)));
+private _overallViewDistance = round (_estimatedDistance * 2.5);
+private _objectViewDistance = round (_estimatedDistance * 1.5);
+if (viewDistance < _overallViewDistance) then {
+	setViewDistance _overallViewDistance;
+};
+if ((getObjectViewDistance select 0) < _objectViewDistance) then {
+	setObjectViewDistance _objectViewDistance;
+};
+//hint str [_estimatedDistance,_overallViewDistance,_objectViewDistance];
+
+
+// setup player interaction
 BLWK_enforceArea = false;
+[player,false] call BLWK_fnc_adjustStalkable; // make it so AI don't hunt the player
+player allowDamage false;
 player moveInTurret [_vehicle,_turretsWithWeapons select 0];
 _vehicle enableCoPilot false; // disable the ability to take control of the aircraft
 
@@ -111,6 +127,10 @@ private ["_turretAction_temp","_turretMagazines_temp","_turretPath_temp"];
 	{}, 
 	{
 		params ["", "_caller", "_actionId", "_arguments", "", ""];
+
+		setViewDistance -1;
+		setObjectViewDistance -1;
+
 		moveOut _caller;
 		_caller setVehiclePosition [bulwarkBox,[],5,"NONE"];
 		[_caller,true] call BLWK_fnc_adjustStalkable;
@@ -122,10 +142,21 @@ private ["_turretAction_temp","_turretMagazines_temp","_turretPath_temp"];
 			[_caller,_x] call BIS_fnc_holdActionRemove;
 		};
 
+		// delete vehicle
+		private _vehicle = _arguments select 1;
+		private _vehicleGroup = _arguments select 2;
+		(units _vehicleGroup) apply {
+			_vehicle deleteVehicleCrew _x;
+		};
+		deleteGroup _vehicleGroup;
+		deleteVehicle _vehicle;
+		
+		player allowDamage true;
+
 		null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
 	}, 
 	{}, 
-	[_turretSwitchActions], 
+	[_turretSwitchActions,_vehicle,_vehicleGroup], 
 	1, 
 	1, 
 	false, 
