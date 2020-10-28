@@ -13,7 +13,8 @@ _allVehicleTurrets apply {
 	if !(_turretWeapons_temp isEqualTo []) then {
 		// some turrets are just optics, need to see they actually have ammo to shoot
 		_return_temp = _turretWeapons_temp findIf {
-			!([_x] call BIS_fnc_compatibleMagazines isEqualTo [])
+			private _mags = [_x] call BIS_fnc_compatibleMagazines;
+			!(_mags isEqualTo []) AND {!((_mags select 0) == "laserbatteries")}
 		};
 		if !(_return_temp isEqualTo -1) then {
 			_turretsWithWeapons pushBack _turretPath_temp;
@@ -75,6 +76,7 @@ BLWK_enforceArea = false;
 [player,false] call BLWK_fnc_adjustStalkable; // make it so AI don't hunt the player
 player allowDamage false;
 player moveInTurret [_vehicle,_turretsWithWeapons select 0];
+_vehicle lock true; // keep player from ejecting or switching seats with vanilla actions
 _vehicle enableCoPilot false; // disable the ability to take control of the aircraft
 
 // create actions to switch turrets
