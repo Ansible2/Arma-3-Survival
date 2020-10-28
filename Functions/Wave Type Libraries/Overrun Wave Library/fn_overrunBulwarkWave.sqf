@@ -25,7 +25,7 @@ Author:
 ---------------------------------------------------------------------------- */
 params ["_startingEnemyUnits"];
 
-private "_playerPosition" 
+private "_playerPosition";
 private _players = call CBAP_fnc_players;
 _players apply {
 	// don't teleport players in vehicles
