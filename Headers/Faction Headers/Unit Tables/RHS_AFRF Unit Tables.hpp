@@ -16,7 +16,7 @@
 	"rhs_msv_emr_LAT",\
 	"rhs_msv_emr_RShG2",\
 	"rhs_msv_emr_sergeant",\
-	["rhs_tigr_sts_msv","rhs_btr70_msv","rhs_bmp3_msv","rhs_t80um","rhs_ka60_c","RHS_Mi8mt_vvsc","RHS_Su25SM_vvsc"]\
+	["rhs_tigr_sts_msv","rhs_btr70_msv","rhs_bmp3_msv","rhs_t80um","RHS_Mi8mt_vvsc","RHS_Mi8mt_vvsc","RHS_Su25SM_vvsc","rhs_mi28n_vvs"]\
 ]
 #define RHS_AFRF_RUS_MSV_FLORA_UNITS \
 [\
@@ -35,7 +35,7 @@
 	"rhs_msv_LAT",\
 	"rhs_msv_RShG2",\
 	"rhs_msv_sergeant",\
-	["rhs_tigr_sts_msv","rhs_btr70_msv","rhs_bmp3_msv","rhs_t80um","rhs_ka60_c","RHS_Mi8mt_vvsc","RHS_Su25SM_vvsc"]\
+	["rhs_tigr_sts_msv","rhs_btr70_msv","rhs_bmp3_msv","rhs_t80um","RHS_Mi8mt_vvsc","RHS_Mi8mt_vvsc","RHS_Su25SM_vvsc","rhs_mi28n_vvsc"]\
 ]
 
 // VDV
@@ -60,7 +60,7 @@
 	"rhs_vdv_RShG2",\
 	"rhs_vdv_rifleman_alt",\
 	"rhs_vdv_sergeant",\
-	["rhs_tigr_sts_vdv","rhs_btr80a_vdv","rhs_bmd4_vdv","rhs_sprut_vdv","rhs_ka60_c","RHS_Mi8mt_vdv","RHS_Su25SM_vvsc"]\
+	["rhs_tigr_sts_vdv","rhs_btr80a_vdv","rhs_bmd4_vdv","rhs_sprut_vdv","RHS_Mi8mt_vdv","RHS_Mi8mt_vdv","RHS_Su25SM_vvsc","rhs_mi28n_vvsc"]\
 ]
 #define RHS_AFRF_RUS_VDV_EMR_DES_UNITS \
 [\
@@ -81,7 +81,7 @@
 	"rhs_vdv_des_LAT",\
 	"rhs_vdv_des_RShG2",\
 	"rhs_vdv_des_sergeant",\
-	["rhs_tigr_sts_3camo_vdv","rhs_btr80a_vdv","rhs_bmd4_vdv","rhs_sprut_vdv","rhs_ka60_c","RHS_Mi8mt_vdv","RHS_Su25SM_vvsc"]\
+	["rhs_tigr_sts_3camo_vdv","rhs_btr80a_vdv","rhs_bmd4_vdv","rhs_sprut_vdv","RHS_Mi8mt_vdv","RHS_Mi8mt_vdv","RHS_Su25SM_vvsc","rhs_mi28n_vvsc"]\
 ]
 #define RHS_AFRF_RUS_VDV_FLORA_UNITS \
 [\
@@ -99,7 +99,7 @@
 	"rhs_vdv_flora_LAT",\
 	"rhs_vdv_flora_RShG2",\
 	"rhs_vdv_flora_sergeant",\
-	["rhs_tigr_sts_vdv","rhs_btr80a_vdv","rhs_bmd4_vdv","rhs_sprut_vdv","rhs_ka60_c","RHS_Mi8mt_vdv","RHS_Su25SM_vvsc"]\
+	["rhs_tigr_sts_vdv","rhs_btr80a_vdv","rhs_bmd4_vdv","rhs_sprut_vdv","RHS_Mi8mt_vdv","RHS_Mi8mt_vdv","RHS_Su25SM_vvsc","rhs_mi28n_vvsc"]\
 ]
 #define RHS_AFRF_RUS_VDV_MFLORA_UNITS \
 [\
@@ -117,7 +117,7 @@
 	"rhs_vdv_mflora_LAT",\
 	"rhs_vdv_mflora_RShG2",\
 	"rhs_vdv_mflora_sergeant",\
-	["rhs_tigr_sts_3camo_vdv","rhs_btr80a_vdv","rhs_bmd4_vdv","rhs_sprut_vdv","rhs_ka60_c","RHS_Mi8mt_vdv","RHS_Su25SM_vvsc"]\
+	["rhs_tigr_sts_3camo_vdv","rhs_btr80a_vdv","rhs_bmd4_vdv","rhs_sprut_vdv","RHS_Mi8mt_vdv","RHS_Mi8mt_vdv","RHS_Su25SM_vvsc","rhs_mi28n_vvsc"]\
 ]
 #define RHS_AFRF_RUS_VDV_RECON_UNITS \
 [\
@@ -139,7 +139,7 @@
 	"rhs_vdv_recon_grenadier_scout",\
 	"rhs_vdv_recon_arifleman_scout",\
 	"rhs_vdv_recon_sergeant",\
-	["rhs_tigr_sts_vdv","rhs_btr80a_vdv","rhs_bmd4_vdv","rhs_sprut_vdv","rhs_ka60_c","RHS_Mi8mt_vdv","RHS_Su25SM_vvsc"]\
+	["rhs_tigr_sts_vdv","rhs_btr80a_vdv","rhs_bmd4_vdv","rhs_sprut_vdv","RHS_Mi8mt_vdv","RHS_Mi8mt_vdv","RHS_Su25SM_vvsc","rhs_mi28n_vvsc"]\
 ]
 
 // VMF
@@ -162,7 +162,7 @@
 	"rhs_vmf_recon_grenadier_scout",\
 	"rhs_vmf_recon_arifleman_scout",\
 	"rhs_vmf_recon_sergeant",\
-	["rhs_tigr_sts_vdv","rhs_btr80a_vdv","rhs_bmd4_vdv","rhs_sprut_vdv","rhs_ka60_c","RHS_Mi8mt_vdv","RHS_Su25SM_vvsc"]\
+	["rhs_tigr_sts_vdv","rhs_btr80a_vdv","rhs_bmd4_vdv","rhs_sprut_vdv","RHS_Mi8mt_vdv","RHS_Mi8mt_vdv","RHS_Su25SM_vvsc","rhs_mi28n_vvsc"]\
 ]
 #define RHS_AFRF_RUS_VMF_FLORA_UNITS \
 [\
@@ -181,7 +181,7 @@
 	"rhs_vmf_flora_LAT",\
 	"rhs_vmf_flora_RShG2",\
 	"rhs_vmf_flora_sergeant",\
-	["rhs_tigr_sts_vdv","rhs_btr80a_vdv","rhs_bmd4_vdv","rhs_sprut_vdv","rhs_ka60_c","RHS_Mi8mt_vdv","RHS_Su25SM_vvsc"]\
+	["rhs_tigr_sts_vdv","rhs_btr80a_vdv","rhs_bmd4_vdv","rhs_sprut_vdv","RHS_Mi8mt_vdv","RHS_Mi8mt_vdv","RHS_Su25SM_vvsc","rhs_mi28n_vvsc"]\
 ]
 
 // VV
@@ -197,5 +197,5 @@
 	"rhs_mvd_izlom_rifleman_asval",\
 	"rhs_mvd_izlom_rifleman_LAT",\
 	"rhs_mvd_izlom_sergeant",\
-	["rhs_tigr_sts_vdv","rhs_btr80a_vdv","rhs_bmd4_vdv","rhs_sprut_vdv","rhs_ka60_c","RHS_Mi8mt_vv","RHS_Su25SM_vvsc"]\
+	["rhs_tigr_sts_vdv","rhs_btr80a_vdv","rhs_bmd4_vdv","rhs_sprut_vdv","RHS_Mi8mt_vv","RHS_Mi8mt_vv","RHS_Su25SM_vvsc","rhs_mi28n_vvsc"]\
 ]
