@@ -104,7 +104,7 @@ A_SECTION_HEADER(Start);
 
 class BLWK_startingWaveNumber
 {
-	title = "Starting wave number (should be less then max wave)";
+	title = "Start from wave number (should be less then max wave)";
 	values[] = {0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50};
 	texts[] = {"0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50"};
 	default = 0;
