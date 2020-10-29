@@ -22,7 +22,7 @@ Author(s):
 ---------------------------------------------------------------------------- */
 private _logicGroup = createGroup BLWK_logicCenter;
 private "_logic";
-private _distanceFromCenter = BLWK_playAreaRadius + 50;
+private _distanceFromCenter = BLWK_playAreaRadius + 75;
 private "_logicPosition";
 for "_i" from 1 to 3 do {
 	_logic = _logicGroup createUnit ["Logic", [0,0,0], [], 0, "NONE"];
@@ -30,5 +30,5 @@ for "_i" from 1 to 3 do {
 	_logicPosition = BLWK_playAreaCenter getPos [_distanceFromCenter, random 360]; 
 	_logic setPos _logicPosition;
 
-	null = [_logic,_distanceFromCenter + 225,999999,1] spawn KISKA_fnc_battleSound;
+	null = [_logic,_distanceFromCenter + 250,999999,1] spawn KISKA_fnc_battleSound;
 };
