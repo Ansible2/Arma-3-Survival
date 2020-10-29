@@ -29,7 +29,7 @@ private _killedUnit = _eventInfo select 0;
 private _instigator = _eventInfo select 2;
 
 
-if (local _instigator AND {isPlayer _instigator} AND {hasInterface}) then {
+if (hasInterface AND {local _instigator} AND {isPlayer _instigator}) then {
 	
 	[_killedUnit, round (BLWK_pointsForKill * -10), true] call BLWK_fnc_createHitMarker;
 	[BLWK_pointsForKill * 10] call BLWK_fnc_subtractPoints;

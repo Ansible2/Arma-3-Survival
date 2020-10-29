@@ -20,7 +20,7 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#include "..\..\..\Headers\civillianGearTables.hpp"
+#include "..\..\..\Headers\civilianGearTables.hpp"
 
 params [
 	["_unit",objNull,[objNull]]
