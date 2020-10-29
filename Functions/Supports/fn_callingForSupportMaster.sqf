@@ -101,7 +101,7 @@ if (CHECK_SUPPORT_CLASS(MORTAR_STRIKE_82MM_FLARE_CLASS)) exitWith {
 // arsenal supply drop
 if (CHECK_SUPPORT_CLASS(SUPPLY_ARSENAL_DROP_CLASS)) exitWith {
 	if !(missionNamespace getVariable ["BLWK_arsenalOut",false]) then {
-		missionNamespace getVariable ["BLWK_arsenalOut",true,true];
+		missionNamespace setVariable ["BLWK_arsenalOut",true,true];
 
 		private _friendlyDropAircraftClass = [5] call BLWK_fnc_getFriendlyVehicleClass;
 		[_targetPosition,_friendlyDropAircraftClass] call BLWK_fnc_arsenalSupplyDrop;
