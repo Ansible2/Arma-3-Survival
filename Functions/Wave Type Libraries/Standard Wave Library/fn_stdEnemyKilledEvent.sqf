@@ -41,10 +41,7 @@ if (local BLWK_theAIHandlerEntity) then {
 	
 	// if the spawn que is not empty
 	if !((missionNamespace getVariable [STANDARD_ENEMY_INFANTRY_QUE,[]]) isEqualTo []) then {
-		[
-			STANDARD_ENEMY_INFANTRY_QUE,
-			call BLWK_fnc_stdEnemyManCreateCode
-		] call BLWK_fnc_createFromQue;
+		[STANDARD_ENEMY_INFANTRY_QUE,BLWK_fnc_stdEnemyManCreateCode] call BLWK_fnc_createFromQue;
 	};
 };
 
