@@ -194,25 +194,25 @@ if (hasInterface) then {
 
 };
 if (isNil "BLWK_currentWaveNumber") then {
-    BLWK_currentWaveNumber = 0;
+    BLWK_currentWaveNumber = "BLWK_startingWaveNumber" call BIS_fnc_getParamValue;
 };
 if (isNil "BLWK_inBetweenWaves") then {
     BLWK_inBetweenWaves = true;
 };
 if (isNil "BLWK_numRespawnTickets") then {
-    BLWK_numRespawnTickets = ("BLWK_numRespawnTickets" call BIS_fnc_getParamValue);
+    BLWK_numRespawnTickets = "BLWK_numRespawnTickets" call BIS_fnc_getParamValue;
 };
 if (isNil "BLWK_playAreaRadius") then {
-    BLWK_playAreaRadius = ("BLWK_playAreaRadius" call BIS_fnc_getParamValue); // Total play area radius in meters
+    BLWK_playAreaRadius = "BLWK_playAreaRadius" call BIS_fnc_getParamValue; // Total play area radius in meters
 };
 if (isNil "BLWK_faksToMakeMedkit") then {
-    BLWK_faksToMakeMedkit = ("BLWK_faksToMakeMedkit" call BIS_fnc_getParamValue);
+    BLWK_faksToMakeMedkit = "BLWK_faksToMakeMedkit" call BIS_fnc_getParamValue;
 };
 
 /* Points */
-BLWK_pointsForKill = ("BLWK_pointsForKill" call BIS_fnc_getParamValue);                 // Base Points for a kill
-BLWK_pointsForHit = ("BLWK_pointsForHit" call BIS_fnc_getParamValue);                   // Every Bullet hit
-BLWK_pointsMultiForDamage = ("BLWK_pointsMultiForDamage" call BIS_fnc_getParamValue);   // Extra points awarded for damage. 100% = BLWK_pointsMultiForDamage. 50% = BLWK_pointsMultiForDamage/2
+BLWK_pointsForKill = "BLWK_pointsForKill" call BIS_fnc_getParamValue;                 // Base Points for a kill
+BLWK_pointsForHit = "BLWK_pointsForHit" call BIS_fnc_getParamValue;                   // Every Bullet hit
+BLWK_pointsMultiForDamage = "BLWK_pointsMultiForDamage" call BIS_fnc_getParamValue;   // Extra points awarded for damage. 100% = BLWK_pointsMultiForDamage. 50% = BLWK_pointsMultiForDamage/2
 BLWK_costToSpinRandomBox = 950; 
 if (isNil "BLWK_supportDishFound") then {
     BLWK_supportDishFound = [false,true] select ("BLWK_supportDishFound" call BIS_fnc_getParamValue);

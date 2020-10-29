@@ -28,7 +28,7 @@ if (!isServer OR {!canSuspend}) exitWith {};
 private ["_players","_return"];
 // wait till the first round has started
 waitUntil {
-	if ((missionNamespace getVariable ["BLWK_currentWaveNumber",0]) isEqualTo 1) exitWith {true};
+	if !(missionNamespace getVariable ["BLWK_inBetweenWaves",false]) exitWith {true};
 	sleep 1;
 	false
 };

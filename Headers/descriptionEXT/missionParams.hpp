@@ -102,6 +102,13 @@ class BLWK_roundsBeforeBodyDeletion
 A_SPACE(Start);
 A_SECTION_HEADER(Start);
 
+class BLWK_startingWaveNumber
+{
+	title = "Starting wave number (should be less then max wave)";
+	values[] = {0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50};
+	texts[] = {"0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50"};
+	default = 0;
+};
 class BLWK_startingKillPoints
 {
 	title = "Kill points players start with";
@@ -109,7 +116,6 @@ class BLWK_startingKillPoints
 	texts[] = {"0", "250", "500", "1000", "2500", "5000", "10000"};
 	default = 0;
 };
-
 class BLWK_supportDishFound
 {
 	title = "Find Satellite Dish to Unlock Supports";
