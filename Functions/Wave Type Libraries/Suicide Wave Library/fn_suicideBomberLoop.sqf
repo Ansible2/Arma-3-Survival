@@ -31,7 +31,7 @@ private ["_players","_nearPlayer"];
 while {alive _bomber} do {
 	_players = call CBAP_fnc_players;
 	
-	[_bomber,["suicideAudio",70]] remoteExec ["say3D",_players];
+	[_bomber,["suicideSound",70]] remoteExec ["say3D",_players];
 	
 	_nearPlayer = _players findIf {(_bomber distance2D _x) <= 10};
 	
