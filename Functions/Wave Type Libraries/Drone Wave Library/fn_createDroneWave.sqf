@@ -28,18 +28,20 @@ Author:
 
 private _droneGroup = createGroup OPFOR;
 private _playAreaRadiusExtended = BLWK_playAreaRadius + 100;
-private "_droneTemp";
 private _spawnPosition = [[BLWK_playAreaCenter,_playAreaRadiusExtended,_playAreaRadiusExtended,0,false],true] call CBAP_fnc_randPosArea;
 private _rotation = _spawnPosition getDir BLWK_playAreaCenter;
 
+
+private ["_drone_temp","_droneArray_temp"];
 for "_i" from 1 to DRONE_NUMBER do {
 	// these will wpawn in the air
-	_droneTemp = [_spawnPosition, _rotation, DRONE_CLASS, _droneGroup] call BIS_fnc_spawnVehicle;
-	_droneTemp flyInHeight 30;
+	_droneArray_temp = [_spawnPosition, _rotation, DRONE_CLASS, _droneGroup] call BIS_fnc_spawnVehicle;
+	_drone_temp = _droneArray_temp select 0;
+	_drone_temp flyInHeight 30;
 	// CIPHER COMMENT: Skill might not be needed
-	_droneTemp setSkill 1;
+	_drone_temp setSkill 1;
 
-	_droneTemp addEventHandler ["HIT",{
+	_drone_temp addEventHandler ["HIT",{
 		private _unitKilled = _this select 0;
 		private _instigator = _this select 3;
 
@@ -54,7 +56,7 @@ for "_i" from 1 to DRONE_NUMBER do {
 		deleteVehicle _unit;
 	}];
 
-	null = [_droneTemp] remoteExec ["BLWK_fnc_addToMustKillArray",2];
+	null = [_drone_temp] remoteExec ["BLWK_fnc_addToMustKillArray",2];
 };
 
 [_droneGroup, bulwarkBox, 20, "SAD", "AWARE"] call CBAP_fnc_addWaypoint; 
