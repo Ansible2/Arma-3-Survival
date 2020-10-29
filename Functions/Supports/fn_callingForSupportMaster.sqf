@@ -23,9 +23,11 @@ Authors:
 ---------------------------------------------------------------------------- */
 params ["_caller","_targetPosition","_supportClass"];
 
+#define ADD_SUPPORT_BACK [_caller,_supportClass,nil,nil,""] call BIS_fnc_addCommMenuItem;
+
 if (_targetPosition isEqualTo []) exitWith {
 	hint "Position is invalid, try again";
-	[_caller,_supportClass,nil,nil,""] call BIS_fnc_addCommMenuItem;
+	ADD_SUPPORT_BACK
 };
 
 #include "..\..\Headers\descriptionEXT\supportDefines.hpp"
@@ -106,7 +108,7 @@ if (CHECK_SUPPORT_CLASS(SUPPLY_ARSENAL_DROP_CLASS)) exitWith {
 		[TYPE_SUPPLY_DROP_REQUEST] call BLWK_fnc_supportRadioGlobal;
 	} else {
 		hint "An arsenal is already in use";
-		[_caller,_supportClass,nil,nil,""] call BIS_fnc_addCommMenuItem;
+		ADD_SUPPORT_BACK
 	};
 };
 
@@ -132,19 +134,34 @@ if (CHECK_SUPPORT_CLASS(CAS_GUNS_AND_ROCKETS_CLASS)) exitWith {
 
 
 // turret supports
-#define TURRET_EXPRESSION(AIRCRAFT_TYPE,HEIGHT,RADIUS,DEFAULT_AIRCRAFT_TYPE) \
-	[AIRCRAFT_TYPE,HEIGHT,RADIUS,DEFAULT_AIRCRAFT_TYPE] call BLWK_fnc_aircraftGunner;\
+#define TURRET_EXPRESSION(AIRCRAFT_TYPE,HEIGHT,RADIUS,DEFAULT_AIRCRAFT_TYPE,GUNNER_TYPE) \
+	[AIRCRAFT_TYPE,HEIGHT,RADIUS,DEFAULT_AIRCRAFT_TYPE,GUNNER_TYPE] call BLWK_fnc_aircraftGunner;\
 	CAS_RADIO
 	
 if (CHECK_SUPPORT_CLASS(TURRET_DOOR_GUNNER_CLASS)) exitWith {
-	private _friendlyTransportHeliClass = [4] call BLWK_fnc_getFriendlyVehicleClass;
-	TURRET_EXPRESSION(_friendlyTransportHeliClass,125,BLWK_playAreaRadius * 1.5,"B_Heli_Transport_01_F")
+	if (missionNamespace getVariable ["BLWK_doorGunnerInUse",false]) then {
+		private _friendlyTransportHeliClass = [4] call BLWK_fnc_getFriendlyVehicleClass;
+		TURRET_EXPRESSION(_friendlyTransportHeliClass,125,BLWK_playAreaRadius * 1.5,"B_Heli_Transport_01_F","BLWK_doorGunnerInUse")
+	} else {
+		hint "Only one door gunner support may be active at a time."
+		ADD_SUPPORT_BACK
+	};
 };
 if (CHECK_SUPPORT_CLASS(TURRET_ATTACK_HELI_GUNNER_CLASS)) exitWith {
-	private _friendlyAttackHeliClass = [7] call BLWK_fnc_getFriendlyVehicleClass;
-	TURRET_EXPRESSION(_friendlyAttackHeliClass,400,550,"B_Heli_Attack_01_dynamicLoadout_F")
+	if (missionNamespace getVariable ["BLWK_heliGunnerInUse",false]) then {
+		private _friendlyAttackHeliClass = [7] call BLWK_fnc_getFriendlyVehicleClass;
+		TURRET_EXPRESSION(_friendlyAttackHeliClass,400,550,"B_Heli_Attack_01_dynamicLoadout_F","BLWK_heliGunnerInUse")	
+	} else {
+		hint "Only one helicopter gunner support may be active at a time."
+		ADD_SUPPORT_BACK
+	};
 };
 if (CHECK_SUPPORT_CLASS(TURRET_GUNSHIP_CLASS)) exitWith {
-	private _friendlyGunshipClass = [8] call BLWK_fnc_getFriendlyVehicleClass;
-	TURRET_EXPRESSION(_friendlyGunshipClass,700,1200,"B_T_VTOL_01_armed_F")
+	if (missionNamespace getVariable ["BLWK_gunshipGunnerInUse",false]) then {
+		private _friendlyGunshipClass = [8] call BLWK_fnc_getFriendlyVehicleClass;
+		TURRET_EXPRESSION(_friendlyGunshipClass,700,1200,"B_T_VTOL_01_armed_F","BLWK_gunshipGunnerInUse")
+	} else {
+		hint "Only one heavy gunship gunner support may be active at a time."
+		ADD_SUPPORT_BACK
+	};	
 };

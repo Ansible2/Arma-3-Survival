@@ -1,4 +1,4 @@
-params ["_vehicleClass","_loiterHeight","_loiterRadius","_defaultVehicleType"];
+params ["_vehicleClass","_loiterHeight","_loiterRadius","_defaultVehicleType","_typeOfGunner"];
 
 // verify vehicle has turrets that are not fire from vehicle and not copilot positions
 // excludes fire from vehicle turrets
@@ -79,6 +79,8 @@ player moveInTurret [_vehicle,_turretsWithWeapons select 0];
 _vehicle lock true; // keep player from ejecting or switching seats with vanilla actions
 _vehicle enableCoPilot false; // disable the ability to take control of the aircraft
 
+missionNamespace setVariable [_typeOfGunner,true,true];
+
 // create actions to switch turrets
 private _turretSwitchActions = [];
 private ["_turretAction_temp","_turretMagazines_temp","_turretPath_temp"];	
@@ -153,6 +155,9 @@ private ["_turretAction_temp","_turretMagazines_temp","_turretPath_temp"];
 		};
 		deleteGroup _vehicleGroup;
 		deleteVehicle _vehicle;
+
+		// allow other users to access the support type again
+		missionNamespace setVariable [_arguments select 3,false,true];
 		
 		null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
 
@@ -161,7 +166,7 @@ private ["_turretAction_temp","_turretMagazines_temp","_turretPath_temp"];
 		_caller allowDamage true;
 	}, 
 	{}, 
-	[_turretSwitchActions,_vehicle,_vehicleGroup], 
+	[_turretSwitchActions,_vehicle,_vehicleGroup,_typeOfGunner], 
 	1, 
 	1, 
 	false, 
