@@ -30,7 +30,7 @@ private _players = call CBAP_fnc_players;
 _players apply {
 	// don't teleport players in vehicles
 	if (isNull (objectParent _x)) then {
-		_playerPosition = [BLWK_playAreaCenter, 20, BLWK_playAreaRadius, 5] call BIS_fnc_findSafePos;
+		_playerPosition = [BLWK_playAreaCenter, BLWK_playAreaRadius / 2, BLWK_playAreaRadius, 5] call BIS_fnc_findSafePos;
 		//_playerPosition = [BLWK_playAreaCenter,BLWK_playAreaRadius,round (random 360)] call CBAP_fnc_randPos;
 		_x setPos _playerPosition;
 	};
@@ -39,5 +39,6 @@ _players apply {
 private "_positionTemp";
 _startingEnemyUnits apply {
 	_positionTemp = [bulwarkBox,50,random 360] call CBAP_fnc_randPos;
+	[group _x,bulwarkBox] call BLWK_fnc_stopStalking;
 	_x setVehiclePosition [_positionTemp, [], 1, "NONE"];
 };
