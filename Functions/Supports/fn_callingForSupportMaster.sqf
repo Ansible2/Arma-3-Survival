@@ -143,7 +143,7 @@ if (CHECK_SUPPORT_CLASS(TURRET_DOOR_GUNNER_CLASS)) exitWith {
 		private _friendlyTransportHeliClass = [4] call BLWK_fnc_getFriendlyVehicleClass;
 		TURRET_EXPRESSION(_friendlyTransportHeliClass,125,BLWK_playAreaRadius * 1.5,"B_Heli_Transport_01_F","BLWK_doorGunnerInUse")
 	} else {
-		hint "Only one door gunner support may be active at a time."
+		hint "Only one door gunner support may be active at a time.";
 		ADD_SUPPORT_BACK
 	};
 };
@@ -152,7 +152,7 @@ if (CHECK_SUPPORT_CLASS(TURRET_ATTACK_HELI_GUNNER_CLASS)) exitWith {
 		private _friendlyAttackHeliClass = [7] call BLWK_fnc_getFriendlyVehicleClass;
 		TURRET_EXPRESSION(_friendlyAttackHeliClass,400,550,"B_Heli_Attack_01_dynamicLoadout_F","BLWK_heliGunnerInUse")	
 	} else {
-		hint "Only one helicopter gunner support may be active at a time."
+		hint "Only one helicopter gunner support may be active at a time.";
 		ADD_SUPPORT_BACK
 	};
 };
@@ -161,7 +161,7 @@ if (CHECK_SUPPORT_CLASS(TURRET_GUNSHIP_CLASS)) exitWith {
 		private _friendlyGunshipClass = [8] call BLWK_fnc_getFriendlyVehicleClass;
 		TURRET_EXPRESSION(_friendlyGunshipClass,700,1200,"B_T_VTOL_01_armed_F","BLWK_gunshipGunnerInUse")
 	} else {
-		hint "Only one heavy gunship gunner support may be active at a time."
+		hint "Only one heavy gunship gunner support may be active at a time.";
 		ADD_SUPPORT_BACK
 	};	
 };
