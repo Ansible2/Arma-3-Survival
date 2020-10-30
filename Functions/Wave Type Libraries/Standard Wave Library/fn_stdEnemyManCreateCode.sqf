@@ -26,6 +26,8 @@ params ["_unit","_queueName","_group"];
 
 [_unit] call BLWK_fnc_setSkill;
 
+[_group] call BLWK_fnc_addToPathingLoop;
+
 _unit setVariable ["BLWK_cameFromQueue",_queueName];
 
 if (isNil "_group") then {
