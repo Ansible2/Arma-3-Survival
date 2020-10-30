@@ -35,13 +35,13 @@ params ["_eventInfo","_handlerID"];
 private _killedUnit = _eventInfo select 0;
 private _instigator = _eventInfo select 2;
 
-// spawn the next in que
+// spawn the next in queue
 if (local BLWK_theAIHandlerEntity) then {
 	#include "..\..\..\Headers\String Constants.hpp"
 	
-	// if the spawn que is not empty
-	if !((missionNamespace getVariable [STANDARD_ENEMY_INFANTRY_QUE,[]]) isEqualTo []) then {
-		[STANDARD_ENEMY_INFANTRY_QUE,BLWK_fnc_stdEnemyManCreateCode] call BLWK_fnc_createFromQue;
+	// if the spawn queue is not empty
+	if !((missionNamespace getVariable [STANDARD_ENEMY_INFANTRY_QUEUE,[]]) isEqualTo []) then {
+		[STANDARD_ENEMY_INFANTRY_QUEUE,BLWK_fnc_stdEnemyManCreateCode] call BLWK_fnc_createFromQueue;
 	};
 };
 

@@ -162,12 +162,12 @@ class BLWK
 		{};
 	};
 
-	class Que
+	class Queue
 	{
-		file = "Functions\Que";
-		class addtoQue
+		file = "Functions\Queue";
+		class addtoQueue
 		{};
-		class createFromQue
+		class createFromQueue
 		{};
 	};
 

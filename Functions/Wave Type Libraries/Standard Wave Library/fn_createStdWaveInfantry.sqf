@@ -4,7 +4,7 @@ Function: BLWK_fnc_createStdWaveInfantry
 Description:
 	Creates the standard infantry for a normal wave.
 	
-	Also has the ability to que up units based upon the mission param size of
+	Also has the ability to queue up units based upon the mission param size of
 	 units allowed at once.
 	 
 Parameters:
@@ -84,26 +84,26 @@ private _fn_selectEnemyType = {
 	selectRandom _selectedEnemyLevelTemp
 };
 
-// cache AI spawn info for que
+// cache AI spawn info for queue
 private ["_spawnPositionTemp","_typeTemp"];
 for "_i" from 1 to _totalNumEnemiesToSpawnDuringWave do {
 	_spawnPositionTemp = selectRandom BLWK_infantrySpawnPositions;
 	_typeTemp = call _fn_selectEnemyType;
 
-	[STANDARD_ENEMY_INFANTRY_QUE,_typeTemp,_spawnPositionTemp] call BLWK_fnc_addToQue;
+	[STANDARD_ENEMY_INFANTRY_QUEUE,_typeTemp,_spawnPositionTemp] call BLWK_fnc_addToqueue;
 };
 
 
 // spawn the enemies for wave start
 private _numStartingEnemies = BLWK_maxEnemyInfantryAtOnce;
-private _spawnQueCount = count (missionNamespace getVariable [STANDARD_ENEMY_INFANTRY_QUE,[]]);
-if (_spawnQueCount < BLWK_maxEnemyInfantryAtOnce) then {
-	_numStartingEnemies = _spawnQueCount;
+private _spawnQueueCount = count (missionNamespace getVariable [STANDARD_ENEMY_INFANTRY_QUEUE,[]]);
+if (_spawnQueueCount < BLWK_maxEnemyInfantryAtOnce) then {
+	_numStartingEnemies = _spawnQueueCount;
 };
 private _unit = objNull;
 private _units = [];
 for "_i" from 1 to _numStartingEnemies do {
-	_unit = [STANDARD_ENEMY_INFANTRY_QUE,BLWK_fnc_stdEnemyManCreateCode] call BLWK_fnc_createFromQue;
+	_unit = [STANDARD_ENEMY_INFANTRY_QUEUE,BLWK_fnc_stdEnemyManCreateCode] call BLWK_fnc_createFromqueue;
 	_units pushBack _unit;
 };
 

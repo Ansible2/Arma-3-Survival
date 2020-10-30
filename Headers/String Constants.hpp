@@ -8,8 +8,8 @@
 #define DEFECTOR_WAVE "defector wave"
 #define OVERRUN_WAVE "overrun wave"
 
-// Que Strings
-#define STANDARD_ENEMY_INFANTRY_QUE "BLWK_standardEnemyInfantryQue"
+// queue Strings
+#define STANDARD_ENEMY_INFANTRY_QUEUE "BLWK_standardEnemyInfantryqueue"
 
 // Arrays
 #define WAVE_ENEMIES_ARRAY "BLWK_mustKillArray"

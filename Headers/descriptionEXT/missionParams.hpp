@@ -54,7 +54,7 @@ class BLWK_specialWavesStartAt
 };
 class BLWK_maxEnemyInfantryAtOnce
 {
-	title = "Max Enemy Infantry At Once (AI will wait in a que until there is room)";
+	title = "Max Enemy Infantry At Once (AI will wait in a queue until there is room)";
 	values[] = {10,15,20,25,30,35,40,45,50};
 	texts[] = {"10","15","20","25","30","35","40","45","50"};
 	default = 30;
