@@ -28,7 +28,7 @@ Author:
 if (!isServer OR {!canSuspend}) exitWith {};
 
 // get all location positions on the map and shuffle them
-private _shuffledLocations = [BLWK_locations,false] call CBA_fnc_shuffle;
+private _shuffledLocations = [BLWK_locations,false] call CBAP_fnc_shuffle;
 private _mapLocationPositions = [];
 _shuffledLocations apply {
 	_mapLocationPositions pushBack (locationPosition _x);
@@ -101,23 +101,11 @@ if (_mapLocationPositions isEqualTo -1)  exitWith {
 	sleep 10;
 
 	call BIS_fnc_endMissionServer;
-};
-
+} else {
 
 sleep 1;
 
-
-if (missionNamespace getVariable ["BLWK_debug",false]) then {
-	_count = 0;
-	_playAreaBuildings apply {
-		sleep 0.1;
-		_markerName = "marker" + (str _count);
-			_marker = createMarker [_markerName, getpos _x];
-		_marker setMarkerType "hd_dot";
-		_count = _count + 1;
-	};
-};
-
-
 BLWK_playAreaCenter = _positionChosen;
 publicVariable "BLWK_playAreaCenter";
+
+};
