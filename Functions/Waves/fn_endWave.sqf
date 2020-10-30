@@ -31,6 +31,17 @@ if (BLWK_currentWaveNumber isEqualTo BLWK_maxNumWaves) exitWith {
 	"End2" call BIS_fnc_endMissionServer;
 };
 
+// delete any alive civilians from special wave
+if !((missionNamespace getVariable ["BLWK_civiliansFromWave",[]]) isEqualTo []) then {
+	BLWK_civiliansFromWave apply {
+		if (alive _x) then {
+			deleteVehicle _x;
+		};
+	};
+
+	missionNamespace setVariable ["BLWK_civiliansFromWave",[]];
+};
+
 #include "..\..\Headers\String Constants.hpp"
 
 missionNamespace setVariable ["BLWK_inBetweenWaves",true,true];

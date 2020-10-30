@@ -55,4 +55,7 @@ for "_i" from 1 to NUM_CIVILIANS do {
 	_civilians pushBack _unit;
 };
 
+// for deleteing cvilians at wave end
+missionNamespace setVariable ["BLWK_civiliansFromWave",_civilians];
+
 BLWK_zeus addCuratorEditableObjects [_civilians, true];
