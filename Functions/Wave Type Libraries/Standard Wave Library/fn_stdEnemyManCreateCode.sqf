@@ -6,7 +6,7 @@ Description:
 
 Parameters:
 	0: _unit : <OBJECT> - The actual unit
-	1: _queName : <STRING> - The name of the que the unit belongs to (used for spawning a new unit in que)
+	1: _queueName : <STRING> - The name of the queue the unit belongs to (used for spawning a new unit in queue)
 	2: _group : <GROUP> - The group the unit belongs to (OPTIONAL)
 
 Returns:
@@ -15,23 +15,23 @@ Returns:
 Examples:
     (begin example)
 
-		[aUnit,"myQue",group aUnit] call BLWK_fnc_stdEnemyManCreateCode;
+		[aUnit,"myQueue",group aUnit] call BLWK_fnc_stdEnemyManCreateCode;
 
     (end)
 
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-params ["_unit","_queName","_group"];
+params ["_unit","_queueName","_group"];
 
 [_unit] call BLWK_fnc_setSkill;
 
-_unit setVariable ["BLWK_cameFromQue",_queName];
+_unit setVariable ["BLWK_cameFromQueue",_queueName];
 
 if (isNil "_group") then {
 	_group = group _unit
 };
-_group allowFleeing 0;
+//_group allowFleeing 0;
 //[_group, bulwarkBox, 20, "SAD", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
 
 null = [_group] spawn BLWK_fnc_startStalkingPlayers;
