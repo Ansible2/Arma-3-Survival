@@ -36,12 +36,11 @@ BLWK_enemiesPerPlayerMultiplier = 1;
 
 
 private _fn_getAvailableEnemyLists = {
-	private _returnedLists = [];
-
 	if (_isDefectorWave) exitWith {
-		_returnedLists pushback BLWK_friendly_menClasses;
-		_returnedLists pushBack 1;
+		[BLWK_friendly_menClasses,1]
 	};
+
+	private _returnedLists = [];
 
 	// classes
 	_returnedLists pushback BLWK_level1_menClasses;
