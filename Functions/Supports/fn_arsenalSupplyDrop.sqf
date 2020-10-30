@@ -104,7 +104,7 @@ null = [_aircraft,_dropPosition,_aircraftGroup,_flyToPosition] spawn {
 
 	// notify players of arsenal status
 	_arsenalBox addEventHandler ["Deleted", {
-		hint "Arsenal is deleted";
+		null = ["Arsenal is deleted"] remoteExec ["hint",BLWK_allClientsTargetID];
 		missionNamespace setVariable ["BLWK_arsenalOut",true,true];
 	}];
 	
