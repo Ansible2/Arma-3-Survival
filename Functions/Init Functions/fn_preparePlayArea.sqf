@@ -65,7 +65,7 @@ missionNamespace setVariable ["BLWK_vehicleSpawnPositions",_vehicleSpawnPosition
 
 // create and setup the actual box
 bulwarkBox = call BLWK_fnc_prepareBulwarkServer;
-private _bulwarkSpawn = [BLWK_playAreaCenter,0.1,20,1] call BIS_fnc_findSafePos;
+private _bulwarkSpawn = [BLWK_playAreaCenter,3,20,1] call BIS_fnc_findSafePos;
 waitUntil {
 	bulwarkBox setVehiclePosition [_bulwarkSpawn,[],3,"NONE"]
 };

@@ -101,6 +101,8 @@ class BLWK
 		{};
 		class prepareUnitClasses
 		{};
+		class selectCustomPlayArea
+		{};
 		class selectPlayArea
 		{};
 	};

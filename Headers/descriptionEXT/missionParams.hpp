@@ -179,6 +179,13 @@ class BLWK_playersStartWith_NVGs
 A_SPACE(Area);
 A_SECTION_HEADER(Area);
 
+class BLWK_customPlayLocation
+{
+	title = "Would you like to select a custom location to play?";
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
+	default = 0;
+};
 class BLWK_playAreaRadius
 {
 	title = "Mission area size";

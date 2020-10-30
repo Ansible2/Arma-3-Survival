@@ -158,10 +158,13 @@ if (isServer) then {
     // the marker that denotes the play area on the map
     BLWK_playAreaMarker = "";
 
+    // used to determine if players will select a custom location to defend at
+    BLWK_customPlayLocation = [false,true] select ("BLWK_customPlayLocation" call BIS_fnc_getParamValue);
+
     // used to delete dead bodies after the parameter set amount of time
     BLWK_deadBodies_1 = [];
     BLWK_deadBodies_2 = [];
-    BLWK_roundsBeforeBodyDeletion = ("BLWK_roundsBeforeBodyDeletion" call BIS_fnc_getParamValue);
+    BLWK_roundsBeforeBodyDeletion = "BLWK_roundsBeforeBodyDeletion" call BIS_fnc_getParamValue;
     
     // keeping players in the same group upon respawn
     createCenter BLUFOR;
