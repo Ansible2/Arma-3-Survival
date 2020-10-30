@@ -66,8 +66,7 @@ private _fn_checkLocation = {
 	if (count _buildingsNearLocation >= BLWK_minNumberOfHousesInArea) then {
 
 		// nearObjects is not totally random, so we shuffle
-		_buildingsNearLocationShuffled = [_buildingsNearLocation,false] call CBA_fnc_shuffle;
-
+		_buildingsNearLocationShuffled = [_buildingsNearLocation,false] call CBAP_fnc_shuffle;
 
 		// cycle through all buildings near the location which is within (BLWK_playAreaRadius * 2)
 		_buildingsNearLocationShuffled findIf {
