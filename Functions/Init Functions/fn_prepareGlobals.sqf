@@ -102,7 +102,14 @@ if (isServer) then {
     private _serverlogic = _logicGroup createUnit ["Logic", [0,0,0], [], 0, "NONE"];
     BLWK_theAIHandlerEntity = [_headless,_serverlogic] select (isNull _headless);
     publicVariable "BLWK_theAIHandlerEntity";
+    // number should never be zero, but it can be for some time until the server has initialized
+    waitUntil {
+        if (owner BLWK_theAIHandlerEntity != 0) exitWith {true};
+        sleep 1;
+        false 
+    };
     BLWK_theAIHandlerOwnerID = owner BLWK_theAIHandlerEntity;
+    publicVariable "BLWK_theAIHandlerOwnerID";
 
     /* Whitelist Loot Modes */
     /* 0 = Off */
