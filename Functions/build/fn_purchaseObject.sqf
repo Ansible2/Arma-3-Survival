@@ -77,5 +77,5 @@ if ((missionNamespace getVariable ["BLWK_playerKillPoints",0]) >= _price) then {
 	[_purchasedObject] remoteExecCall ["BLWK_fnc_addBuildableObjectActions",BLWK_allClientsTargetID,true];
 } else {
 	private _displayName = [configFile >> "cfgVehicles" >> _className] call BIS_fnc_displayName;
-	[format ["<t size='0.6' color='#ff3300'>Not enough points for: %1!</t>", _displayName], -0, -0.02, 2, 0.1] call BIS_fnc_dynamicText;
+	null = [format ["<t size='0.6' color='#ff3300'>Not enough points for: %1!</t>", _displayName], -0, -0.02, 2, 0.1] spawn BIS_fnc_dynamicText;
 };
