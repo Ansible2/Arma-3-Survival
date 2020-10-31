@@ -34,7 +34,7 @@ if (_classNames isEqualTo []) exitWith {
 };
 
 private _containersArray = [];
-private ["_container_temp","_dropZone_temp_temp","_chute_temp"];
+private ["_container_temp","_dropZone_temp","_chute_temp"];
 _classNames apply {
     // create Container
     _container_temp = createVehicle [_x,[0,0,0],[],0];
@@ -42,7 +42,7 @@ _classNames apply {
     _containersArray pushBack _container_temp;
 
     // give the conatainer a random position above DZ
-    _dropZone_temp = [_dropPosition,50] call CBA_fnc_randPos;    
+    _dropZone_temp = [_dropPosition,50] call CBAP_fnc_randPos;    
     // make it invincible
     _container_temp allowDamage false;
 
