@@ -110,7 +110,7 @@ null = [_aircraft,_dropPosition,_aircraftGroup,_flyToPosition] spawn {
 	
 	private _timeBetweenMessages = ARSENAL_LIFETIME / 5;
 	private ["_increment","_timeLeft","_message"];
-	for "_i" from 1 to 5 do {
+	for "_i" from 1 to 5 do { // give out five messages
 		
 		_increment = switch _i do {
 			case 1: {5};
