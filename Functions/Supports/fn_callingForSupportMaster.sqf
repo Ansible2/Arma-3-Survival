@@ -139,7 +139,7 @@ if (CHECK_SUPPORT_CLASS(CAS_GUNS_AND_ROCKETS_CLASS)) exitWith {
 	CAS_RADIO
 	
 if (CHECK_SUPPORT_CLASS(TURRET_DOOR_GUNNER_CLASS)) exitWith {
-	if (missionNamespace getVariable ["BLWK_doorGunnerInUse",false]) then {
+	if !(missionNamespace getVariable ["BLWK_doorGunnerInUse",false]) then {
 		private _friendlyTransportHeliClass = [4] call BLWK_fnc_getFriendlyVehicleClass;
 		TURRET_EXPRESSION(_friendlyTransportHeliClass,125,BLWK_playAreaRadius * 1.5,"B_Heli_Transport_01_F","BLWK_doorGunnerInUse")
 	} else {
@@ -148,7 +148,7 @@ if (CHECK_SUPPORT_CLASS(TURRET_DOOR_GUNNER_CLASS)) exitWith {
 	};
 };
 if (CHECK_SUPPORT_CLASS(TURRET_ATTACK_HELI_GUNNER_CLASS)) exitWith {
-	if (missionNamespace getVariable ["BLWK_heliGunnerInUse",false]) then {
+	if !(missionNamespace getVariable ["BLWK_heliGunnerInUse",false]) then {
 		private _friendlyAttackHeliClass = [7] call BLWK_fnc_getFriendlyVehicleClass;
 		TURRET_EXPRESSION(_friendlyAttackHeliClass,400,550,"B_Heli_Attack_01_dynamicLoadout_F","BLWK_heliGunnerInUse")	
 	} else {
@@ -157,7 +157,7 @@ if (CHECK_SUPPORT_CLASS(TURRET_ATTACK_HELI_GUNNER_CLASS)) exitWith {
 	};
 };
 if (CHECK_SUPPORT_CLASS(TURRET_GUNSHIP_CLASS)) exitWith {
-	if (missionNamespace getVariable ["BLWK_gunshipGunnerInUse",false]) then {
+	if !(missionNamespace getVariable ["BLWK_gunshipGunnerInUse",false]) then {
 		private _friendlyGunshipClass = [8] call BLWK_fnc_getFriendlyVehicleClass;
 		TURRET_EXPRESSION(_friendlyGunshipClass,700,1200,"B_T_VTOL_01_armed_F","BLWK_gunshipGunnerInUse")
 	} else {
