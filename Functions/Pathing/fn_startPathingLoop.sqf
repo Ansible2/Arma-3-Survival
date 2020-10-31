@@ -2,18 +2,21 @@
 Function: BLWK_fnc_startPathingLoop
 
 Description:
-	AI enemies sometimes get stuck an refuse to move
+	AI enemies sometimes get stuck an refuse to move.
+	
+	This loop takes units added to the array and resets there position to
+	 another spawn point if they are static for 25 seconds.
 
 Parameters:
-	0: _unitToAdd : <OBJECT> - The unit to add
+	NONE
 
 Returns:
-	BOOL
+	NOTHING
 
 Examples:
     (begin example)
 
-		null = [myUnit] spawn BLWK_fnc_startPathingLoop;
+		null = [] spawn BLWK_fnc_startPathingLoop;
 
     (end)
 
@@ -29,7 +32,7 @@ BLWK_runPathingLoop = true;
 
 
 while {sleep 25; BLWK_runPathingLoop} do {
-	_arrayToCheck = call BLWK_getPathingArray;
+	_arrayToCheck = call BLWK_fnc_getPathingArray;
 
 	if !(_arrayToCheck isEqualTo []) then {
 

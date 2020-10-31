@@ -1,7 +1,34 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_registerStalkers
+
+Description:
+	Adds the number of a stalker group's units to the unit being stalked
+	 total's so that they can be evenly spread across all units.
+
+Parameters:
+	0: _stalkerGroup : <OBJECT> - The group that will be stalking
+	1: _defaultPosition : <OBJECT, GROUP, or ARRAY> - The position to move to if no players
+	2: _checkRate : <NUMBER> - How often to update the stalk position
+	3: _conditionToEndStalking : <CODE> - Code that evaluates to a boolean, if met, 
+	 it will have the units move to the _defaultPosition
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+
+		null = [aStalkerGroup,bulwarkBox,20,{false}] spawn BLWK_fnc_startStalkingPlayers;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 #include "..\..\Headers\Stalker Global Strings.hpp"
 
 if (!canSuspend) exitWith {
-	"BLWK_fnc_stalkPlayer must be run in a scheduled environment" call BIS_fnc_error;
+	"BLWK_fnc_startStalkingPlayers must be run in a scheduled environment" call BIS_fnc_error;
 };
 
 params [

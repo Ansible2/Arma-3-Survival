@@ -1,3 +1,25 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_removeFromPathingLoop
+
+Description:
+	Removes a unit from the pathing loop array.
+
+Parameters:
+	0: _unitToRemove : <OBJECT> - The unit or group to remove from the array
+
+Returns:
+	BOOL
+
+Examples:
+    (begin example)
+
+		_wasRemoved = [aUnit] call BLWK_fnc_removeFromPathingLoop;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 #include "..\..\Headers\Pathing Global Strings.hpp"
 
 params [
