@@ -2,7 +2,7 @@
 Function: BLWK_fnc_addToPathingLoop
 
 Description:
-	Add units to 
+	Add units to pathing loop.
 
 Parameters:
 	0: _unitToAdd : <OBJECT OR GROUP> - The unit or group to add to the array

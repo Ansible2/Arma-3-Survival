@@ -1,9 +1,11 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_registerStalkers
+Function: BLWK_fnc_startStalkingPlayers
 
 Description:
 	Adds the number of a stalker group's units to the unit being stalked
 	 total's so that they can be evenly spread across all units.
+	
+	Also adds a KILLED EH that automatically adjusts the player's stalker count.
 
 Parameters:
 	0: _stalkerGroup : <OBJECT> - The group that will be stalking

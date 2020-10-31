@@ -2,8 +2,9 @@
 Function: BLWK_fnc_registerStalkers
 
 Description:
-	Adds the number of a stalker group's units to the unit being stalked
-	 total's so that they can be evenly spread across all units.
+	Registers the count of _stalkerGroup's units to the total units stalking
+	 _unit currently so that we can track how many at any given time are stalking
+	 a specific unit.
 
 Parameters:
 	0: _unit : <OBJECT> - The unit being stalked

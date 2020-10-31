@@ -1,3 +1,28 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_stopStalking
+
+Description:
+	Stops a unit from stalking and readjusts the stalker counts for the unit
+	 they were stalking.
+
+Parameters:
+	0: _stalkerGroup : <OBJECT> - The group that you want to stop being a stalker
+	1: _defaultPosition : <OBJECT, GROUP, or ARRAY> - The position for the 
+	 _stalkerGroup to travel to and patrol if (OPTIONAL)
+
+Returns:
+	BOOL
+
+Examples:
+    (begin example)
+
+		[aStalkerGroup,positionToGoTo] call BLWK_fnc_stopStalking;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 #include "..\..\Headers\Stalker Global Strings.hpp"
 
 params [
