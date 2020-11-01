@@ -154,7 +154,7 @@ BLWK_spawnedLoot pushBack BLWK_moneyPile;
 private _fn_addLoot = {
 	params ["_holder"];
 	
-	private _typeToSpawn = round random 7;
+	private _typeToSpawn = round random 9;
 	
 	private ["_selectedItemClass","_magazineClass"];
 	// backpack
@@ -193,7 +193,7 @@ private _fn_addLoot = {
 		_selectedItemClass 
 	};
 	// weapons
-	if (_typeToSpawn isEqualTo 5) exitWith {
+	if (_typeToSpawn isEqualTo 5 OR {_typeToSpawn isEqualTo 8} OR {_typeToSpawn isEqualTo 9}) exitWith { // there are three numbers here to encourage more weapon spawns
 		_selectedItemClass = selectRandom BLWK_loot_weaponClasses;
 		_magazineClass = selectRandom (getArray (configFile >> "CfgWeapons" >> _selectedItemClass >> "magazines"));
 		_holder addWeaponCargoGlobal [_selectedItemClass,1];
