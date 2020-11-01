@@ -3,15 +3,14 @@
 #define WHITELIST_LAUNCHERS \
 [ \
  
-	"myExampleClass+_1", \
-	"myExampleClass+_2", \
-
-	You need to include a '\' after every line as above
-	This is so that #define can read multiple lines
-	DO NOT add a '\' to the ']' below, as it is the last line of the #define
-	https://community.bistudio.com/wiki/PreProcessor_Commands#Multi-line
- 
+	"myExampleClass_1", \
+	"myExampleClass_2" \
 ]
+
+    You need to include a '\' after every line as above
+	This is so that #define can read multiple lines
+	DO NOT add a '\' to the last ']' of the array, as it is the last line of the #define
+	https://community.bistudio.com/wiki/PreProcessor_Commands#Multi-line
 */
 
 #define LOOT_BLACKLIST \
@@ -25,7 +24,8 @@
     "I_IR_Grenade", \
     "TrainingMine_Mag", \
     "ChemicalDetector_01_watch_F", \
-    "ChemicalDetector_01_olive_F" \
+    "ChemicalDetector_01_olive_F", \
+    "8Rnd_82mm_Mo_Flare_white" \
 ]
 
 

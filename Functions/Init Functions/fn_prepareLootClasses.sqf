@@ -51,9 +51,9 @@ if (BLWK_loot_whiteListMode isEqualTo 1) exitWith {
 
 ---------------------------------------------------------------------------- */
 // some of this is setup with the intention that things may be further broken down into more categories
-// this is why the functions are here that just pushback something
+// this is why the functions are here that just pushBack something
 private _tempClass = "";
-private _tempReturn = [];
+private _tempItemInfo = [];
 private _tempItemCategory = "";
 private _tempItemType = "";
 private _dlcAllowedTemp = true;
@@ -79,12 +79,15 @@ private _fn_sortWeapons = {
 	if ((getArray (configFile >> "CfgWeapons" >> _tempClass >> "magazines")) isEqualTo []) exitWith {};
 	if (_tempItemType == "MissileLauncher" OR {_tempItemType == "Launcher"} OR {_tempItemType == "RocketLauncher"}) exitWith {_launcherClasses pushBack _tempClass};
 	if (_tempItemType == "Handgun") exitWith {_handgunWeaponClasses pushBack _tempClass};
+	
 	if (_tempItemType == "AssaultRifle" OR 
 		{_tempItemType == "MachineGun"} OR 
 		{_tempItemType == "Shotgun"} OR 
 		{_tempItemType == "Rifle"} OR 
 		{_tempItemType == "SubmachineGun"} OR 
-		{_tempItemType == "SniperRifle"}) exitWith {_primaryWeaponClasses pushBack _tempClass};
+		{_tempItemType == "SniperRifle"}) exitWith {
+		_primaryWeaponClasses pushBack _tempClass
+	};
 };
 
 // nvgs, gps, medkit, toolkit, compass, etc.
@@ -98,18 +101,19 @@ private _fn_sortExplosives = {
 	_explosiveClasses pushBack _tempClass;
 };
 
-//CIPHER COMMENT: Haven't really used this, may just need to roll it into explosive classes since it already does so with grenades
-//private _magazineClasses = [];
 private _fn_sortMagazines = {
-	// CIPHER COMMENT: possibly add more to this list. Depends on how you want to spawn magazines
-	if (_tempItemType in ["grenade","flare"]) exitWith {call _fn_sortExplosives};
-
-	//_magazineClasses pushBack _tempClass
+	/*
+		All we care about getting is the things like grenades.
+		This is because the magazines spawned in BLWK_fnc_spawnLoot are taken directly
+		 from the weapon classes available so that, for instance, no mags for a blacklisted gun spawn.
+	*/
+	
+	if ((toLower _tempItemType) in ["grenade","flare"]) exitWith {call _fn_sortExplosives};
 };
 
 private _fn_sortType = {
+	// get the class name of the item and check if it is in the blacklist
 	_tempClass = configName (_this select 0);
-
 	if (_tempClass in LOOT_BLACKLIST) exitWith {};
 
 	// CIPHER COMMENT: DLC check is awaiting 2.0 release for getAssetDLCInfo command
@@ -119,11 +123,12 @@ private _fn_sortType = {
 		if !(_dlcAllowedTemp) exitWith {};
 	*/
 
-	_tempReturn = [_tempClass] call BIS_fnc_itemType;
+	_tempItemInfo = [_tempClass] call BIS_fnc_itemType;
 
-	_tempItemCategory = _tempReturn select 0;
-	_tempItemType = _tempReturn select 1;
+	_tempItemCategory = _tempItemInfo select 0;
+	_tempItemType = _tempItemInfo select 1;
 
+	// sort through item categories
 	if (_tempItemCategory == "weapon") exitWith {call _fn_sortWeapons};
 	if (_tempItemCategory == "item") exitWith {call _fn_sortItems};
 	if (_tempItemCategory == "equipment") exitWith {call _fn_sortEquipment};
@@ -140,14 +145,14 @@ private _fn_sortType = {
 ---------------------------------------------------------------------------- */
 private _publicWeaponConfigs = "getNumber (_x >> 'scope') isEqualTo 2" configClasses (configFile >> "CfgWeapons");
 _publicWeaponConfigs apply {
-	[_x,"CfgWeapons"] call _fn_sortType;
+	[_x,"CfgWeapons"] call _fn_sortType; // first we sort the item type
 };
 // things such as vests and backpacks are located in CfgVehicles
 private _publicVehicleConfigs = "getNumber (_x >> 'scope') isEqualTo 2" configClasses (configFile >> "CfgVehicles");
 _publicVehicleConfigs apply {
 	[_x,"CfgVehicles"] call _fn_sortType;	
 };
-// for throwable explosives
+// for mags and throwable explosives
 private _publicMagazineConfigs = "getNumber (_x >> 'scope') isEqualTo 2" configClasses (configFile >> "CfgMagazines");
 _publicMagazineConfigs apply {
 	[_x,"CfgMagazines"] call _fn_sortType;	
