@@ -25,12 +25,19 @@ if (_turretsWithWeapons isEqualTo []) exitWith {
 	[_defaultVehicleType] call BLWK_fnc_aircraftGunner;
 };
 
+
 // create vehicle
 private _spawnPosition = [BLWK_playAreaMarker, true] call CBAP_fnc_randPosArea;
 _spawnPosition set [2,_loiterHeight];
 private _vehicleArray = [_spawnPosition,0,_vehicleClass,BLUFOR] call BIS_fnc_spawnVehicle;
 private _vehicle = _vehicleArray select 0;
 _vehicle allowDamage false;
+// clear out vehicle cargo
+clearBackpackCargoGlobal _vehicle;
+clearWeaponCargoGlobal _vehicle;
+clearItemCargoGlobal _vehicle;
+clearMagazineCargoGlobal _vehicle;
+
 
 // get rid of excess crew
 private _vehicleCrew = _vehicleArray select 1;
