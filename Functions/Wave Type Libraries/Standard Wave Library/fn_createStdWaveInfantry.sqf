@@ -102,7 +102,7 @@ if (_spawnQueueCount < BLWK_maxEnemyInfantryAtOnce) then {
 private _unit = objNull;
 private _units = [];
 for "_i" from 1 to _numStartingEnemies do {
-	_unit = [STANDARD_ENEMY_INFANTRY_QUEUE,BLWK_fnc_stdEnemyManCreateCode] call BLWK_fnc_createFromqueue;
+	_unit = [STANDARD_ENEMY_INFANTRY_QUEUE,"_this call BLWK_fnc_stdEnemyManCreateCode"] call BLWK_fnc_createFromQueue;
 	_units pushBack _unit;
 };
 

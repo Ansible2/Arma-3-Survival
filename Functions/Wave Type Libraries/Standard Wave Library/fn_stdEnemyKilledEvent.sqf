@@ -41,8 +41,9 @@ if (local BLWK_theAIHandlerEntity) then {
 	
 	// if the spawn queue is not empty
 	if !((missionNamespace getVariable [STANDARD_ENEMY_INFANTRY_QUEUE,[]]) isEqualTo []) then {
-		[STANDARD_ENEMY_INFANTRY_QUEUE,BLWK_fnc_stdEnemyManCreateCode] call BLWK_fnc_createFromQueue;
+		[STANDARD_ENEMY_INFANTRY_QUEUE,"_this call BLWK_fnc_stdEnemyManCreateCode"] call BLWK_fnc_createFromQueue;
 	};
+
 };
 
 // points for players
