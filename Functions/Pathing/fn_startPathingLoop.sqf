@@ -49,7 +49,7 @@ while {sleep 25; BLWK_runPathingLoop} do {
 			if (_savedPosition_temp isEqualTo []) then {// save current position if one does not exist
 				_x setVariable [SAVED_UNIT_POSITION_VAR,_currentPosition_temp];
 			} else {
-				if (_currentPosition_temp isEqualTo _savedPosition_temp) then { // if still in same position, then put them a spawn point
+				if (_currentPosition_temp isEqualTo _savedPosition_temp) then { // if still in same position, then put them at a spawn point
 					if (alive _unitToCheck_temp) then {
 						hint "adjusted a unit position";
 						_newSpawnPosition_temp = selectRandom BLWK_infantrySpawnPositions;
