@@ -64,8 +64,6 @@ private _fn_110percentFromCenter = {
 		_effectHandle ppEffectCommit 0.5;
 
 		waitUntil {ppEffectCommitted _effectHandle};
-		
-		playSound "teleportHit";
 
 		// put player back eight meters
 		private _dir = BLWK_playAreaCenter getDir player;
