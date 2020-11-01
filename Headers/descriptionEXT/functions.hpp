@@ -128,6 +128,8 @@ class BLWK
 		{};
 		class optreMedicalToVanilla
 		{};
+		class pathingLoop
+		{};
 		class randomizeWeapons
 		{};
 		class reassignCurator

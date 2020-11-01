@@ -31,4 +31,4 @@ null = [] spawn BLWK_fnc_startWave;
 
 null = [] spawn BLWK_fnc_arePlayersAliveLoop;
 
-null = [] spawn BLWK_fnc_startPathingLoop;
+//null = [] spawn BLWK_fnc_startPathingLoop;

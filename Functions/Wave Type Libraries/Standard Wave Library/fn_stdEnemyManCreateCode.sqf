@@ -14,9 +14,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		[aUnit,"myQueue",group aUnit] call BLWK_fnc_stdEnemyManCreateCode;
-
     (end)
 
 Author:
@@ -26,15 +24,11 @@ params ["_unit","_queueName","_group"];
 
 [_unit] call BLWK_fnc_setSkill;
 
-[_group] call BLWK_fnc_addToPathingLoop;
-
-_unit setVariable ["BLWK_cameFromQueue",_queueName];
-
 if (isNil "_group") then {
 	_group = group _unit
 };
-//_group allowFleeing 0;
-//[_group, bulwarkBox, 20, "SAD", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
+
+null = [_group] spawn BLWK_fnc_pathingLoop;
 
 null = [_group] spawn BLWK_fnc_startStalkingPlayers;
 
