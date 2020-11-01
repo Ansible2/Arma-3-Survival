@@ -38,5 +38,5 @@ if ((missionNamespace getVariable ["BLWK_playerKillPoints",0]) >= _price) then {
 	[player,_itemClass] call BIS_fnc_addCommMenuItem;
 } else {
 	private _nameOfSupport = getText(missionConfigFile >> "cfgCommunicationMenu" >> _itemClass >> "text");
-	[format ["<t size='0.6' color='#ff3300'>Not enough points for: %1!</t>", _nameOfSupport], -0, -0.02, 2, 0.1] call BIS_fnc_dynamicText;
+	null = [format ["<t size='0.6' color='#ff3300'>Not enough points for: %1!</t>", _nameOfSupport], -0, -0.02, 2, 0.1] spawn BIS_fnc_dynamicText;
 };
