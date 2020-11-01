@@ -16,7 +16,6 @@ BLWK_customAreaDisplayEH = (findDisplay 46) displayAddEventHandler ["KeyDown",{
 		// display 46 is not always active and therefore need to wait for it to be in a scheduled environment
 		null = [] spawn {
 			waituntil {!isNull (findDisplay 46)};
-			hint "display EH deleted";
 			(findDisplay 46) displayRemoveEventHandler ["KeyDown",BLWK_customAreaDisplayEH];
 			missionNamespace setVariable ["BLWK_customAreaDisplayEH",nil];
 		};
