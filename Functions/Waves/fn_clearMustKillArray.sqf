@@ -2,7 +2,7 @@
 Function: BLWK_fnc_clearMustKillArray
 
 Description:
-	SImply clears the global variable array for the next round.
+	Simply clears the global variable array for the next round.
 
 Parameters:
 	NONE
@@ -20,6 +20,8 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#include "..\..\Headers\String Constants.hpp"
+#ifndef WAVE_ENEMIES_ARRAY
+	#include "..\..\Headers\String Constants.hpp"
+#endif
 
 missionNamespace setVariable [WAVE_ENEMIES_ARRAY,[],2];

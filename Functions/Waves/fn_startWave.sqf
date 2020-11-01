@@ -27,6 +27,8 @@ if (!isServer OR {!canSuspend}) exitWith {};
 
 #include "..\..\Headers\String Constants.hpp"
 
+call BLWK_fnc_clearMustKillArray;
+
 // update wave number
 private _previousWaveNum = missionNamespace getVariable ["BLWK_currentWaveNumber",0];
 missionNamespace setVariable ["BLWK_currentWaveNumber", _previousWaveNum + 1,true];
