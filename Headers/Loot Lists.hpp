@@ -25,7 +25,10 @@
     "TrainingMine_Mag", \
     "ChemicalDetector_01_watch_F", \
     "ChemicalDetector_01_olive_F", \
-    "8Rnd_82mm_Mo_Flare_white" \
+    "8Rnd_82mm_Mo_Flare_white", \
+    "muzzle_antenna_01_f", \
+    "V_Safety_yellow_F", \
+    "muzzle_antenna_02_f" \
 ]
 
 
