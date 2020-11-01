@@ -25,7 +25,7 @@ Author:
 ---------------------------------------------------------------------------- */
 params ["_unitsToWorkWith"];
 
-private _numberOfBombers = round (count _unitsToWorkWith / 5);
+private _numberOfBombers = round (count _unitsToWorkWith / 4);
 private _bombersArray = _unitsToWorkWith select [0,_numberOfBombers];
 
 private "_unitGroupTemp";
