@@ -15,7 +15,7 @@ Example:
 Returns:
     Group
 
-Author:
+Author(s):
     Rommel
 ---------------------------------------------------------------------------- */
 params [["_entity", grpNull, [grpNull, objNull]]];

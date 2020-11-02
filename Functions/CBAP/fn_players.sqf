@@ -17,7 +17,7 @@ Examples:
         _onlyPlayers = call CBAP_fnc_players
     (end)
 
-Author:
+Author(s):
     commy2
 ---------------------------------------------------------------------------- */
 (allUnits + allDeadMen) select {isPlayer _x && {!(_x isKindOf "HeadlessClient_F")}}

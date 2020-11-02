@@ -3,7 +3,7 @@ onLoadIntro = "Defend yourself";
 onLoadName = "Dynamic Bulwarks Refactored";
 briefingName = "Dynamic Bulwarks Refactored";
 overviewText = "Survive by scavenging equipment, in a randomly selected city, against ever increasing waves of hostiles.";
-author = "Hilltop & omNomios (Modified by Ansible2 // Cipher & Spectre)";
+author = "Hilltop(Willtop) & omNomios (Modified by Ansible2 // Cipher & Spectre)";
 overviewPicture = "preview.paa";
 
 loadScreen = "preview.paa";

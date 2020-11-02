@@ -17,7 +17,7 @@ Examples:
 
     (end)
 
-Author:
+Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if (!BLWK_isOptreLoaded AND {BLWK_dontUseRevive}) exitWith {};

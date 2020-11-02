@@ -17,7 +17,7 @@ Examples:
 
     (end)
 
-Author:
+Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 #ifndef WAVE_ENEMIES_ARRAY

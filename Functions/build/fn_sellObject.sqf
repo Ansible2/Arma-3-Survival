@@ -19,7 +19,7 @@ Examples:
 
     (end)
 
-Author:
+Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 params ["_object"];

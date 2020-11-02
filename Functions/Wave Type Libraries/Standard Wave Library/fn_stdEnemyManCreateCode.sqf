@@ -17,7 +17,7 @@ Examples:
 		[aUnit,"myQueue",group aUnit] call BLWK_fnc_stdEnemyManCreateCode;
     (end)
 
-Author:
+Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 params ["_unit","_queueName","_group"];

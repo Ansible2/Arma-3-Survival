@@ -16,7 +16,7 @@ Examples:
    _angle = [912] call CBAP_fnc_simplifyAngle180;
    (end)
    
-Author:
+Author(s):
     SilentSpike 2015-27-07
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */

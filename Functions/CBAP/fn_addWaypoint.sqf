@@ -27,7 +27,7 @@ Example:
 Returns:
     Waypoint
 
-Author:
+Author(s):
     Rommel
     Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */

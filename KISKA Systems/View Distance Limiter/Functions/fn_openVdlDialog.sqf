@@ -15,7 +15,7 @@ Examples:
 		call KISKA_fnc_openVdlDialog;
 	(end)
 
-Author:
+Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {false};

@@ -20,7 +20,7 @@ Examples:
 
     (end)
 
-Author:
+Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 private _startingWaveUnits = [true] call BLWK_fnc_createStdWaveInfantry;

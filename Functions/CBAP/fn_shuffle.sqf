@@ -20,7 +20,7 @@ Example:
         // _array could now be [4, 2, 5, 1, 3]
     (end)
 
-Author:
+Author(s):
     toadlife (version 1.01) http://toadlife.net
     rewritten by Spooner, Dorbedo
 ---------------------------------------------------------------------------- */

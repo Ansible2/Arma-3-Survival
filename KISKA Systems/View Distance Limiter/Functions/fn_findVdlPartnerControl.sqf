@@ -15,7 +15,7 @@ Examples:
 		_partnerControl = [myControl] call KISKA_fnc_adjustVdlControls;	
 	(end)
 
-Author:
+Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};

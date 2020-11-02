@@ -33,9 +33,9 @@ Examples:
 
     (end)
 
-Author:
+Author(s):
 	Ansible2 // Cipher,
-	Hilltop & omNomios
+	Hilltop(Willtop) & omNomios
 ---------------------------------------------------------------------------- */
 // set up MACRO vars that can be used between files and make changes easier
 #include "..\..\Headers\Faction Headers\Define Factions.hpp"

@@ -29,7 +29,7 @@ Examples:
 
     (end)
 
-Author:
+Author(s):
     LorenLuke
 ---------------------------------------------------------------------------- */
 params ["_vector", "_rotationAxis", "_theta"];

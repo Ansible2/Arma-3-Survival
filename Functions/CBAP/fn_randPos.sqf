@@ -13,7 +13,7 @@ Example:
     (end)
 Returns:
     Position - [X,Y,Z]
-Author:
+Author(s):
     Rommel, commy2
 ---------------------------------------------------------------------------- */
 params [

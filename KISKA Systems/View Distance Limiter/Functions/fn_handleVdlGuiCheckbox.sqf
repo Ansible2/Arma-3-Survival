@@ -18,7 +18,7 @@ Examples:
 		_this call KISKA_fnc_handleVdlGuiCheckbox
 	(end)
 
-Author:
+Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};

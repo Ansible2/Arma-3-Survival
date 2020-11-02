@@ -18,7 +18,7 @@ Examples:
 
     (end)
 
-Author:
+Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 #include "..\..\Headers\Stalker Global Strings.hpp"

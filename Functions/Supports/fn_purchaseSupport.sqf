@@ -19,7 +19,7 @@ Examples:
 
     (end)
 
-Author:
+Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 // the comm menu can only support 10 items at a time

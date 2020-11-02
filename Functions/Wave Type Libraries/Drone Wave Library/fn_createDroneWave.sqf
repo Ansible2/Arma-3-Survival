@@ -19,8 +19,8 @@ Examples:
 
     (end)
 
-Author:
-	Hilltop & omNomios,
+Author(s):
+	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 #define DRONE_CLASS "C_IDAP_UAV_06_antimine_F"

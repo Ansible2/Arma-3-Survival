@@ -18,8 +18,8 @@ Examples:
 		null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
 
     (end)
-Author:
-	Hilltop & omNomios,
+Author(s):
+	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};

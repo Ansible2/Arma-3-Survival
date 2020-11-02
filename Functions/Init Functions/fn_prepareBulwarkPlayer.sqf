@@ -21,8 +21,8 @@ Examples:
 
     (end)
 
-Author:
-	Hilltop & omNomios,
+Author(s):
+	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 //CIPHER COMMENT: it might be better to just have a waitUntil{!isNil "bulwarkBox"} from the publicvar and put this in the initPlayerLocal

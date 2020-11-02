@@ -20,8 +20,8 @@ Examples:
 
     (end)
 
-Author:
-	Hilltop & omNomios,
+Author(s):
+	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 // This may be replaced in the future with an update function that simply acts as an event that must be called

@@ -17,8 +17,8 @@ Examples:
 
     (end)
 
-Author:
-	Hilltop & omNomios,
+Author(s):
+	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 #define SKILL_LEVEL_1 0.1

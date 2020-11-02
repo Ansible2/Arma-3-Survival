@@ -16,7 +16,7 @@ Examples:
 		[_controlToRead] call KISKA_fnc_setVdlValue;
 	(end)
 
-Author:
+Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};

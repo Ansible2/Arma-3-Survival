@@ -20,7 +20,7 @@ Examples:
 
     (end)
 
-Author:
+Author(s):
 	Quicksilver,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */

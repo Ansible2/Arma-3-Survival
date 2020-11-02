@@ -20,9 +20,9 @@ Examples:
 
     (end)
 
-Author:
+Author(s):
 	Ansible2 // Cipher,
-	Hilltop & omNomios
+	Hilltop(Willtop) & omNomios
 ---------------------------------------------------------------------------- */
 if (!hasInterface OR {BLWK_dontUseRevive}) exitWith {};
 

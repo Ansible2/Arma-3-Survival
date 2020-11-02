@@ -21,7 +21,7 @@ Returns:
     If POSITION was provided, the position array will be copied.
     Defaults to [0,0,0] if the entity is null or undefined.
 
-Author:
+Author(s):
     Rommel
 ---------------------------------------------------------------------------- */
 params [

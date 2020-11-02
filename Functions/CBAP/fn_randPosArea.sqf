@@ -20,7 +20,7 @@ Examples:
       _position = [[center, a, b, angle, isRectangle]] call CBAP_fnc_randPosArea;
    (end)
 
-Author:
+Author(s):
     SilentSpike 2015-07-06
 ---------------------------------------------------------------------------- */
 params [

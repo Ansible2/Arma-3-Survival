@@ -20,8 +20,9 @@ Examples:
 
     (end)
 
-Author:
-	Hilltop & omNomios,
+Author(s):
+	Hilltop(Willtop) & omNomios,
+	KillerStudio,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if (!hasInterface OR {!canSuspend}) exitWith {};
@@ -36,14 +37,14 @@ disableSerialization;
 	CTRL lbAdd "             to unlock Support Menu"; 
 
 #define PRICE_NAME_FORMAT "%1 - %2"
-
+#define SHOP_DIALOG_IDD 9999
 
 createDialog "bulwarkShopDialog";
-waitUntil {!isNull (findDisplay 9999)};
+waitUntil {!isNull (findDisplay SHOP_DIALOG_IDD)};
 
 
 // buildable objects
-private _buildableObjectsControl = (findDisplay 9999) displayCtrl 1500;
+private _buildableObjectsControl = (findDisplay SHOP_DIALOG_IDD) displayCtrl 1500;
 private _displayNameTemp = "";
 BLWK_buildableObjects_array apply {
 	_displayNameTemp = [configFile >> "cfgVehicles" >> (_x select 1)] call BIS_fnc_displayName;
@@ -51,7 +52,7 @@ BLWK_buildableObjects_array apply {
 };
 
 // show buildable object preview
-((findDisplay 9999) displayCtrl 1500) ctrlAddEventHandler ['LBSelChanged', {
+((findDisplay SHOP_DIALOG_IDD) displayCtrl 1500) ctrlAddEventHandler ['LBSelChanged', {
 	private _currentlySelectedIndex = lbCurSel 1500;
   	private _previewPic = getText (configFile >> "CfgVehicles" >> ((BLWK_buildableObjects_array select _currentlySelectedIndex) select 1) >> "editorPreview");
 
@@ -60,7 +61,7 @@ BLWK_buildableObjects_array apply {
 
 
 // supports
-private _supportsControl = (findDisplay 9999) displayCtrl 1501;
+private _supportsControl = (findDisplay SHOP_DIALOG_IDD) displayCtrl 1501;
 // if support dish was found, display purchasable support, else show message
 if (BLWK_supportDishFound) then {
 	private "_nameOfSupport"; 

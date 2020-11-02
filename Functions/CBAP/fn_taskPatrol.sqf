@@ -28,7 +28,7 @@ Example:
 Returns:
     Nil
 
-Author:
+Author(s):
     Rommel,
     Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */

@@ -19,7 +19,7 @@ Examples:
 		[myObject] call BLWk_fnc_locality;
     (end)
 
-Author:
+Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};

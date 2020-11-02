@@ -21,7 +21,7 @@ Example:
         (goggles player) call CBAP_fnc_getItemConfig;
     (end)
 
-Author:
+Author(s):
     commy2
     Modified By: Anbsible2 // Cipher
 ---------------------------------------------------------------------------- */

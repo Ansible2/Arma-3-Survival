@@ -21,8 +21,8 @@ Examples:
 
     (end)
 
-Author:
-	Hilltop & omNomios,
+Author(s):
+	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if !(BLWK_currentWaveNumber >= BLWK_vehicleStartWave) exitWith {[]};

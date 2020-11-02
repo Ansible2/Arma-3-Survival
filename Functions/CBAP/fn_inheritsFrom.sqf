@@ -22,7 +22,7 @@ Examples:
         // => true in this case, since all rifles are descended from RifleCore.
     (end)
 
-Author:
+Author(s):
     Sickboy
 ---------------------------------------------------------------------------- */
 params [["_config", configNull, [configNull]], ["_baseConfig", configNull, [configNull]]];
