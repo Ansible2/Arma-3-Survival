@@ -62,6 +62,7 @@ private _fn_checkGroupStatus = {
 
 	_aliveIndex = _groupUnits findIf {alive _x};
 	if (_aliveIndex != -1) exitWith {true}; // check if anyone is alive
+
 	false
 };
 
@@ -70,6 +71,8 @@ private _fn_leaderVelocityCheck = {
 	_groupLeader = leader _groupToCheck; 
 	// forward/backward velocity is the most telling of movement
 	_leaderVelocity = (velocityModelSpace _groupLeader) select 0;
+	
+	//diag_log _leaderVelocity;
 	
 	// if leader is stationary
 	if (_leaderVelocity isEqualTo 0) exitWith {false};
@@ -83,24 +86,26 @@ private _fn_handleStationaryLeader = {
 	sleep 10;
 
 	if !(call _fn_checkGroupStatus) exitWith {
-		["%1 failed secondary group status check",_groupToCheck] call BIS_fnc_error;
+		//["%1 failed secondary group status check",_groupToCheck] call BIS_fnc_error;
 		false
 	}; // exit if all units are dead
 
+	_needsReset = true;
 	// if the leader fails the velocity check again
 	if !(call _fn_leaderVelocityCheck) then {
-		["%1 failed secondary leader velocity check",_groupToCheck] call BIS_fnc_error;
-		_needsReset = true;
+		//["%1 failed secondary leader velocity check",_groupToCheck] call BIS_fnc_error;
 		
 		// check if there is enough difference in their position to justify not reseting them
 		_positionDifference = (getPosWorld _groupLeader) vectorDiff _currentPosition;
 		_positionDifference apply {
 			// check to make sure there was some significant movement in the unit on any axis
-			if ((abs _x) > 1) exitWith {
-				["%1 found a position axis that passed",_groupToCheck] call BIS_fnc_error;
+			if ((abs _x) > 0.5) exitWith {
+				//["%1 found a position axis that passed",_groupToCheck] call BIS_fnc_error;
 				_needsReset = false;
 			};
 		};
+	} else {
+		_needsReset = false;
 	};
 
 	_needsReset
@@ -114,16 +119,17 @@ _groupToCheck setVariable [LOOP_VAR_NAME,true];
 while {sleep _timeBetweenChecks; (_groupToCheck getVariable [LOOP_VAR_NAME,false])} do {
 	// update unit list and check if they are still up
 	
-	if (call _fn_checkGroupStatus) exitWith {
-		["%1 exited pathing loop because of failed group status",_groupToCheck] call BIS_fnc_error;
+	if !(call _fn_checkGroupStatus) exitWith {
+		//["%1 exited pathing loop because of failed group status",_groupToCheck] call BIS_fnc_error;
 		_groupToCheck setVariable [LOOP_VAR_NAME,nil];
 	};
 
 	if !(call _fn_leaderVelocityCheck) then {
-		["%1 failed velocity test",_groupToCheck] call BIS_fnc_error;
+		//["%1 failed velocity test",_groupToCheck] call BIS_fnc_error;
+		
 		if (call _fn_handleStationaryLeader) then {
-			["%1 leader reset",_groupToCheck] call BIS_fnc_error;
-			_groupLeader setPosATL (selectRandom BLWK_infantrySpawnPositions);
+			//["%1 leader reset",_groupToCheck] call BIS_fnc_error;
+			_groupLeader setPos (selectRandom BLWK_infantrySpawnPositions);
 		};
 	};
 };

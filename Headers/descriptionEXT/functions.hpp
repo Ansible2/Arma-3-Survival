@@ -153,19 +153,6 @@ class BLWK
 		{};
 	};
 	
-	class Pathing
-	{
-		file = "functions\Pathing";
-		class addToPathingLoop 
-		{};
-		class getPathingArray 
-		{};
-		class startPathingLoop 
-		{};
-		class removeFromPathingLoop 
-		{};
-	};
-
 	class Points
 	{
 		file = "functions\Points";
