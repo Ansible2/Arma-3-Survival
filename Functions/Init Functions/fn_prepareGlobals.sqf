@@ -19,10 +19,6 @@ Examples:
 
     (end)
 ---------------------------------------------------------------------------- */
-// cipher comment: this needs to be organized the same way it shows up in the params menu in the lobby
-/// which itself may need to be reorganized
-
-
 if (isServer OR {!hasInterface}) then {
     /* DLC exclusion */
 /*
@@ -196,12 +192,15 @@ if (hasInterface) then {
 
     BLWK_ACELoaded = ["ACE_Medical_StateMachine"] call KISKA_fnc_ispatchLoaded;
 
+    BLWK_staminaEnabled = [false,true] select ("BLWK_staminaEnabled" call BIS_fnc_getParamValue);
+    BLWK_weaponSwayCoef = "BLWK_weaponSwayCoef" call BIS_fnc_getParamValue;
+    
+
     // this is to have potential supports that put the player outside the immediate radius
     // it is false until the play area is established
     if (isNil "BLWK_enforceArea") then {
         BLWK_enforceArea = false;
     };
-
 };
 if (isNil "BLWK_currentWaveNumber") then {
     BLWK_currentWaveNumber = "BLWK_startingWaveNumber" call BIS_fnc_getParamValue;

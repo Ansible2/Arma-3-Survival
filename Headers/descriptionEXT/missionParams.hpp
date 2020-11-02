@@ -275,7 +275,6 @@ class BLWK_pointsMultiForDamage
 // respawn
 A_SPACE(Respawn);
 A_SECTION_HEADER(Respawn);
-
 class BLWK_numRespawnTickets
 {
 	title = "Respawn Tickets";
@@ -311,7 +310,6 @@ A_SECTION_HEADER(Revive);
 // FACTIONS
 A_SPACE(Faction);
 A_SECTION_HEADER(Faction);
-
 class BLWK_friendlyFaction
 {
 	title = "Friendly Faction";
@@ -380,6 +378,22 @@ class BLWK_faksToMakeMedkit
 	texts[] = {"5", "10", "15"};
 	default = 10;
 };
+class BLWK_staminaEnabled
+{
+	title = "Enable stamina";
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
+	default = 0;
+};
+class BLWK_weaponSwayCoef
+{
+	title = "Weaponsway coefficient (zero means no sway)";
+	values[] = {0, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1};
+	texts[] = {"0", "0.1", "0.15", "0.2", "0.25", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
+	default = 0;
+};
+
+/*
 class BLWK_supplyDropRadius
 {
 	title = "Supply drop distance from centre NOT IMPLEMENTED";
@@ -394,3 +408,4 @@ class BLWK_paratrooperCount
 	texts[] = {"1","2","3","4","5","6"};
 	default = 3;
 };
+*/
