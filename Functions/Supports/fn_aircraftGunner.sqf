@@ -126,8 +126,46 @@ private ["_turretAction_temp","_turretMagazines_temp","_turretPath_temp"];
 	};
 } forEach _turretsWithWeapons;
 
+
+localNamespace setVariable ["BLWK_fnc_exitFromAircraft",{
+	params ["_caller","_actionId","_arguments"];
+
+	setViewDistance -1;
+	setObjectViewDistance -1;
+
+	moveOut _caller;
+	_caller setVehiclePosition [bulwarkBox,[],5,"NONE"];
+	_caller setVelocity [0,0,0];
+	[_caller,true] call BLWK_fnc_adjustStalkable;
+
+	// add this action id to list of switch turret actions for removal
+	private _actions = _arguments select 0;
+	_actions pushBack _actionId;
+	_actions apply {
+		[_caller,_x] call BIS_fnc_holdActionRemove;
+	};
+
+	// delete vehicle
+	private _vehicle = _arguments select 1;
+	private _vehicleGroup = _arguments select 2;
+	(units _vehicleGroup) apply {
+		_vehicle deleteVehicleCrew _x;
+	};
+	deleteGroup _vehicleGroup;
+	deleteVehicle _vehicle;
+
+	// allow other users to access the support type again
+	missionNamespace setVariable [_arguments select 3,false,true];
+	
+	null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
+
+	sleep 10;
+
+	_caller allowDamage true;
+}];
+
 // create action to exit the support and return to the bulwark
-[	
+private _exitAction = [	
 	player,
 	"<t color='#c91306'>Return To Bulwark</t>", 
 	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
@@ -137,40 +175,7 @@ private ["_turretAction_temp","_turretMagazines_temp","_turretPath_temp"];
 	{}, 
 	{}, 
 	{
-		params ["", "_caller", "_actionId", "_arguments", "", ""];
-
-		setViewDistance -1;
-		setObjectViewDistance -1;
-
-		moveOut _caller;
-		_caller setVehiclePosition [bulwarkBox,[],5,"NONE"];
-		_caller setVelocity [0,0,0];
-		[_caller,true] call BLWK_fnc_adjustStalkable;
-
-		// add this action id to list of switch turret actions for removal
-		private _actions = _arguments select 0;
-		_actions pushBack _actionId;
-		_actions apply {
-			[_caller,_x] call BIS_fnc_holdActionRemove;
-		};
-
-		// delete vehicle
-		private _vehicle = _arguments select 1;
-		private _vehicleGroup = _arguments select 2;
-		(units _vehicleGroup) apply {
-			_vehicle deleteVehicleCrew _x;
-		};
-		deleteGroup _vehicleGroup;
-		deleteVehicle _vehicle;
-
-		// allow other users to access the support type again
-		missionNamespace setVariable [_arguments select 3,false,true];
-		
-		null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
-
-		sleep 10;
-
-		_caller allowDamage true;
+		[_this select 1,_this select 2,_this select 3] call (localNamespace getVariable "BLWK_fnc_exitFromAircraft");
 	}, 
 	{}, 
 	[_turretSwitchActions,_vehicle,_vehicleGroup,_typeOfGunner], 
@@ -180,3 +185,33 @@ private ["_turretAction_temp","_turretMagazines_temp","_turretPath_temp"];
 	false, 
 	false
 ] call BIS_fnc_holdActionAdd;
+
+
+// limited time for air support
+[[_turretSwitchActions,_vehicle,_vehicleGroup,_typeOfGunner],_exitAction] spawn {
+	params ["_actionArgs","_exitAction"];
+	// waitUntil we have started a wave to start counting them towards a lifetime
+	waitUntil {
+		if !(BLWK_inBetweenWaves) exitWith {true};
+		sleep 10;
+		false
+	};
+
+	// wait to delete support
+	private _startingWave = BLWK_currentWaveNumber;
+	private _endWave = _startingWave + BLWK_aircraftGunnerLifetime;
+	private _informed = false;
+	waitUntil {
+		if (!_informed AND {BLWK_currentWaveNumber == (_endWave - 1)}) then {
+			hint "You gunner support will end the next wave!";
+			_informed = true;
+		};
+		if (BLWK_currentWaveNumber >= _endWave) exitWith {true};
+		sleep 10;
+		false
+	};
+
+	hint "Your support expired";
+
+	[player,_exitAction,_actionArgs] call (localNamespace getVariable "BLWK_fnc_exitFromAircraft");
+};

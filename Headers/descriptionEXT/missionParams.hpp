@@ -371,6 +371,13 @@ class BLWK_multipleLootReveals
 	texts[] = {"Show all","Choose what type to show"};
 	default = 1;
 };
+class BLWK_aircraftGunnerLifetime
+{
+	title = "How many waves should gunner supports last?";
+	values[] = {1,2,3,4,5};
+	texts[] = {"1","2","3","4","5"};
+	default = 2;
+};
 class BLWK_magRepackEnabled
 {
 	title = "Enable Vanilla QS MagRepack Rewrite (Ctrl + R)";

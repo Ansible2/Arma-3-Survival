@@ -196,7 +196,7 @@ if (hasInterface) then {
     BLWK_weaponSwayCoef = "BLWK_weaponSwayCoef" call BIS_fnc_getParamValue;
 
     BLWK_multipleLootReveals = [false,true] select ("BLWK_multipleLootReveals" call BIS_fnc_getParamValue);
-    
+    BLWK_aircraftGunnerLifetime = "BLWK_aircraftGunnerLifetime" call BIS_fnc_getParamValue;
 
     // this is to have potential supports that put the player outside the immediate radius
     // it is false until the play area is established
