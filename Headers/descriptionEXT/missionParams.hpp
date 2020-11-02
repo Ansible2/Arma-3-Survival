@@ -366,7 +366,7 @@ A_SECTION_HEADER(Other);
 
 class BLWK_magRepackEnabled
 {
-	title = "Enable Vanilla QS MagRepack (Ctrl + R)";
+	title = "Enable Vanilla QS MagRepack Rewrite (Ctrl + R)";
 	values[] = ZERO_OR_ONE;
 	texts[] = NO_OR_YES;
 	default = 1;
