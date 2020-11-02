@@ -309,8 +309,13 @@ BLWK_buildableObjects_array = [
     [3000, "Land_BagBunker_Small_F",            false, [180, [0,4,1]]],
     [4500, "Land_PillboxBunker_01_hex_F",       false, [90, [0,4,1]]],
     [6000, "Land_Cargo_Patrol_V3_F",            false, [180, [0,6,5]]],
-    [7500, "B_HMG_01_A_F",                      true, [180, [0.25,2,2]], true],
-    [9500, "Land_Bunker_01_Small_F",            false, [180, [0.5,6,0]]]
+    [7500, "B_HMG_01_A_F",                      true,  [180, [0.25,2,2]], true],
+    [9500, "Land_Bunker_01_Small_F",            false, [180, [0.5,6,0]]],
+    [100, "Land_Razorwire_F",                   false, [0, [0,3,1]]],
+    [100, "Land_CncBarrier_F",                  false, [0, [0,3,1]]],
+    [200, "Land_CncBarrierMedium_F",            false, [0, [0,3,1]]],
+    [400, "Land_HBarrierWall_corridor_F",       false, [90, [0,5,1]]],
+    [100, "Land_CzechHedgehog_01_new_F",        false, [0, [0,3,1]]]
 ];
 BLWK_buildableObjects_array sort true;
 
