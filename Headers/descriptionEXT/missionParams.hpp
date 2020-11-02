@@ -160,14 +160,14 @@ class BLWK_playersStartWith_mineDetector
 };
 class BLWK_playersStartWith_pistol
 {
-	title = "Players start with pistol";
+	title = "Start with a pistol";
 	values[] = ZERO_OR_ONE;
 	texts[] = NO_OR_YES;
 	default = 0;
 };
 class BLWK_playersStartWith_NVGs
 {
-	title = "Players start with NVG";
+	title = "Start with NVGs";
 	values[] = ZERO_OR_ONE;
 	texts[] = NO_OR_YES;
 	default = 0;
