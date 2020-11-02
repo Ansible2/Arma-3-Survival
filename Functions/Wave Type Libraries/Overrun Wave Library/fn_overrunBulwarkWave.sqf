@@ -25,13 +25,15 @@ Author:
 ---------------------------------------------------------------------------- */
 params ["_startingEnemyUnits"];
 
+// make sure nobody is carrying anything when they teleport
+null = remoteExecCall ["BLWK_fnc_placeObject",BLWK_allClientsTargetID];
+
 private "_playerPosition";
 private _players = call CBAP_fnc_players;
 _players apply {
 	// don't teleport players in vehicles
 	if (isNull (objectParent _x)) then {
 		_playerPosition = [BLWK_playAreaCenter, BLWK_playAreaRadius / 2, BLWK_playAreaRadius, 5] call BIS_fnc_findSafePos;
-		//_playerPosition = [BLWK_playAreaCenter,BLWK_playAreaRadius,round (random 360)] call CBAP_fnc_randPos;
 		_x setPos _playerPosition;
 	};
 };

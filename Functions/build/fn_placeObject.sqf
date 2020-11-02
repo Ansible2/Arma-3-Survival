@@ -25,9 +25,11 @@ Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 params [
-	"_object",
+	["_object",missionNamespace getVariable ["BLWK_heldObject",objNull],[objNull]],
 	["_snapToSurface",false,[true]]
 ];
+
+if (isNull _object) exitWith {false};
 
 detach _object;
 
