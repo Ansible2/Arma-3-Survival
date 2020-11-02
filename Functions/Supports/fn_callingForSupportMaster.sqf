@@ -25,11 +25,13 @@ params ["_caller","_targetPosition","_supportClass"];
 
 #define ADD_SUPPORT_BACK [_caller,_supportClass,nil,nil,""] call BIS_fnc_addCommMenuItem;
 
-if (_targetPosition isEqualTo []) exitWith {
-	hint "Position is invalid, try again";
-	ADD_SUPPORT_BACK
+#define CHECK_POSITION \
+if (_targetPosition isEqualTo []) exitWith { \
+	hint "Position is invalid, try again"; \
+	ADD_SUPPORT_BACK \
 };
 
+// import support class #defines
 #include "..\..\Headers\descriptionEXT\supportDefines.hpp"
 
 #define CHECK_SUPPORT_CLASS(SUPPORT_CLASS_COMPARE) _supportClass == TO_STRING(SUPPORT_CLASS_COMPARE)
@@ -37,12 +39,13 @@ if (_targetPosition isEqualTo []) exitWith {
 
 // cruise missile
 if (CHECK_SUPPORT_CLASS(CRUISE_MISSILE_CLASS)) exitWith {
+	CHECK_POSITION
 	null = [_targetPosition] spawn BLWK_fnc_cruiseMissileStrike;
 	[TYPE_STRIKE] call BLWK_fnc_supportRadioGlobal;
 };
 
 
-#define ARTY_EXPRESSION(AMMO_TYPE) null = [_targetPosition,AMMO_TYPE] spawn BLWK_fnc_callForArtillery
+#define ARTY_EXPRESSION(AMMO_TYPE) CHECK_POSITION null = [_targetPosition,AMMO_TYPE] spawn BLWK_fnc_callForArtillery
 
 // 155 HE
 if (CHECK_SUPPORT_CLASS(ARTILLERY_STRIKE_155MM_HE_CLASS)) exitWith {
@@ -100,6 +103,8 @@ if (CHECK_SUPPORT_CLASS(MORTAR_STRIKE_82MM_FLARE_CLASS)) exitWith {
 
 // arsenal supply drop
 if (CHECK_SUPPORT_CLASS(SUPPLY_ARSENAL_DROP_CLASS)) exitWith {
+	CHECK_POSITION
+
 	if !(missionNamespace getVariable ["BLWK_arsenalOut",false]) then {
 		missionNamespace setVariable ["BLWK_arsenalOut",true,true];
 
@@ -116,6 +121,7 @@ if (CHECK_SUPPORT_CLASS(SUPPLY_ARSENAL_DROP_CLASS)) exitWith {
 // CAS
 #define CAS_RADIO [TYPE_CAS_REQUEST] call BLWK_fnc_supportRadioGlobal;
 #define CAS_EXPRESSSION(CAS_TYPE) \
+	CHECK_POSITION \
 	_targetPosition = AGLToASL(_targetPosition);\
 	private _friendlyAttackAircraftClass = [6] call BLWK_fnc_getFriendlyVehicleClass;\
 	null = [_targetPosition,CAS_TYPE,getDir _caller,_friendlyAttackAircraftClass] spawn BLWK_fnc_CAS;\
