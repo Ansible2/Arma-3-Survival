@@ -364,6 +364,13 @@ class BLWK_level5Faction
 A_SPACE(Other);
 A_SECTION_HEADER(Other);
 
+class BLWK_multipleLootReveals
+{
+	title = "Show all loot with reveal?";
+	values[] = ZERO_OR_ONE;
+	texts[] = {"Show all","Choose what type to show"};
+	default = 1;
+};
 class BLWK_magRepackEnabled
 {
 	title = "Enable Vanilla QS MagRepack Rewrite (Ctrl + R)";
