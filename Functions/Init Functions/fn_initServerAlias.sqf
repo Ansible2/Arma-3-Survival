@@ -30,5 +30,3 @@ sleep 15;
 null = [] spawn BLWK_fnc_startWave;
 
 null = [] spawn BLWK_fnc_arePlayersAliveLoop;
-
-//null = [] spawn BLWK_fnc_startPathingLoop;
