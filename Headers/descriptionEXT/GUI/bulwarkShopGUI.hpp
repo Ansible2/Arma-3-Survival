@@ -79,3 +79,292 @@ class bulwarkShopDialog
         };
     };
 };
+/*
+////////////////////////////////////////////////////////
+// GUI EDITOR OUTPUT START (by Gill, v1.063, #Fifica)
+////////////////////////////////////////////////////////
+
+class BLWK_shop_headerText: RscText
+{
+	idc = 1000;
+
+	text = "Shop"; //--- ToDo: Localize;
+	x = 0.277344 * safezoneW + safezoneX;
+	y = 0.229167 * safezoneH + safezoneY;
+	w = 0.445313 * safezoneW;
+	h = 0.0208333 * safezoneH;
+	colorBackground[] = {-1,-1,-1,1};
+};
+class BLWK_shop_communityPool_headerText: RscText
+{
+	idc = 1002;
+
+	text = "Community Pool"; //--- ToDo: Localize;
+	x = 0.517578 * safezoneW + safezoneX;
+	y = 0.520833 * safezoneH + safezoneY;
+	w = 0.0878906 * safezoneW;
+	h = 0.0208333 * safezoneH;
+	colorBackground[] = {-1,-1,-1,1};
+};
+class BLWK_shop_buildableObjects_treeView: RscListbox
+{
+	idc = 1500;
+	x = 0.300781 * safezoneW + safezoneX;
+	y = 0.291667 * safezoneH + safezoneY;
+	w = 0.181641 * safezoneW;
+	h = 0.166667 * safezoneH;
+};
+class BLWK_shop_communityPool_treeView: RscListbox
+{
+	idc = 1502;
+	x = 0.517578 * safezoneW + safezoneX;
+	y = 0.541667 * safezoneH + safezoneY;
+	w = 0.181641 * safezoneW;
+	h = 0.166667 * safezoneH;
+};
+class BLWK_shop_buildableObjects_purchaseForSelfButton: RscButton
+{
+	idc = 1600;
+	text = "Purchase (Self)"; //--- ToDo: Localize;
+	x = 0.300781 * safezoneW + safezoneX;
+	y = 0.458333 * safezoneH + safezoneY;
+	w = 0.0703125 * safezoneW;
+	h = 0.0208333 * safezoneH;
+};
+class BLWK_shop_buildableObjects_purchaseForPoolButton: RscButton
+{
+	idc = 1602;
+	text = "Purchase (Pool)"; //--- ToDo: Localize;
+	x = 0.412109 * safezoneW + safezoneX;
+	y = 0.458333 * safezoneH + safezoneY;
+	w = 0.0703125 * safezoneW;
+	h = 0.0208333 * safezoneH;
+};
+class BLWK_shop_communityPool_withdrawButton: RscButton
+{
+	idc = 1605;
+	text = "Withdraw"; //--- ToDo: Localize;
+	x = 0.517578 * safezoneW + safezoneX;
+	y = 0.708333 * safezoneH + safezoneY;
+	w = 0.181641 * safezoneW;
+	h = 0.0208333 * safezoneH;
+};
+class BLWK_shop_previewPic: RscPicture
+{
+	idc = 1201;
+	text = "#(argb,8,8,3)color(1,1,1,1)";
+	x = 0.517578 * safezoneW + safezoneX;
+	y = 0.270833 * safezoneH + safezoneY;
+	w = 0.181641 * safezoneW;
+	h = 0.208333 * safezoneH;
+};
+class BLWK_shop_buildableObjects_background: IGUIBack
+{
+	idc = 2200;
+	x = 0.294922 * safezoneW + safezoneX;
+	y = 0.260417 * safezoneH + safezoneY;
+	w = 0.193359 * safezoneW;
+	h = 0.229167 * safezoneH;
+};
+class BLWK_shop_supports_background: IGUIBack
+{
+	idc = 2201;
+	x = 0.294922 * safezoneW + safezoneX;
+	y = 0.510417 * safezoneH + safezoneY;
+	w = 0.193359 * safezoneW;
+	h = 0.229167 * safezoneH;
+};
+class BLWK_shop_points_deposit_button: RscButton
+{
+	idc = 1607;
+	text = "Deposit Points"; //--- ToDo: Localize;
+	x = 0.300781 * safezoneW + safezoneX;
+	y = 0.78125 * safezoneH + safezoneY;
+	w = 0.169922 * safezoneW;
+	h = 0.0208333 * safezoneH;
+};
+class BLWK_shop_supports_treeView: RscListbox
+{
+	idc = 1503;
+	x = 0.300781 * safezoneW + safezoneX;
+	y = 0.541667 * safezoneH + safezoneY;
+	w = 0.181641 * safezoneW;
+	h = 0.166667 * safezoneH;
+};
+class BLWK_shop_supports_purchaseForPoolButton: RscButton
+{
+	idc = 1603;
+	text = "Purchase (Pool)"; //--- ToDo: Localize;
+	x = 0.412109 * safezoneW + safezoneX;
+	y = 0.708333 * safezoneH + safezoneY;
+	w = 0.0703125 * safezoneW;
+	h = 0.0208333 * safezoneH;
+};
+class BLWK_shop_supports_purchaseForSelfButton: RscButton
+{
+	idc = 1604;
+	text = "Purchase (Self)"; //--- ToDo: Localize;
+	x = 0.300781 * safezoneW + safezoneX;
+	y = 0.708333 * safezoneH + safezoneY;
+	w = 0.0703125 * safezoneW;
+	h = 0.0208333 * safezoneH;
+};
+class BLWK_shop_supports_headerText: RscText
+{
+	idc = 1002;
+
+	text = "Supports"; //--- ToDo: Localize;
+	x = 0.300781 * safezoneW + safezoneX;
+	y = 0.520833 * safezoneH + safezoneY;
+	w = 0.0878906 * safezoneW;
+	h = 0.0208333 * safezoneH;
+	colorBackground[] = {-1,-1,-1,1};
+};
+class BLWK_shop_buildableObjects_headerText: RscText
+{
+	idc = 1002;
+
+	text = "Buildable Objects"; //--- ToDo: Localize;
+	x = 0.300781 * safezoneW + safezoneX;
+	y = 0.270833 * safezoneH + safezoneY;
+	w = 0.0878906 * safezoneW;
+	h = 0.0208333 * safezoneH;
+	colorBackground[] = {-1,-1,-1,1};
+};
+class BLWK_shop_supports_searchBar: RscEdit
+{
+	idc = 1401;
+	x = 0.388672 * safezoneW + safezoneX;
+	y = 0.520833 * safezoneH + safezoneY;
+	w = 0.0820313 * safezoneW;
+	h = 0.0208333 * safezoneH;
+};
+class BLWK_shop_buildableObjects_searchBar: RscEdit
+{
+	idc = 1402;
+	x = 0.388672 * safezoneW + safezoneX;
+	y = 0.270833 * safezoneH + safezoneY;
+	w = 0.0820313 * safezoneW;
+	h = 0.0208333 * safezoneH;
+};
+class BLWK_shop_communityPool_searchBar: RscEdit
+{
+	idc = 1403;
+	x = 0.605469 * safezoneW + safezoneX;
+	y = 0.520833 * safezoneH + safezoneY;
+	w = 0.0820313 * safezoneW;
+	h = 0.0208333 * safezoneH;
+};
+class BLWK_shop_border_right: IGUIBack
+{
+	idc = 2202;
+	x = 0.716797 * safezoneW + safezoneX;
+	y = 0.25 * safezoneH + safezoneY;
+	w = 0.00585938 * safezoneW;
+	h = 0.5 * safezoneH;
+};
+class BLWK_shop_border_left: IGUIBack
+{
+	idc = 2203;
+	x = 0.277344 * safezoneW + safezoneX;
+	y = 0.25 * safezoneH + safezoneY;
+	w = 0.00585938 * safezoneW;
+	h = 0.5 * safezoneH;
+};
+class BLWK_shop_border_bottom: IGUIBack
+{
+	idc = 2204;
+	x = 0.277344 * safezoneW + safezoneX;
+	y = 0.75 * safezoneH + safezoneY;
+	w = 0.445313 * safezoneW;
+	h = 0.0625 * safezoneH;
+};
+class BLWK_shop_points_deposit_edit: RscEdit
+{
+	idc = 1404;
+	x = 0.417969 * safezoneW + safezoneX;
+	y = 0.760417 * safezoneH + safezoneY;
+	w = 0.0527344 * safezoneW;
+	h = 0.0208333 * safezoneH;
+};
+class BLWK_shop_points_deposit_slider: RscSlider
+{
+	idc = 1901;
+	x = 0.300781 * safezoneW + safezoneX;
+	y = 0.760417 * safezoneH + safezoneY;
+	w = 0.117187 * safezoneW;
+	h = 0.0208333 * safezoneH;
+};
+class BLWK_shop_points_withdraw_button: RscButton
+{
+	idc = 1601;
+	text = "Withdraw Points"; //--- ToDo: Localize;
+	x = 0.523438 * safezoneW + safezoneX;
+	y = 0.78125 * safezoneH + safezoneY;
+	w = 0.169922 * safezoneW;
+	h = 0.0208333 * safezoneH;
+};
+class BLWK_shop_points_withdraw_slider: RscSlider
+{
+	idc = 1900;
+	x = 0.523438 * safezoneW + safezoneX;
+	y = 0.760417 * safezoneH + safezoneY;
+	w = 0.117187 * safezoneW;
+	h = 0.0208333 * safezoneH;
+};
+class BLWK_shop_points_withdraw_edit: RscEdit
+{
+	idc = 1400;
+	x = 0.640625 * safezoneW + safezoneX;
+	y = 0.760417 * safezoneH + safezoneY;
+	w = 0.0527344 * safezoneW;
+	h = 0.0208333 * safezoneH;
+};
+class BLWK_shop_previewPic_background: IGUIBack
+{
+	idc = 2205;
+	x = 0.511719 * safezoneW + safezoneX;
+	y = 0.260417 * safezoneH + safezoneY;
+	w = 0.193359 * safezoneW;
+	h = 0.229167 * safezoneH;
+};
+class BLWK_shop_communityPool_background: IGUIBack
+{
+	idc = 2206;
+	x = 0.511719 * safezoneW + safezoneX;
+	y = 0.510417 * safezoneH + safezoneY;
+	w = 0.193359 * safezoneW;
+	h = 0.229167 * safezoneH;
+};
+class BLWK_shop_buildableObjects_searchIcon: RscPicture
+{
+	idc = 1200;
+	text = "#(argb,8,8,3)color(1,1,1,1)";
+	x = 0.470703 * safezoneW + safezoneX;
+	y = 0.270833 * safezoneH + safezoneY;
+	w = 0.0117188 * safezoneW;
+	h = 0.0208333 * safezoneH;
+};
+class BLWK_shop_supports_searchIcon: RscPicture
+{
+	idc = 1202;
+	text = "#(argb,8,8,3)color(1,1,1,1)";
+	x = 0.470703 * safezoneW + safezoneX;
+	y = 0.520833 * safezoneH + safezoneY;
+	w = 0.0117188 * safezoneW;
+	h = 0.0208333 * safezoneH;
+};
+class BLWK_shop_communityPool_searchIcon: RscPicture
+{
+	idc = 1203;
+	text = "#(argb,8,8,3)color(1,1,1,1)";
+	x = 0.6875 * safezoneW + safezoneX;
+	y = 0.520833 * safezoneH + safezoneY;
+	w = 0.0117188 * safezoneW;
+	h = 0.0208333 * safezoneH;
+};
+////////////////////////////////////////////////////////
+// GUI EDITOR OUTPUT END
+////////////////////////////////////////////////////////
+
+*/
