@@ -72,3 +72,90 @@ if (BLWK_supportDishFound) then {
 } else {
   	SUPPORT_DISH_NOT_FOUND_MESSAGE(_supportsControl);
 };
+
+
+
+
+
+
+
+/*
+BLWK_fnc_popList = {
+	params ["_tv"];
+
+	private _categoriesList = [];
+
+	private ["_displayName_temp","_category_temp","_value","_class","_categoryIndex","_itemIndex","_itemPath","_itemText"];
+	BLWK_buildableObjects_array apply {
+		_value = _x select 0;
+		_class = _x select 1;
+		
+		_category_temp = _x select 2;
+		_categoryIndex = _categoriesList findIf {_x == _category_temp};
+		if (_categoryIndex isEqualTo -1) then {
+			_categoryIndex = _tv tvAdd [[],_category_temp];
+			_categoriesList pushBack _category_temp;
+		};
+
+		_displayName_temp = [configFile >> "cfgVehicles" >> _class] call BIS_fnc_displayName;
+		// add item to list
+		_itemText = format ["%1 - %2",_value,_displayName_temp];
+		_itemIndex = _tv tvAdd [[_categoryIndex],_itemText];
+		
+		_itemPath = [_categoryIndex,_itemIndex];
+		_tv tvSetValue [_itemPath,_value];
+		_tv tvSetTooltip [_itemPath,_class];		
+	};
+
+};
+#define BLWK_SHOP_PREVIEW_IDC 97918
+BLWK_fnc_exitMouseEvent = {
+	params ["_tv"];
+
+	// find out if something is currently selected
+	private _fn_setImagePathDefault = {
+		_imagePath = "preview.paa";
+	};
+	private _path = tvCurSel _tv;
+	private "_imagePath";
+	if (_path isEqualTo []) then {
+		call _fn_setImagePathDefault; // go to default image if nothing selected
+	} else {
+		private _class = _tv tvToolTip _path;
+		if (_class isEqualTo "") then { // in the event that the selected item is a category
+			call _fn_setImagePathDefault;
+		} else {
+			_imagePath = getText (configFile >> "CfgVehicles" >> _class >> "editorPreview");
+		};
+	};
+	
+	private _display = ctrlParent _tv;
+	private _imageCtrl = _display displayCtrl BLWK_SHOP_PREVIEW_IDC;
+	_imageCtrl ctrlSetText _imagePath;
+};
+
+BLWK_fnc_updatePicture = {
+	params ["_tv","_path"];
+
+	private _fn_setImagePathDefault = {
+		_imagePath = "preview.paa";
+	};
+	private _class = _tv tvToolTip _path;
+	private "_imagePath";
+	if (_class isEqualTo "") then { // check if what we're over is a category
+		_path = tvCurSel _tv;
+		_class = _tv tvToolTip _path;
+		if (_class isEqualTo "") then { // check if something is selected
+			call _fn_setImagePathDefault;
+		} else {
+			_imagePath = getText (configFile >> "CfgVehicles" >> _class >> "editorPreview");
+		};
+	} else {
+		_imagePath = getText (configFile >> "CfgVehicles" >> _class >> "editorPreview");
+	};
+
+	private _display = ctrlParent _tv;
+	private _imageCtrl = _display displayCtrl BLWK_SHOP_PREVIEW_IDC;
+	_imageCtrl ctrlSetText _imagePath;
+};
+*/
