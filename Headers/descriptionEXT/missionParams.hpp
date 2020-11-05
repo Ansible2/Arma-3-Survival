@@ -406,20 +406,3 @@ class BLWK_weaponSwayCoef
 	texts[] = {"0", "0.1", "0.15", "0.2", "0.25", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
 	default = 0;
 };
-
-/*
-class BLWK_supplyDropRadius
-{
-	title = "Supply drop distance from centre NOT IMPLEMENTED";
-	values[] = {0, 0.25, 0.50, 0.75};
-	texts[] = {"Dead centre", "25%", "50%", "75%"};
-	default = 0;
-};
-class BLWK_paratrooperCount
-{
-	title = "Paratrooper count";
-	values[] = {1, 2, 3, 4, 5, 6};
-	texts[] = {"1","2","3","4","5","6"};
-	default = 3;
-};
-*/

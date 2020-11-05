@@ -44,24 +44,30 @@ if (isServer OR {!hasInterface}) then {
 */
 
     // AI unit classes
-    // some of these are public to be used with BLWK_fnc_getPointsForKill
+    // some of these are public to be used with BLWK_fnc_getPointsForKill or for friendlies to call support
     private _unitTypeInfo = call BLWK_fnc_prepareUnitClasses;
+    
     BLWK_friendly_menClasses = _unitTypeInfo select 0;
     publicVariable "BLWK_friendly_menClasses";
     BLWK_friendly_vehicleClasses = _unitTypeInfo select 1;
     publicVariable "BLWK_friendly_vehicleClasses";
+    
     BLWK_level1_menClasses = _unitTypeInfo select 2;
     publicVariable "BLWK_level1_menClasses";
     BLWK_level1_vehicleClasses = _unitTypeInfo select 3;
+    
     BLWK_level2_menClasses = _unitTypeInfo select 4;
     publicVariable "BLWK_level2_menClasses";
     BLWK_level2_vehicleClasses = _unitTypeInfo select 5;
+    
     BLWK_level3_menClasses = _unitTypeInfo select 6;
     publicVariable "BLWK_level3_menClasses";
     BLWK_level3_vehicleClasses = _unitTypeInfo select 7;
+    
     BLWK_level4_menClasses = _unitTypeInfo select 8;
     publicVariable "BLWK_level4_menClasses";
     BLWK_level4_vehicleClasses = _unitTypeInfo select 9;
+    
     BLWK_level5_menClasses = _unitTypeInfo select 10;
     publicVariable "BLWK_level5_menClasses";
     BLWK_level5_vehicleClasses = _unitTypeInfo select 11;
@@ -78,7 +84,7 @@ if (isServer OR {!hasInterface}) then {
     BLWK_infantrySpawnPositions = [];
     BLWK_vehicleSpawnPositions = [];
 
-    // this is used to only allow so many AI to be active at any time
+    // this is used to only allow only so many AI to be active at any time
     BLWK_maxEnemyInfantryAtOnce = ("BLWK_maxEnemyInfantryAtOnce" call BIS_fnc_getParamValue);
 
     // used for chaning medical items of OPTRE units (biofoam to FAKs)
@@ -90,13 +96,15 @@ if (isServer) then {
     BLWK_allClientsTargetID = [0,-2] select isDedicated;
     publicVariable "BLWK_allClientsTargetID";
 
-    // check if headless client is loaded
-    // CIPHER COMMENT: may want to add an owner param too for use with setVariable
-    private _headless = call BLWK_fnc_getHeadless;
     BLWK_logicCenter = createCenter sideLogic;
-    private _logicGroup = createGroup BLWK_logicCenter;
-    private _serverlogic = _logicGroup createUnit ["Logic", [0,0,0], [], 0, "NONE"];
-    BLWK_theAIHandlerEntity = [_headless,_serverlogic] select (isNull _headless);
+
+    // check if headless client is loaded
+    private _aiHandlerEntity = call BLWK_fnc_getHeadless;
+    if (isNull _aiHandlerEntity) then {
+        private _logicGroup = createGroup BLWK_logicCenter;
+        _aiHandlerEntity = _logicGroup createUnit ["Logic", [0,0,0], [], 0, "NONE"];
+    };
+    BLWK_theAIHandlerEntity = _aiHandlerEntity;
     publicVariable "BLWK_theAIHandlerEntity";
     // number should never be zero, but it can be for some time until the server has initialized
     waitUntil {
@@ -116,8 +124,8 @@ if (isServer) then {
     // loot classes
     private _lootClasses = call BLWK_fnc_prepareLootClasses;
 
-    BLWK_loot_weaponClasses = []; // for spawning loot
-    BLWK_loot_primaryWeapons = _lootClasses select 0; // for use with BLWK_fnc_randomizeWeapons
+    BLWK_loot_weaponClasses = []; // for getting all weapons into the same pool for spawning loot
+    BLWK_loot_primaryWeapons = _lootClasses select 0; // the individual split ups are for use with BLWK_fnc_randomizeWeapons
     BLWK_loot_weaponClasses append BLWK_loot_primaryWeapons;
     BLWK_loot_handgunWeapons = _lootClasses select 1;
     BLWK_loot_weaponClasses append BLWK_loot_handgunWeapons;
@@ -138,10 +146,6 @@ if (isServer) then {
     /* Random Loot */
     BLWK_loot_cityDistribution = ("BLWK_loot_cityDistribution" call BIS_fnc_getParamValue);  // decides how many buildings will be marked as having loot in a city
     BLWK_loot_roomDistribution = ("BLWK_loot_roomDistribution" call BIS_fnc_getParamValue);  // decides how much loot will be in a building if it has any at all
-
-    /* Supports */
-    BLWK_supplyDropRadius = ("BLWK_supplyDropRadius" call BIS_fnc_getParamValue);            // Radius of supply drop // CIPHER COMMENT: Not implimented
-    BLWK_paratrooperCount = ("BLWK_paratrooperCount" call BIS_fnc_getParamValue);
 
     /* Time of Day*/
     BLWK_timeOfDay = ("BLWK_timeOfDay" call BIS_fnc_getParamValue);
