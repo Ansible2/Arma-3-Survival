@@ -1,5 +1,5 @@
 #include "..\..\Headers\descriptionEXT\supportDefines.hpp"
-#include "..\..\Headers\GUI\shopGUICommonDefines.hpp"
+#include "..\..\Headers\descriptionEXT\GUI\shopGUICommonDefines.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_prepareGlobals
 
