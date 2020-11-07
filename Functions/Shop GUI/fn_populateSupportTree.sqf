@@ -2,7 +2,8 @@
 Function: BLWK_fnc_populateBuildTree
 
 Description:
-	Populates the build objects tree view with the build items.
+	Populates the support objects tree view with the build items or shows a
+	 message if the support dish is not found yet
 
 	Activates from the control's onLoad event.
 
@@ -15,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		[myTreeControl] call BLWK_fnc_populateBuildTree;
+		[myTreeControl] call BLWK_fnc_populateSupportTree;
 
     (end)
 
@@ -23,6 +24,34 @@ Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 params ["_tv"];
+
+
+// if support dish was not found show message
+if !(BLWK_supportDishFound) exitWith {
+	_tv tvAdd [[],"Find the support dish to unlock"];
+
+	null = [_tv] spawn {
+		params ["_tv"];
+		private _display = ctrlParent _tv;
+
+		waitUntil { // if someone finds the dish while the shop is open, it will populate the list
+			if (isNull _display) exitWith {true};
+			if (BLWK_supportDishFound) exitWith {
+				[_tv] call BLWK_fnc_populateSupportTree;
+			};
+
+			sleep 1;
+
+			false 
+		};
+	};
+};
+
+
+// delete the message if the above loop activates while the message is still displayed
+if (_tv tvCount [] > 0) then {
+	tvClear _tv;
+};
 
 private _categoriesList = [];
 
@@ -47,7 +76,7 @@ private [
 	};
 
 	_class_temp = _x select 1;
-	_displayName_temp = [configFile >> "cfgVehicles" >> _class_temp] call BIS_fnc_displayName;
+	_displayName_temp = getText(missionConfigFile >> "cfgCommunicationMenu" >> _class_temp >> "text");
 	// add item to list
 	_itemText_temp = format ["%1 - %2",_value_temp,_displayName_temp];
 	_itemIndex_temp = _tv tvAdd [[_categoryIndex_temp],_itemText_temp];
@@ -57,7 +86,8 @@ private [
 	_value_temp = _x select 0;
 	_tv tvSetValue [_itemPath_temp,_value_temp];
 
-	private _data = str _forEachIndex; // save array index an class for use with buying the object 
-	_tv tvSetData [_itemPath_temp,_data]; 
+	private _data = str _forEachIndex; // save array index in BLWK_supports_array for buying object
+
+	_tv tvSetData [_itemPath_temp,_data];
 	_tv tvSetTooltip [_itemPath_temp,_data];		
-} forEach BLWK_buildableObjects_array;
+} forEach BLWK_supports_array;

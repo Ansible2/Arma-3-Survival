@@ -612,6 +612,7 @@ class bulwarkShopDialog
 			y = 0.729167 * safezoneH + safezoneY;
 			w = 0.0703125 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			onButtonClick = "_this call BLWK_fnc_purchaseForSelf";
 		};
 		class bulwarkShopDialog_buildableObjects_purchaseForPoolButton: bulwarkShopDialog_baseClass_button
 		{
@@ -632,6 +633,8 @@ class bulwarkShopDialog
 			y = 0.729167 * safezoneH + safezoneY;
 			w = 0.0703125 * safezoneW;
 			h = 0.0208333 * safezoneH;
+
+			onButtonClick = "_this call BLWK_fnc_withdrawFromPoolButtonEvent";
 		};
 		class bulwarkShopDialog_communityPool_sellButton: bulwarkShopDialog_baseClass_button
 		{
@@ -641,6 +644,8 @@ class bulwarkShopDialog
 			y = 0.729167 * safezoneH + safezoneY;
 			w = 0.0703125 * safezoneW;
 			h = 0.0208333 * safezoneH;
+
+			onButtonClick = "";
 		};
 		class bulwarkShopDialog_points_deposit_button: bulwarkShopDialog_baseClass_button
 		{
@@ -672,6 +677,8 @@ class bulwarkShopDialog
 			y = 0.729167 * safezoneH + safezoneY;
 			w = 0.0703125 * safezoneW;
 			h = 0.0208333 * safezoneH;
+
+			onButtonClick = "_this call BLWK_fnc_purchaseForSelf";
 		};
 		class bulwarkShopDialog_points_withdraw_button: bulwarkShopDialog_baseClass_button
 		{

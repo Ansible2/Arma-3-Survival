@@ -59,3 +59,5 @@
 #define VERTICAL_CATEGORY "Ramps & Stairs"
 #define TURRETS_CATEGORY "Turrets"
 #define STORAGE_CATEGORY "Storage"
+
+// categories for support items

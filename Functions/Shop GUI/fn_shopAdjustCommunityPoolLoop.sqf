@@ -36,9 +36,6 @@ if (isNil TO_STRING(BLWK_SHOP_SUPP_POOL_GVAR)) then {
 	missionNamespace setVariable [TO_STRING(BLWK_SHOP_SUPP_POOL_GVAR),[]];
 };
 
-//BLWK_SHOP_POOL_TREE_IDC
-//BLWK_SHOP_BUILD_TREE_IDC
-//BLWK_SHOP_SUPP_TREE_IDC
 
 waitUntil {!(isNull _shopDisplay)};
 
@@ -53,16 +50,17 @@ if ((_poolTreeCtrl tvCount []) isEqualTo 0) then {
 // populate list with what's current when the dialog is openned
 private _fn_populateList = {
 	params ["_list","_mainBranchIndex"];
-	private ["_displayName_temp","_class_temp","_index_temp"];
+	private ["_displayName_temp","_data_temp","_index_temp"];
 	_list apply {
 		_displayName_temp = _x select 0;
-		_class_temp = _x select 1;
+		_data_temp = _x select 1;
 
 		_index_temp = _poolTreeCtrl tvAdd [[_mainBranchIndex],_displayName_temp];
-		_poolTreeCtrl tvSetData [[_mainBranchIndex,_index_temp],_class_temp];
-		_poolTreeCtrl tvSetTooltip [[_mainBranchIndex,_index_temp],_class_temp];
+		_poolTreeCtrl tvSetData [[_mainBranchIndex,_index_temp],_data_temp];
+		_poolTreeCtrl tvSetTooltip [[_mainBranchIndex,_index_temp],_data_temp];
 	};
 };
+// populate both supports and build items
 {
 	if !(_x isEqualTo []) then {
 		[_x,_forEachIndex] call _fn_populateList;
@@ -71,7 +69,7 @@ private _fn_populateList = {
 
 
 
-
+// for adjusting to changes in global array
 private _fn_adjustTree = {
 	params ["_displayedArray","_globalVar","_branchNumber","_treeCtrl"];
 
@@ -101,8 +99,8 @@ private _fn_adjustTree = {
 			if !(_comparedIndex isEqualTo _x) then {
 				systemChat ("changed index " + (str _branchNumber));
 				_treeCtrl tvSetText [[_branchNumber,_forEachIndex],_x select 0]; // update entry display name
-				_treeCtrl tvSetData [[_branchNumber,_forEachIndex],_x select 1]; // update class name
-				_treeCtrl tvSetTooltip [[_branchNumber,_forEachIndex],_x select 1];
+				_treeCtrl tvSetData [[_branchNumber,_forEachIndex],_x select 1]; // update data array
+				_treeCtrl tvSetTooltip [[_branchNumber,_forEachIndex],_x select 1]; // data array shown
 			} else {
 				systemChat ("didn't change index " + (str _branchNumber));
 			};
@@ -131,14 +129,18 @@ private _fn_adjustTree = {
 private _objectPool_displayed = +BLWK_SHOP_BUILD_POOL_GVAR;
 private _supportPool_displayed = +BLWK_SHOP_SUPP_POOL_GVAR;
 
-while {sleep 1; !(isNull _shopDisplay)} do {
+while {sleep 0.5; !(isNull _shopDisplay)} do {
+
+	// object pool check
 	if !(_objectPool_displayed isEqualTo BLWK_SHOP_BUILD_POOL_GVAR) then {
 		[_objectPool_displayed,TO_STRING(BLWK_SHOP_BUILD_POOL_GVAR),0,_poolTreeCtrl] call _fn_adjustTree;		
 		_objectPool_displayed = +BLWK_SHOP_BUILD_POOL_GVAR;
 	};
 
+	// support pool check
 	if !(_supportPool_displayed isEqualTo BLWK_SHOP_SUPP_POOL_GVAR) then {		
 		[_supportPool_displayed,TO_STRING(BLWK_SHOP_SUPP_POOL_GVAR),1,_poolTreeCtrl] call _fn_adjustTree;
 		_supportPool_displayed = +BLWK_SHOP_SUPP_POOL_GVAR;
 	};
+
 };

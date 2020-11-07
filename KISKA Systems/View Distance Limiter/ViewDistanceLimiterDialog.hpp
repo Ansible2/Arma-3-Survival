@@ -185,7 +185,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			h = 0.0208333 * safezoneH;
 			sliderPosition = 500;
             sliderRange[] = {100,3000};
-            sliderStep = 10;
+            sliderStep = 5;
 			lineSize = 10;
 		};
 		class VDL_MIN_OBJ_DIST_TEXT_EDIT: VDL_RSC_EDIT_BASE
@@ -223,7 +223,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			h = 0.0208333 * safezoneH;
 			sliderPosition = 1000;
             sliderRange[] = {200,5000};
-            sliderStep = 10;
+            sliderStep = 5;
 			lineSize = 10;
 		};
 		class VDL_MAX_OBJ_DIST_TEXT_EDIT: VDL_RSC_EDIT_BASE
@@ -300,7 +300,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			h = 0.0208333 * safezoneH;
 			sliderPosition = 200;
             sliderRange[] = {100,6000};
-            sliderStep = 10;
+            sliderStep = 5;
 			lineSize = 10;
 			tooltip = "The overall (static) view distance; this can be rather high without an issue."; //--- ToDo: Localize;
 		};

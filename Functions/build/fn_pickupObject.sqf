@@ -1,3 +1,4 @@
+#include "..\..\Headers\Wait For Transfer Inline.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_pickupObject
 
@@ -32,15 +33,11 @@ if !(isNil "BLWK_heldObject") exitWith {
 	false
 };
 
-#include "..\..\Headers\Wait For Transfer Inline.hpp"
-
 params [
 	["_object",objNull,[objNull]],
 	["_player",player,[objNull]],
 	["_justPurchased",false,[true]]
 ];
-
-//[_object] call BLWK_fnc_locality;
 
 // get attachment info from global build objects array
 private _objectType = typeOf _object;
