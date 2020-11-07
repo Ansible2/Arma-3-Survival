@@ -67,6 +67,10 @@ class BLWK
 		{};
 		class createBattleAmbienceSound
 		{};
+		class createBuildObjectsArray
+		{};
+		class createSupportsArray
+		{};
 		class faksToMedkitLoop
 		{};
 		class getHeadless
@@ -124,8 +128,10 @@ class BLWK
 		{};
 		class handleEnemyWeapons
 		{};
-		class openShopGUI
+	/*	
+		class openShopGUI // CIPHER COMMENT: REMOVE
 		{};
+	*/
 		class optreMedicalToVanilla
 		{};
 		class pathingLoop
@@ -175,6 +181,41 @@ class BLWK
 		{};
 	};
 
+	class ShopGUI
+	{
+		file = "Functions\Shop GUI";
+		class deleteAtGlobalArray
+		{};
+		class depositPointsButtonPressedEvent
+		{};
+		class mouseExitTreeEvent
+		{};
+		class mouseMoveTreeEvent
+		{};
+		class openShop
+		{};
+		class purchaseForSelf
+		{};
+		class pushbackToGlobalArray
+		{};
+		class sellFromPoolButtonEvent
+		{};
+		class shopAdjustCommunityPoolLoop
+		{};
+		class shopAdjustPartnerControl
+		{};
+		class shopAdjustPointsLoop
+		{};
+		class shopGetPartnerControl
+		{};
+		class shopOnLoadEvent
+		{};
+		class withdrawFromPoolButtonEvent
+		{};
+		class withdrawPointsButtonPressedEvent
+		{};
+	};
+
 	class Supports
 	{
 		file = "Functions\Supports";
@@ -202,6 +243,7 @@ class BLWK
 
 	class Stalking
 	{
+		file = "Functions\Stalking";
 		class adjustStalkable
 		{};
 		class canUnitBeStalked

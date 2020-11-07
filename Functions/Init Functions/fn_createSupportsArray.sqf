@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_createBuildObjectsArray
+Function: BLWK_fnc_createSupportsArray
 
 Description:
 	Creates an array in the format of BLWK_supports_array from a config.
@@ -13,7 +13,7 @@ Returns:
 Examples:
     (begin example)
 
-		BLWK_buildableObjects_array = ["BLWK_supportItems"] call BLWK_fnc_createSupportsArray;
+		BLWK_supports_array = ["BLWK_supportItems"] call BLWK_fnc_createSupportsArray;
 
     (end)
 

@@ -38,8 +38,8 @@ params [
 	"_price",
 	"_className",
 	"", // don't need shop category
-	"_hasAi",
 	"", // don't need attachment info
+	"_hasAi",
 	["_indestructable",false]
 ];
 

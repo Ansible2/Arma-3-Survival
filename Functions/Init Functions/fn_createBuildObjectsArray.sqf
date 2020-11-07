@@ -45,7 +45,7 @@ if (_configs isEqualTo []) exitWith {
 
 private _returnArray = [];
 private [
-	"_name_temp",
+	"_class_temp",
 	"_price_temp",
 	"_category_temp",
 	"_hasAI_temp",
@@ -56,7 +56,7 @@ private [
 	"_invincible_temp"
 ];
 _configs apply {
-	_name_temp configName _config;
+	_class_temp configName _config;
 	_price_temp = [_config >> "price"] call BIS_fnc_getCfgData;
 	_category_temp = [_config >> "category"] call BIS_fnc_getCfgData;
 	_hasAI_temp = [_config >> "hasAI"] call BIS_fnc_getCfgData;
@@ -68,12 +68,12 @@ _configs apply {
 
 
 	_returnArray pushBack [
-		_name_temp,
 		_price_temp,
+		_class_temp,
 		_category_temp,
+		[_attachmentX_temp,_attachmentY_temp,_attachmentZ_temp],
 		_hasAI_temp,
 		_rotation_temp,
-		[_attachmentX_temp,_attachmentY_temp,_attachmentZ_temp],
 		_invincible_temp
 	];
 };
