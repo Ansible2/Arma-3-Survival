@@ -1,10 +1,10 @@
 #include "..\..\Headers\GUI\shopGUICommonDefines.hpp"
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_withdrawFromPoolButtonEvent
+Function: BLWK_fnc_sellFromPoolButtonEvent
 
 Description:
-	Takes the selected index and extracts it from the list. 
-	Then enacts a "purchase" of the item.
+	Takes the selected index and extracts it from the list.
+	Then provides the value of the item to the player's points.
 
 Parameters:
 	0: _control : <CONTROL> - The control used to activate the function
@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		[myControl] call BLWK_fnc_withdrawFromPoolButtonEvent;
+		[myControl] call BLWK_fnc_sellFromPoolButtonEvent;
 
     (end)
 
@@ -38,14 +38,15 @@ if (count _selectedTreePath < 2) exitWith {
 
 // get which global pool to change
 private _indexInArray = _poolTreeCtrl tvData _selectedTreePath;
+private _value = _poolTreeCtrl tvValue _selectedTreepath;
 private _treeCategory = _selectedTreePath select 0;
 switch (_treeCategory) do {
 	case BUILD_TREE: {
-		[TO_STRING(BLWK_SHOP_BUILD_POOL_GVAR),_indexInArray] remoteExecCall ["BLWK_fnc_deleteAtGlobalArray",BLWK_allCientsTargetId,true];
-		[_indexInArray,true] call BLWK_fnc_purchaseObject;
+		[TO_STRING(BLWK_SHOP_BUILD_POOL_GVAR),_indexInArray] remoteExecCall ["BLWK_fnc_deleteAtGlobalArray",BLWK_allCientsTargetId,true];		
 	};
 	case SUPPORT_TREE: {
 		[TO_STRING(BLWK_SHOP_SUPP_POOL_GVAR),_indexInArray] remoteExecCall ["BLWK_fnc_deleteAtGlobalArray",BLWK_allCientsTargetId,true];
-		[_indexInArray,true] call BLWK_fnc_purchaseSupport;
 	};
 };
+
+[_value] call BLWK_fnc_addPoints;

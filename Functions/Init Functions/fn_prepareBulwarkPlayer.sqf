@@ -50,7 +50,7 @@ _bulwark addAction [
 _bulwark addAction [ 
 	"<t color='#00ff00'>-- Open Shop --</t>",  
 	{
-		null = [] spawn BLWK_fnc_openShopGUI;
+		call BLWK_fnc_openShop;
 	}, 
 	nil, 
 	1.5,  

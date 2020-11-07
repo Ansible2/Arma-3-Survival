@@ -48,6 +48,9 @@
 #define CT_SLIDER 3
 #endif
 
+
+#define SHOP_DIALOG_STRING "bulwarkShopDialog"
+
 // categories for build items
 #define WALLS_CATEGORY "Walls"
 #define PLATFORMS_CATEGORY "Platforms"

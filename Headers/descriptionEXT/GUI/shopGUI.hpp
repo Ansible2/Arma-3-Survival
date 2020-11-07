@@ -645,7 +645,7 @@ class bulwarkShopDialog
 			w = 0.0703125 * safezoneW;
 			h = 0.0208333 * safezoneH;
 
-			onButtonClick = "";
+			onButtonClick = "_this call BLWK_fnc_sellFromPoolButtonEvent";
 		};
 		class bulwarkShopDialog_points_deposit_button: bulwarkShopDialog_baseClass_button
 		{
