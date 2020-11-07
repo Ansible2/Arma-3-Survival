@@ -1,0 +1,299 @@
+#include "supportDefines.hpp"
+#include "GUI\shopGUICommonDefines.hpp"
+
+
+class BLWK_genericBuildItemBase
+{
+	price = 0;
+	category = OTHER_CATEGORY;
+	hasAI = false;
+	rotation = 0;
+	attachmentX = 0;
+	attachmentY = 3;
+	attachmentZ = 1;
+	invincible = false;
+};
+class BLWK_buildableItems
+{
+	class Land_Plank_01_8m_F: BLWK_genericBuildItemBase
+	{
+		price = 25;
+		category = PLATFORMS_CATEGORY;
+		attachmentY = 6;
+	};
+
+	class Land_BagFence_End_F: BLWK_genericBuildItemBase
+	{
+		price = 25;
+		category = SANDBAGS_CATEGORY;
+	};
+
+	class Land_Barricade_01_4m_F: BLWK_genericBuildItemBase
+	{
+		price = 50;
+		category = WALLS_CATEGORY;
+		attachmentY = 4;
+		attachmentZ = 0.5;
+	};
+
+	class Land_BagFence_Short_F: BLWK_genericBuildItemBase
+	{
+		price = 50;
+		category = SANDBAGS_CATEGORY;
+	};
+
+	class Land_BagFence_Corner_F: BLWK_genericBuildItemBase
+	{
+		price = 50;
+		category = SANDBAGS_CATEGORY;
+	};
+
+	class Land_Obstacle_Ramp_F: BLWK_genericBuildItemBase
+	{
+		price = 75;
+		category = SANDBAGS_CATEGORY;
+		rotation = 180;
+	};
+
+	class Land_BagFence_Round_F: BLWK_genericBuildItemBase
+	{
+		price = 80;
+		category = SANDBAGS_CATEGORY;
+		rotation = 180;
+	};
+
+	class Land_BagFence_Long_F: BLWK_genericBuildItemBase
+	{
+		price = 80;
+		category = SANDBAGS_CATEGORY;
+	};
+
+	class Land_DomeDebris_01_hex_green_F: BLWK_genericBuildItemBase
+	{
+		price = 85;
+		category = OBSTACLES_CATEGORY;
+		rotation = 180;
+		attachmentZ = 0.75;
+	};
+
+	class Land_SandbagBarricade_01_half_F: BLWK_genericBuildItemBase
+	{
+		price = 100;
+		category = SANDBAGS_CATEGORY;
+	};
+
+	class Land_SandbagBarricade_01_hole_F: BLWK_genericBuildItemBase
+	{
+		price = 100;
+		category = SANDBAGS_CATEGORY;
+		attachmentZ = 1.5;
+	};
+
+	class Land_CncShelter_F: BLWK_genericBuildItemBase
+	{
+		price = 180;
+		category = BUNKERS_CATEGORY;
+		attachmentZ = 1.5;
+	};
+
+	class Land_GH_Platform_F: BLWK_genericBuildItemBase
+	{
+		price = 200;
+		category = PLATFORMS_CATEGORY;
+		attachmentY = 6;
+		attachmentZ = 0.75;
+	};
+
+	class Land_Mil_WallBig_4m_F : BLWK_genericBuildItemBase
+	{
+		price = 250;
+		category = WALLS_CATEGORY;
+		rotation = 180;
+		attachmentY = 4;
+		attachmentZ = 2;
+	};
+
+	class Land_PortableLight_double_F : BLWK_genericBuildItemBase
+	{
+		price = 260;
+		category = LAMPS_CATEGORY;
+		rotation = 180;
+		attachmentZ = 1.1;
+	};
+
+	class Land_CncBarrierMedium4_F : BLWK_genericBuildItemBase
+	{
+		price = 300;
+		category = WALLS_CATEGORY;
+		attachmentX = 0.25;
+		attachmentY = 5;
+		attachmentZ = 1.2;
+	};
+
+	class Land_VR_Slope_01_F : BLWK_genericBuildItemBase
+	{
+		price = 400;
+		category = VERTICAL_CATEGORY;
+		attachmentY = 9;
+		attachmentZ = 2.25;
+	};
+
+	class Land_Bunker_01_blocks_3_F : BLWK_genericBuildItemBase
+	{
+		price = 500;
+		category = WALLS_CATEGORY;
+		attachmentY = 3;
+		attachmentZ = 0.5;
+	};
+
+	class Land_HBarrier_3_F : BLWK_genericBuildItemBase
+	{
+		price = 500;
+		category = WALLS_CATEGORY;
+		attachmentY = 4;
+	};
+
+	class Land_PierLadder_F : BLWK_genericBuildItemBase
+	{
+		price = 750;
+		category = VERTICAL_CATEGORY;
+		attachmentX = 0.15;
+		attachmentY = 2.5;
+	};
+
+	class Box_NATO_Support_F : BLWK_genericBuildItemBase
+	{
+		price = 800;
+		category = STORAGE_CATEGORY;
+		rotation = 90;
+		attachmentY = 2;
+	};
+
+	class Land_GH_Stairs_F : BLWK_genericBuildItemBase
+	{
+		price = 750;
+		category = VERTICAL_CATEGORY;
+		rotation = 180;
+		attachmentY = 5;
+	};
+
+	class Land_LampHalogen_F : BLWK_genericBuildItemBase
+	{
+		price = 1000;
+		category = LAMPS_CATEGORY;
+		rotation = 90;
+		attachmentX = 0.2;
+		attachmentY = 2;
+		attachmentZ = 2.75;
+	};
+
+	class Land_HBarrierWall4_F : BLWK_genericBuildItemBase
+	{
+		price = 1000;
+		category = WALLS_CATEGORY;
+		attachmentY = 5;
+	};
+
+	class BlockConcrete_F : BLWK_genericBuildItemBase
+	{
+		price = 1000;
+		category = PLATFORMS_CATEGORY;
+		attachmentY = 8;
+		attachmentZ = 0.5;
+	};
+
+	class Box_NATO_AmmoVeh_F : BLWK_genericBuildItemBase
+	{
+		price = 1200;
+		category = STORAGE_CATEGORY;
+	};
+
+	class B_HMG_01_high_F : BLWK_genericBuildItemBase
+	{
+		price = 3000;
+		category = TURRETS_CATEGORY;
+		attachmentX = 0.25;
+		attachmentY = 2;
+		attachmentZ = 2;
+		invincible = true;
+	};
+
+	class Land_BagBunker_Small_F : BLWK_genericBuildItemBase
+	{
+		price = 3000;
+		category = BUNKERS_CATEGORY;
+		rotation = 180;
+		attachmentY = 4;
+	};
+
+	class Land_PillboxBunker_01_hex_F : BLWK_genericBuildItemBase
+	{
+		price = 4500;
+		category = BUNKERS_CATEGORY;
+		rotation = 90;
+		attachmentY = 4;
+	};
+
+	class Land_Cargo_Patrol_V3_F : BLWK_genericBuildItemBase
+	{
+		price = 6000;
+		category = TOWERS_CATEGORY;
+		rotation = 180;
+		attachmentY = 6;
+		attachmentZ = 5;
+	};
+
+	class B_HMG_01_A_F : BLWK_genericBuildItemBase
+	{
+		price = 7500;
+		category = TURRETS_CATEGORY;
+		hasAI = true;
+		rotation = 180;
+		attachmentX = 0.25;
+		attachmentY = 2;
+		attachmentZ = 2;
+		invincible = true;
+	};
+
+	class Land_Bunker_01_Small_F : BLWK_genericBuildItemBase
+	{
+		price = 9500;
+		category = BUNKERS_CATEGORY;
+		rotation = 180;
+		attachmentX = 0.5;
+		attachmentY = 6;
+		attachmentZ = 0;
+	};
+
+	class Land_Razorwire_F : BLWK_genericBuildItemBase
+	{
+		price = 100;
+		category = OBSTACLES_CATEGORY;
+	};
+	
+	class Land_CncBarrier_F : BLWK_genericBuildItemBase
+	{
+		price = 100;
+		category = WALLS_CATEGORY;
+	};
+
+	class Land_CncBarrierMedium_F : BLWK_genericBuildItemBase
+	{
+		price = 200;
+		category = WALLS_CATEGORY;
+	};
+
+	class Land_HBarrierWall_corridor_F : BLWK_genericBuildItemBase
+	{
+		price = 400;
+		category = WALLS_CATEGORY;
+		rotation = 90;
+		attachmentY = 5;
+	};
+
+	class Land_CzechHedgehog_01_new_F : BLWK_genericBuildItemBase
+	{
+		price = 100;
+		category = OBSTACLES_CATEGORY;
+	};
+};

@@ -1,3 +1,5 @@
+#include "..\..\Headers\descriptionEXT\supportDefines.hpp"
+#include "..\..\Headers\GUI\shopGUICommonDefines.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_prepareGlobals
 
@@ -247,7 +249,8 @@ BLWK_pointsMulti_car = 2;
 BLWK_pointsMulti_armour = 4;
 
 /* Supports */
-#include "..\..\Headers\descriptionEXT\supportDefines.hpp"
+
+/*
 BLWK_supports_array = [
 	//1. Price //2. item class in commMenuSupports.h
     // you can enter in your own supports anywhere in the BLWK_supports_array as it is sorted by price below
@@ -278,56 +281,51 @@ BLWK_supports_array = [
     [2000, TO_STRING(TURRET_ATTACK_HELI_GUNNER_CLASS)],
     [500, TO_STRING(TURRET_DOOR_GUNNER_CLASS)]
 ];
+*/
+/*
+BLWK_supports_array = [
+	//1. Price //2. item class in commMenuSupports.h //3. support category
+    // you can enter in your own supports anywhere in the BLWK_supports_array as it is sorted by price below
+    [2000, TO_STRING(CRUISE_MISSILE_CLASS),OTHER_CATEGORY],
+    // artillery
+    [1500, TO_STRING(ARTILLERY_STRIKE_155MM_HE_CLASS),HEAVY_ARTILLERY_CATEGORY],
+    [1500, TO_STRING(ARTILLERY_STRIKE_155MM_CLUSTER_CLASS),HEAVY_ARTILLERY_CATEGORY],
+    [700, TO_STRING(ARTILLERY_STRIKE_155MM_MINES_CLASS),HEAVY_ARTILLERY_CATEGORY],
+    [700, TO_STRING(ARTILLERY_STRIKE_155MM_AT_MINES_CLASS),HEAVY_ARTILLERY_CATEGORY],
+    // light mortar
+    [500, TO_STRING(MORTAR_STRIKE_82MM_HE_CLASS),LIGHT_MORTAR_CATEGORY],
+    [200, TO_STRING(MORTAR_STRIKE_82MM_SMOKE_CLASS),LIGHT_MORTAR_CATEGORY],
+    [100, TO_STRING(MORTAR_STRIKE_82MM_FLARE_CLASS),LIGHT_MORTAR_CATEGORY],
+    // ship gun
+    [1000, TO_STRING(CANNON_120MM_HE_CLASS),CANNON_CATEGORY],
+    [1000, TO_STRING(CANNON_120MM_CLUSTER_CLASS),CANNON_CATEGORY],
+    [500, TO_STRING(CANNON_120MM_AT_MINES_CLASS),CANNON_CATEGORY],
+    [500, TO_STRING(CANNON_120MM_MINES_CLASS),CANNON_CATEGORY],
+    [400, TO_STRING(CANNON_120MM_SMOKE_CLASS),CANNON_CATEGORY],
+    // supply
+    [1000, TO_STRING(SUPPLY_ARSENAL_DROP_CLASS),SUPPLY_CATEGORY],
+    // CAS
+    [400, TO_STRING(CAS_ROCKETS_CLASS),CAS_CATEGORY],
+    [600, TO_STRING(CAS_GUNS_AND_ROCKETS_CLASS),CAS_CATEGORY],
+    [400, TO_STRING(CAS_GUN_RUN_CLASS),CAS_CATEGORY],
+    // Turrets
+    [3000, TO_STRING(TURRET_GUNSHIP_CLASS),GUNNER_CATEGORY],
+    [2000, TO_STRING(TURRET_ATTACK_HELI_GUNNER_CLASS),GUNNER_CATEGORY],
+    [500, TO_STRING(TURRET_DOOR_GUNNER_CLASS),GUNNER_CATEGORY]
+];
+*/
+BLWK_supports_array = ["BLWK_supportItems"] call BLWK_fnc_createSupportsArray;
 BLWK_supports_array sort true; // will sort by the price
 
-/*
-BLWK_buildableObjects_array = [
-	//1. Price //2. ClassName //3. Does it have AI? //4. attachment info (when you buy an object) [defaultRotation,attachToArray] 5. is it indestructable? (default: false)
-	//Cipher Comment The object radius is used to prevent AI from glitching through and triggers suicide bombers.......that seems dumb
-    [25,   "Land_Plank_01_8m_F",PLATFORMS_CATEGORY,                false, [0, [0,6,1]]],
-    [25,   "Land_BagFence_End_F",WALLS_CATEGORY,                false, [0, [0,3,1]]],
-    [50,   "Land_Barricade_01_4m_F",WALLS_CATEGORY,            false, [0, [0,4,0.5]]],
-    [50,   "Land_BagFence_Short_F",SANDBAGS_CATEGORY,              false, [0, [0,3,1]]],
-    [50,   "Land_BagFence_Corner_F",SANDBAGS_CATEGORY,             false, [0, [0,3,1]]],
-    [75,   "Land_Obstacle_Ramp_F",OBSTACLES_CATEGORY,              false, [180, [0,3,1]]],
-    [80,   "Land_BagFence_Round_F", SANDBAGS_CATEGORY ,            false, [180, [0,3,1]]],
-    [80,   "Land_BagFence_Long_F",SANDBAGS_CATEGORY,               false, [0, [0,3,1]]],
-    [85,   "Land_DomeDebris_01_hex_green_F",OBSTACLES_CATEGORY,    false, [180, [0,3,0.75]]],
-    [100,  "Land_SandbagBarricade_01_half_F",SANDBAGS_CATEGORY,   false, [0, [0,3,1]]],
-    [150,  "Land_SandbagBarricade_01_hole_F",SANDBAGS_CATEGORY,   false, [0, [0,3,1.5]]],
-    [180,  "Land_CncShelter_F",BUNKERS_CATEGORY,                 false, [0, [0,3,1.5]]],
-    [200,  "Land_GH_Platform_F",PLATFORMS_CATEGORY,                false, [0, [0,6,0.75]]],
-    [250,  "Land_Mil_WallBig_4m_F",WALLS_CATEGORY,             false, [180, [0,4,2]]],
-    [260,  "Land_PortableLight_double_F",LAMPS_CATEGORY,       false, [180, [0,3,1.1]]],
-    [300,  "Land_CncBarrierMedium4_F",WALLS_CATEGORY,          false, [0, [0.25,5,1.2]]],
-    [400,  "Land_VR_Slope_01_F",VERTICAL_CATEGORY,                false, [0, [0,9,2.25]]],
-    [500,  "Land_Bunker_01_blocks_3_F",WALLS_CATEGORY,         false, [0, [0,3,0.5]]], 
-    [500,  "Land_HBarrier_3_F",WALLS_CATEGORY,                 false, [0, [0,4,1]]],
-    [750,  "Land_PierLadder_F",VERTICAL_CATEGORY,                 false, [0, [0.15,2.5,1]]],
-    [800,  "Box_NATO_Support_F",STORAGE_CATEGORY,                false, [90, [0,2,1]]],    
-    [950,  "Land_GH_Stairs_F",VERTICAL_CATEGORY,                  false, [180, [0,5,1]]],
-    [1000, "Land_LampHalogen_F",LAMPS_CATEGORY,  false, [90, [0.2,2,2.75]]],
-    [1000, "Land_HBarrierWall4_F",WALLS_CATEGORY,              false, [0, [0,5,1]]],   
-    [1000, "BlockConcrete_F",WALLS_CATEGORY,                   false, [0, [0,8,0.5]]],
-    [1200, "Box_NATO_AmmoVeh_F",STORAGE_CATEGORY,                false, [0, [0,3,1]]],
-    [2500, "B_HMG_01_high_F",TURRETS_CATEGORY,   false, [0, [0.25,2,2]], true],
-    [3000, "Land_BagBunker_Small_F",BUNKERS_CATEGORY,            false, [180, [0,4,1]]],
-    [4500, "Land_PillboxBunker_01_hex_F",BUNKERS_CATEGORY,       false, [90, [0,4,1]]],
-    [6000, "Land_Cargo_Patrol_V3_F",TOWERS_CATEGORY,            false, [180, [0,6,5]]],
-    [7500, "B_HMG_01_A_F",TURRETS_CATEGORY,                      true,  [180, [0.25,2,2]], true],
-    [9500, "Land_Bunker_01_Small_F",BUNKERS_CATEGORY,            false, [180, [0.5,6,0]]],
-    [100, "Land_Razorwire_F",OBSTACLES_CATEGORY,                   false, [0, [0,3,1]]],
-    [100, "Land_CncBarrier_F",WALLS_CATEGORY,                  false, [0, [0,3,1]]],
-    [200, "Land_CncBarrierMedium_F",WALLS_CATEGORY,            false, [0, [0,3,1]]],
-    [400, "Land_HBarrierWall_corridor_F",WALLS_CATEGORY,       false, [90, [0,5,1]]],
-    [100, "Land_CzechHedgehog_01_new_F",OBSTACLES_CATEGORY,        false, [0, [0,3,1]]]
-];
+
+BLWK_buildableObjects_array = ["BLWK_buildableItems"] call BLWK_fnc_createBuildObjectsArray;
+BLWK_buildableObjects_array sort true;
 
 
-*/
 
 
 /* Build Objects */
+/*
 BLWK_buildableObjects_array = [
 	//1. Price //2. ClassName //3. Does it have AI? //4. attachment info (when you buy an object) [defaultRotation,attachToArray] 5. is it indestructable? (default: false)
 	//Cipher Comment The object radius is used to prevent AI from glitching through and triggers suicide bombers.......that seems dumb
@@ -370,6 +368,7 @@ BLWK_buildableObjects_array = [
     [100, "Land_CzechHedgehog_01_new_F",        false, [0, [0,3,1]]]
 ];
 BLWK_buildableObjects_array sort true;
+*/
 
 if (isServer) then {
     missionNamespace setVariable ["BLWK_serverGlobalsInitialized",true,true];
