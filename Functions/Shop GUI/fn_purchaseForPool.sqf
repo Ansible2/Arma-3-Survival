@@ -1,0 +1,63 @@
+#include "..\..\Headers\GUI\shopGUICommonDefines.hpp"
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_purchaseForPool
+
+Description:
+	Activates when a purchase for pool button is pressed.
+
+	It will then add it to the corresponding global array and call for netowrk sync
+	 to ensure it shows up in the tree view for the community pool.
+
+Parameters:
+	0: _control : <CONTROL> - The control used to activate the function
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+
+		[myControl] call BLWK_fnc_purchaseForPool;
+
+    (end)
+
+Author(s):
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
+params ["_control"];
+
+private _ctrlIDC = ctrlIDC _control;
+private _controlInfo = switch (_ctrlIDC) do {
+	case BLWK_SHOP_BUILD_PURCHASE_POOL_BUTT_IDC: {
+		[TO_STRING(BLWK_SHOP_BUILD_POOL_GVAR),BLWK_SHOP_BUILD_TREE_IDC]
+	};
+	case BLWK_SHOP_SUPP_PURCHASE_POOL_BUTT_IDC: {
+		[TO_STRING(BLWK_SHOP_SUPP_POOL_GVAR),BLWK_SHOP_SUPP_TREE_IDC]
+	};
+};
+
+private _treeIDC = _controlInfo select 1;
+private _tvCtrl = (ctrlParent _control) displayCtrl _treeIDC;
+
+// check if the player has anything selected or something like a section header
+private _tvSelectedPath = tvCurSel _tvCtrl;
+if (_tvSelectedPath isEqualTo [] OR {(count _tvSelectedPath) isEqualTo 1}) exitWith {
+	hint "You do not have a valid selection made";
+};
+
+// check if player has the points to afford it
+private _cost = _tvCtrl tvValue _tvSelectedPath;
+private _currentPlayerPoints = missionNamespace getVariable ["BLWK_playerKillPoints",0];
+if (_cost > _currentPlayerPoints) exitWith {
+	hint "You do not have enough for this item";
+};
+
+private _class = _tvCtrl tvToolTip _tvSelectedPath; // will need to be changed to data
+private _text = _tvCtrl tvText _tvSelectedPath;
+
+// to avoid transmitting the whole array over network as a public var, this is used instead
+private _globalArrayString = _controlInfo select 0;
+[_globalArrayString,[_text,_class]] remoteExecCall ["BLWK_fnc_pushbackToGlobalArray",BLWK_allClientsTargetId,true];
+
+// update player's points
+missionNamespace setVariable ["BLWK_playerKillPoints",_currentPlayerPoints - _cost];
