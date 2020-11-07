@@ -47,3 +47,15 @@
 #ifndef CT_SLIDER
 #define CT_SLIDER 3
 #endif
+
+// categories for build items
+#define WALLS_CATEGORY "Walls"
+#define PLATFORMS_CATEGORY "Platforms"
+#define SANDBAGS_CATEGORY "Sandbags"
+#define OBSTACLES_CATEGORY "Obstacles"
+#define LAMPS_CATEGORY "Lamps"
+#define TOWERS_CATEGORY "Towers"
+#define BUNKERS_CATEGORY "Bunkers"
+#define VERTICAL_CATEGORY "Ramps & Stairs"
+#define TURRETS_CATEGORY "Turrets"
+#define STORAGE_CATEGORY "Storage"
