@@ -129,5 +129,8 @@ null = [_aircraft,_dropPosition,_aircraftGroup,_flyToPosition] spawn {
 	
 	[[_arsenalBox]] call KISKA_fnc_removeArsenal;
 	sleep 2;
+	
+	remoteExecCall ["BLWK_fnc_forceCloseBISArsenal",BLWK_allClientsTargetID];
+	
 	deleteVehicle _arsenalBox;
 };

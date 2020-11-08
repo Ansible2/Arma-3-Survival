@@ -124,14 +124,12 @@ class BLWK
 	*/
 		class doMagRepack
 		{};
+		class fn_forceCloseBISArsenal
+		{};
 		class getFriendlyVehicleClass
 		{};
 		class handleEnemyWeapons
 		{};
-	/*	
-		class openShopGUI // CIPHER COMMENT: REMOVE
-		{};
-	*/
 		class optreMedicalToVanilla
 		{};
 		class pathingLoop
