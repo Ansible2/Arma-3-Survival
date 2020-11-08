@@ -44,7 +44,8 @@ private _treeCategory = _selectedTreePath select 0;
 switch (_treeCategory) do {
 	case BUILD_TREE: {
 		[TO_STRING(BLWK_SHOP_BUILD_POOL_GVAR),_indexInTree] remoteExecCall ["BLWK_fnc_deleteAtGlobalArray",BLWK_allClientsTargetId,true];
-		[_indexInPurchaseArray,true] call BLWK_fnc_purchaseObject;
+		closeDialog 2;
+		null = [_indexInPurchaseArray,true] spawn BLWK_fnc_purchaseObject;
 	};
 	case SUPPORT_TREE: {
 		[TO_STRING(BLWK_SHOP_SUPP_POOL_GVAR),_indexInTree] remoteExecCall ["BLWK_fnc_deleteAtGlobalArray",BLWK_allClientsTargetId,true];
