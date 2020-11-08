@@ -116,6 +116,13 @@ class BLWK_startingKillPoints
 	texts[] = {"0", "250", "500", "1000", "2500", "5000", "10000"};
 	default = 0;
 };
+class BLWK_startingCommunityKillPoints
+{
+	title = "Kill points players start with";
+	values[] = {0, 250, 500, 1000, 2500, 5000, 10000, 15000, 20000};
+	texts[] = {"0", "250", "500", "1000", "2500", "5000", "10000", "15000", "20000"};
+	default = 0;
+};
 class BLWK_supportDishFound
 {
 	title = "Find Satellite Dish to Unlock Supports";
