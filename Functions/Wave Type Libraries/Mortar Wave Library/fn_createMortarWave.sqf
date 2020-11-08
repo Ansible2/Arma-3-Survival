@@ -43,5 +43,5 @@ while {alive _mortarMan} do {
 	_fireAtPosition = [bulwarkBox,random 45,random 360] call CBAP_fnc_randPos;
 	_mortarTube doArtilleryFire [_fireAtPosition,_ammo,1];
 
-	sleep (random [20,25,30]);
+	sleep (random [15,20,25]);
 };
