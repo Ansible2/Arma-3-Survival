@@ -59,7 +59,7 @@
 #define CAS_ROCKETS_TEXT "CAS - Rockets"
 // CAS Guns and Rockets
 #define CAS_GUNS_AND_ROCKETS_CLASS casGunsAndRockets_commMenu
-#define CAS_GUNS_AND_ROCKETS_TEXT "CAS - Guns & Rockets"
+#define CAS_GUNS_AND_ROCKETS_TEXT "CAS - Guns And Rockets"
 
 
 
