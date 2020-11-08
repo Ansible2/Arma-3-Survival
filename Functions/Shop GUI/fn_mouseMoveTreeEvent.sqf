@@ -36,7 +36,7 @@ private "_imagePath";
 if (_class isEqualTo "") then { // check if what we're over is a category
 	_path = tvCurSel _tv;
 	_class = _tv tvToolTip _path;
-	if (_class isEqualTo "") then { // check if something is selected
+	if (_class isEqualTo "" OR {!isClass (configFile >> "CfgVehicles" >> _class)}) then { // check if something is selected
 		call _fn_setImagePathDefault;
 	} else {
 		_imagePath = getText (configFile >> "CfgVehicles" >> _class >> "editorPreview");
