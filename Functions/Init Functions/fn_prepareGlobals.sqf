@@ -216,6 +216,7 @@ if (hasInterface) then {
 };
 if (isNil "BLWK_currentWaveNumber") then {
     BLWK_currentWaveNumber = "BLWK_startingWaveNumber" call BIS_fnc_getParamValue;
+    BLWK_startingFromWaveNumber = BLWK_currentWaveNumber + 1;
 };
 if (isNil "BLWK_inBetweenWaves") then {
     BLWK_inBetweenWaves = true;

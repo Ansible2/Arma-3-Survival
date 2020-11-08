@@ -38,7 +38,7 @@ missionNamespace setVariable ["BLWK_inBetweenWaves",false,true];
 call BLWK_fnc_decideWaveType;
 
 // loot is spawned before the wave starts at round 1
-if (BLWK_currentWaveNumber > 1) then {
+if (BLWK_currentWaveNumber > BLWK_startingFromWaveNumber) then {
 	// this will also clean up previous loot
 	call BLWK_fnc_spawnLoot;
 };
