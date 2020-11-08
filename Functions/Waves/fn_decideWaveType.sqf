@@ -19,8 +19,8 @@ Examples:
 
     (end)
 
-Author:
-	Hilltop & omNomios,
+Author(s):
+	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {false};
@@ -37,7 +37,8 @@ if (!isServer) exitWith {false};
 private _fn_getWaveType = {
 	private _decideArray = [];
 	_decideArray append [STANDARD_WAVE, STANDARD_WAVE_LIKELIHOOD];
-	// these aren't cache'd for the desire to have this be a toggle option mid-session in the future
+	
+	// these aren't cache'd for the desire to have this be a potential toggle option mid-session in the future
 	if (BLWK_currentWaveNumber >= BLWK_specialWavesStartAt) then {
 		_decideArray append [SUICIDE_WAVE, SUICIDE_WAVE_LIKELIHOOD];
 		_decideArray append [CIVILIAN_WAVE, CIVILIAN_WAVE_LIKELIHOOD];
@@ -93,6 +94,8 @@ private _fn_execWave = {
 private _notification = call _fn_execWave;
 private _players = call CBAP_fnc_players;
 _notification remoteExec ["BIS_fnc_showNotification", _players];
+
+// play a sound for special waves
 if (_selectedWaveType != STANDARD_WAVE) then {
 	["Alarm"] remoteExec ["playSound", _players];
 };
