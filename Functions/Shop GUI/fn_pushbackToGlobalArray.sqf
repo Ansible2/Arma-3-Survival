@@ -33,4 +33,8 @@ private _array = missionNamespace getVariable [_globalArrayString,[]];
 
 _array pushBack _entryToAdd;
 
+if (isNil _globalArrayString) then {
+	missionNamespace setVariable [_globalArrayString,_array];
+};
+
 true
