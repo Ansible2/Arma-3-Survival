@@ -29,6 +29,8 @@ if (!hasInterface) exitWith {false};
 params ["_globalArrayString","_entryToAdd"];
 
 // CIPHER COMMENT: needs to be tested to ensure that public array that doesn't exit will after doing the pushBack
-(missionNamespace getVariable [_globalArrayString,[]]) pushBack _entryToAdd;
+private _array = missionNamespace getVariable [_globalArrayString,[]];
+
+_array pushBack _entryToAdd;
 
 true
