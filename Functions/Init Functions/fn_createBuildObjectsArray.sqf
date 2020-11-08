@@ -71,9 +71,8 @@ _configs apply {
 		_price_temp,
 		_class_temp,
 		_category_temp,
-		[_attachmentX_temp,_attachmentY_temp,_attachmentZ_temp],
+		[_rotation_temp,[_attachmentX_temp,_attachmentY_temp,_attachmentZ_temp]],
 		_hasAI_temp,
-		_rotation_temp,
 		_invincible_temp
 	];
 };
