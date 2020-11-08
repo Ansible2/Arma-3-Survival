@@ -1,3 +1,4 @@
+#include "..\..\..\Headers\String Constants.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_stdEnemyKilledEvent
 
@@ -36,9 +37,7 @@ private _killedUnit = _eventInfo select 0;
 private _instigator = _eventInfo select 2;
 
 // spawn the next in queue
-if (local BLWK_theAIHandlerEntity) then {
-	#include "..\..\..\Headers\String Constants.hpp"
-	
+if (local BLWK_theAIHandlerEntity) then {	
 	// if the spawn queue is not empty
 	if !((missionNamespace getVariable [STANDARD_ENEMY_INFANTRY_QUEUE,[]]) isEqualTo []) then {
 		[STANDARD_ENEMY_INFANTRY_QUEUE,"_this call BLWK_fnc_stdEnemyManCreateCode"] call BLWK_fnc_createFromQueue;
@@ -53,8 +52,10 @@ if ((hasInterface) AND {local _instigator} AND {isPlayer _instigator}) then {
 	[_killedUnit,_points,true] call BLWK_fnc_createHitMarker;
 };
 
+/*
 // mp events need to be removed on the unit where they are local
 if (local _killedUnit) then {
 	_killedUnit removeMPEventHandler ["mpKilled",_handlerID];
 	_killedUnit removeMPEventHandler ["mpHit",_killedUnit getVariable "BLWK_stdHitEH"];
 };
+*/
