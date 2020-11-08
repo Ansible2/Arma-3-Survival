@@ -1,3 +1,4 @@
+#include "..\..\Headers\descriptionEXT\GUI\shopGUICommonDefines.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_mouseExitTreeEvent
 
@@ -29,8 +30,9 @@ params ["_tv"];
 
 // find out if something is currently selected
 private _fn_setImagePathDefault = {
-	_imagePath = "..\..\preview.paa";
+	_imagePath =  getMissionPath "\preview.paa";
 };
+
 private _path = tvCurSel _tv;
 private "_imagePath";
 if (_path isEqualTo []) then {

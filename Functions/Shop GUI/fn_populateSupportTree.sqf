@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_populateBuildTree
+Function: BLWK_fnc_populateSupportTree
 
 Description:
 	Populates the support objects tree view with the build items or shows a
@@ -89,5 +89,5 @@ private [
 	private _data = str _forEachIndex; // save array index in BLWK_supports_array for buying object
 
 	_tv tvSetData [_itemPath_temp,_data];
-	_tv tvSetTooltip [_itemPath_temp,_data];		
+	_tv tvSetTooltip [_itemPath_temp,_class_temp];		
 } forEach BLWK_supports_array;

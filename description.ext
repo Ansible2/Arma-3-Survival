@@ -104,5 +104,8 @@ class CfgNotifications
 	};
 };
 
-#include "Headers\descriptionEXT\GUI\bulwarkShopGUI.hpp"
+#include "Headers\descriptionEXT\GUI\shopGUI.hpp"
 #include "KISKA Systems\View Distance Limiter\ViewDistanceLimiterDialog.hpp"
+
+#include "Headers\descriptionEXT\supports.hpp"
+#include "Headers\descriptionEXT\buildItems.hpp"

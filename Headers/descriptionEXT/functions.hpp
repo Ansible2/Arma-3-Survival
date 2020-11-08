@@ -194,6 +194,12 @@ class BLWK
 		{};
 		class openShop
 		{};
+		class populateBuildTree
+		{};
+		class populateSupportTree
+		{};
+		class purchaseForPool
+		{};
 		class purchaseForSelf
 		{};
 		class pushbackToGlobalArray

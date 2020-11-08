@@ -40,7 +40,7 @@ private _fn_adjustSliderRange = {
 
 	_sliderCtrl sliderSetPosition round (_sliderMax / 2); // always set it to the halfway mark
 	// this should auto trigger the linked event between the slider and its edit box so we shouldn't need
-	// to do a manual call of BLWK_fnc_adjustPartneredControl if it has an event
+	// to do a manual call of BLWK_fnc_shopAdjustPartnerControl if it has an event
 
 	_sliderCtrl sliderSetRange [0,_sliderMax]; // always set max
 	if (_sliderMax <= 100) exitWith {
@@ -69,13 +69,13 @@ private _fn_adjustSliderRangeWorking = {
 	params ["_sliderCtrl","_sliderMax"];
 
 	if (_sliderMax isEqualTo 0) exitWith {
-		[_sliderCtrl,0] call BLWK_fnc_adjustPartneredControl;
+		[_sliderCtrl,0] call BLWK_fnc_shopAdjustPartnerControl;
 		_sliderCtrl sliderSetRange [0,0];
 		_sliderCtrl sliderSetPosition 0;
 	};
 
 	private _sliderMid = round (_sliderMax / 2);
-	[_sliderCtrl,_sliderMid] call BLWK_fnc_adjustPartneredControl;
+	[_sliderCtrl,_sliderMid] call BLWK_fnc_shopAdjustPartnerControl;
 	_sliderCtrl sliderSetRange [0,_sliderMax];
 	_sliderCtrl sliderSetPosition _sliderMid;
 };

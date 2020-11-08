@@ -16,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		call BLWK_fnc_purchaseSupport;
+		[0] call BLWK_fnc_purchaseSupport;
 
     (end)
 
@@ -36,4 +36,5 @@ params [
 if !(_free) then {
 	[_price] call BLWK_fnc_subtractPoints;
 };
+
 [player,_itemClass] call BIS_fnc_addCommMenuItem;

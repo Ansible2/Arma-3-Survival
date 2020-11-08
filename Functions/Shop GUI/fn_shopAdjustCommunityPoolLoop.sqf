@@ -50,14 +50,15 @@ if ((_poolTreeCtrl tvCount []) isEqualTo 0) then {
 // populate list with what's current when the dialog is openned
 private _fn_populateList = {
 	params ["_list","_mainBranchIndex"];
-	private ["_displayName_temp","_data_temp","_index_temp"];
+	private ["_displayName_temp","_data_temp","_index_temp","_class_temp"];
 	_list apply {
 		_displayName_temp = _x select 0;
 		_data_temp = _x select 1;
+		_class_temp = _x select 2;
 
 		_index_temp = _poolTreeCtrl tvAdd [[_mainBranchIndex],_displayName_temp];
 		_poolTreeCtrl tvSetData [[_mainBranchIndex,_index_temp],_data_temp];
-		_poolTreeCtrl tvSetTooltip [[_mainBranchIndex,_index_temp],_data_temp];
+		_poolTreeCtrl tvSetTooltip [[_mainBranchIndex,_index_temp],_class_temp];
 	};
 };
 // populate both supports and build items
@@ -100,7 +101,7 @@ private _fn_adjustTree = {
 				systemChat ("changed index " + (str _branchNumber));
 				_treeCtrl tvSetText [[_branchNumber,_forEachIndex],_x select 0]; // update entry display name
 				_treeCtrl tvSetData [[_branchNumber,_forEachIndex],_x select 1]; // update data array
-				_treeCtrl tvSetTooltip [[_branchNumber,_forEachIndex],_x select 1]; // data array shown
+				_treeCtrl tvSetTooltip [[_branchNumber,_forEachIndex],_x select 2]; // data array shown
 			} else {
 				systemChat ("didn't change index " + (str _branchNumber));
 			};
@@ -109,7 +110,7 @@ private _fn_adjustTree = {
 			systemChat ("added index to " + (str _branchNumber));
 			private _path = _treeCtrl tvAdd [[_branchNumber],_x select 0];
 			_treeCtrl tvSetData [[_branchNumber,_path],_x select 1];
-			_treeCtrl tvSetTooltip [[_branchNumber,_path],_x select 1]; 
+			_treeCtrl tvSetTooltip [[_branchNumber,_path],_x select 2]; 
 		};
 
 	} forEach _globalArray;

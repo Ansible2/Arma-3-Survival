@@ -45,18 +45,18 @@ if (_configs isEqualTo []) exitWith {
 
 private _returnArray = [];
 private [
-	"_name_temp",
+	"_class_temp",
 	"_price_temp",
 	"_category_temp"
 ];
 _configs apply {
-	_name_temp configName _config;
-	_price_temp = [_config >> "price"] call BIS_fnc_getCfgData;
-	_category_temp = [_config >> "category"] call BIS_fnc_getCfgData;
+	_class_temp = configName _x;
+	_price_temp = [_x >> "price"] call BIS_fnc_getCfgData;
+	_category_temp = [_x >> "category"] call BIS_fnc_getCfgData;
 
 	_returnArray pushBack [
-		_name_temp,
 		_price_temp,
+		_class_temp,
 		_category_temp
 	];
 };

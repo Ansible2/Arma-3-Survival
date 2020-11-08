@@ -38,7 +38,6 @@ private [
 ];
 
 {
-	
 	_category_temp = _x select 2;
 	_categoryIndex_temp = _categoriesList findIf {_x == _category_temp};
 	if (_categoryIndex_temp isEqualTo -1) then {
@@ -59,5 +58,5 @@ private [
 
 	private _data = str _forEachIndex; // save array index an class for use with buying the object 
 	_tv tvSetData [_itemPath_temp,_data]; 
-	_tv tvSetTooltip [_itemPath_temp,_data];		
+	_tv tvSetTooltip [_itemPath_temp,_class_temp];		
 } forEach BLWK_buildableObjects_array;

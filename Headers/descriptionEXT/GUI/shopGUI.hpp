@@ -433,7 +433,7 @@ class bulwarkShopDialog_baseClass_xSliderH
 	sliderPosition = 5;
 	sliderRange[] = {0,10};
 	sliderStep = 1;
-	onSliderPosChanged = "_this call BLWK_fnc_adjustPartneredControl";
+	onSliderPosChanged = "_this call BLWK_fnc_shopAdjustPartnerControl";
 };
 /* -------------------------------------------------------------------------
 	Additional Base Classes
@@ -757,7 +757,7 @@ class bulwarkShopDialog
 			y = 0.78125 * safezoneH + safezoneY;
 			w = 0.0527344 * safezoneW;
 			h = 0.0208333 * safezoneH;
-			onKeyDown = "_this call BLWK_fnc_adjustPartneredControl";
+			onKeyDown = "_this call BLWK_fnc_shopAdjustPartnerControl";
 		};
 		class bulwarkShopDialog_points_withdraw_edit: bulwarkShopDialog_baseClass_editBox
 		{
@@ -767,7 +767,7 @@ class bulwarkShopDialog
 			y = 0.78125 * safezoneH + safezoneY;
 			w = 0.0527344 * safezoneW;
 			h = 0.0208333 * safezoneH;
-			onKeyDown = "_this call BLWK_fnc_adjustPartneredControl";
+			onKeyDown = "_this call BLWK_fnc_shopAdjustPartnerControl";
 		};
 
 		/* -------------------------------------------------------------------------

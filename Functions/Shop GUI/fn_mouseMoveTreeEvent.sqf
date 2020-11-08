@@ -1,3 +1,4 @@
+#include "..\..\Headers\descriptionEXT\GUI\shopGUICommonDefines.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_mouseMoveTreeEvent
 
@@ -27,7 +28,7 @@ Author(s):
 params ["_tv","_path"];
 
 private _fn_setImagePathDefault = {
-	_imagePath = "..\..\preview.paa";
+	_imagePath =  getMissionPath "\preview.paa";
 };
 
 private _class = _tv tvToolTip _path;
