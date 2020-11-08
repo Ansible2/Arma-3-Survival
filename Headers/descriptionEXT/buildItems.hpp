@@ -11,7 +11,7 @@ class BLWK_genericBuildItemBase
 	attachmentX = 0;
 	attachmentY = 3;
 	attachmentZ = 1;
-	invincible = false;
+	invincible = 0;
 };
 class BLWK_buildableItems
 {
@@ -215,7 +215,7 @@ class BLWK_buildableItems
 		attachmentX = 0.25;
 		attachmentY = 2;
 		attachmentZ = 2;
-		invincible = true;
+		invincible = 1;
 	};
 
 	class Land_BagBunker_Small_F : BLWK_genericBuildItemBase
@@ -247,12 +247,12 @@ class BLWK_buildableItems
 	{
 		price = 7500;
 		category = TURRETS_CATEGORY;
-		hasAI = true;
+		hasAI = 1;
 		rotation = 180;
 		attachmentX = 0.25;
 		attachmentY = 2;
 		attachmentZ = 2;
-		invincible = true;
+		invincible = 1;
 	};
 
 	class Land_Bunker_01_Small_F : BLWK_genericBuildItemBase

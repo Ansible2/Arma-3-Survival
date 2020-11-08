@@ -59,12 +59,12 @@ _configs apply {
 	_class_temp = configName _x;
 	_price_temp = [_x >> "price"] call BIS_fnc_getCfgData;
 	_category_temp = [_x >> "category"] call BIS_fnc_getCfgData;
-	_hasAI_temp = [_x >> "hasAI"] call BIS_fnc_getCfgData;
+	_hasAI_temp = [_x >> "hasAI"] call BIS_fnc_getCfgDataBool;
 	_rotation_temp = [_x >> "rotation"] call BIS_fnc_getCfgData;
 	_attachmentX_temp = [_x >> "attachmentX"] call BIS_fnc_getCfgData;
 	_attachmentY_temp = [_x >> "attachmentY"] call BIS_fnc_getCfgData;
 	_attachmentZ_temp = [_x >> "attachmentZ"] call BIS_fnc_getCfgData;
-	_invincible_temp = [_x >> "invincible"] call BIS_fnc_getCfgData;
+	_invincible_temp = [_x >> "invincible"] call BIS_fnc_getCfgDataBool;
 
 
 	_returnArray pushBack [
