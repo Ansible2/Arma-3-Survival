@@ -8,6 +8,8 @@
 #define BORDER_COLOR(ALPHA) {0,0,0,ALPHA}
 #define BACKGROUND_FRAME_COLOR(ALPHA) {0,0,0,ALPHA}
 
+#define TEXT_SIZE_SMALL(H_VAR,DIV) (H_VAR * safezoneH) / DIV
+
 #include "shopGUICommonDefines.hpp"
 
 /* -------------------------------------------------------------------------
@@ -59,8 +61,8 @@ class bulwarkShopDialog_baseClass_button
 	w = 0.095589;
 	h = 0.039216;
 	shadow = 2;
-	font = "PuristaMedium";
-	sizeEx = GUI_TEXT_SIZE_SMALL;
+	font = "RobotoCondensed";
+	sizeEx = TEXT_SIZE_SMALL(0.0208333,1.1);
 	url = "";
 	offsetX = 0;
 	offsetY = 0;
@@ -612,6 +614,7 @@ class bulwarkShopDialog
 			y = 0.729167 * safezoneH + safezoneY;
 			w = 0.0703125 * safezoneW;
 			h = 0.0208333 * safezoneH;
+
 			onButtonClick = "_this call BLWK_fnc_purchaseForSelf";
 		};
 		class bulwarkShopDialog_buildableObjects_purchaseForPoolButton: bulwarkShopDialog_baseClass_button
@@ -807,7 +810,7 @@ class bulwarkShopDialog
 			onLoad = "_this call BLWK_fnc_populateBuildTree";
 			onTreeMouseMove = "_this call BLWK_fnc_mouseMoveTreeEvent";
 			onTreeMouseExit = "_this call BLWK_fnc_mouseExitTreeEvent";
-			sizeEx = GUI_TEXT_SIZE_SMALL;
+			sizeEx = TEXT_SIZE_SMALL(0.229167,13.25);
 		};
 		class bulwarkShopDialog_supports_treeView: bulwarkShopDialog_baseClass_treeView
 		{
@@ -820,7 +823,7 @@ class bulwarkShopDialog
 			h = 0.229167 * safezoneH;
 
 			onLoad = "_this call BLWK_fnc_populateSupportTree";
-			sizeEx = GUI_TEXT_SIZE_SMALL;
+			sizeEx = TEXT_SIZE_SMALL(0.229167,13);
 		};
 		class bulwarkShopDialog_communityPool_treeView: bulwarkShopDialog_baseClass_treeView
 		{
@@ -834,7 +837,7 @@ class bulwarkShopDialog
 			onTreeMouseMove = "_this call BLWK_fnc_mouseMoveTreeEvent";
 			onTreeMouseExit = "_this call BLWK_fnc_mouseExitTreeEvent";
 
-			sizeEx = GUI_TEXT_SIZE_SMALL;
+			sizeEx = TEXT_SIZE_SMALL(0.229167,13.25);
 		};
 		
 
