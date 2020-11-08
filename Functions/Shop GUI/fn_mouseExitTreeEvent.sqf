@@ -28,18 +28,18 @@ Author(s):
 ---------------------------------------------------------------------------- */
 params ["_tv"];
 
+private "_imagePath";
 // find out if something is currently selected
 private _fn_setImagePathDefault = {
 	_imagePath =  getMissionPath "\preview.paa";
 };
 
 private _path = tvCurSel _tv;
-private "_imagePath";
 if (_path isEqualTo []) then {
 	call _fn_setImagePathDefault; // go to default image if nothing selected
 } else {
 	private _class = _tv tvToolTip _path;
-	if (_class isEqualTo "") then { // in the event that the selected item is a category
+	if (_class isEqualTo "" OR {!isClass (configFile >> "CfgVehicles" >> _class)}) then { // in the event that the selected item is a category
 		call _fn_setImagePathDefault;
 	} else {
 		_imagePath = getText (configFile >> "CfgVehicles" >> _class >> "editorPreview");
