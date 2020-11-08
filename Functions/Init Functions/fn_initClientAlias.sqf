@@ -39,6 +39,8 @@ if (BLWK_magRepackEnabled) then {
 // wait till the play area is defined
 waitUntil {!isNil "BLWK_playAreaCenter" AND {!isNil "bulwarkBox"}};
 _player setVehiclePosition [bulwarkBox,[],5,"NONE"];
+sleep 0.25;
+_player switchMove "AidlPercMstpSrasWrflDnon_G01_player"; // set player standing
 
 // a loop that updates the info panel in the top left (respawn tickets, current wave #, points)
 null = [] spawn BLWK_fnc_infoPanelLoop;
