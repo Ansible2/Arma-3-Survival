@@ -78,12 +78,12 @@ private [
 	_class_temp = _x select 1;
 	_displayName_temp = getText(missionConfigFile >> "cfgCommunicationMenu" >> _class_temp >> "text");
 	// add item to list
+	_value_temp = _x select 0;
 	_itemText_temp = format ["%1 - %2",_value_temp,_displayName_temp];
 	_itemIndex_temp = _tv tvAdd [[_categoryIndex_temp],_itemText_temp];
 	
 	_itemPath_temp = [_categoryIndex_temp,_itemIndex_temp];
 
-	_value_temp = _x select 0;
 	_tv tvSetValue [_itemPath_temp,_value_temp];
 
 	private _data = str _forEachIndex; // save array index in BLWK_supports_array for buying object
