@@ -29,16 +29,15 @@ params ["_control"];
 private _ctrlIDC = ctrlIDC _control;
 
 // find corresponding tree
-private _controlInfo = switch (_ctrlIDC) do {
+private _treeIDC = switch (_ctrlIDC) do {
 	case BLWK_SHOP_BUILD_PURCHASE_SELF_BUTT_IDC: {
-		[TO_STRING(BLWK_SHOP_BUILD_POOL_GVAR),BLWK_SHOP_BUILD_TREE_IDC]
+		BLWK_SHOP_BUILD_TREE_IDC
 	};
 	case BLWK_SHOP_SUPP_PURCHASE_SELF_BUTT_IDC: {
-		[TO_STRING(BLWK_SHOP_SUPP_POOL_GVAR),BLWK_SHOP_SUPP_TREE_IDC]
+		BLWK_SHOP_SUPP_TREE_IDC
 	};
 };
 
-private _treeIDC = _controlInfo select 1;
 private _tvCtrl = (ctrlParent _control) displayCtrl _treeIDC;
 
 // check if the player has anything selected or something like a section header
@@ -54,9 +53,8 @@ if (_cost > _currentPlayerPoints) exitWith {
 	hint "You do not have enough for this item";
 };
 
-
-
-private _indexInArray = parseNumber (_tvCtrl tvData _tvSelectedPath);
+private _data = _tvCtrl tvData _tvSelectedPath;
+private _indexInArray = ([_data] call BIS_fnc_parseNumberSafe) select 0;
 
 // decide on purchase method
 if (_ctrlIDC isEqualTo BLWK_SHOP_BUILD_PURCHASE_SELF_BUTT_IDC) exitWith {
@@ -69,8 +67,8 @@ if (_ctrlIDC isEqualTo BLWK_SHOP_BUILD_PURCHASE_SELF_BUTT_IDC) exitWith {
 
 if (_ctrlIDC isEqualTo BLWK_SHOP_SUPP_PURCHASE_SELF_BUTT_IDC) exitWith {
 	// the comm menu can only support 10 items at a time
-	if (count (player getVariable "BIS_fnc_addCommMenuItem_menu") isEqualTo 10) then {
-		hint "Make sure you are not carrying an object before purchasing another one";
+	if (count (player getVariable ["BIS_fnc_addCommMenuItem_menu",[]]) isEqualTo 10) then {
+		hint "You already have the max supports possible";
 	} else {
 		[_indexInArray] call BLWK_fnc_purchaseSupport;
 	};
