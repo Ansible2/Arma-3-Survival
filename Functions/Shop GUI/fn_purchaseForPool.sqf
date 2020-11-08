@@ -61,7 +61,7 @@ private _class = _tvCtrl tvTooltip _tvSelectedPath;
 
 // to avoid transmitting the whole array over network as a public var, this is used instead
 private _globalArrayString = _controlInfo select 0;
-[_globalArrayString,[_text,_data,_class]] remoteExecCall ["BLWK_fnc_pushbackToGlobalArray",BLWK_allClientsTargetId,true];
+[_globalArrayString,[_text,_data,_class,_cost]] remoteExecCall ["BLWK_fnc_pushbackToGlobalArray",BLWK_allClientsTargetId,true];
 
 // update player's points
 missionNamespace setVariable ["BLWK_playerKillPoints",_currentPlayerPoints - _cost];

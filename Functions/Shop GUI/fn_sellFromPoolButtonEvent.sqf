@@ -32,20 +32,20 @@ private _display = ctrlParent _control;
 private _poolTreeCtrl = _display displayCtrl BLWK_SHOP_POOL_TREE_IDC;
 private _selectedTreePath = tvCurSel _poolTreeCtrl;
 
-if (count _selectedTreePath < 2) exitWith { // if a category
+if (count _selectedTreePath < 2) exitWith { // if a category or nothing selected
 	hint parseText "<t color='#f51d1d'>You need a valid entry selected</t>";
 };
 
 // get which global pool to change
-private _indexInArray = _poolTreeCtrl tvData _selectedTreePath;
-private _value = _poolTreeCtrl tvValue _selectedTreepath;
+private _value = _poolTreeCtrl tvValue _selectedTreePath;
 private _treeCategory = _selectedTreePath select 0;
+private _indexInPoolArray = _selectedTreePath select 1;
 switch (_treeCategory) do {
 	case BUILD_TREE: {
-		[TO_STRING(BLWK_SHOP_BUILD_POOL_GVAR),_indexInArray] remoteExecCall ["BLWK_fnc_deleteAtGlobalArray",BLWK_allClientsTargetId,true];		
+		[TO_STRING(BLWK_SHOP_BUILD_POOL_GVAR),_indexInPoolArray] remoteExecCall ["BLWK_fnc_deleteAtGlobalArray",BLWK_allClientsTargetId,true];		
 	};
 	case SUPPORT_TREE: {
-		[TO_STRING(BLWK_SHOP_SUPP_POOL_GVAR),_indexInArray] remoteExecCall ["BLWK_fnc_deleteAtGlobalArray",BLWK_allClientsTargetId,true];
+		[TO_STRING(BLWK_SHOP_SUPP_POOL_GVAR),_indexInPoolArray] remoteExecCall ["BLWK_fnc_deleteAtGlobalArray",BLWK_allClientsTargetId,true];
 	};
 };
 
