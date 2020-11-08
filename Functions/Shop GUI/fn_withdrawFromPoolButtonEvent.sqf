@@ -37,15 +37,17 @@ if (count _selectedTreePath < 2) exitWith {
 };
 
 // get which global pool to change
-private _indexInArray = _poolTreeCtrl tvData _selectedTreePath;
+private _indexInPurchaseArray = ([_poolTreeCtrl tvData _selectedTreePath] call BIS_fnc_parseNumberSafe) select 0;
+private _indexInTree = _selectedTreePath select 1;
+
 private _treeCategory = _selectedTreePath select 0;
 switch (_treeCategory) do {
 	case BUILD_TREE: {
-		[TO_STRING(BLWK_SHOP_BUILD_POOL_GVAR),_indexInArray] remoteExecCall ["BLWK_fnc_deleteAtGlobalArray",BLWK_allCientsTargetId,true];
-		[_indexInArray,true] call BLWK_fnc_purchaseObject;
+		[TO_STRING(BLWK_SHOP_BUILD_POOL_GVAR),_indexInTree] remoteExecCall ["BLWK_fnc_deleteAtGlobalArray",BLWK_allClientsTargetId,true];
+		[_indexInPurchaseArray,true] call BLWK_fnc_purchaseObject;
 	};
 	case SUPPORT_TREE: {
-		[TO_STRING(BLWK_SHOP_SUPP_POOL_GVAR),_indexInArray] remoteExecCall ["BLWK_fnc_deleteAtGlobalArray",BLWK_allCientsTargetId,true];
-		[_indexInArray,true] call BLWK_fnc_purchaseSupport;
+		[TO_STRING(BLWK_SHOP_SUPP_POOL_GVAR),_indexInTree] remoteExecCall ["BLWK_fnc_deleteAtGlobalArray",BLWK_allClientsTargetId,true];
+		[_indexInPurchaseArray,true] call BLWK_fnc_purchaseSupport;
 	};
 };
