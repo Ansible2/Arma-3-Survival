@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		[myBox] call BLWK_fnc_addRevealLootAction;
+		null = [myBox] spawn BLWK_fnc_addRevealLootAction;
 
     (end)
 
@@ -31,6 +31,9 @@ if (isNull _lootRevealBox) exitWith {};
 
 // CIPHER COMMENT: may be a dirty edit, but don't really want anything else on this...
 removeAllActions _lootRevealBox;
+
+waitUntil {!isNil "BLWK_multipleLootReveals"};
+
 
 if (BLWK_multipleLootReveals) then {
 	_lootRevealBox addAction [ 
