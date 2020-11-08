@@ -39,7 +39,7 @@ if (!(_object isEqualTo bulwarkBox) AND {!(_object isEqualTo BLWK_randomWeaponBo
 			params ["_object","_caller"];
 
 			if (_object isEqualTo bulwarkBox OR {(_object isEqualTo BLWK_randomWeaponBox)}) exitWith {
-				hint "You can't sell this item";
+				hint parseText "<t color='#ff0000'>You can't sell this item</t>";
 			};
 
 			[_object,_caller] call BLWK_fnc_sellObject;
