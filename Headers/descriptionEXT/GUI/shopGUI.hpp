@@ -810,7 +810,7 @@ class bulwarkShopDialog
 			onLoad = "_this call BLWK_fnc_populateBuildTree";
 			onTreeMouseMove = "_this call BLWK_fnc_mouseMoveTreeEvent";
 			onTreeMouseExit = "_this call BLWK_fnc_mouseExitTreeEvent";
-			sizeEx = TEXT_SIZE_SMALL(0.229167,13.25);
+			sizeEx = TEXT_SIZE_SMALL(0.229167,12);
 		};
 		class bulwarkShopDialog_supports_treeView: bulwarkShopDialog_baseClass_treeView
 		{
@@ -823,7 +823,7 @@ class bulwarkShopDialog
 			h = 0.229167 * safezoneH;
 
 			onLoad = "_this call BLWK_fnc_populateSupportTree";
-			sizeEx = TEXT_SIZE_SMALL(0.229167,13);
+			sizeEx = TEXT_SIZE_SMALL(0.229167,12);
 		};
 		class bulwarkShopDialog_communityPool_treeView: bulwarkShopDialog_baseClass_treeView
 		{
@@ -837,7 +837,7 @@ class bulwarkShopDialog
 			onTreeMouseMove = "_this call BLWK_fnc_mouseMoveTreeEvent";
 			onTreeMouseExit = "_this call BLWK_fnc_mouseExitTreeEvent";
 
-			sizeEx = TEXT_SIZE_SMALL(0.229167,13.25);
+			sizeEx = TEXT_SIZE_SMALL(0.229167,12);
 		};
 		
 
