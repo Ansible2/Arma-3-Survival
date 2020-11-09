@@ -9,8 +9,6 @@ class BLWK
 		{};
 		class disableCollisionWithAllPlayers
 		{};
-		class enableCollisionWithPlayer 
-		{};
 		class enableCollisionWithAllPlayers
 		{};
 		class locality
