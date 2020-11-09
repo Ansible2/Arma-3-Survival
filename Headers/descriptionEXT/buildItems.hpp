@@ -51,7 +51,7 @@ class BLWK_buildableItems
 	class Land_Obstacle_Ramp_F: BLWK_genericBuildItemBase
 	{
 		price = 75;
-		category = SANDBAGS_CATEGORY;
+		category = VERTICAL_CATEGORY;
 		rotation = 180;
 	};
 
