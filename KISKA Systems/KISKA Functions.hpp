@@ -26,6 +26,26 @@ class KISKA
 		class viewDistanceLimiter
 		{};
 	};
+	class KISKA_music
+	{
+		file = "KISKA Systems\KISKA Music Functions";
+		class getMusicDuration
+		{};
+		class getMusicFromClass
+		{};
+		class getMusicPlaying
+		{};
+		class isMusicPlaying
+		{};
+		class musicEventHandlers
+		{
+			preInit = 1;
+		};
+		class playMusic
+		{};
+		class randomMusic
+		{};
+	};
 	class KISKA_sounds
 	{
 		file = "KISKA Systems\KISKA Sound Functions";
