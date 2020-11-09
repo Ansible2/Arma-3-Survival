@@ -53,7 +53,7 @@ _bulwark addAction [
 		call BLWK_fnc_openShop;
 	}, 
 	nil, 
-	1.5,  
+	1000,  
 	true,  
 	false,  
 	"", 
