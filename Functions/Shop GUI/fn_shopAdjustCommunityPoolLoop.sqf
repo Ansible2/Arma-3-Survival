@@ -63,6 +63,8 @@ private _fn_populateList = {
 		_poolTreeCtrl tvSetTooltip [[_mainBranchIndex,_index_temp],_class_temp];
 		_poolTreeCtrl tvSetValue [[_mainBranchIndex,_index_temp],_value_temp];
 	};
+
+	tvExpandAll _poolTreeCtrl;
 };
 // populate both supports and build items
 {
@@ -122,6 +124,8 @@ private _fn_adjustTree = {
 			_treeCtrl tvDelete [_branchNumber,_indexToDelete];
 		};
 	};
+
+	tvExpandAll _treeCtrl;
 
 	_globalArray
 };
