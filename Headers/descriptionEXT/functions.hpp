@@ -124,7 +124,7 @@ class BLWK
 	*/
 		class doMagRepack
 		{};
-		class fn_forceCloseBISArsenal
+		class forceCloseBISArsenal
 		{};
 		class getFriendlyVehicleClass
 		{};
