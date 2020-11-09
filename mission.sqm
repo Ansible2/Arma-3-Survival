@@ -8,7 +8,7 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=198;
+		nextID=199;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={23.708138,4132.5605,26.292381};
-		dir[]={-0.64312506,-0.43926537,-0.62738007};
-		up[]={-0.31447101,0.89832729,-0.30677485};
-		aside[]={-0.69834465,1.2649107e-006,0.71587151};
+		pos[]={20.349369,4123.0386,3.1257548};
+		dir[]={-0.93287927,-0.35446224,-0.065344669};
+		up[]={-0.3536627,0.93504035,-0.024774728};
+		aside[]={-0.069880113,1.1216812e-006,0.9976356};
 	};
 };
 binarizationWanted=0;
@@ -77,7 +77,6 @@ class AddonsMetaData
 randomSeed=13606913;
 class ScenarioData
 {
-	author="Hilltop(Willtop)";
 	briefing=0;
 	debriefing=0;
 	disabledAI=1;
@@ -176,7 +175,6 @@ class Mission
 	assetType="Free";
 	class Intel
 	{
-		briefingName="Dynamic Bulwarks";
 		resistanceWest=0;
 		resistanceEast=1;
 		timeOfChanges=1800.0002;
