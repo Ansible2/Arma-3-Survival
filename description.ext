@@ -1,8 +1,8 @@
-onLoadMission = "Dynamic Bulwarks Refactored";
-onLoadIntro = "Defend yourself";
-onLoadName = "Dynamic Bulwarks Refactored";
-briefingName = "Dynamic Bulwarks Refactored";
-overviewText = "Survive by scavenging equipment, in a randomly selected city, against ever increasing waves of hostiles.";
+onLoadMission = "Arma 3 Survival";
+onLoadIntro = "Defend The Position";
+onLoadName = "Arma 3 Survival";
+briefingName = "Arma 3 Survival";
+overviewText = "Survive waves of enemies";
 author = "Hilltop(Willtop) & omNomios (Modified by Ansible2 // Cipher & Spectre)";
 overviewPicture = "preview.paa";
 
