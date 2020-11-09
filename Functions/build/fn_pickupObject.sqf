@@ -13,7 +13,7 @@ Parameters:
 	2: _justPurchased : <BOOL> - Was the item just purchased from the Bulwark?
 
 Returns:
-	BOOL
+	NOTHING
 
 Examples:
     (begin example)
@@ -30,7 +30,6 @@ if (!hasInterface OR {!canSuspend}) exitWith {};
 // if they have an object in hand
 if !(isNil "BLWK_heldObject") exitWith {
 	hint "Can't pick up two objects Superman";
-	false
 };
 
 params [
@@ -42,10 +41,9 @@ params [
 // get attachment info from global build objects array
 private _objectType = typeOf _object;
 
-private "_attachmentInfo";
 if (_justPurchased) then {
 	private _index = BLWK_buildableObjects_array findIf {(_x select 1) == _objectType};
-	_attachmentInfo = (BLWK_buildableObjects_array select _index) select 3;
+	private _attachmentInfo = (BLWK_buildableObjects_array select _index) select 3;
 	_object attachTo [_player,_attachmentInfo select 1];
 	_object setDir (_attachmentInfo select 0);
 } else {
@@ -93,6 +91,3 @@ missionNamespace setVariable ["BLWK_heldObject",_object];
 		false
 	};
 };
-
-
-true
