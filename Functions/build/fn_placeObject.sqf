@@ -53,7 +53,7 @@ if (_snapToSurface) then {
 };
 
 // sync collision to all players
-null = [_object] remoteExecCall ["BLWK_fnc_enableCollisionWithAllPlayers",_object];
+null = [_object] remoteExec ["BLWK_fnc_enableCollisionWithAllPlayers",_object];
 
 // make sure people can manipulate up the object now
 missionNamespace setVariable ["BLWK_heldObject",nil];
