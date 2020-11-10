@@ -34,7 +34,7 @@ private _fn_getBaseSkill = {
 	if (BLWK_currentWaveNumber < 10) exitWith {SKILL_LEVEL_2};
 	if (BLWK_currentWaveNumber < 15) exitWith {SKILL_LEVEL_3};
 	if (BLWK_currentWaveNumber < 20) exitWith {SKILL_LEVEL_4};
-	if (BLWK_currentWaveNumber >= 25) exitWith {SKILL_LEVEL_5};
+	if (BLWK_currentWaveNumber > 20) exitWith {SKILL_LEVEL_5};
 };
 
 private _skillLevel = call _fn_getBaseSkill;
