@@ -27,12 +27,12 @@ if (!isServer) exitWith {false};
 
 #include "..\..\Headers\String Constants.hpp"
 #define STANDARD_WAVE_LIKELIHOOD 1
-#define SUICIDE_WAVE_LIKELIHOOD 0.1
-#define CIVILIAN_WAVE_LIKELIHOOD 0.25
-#define DRONE_WAVE_LIKELIHOOD 0.1
-#define MORTAR_WAVE_LIKELIHOOD 0.25
-#define DEFECTOR_WAVE_LIKELIHOOD 0.25
-#define OVERRUN_WAVE_LIKELIHOOD 0.15
+#define SUICIDE_WAVE_LIKELIHOOD 0.5
+#define CIVILIAN_WAVE_LIKELIHOOD 0.75
+#define DRONE_WAVE_LIKELIHOOD 0.5
+#define MORTAR_WAVE_LIKELIHOOD 0.75
+#define DEFECTOR_WAVE_LIKELIHOOD 0.75
+#define OVERRUN_WAVE_LIKELIHOOD 0.60
 
 private _fn_getWaveType = {
 	private _decideArray = [];
