@@ -28,6 +28,8 @@ params [
 	["_controlIDC",controlNull,[controlNull,123]]
 ];
 
+disableSerialization;
+
 if (_controlIDC isEqualType controlNull) then {
 	_controlIDC = ctrlIDC _controlIDC;
 };

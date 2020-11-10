@@ -26,6 +26,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 params ["_control","_value"];
 
+disableSerialization;
+
 private _controlType = ctrlType _control;
 
 if (_controlType isEqualTo CT_EDIT) exitWith {

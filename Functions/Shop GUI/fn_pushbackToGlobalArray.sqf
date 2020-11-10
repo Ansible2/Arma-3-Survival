@@ -26,6 +26,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {false};
 
+disableSerialization;
+
 params ["_globalArrayString","_entryToAdd"];
 
 // CIPHER COMMENT: needs to be tested to ensure that public array that doesn't exit will after doing the pushBack

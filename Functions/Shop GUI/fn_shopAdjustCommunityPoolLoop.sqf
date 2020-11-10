@@ -27,6 +27,8 @@ if (!canSuspend) exitWith {
 	"BLWK_fnc_shopAdjustCommunityPoolLoop must be run in scheduled environment" call BIS_fnc_error;
 };
 
+disableSerialization;
+
 
 // initialize global vars if not done
 if (isNil TO_STRING(BLWK_SHOP_BUILD_POOL_GVAR)) then {

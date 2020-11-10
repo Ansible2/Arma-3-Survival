@@ -25,6 +25,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 params ["_control"];
 
+disableSerialization;
+
 private _display = ctrlParent _control;
 private _sliderControl = _display displayCtrl BLWK_SHOP_POINTS_DEPOSIT_SLIDER_IDC;
 

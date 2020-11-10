@@ -27,6 +27,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 params ["_tv","_path"];
 
+disableSerialization;
+
 private _fn_setImagePathDefault = {
 	_imagePath =  getMissionPath "\preview.paa";
 };

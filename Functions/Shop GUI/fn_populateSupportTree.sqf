@@ -25,6 +25,7 @@ Author(s):
 ---------------------------------------------------------------------------- */
 params ["_tv"];
 
+disableSerialization;
 
 // if support dish was not found show message
 if !(BLWK_supportDishFound) exitWith {

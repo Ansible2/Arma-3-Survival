@@ -28,6 +28,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 params ["_tv"];
 
+disableSerialization;
+
 private "_imagePath";
 // find out if something is currently selected
 private _fn_setImagePathDefault = {

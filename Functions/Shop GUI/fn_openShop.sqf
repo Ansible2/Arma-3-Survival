@@ -21,4 +21,6 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+disableSerialization;
+
 createDialog SHOP_DIALOG_STRING;

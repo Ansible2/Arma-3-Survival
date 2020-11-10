@@ -26,6 +26,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {false};
 
+disableSerialization;
+
 params ["_globalArrayString","_indexToRemove"];
 
 private _array = missionNamespace getVariable [_globalArrayString,[]];

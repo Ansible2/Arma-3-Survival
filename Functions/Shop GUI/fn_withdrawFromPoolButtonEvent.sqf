@@ -27,6 +27,8 @@ Author(s):
 
 params ["_control"];
 
+disableSerialization;
+
 // get currently selected
 private _display = ctrlParent _control;
 private _poolTreeCtrl = _display displayCtrl BLWK_SHOP_POOL_TREE_IDC;

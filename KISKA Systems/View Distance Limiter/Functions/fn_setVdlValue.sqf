@@ -21,6 +21,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};
 
+disableSerialization;
+
 #include "..\controlTypes.hpp"
 #include "..\ViewDistanceLimiterCommonDefines.hpp"
 

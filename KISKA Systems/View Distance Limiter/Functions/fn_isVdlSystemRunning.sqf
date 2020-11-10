@@ -21,6 +21,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {false};
 
+disableSerialization;
+
 #include "..\ViewDistanceLimiterCommonDefines.hpp"
 
 private _isRunning = missionNamespace getVariable [VDL_GLOBAL_RUN_STR,false];

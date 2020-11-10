@@ -26,6 +26,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 params ["_control"];
 
+disableSerialization;
+
 private _ctrlIDC = ctrlIDC _control;
 private _controlInfo = switch (_ctrlIDC) do {
 	case BLWK_SHOP_BUILD_PURCHASE_POOL_BUTT_IDC: {

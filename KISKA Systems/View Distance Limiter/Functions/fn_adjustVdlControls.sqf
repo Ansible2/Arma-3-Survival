@@ -25,6 +25,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};
 
+disableSerialization;
+
 #include "..\controlTypes.hpp"
 
 params ["_control","_value"];

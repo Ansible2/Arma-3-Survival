@@ -26,6 +26,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 params ["_shopDisplay"];
 
+disableSerialization;
+
 // sliderSetSpeed command is currently broken, awaiting fix
 // https://feedback.bistudio.com/T154871
 /*

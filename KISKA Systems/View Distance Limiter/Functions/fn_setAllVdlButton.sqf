@@ -21,6 +21,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};
 
+disableSerialization;
+
 params ["_control"];
 private _partnerControls = [_control] call KISKA_fnc_findVDLPartnerControl;
 

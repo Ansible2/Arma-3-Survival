@@ -24,6 +24,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 params ["_tv"];
 
+disableSerialization;
+
 private _categoriesList = [];
 
 private [

@@ -25,5 +25,7 @@ Author(s):
 ---------------------------------------------------------------------------- */
 params ["_display"];
 
+disableSerialization;
+
 null = [_display] spawn BLWK_fnc_shopAdjustPointsLoop;
 null = [_display] spawn BLWK_fnc_shopAdjustCommunityPoolLoop;

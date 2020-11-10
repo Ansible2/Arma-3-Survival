@@ -23,6 +23,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};
 
+disableSerialization;
+
 #include "..\ViewDistanceLimiterCommonDefines.hpp"
 
 params ["_control","_checked"];

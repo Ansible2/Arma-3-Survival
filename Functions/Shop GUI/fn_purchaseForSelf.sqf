@@ -26,6 +26,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 params ["_control"];
 
+disableSerialization;
+
 private _ctrlIDC = ctrlIDC _control;
 
 // find corresponding tree
