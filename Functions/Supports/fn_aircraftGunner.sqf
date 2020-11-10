@@ -1,4 +1,4 @@
-params ["_vehicleClass","_loiterHeight","_loiterRadius","_defaultVehicleType","_typeOfGunner"];
+params ["_vehicleClass","_loiterHeight","_loiterRadius","_defaultVehicleType","_globalUseVarString"];
 
 // verify vehicle has turrets that are not fire from vehicle and not copilot positions
 // excludes fire from vehicle turrets
@@ -22,7 +22,9 @@ _allVehicleTurrets apply {
 	};
 };
 if (_turretsWithWeapons isEqualTo []) exitWith {
-	[_defaultVehicleType] call BLWK_fnc_aircraftGunner;
+	private _newParams = _this;
+	_newParams set [0,_defaultVehicleType];
+	_newParams call BLWK_fnc_aircraftGunner;
 };
 
 
@@ -86,7 +88,7 @@ player moveInTurret [_vehicle,_turretsWithWeapons select 0];
 _vehicle lock true; // keep player from ejecting or switching seats with vanilla actions
 _vehicle enableCoPilot false; // disable the ability to take control of the aircraft
 
-missionNamespace setVariable [_typeOfGunner,true,true];
+missionNamespace setVariable [_globalUseVarString,true,true]; // set this type of gunner as active so multiple people can't spam it
 
 // create actions to switch turrets
 private _turretSwitchActions = [];
@@ -178,7 +180,7 @@ private _exitAction = [
 		[_this select 1,_this select 2,_this select 3] call (localNamespace getVariable "BLWK_fnc_exitFromAircraft");
 	}, 
 	{}, 
-	[_turretSwitchActions,_vehicle,_vehicleGroup,_typeOfGunner], 
+	[_turretSwitchActions,_vehicle,_vehicleGroup,_globalUseVarString], 
 	1, 
 	1, 
 	false, 
@@ -188,7 +190,7 @@ private _exitAction = [
 
 
 // limited time for air support
-[[_turretSwitchActions,_vehicle,_vehicleGroup,_typeOfGunner],_exitAction] spawn {
+[[_turretSwitchActions,_vehicle,_vehicleGroup,_globalUseVarString],_exitAction] spawn {
 	params ["_actionArgs","_exitAction"];
 	
 	private _vehicle = _actionArgs select 1;
