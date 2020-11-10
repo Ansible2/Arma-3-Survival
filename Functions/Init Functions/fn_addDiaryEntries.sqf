@@ -109,7 +109,7 @@ You can repack your magazines by pressing CTRL + R.
 <font color='#FFCC00'>You won't survive this fight but take as many of the bastards with you as you can!</font>"]];
 
 
-_player createDiarySubject ["ReassignZeus_entry","",""];
+_player createDiarySubject ["ReassignZeus_entry","Reassign Zeus",""];
 
 _player createDiaryRecord ["ReassignZeus_entry", ["Reassign Zeus Curator",
 	"<execute expression= '[true] call BLWK_fnc_reassignCurator;'>If You've Lost Zeus, Click Here</execute>"
