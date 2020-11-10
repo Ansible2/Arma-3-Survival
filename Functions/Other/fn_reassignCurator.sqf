@@ -27,8 +27,9 @@ params [
 	["_isManual",false,[true]]
 ];
 
-// sometimes zeus can be lost on respawn
-if !(call BIS_fnc_admin > 0) exitWith {
+
+// check if player is host or admin
+if (!(call BIS_fnc_admin > 0) AND {clientOwner != 2}) exitWith {
 	if (_isManual) then {
 		hint "Only admins can be assigned curator";
 	};
