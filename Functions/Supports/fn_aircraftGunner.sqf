@@ -199,6 +199,8 @@ private _exitAction = [
 		false
 	};
 
+	// the null check for the vehicle is here so many times because at any given point
+	// the player can initiate a manual return to the bulwark
 	if (isNull _vehicle) exitWith {};
 
 	// wait to delete support
