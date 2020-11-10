@@ -12,10 +12,10 @@ Description:
 	You can define quiet time space between tracks.
 
 Parameters:
-
-	0: _musicTracks <ARRAY> - An array of strings (music tracks) to use
-	1: _timeBetween <ARRAY or NUMBER> - A random or set time between tracks. Formats are [min,mid,max] & [max] for random numbers and just a single number for a set time between (see example)
-	2: _usedMusicTracks <ARRAY> - An array of already used music tracks, don't bother manually entering anyhting, this is for looping purposes
+	0: _playedFromLoop <BOOL> - Used to check if this was just called from the random music loop (won't interrupt the current iteration if so)
+	1: _musicTracks <ARRAY> - An array of strings (music tracks) to use
+	2: _timeBetween <ARRAY or NUMBER> - A random or set time between tracks. Formats are [min,mid,max] & [max] for random numbers and just a single number for a set time between (see example)
+	3: _usedMusicTracks <ARRAY> - An array of already used music tracks, don't bother manually entering anyhting, this is for looping purposes
 
 Returns:
 	NOTHING 
@@ -38,11 +38,13 @@ Examples:
 	Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+#define SLEEP_BUFFER 3
 if !(isServer) exitWith {
 	"Must be run on server" call BIS_fnc_error;
 };
 
 params [
+	["_playedFromLoop",false,[true]],
 	["_musicTracks",missionNamespace getVariable ["KISKA_randomMusic_tracks",[]],[[]]],
 	["_timeBetween",missionNamespace getVariable ["KISKA_randomMusic_timeBetween",[300,420,540]],[[],123]],
 	["_usedMusicTracks",missionNamespace getVariable ["KISKA_randomMusic_usedTracks",[]],[[]]]
@@ -64,17 +66,27 @@ if (_musicTracks isEqualTo []) then {
 
 private _selectedTrack = selectRandom _musicTracks;
 
+// play song
+null = [_selectedTrack,0,!(_playedFromLoop),0.5] remoteExec ["KISKA_fnc_playMusic",[0,-2] select isDedicated];
+
+// if it is the intial running of the system
+if (isNil "KISKA_musicSystemIntialized") then {
+	KISKA_musicSystemIntialized = true;
+};
+
+
 // clear array of selected Track
 _musicTracks deleteAt (_musicTracks findIf {_x isEqualTo _selectedTrack});
 KISKA_randomMusic_tracks = _musicTracks;
-
 // store track as used
 _usedMusicTracks pushBackUnique _selectedTrack;
 KISKA_randomMusic_usedTracks = _usedMusicTracks;
 
 // get duration of track
 private _durationOfTrack = getNumber (configFile >> "cfgMusic" >> _selectedTrack >> "duration");
-
+if (_durationOfTrack isEqualTo 0) then {
+	getNumber (missionConfigFile >> "cfgMusic" >> _selectedTrack >> "duration");
+};
 
 // decide how much time should be between tracks
 private "_randomWaitTime";
@@ -87,30 +99,40 @@ if (_timeBetween isEqualType []) then {
 } else {
 	_randomWaitTime = _timeBetween;
 };
-KISKA_randomMusic_timeBetween = _timeBetween;
+KISKA_randomMusic_timeBetween = _timeBetween; // store global
 
-
-private "_waitTime";
-// if it is the intial running of the system
-if (isNil "KISKA_musicSystemIntialized") then {
-	_waitTime = 0;
-	KISKA_musicSystemIntialized = true;
-} else {
-	_waitTime = _durationOfTrack + _randomWaitTime;
+/*
+	track durations are not exact enough, so there always need to be a bit of a buffer
+	else, if the time between tracks is something like 0 or 1, the sleep will be done, 
+	and music will try to play, but because it does not interrupt,
+	and the previous track will not actually be done, no music will play until the next sleep is done
+*/
+if (_randomWaitTime < SLEEP_BUFFER) then {
+	_randomWaitTime = SLEEP_BUFFER;
 };
 
+private _waitTime = _durationOfTrack + _randomWaitTime;
 
-// this is used with the intention of if another random music list is started (or multiple)
-// the latest one will take over this time slot forcing the others after their wait time to
-// not continue their own loops
-KISKA_randomMusicStartTIme = time;
-private _startTime = KISKA_randomMusicStartTIme;
-
-sleep _waitTime;
-
+diag_log format ["random wait time is: %1",_randomWaitTime];
+diag_log format ["duration of track is: %1",_durationOfTrack];
+diag_log format ["wait time is: %1",_waitTime];
 // dont play this music if the system is stopped or another random music system was started
-if (KISKA_musicSystemIntialized AND {_startTime == KISKA_randomMusicStartTIme}) then {
-	null = [_selectedTrack,0,false,0.5] remoteExec ["KISKA_fnc_playMusic",[0,-2] select isDedicated];
+if (KISKA_musicSystemIntialized) then {
+/*	
+	this is used with the intention of if another random music list is started (or multiple)
+	the latest one will take over this time slot forcing the others after their wait time to
+	not continue their own loops
+*/
+	KISKA_randomMusicStartTIme = time;
+	private _startTime = KISKA_randomMusicStartTIme;
 
-	null = [] spawn KISKA_fnc_randomMusic;
+	uisleep _waitTime;
+
+	if (_startTime isEqualTo KISKA_randomMusicStartTIme) then {
+		diag_log "Sleep done";
+		// the globals in params are not passed to allow for changes while music is playing
+		null = [true] spawn KISKA_fnc_randomMusic; 
+
+		diag_log "execing next song";
+	};
 };

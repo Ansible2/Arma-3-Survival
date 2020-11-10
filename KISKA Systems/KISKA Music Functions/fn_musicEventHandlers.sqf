@@ -26,13 +26,15 @@ addMusicEventHandler ["MusicStart", {
 	params [
 		["_trackClassName","",[""]]
 	];
-	
+	diag_log "music start";
+
 	KISKA_musicPlaying = true;
 	KISKA_currentTrack = _trackClassName;
 }];
 
 
 addMusicEventHandler ["MusicStop", {
+	diag_log "music stop";
 	KISKA_musicPlaying = false;
 	KISKA_currentTrack = "";
 }];

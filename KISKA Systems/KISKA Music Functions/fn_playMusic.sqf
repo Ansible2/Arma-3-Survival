@@ -39,7 +39,7 @@ params [
 	["_fadeTime",3,[1]]
 ];
 
-if (!(isCLass (configFile / "cfgMusic" / _track)) AND {!(isClass (missionConfigFile / "cfgMusic" / _track))}) exitWith {
+if (!(isClass (configFile / "cfgMusic" / _track)) AND {!(isClass (missionConfigFile / "cfgMusic" / _track))}) exitWith {
 	"_track is undefined in music config" call BIS_fnc_error;
 };
 
@@ -62,7 +62,7 @@ if (_startTime < 0) then {
 	_startTIme = round (random [0, _duration / 2, _duration]);
 };
 
-sleep (_fadeTime + 0.1);
+uiSleep (_fadeTime + 0.1);
 
 playMusic [_track,_startTime];
 	
