@@ -76,10 +76,9 @@ private _fn_adjustSliderRangeWorking = {
 		_sliderCtrl sliderSetPosition 0;
 	};
 
-	private _sliderMid = round (_sliderMax / 2);
-	[_sliderCtrl,_sliderMid] call BLWK_fnc_shopAdjustPartnerControl;
+	[_sliderCtrl,_sliderMax] call BLWK_fnc_shopAdjustPartnerControl;
 	_sliderCtrl sliderSetRange [0,_sliderMax];
-	_sliderCtrl sliderSetPosition _sliderMid;
+	_sliderCtrl sliderSetPosition _sliderMax;
 };
 
 waitUntil {!(isNull _shopDisplay)};
