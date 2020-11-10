@@ -36,12 +36,14 @@ if (!(call BIS_fnc_admin > 0) AND {clientOwner != 2}) exitWith {
 };
 private _unitWithCurator = getAssignedCuratorUnit BLWK_zeus;
 if (isNull _unitWithCurator) then {
-	null = [BLWK_zeus,player] remoteExec ["assignCurator",2];
+	null = [player,BLWK_zeus] remoteExecCall ["assignCurator",2];
 } else {
 	if (alive _unitWithCurator) then {
 		// no sense in alerting player if they are the curator still
 		if (!(_unitWithCurator isEqualTo player)) then {
 			hint "Another currently alive admin has the curator assigned to them already";
+		} else {
+			hint "You are already the curator";
 		};
 	} else {
 		null = [_unitWithCurator,_isManual] spawn {
@@ -51,7 +53,7 @@ if (isNull _unitWithCurator) then {
 			// wait till curator doesn't have a unit to give it the player
 			waitUntil {
 				if !(isNull (getAssignedCuratorUnit BLWK_zeus)) exitWith {
-					null = [BLWK_zeus,player] remoteExec ["assignCurator",2];
+					null = [player,BLWK_zeus] remoteExecCall ["assignCurator",2];
 					if (_isManual) then {
 						hint "You are now the curator";
 					};
