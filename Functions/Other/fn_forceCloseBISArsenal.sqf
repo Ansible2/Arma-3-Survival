@@ -27,3 +27,5 @@ Author(s):
 if (isnull (uinamespace getvariable ["BIS_fnc_arsenal_cam",objnull])) exitwith {};
 
 ["Exit"] call BIS_fnc_arsenal;
+
+closeDialog 2;
