@@ -190,12 +190,16 @@ private _exitAction = [
 // limited time for air support
 [[_turretSwitchActions,_vehicle,_vehicleGroup,_typeOfGunner],_exitAction] spawn {
 	params ["_actionArgs","_exitAction"];
+	
+	private _vehicle = _actionArgs select 1;
 	// waitUntil we have started a wave to start counting them towards a lifetime
 	waitUntil {
-		if !(BLWK_inBetweenWaves) exitWith {true};
+		if (!BLWK_inBetweenWaves OR {isNull _vehicle}) exitWith {true};
 		sleep 10;
 		false
 	};
+
+	if (isNull _vehicle) exitWith {};
 
 	// wait to delete support
 	private _startingWave = BLWK_currentWaveNumber;
@@ -207,9 +211,12 @@ private _exitAction = [
 			_informed = true;
 		};
 		if (BLWK_currentWaveNumber >= _endWave) exitWith {true};
+		if (isNull _vehicle) exitWith {true};
 		sleep 10;
 		false
 	};
+
+	if (isNull _vehicle) exitWith {};
 
 	hint "Your support expired";
 
