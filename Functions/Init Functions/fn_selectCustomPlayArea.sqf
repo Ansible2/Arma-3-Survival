@@ -50,11 +50,12 @@ BLWK_fnc_checkLocation = {
 
 	_missionAreaInfo params ["","_numBuildings","_numLootPositions"];
 	if (_numBuildings isEqualTo 0) exitWith {
-		hint "You need an area with buildings to spawn stuff";
+		hint parseText "<t color='#ff0000'>You need an area with buildings to spawn stuff</t>"; 
 		false
 	};
-	if (_numLootPositions isEqualTo 0) exitWith {
-		hint "There are no loot locations to spawn stuff here";
+	// some of the mandatory items like the weapon box, loot revealer and satellite dish require unique positions
+	if (_numLootPositions < 6) exitWith {
+		hint parseText "<t color='#ff0000'>You need at least SIX positions to spawn loot</t>"; 
 		false
 	};
 	 
