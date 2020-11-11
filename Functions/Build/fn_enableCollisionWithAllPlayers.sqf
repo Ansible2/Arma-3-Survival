@@ -33,7 +33,6 @@ if (!canSuspend) exitWith {
 };
 
 private _players = call CBAP_fnc_players;
-_players deleteAt (_players findIf {_x isEqualTo player});
 
 private _objectDimensions = _object call BIS_fnc_boundingBoxDimensions;
 private _objectDimensions_X = _objectDimensions select 0;
