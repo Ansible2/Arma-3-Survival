@@ -26,7 +26,7 @@ Author(s):
 if (!isServer) exitWith {false};
 
 #include "..\..\Headers\String Constants.hpp"
-#define STANDARD_WAVE_LIKELIHOOD 1
+#define STANDARD_WAVE_LIKELIHOOD 1000
 #define SUICIDE_WAVE_LIKELIHOOD 0.5
 #define CIVILIAN_WAVE_LIKELIHOOD 0.75
 #define DRONE_WAVE_LIKELIHOOD 0.5

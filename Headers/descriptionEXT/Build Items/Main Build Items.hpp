@@ -1,4 +1,4 @@
-#include "GUI\shopGUICommonDefines.hpp"
+#include "..\GUI\shopGUICommonDefines.hpp"
 
 class BLWK_genericBuildItemBase
 {
@@ -304,11 +304,6 @@ class BLWK_buildableItems
 		price = 8000;
 	};
 
-	class B_Mortar_01_F : BLWK_genericTurretBase
-	{
-		price = 8000;
-	};
-
 	class B_static_AT_F : BLWK_genericTurretBase
 	{
 		price = 1000;
@@ -328,6 +323,6 @@ class BLWK_buildableItems
 	{
 		price = 2000;
 	};
-	#include "OPTREBuildItems.hpp"
-	#include "RHSBuildItems.hpp"
+	#include "OPTRE Build Items.hpp"
+	#include "RHS Build Items.hpp"
 };
