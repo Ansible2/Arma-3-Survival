@@ -31,8 +31,8 @@ if !(BLWK_currentWaveNumber >= BLWK_vehicleStartWave) exitWith {[]};
 #define LIKELIHOOD_LIGHT_ARMOUR 0.15
 #define LIKELIHOOD_HEAVY_CAR 0.25
 #define LIKELIHOOD_LIGHT_CAR 0.50
-#define BASE_VEHICLE_SPAWN_LIKELIHOOD 0.35
-#define VEHICLE_SPAWN_INCREMENT 0.05
+#define BASE_VEHICLE_SPAWN_LIKELIHOOD 0.25
+#define VEHICLE_SPAWN_INCREMENT 0.05 // how much to increase likelihood by each round
 #define ROUNDS_SINCE_MINUS_TWO(TOTAL_ROUNDS_SINCE) TOTAL_ROUNDS_SINCE - 2
 
 params [
@@ -45,17 +45,20 @@ if (!local BLWK_theAIHandlerEntity) exitWith {[]};
 // special waves will not contribute to this count
 private _roundsSinceVehicleSpawned = missionNamespace getVariable ["BLWK_roundsSinceVehicleSpawned",2];
 // wait until it has been at least two rounds since a vehicle spawn to get another one
-if (_roundsSinceVehicleSpawned >= 2) exitWith {
+if (_roundsSinceVehicleSpawned <= 1) exitWith {
+	hint "no vehicles 1";
 	BLWK_roundsSinceVehicleSpawned = _roundsSinceVehicleSpawned + 1;
 	[]
 };
+
 
 // only the rounds after the two will contribute to the LIKELIHOOD percentage (5% per round, with a starting percentage of 35%)
 private _howLikelyIsAVehicleToSpawn = (ROUNDS_SINCE_MINUS_TWO(_roundsSinceVehicleSpawned) * VEHICLE_SPAWN_INCREMENT) + BASE_VEHICLE_SPAWN_LIKELIHOOD;
 private _howLikelyIsAVheicleNOTToSpawn = 1 - _howLikelyIsAVehicleToSpawn;
 
-private _vehcileWillSpawn = selectRandomWeighted [true,_howLikelyIsAVehicleToSpawn,false,_howLikelyIsAVheicleNOTToSpawn];
+private _vehicleWillSpawn = selectRandomWeighted [true,_howLikelyIsAVehicleToSpawn,false,_howLikelyIsAVheicleNOTToSpawn];
 if !(_vehicleWillSpawn) exitWith {
+	hint "no vehicles 2";
 	BLWK_roundsSinceVehicleSpawned = _roundsSinceVehicleSpawned + 1;
 	[]
 };
