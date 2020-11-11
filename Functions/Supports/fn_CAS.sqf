@@ -24,6 +24,18 @@ Author(s):
 	Bohemia Interactive,
 	Modified By: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+#define GUN_RUN_ID 0
+#define ROCKETS_ID 1
+#define GUNS_AND_ROCKETS_ID 2
+#define BOMBS_ID 3
+
+#define PLANE_SPEED 75// m/s
+#define PLANE_VELOCITY(THE_SPEED) [0,THE_SPEED,0]
+
+#define ATTACK_HEIGHT 1000
+#define ATTACK_DISTANCE 2000
+#define BREAK_OFF_DISTANCE 500
+
 params [
 	["_attackPosition",objNull,[[],objNull]],
 	["_attackTypeID",0,[123]],
@@ -49,10 +61,6 @@ if !(isclass _planeCfg) exitwith {
 	select weapons to use
 
 ---------------------------------------------------------------------------- */
-#define GUN_RUN_ID 0
-#define ROCKETS_ID 1
-#define GUNS_AND_ROCKETS_ID 2
-#define BOMBS_ID 3
 private _attackTypesString = switch _attackTypeID do {
 	case GUN_RUN_ID: {["machinegun"]};
 	case ROCKETS_ID: {["rocketlauncher"]};
@@ -149,9 +157,6 @@ BLWK_fnc_casAttack = {
 	Position plane towards target
 
 ---------------------------------------------------------------------------- */
-#define ATTACK_HEIGHT 1000
-#define ATTACK_DISTANCE 2000
-
 private _planeSpawnPosition = _attackPosition getPos [ATTACK_DISTANCE,_attackDirection + 180];
 _planeSpawnPosition set [2,ATTACK_HEIGHT];
 private _planeSide = (getnumber (_planeCfg >> "side")) call BIS_fnc_sideType;
@@ -182,8 +187,6 @@ private _planePitch = atan (ATTACK_DISTANCE / ATTACK_HEIGHT);
 [_plane,-90 + _planePitch,0] call BIS_fnc_setPitchBank;
 
 // set plane's speed to 200 km/h
-#define PLANE_SPEED 75// m/s
-#define PLANE_VELOCITY(THE_SPEED) [0,THE_SPEED,0]
 _plane setVelocityModelSpace PLANE_VELOCITY(PLANE_SPEED);
 
 
@@ -193,7 +196,6 @@ _plane setVelocityModelSpace PLANE_VELOCITY(PLANE_SPEED);
 
 ---------------------------------------------------------------------------- */
 // get flight characteristics to steer the plane onto target
-#define BREAK_OFF_DISTANCE 500
 private _distanceToTarget = _attackPosition vectorDistance _planePositionASL;
 private _flightTime = (_distanceToTarget - BREAK_OFF_DISTANCE) / PLANE_SPEED;
 private _startTime = time;
