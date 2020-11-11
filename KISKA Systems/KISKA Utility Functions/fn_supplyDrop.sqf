@@ -60,7 +60,7 @@ _classNames apply {
 
 		private "_chuteVelocity";
 		private _chuteHeight = (getPosATLVisual _chute) select 2;
-		while {_chuteHeight > 50} do {
+		while {_chuteHeight > 80} do {
 			_chuteVelocity = velocityModelSpace _chute;
 			if (_chuteHeight > 500) then {
 				_chute setVelocityModelSpace (_chuteVelocity vectorDiff [0,0,90]);
