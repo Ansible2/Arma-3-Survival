@@ -46,8 +46,10 @@ BLWK_playAreaMarker setMarkerColor "ColorWhite";
 // cache enemy infantry spawn positions
 private _AISpawnPositionsArray = [];
 private _positionToPushBack = [];
+private _minRadius = BLWK_playAreaRadius + 50;
+private _maxRadius = BLWK_playAreaRadius + 100;
 while {count _AISpawnPositionsArray < NUMBER_OF_INFANTRY_SPAWN_POSITIONS} do {
-	_positionToPushBack = [BLWK_playAreaCenter, BLWK_playAreaRadius + 50, BLWK_playAreaRadius + 100, 0, 0] call BIS_fnc_findSafePos;
+	_positionToPushBack = [BLWK_playAreaCenter, _minRadius, _maxRadius, 0, 0] call BIS_fnc_findSafePos;
 	_AISpawnPositionsArray pushBackUnique _positionToPushBack;
 };
 // give the spawn positions to whomever will be handling AI (server or headless client)
@@ -56,8 +58,10 @@ missionNamespace setVariable ["BLWK_infantrySpawnPositions",_AISpawnPositionsArr
 
 // cache enemy vehicle spawn positions
 private _vehicleSpawnPositions = [];
+_minRadius = BLWK_playAreaRadius + 100;
+_maxRadius = BLWK_playAreaRadius + 200;
 while {count _vehicleSpawnPositions < NUMBER_OF_VEHICLE_SPAWN_POSITIONS} do {
-	_positionToPushBack = [BLWK_playAreaCenter, BLWK_playAreaRadius + 100, BLWK_playAreaRadius + 200, 10] call BIS_fnc_findSafePos;
+	_positionToPushBack = [BLWK_playAreaCenter, _minRadius, _maxRadius, 10] call BIS_fnc_findSafePos;
 	_vehicleSpawnPositions pushBackUnique _positionToPushBack;
 };
 missionNamespace setVariable ["BLWK_vehicleSpawnPositions",_vehicleSpawnPositions,BLWK_theAIHandlerOwnerID];
