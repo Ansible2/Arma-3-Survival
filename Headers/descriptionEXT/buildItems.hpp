@@ -1,6 +1,4 @@
-#include "supportDefines.hpp"
 #include "GUI\shopGUICommonDefines.hpp"
-
 
 class BLWK_genericBuildItemBase
 {
@@ -13,6 +11,15 @@ class BLWK_genericBuildItemBase
 	attachmentZ = 1;
 	invincible = 0;
 };
+class BLWK_genericTurretBase: BLWK_genericBuildItemBase
+{
+	category = TURRETS_CATEGORY;
+	attachmentX = 0.25;
+	attachmentY = 2;
+	attachmentZ = 2;
+	invincible = 1;
+};
+
 class BLWK_buildableItems
 {
 	class Land_Plank_01_8m_F: BLWK_genericBuildItemBase
@@ -208,14 +215,9 @@ class BLWK_buildableItems
 		category = STORAGE_CATEGORY;
 	};
 
-	class B_HMG_01_high_F : BLWK_genericBuildItemBase
+	class B_HMG_01_high_F : BLWK_genericTurretBase
 	{
 		price = 3000;
-		category = TURRETS_CATEGORY;
-		attachmentX = 0.25;
-		attachmentY = 2;
-		attachmentZ = 2;
-		invincible = 1;
 	};
 
 	class Land_BagBunker_Small_F : BLWK_genericBuildItemBase
@@ -243,16 +245,11 @@ class BLWK_buildableItems
 		attachmentZ = 5;
 	};
 
-	class B_HMG_01_A_F : BLWK_genericBuildItemBase
+	class B_HMG_01_A_F : BLWK_genericTurretBase
 	{
 		price = 7500;
-		category = TURRETS_CATEGORY;
 		hasAI = 1;
 		rotation = 180;
-		attachmentX = 0.25;
-		attachmentY = 2;
-		attachmentZ = 2;
-		invincible = 1;
 	};
 
 	class Land_Bunker_01_Small_F : BLWK_genericBuildItemBase
@@ -296,4 +293,41 @@ class BLWK_buildableItems
 		price = 100;
 		category = OBSTACLES_CATEGORY;
 	};
+
+	class B_GMG_01_high_F : BLWK_genericTurretBase
+	{
+		price = 4000;
+	};
+
+	class B_Mortar_01_F : BLWK_genericTurretBase
+	{
+		price = 8000;
+	};
+
+	class B_Mortar_01_F : BLWK_genericTurretBase
+	{
+		price = 8000;
+	};
+
+	class B_static_AT_F : BLWK_genericTurretBase
+	{
+		price = 1000;
+	};
+
+	class B_static_AA_F : BLWK_genericTurretBase
+	{
+		price = 500;
+	};
+
+	class B_G_HMG_02_high_F : BLWK_genericTurretBase
+	{
+		price = 3000;
+	};
+
+	class B_G_HMG_02_F : BLWK_genericTurretBase
+	{
+		price = 2000;
+	};
+	#include "OPTREBuildItems.hpp"
+	#include "RHSBuildItems.hpp"
 };
