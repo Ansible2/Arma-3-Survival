@@ -45,6 +45,7 @@ if !(isServer) exitWith {
 
 params [
 	["_playedFromLoop",false,[true]],
+	["_lastPlayedTrack","",[""]],
 	["_musicTracks",missionNamespace getVariable ["KISKA_randomMusic_tracks",[]],[[]]],
 	["_timeBetween",missionNamespace getVariable ["KISKA_randomMusic_timeBetween",[300,420,540]],[[],123]],
 	["_usedMusicTracks",missionNamespace getVariable ["KISKA_randomMusic_usedTracks",[]],[[]]]
@@ -66,8 +67,18 @@ if (_musicTracks isEqualTo []) then {
 
 private _selectedTrack = selectRandom _musicTracks;
 
+
+private _doInterrupt = !(_playedFromLoop);
+if !(isDedicated) then {
+	// if the window becomes unfocused, the sleeps can become out of sync.
+	// this is used to guarantee a track starts playing on time if things are out of sync
+	if (!_doInterrupt AND {_lastPlayedTrack == (call KISKA_fnc_getMusicPlaying)}) then {
+		_doInterrupt = true;
+	};
+};
+
 // play song
-null = [_selectedTrack,0,!(_playedFromLoop),0.5] remoteExec ["KISKA_fnc_playMusic",[0,-2] select isDedicated];
+null = [_selectedTrack,0,_doInterrupt,0.5] remoteExec ["KISKA_fnc_playMusic",[0,-2] select isDedicated];
 
 // if it is the intial running of the system
 if (isNil "KISKA_musicSystemIntialized") then {
@@ -126,12 +137,16 @@ if (KISKA_musicSystemIntialized) then {
 	KISKA_randomMusicStartTIme = time;
 	private _startTime = KISKA_randomMusicStartTIme;
 
-	uisleep _waitTime;
+	if (!isMultiplayer OR {isMultiplayerSolo}) then {
+		sleep _waitTime;
+	} else {	
+		uiSleep _waitTime;
+	};
 
 	if (_startTime isEqualTo KISKA_randomMusicStartTIme) then {
 		diag_log "Sleep done";
 		// the globals in params are not passed to allow for changes while music is playing
-		null = [true] spawn KISKA_fnc_randomMusic; 
+		null = [true,_selectedTrack] spawn KISKA_fnc_randomMusic; 
 
 		diag_log "execing next song";
 	};
