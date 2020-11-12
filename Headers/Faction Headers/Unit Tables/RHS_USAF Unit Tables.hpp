@@ -120,7 +120,6 @@
 	"rhsusf_usmc_recon_marpat_d_autorifleman",\
 	"rhsusf_usmc_recon_marpat_d_autorifleman_fast",\
 	"rhsusf_usmc_recon_marpat_d_autorifleman_lite",\
-	"rhsusf_usmc_recon_marpat_d_grenadier_m32",\
 	"rhsusf_usmc_recon_marpat_d_machinegunner",\
 	"rhsusf_usmc_recon_marpat_d_marksman",\
 	"rhsusf_usmc_recon_marpat_d_marksman_fast",\
@@ -153,7 +152,6 @@
 	"rhsusf_usmc_marpat_d_explosives",\
 	"rhsusf_usmc_marpat_d_fso",\
 	"rhsusf_usmc_marpat_d_grenadier",\
-	"rhsusf_usmc_marpat_d_grenadier_m32",\
 	"rhsusf_usmc_marpat_d_jfo",\
 	"rhsusf_usmc_marpat_d_machinegunner",\
 	"rhsusf_usmc_marpat_d_machinegunner_ass",\
@@ -184,7 +182,6 @@
 	"rhsusf_usmc_marpat_wd_explosives",\
 	"rhsusf_usmc_marpat_wd_fso",\
 	"rhsusf_usmc_marpat_wd_grenadier",\
-	"rhsusf_usmc_marpat_wd_grenadier_m32",\
 	"rhsusf_usmc_marpat_wd_jfo",\
 	"rhsusf_usmc_marpat_wd_machinegunner",\
 	"rhsusf_usmc_marpat_wd_machinegunner_ass",\
@@ -209,7 +206,6 @@
 	"rhsusf_usmc_recon_marpat_wd_autorifleman",\
 	"rhsusf_usmc_recon_marpat_wd_autorifleman_fast",\
 	"rhsusf_usmc_recon_marpat_wd_autorifleman_lite",\
-	"rhsusf_usmc_recon_marpat_wd_grenadier_m32",\
 	"rhsusf_usmc_recon_marpat_wd_machinegunner",\
 	"rhsusf_usmc_recon_marpat_wd_marksman",\
 	"rhsusf_usmc_recon_marpat_wd_marksman_fast",\
