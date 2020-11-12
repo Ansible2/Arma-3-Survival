@@ -50,7 +50,7 @@ for "_i" from 1 to DRONE_NUMBER do {
 			[_unitKilled,_points,true] remoteExecCall ["BLWK_fnc_createHitMarker",_instigator];
 		};
 
-		private _explosion = "HandGrenade" createVehicle (getPosATLVisual _unitKilled);
+		private _explosion = "DemoCharge_Remote_Ammo_Scripted" createVehicle (getPosATLVisual _unitKilled);
 		_explosion setdamage 1;
 		deleteVehicle _unit;
 	}];
