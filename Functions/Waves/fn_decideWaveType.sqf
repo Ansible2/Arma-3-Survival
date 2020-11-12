@@ -1,3 +1,4 @@
+#include "..\..\Headers\String Constants.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_decideWaveType
 
@@ -25,14 +26,14 @@ Author(s):
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {false};
 
-#include "..\..\Headers\String Constants.hpp"
+#define SPECIAL_WAVE_LIKELIHOOD 0.4
 #define STANDARD_WAVE_LIKELIHOOD 1
-#define SUICIDE_WAVE_LIKELIHOOD 0.6
-#define CIVILIAN_WAVE_LIKELIHOOD 0.6
-#define DRONE_WAVE_LIKELIHOOD 0.6
-#define MORTAR_WAVE_LIKELIHOOD 0.6
-#define DEFECTOR_WAVE_LIKELIHOOD 0.6
-#define OVERRUN_WAVE_LIKELIHOOD 0.6
+#define SUICIDE_WAVE_LIKELIHOOD 0.4
+#define CIVILIAN_WAVE_LIKELIHOOD 0.4
+#define DRONE_WAVE_LIKELIHOOD 0.4
+#define MORTAR_WAVE_LIKELIHOOD 0.4
+#define DEFECTOR_WAVE_LIKELIHOOD 0.4
+#define OVERRUN_WAVE_LIKELIHOOD 0.4
 
 private _fn_getWaveType = {
 	private _decideArray = [];
