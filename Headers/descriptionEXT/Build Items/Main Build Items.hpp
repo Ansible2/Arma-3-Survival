@@ -330,6 +330,7 @@ class BLWK_buildableItems
 	class ACE_medicalSupplyCrate_advanced : BLWK_genericBuildItemBase
 	{
 		price = 500;
+		category = STORAGE_CATEGORY;
 		attachmentY = 2;
 	};
 	#include "OPTRE Build Items.hpp"
