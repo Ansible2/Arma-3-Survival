@@ -28,22 +28,21 @@ Author(s):
 
 private _droneGroup = createGroup OPFOR;
 private _playAreaRadiusExtended = BLWK_playAreaRadius + 100;
-private _spawnPosition = [[BLWK_playAreaCenter,_playAreaRadiusExtended,_playAreaRadiusExtended,0,false],true] call CBAP_fnc_randPosArea;
-private _rotation = _spawnPosition getDir BLWK_playAreaCenter;
 
-
-private ["_drone_temp","_droneArray_temp"];
+private ["_drone_temp","_droneArray_temp","_spawnPosition_temp","_rotation_temp"];
 for "_i" from 1 to DRONE_NUMBER do {
+	_spawnPosition_temp = [[BLWK_playAreaCenter,_playAreaRadiusExtended,_playAreaRadiusExtended,0,false],true] call CBAP_fnc_randPosArea;
+	_rotation_temp = _spawnPosition_temp getDir BLWK_playAreaCenter; // face the BLWK_playAreaCenter
+
 	// these will wpawn in the air
-	_droneArray_temp = [_spawnPosition, _rotation, DRONE_CLASS, _droneGroup] call BIS_fnc_spawnVehicle;
+	_droneArray_temp = [_spawnPosition_temp, _rotation_temp, DRONE_CLASS, _droneGroup] call BIS_fnc_spawnVehicle;
 	_drone_temp = _droneArray_temp select 0;
 	_drone_temp flyInHeight 30;
 	// CIPHER COMMENT: Skill might not be needed
 	_drone_temp setSkill 1;
 
 	_drone_temp addEventHandler ["HIT",{
-		private _unitKilled = _this select 0;
-		private _instigator = _this select 3;
+		params ["_unitKilled", "_source", "_damage", "_instigator"];
 
 		if (isPlayer _instigator) then {
 			private _points = [_unitKilled] call BLWK_fnc_getPointsForKill;
@@ -51,7 +50,7 @@ for "_i" from 1 to DRONE_NUMBER do {
 			[_unitKilled,_points,true] remoteExecCall ["BLWK_fnc_createHitMarker",_instigator];
 		};
 
-		private _explosion = "HandGrenade" createVehicle (getPos _unitKilled);
+		private _explosion = "HandGrenade" createVehicle (getPosATLVisual _unitKilled);
 		_explosion setdamage 1;
 		deleteVehicle _unit;
 	}];

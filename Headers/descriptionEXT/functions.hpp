@@ -376,6 +376,8 @@ class CBAP //ported CBA functions
 		{};
 		class clearWaypoints
 		{};
+		class getArea
+		{};
 		class getGroup
 		{};
 		class getItemConfig

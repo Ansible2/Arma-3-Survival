@@ -27,7 +27,7 @@ params [
     ["_zRef", [], ["",objNull,locationNull,[]], 5],
     ["_perimeter", false, [true]]
 ];
-private _area = [_zRef] call BIS_fnc_getArea;
+private _area = [_zRef] call CBAP_fnc_getArea;
 
 if (_area isEqualTo []) exitWith {[]};
 
