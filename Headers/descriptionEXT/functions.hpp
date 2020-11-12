@@ -122,8 +122,6 @@ class BLWK
 	*/
 		class doMagRepack
 		{};
-		class forceCloseBISArsenal
-		{};
 		class getFriendlyVehicleClass
 		{};
 		class handleEnemyWeapons

@@ -120,7 +120,7 @@ null = [_aircraft,_dropPosition,_aircraftGroup,_flyToPosition] spawn {
 			case 5: {1};
 		};
 		_timeLeft = str (round (_timeBetweenMessages * _increment));
-		_message = "Arsenal Has " + _timeLeft + " Seconds Left";
+		_message = "Arsenal Will Self Destruct In: " + _timeLeft + " Seconds";
 		
 		null = [_message] remoteExec ["hint",BLWK_allClientsTargetID];
 		
@@ -130,7 +130,9 @@ null = [_aircraft,_dropPosition,_aircraftGroup,_flyToPosition] spawn {
 	[[_arsenalBox]] call KISKA_fnc_removeArsenal;
 	sleep 2;
 	
-	remoteExecCall ["BLWK_fnc_forceCloseBISArsenal",BLWK_allClientsTargetID];
+	private _explosiveType = selectRandom ["DemoCharge_Remote_Ammo_Scripted","SatchelCharge_Remote_Ammo_Scripted","ClaymoreDirectionalMine_Remote_Ammo_Scripted"];
+	private _explosive = _explosiveType createVehicle (getPosATLVisual _bomber);
+	_explosive setDamage 1;
 	
 	deleteVehicle _arsenalBox;
 };

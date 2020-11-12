@@ -48,7 +48,7 @@
 
 // Arsenal drop
 #define SUPPLY_ARSENAL_DROP_CLASS supplyDropArsenal_commMenu
-#define SUPPLY_ARSENAL_DROP_TEXT "Arsenal Box Drop (5 Min Access)"
+#define SUPPLY_ARSENAL_DROP_TEXT "Arsenal Box Drop (5 Min Before Self Destruct)"
 
 
 // CAS Gun Run
