@@ -51,9 +51,11 @@ if (_stalkerGroupUnits isEqualTo []) exitWith {
 
 // update stalker count
 private _stalkedUnit = _stalkerGroup getVariable STALKED_UNIT_VAR;
-private _numberOfStalkers = _stalkedUnit getVariable STALKER_COUNT_VAR;
-_stalkerGroup setVariable [STALKED_UNIT_VAR,nil];
-_stalkedUnit setVariable [STALKER_COUNT_VAR,_numberOfStalkers - (count _stalkerGroupUnits)];
+if (!isNull _stalkedUnit) then {
+	private _numberOfStalkers = _stalkedUnit getVariable [STALKER_COUNT_VAR,0];
+	_stalkerGroup setVariable [STALKED_UNIT_VAR,nil];
+	_stalkedUnit setVariable [STALKER_COUNT_VAR,_numberOfStalkers - (count _stalkerGroupUnits)];
+};
 
 // remove events
 private "_id_temp";
