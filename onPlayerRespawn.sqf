@@ -29,3 +29,10 @@ if !(missionNamespace getVariable ["BLWK_inBetweenWaves",false]) then {
 };
 
 [false] call BLWK_fnc_reassignCurator;
+
+// make players briefly invincible
+_player allowDamage false;
+null = [] spawn {
+    sleep 15;
+    player allowDamage true;
+};
