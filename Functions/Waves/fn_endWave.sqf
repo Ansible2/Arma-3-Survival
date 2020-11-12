@@ -50,17 +50,21 @@ private _players = call CBAP_fnc_players;
 
 
 private "_playerTemp";
-private _fn_healPlayers = {
+_players apply {
+	_playerTemp = _x;
+
 	if (lifeState _playerTemp == "DEAD") exitWith {
 		[_playerTemp] remoteExec ["forceRespawn",_playerTemp];
 	};
 	if (lifeState _playerTemp == "INCAPACITATED") then {
-		["BLWK_reviveOnStateVar", 1, _playerTemp] remoteExecCall ["BIS_fnc_reviveOnState",_playerTemp];
+		if (BLWK_dontUseRevive) then {
+			if (BLWK_ACELoaded) then {
+				[_playerTemp] remoteExecCall ["ace_medical_treatment_fnc_fullHealLocal",_playerTemp];
+			};
+		} else {
+			["BLWK_reviveOnStateVar", 1, _playerTemp] remoteExecCall ["BIS_fnc_reviveOnState",_playerTemp];
+		};
 	};
-};
-_players apply {
-	_playerTemp = _x;
-	call _fn_healPlayers
 };
 
 
