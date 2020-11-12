@@ -110,7 +110,7 @@
 	"rhsusf_army_ocp_rifleman_arb_m16",\
 	"rhsusf_army_ocp_arb_squadleader",\
 	"rhsusf_army_ocp_arb_teamleader",\
-	["B_LSV_01_armed_F","rhsusf_m1245_m2crows_socom_d","rhsusf_stryker_m1126_m2_d","rhsusf_stryker_m1126_mk19_d","RHS_MELB_MH6M","RHS_C130J","RHS_A10","RHS_AH1Z"]\
+	["B_LSV_01_armed_F","rhsusf_m1245_m2crows_socom_d","rhsusf_stryker_m1126_m2_d","rhsusf_stryker_m1126_mk19_d","RHS_MELB_MH6M","RHS_C130J","RHS_A10","RHS_AH64DGrey"]\
 ]
 #define RHS_USF_USMC_DES_RECON_UNITS\
 [\
@@ -137,7 +137,7 @@
 	"rhsusf_usmc_recon_marpat_d_teamleader_lite",\
 	"rhsusf_navy_sarc_d",\
 	"rhsusf_navy_sarc_d_fast",\
-	["rhsusf_m1043_d_s_m2","rhsusf_m1240a1_m2crows_usmc_d","rhsusf_m1240a1_mk19crows_usmc_d","rhsusf_m1a1fep_d","RHS_UH1Y_d","RHS_C130J","RHS_A10","RHS_AH1Z"]\
+	["rhsusf_m1043_d_s_m2","rhsusf_m1240a1_m2crows_usmc_d","rhsusf_m1240a1_mk19crows_usmc_d","rhsusf_m1a1fep_d","RHS_UH1Y_d","RHS_C130J","RHS_A10","RHS_AH64DGrey"]\
 ]
 #define RHS_USF_USMC_DES_UNITS\
 [\
@@ -168,7 +168,7 @@
 	"rhsusf_usmc_marpat_d_squadleader",\
 	"rhsusf_usmc_marpat_d_teamleader",\
 	"rhsusf_navy_marpat_d_medic",\
-	["rhsusf_m1043_d_s_m2","rhsusf_m1240a1_m2crows_usmc_d","rhsusf_m1240a1_mk19crows_usmc_d","rhsusf_m1a1fep_d","RHS_UH1Y_d","RHS_C130J","RHS_A10","RHS_AH1Z"]\
+	["rhsusf_m1043_d_s_m2","rhsusf_m1240a1_m2crows_usmc_d","rhsusf_m1240a1_mk19crows_usmc_d","rhsusf_m1a1fep_d","RHS_UH1Y_d","RHS_C130J","RHS_A10","RHS_AH64DGrey"]\
 ]
 #define RHS_USF_USMC_WOODLAND_UNITS\
 [\
@@ -199,7 +199,7 @@
 	"rhsusf_usmc_marpat_wd_squadleader",\
 	"rhsusf_usmc_marpat_wd_teamleader",\
 	"rhsusf_navy_marpat_wd_medic",\
-	["rhsusf_m1043_w_s_m2","rhsusf_m1240a1_m2crows_usmc_wd","rhsusf_m1240a1_mk19crows_usmc_wd","rhsusf_m1a1fep_d","RHS_UH1Y","RHS_C130J","RHS_A10","RHS_AH1Z_wd"]\
+	["rhsusf_m1043_w_s_m2","rhsusf_m1240a1_m2crows_usmc_wd","rhsusf_m1240a1_mk19crows_usmc_wd","rhsusf_m1a1fep_d","RHS_UH1Y","RHS_C130J","RHS_A10","RHS_AH64DGrey"]\
 ]
 #define RHS_USF_USMC_WOODLAND_RECON_UNITS\
 [\
@@ -226,5 +226,5 @@
 	"rhsusf_usmc_recon_marpat_wd_teamleader_lite",\
 	"rhsusf_navy_sarc_w",\
 	"rhsusf_navy_sarc_w_fast",\
-	["rhsusf_m1043_w_s_m2","rhsusf_m1240a1_m2crows_usmc_wd","rhsusf_m1240a1_mk19crows_usmc_wd","rhsusf_m1a1fep_d","RHS_UH1Y","RHS_C130J","RHS_A10","RHS_AH1Z_wd"]\
+	["rhsusf_m1043_w_s_m2","rhsusf_m1240a1_m2crows_usmc_wd","rhsusf_m1240a1_mk19crows_usmc_wd","rhsusf_m1a1fep_d","RHS_UH1Y","RHS_C130J","RHS_A10","RHS_AH64DGrey"]\
 ]
