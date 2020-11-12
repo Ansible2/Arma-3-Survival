@@ -31,6 +31,8 @@ if (!local _object) exitWith {
 private _players = call CBAP_fnc_players;
 
 _players apply {
-	null = [_object,_x] remoteExec ["disableCollisionWith",_x];
-	_object disableCollisionWith _x;
+	if !(_x isEqualTo (attachedTo _object)) then {
+		null = [_object,_x] remoteExecCall ["disableCollisionWith",_x];
+		_object disableCollisionWith _x;
+	};
 };
