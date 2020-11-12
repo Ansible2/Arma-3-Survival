@@ -33,7 +33,6 @@ if (!local _bomber) exitWith {};
 if (_eventHandlerId isEqualTo -1) then {
 	_eventHandlerId = _bomber getVariable "BLWK_suicideBomberEventID";	
 };
-_bomber removeMPEventHandler ["MPKILLED",_eventHandlerId];
 
 private _explosiveType = selectRandom ["DemoCharge_Remote_Ammo_Scripted","SatchelCharge_Remote_Ammo_Scripted","ClaymoreDirectionalMine_Remote_Ammo_Scripted"];
 
