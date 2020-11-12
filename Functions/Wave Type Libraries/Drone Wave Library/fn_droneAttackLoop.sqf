@@ -37,9 +37,9 @@ private _droneGroupUnits = units _droneGroup;
 while {!(_droneGroupUnits isEqualTo [])} do {
 	_droneTofire = selectRandom _droneGroupUnits;
 	
-	_didFire = _drone fireAtTarget [bulwarkBox];
+	_didFire = _droneTofire fireAtTarget [bulwarkBox];
 	if (_didFire) then {
-		sleep 20;
+		sleep 10;
 	} else {
 		sleep 5;
 	};
