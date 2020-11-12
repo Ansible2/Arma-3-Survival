@@ -3,7 +3,7 @@ waitUntil {
 	false
 };
 
-waitUntil {player isEqualTo player};
+waitUntil {!isNull player};
 
 private _player = player;
 
@@ -55,4 +55,5 @@ null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
 
 waitUntil {!isNil "BLWK_playerGroup"};
 
+sleep 1;
 [_player] joinSilent BLWK_playerGroup;
