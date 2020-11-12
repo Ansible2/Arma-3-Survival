@@ -6,17 +6,17 @@ class BLWK_genericBuildItemBase
 	category = OTHER_CATEGORY;
 	hasAI = false;
 	rotation = 0;
-	attachmentX = 0;
-	attachmentY = 3;
-	attachmentZ = 1;
-	invincible = 0;
+	attachmentX = 0; // side to side
+	attachmentY = 3; // how far out in front of you
+	attachmentZ = 1; // height
+	invincible = 0; // 0 false, 1 true
 };
 class BLWK_genericTurretBase: BLWK_genericBuildItemBase
 {
 	category = TURRETS_CATEGORY;
-	attachmentX = 0.25;
+	attachmentX = 0;
 	attachmentY = 2;
-	attachmentZ = 2;
+	attachmentZ = 1;
 	invincible = 1;
 };
 
@@ -218,6 +218,9 @@ class BLWK_buildableItems
 	class B_HMG_01_high_F : BLWK_genericTurretBase
 	{
 		price = 3000;
+		attachmentX = 0.25;
+		attachmentY = 2;
+		attachmentZ = 2;
 	};
 
 	class Land_BagBunker_Small_F : BLWK_genericBuildItemBase
