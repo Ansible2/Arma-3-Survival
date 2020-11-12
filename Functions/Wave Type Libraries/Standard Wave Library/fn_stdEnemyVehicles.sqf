@@ -46,7 +46,6 @@ if (!local BLWK_theAIHandlerEntity) exitWith {[]};
 private _roundsSinceVehicleSpawned = missionNamespace getVariable ["BLWK_roundsSinceVehicleSpawned",2];
 // wait until it has been at least two rounds since a vehicle spawn to get another one
 if (_roundsSinceVehicleSpawned <= 1) exitWith {
-	hint "no vehicles 1";
 	BLWK_roundsSinceVehicleSpawned = _roundsSinceVehicleSpawned + 1;
 	[]
 };
@@ -58,7 +57,6 @@ private _howLikelyIsAVheicleNOTToSpawn = 1 - _howLikelyIsAVehicleToSpawn;
 
 private _vehicleWillSpawn = selectRandomWeighted [true,_howLikelyIsAVehicleToSpawn,false,_howLikelyIsAVheicleNOTToSpawn];
 if !(_vehicleWillSpawn) exitWith {
-	hint "no vehicles 2";
 	BLWK_roundsSinceVehicleSpawned = _roundsSinceVehicleSpawned + 1;
 	[]
 };
