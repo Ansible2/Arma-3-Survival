@@ -31,7 +31,7 @@ if !(BLWK_currentWaveNumber >= BLWK_vehicleStartWave) exitWith {[]};
 #define LIKELIHOOD_LIGHT_ARMOUR 0.15
 #define LIKELIHOOD_HEAVY_CAR 0.25
 #define LIKELIHOOD_LIGHT_CAR 0.50
-#define BASE_VEHICLE_SPAWN_LIKELIHOOD 0.25
+#define BASE_VEHICLE_SPAWN_LIKELIHOOD 0.30
 #define VEHICLE_SPAWN_INCREMENT 0.05 // how much to increase likelihood by each round
 #define ROUNDS_SINCE_MINUS_TWO(TOTAL_ROUNDS_SINCE) TOTAL_ROUNDS_SINCE - 2
 
@@ -51,11 +51,13 @@ if (_roundsSinceVehicleSpawned <= 1) exitWith {
 };
 
 
-// only the rounds after the two will contribute to the LIKELIHOOD percentage (5% per round, with a starting percentage of 35%)
+// only the rounds after the two will contribute to the LIKELIHOOD percentage (5% per round, with a starting percentage of 30%)
 private _howLikelyIsAVehicleToSpawn = (ROUNDS_SINCE_MINUS_TWO(_roundsSinceVehicleSpawned) * VEHICLE_SPAWN_INCREMENT) + BASE_VEHICLE_SPAWN_LIKELIHOOD;
-private _howLikelyIsAVheicleNOTToSpawn = 1 - _howLikelyIsAVehicleToSpawn;
+diag_log "Vehicle spawn likelihood:";
+diag_log _howLikelyIsAVehicleToSpawn;
+private _howLikelyIsAVehicleNOTToSpawn = 1 - _howLikelyIsAVehicleToSpawn;
 
-private _vehicleWillSpawn = selectRandomWeighted [true,_howLikelyIsAVehicleToSpawn,false,_howLikelyIsAVheicleNOTToSpawn];
+private _vehicleWillSpawn = selectRandomWeighted [true,_howLikelyIsAVehicleToSpawn,false,_howLikelyIsAVehicleNOTToSpawn];
 if !(_vehicleWillSpawn) exitWith {
 	BLWK_roundsSinceVehicleSpawned = _roundsSinceVehicleSpawned + 1;
 	[]
@@ -159,6 +161,8 @@ private _fn_spawnAVehicle = {
 call _fn_spawnAVehicle;
 // do a role for a second vehicle
 private _howLikelyIsASecondVehicleToSpawn = _howLikelyIsAVehicleToSpawn / 2;
+diag_log "second vehicle likelihood";
+diag_log _howLikelyIsASecondVehicleToSpawn;
 private _secondVehcileWillSpawn = selectRandomWeighted [true,_howLikelyIsASecondVehicleToSpawn,false,1 - _howLikelyIsASecondVehicleToSpawn];
 if (_secondVehcileWillSpawn) then {
 	call _fn_spawnAVehicle;
