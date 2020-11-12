@@ -25,9 +25,13 @@ Author(s):
 params ["_object"];
 
 // check if someone is carrying the object
-if !(isNull attachedTo _object) then {
-	detach _object;
+private _attachedToObject = attachedTo _object;
+if !(isNull _attachedToObject) then {
+	if (_attachedToObject isEqualTo player) then {
+		missionNamespace setVariable ["BLWK_heldObject",nil];
+	};
 
+	detach _object;
 	call BLWK_fnc_removePickedUpObjectActions;
 };
 
