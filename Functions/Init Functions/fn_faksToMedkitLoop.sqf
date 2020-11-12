@@ -27,6 +27,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 
+if (BLWK_dontUseRevive) exitWith {};
+
 // check if the loop was already started
 if (missionNamespace getVariable ["BLWK_faksToMedkitLooprunning",false]) exitWith {};
 
