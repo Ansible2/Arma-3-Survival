@@ -83,7 +83,7 @@ private ["_currentPosition","_positionDifference","_needsReset"];
 private _fn_handleStationaryLeader = {
 	_currentPosition = getPosWorld _groupLeader;
 	
-	sleep 10;
+	sleep 20;
 
 	if !(call _fn_checkGroupStatus) exitWith {
 		//["%1 failed secondary group status check",_groupToCheck] call BIS_fnc_error;
