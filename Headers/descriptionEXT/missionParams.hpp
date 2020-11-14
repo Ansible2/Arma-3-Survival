@@ -413,3 +413,10 @@ class BLWK_weaponSwayCoef
 	texts[] = {"0", "0.1", "0.15", "0.2", "0.25", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
 	default = 0;
 };
+class BLWK_deleteDroppedItemsEvery
+{
+	title = "How often should dropped items cleared?";
+	values[] = {1, 2, 3, 4, 5};
+	texts[] = {"Every Round", "Every 2 Rounds", "Every 3 Rounds", "Every 4 Rounds", "Every 5 Rounds"};
+	default = 3;
+};

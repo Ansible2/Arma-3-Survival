@@ -1,3 +1,4 @@
+#include "..\..\Headers\String Constants.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_endWave
 
@@ -42,11 +43,10 @@ if !((missionNamespace getVariable ["BLWK_civiliansFromWave",[]]) isEqualTo []) 
 	missionNamespace setVariable ["BLWK_civiliansFromWave",[]];
 };
 
-#include "..\..\Headers\String Constants.hpp"
 
 missionNamespace setVariable ["BLWK_inBetweenWaves",true,true];
 private _players = call CBAP_fnc_players;
-[TASK_COMPLETE_TEMPLATE,["",COMPLETED_WAVE_NOTIFICATION(str BLWK_currentWaveNumber)]] remoteExec ["BIS_fnc_showNotification",_players];
+null = [TASK_COMPLETE_TEMPLATE,["",COMPLETED_WAVE_NOTIFICATION(str BLWK_currentWaveNumber)]] remoteExec ["BIS_fnc_showNotification",_players];
 
 
 private "_playerTemp";
@@ -68,6 +68,13 @@ _players apply {
 };
 
 
+private _clearDroppedItems = false;
+if (((BLWK_currentWaveNumber + 1) mod BLWK_deleteDroppedItemsEvery) isEqualTo 0) then {
+	_clearDroppedItems = true;
+	private _text = parseText "<t color='#3258a8'>At the start of the next wave, dropped items will be DELETED</t>";
+	null = [_text] remoteExecCall ["hint",BLWK_allClientsTargetID];
+};
+
 
 // count down to next wave
 if (BLWK_timeBetweenRounds > 0) then {
@@ -76,4 +83,4 @@ if (BLWK_timeBetweenRounds > 0) then {
 	sleep 15;
 };
 
-null = [] spawn BLWK_fnc_startWave;
+null = [_clearDroppedItems] spawn BLWK_fnc_startWave;

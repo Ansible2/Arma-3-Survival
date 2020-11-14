@@ -1,3 +1,4 @@
+#include "..\..\Headers\String Constants.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_healPlayer
 
@@ -7,7 +8,7 @@ Description:
 	Executed from "initServer.sqf" & "BLWK_fnc_endWave"
 
 Parameters:
-	NONE
+	0: _clearDroppedItems <BOOL> - Will dropped items on the ground be deleted this round?
 
 Returns:
 	NOTHING
@@ -25,7 +26,7 @@ Author(s):
 ---------------------------------------------------------------------------- */
 if (!isServer OR {!canSuspend}) exitWith {};
 
-#include "..\..\Headers\String Constants.hpp"
+params ["_clearDroppedItems"];
 
 call BLWK_fnc_clearMustKillArray;
 

@@ -174,6 +174,9 @@ if (isServer) then {
     BLWK_deadBodies_1 = [];
     BLWK_deadBodies_2 = [];
     BLWK_roundsBeforeBodyDeletion = "BLWK_roundsBeforeBodyDeletion" call BIS_fnc_getParamValue;
+
+    // deletion for dropped items
+    BLWK_deleteDroppedItemsEvery = "BLWK_deleteDroppedItemsEvery" call BIS_fnc_getParamValue;
     
     // keeping players in the same group upon respawn
     createCenter BLUFOR;
