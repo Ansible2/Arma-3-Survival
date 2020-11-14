@@ -1,11 +1,10 @@
-sounds[] = {boxSpin, rageSound};
+sounds[] = {};
 class boxSpin
 {
 	name = "Gambling box sound";
 	sound[] = {"\sound\boxspin.ogg", 1, 1, 100};
 	titles[] = {0,""};
 };
-
 class pointsLootSound
 {
 	name = "Points Loot Audio";
@@ -13,10 +12,10 @@ class pointsLootSound
 	titles[] = {0,""};
 };
 
-class SuicideSound
+class suicideSound
 {
 	name = "Suicide Bomber Sound";
-	sound[] = {"\sound\bomber.ogg", 15, 1, 100};
+	sound[] = {"\sound\bomber1.ogg", 15, 1, 100};
 	titles[] = {0,""};
 };
 
