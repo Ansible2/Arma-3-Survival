@@ -13,9 +13,10 @@ Description:
 
 Parameters:
 	0: _playedFromLoop <BOOL> - Used to check if this was just called from the random music loop (won't interrupt the current iteration if so)
-	1: _musicTracks <ARRAY> - An array of strings (music tracks) to use
-	2: _timeBetween <ARRAY or NUMBER> - A random or set time between tracks. Formats are [min,mid,max] & [max] for random numbers and just a single number for a set time between (see example)
-	3: _usedMusicTracks <ARRAY> - An array of already used music tracks, don't bother manually entering anyhting, this is for looping purposes
+	1: _lastPlayedTrack <STRING> - The track that was last being played. Used to be able to interrupt a song if the random music is out of sync
+	2: _musicTracks <ARRAY> - An array of strings (music tracks) to use
+	3: _timeBetween <ARRAY or NUMBER> - A random or set time between tracks. Formats are [min,mid,max] & [max] for random numbers and just a single number for a set time between (see example)
+	4: _usedMusicTracks <ARRAY> - An array of already used music tracks, don't bother manually entering anyhting, this is for looping purposes
 
 Returns:
 	NOTHING 
