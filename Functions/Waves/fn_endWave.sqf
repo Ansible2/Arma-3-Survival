@@ -71,8 +71,12 @@ _players apply {
 private _clearDroppedItems = false;
 if (((BLWK_currentWaveNumber + 1) mod BLWK_deleteDroppedItemsEvery) isEqualTo 0) then {
 	_clearDroppedItems = true;
-	private _text = parseText "<t color='#3258a8'>At the start of the next wave, dropped items will be DELETED</t>";
-	null = [_text] remoteExecCall ["hint",BLWK_allClientsTargetID];
+
+	// don't send the notification every wave if items are cleared every time. Would be annoying
+	if (BLWK_deleteDroppedItemsEvery > 1) then {
+		private _text = parseText "<t color='#3258a8'>At the start of the next wave, dropped items will be DELETED</t>";
+		null = [_text] remoteExecCall ["hint",BLWK_allClientsTargetID];
+	};
 };
 
 
