@@ -85,10 +85,18 @@ BLWK_enforceArea = false;
 [player,false] call BLWK_fnc_adjustStalkable; // make it so AI don't hunt the player
 player allowDamage false;
 player moveInTurret [_vehicle,_turretsWithWeapons select 0];
+
+localNamespace setVariable ["BLWK_soundVolume",soundVolume]; // store volume for reset
+null = [] spawn {3 fadeSound 0.25}; // turrets are stupid loud
+
 _vehicle lock true; // keep player from ejecting or switching seats with vanilla actions
 _vehicle enableCoPilot false; // disable the ability to take control of the aircraft
 
+
+
 missionNamespace setVariable [_globalUseVarString,true,true]; // set this type of gunner as active so multiple people can't spam it
+
+
 
 // create actions to switch turrets
 private _turretSwitchActions = [];
@@ -131,6 +139,8 @@ private ["_turretAction_temp","_turretMagazines_temp","_turretPath_temp"];
 
 localNamespace setVariable ["BLWK_fnc_exitFromAircraft",{
 	params ["_caller","_actionId","_arguments"];
+
+	3 fadeSound (localNamespace getVariable "BLWK_soundVolume");
 
 	setViewDistance -1;
 	setObjectViewDistance -1;
