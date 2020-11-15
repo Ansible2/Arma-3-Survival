@@ -52,6 +52,9 @@ if ((hasInterface) AND {local _instigator} AND {isPlayer _instigator}) then {
 	[_killedUnit,_points,true] call BLWK_fnc_createHitMarker;
 };
 
+if (isServer) then {
+	removeFromRemainsCollector [_killedunit];
+};
 /*
 // mp events need to be removed on the unit where they are local
 if (local _killedUnit) then {

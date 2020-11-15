@@ -21,11 +21,11 @@ ReviveRequiredItemsFakConsumed = 1;
 
 
 
-corpseManagerMode = 2; // manage only respawn bodies
-corpseLimit = 6;
-corpseRemovalMinTime = 500;
+corpseManagerMode = 1; // manage all units
+corpseLimit = 10;
+corpseRemovalMinTime = 300;
 corpseRemovalMaxTime = 800;
-wreckManagerMode = 0;		// manage all wrecks
+wreckManagerMode = 1;		// manage all wrecks
 wreckLimit = 3;
 wreckRemovalMinTime = 250;
 wreckRemovalMaxTime = 600;
@@ -91,7 +91,7 @@ class CfgCommunicationMenu
 };
 
 
-//Notifications for Special Waves
+// Notifications for Special Waves
 class CfgNotifications
 {
 	class SpecialWarning
