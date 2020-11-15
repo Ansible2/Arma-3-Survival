@@ -74,7 +74,7 @@ if (((BLWK_currentWaveNumber + 1) mod BLWK_deleteDroppedItemsEvery) isEqualTo 0)
 
 	// don't send the notification every wave if items are cleared every time. Would be annoying.
 	if (BLWK_deleteDroppedItemsEvery > 1) then {
-		private _text = parseText "<t color='#3258a8'>At the start of the next wave, dropped items will be DELETED</t>";
+		private _text = parseText "<t color='#03d7fc'>At the start of the next wave, dropped items will be DELETED</t>";
 		null = [_text] remoteExecCall ["hint",BLWK_allClientsTargetID];
 	};
 };
