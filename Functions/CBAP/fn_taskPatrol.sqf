@@ -59,6 +59,7 @@ if (count _this > 3) then {
     _this deleteAt 3;
 };
 
+_this set [4,"AWARE"];
 // Using angles create better patrol patterns
 // Also fixes weird editor bug where all WP are on same position
 private _step = 360 / _count;
@@ -78,5 +79,4 @@ for "_i" from 1 to _count do {
 _this set [1, _position];
 _this set [2, _radius];
 _this set [3, "CYCLE"];
-_this set [4,"AWARE"];
 _this call CBAP_fnc_addWaypoint;
