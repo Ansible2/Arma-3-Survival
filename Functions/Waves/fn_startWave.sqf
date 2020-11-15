@@ -26,7 +26,9 @@ Author(s):
 ---------------------------------------------------------------------------- */
 if (!isServer OR {!canSuspend}) exitWith {};
 
-params ["_clearDroppedItems"];
+params [
+	["_clearDroppedItems",false]
+];
 
 if (_clearDroppedItems) then {
 	private _weaponHolders = BLWK_playAreaCenter nearObjects ["weaponHolder",250];
