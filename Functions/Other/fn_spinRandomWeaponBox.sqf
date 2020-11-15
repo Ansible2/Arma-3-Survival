@@ -30,13 +30,6 @@ Author(s):
 
 if (!canSuspend) exitWith {};
 
-// check if player has enough to use the box
-if ((missionNamespace getVariable ["BLWK_playerKillPoints",0]) < BLWK_costToSpinRandomBox) exitWith {
-	hint "You Do Not Enough Points To Spin The Box"
-};
-
-[BLWK_costToSpinRandomBox] call BLWK_fnc_subtractPoints;
-
 // so that others can't use the box
 missionNamespace setVariable ["BLWK_randomWeaponBoxInUse",true,true];
 
@@ -51,9 +44,7 @@ private _weaponHolder = createVehicle ["GroundWeaponHolder_scripted", _boxPositi
 _weaponHolder enableSimulationGlobal false;
 
 
-// CIPHER COMMENT: Need to add the sound for the box spin
 // animate up
-
 private _boxPosition_X = _boxPosition select 0;
 private _boxPosition_Y = _boxPosition select 1;
 private _increment = 1/NUMBER_OF_FRAMES;
