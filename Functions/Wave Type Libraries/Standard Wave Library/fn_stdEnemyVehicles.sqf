@@ -55,6 +55,9 @@ if (_roundsSinceVehicleSpawned <= 1) exitWith {
 private _howLikelyIsAVehicleToSpawn = (ROUNDS_SINCE_MINUS_TWO(_roundsSinceVehicleSpawned) * VEHICLE_SPAWN_INCREMENT) + BASE_VEHICLE_SPAWN_LIKELIHOOD;
 diag_log "Vehicle spawn likelihood:";
 diag_log _howLikelyIsAVehicleToSpawn;
+if (_howLikelyIsAVehicleToSpawn > 1) then {
+	_howLikelyIsAVehicleToSpawn = 1;
+};
 private _howLikelyIsAVehicleNOTToSpawn = 1 - _howLikelyIsAVehicleToSpawn;
 
 private _vehicleWillSpawn = selectRandomWeighted [true,_howLikelyIsAVehicleToSpawn,false,_howLikelyIsAVehicleNOTToSpawn];
