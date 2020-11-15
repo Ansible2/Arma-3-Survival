@@ -30,9 +30,11 @@ params [
 	["_player",player,[objNull]]
 ];
 
+private _objectName = [configFile >> "cfgVehicles" >> (typeOf _object)] call BIS_fnc_displayName;
+
 // place object snap to
 private _snaptoActionID = _player addAction [
-	"<t color='#00ffff'>-- Snap Object To Surface --</t>",
+	"<t color='#00ffff'>-- Snap " + _objectName + " To Surface --</t>",
 	{
 		private _object = _this select 3;
 		[_object,true] call BLWK_fnc_placeObject;
@@ -45,7 +47,7 @@ private _snaptoActionID = _player addAction [
 
 // place object floating
 private _placeActionID = _player addAction [
-	"<t color='#ed601f'>-- Place Object (Floating) --</t>",
+	"<t color='#ed601f'>-- Place " + _objectName + " (Floating) --</t>",
 	{
 		private _object = _this select 3;
 		[_object,false] call BLWK_fnc_placeObject;
@@ -60,7 +62,7 @@ private _sellActionID = -1;
 if (!(_object isEqualTo bulwarkBox) AND {!(_object isEqualTo BLWK_randomWeaponBox)}) then {
 	// sell object
 	_sellActionID = _player addAction [ 
-		"<t color='#ff0000'>-- Sell (In Hand) Object Back --</t>",  
+		"<t color='#ff0000'>-- Sell (In Hand) " + _objectName + " Back --</t>",  
 		{
 			private _object = _this select 3;
 			[_object] call BLWK_fnc_sellObject;
@@ -74,7 +76,7 @@ if (!(_object isEqualTo bulwarkBox) AND {!(_object isEqualTo BLWK_randomWeaponBo
 
 // move up
 private _moveUpActionID = _player addAction [ 
-	"<t color='#00ffff'>-- Move Up (In Hand) Object --</t>",  
+	"<t color='#00ffff'>-- Move Up (In Hand) " + _objectName + " --</t>",  
 	{
 		private _player = _this select 1;
 		private _object = _this select 3;
@@ -89,7 +91,7 @@ private _moveUpActionID = _player addAction [
 
 // move down
 private _moveDownActionID = _player addAction [ 
-	"<t color='#00ff00'>-- Move Down (In Hand) Object --</t>",  
+	"<t color='#00ff00'>-- Move Down (In Hand) " + _objectName + " --</t>",  
 	{
 		private _player = _this select 1;
 		private _object = _this select 3;
@@ -104,7 +106,7 @@ private _moveDownActionID = _player addAction [
 
 // rotate left
 private _rotateLeftActionID = _player addAction [
-	"<t color='#ff00bf'>-- Rotate Left (In Hand) Object --</t>",
+	"<t color='#ff00bf'>-- Rotate Left (In Hand) " + _objectName + " --</t>",
 	{
 		private _player = _this select 1;
 		private _object = _this select 3;
@@ -119,7 +121,7 @@ private _rotateLeftActionID = _player addAction [
 
 // rotate right
 private _rotateRightActionID = _player addAction [
-	"<t color='#7e33ff'>-- Rotate Right (In Hand) Object --</t>",
+	"<t color='#7e33ff'>-- Rotate Right (In Hand) " + _objectName + " --</t>",
 	{
 		private _player = _this select 1;
 		private _object = _this select 3;
@@ -134,7 +136,7 @@ private _rotateRightActionID = _player addAction [
 
 // Reset Rotation
 private _resetRotationActionID = _player addAction [ 
-	"<t color='#ffff00'>-- Reset Rotation (In Hand) Object --</t>",  
+	"<t color='#ffff00'>-- Reset Rotation (In Hand) " + _objectName + " --</t>",  
 	{
 		private _object = _this select 3;
 		[_object] call BLWK_fnc_resetObjectRotation;

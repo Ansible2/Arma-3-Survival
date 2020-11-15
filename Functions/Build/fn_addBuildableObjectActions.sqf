@@ -30,11 +30,13 @@ params [
 
 if (isNull _object) exitWith {false};
 
+private _objectName = [configFile >> "cfgVehicles" >> (typeOf _object)] call BIS_fnc_displayName;
+
 // CIPHER COMMENT: maybe make sell into a hold action?
 // sell object
 if (!(_object isEqualTo bulwarkBox) AND {!(_object isEqualTo BLWK_randomWeaponBox)}) then {
 	_object addAction [ 
-		"<t color='#ff0000'>-- Sell Object Back --</t>",  
+		"<t color='#ff0000'>-- Sell " + _objectName + " Back --</t>",  
 		{
 			params ["_object","_caller"];
 
@@ -56,7 +58,7 @@ if (!(_object isEqualTo bulwarkBox) AND {!(_object isEqualTo BLWK_randomWeaponBo
 
 // move up
 _object addAction [ 
-	"<t color='#00ffff'>-- Move Object Up --</t>",  
+	"<t color='#00ffff'>-- Move " + _objectName + " Up --</t>",  
 	{
 		[_this select 0,true] call BLWK_fnc_moveUpOrDown;
 	}, 
@@ -72,7 +74,7 @@ _object addAction [
 
 // move down
 _object addAction [ 
-	"<t color='#00ff00'>-- Move Object Down --</t>",  
+	"<t color='#00ff00'>-- Move " + _objectName + " Down --</t>",  
 	{
 		[_this select 0,false] call BLWK_fnc_moveUpOrDown;
 	}, 
@@ -87,7 +89,7 @@ _object addAction [
 
 // pick up
 _object addAction [ 
-	"<t color='#ffffff'>-- Pickup Object --</t>",  
+	"<t color='#ffffff'>-- Pickup " + _objectName + " --</t>",  
 	{
 		params ["_object","_caller"];
 		null = [_object,_caller] spawn BLWK_fnc_pickupObject;
@@ -103,7 +105,7 @@ _object addAction [
 
 // rotate left
 _object addAction [
-	"<t color='#ff00bf'>-- Rotate Object Left --</t>",
+	"<t color='#ff00bf'>-- Rotate " + _objectName + " Left --</t>",
 	{
 		[_this select 0,false] call BLWK_fnc_rotateObject;
 	},
@@ -118,7 +120,7 @@ _object addAction [
 
 // rotate right
 _object addAction [
-	"<t color='#7e33ff'>-- Rotate Object Right --</t>",
+	"<t color='#7e33ff'>-- Rotate " + _objectName + " Right --</t>",
 	{
 		[_this select 0,true] call BLWK_fnc_rotateObject;
 	},
@@ -133,7 +135,7 @@ _object addAction [
 
 // Reset Rotation
 _object addAction [ 
-	"<t color='#ffff00'>-- Reset Object Rotation --</t>",  
+	"<t color='#ffff00'>-- Reset " + _objectName + " Rotation --</t>",  
 	{
 		[_this select 0] call BLWK_fnc_resetObjectRotation;
 	}, 
