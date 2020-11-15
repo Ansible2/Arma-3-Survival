@@ -131,7 +131,7 @@ null = [_aircraft,_dropPosition,_aircraftGroup,_flyToPosition] spawn {
 	sleep 2;
 	
 	private _explosiveType = selectRandom ["DemoCharge_Remote_Ammo_Scripted","SatchelCharge_Remote_Ammo_Scripted","ClaymoreDirectionalMine_Remote_Ammo_Scripted"];
-	private _explosive = _explosiveType createVehicle (getPosATLVisual _bomber);
+	private _explosive = _explosiveType createVehicle (getPosATLVisual _arsenalBox);
 	_explosive setDamage 1;
 	
 	deleteVehicle _arsenalBox;
