@@ -8,6 +8,7 @@
 		waitUntil {\
 			if (local TRANSFER_OBJECT) exitWith {\
 				hintsilent "The object is now local to you.";\
+				sleep _sleepTime;\
 				true\
 			};\
 			sleep _sleepTime;\
