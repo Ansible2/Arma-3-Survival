@@ -78,4 +78,5 @@ for "_i" from 1 to _count do {
 _this set [1, _position];
 _this set [2, _radius];
 _this set [3, "CYCLE"];
+_this set [4,"AWARE"];
 _this call CBAP_fnc_addWaypoint;
