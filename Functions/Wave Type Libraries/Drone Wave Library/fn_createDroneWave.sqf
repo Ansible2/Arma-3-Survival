@@ -113,5 +113,5 @@ for "_i" from 1 to DRONE_NUMBER do {
 	null = [BLWK_zeus,[[_drone_temp], true]] remoteExec ["addCuratorEditableObjects",2]; 	
 	
 	// space out spawns so that you don't get spammed
-	sleep 5;
+	sleep 10;
 };
