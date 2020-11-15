@@ -59,7 +59,6 @@ if (count _this > 3) then {
     _this deleteAt 3;
 };
 
-_this set [4,"AWARE"];
 // Using angles create better patrol patterns
 // Also fixes weird editor bug where all WP are on same position
 private _step = 360 / _count;
