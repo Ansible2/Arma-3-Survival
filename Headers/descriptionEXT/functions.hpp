@@ -235,6 +235,8 @@ class BLWK
 		{};
 		class healPlayer
 		{};
+		class paraTroopers
+		{};
 		class purchaseSupport
 		{};
 		class supportRadioGlobal
