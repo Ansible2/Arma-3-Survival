@@ -16,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn BLWK_fnc_startWave;
+		null = [true] spawn BLWK_fnc_startWave;
 
     (end)
 
@@ -27,6 +27,17 @@ Author(s):
 if (!isServer OR {!canSuspend}) exitWith {};
 
 params ["_clearDroppedItems"];
+
+if (_clearDroppedItems) then {
+	private _weaponHolders = BLWK_playAreaCenter nearObjects ["weaponHolder",250];
+	_weaponHolders = _weaponHolders select {typeOf _x == "groundWeaponHolder" AND {!(_x in BLWK_spawnedLoot)}};
+	if !(_weaponHolders isEqualTo []) then {
+		_weaponHolders apply {
+			deleteVehicle _x;
+		};
+		sleep 1;
+	};
+};
 
 call BLWK_fnc_clearMustKillArray;
 
