@@ -42,3 +42,10 @@ if (_numberOfBiofoams > 0) then {
 		_unit addItem "FirstAidKit";  
 	};
 };
+private _numberOfMedigel = {_x == "OPTRE_Medigel"} count _unitsItems;
+if (_numberOfMedigel > 0) then {
+	for "_i" from 1 to _numberOfMedigel do {
+		_unit removeItem "OPTRE_Medigel";
+		_unit addItem "FirstAidKit";  
+	};
+};
