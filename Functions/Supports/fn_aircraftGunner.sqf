@@ -221,7 +221,7 @@ private _exitAction = [
 	private _informed = false;
 	waitUntil {
 		if (!_informed AND {BLWK_currentWaveNumber == (_endWave - 1)}) then {
-			hint "You gunner support will end the next wave!";
+			hint parseText "<t color='#03d7fc'>You gunner support will end the next wave!</t>";
 			_informed = true;
 		};
 		if (BLWK_currentWaveNumber >= _endWave) exitWith {true};
