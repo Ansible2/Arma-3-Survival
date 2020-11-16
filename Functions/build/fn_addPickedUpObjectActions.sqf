@@ -34,7 +34,7 @@ private _objectName = [configFile >> "cfgVehicles" >> (typeOf _object)] call BIS
 
 // place object snap to
 private _snaptoActionID = _player addAction [
-	"<t color='#00ffff'>-- Snap " + _objectName + " To Surface --</t>",
+	"<t color='#4287f5'>-- Snap " + _objectName + " To Surface --</t>",
 	{
 		private _object = _this select 3;
 		[_object,true] call BLWK_fnc_placeObject;
@@ -106,7 +106,7 @@ private _moveDownActionID = _player addAction [
 
 // rotate left
 private _rotateLeftActionID = _player addAction [
-	"<t color='#ff00bf'>-- Rotate Left (In Hand) " + _objectName + " --</t>",
+	"<t color='#ffff00'>-- Rotate Left (In Hand) " + _objectName + " --</t>",
 	{
 		private _player = _this select 1;
 		private _object = _this select 3;
@@ -121,7 +121,7 @@ private _rotateLeftActionID = _player addAction [
 
 // rotate right
 private _rotateRightActionID = _player addAction [
-	"<t color='#7e33ff'>-- Rotate Right (In Hand) " + _objectName + " --</t>",
+	"<t color='#cc33ff'>-- Rotate Right (In Hand) " + _objectName + " --</t>",
 	{
 		private _player = _this select 1;
 		private _object = _this select 3;
@@ -136,7 +136,7 @@ private _rotateRightActionID = _player addAction [
 
 // Reset Rotation
 private _resetRotationActionID = _player addAction [ 
-	"<t color='#ffff00'>-- Reset Rotation (In Hand) " + _objectName + " --</t>",  
+	"<t color='#ff00bf'>-- Reset Rotation (In Hand) " + _objectName + " --</t>",  
 	{
 		private _object = _this select 3;
 		[_object] call BLWK_fnc_resetObjectRotation;

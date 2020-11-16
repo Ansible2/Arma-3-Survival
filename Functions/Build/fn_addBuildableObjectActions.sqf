@@ -112,7 +112,7 @@ _object addAction [
 
 // rotate left
 _object addAction [
-	"<t color='#ff00bf'>-- Rotate " + _objectName + " Left --</t>",
+	"<t color='#ffff00'>-- Rotate " + _objectName + " Left --</t>",
 	{
 		[_this select 0,false] call BLWK_fnc_rotateObject;
 	},
@@ -127,7 +127,7 @@ _object addAction [
 
 // rotate right
 _object addAction [
-	"<t color='#7e33ff'>-- Rotate " + _objectName + " Right --</t>",
+	"<t color='#cc33ff'>-- Rotate " + _objectName + " Right --</t>",
 	{
 		[_this select 0,true] call BLWK_fnc_rotateObject;
 	},
@@ -142,7 +142,7 @@ _object addAction [
 
 // Reset Rotation
 _object addAction [ 
-	"<t color='#ffff00'>-- Reset " + _objectName + " Rotation --</t>",  
+	"<t color='#ff00bf'>-- Reset " + _objectName + " Rotation --</t>",  
 	{
 		[_this select 0] call BLWK_fnc_resetObjectRotation;
 	}, 
