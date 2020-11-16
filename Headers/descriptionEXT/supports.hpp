@@ -5,19 +5,19 @@ class BLWK_supportItems
 {
 	class CRUISE_MISSILE_CLASS
 	{
-		price = 2000;
+		price = 1000;
 		category = OTHER_CATEGORY;
 	};
 
 	// heavy arty
 	class ARTILLERY_STRIKE_155MM_HE_CLASS
 	{
-		price = 1500;
+		price = 1200;
 		category = HEAVY_ARTILLERY_CATEGORY;
 	};
 	class ARTILLERY_STRIKE_155MM_CLUSTER_CLASS
 	{
-		price = 1500;
+		price = 2000;
 		category = HEAVY_ARTILLERY_CATEGORY;
 	};
 	class ARTILLERY_STRIKE_155MM_MINES_CLASS
@@ -51,12 +51,12 @@ class BLWK_supportItems
 	// ship cannon
 	class CANNON_120MM_HE_CLASS
 	{
-		price = 1000;
+		price = 800;
 		category = CANNON_CATEGORY;
 	};
 	class CANNON_120MM_CLUSTER_CLASS
 	{
-		price = 1000;
+		price = 1500;
 		category = CANNON_CATEGORY;
 	};
 	class CANNON_120MM_AT_MINES_CLASS
@@ -78,7 +78,7 @@ class BLWK_supportItems
 	// supply
 	class SUPPLY_ARSENAL_DROP_CLASS
 	{
-		price = 1000;
+		price = 10000;
 		category = SUPPLY_CATEGORY;
 	};
 
@@ -102,17 +102,17 @@ class BLWK_supportItems
 	// aircraft gunner
 	class TURRET_GUNSHIP_CLASS
 	{
-		price = 3000;
+		price = 15000;
 		category = GUNNER_CATEGORY;
 	};
 	class TURRET_ATTACK_HELI_GUNNER_CLASS
 	{
-		price = 2000;
+		price = 10000;
 		category = GUNNER_CATEGORY;
 	};
 	class TURRET_DOOR_GUNNER_CLASS
 	{
-		price = 500;
+		price = 1000;
 		category = GUNNER_CATEGORY;
 	};
 };
