@@ -30,7 +30,14 @@ params [
 
 if (isNull _object) exitWith {false};
 
-private _objectName = [configFile >> "cfgVehicles" >> (typeOf _object)] call BIS_fnc_displayName;
+private _objectType = typeOf _object;
+private _objectName = [configFile >> "cfgVehicles" >> _objectType] call BIS_fnc_displayName;
+
+private _actionDistance = ((_object call BIS_fnc_boundingBoxDimensions) select 1) + 2;
+if (_actionDistance < 5) then {
+	_actionDistance = 5;
+};
+
 
 // CIPHER COMMENT: maybe make sell into a hold action?
 // sell object
@@ -52,7 +59,7 @@ if (!(_object isEqualTo bulwarkBox) AND {!(_object isEqualTo BLWK_randomWeaponBo
 		false,  
 		"true", 
 		"!(_originalTarget getVariable ['BLWK_objectPickedUp',false])", 
-		5 
+		_actionDistance 
 	];
 };
 
@@ -68,7 +75,7 @@ _object addAction [
 	false,  
 	"true", 
 	"!(_originalTarget getVariable ['BLWK_objectPickedUp',false])", 
-	5 
+	_actionDistance 
 ];
 
 
@@ -84,7 +91,7 @@ _object addAction [
 	false,  
 	"true", 
 	"!(_originalTarget getVariable ['BLWK_objectPickedUp',false])", 
-	5 
+	_actionDistance 
 ];
 
 // pick up
@@ -100,7 +107,7 @@ _object addAction [
 	false,  
 	"true", 
 	"!(_originalTarget getVariable ['BLWK_objectPickedUp',false])", 
-	5 
+	_actionDistance 
 ];
 
 // rotate left
@@ -115,7 +122,7 @@ _object addAction [
 	false,  
 	"true", 
 	"!(_originalTarget getVariable ['BLWK_objectPickedUp',false])", 
-	5
+	_actionDistance
 ];
 
 // rotate right
@@ -130,7 +137,7 @@ _object addAction [
 	false,  
 	"true", 
 	"!(_originalTarget getVariable ['BLWK_objectPickedUp',false])", 
-	5
+	_actionDistance
 ];
 
 // Reset Rotation
@@ -145,7 +152,7 @@ _object addAction [
 	false,  
 	"true", 
 	"!(_originalTarget getVariable ['BLWK_objectPickedUp',false])", 
-	5
+	_actionDistance
 ];
 
 
