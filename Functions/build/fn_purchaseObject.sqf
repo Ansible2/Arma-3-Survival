@@ -78,6 +78,22 @@ clearBackpackCargoGlobal _purchasedObject;
 null = [_purchasedObject,player,true] spawn BLWK_fnc_pickupObject;
 
 sleep 1;
+[_purchasedObject] call BLWK_fnc_addBuildableObjectActions; // give local player object actions
 
-// give all players the ability to manipulate the object
-[_purchasedObject] remoteExecCall ["BLWK_fnc_addBuildableObjectActions",BLWK_allClientsTargetID,true];
+/*
+	Due to network issues with setOwner
+	objects that are too quickly manipulated by other players after being set down
+	by the intial purchaser will vanish/teleport to [0,0,0]
+	Have to wait about 10 seconds after being set down for things to "sync up"
+*/
+waitUntil {
+	if !(_purchasedObject getVariable "BLWK_objectPickedUp") exitWith {true};
+	if !(alive _purchasedObject) exitWith {true};
+	sleep 1;
+	false
+};
+
+sleep 10;
+
+// give remote players the ability to manipulate the object
+[_purchasedObject] remoteExecCall ["BLWK_fnc_addBuildableObjectActions",-clientOwner,true];
