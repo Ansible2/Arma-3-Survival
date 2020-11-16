@@ -1,3 +1,4 @@
+#include "..\..\Headers\Stalker Global Strings.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_stopStalking
 
@@ -23,8 +24,6 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#include "..\..\Headers\Stalker Global Strings.hpp"
-
 params [
 	["_stalkerGroup",grpNull,[grpNull]],
 	["_defaultPosition",objNull,[objNull,grpNull,[]]]
@@ -66,7 +65,7 @@ _stalkerGroupUnits apply {
 
 // move units to default position if defined
 if (!isNull _defaultPosition) then {
-	[_stalkerGroup, _defaultPosition, 3, "MOVE", "AWARE"] call CBAP_fnc_taskPatrol;
+	[_stalkerGroup, _defaultPosition, 100, 3, "MOVE", "AWARE"] call CBAP_fnc_taskPatrol;
 };
 
 
