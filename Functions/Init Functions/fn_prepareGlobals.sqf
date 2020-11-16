@@ -238,6 +238,9 @@ if (isNil "BLWK_faksToMakeMedkit") then {
 BLWK_pointsForKill = "BLWK_pointsForKill" call BIS_fnc_getParamValue;                 // Base Points for a kill
 BLWK_pointsForHit = "BLWK_pointsForHit" call BIS_fnc_getParamValue;                   // Every Bullet hit
 BLWK_pointsMultiForDamage = "BLWK_pointsMultiForDamage" call BIS_fnc_getParamValue;   // Extra points awarded for damage. 100% = BLWK_pointsMultiForDamage. 50% = BLWK_pointsMultiForDamage/2
+BLWK_maxPointsForDamage = BLWK_pointsForHit * 2; // There are certain weapons that cause extreme amounts of damage that will give an immense amount of points, so this caps it
+
+
 BLWK_costToSpinRandomBox = 950; 
 if (isNil "BLWK_supportDishFound") then {
     BLWK_supportDishFound = [false,true] select ("BLWK_supportDishFound" call BIS_fnc_getParamValue);
