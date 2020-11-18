@@ -75,12 +75,17 @@ localNamespace setVariable ["KISKA_fnc_staticline_doEJect",{
 		removeBackpackGlobal _unit;
 	};
 	// decided not to use addBackpackGlobal because of waiting for locality
-	[_unit,_chuteType] remoteExecCall ["addBackpack",_unit];
+	waitUntil {
+		[_unit,_chuteType] remoteExecCall ["addBackpack",_unit];
+		if (!isNull (backpackContainer _unit) OR {!alive _unit}) exitWith {true};
+		sleep 0.25;
+		false
+	};
 
 	private _aircraft = objectParent _unit;
 	
 	if !(isNull _aircraft) then {
-		//[_unit] remoteExec ["unassignVehicle",_unit];
+		//[_unit] remoteExecCall ["unassignVehicle",_unit];
 		[_unit,_aircraft] remoteExecCall ["leaveVehicle",_unit];
 		[_unit] remoteExecCall ["moveOut",_unit];
 		
@@ -92,10 +97,11 @@ localNamespace setVariable ["KISKA_fnc_staticline_doEJect",{
 		// delay chute open to create some distance with plane
 		[_unit,_aircraft,_sideOfAircraft] spawn {
 			params ["_unit","_aircraft","_sideOfAircraft"];
-			
-			sleep 1;
 
 			_unit setPosATL ((getPosATLVisual _unit) vectorAdd (_aircraft vectorModelToWorldVisual [_sideOfAircraft,0,0]));
+			// if a unit is moving too fast whent they open the chute, it will sometimes cause it to not attach
+			[_unit,[0,0,0]] remoteExecCall ["setVelocity",_unit];
+			sleep 1;
 			[_unit,["OpenParachute", _unit]] remoteExecCall ["action",_unit];
 		};
 		
