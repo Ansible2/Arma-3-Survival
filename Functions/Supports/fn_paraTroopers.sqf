@@ -225,6 +225,7 @@ BLWK_fnc_paraTroopers = {
 		// create vehicle
 		_vehicleArray_temp = [_spawnPosition_temp,_flyDirection,_dropVehicleClass,_side] call BIS_fnc_spawnVehicle;
 		_aircraft_temp = _vehicleArray_temp select 0;
+		allCurators apply {_x addCuratorEditableObjects [[_aircraft_temp],true]};
 		_aircraft_temp flyInHeight _flyInHeight;
 		_aircraftGroup_temp = _vehicleArray_temp select 2;
 		_aircraftGroup_temp setBehaviour "SAFE";
@@ -247,8 +248,8 @@ BLWK_fnc_paraTroopers = {
 			_pushBackUnit_temp moveInCargo _aircraft_temp;
 			_unitsToDrop_temp pushBack _pushBackUnit_temp;
 		};
-	
-		_aircraftGroup_temp move _dropZone;
+
+		(leader _aircraftGroup_temp) doMove _dropZone;
 		
 		_deletionPosition_temp = _dropZone getPos [5000,_flyDirection];
 		null = [_aircraft_temp,_aircraftGroup_temp,_dropZone,_unitsToDrop_temp,_deletionPosition_temp] spawn {
@@ -258,45 +259,16 @@ BLWK_fnc_paraTroopers = {
 			waitUntil {
 				if ((_aircraft distance2D _dropZone) <= 100) exitWith {true};
 				if (isNull _aircraft) exitWith {true};
-				sleep 1;
+				sleep 0.1;
 				false
 			};
 			if (isNull _aircraft) exitWith {};
 
 			hint "reached drop";
-			// drop units
+		
 			[_unitsToDrop,false] call KISKA_fnc_staticLine;
-			
-			// waitUntil all drop units are out of aircraft
-			private _crewCount = count (units _aircraftGroup);
-			waitUntil {
-				if (_crewCount isEqualTo (count crew _aircraft)) exitWith {true};
-				if (isNull _aircraft) exitWith {true};
-				sleep 0.25;
-				false
-			};
-			if (isNull _aircraft) exitWith {};
-
-			// go to deletion point
-			[
-				_aircraftGroup,
-				_deletePosition,
-				-1,
-				"MOVE",
-				"SAFE",
-				"BLUE",
-				"NORMAL",
-				"NO CHANGE",
-				"
-					private _aircraft = objectParent this;
-					thisList apply {
-						_aircraft deleteVehicleCrew _x;
-					};
-					deleteVehicle _aircraft;
-				",
-				[0,0,0],
-				100
-			] call CBA_fnc_addWaypoint;
+			//_aircraft move _deletePosition;
+			(leader _aircraftGroup) doMove _deletePosition;
 		};
 	};
 };
