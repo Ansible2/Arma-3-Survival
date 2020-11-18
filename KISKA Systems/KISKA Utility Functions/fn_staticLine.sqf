@@ -87,7 +87,7 @@ localNamespace setVariable ["KISKA_fnc_staticline_doEJect",{
 	if !(isNull _aircraft) then {
 		[_unit] remoteExecCall ["unassignVehicle",_unit];
 		//[_unit,_aircraft] remoteExecCall ["leaveVehicle",_unit];
-		_unit action ["GetOut",_aircraft];
+		[_unit,["GetOut", _unit]] remoteExecCall ["action",_unit];
 		[_unit] remoteExecCall ["moveOut",_unit];
 		
 		// determine the side of the aircraft to eject the person on
