@@ -235,8 +235,6 @@ class BLWK
 		{};
 		class healPlayer
 		{};
-		class paraTroopers
-		{};
 		class purchaseSupport
 		{};
 		class supportRadioGlobal
@@ -298,6 +296,15 @@ class BLWK
 		class handleOverrunWave
 		{};
 		class overrunBulwarkWave
+		{};
+	};
+
+	class ParatrooperWaveLibrary
+	{
+		file = "Functions\Wave Type Libraries\Paratrooper Wave Library";
+		class handleParatrooperWave
+		{};
+		class paraTroopers
 		{};
 	};
 
