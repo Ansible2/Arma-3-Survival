@@ -61,6 +61,8 @@ class KISKA
 		{};
 		class removeArsenal
 		{};
+		class staticLine
+		{};
 		class supplyDrop
 		{};
 	};
