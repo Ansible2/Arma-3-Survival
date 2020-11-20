@@ -119,7 +119,7 @@ class BLWK_supportItems
 	// Reinforcements
 	class REINFORCE_PARATROOPERS_CLASS
 	{
-		price = 1000;
+		price = 3000;
 		category = REINFORCEMENTS_CATEGORY;
 	};
 };
