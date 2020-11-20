@@ -41,7 +41,7 @@ params [
 	["_flyDirection",-1,[123]],
 	["_flyInHeight",200,[123]],
 	["_side",BLUFOR,[BLUFOR]],
-	["_distanceFromDropZone",1000,[123]]
+	["_distanceFromDropZone",2000,[123]]
 ];
 
 // check params
