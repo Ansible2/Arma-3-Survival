@@ -51,8 +51,9 @@
 
 #define SHOP_DIALOG_STRING "bulwarkShopDialog"
 
-
+// other can be either in both support and build items
 #define OTHER_CATEGORY "Other"
+
 // categories for build items
 #define WALLS_CATEGORY "Walls"
 #define PLATFORMS_CATEGORY "Platforms"
@@ -64,6 +65,7 @@
 #define VERTICAL_CATEGORY "Ramps & Stairs"
 #define TURRETS_CATEGORY "Turrets"
 #define STORAGE_CATEGORY "Storage"
+#define BUILDINGS_CATEGORY "Buildings"
 
 // categories for support items
 #define HEAVY_ARTILLERY_CATEGORY "Heavy Artillery"
@@ -72,3 +74,4 @@
 #define CAS_CATEGORY "Close Air Support"
 #define GUNNER_CATEGORY "Aircraft Gunner"
 #define SUPPLY_CATEGORY "Supplies"
+#define REINFORCEMENTS_CATEGORY "Reinforcements"
