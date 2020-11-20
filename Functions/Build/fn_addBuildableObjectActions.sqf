@@ -42,8 +42,9 @@ if (_actionDistance < 5) then {
 // CIPHER COMMENT: maybe make sell into a hold action?
 // sell object
 if (!(_object isEqualTo bulwarkBox) AND {!(_object isEqualTo BLWK_randomWeaponBox)}) then {
-	_object addAction [ 
-		"<t color='#ff0000'>-- Sell " + _objectName + " Back --</t>",  
+	_object addAction [
+		"<t color='#ff0000'><t underline='true'><t font='RobotoCondensedBold'>-- Sell " + _objectName + " Back --</t></t></t>",
+		//"<t color='#ff0000'>-- Sell " + _objectName + " Back --</t>",  
 		{
 			params ["_object","_caller"];
 
@@ -64,8 +65,9 @@ if (!(_object isEqualTo bulwarkBox) AND {!(_object isEqualTo BLWK_randomWeaponBo
 };
 
 // move up
-_object addAction [ 
-	"<t color='#00ffff'>-- Move " + _objectName + " Up --</t>",  
+_object addAction [
+	"<t color='#00ffff'><t underline='true'><t font='RobotoCondensedBold'>-- Move " + _objectName + " Up --</t></t></t>", 
+	//"<t color='#00ffff'>-- Move " + _objectName + " Up --</t>",  
 	{
 		[_this select 0,true] call BLWK_fnc_moveUpOrDown;
 	}, 
@@ -80,8 +82,9 @@ _object addAction [
 
 
 // move down
-_object addAction [ 
-	"<t color='#00ff00'>-- Move " + _objectName + " Down --</t>",  
+_object addAction [
+	"<t color='#00ff00'><t underline='true'><t font='RobotoCondensedBold'>-- Move " + _objectName + " Down --</t></t></t>", 
+	//"<t color='#00ff00'>-- Move " + _objectName + " Down --</t>",  
 	{
 		[_this select 0,false] call BLWK_fnc_moveUpOrDown;
 	}, 
@@ -95,8 +98,9 @@ _object addAction [
 ];
 
 // pick up
-_object addAction [ 
-	"<t color='#ffffff'>-- Pickup " + _objectName + " --</t>",  
+_object addAction [
+	"<t color='#ffffff'><t underline='true'><t font='RobotoCondensedBold'>-- Pickup " + _objectName + " --</t></t></t>", 
+	//"<t color='#ffffff'>-- Pickup " + _objectName + " --</t>",  
 	{
 		params ["_object","_caller"];
 		null = [_object,_caller] spawn BLWK_fnc_pickupObject;
@@ -112,7 +116,8 @@ _object addAction [
 
 // rotate left
 _object addAction [
-	"<t color='#ffff00'>-- Rotate " + _objectName + " Left --</t>",
+	"<t color='#ffff00'><t underline='true'><t font='RobotoCondensedBold'>-- Rotate " + _objectName + " Left --</t></t></t>",
+	//"<t color='#ffff00'>-- Rotate " + _objectName + " Left --</t>",
 	{
 		[_this select 0,false] call BLWK_fnc_rotateObject;
 	},
@@ -127,7 +132,8 @@ _object addAction [
 
 // rotate right
 _object addAction [
-	"<t color='#cc33ff'>-- Rotate " + _objectName + " Right --</t>",
+	"<t color='#cc33ff'><t underline='true'><t font='RobotoCondensedBold'>-- Rotate " + _objectName + " Right --</t></t></t>",
+	//"<t color='#cc33ff'>-- Rotate " + _objectName + " Right --</t>",
 	{
 		[_this select 0,true] call BLWK_fnc_rotateObject;
 	},
@@ -141,8 +147,9 @@ _object addAction [
 ];
 
 // Reset Rotation
-_object addAction [ 
-	"<t color='#ff00bf'>-- Reset " + _objectName + " Rotation --</t>",  
+_object addAction [
+	"<t color='#ff00bf'><t underline='true'><t font='RobotoCondensedBold'>-- Reset " + _objectName + " Rotation --</t></t></t>", 
+	//"<t color='#ff00bf'>-- Reset " + _objectName + " Rotation --</t>",  
 	{
 		[_this select 0] call BLWK_fnc_resetObjectRotation;
 	}, 
