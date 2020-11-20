@@ -73,7 +73,7 @@ if (_numToDrop isEqualTo -1 OR {_unitCount < _numToDrop}) then {
 };
 private _vehicleCargoCapacity = ([_dropVehicleClass,true] call BIS_fnc_crewCount) - ([_dropVehicleClass,false] call BIS_fnc_crewCount);
 if (_numToDrop > _vehicleCargoCapacity) then {
-	["vehicle class has %1 cargo positions, requested %2 to be dropped",_vehicleCargoCapacity,_numToDrop] call BIS_fnc_error;
+	["vehicle class %3 has %1 cargo positions, requested %2 to be dropped",_vehicleCargoCapacity,_numToDrop,_dropVehicleClass] call BIS_fnc_error;
 	_numToDrop = _vehicleCargoCapacity;
 };
 
