@@ -115,4 +115,11 @@ class BLWK_supportItems
 		price = 1000;
 		category = GUNNER_CATEGORY;
 	};
+
+	// Reinforcements
+	class REINFORCE_PARATROOPERS_CLASS
+	{
+		price = 1000;
+		category = REINFORCEMENTS_CATEGORY;
+	};
 };
