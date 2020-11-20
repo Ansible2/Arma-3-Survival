@@ -193,6 +193,7 @@ if (CHECK_SUPPORT_CLASS(REINFORCE_PARATROOPERS_CLASS)) exitWith {
 		[_unit_temp] joinSilent _playerGroup;
 		_unitsToDrop pushBack _unit_temp;
 	};
-
-	null = [_targetPosition,_unitsToDrop,"B_T_VTOL_01_infantry_F"] spawn BLWK_fnc_paratroopers;
+	
+	[BLWK_zeus, [_unitsToDrop,false]] remoteExec ["addCuratorEditableObjects",BLWK_zeus];
+	null = [_targetPosition,_unitsToDrop,"B_T_VTOL_01_infantry_F"] spawn BLWK_fnc_paratroopers;	
 };

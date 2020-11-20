@@ -110,7 +110,7 @@ for "_i" from 1 to DRONE_NUMBER do {
 	}];
 
 	null = [_drone_temp] remoteExec ["BLWK_fnc_addToMustKillArray",2];
-	null = [BLWK_zeus,[[_drone_temp], true]] remoteExec ["addCuratorEditableObjects",2]; 	
+	null = [BLWK_zeus,[[_drone_temp], true]] remoteExec ["addCuratorEditableObjects",BLWK_zeus]; 	
 	
 	// space out spawns so that you don't get spammed
 	sleep 10;
