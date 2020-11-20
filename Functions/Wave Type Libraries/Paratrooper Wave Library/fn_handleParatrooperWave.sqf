@@ -42,8 +42,8 @@ if (_startingUnitsCount < MAX_NUM_PARAS) then {
 
 // if everyone fits into one vehicle then just exit with one vehicle spawn
 if (_numberOfUnitsToDrop <= _vehicleCargoCapacity) exitWith {
-	private _dropZone = [bulwarkBox,DROP_AREA_RADIUS] call CBAP_fnc_randPosArea;
-	null = [_dropZone,_startingWaveUnits,_dropVehicleClass] spawn BLWK_fnc_paratroopers;
+	private _dropZone = [bulwarkBox,DROP_AREA_RADIUS] call CBAP_fnc_randPos;
+	null = [_dropZone,_startingWaveUnits,_dropVehicleClass,-1,-1,200,OPFOR] spawn BLWK_fnc_paratroopers;
 };
 
 
@@ -57,8 +57,8 @@ while {!_parasAllocated} do {
 	_unitsToDrop_temp = _startingWaveUnits select [_startCount,_vehicleCargoCapacity];
 	
 	// drop around bulwark
-	_dropZone_temp = [bulwarkBox,DROP_AREA_RADIUS] call CBAP_fnc_randPosArea;
-	null = [_dropZone_temp,_unitsToDrop_temp,_dropVehicleClass] spawn BLWK_fnc_paratroopers;
+	_dropZone_temp = [bulwarkBox,DROP_AREA_RADIUS] call CBAP_fnc_randPos;
+	null = [_dropZone_temp,_unitsToDrop_temp,_dropVehicleClass,-1,-1,200,OPFOR] spawn BLWK_fnc_paratroopers;
 
 	// check if the amount to drop has been reached
 	_numUnitsAllocated = _numUnitsAllocated + _vehicleCargoCapacity;
@@ -68,4 +68,6 @@ while {!_parasAllocated} do {
 		// update select start count
 		_startCount = _numUnitsAllocated - 1; // want actual array index
 	};
+
+	sleep 5;
 };

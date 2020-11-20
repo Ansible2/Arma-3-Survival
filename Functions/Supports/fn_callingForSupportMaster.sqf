@@ -181,7 +181,7 @@ if (CHECK_SUPPORT_CLASS(REINFORCE_PARATROOPERS_CLASS)) exitWith {
 
 	[TYPE_TRANSPORT_REQUEST] call BLWK_fnc_supportRadioGlobal;
 
-	private _playerGroup = group player;
+	private _playerGroup = group _caller;
 	if (isNull _playerGroup) then {
 		_playerGroup = BLWK_playerGroup;
 	};

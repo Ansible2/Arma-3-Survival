@@ -67,7 +67,7 @@ if (_availableClasses isEqualTo []) then {
 };
 
 // shuffle
-if ((_availableClassesCount > 1) AND {_shuffle}) then {
+if ((count _availableClasses > 1) AND {_shuffle}) then {
 	_availableClasses = [_availableClasses,false] call CBAP_fnc_shuffle;
 };
 
