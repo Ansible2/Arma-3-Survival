@@ -176,3 +176,12 @@ class TURRET_GUNSHIP_CLASS : basicSupport
     expression = CALL_SUPPORT_MASTER(TURRET_GUNSHIP_CLASS);
     icon = CAS_ICON;
 };
+
+
+// reinforcements
+class REINFORCE_PARATROOPERS_CLASS : basicSupport
+{
+    text = REINFORCE_PARATROOPERS_TEXT;
+    expression = CALL_SUPPORT_MASTER(REINFORCE_PARATROOPERS_CLASS);
+    icon = TRANSPORT_ICON;
+};

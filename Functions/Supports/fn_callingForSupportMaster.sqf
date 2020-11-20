@@ -1,3 +1,4 @@
+#include "..\..\Headers\descriptionEXT\supportDefines.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_callingForSupportMaster
 
@@ -21,8 +22,6 @@ Examples:
 Authors:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-params ["_caller","_targetPosition","_supportClass"];
-
 #define ADD_SUPPORT_BACK [_caller,_supportClass,nil,nil,""] call BIS_fnc_addCommMenuItem;
 
 #define CHECK_POSITION \
@@ -31,11 +30,27 @@ if (_targetPosition isEqualTo []) exitWith { \
 	ADD_SUPPORT_BACK \
 };
 
-// import support class #defines
-#include "..\..\Headers\descriptionEXT\supportDefines.hpp"
-
 #define CHECK_SUPPORT_CLASS(SUPPORT_CLASS_COMPARE) _supportClass == TO_STRING(SUPPORT_CLASS_COMPARE)
 
+#define ARTY_EXPRESSION(AMMO_TYPE) CHECK_POSITION null = [_targetPosition,AMMO_TYPE] spawn BLWK_fnc_callForArtillery
+
+#define CAS_RADIO [TYPE_CAS_REQUEST] call BLWK_fnc_supportRadioGlobal;
+#define CAS_EXPRESSSION(CAS_TYPE) \
+	CHECK_POSITION \
+	_targetPosition = AGLToASL(_targetPosition);\
+	private _friendlyAttackAircraftClass = [6] call BLWK_fnc_getFriendlyVehicleClass;\
+	null = [_targetPosition,CAS_TYPE,getDir _caller,_friendlyAttackAircraftClass] spawn BLWK_fnc_CAS;\
+	CAS_RADIO
+
+#define TURRET_EXPRESSION(AIRCRAFT_TYPE,HEIGHT,RADIUS,DEFAULT_AIRCRAFT_TYPE,GUNNER_TYPE) \
+	[AIRCRAFT_TYPE,HEIGHT,RADIUS,DEFAULT_AIRCRAFT_TYPE,GUNNER_TYPE] call BLWK_fnc_aircraftGunner;\
+	CAS_RADIO
+
+#define NUMBER_OF_PARATROOPERS 5
+
+
+
+params ["_caller","_targetPosition","_supportClass"];
 
 // cruise missile
 if (CHECK_SUPPORT_CLASS(CRUISE_MISSILE_CLASS)) exitWith {
@@ -45,7 +60,6 @@ if (CHECK_SUPPORT_CLASS(CRUISE_MISSILE_CLASS)) exitWith {
 };
 
 
-#define ARTY_EXPRESSION(AMMO_TYPE) CHECK_POSITION null = [_targetPosition,AMMO_TYPE] spawn BLWK_fnc_callForArtillery
 
 // 155 HE
 if (CHECK_SUPPORT_CLASS(ARTILLERY_STRIKE_155MM_HE_CLASS)) exitWith {
@@ -119,14 +133,6 @@ if (CHECK_SUPPORT_CLASS(SUPPLY_ARSENAL_DROP_CLASS)) exitWith {
 
 
 // CAS
-#define CAS_RADIO [TYPE_CAS_REQUEST] call BLWK_fnc_supportRadioGlobal;
-#define CAS_EXPRESSSION(CAS_TYPE) \
-	CHECK_POSITION \
-	_targetPosition = AGLToASL(_targetPosition);\
-	private _friendlyAttackAircraftClass = [6] call BLWK_fnc_getFriendlyVehicleClass;\
-	null = [_targetPosition,CAS_TYPE,getDir _caller,_friendlyAttackAircraftClass] spawn BLWK_fnc_CAS;\
-	CAS_RADIO
-
 if (CHECK_SUPPORT_CLASS(CAS_GUN_RUN_CLASS)) exitWith {
 	CAS_EXPRESSSION(0)
 };
@@ -140,10 +146,6 @@ if (CHECK_SUPPORT_CLASS(CAS_GUNS_AND_ROCKETS_CLASS)) exitWith {
 
 
 // turret supports
-#define TURRET_EXPRESSION(AIRCRAFT_TYPE,HEIGHT,RADIUS,DEFAULT_AIRCRAFT_TYPE,GUNNER_TYPE) \
-	[AIRCRAFT_TYPE,HEIGHT,RADIUS,DEFAULT_AIRCRAFT_TYPE,GUNNER_TYPE] call BLWK_fnc_aircraftGunner;\
-	CAS_RADIO
-	
 if (CHECK_SUPPORT_CLASS(TURRET_DOOR_GUNNER_CLASS)) exitWith {
 	if !(missionNamespace getVariable ["BLWK_doorGunnerInUse",false]) then {
 		private _friendlyTransportHeliClass = [4] call BLWK_fnc_getFriendlyVehicleClass;
@@ -170,4 +172,27 @@ if (CHECK_SUPPORT_CLASS(TURRET_GUNSHIP_CLASS)) exitWith {
 		hint "Only one heavy gunship gunner support may be active at a time.";
 		ADD_SUPPORT_BACK
 	};	
+};
+
+
+// reinforcement
+if (CHECK_SUPPORT_CLASS(REINFORCE_PARATROOPERS_CLASS)) exitWith {
+	CHECK_POSITION
+
+	[TYPE_TRANSPORT_REQUEST] call BLWK_fnc_supportRadioGlobal;
+
+	private _playerGroup = group player;
+	if (isNull _playerGroup) then {
+		_playerGroup = BLWK_playerGroup;
+	};
+	
+	private "_unit_temp";
+	private _unitsToDrop = [];
+	for "_i" from 1 to NUMBER_OF_PARATROOPERS do {
+		_unit_temp = _playerGroup createUnit [selectRandom BLWK_friendly_menClasses,[0,0,0],[],0,"NONE"];
+		[_unit_temp] joinSilent _playerGroup;
+		_unitsToDrop pushBack _unit_temp;
+	};
+
+	null = [_targetPosition,_unitsToDrop,"B_VTOL_01_infantry_F"] spawn BLWK_fnc_paratroopers;
 };

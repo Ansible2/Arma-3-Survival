@@ -103,7 +103,18 @@ switch _messageType do {
 			"mp_groundsupport_60_uav_IHQ_1",
 			"mp_groundsupport_60_uav_IHQ_2"
 		];
-	}; 	
+	};
+
+	case TYPE_TRANSPORT_REQUEST: {
+		_messageArray = [
+			"mp_groundsupport_01_transportrequested_BHQ_0",
+			"mp_groundsupport_01_transportrequested_BHQ_1",
+			"mp_groundsupport_01_transportrequested_BHQ_2",
+			"mp_groundsupport_01_transportrequested_IHQ_0",
+			"mp_groundsupport_01_transportrequested_IHQ_1",
+			"mp_groundsupport_01_transportrequested_IHQ_2"
+		];
+	};
 
 	default {
 		_messageArray = ["mp_groundsupport_70_tacticalstrikeinbound_BHQ_0"];

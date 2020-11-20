@@ -16,20 +16,56 @@ Returns:
 Examples:
     (begin example)
 
-		call BLWK_fnc_handleParatrooperWave;
+		null = [] spawn BLWK_fnc_handleParatrooperWave;
 
     (end)
 
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define MAX_NUM_PARAS 15
+#define MAX_NUM_PARAS 14
+#define DROP_AREA_RADIUS 50
+
 private _startingWaveUnits = call BLWK_fnc_createStdWaveInfantry;
 
 private _unitCount = count _startingWaveUnits;
-if (_startingWaveUnits < MAX_NUM_PARAS) then {
+private _dropVehicleClass = selectRandom ([4] call BLWK_fnc_getEnemyVehicleClasses);
+private _vehicleCargoCapacity = ([_dropVehicleClass,true] call BIS_fnc_crewCount) - ([_dropVehicleClass,false] call BIS_fnc_crewCount);
 
-	null = [bulwarkBox,_startingWaveUnits,""] spawn BLWK_fnc_paratroopers;
+private "_numberOfUnitsToDrop";
+private _startingUnitsCount = count _startingWaveUnits;
+if (_startingUnitsCount < MAX_NUM_PARAS) then {
+	_numberOfUnitsToDrop = _startingUnitsCount;
 } else {
+	_numberOfUnitsToDrop = MAX_NUM_PARAS;
+};
 
+// if everyone fits into one vehicle then just exit with one vehicle spawn
+if (_numberOfUnitsToDrop <= _vehicleCargoCapacity) exitWith {
+	private _dropZone = [bulwarkBox,DROP_AREA_RADIUS] call CBAP_fnc_randPosArea;
+	null = [_dropZone,_startingWaveUnits,_dropVehicleClass] spawn BLWK_fnc_paratroopers;
+};
+
+
+private _parasAllocated = false;
+private _startCount = 0;
+private _unitsToDrop_temp = [];
+private _numUnitsAllocated = 0;
+private "_dropZone_temp";
+while {!_parasAllocated} do {
+	// get units to put into vehicle
+	_unitsToDrop_temp = _startingWaveUnits select [_startCount,_vehicleCargoCapacity];
+	
+	// drop around bulwark
+	_dropZone_temp = [bulwarkBox,DROP_AREA_RADIUS] call CBAP_fnc_randPosArea;
+	null = [_dropZone_temp,_unitsToDrop_temp,_dropVehicleClass] spawn BLWK_fnc_paratroopers;
+
+	// check if the amount to drop has been reached
+	_numUnitsAllocated = _numUnitsAllocated + _vehicleCargoCapacity;
+	if (_numUnitsAllocated >= _numberOfUnitsToDrop) then {
+		_parasAllocated = true;
+	} else {
+		// update select start count
+		_startCount = _numUnitsAllocated - 1; // want actual array index
+	};
 };

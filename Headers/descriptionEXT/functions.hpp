@@ -122,6 +122,8 @@ class BLWK
 	*/
 		class doMagRepack
 		{};
+		class getEnemyVehicleClasses
+		{};
 		class getFriendlyVehicleClass
 		{};
 		class handleEnemyWeapons

@@ -34,6 +34,7 @@ if (!isServer) exitWith {false};
 #define MORTAR_WAVE_LIKELIHOOD 0.4
 #define DEFECTOR_WAVE_LIKELIHOOD 0.4
 #define OVERRUN_WAVE_LIKELIHOOD 0.4
+#define PARATROOPER_WAVE_LIKELIHOOD 0.4
 
 private _fn_getWaveType = {
 	private _decideArray = [];
@@ -47,6 +48,7 @@ private _fn_getWaveType = {
 		_decideArray append [MORTAR_WAVE, MORTAR_WAVE_LIKELIHOOD];
 		_decideArray append [DEFECTOR_WAVE, DEFECTOR_WAVE_LIKELIHOOD];
 		_decideArray append [OVERRUN_WAVE, OVERRUN_WAVE_LIKELIHOOD];
+		_decideArray append [PARATROOPER_WAVE,PARATROOPER_WAVE_LIKELIHOOD];
 	};
 
 	selectRandomWeighted _decideArray;
@@ -90,8 +92,14 @@ private _fn_execWave = {
 
 		[SPECIAL_WARNING_TEMPLATE, [OVERRUN_WAVE_NOTIFICATION]]
 	};
+	if (_selectedWaveType == PARATROOPER_WAVE) exitWith {
+		null = remoteExec ["BLWK_fnc_handleParatrooperWave",BLWK_theAIHandlerEntity];
+
+		[SPECIAL_WARNING_TEMPLATE, [PARATROOPER_WAVE_NOTIFICATION]]
+	};
 };
 
+// notify players of wave start
 private _notification = call _fn_execWave;
 private _players = call CBAP_fnc_players;
 _notification remoteExec ["BIS_fnc_showNotification", _players];

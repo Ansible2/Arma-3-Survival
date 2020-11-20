@@ -74,6 +74,10 @@
 #define TURRET_GUNSHIP_TEXT "Heavy CAS Gunship"
 
 
+// paratroopers
+#define REINFORCE_PARATROOPERS_CLASS reinforceParatroopers_commMenu
+#define REINFORCE_PARATROOPERS_TEXT "Paratroopers (5)"
+
 
 // support radio message types
 #define TYPE_ARTILLERY "artillery"
@@ -82,3 +86,4 @@
 #define TYPE_SUPPLY_DROP_REQUEST "supply drop requested"
 #define TYPE_CAS_REQUEST "cas request"
 #define TYPE_UAV_REQUEST "uav request"
+#define TYPE_TRANSPORT_REQUEST "transport request"
