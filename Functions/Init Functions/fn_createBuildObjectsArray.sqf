@@ -5,7 +5,7 @@ Description:
 	Creates an array in the format of BLWK_buildableObjects_array from a config.
 
 Parameters:
-	0: _configToSearch : <CONFIG> - The config path you wish to search for support data
+	0: _configToSearch : <CONFIG> - The config path you wish to search for build item data
 
 Returns:
 	ARRAY - all the classes formatted into an array
