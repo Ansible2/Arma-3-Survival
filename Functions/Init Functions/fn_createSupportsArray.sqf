@@ -5,7 +5,7 @@ Description:
 	Creates an array in the format of BLWK_supports_array from a config.
 
 Parameters:
-	0: _configClass : <STRING> - The parent class of all the items to convert
+	0: _configToSearch : <CONFIG> - The config path you wish to search for support data
 
 Returns:
 	ARRAY - all the classes formatted into an array
@@ -13,7 +13,7 @@ Returns:
 Examples:
     (begin example)
 
-		BLWK_supports_array = ["BLWK_supportItems"] call BLWK_fnc_createSupportsArray;
+		BLWK_supports_array = [missionConfigFile >> "BLWK_supportItems"] call BLWK_fnc_createSupportsArray;
 
     (end)
 
@@ -21,26 +21,21 @@ Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 params [
-	["_configClass","",[""]]
+	["_configToSearch",configNull,[configNull]]
 ];
 
-if (_configClass isEqualTo "") exitWith {
-	"_configClass is undefined string" call BIS_fnc_error;
+if (isNull _configToSearch) exitWith {
+	"_configToSearch isNull" call BIS_fnc_error;
 };
 
-private _configs = call {
-	if (isClass (configFile >> _configClass)) exitWith {
-		"true" configClasses (configFile >> _configClass)
-	};
-	if (isClass (missionConfigFile >> _configClass)) exitWith {
-		"true" configClasses (missionConfigFile >> _configClass)
-	};
-
-	[]
+if !(isClass _configToSearch) exitWith {
+	["_configToSearch %1 is not a class",_configToSearch] call BIS_fnc_error;
 };
+
+private _configs = "true" configClasses _configToSearch;
 
 if (_configs isEqualTo []) exitWith {
-	["%1 classes not found in mission or main config",_configClass] call BIS_fnc_error;
+	["No classes found in _configToSearch %1",_configToSearch] call BIS_fnc_error;
 };
 
 private _returnArray = [];

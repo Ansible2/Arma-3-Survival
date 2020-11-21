@@ -262,10 +262,10 @@ BLWK_pointsMulti_armour = 4;
 
 
 // shop arrays
-BLWK_supports_array = ["BLWK_supportItems"] call BLWK_fnc_createSupportsArray;
+BLWK_supports_array = [missionConfigFile >> "CfgCommunicationMenu"] call BLWK_fnc_createSupportsArray;
 BLWK_supports_array sort true; // will sort by the price
 
-BLWK_buildableObjects_array = ["BLWK_buildableItems"] call BLWK_fnc_createBuildObjectsArray;
+BLWK_buildableObjects_array = [missionConfigFile >> "BLWK_buildableItems"] call BLWK_fnc_createBuildObjectsArray;
 BLWK_buildableObjects_array sort true;
 
 
