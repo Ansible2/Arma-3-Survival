@@ -21,10 +21,6 @@ Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 params [
-	["_configToSearch","",[""]]
-];
-
-params [
 	["_configToSearch",configNull,[configNull]]
 ];
 
