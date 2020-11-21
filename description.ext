@@ -87,7 +87,7 @@ class CfgDebriefing
 
 class CfgCommunicationMenu
 {
-	#include "Headers\descriptionEXT\commMenuSupports.h"
+	#include "Headers\descriptionEXT\supports.hpp"
 };
 
 
