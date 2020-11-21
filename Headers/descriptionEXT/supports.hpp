@@ -43,6 +43,10 @@ class basicSupport
     curosr = SUPPORT_CURSOR;
     enable = "1";
     removeAfterExpressionCall = 1;
+
+	// a CfgPatches, that if it exists will signify that this support can be added to the list
+	// if empty string, it will be considered vanilla and added at all times
+	patch = "";
 };
 
 

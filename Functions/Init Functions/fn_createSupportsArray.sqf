@@ -42,18 +42,22 @@ private _returnArray = [];
 private [
 	"_class_temp",
 	"_price_temp",
-	"_category_temp"
+	"_category_temp",
+	"_patch_temp"
 ];
 _configs apply {
-	_class_temp = configName _x;
-	_price_temp = [_x >> "price"] call BIS_fnc_getCfgData;
-	_category_temp = [_x >> "category"] call BIS_fnc_getCfgData;
+	_patch_temp = [_x >> "patch"] call BIS_fnc_getCfgData;
+	if ((_patch_temp isEqualTo "") OR {[_patch_temp] call KISKA_fnc_isPatchLoaded}) then {
+		_class_temp = configName _x;
+		_price_temp = [_x >> "price"] call BIS_fnc_getCfgData;
+		_category_temp = [_x >> "category"] call BIS_fnc_getCfgData;
 
-	_returnArray pushBack [
-		_price_temp,
-		_class_temp,
-		_category_temp
-	];
+		_returnArray pushBack [
+			_price_temp,
+			_class_temp,
+			_category_temp
+		];
+	};
 };
 
 
