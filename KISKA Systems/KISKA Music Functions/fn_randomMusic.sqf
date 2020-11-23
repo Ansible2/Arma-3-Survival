@@ -82,8 +82,8 @@ if !(isDedicated) then {
 null = [_selectedTrack,0,_doInterrupt,0.5] remoteExec ["KISKA_fnc_playMusic",[0,-2] select isDedicated];
 
 // if it is the intial running of the system
-if (isNil "KISKA_musicSystemIntialized") then {
-	KISKA_musicSystemIntialized = true;
+if (isNil "KISKA_musicSystemIsRunning") then {
+	KISKA_musicSystemIsRunning = true;
 };
 
 
@@ -111,7 +111,10 @@ if (_timeBetween isEqualType []) then {
 } else {
 	_randomWaitTime = _timeBetween;
 };
-KISKA_randomMusic_timeBetween = _timeBetween; // store global
+
+if !(KISKA_randomMusic_timeBetween isEqualTo _timeBetween) then {
+	KISKA_randomMusic_timeBetween = _timeBetween;
+};
 
 /*
 	track durations are not exact enough, so there always need to be a bit of a buffer
@@ -129,7 +132,7 @@ diag_log format ["random wait time is: %1",_randomWaitTime];
 diag_log format ["duration of track is: %1",_durationOfTrack];
 diag_log format ["wait time is: %1",_waitTime];
 // dont play this music if the system is stopped or another random music system was started
-if (KISKA_musicSystemIntialized) then {
+if (KISKA_musicSystemIsRunning) then {
 /*	
 	this is used with the intention of if another random music list is started (or multiple)
 	the latest one will take over this time slot forcing the others after their wait time to
