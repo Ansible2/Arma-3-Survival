@@ -631,14 +631,12 @@ class musicPlayerDialog_background_filler_2: RscText
 
 /*
 	#include "musicPlayerCommonDefines.hpp"
-*/
-/*
- 	you should populate the current playlist first and then have a check to see if the class
-	is in the current playlist when populating the track list.
 
-	Also cache the track list.
-*/
-/*
+		//you should populate the current playlist first and then have a check to see if the class
+		//is in the current playlist when populating the track list.
+
+		//Also cache the track list.
+
 	uiNamespace setVariable ["BLWK_musicPlayer_allMusicClasses",nil];
 	uiNamespace setVariable ["BLWK_musicPlayer_allMusicNames",nil];
 	uiNamespace setVariable ["BLWK_musicPlayer_allMusicDurations",nil];
@@ -667,7 +665,7 @@ class musicPlayerDialog_background_filler_2: RscText
 		if (isNil {uiNamespace getVariable "BLWK_musicPlayer_allMusicNames"}) then {
 			private "_name_temp";
 			_musicClasses apply {
-				_name_temp = [_x >> "name"] call BIS_fnc_getCfgData;
+				_name_temp = getText(_x >> "name");
 				if (_name_temp isEqualTo "") then {
 					_name_temp = configName _x;
 				};
@@ -707,17 +705,24 @@ class musicPlayerDialog_background_filler_2: RscText
 	BLWK_fnc_onLoadMusicPlayerEvent = {
 		params ["_display"];
 		
-		// populate available tracks
+		// available tracks list
 		private _availableSongsList_ctrl = _display displayCtrl BLWK_MUSIC_PLAYER_SONGS_LIST_IDC;
 		[_availableSongsList_ctrl] call BLWK_fnc_populateAvailableMusicList;
 		_availableSongsList_ctrl lnbSort [0,false];
 
 
+		// system on off combo
 		private _systemOnOff_ctrl = _display displayCtrl BLWK_MUSIC_PLAYER_ONOFF_COMBO_IDC;
 		_systemOnOff_ctrl lbAdd "SYSTEM IS: ON";
 		_systemOnOff_ctrl lbAdd "SYSTEM IS: OFF";
 		_systemOnOff_ctrl ctrlSetFont "PuristaLight";
 		_systemOnOff_ctrl lbSetCurSel 0; // sytem on
+
+
+		// volume slider
+		private _volumeSlider_ctrl = _display displayCtrl BLWK_MUSIC_PLAYER_VOLUME_SLIDER_IDC;
+		_volumeSlider_ctrl sliderSetPosition (musicVolume);
+		
 	};
 
 	BLWK_fnc_popList = {
@@ -734,4 +739,5 @@ class musicPlayerDialog_background_filler_2: RscText
 
 		_control lnbAddRow ["#1","#2"];
 	};
+
 */
