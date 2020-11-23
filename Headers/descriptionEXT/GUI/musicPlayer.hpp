@@ -8,6 +8,7 @@
 }
 #define BORDER_COLOR(ALPHA) {0,0,0,ALPHA}
 #define BACKGROUND_FRAME_COLOR(ALPHA) {0,0,0,ALPHA}
+#define GREY_COLOR(PERCENT,ALPHA) {PERCENT,PERCENT,PERCENT,ALPHA}
 
 //missionconfigfile >> "musicPlayerDialog"
 /* -------------------------------------------------------------------------
@@ -626,4 +627,111 @@ class musicPlayerDialog_background_filler_2: RscText
 // GUI EDITOR OUTPUT END
 ////////////////////////////////////////////////////////
 
+*/
+
+/*
+	#include "musicPlayerCommonDefines.hpp"
+*/
+/*
+ 	you should populate the current playlist first and then have a check to see if the class
+	is in the current playlist when populating the track list.
+
+	Also cache the track list.
+*/
+/*
+	uiNamespace setVariable ["BLWK_musicPlayer_allMusicClasses",nil];
+	uiNamespace setVariable ["BLWK_musicPlayer_allMusicNames",nil];
+	uiNamespace setVariable ["BLWK_musicPlayer_allMusicDurations",nil];
+	BLWK_fnc_populateAvailableMusicList = {
+		params ["_control"];
+
+		// cache and/or get music info for list
+
+		// get classes
+		private "_musicClasses";
+		if (isNil {uiNamespace getVariable "BLWK_musicPlayer_allMusicClasses"}) then {		
+			_musicClasses = "true" configClasses (configFile >> "cfgMusic");
+
+			if (isClass (missionConfigFile >> "cfgMusic")) then {
+				private _missionMusicClasses = "true" configClasses (missionConfigFile >> "cfgMusic");
+				_musicClasses append _missionMusicClasses;
+			};
+			uiNamespace setVariable ["BLWK_musicPlayer_allMusicClasses",_musicClasses];
+		} else {
+			_musicClasses = uiNamespace getVariable "BLWK_musicPlayer_allMusicClasses";
+		};
+
+
+		// music display names
+		private _musicNames = [];
+		if (isNil {uiNamespace getVariable "BLWK_musicPlayer_allMusicNames"}) then {
+			private "_name_temp";
+			_musicClasses apply {
+				_name_temp = [_x >> "name"] call BIS_fnc_getCfgData;
+				if (_name_temp isEqualTo "") then {
+					_name_temp = configName _x;
+				};
+				_musicNames pushBack _name_temp;
+			};
+			uiNamespace setVariable ["BLWK_musicPlayer_allMusicNames",_musicNames];
+		} else {
+			_musicNames = uiNamespace getVariable "BLWK_musicPlayer_allMusicNames";
+		};
+
+
+		// track durations
+		private _musicDurations = [];
+		if (isNil {uiNamespace getVariable "BLWK_musicPlayer_allMusicDurations"}) then {
+			private "_duration_temp";
+			_musicClasses apply {
+				_duration_temp = round ([_x >> "duration"] call BIS_fnc_getCfgData);
+				_musicDurations pushBack _duration_temp;
+			};
+			uiNamespace setVariable ["BLWK_musicPlayer_allMusicDurations",_musicDurations];
+		} else {
+			_musicDurations = uiNamespace getVariable "BLWK_musicPlayer_allMusicDurations";
+		};
+
+
+		// fill list
+		private "_row";
+		private _durationColumn = _control lnbAddColumn 1;
+		_control lnbSetColumnsPos [0,0.82];
+		{
+			_control lnbAddRow [_musicNames select _forEachIndex,str (_musicDurations select _forEachIndex)];
+		} forEach _musicClasses;
+
+	};
+
+
+	BLWK_fnc_onLoadMusicPlayerEvent = {
+		params ["_display"];
+		
+		// populate available tracks
+		private _availableSongsList_ctrl = _display displayCtrl BLWK_MUSIC_PLAYER_SONGS_LIST_IDC;
+		[_availableSongsList_ctrl] call BLWK_fnc_populateAvailableMusicList;
+		_availableSongsList_ctrl lnbSort [0,false];
+
+
+		private _systemOnOff_ctrl = _display displayCtrl BLWK_MUSIC_PLAYER_ONOFF_COMBO_IDC;
+		_systemOnOff_ctrl lbAdd "SYSTEM IS: ON";
+		_systemOnOff_ctrl lbAdd "SYSTEM IS: OFF";
+		_systemOnOff_ctrl ctrlSetFont "PuristaLight";
+		_systemOnOff_ctrl lbSetCurSel 0; // sytem on
+	};
+
+	BLWK_fnc_popList = {
+		params ["_control"];
+
+		hint str _control;
+
+		_display = ctrlParent _control;
+		
+		_plus = _display ctrlCreate ["RscButtonMenu",198,_display displayCtrl 1500];
+		_plus ctrlSetText ">";
+		_minus = _display ctrlCreate ["RscButtonMenu",199,_display displayCtrl 1500];
+		_minus ctrlSettext "<";
+
+		_control lnbAddRow ["#1","#2"];
+	};
 */
