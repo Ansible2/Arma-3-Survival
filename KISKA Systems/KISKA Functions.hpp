@@ -29,6 +29,8 @@ class KISKA
 	class KISKA_music
 	{
 		file = "KISKA Systems\KISKA Music Functions";
+		class getCurrentRandomMusicTrack
+		{};
 		class getMusicDuration
 		{};
 		class getMusicFromClass
@@ -44,6 +46,10 @@ class KISKA
 		class playMusic
 		{};
 		class randomMusic
+		{};
+		class setCurrentRandomMusicTrack
+		{};
+		class stopMusic
 		{};
 	};
 	class KISKA_sounds

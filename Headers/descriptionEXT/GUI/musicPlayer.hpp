@@ -347,32 +347,101 @@ class musicPlayerDialog
 
 	Also cache the track list.
 */
-uiNamespace setVariable ["BLWK_musicPlayer_allMusicClasses",nil];
-uiNamespace setVariable ["BLWK_musicPlayer_allMusicNames",nil];
-uiNamespace setVariable ["BLWK_musicPlayer_allMusicDurations",nil];
-BLWK_fnc_populateAvailableMusicList = {
+uiNamespace setVariable ["BLWK_musicManager_allMusicClasses",nil];
+uiNamespace setVariable ["BLWK_musicManager_allMusicNames",nil];
+uiNamespace setVariable ["BLWK_musicManager_allMusicDurations",nil];
+
+KISKA_fnc_getVariableTarget_sendBack = {
+	params ["_namespace","_variableName","_saveVariable","_defaultValue","_sendBackTarget"];
+	private _variable = _namespace getVariable [_variableName,_defaultValue];
+
+	if (_sendBackTarget isEqualTo 0) then {
+		if (remoteExecutedOwner isEqualTo 0) then { // never broadcast to all clients
+			missionNamespace setVariable [_saveVariable,_variable];
+			
+			diag_log "KISKA_fnc_getVariableTarget_sendBack: Did not send back to 0 target, saved locally";
+			diag_log "_saveVariable" + (str _saveVariable);
+			diag_log "_variable" + (str _variable);
+		} else {
+			missionNamespace setVariable [_saveVariable,_variable,remoteExecutedOwner];
+			
+			diag_log "KISKA_fnc_getVariableTarget_sendBack: Sent variable back";
+			diag_log "_saveVariable" + (str _saveVariable);
+			diag_log "_variable" + (str _variable);
+			diag_log "remoteExecutedOwner" + (str remoteExecutedOwner);
+		};
+	} else {
+		missionNamespace setVariable [_saveVariable,_variable,_sendBackTarget];
+
+		diag_log "KISKA_fnc_getVariableTarget_sendBack: Sent variable back";
+		diag_log "_saveVariable" + (str _saveVariable);
+		diag_log "_variable" + (str _variable);
+		diag_log "_sendBackTarget" + (str _sendBackTarget);
+	};
+};
+
+KISKA_fnc_getVariableTarget = {
+	if (!canSuspend) exitWith {
+		"KISKA_fnc_getVariableTarget: must be run scheduled" call BIS_fnc_error;
+	};
+
+	params [
+		["_variableName","",[""]],
+		["_namespace",missionNamespace,[missionNamespace,objNull,grpNull,"",controlNull,locationNull]],
+		["_target",2,[123,objNull,grpNull,""]],
+		["_defaultValue",nil],
+		["_saveVariable","",[""]]
+	];
+
+	if (_variableName isEqualTo "") exitWith {
+		"KISKA_fnc_getVariableTarget: _variableName is empty string ''" call BIS_fnc_error;
+	};
+	if (_saveVariable isEqualTo "") then {
+		_saveVariable = "KISKA_getVariableTarget_" + _variableName;
+	};
+
+	[_namespace,_variableName,_saveVariable,_defaultValue,clientOwner] remoteExecCall ["KISKA_fnc_getVariableTarget_sendBack",_target];
+
+	waitUntil {
+		if (!isNil {missionNamespace getVariable _saveVariable}) exitWith {
+			diag_log "KISKA_fnc_getVariableTarget: Got variable " + _saveVariable + " from target";
+			true
+		};
+		sleep 0.5;
+		diag_log "KISKA_fnc_getVariableTarget: Waiting for variable from target";
+		false
+	};
+
+	private _return = missionNamespace getVariable _saveVariable;
+	missionNamespace setVariable [_saveVariable,nil];
+
+	_return
+};
+
+
+BLWK_fnc_musicManagerOnload_availableMusicList = {
 	params ["_control"];
 
 	// cache and/or get music info for list
 
 	// get classes
 	private "_musicClasses";
-	if (isNil {uiNamespace getVariable "BLWK_musicPlayer_allMusicClasses"}) then {		
+	if (isNil {uiNamespace getVariable "BLWK_musicManager_allMusicClasses"}) then {		
 		_musicClasses = "true" configClasses (configFile >> "cfgMusic");
 
 		if (isClass (missionConfigFile >> "cfgMusic")) then {
 			private _missionMusicClasses = "true" configClasses (missionConfigFile >> "cfgMusic");
 			_musicClasses append _missionMusicClasses;
 		};
-		uiNamespace setVariable ["BLWK_musicPlayer_allMusicClasses",_musicClasses];
+		uiNamespace setVariable ["BLWK_musicManager_allMusicClasses",_musicClasses];
 	} else {
-		_musicClasses = uiNamespace getVariable "BLWK_musicPlayer_allMusicClasses";
+		_musicClasses = uiNamespace getVariable "BLWK_musicManager_allMusicClasses";
 	};
 
 
 	// music display names
 	private _musicNames = [];
-	if (isNil {uiNamespace getVariable "BLWK_musicPlayer_allMusicNames"}) then {
+	if (isNil {uiNamespace getVariable "BLWK_musicManager_allMusicNames"}) then {
 		private "_name_temp";
 		_musicClasses apply {
 			_name_temp = getText(_x >> "name");
@@ -381,23 +450,23 @@ BLWK_fnc_populateAvailableMusicList = {
 			};
 			_musicNames pushBack _name_temp;
 		};
-		uiNamespace setVariable ["BLWK_musicPlayer_allMusicNames",_musicNames];
+		uiNamespace setVariable ["BLWK_musicManager_allMusicNames",_musicNames];
 	} else {
-		_musicNames = uiNamespace getVariable "BLWK_musicPlayer_allMusicNames";
+		_musicNames = uiNamespace getVariable "BLWK_musicManager_allMusicNames";
 	};
 
 
 	// track durations
 	private _musicDurations = [];
-	if (isNil {uiNamespace getVariable "BLWK_musicPlayer_allMusicDurations"}) then {
+	if (isNil {uiNamespace getVariable "BLWK_musicManager_allMusicDurations"}) then {
 		private "_duration_temp";
 		_musicClasses apply {
 			_duration_temp = round ([_x >> "duration"] call BIS_fnc_getCfgData);
 			_musicDurations pushBack _duration_temp;
 		};
-		uiNamespace setVariable ["BLWK_musicPlayer_allMusicDurations",_musicDurations];
+		uiNamespace setVariable ["BLWK_musicManager_allMusicDurations",_musicDurations];
 	} else {
-		_musicDurations = uiNamespace getVariable "BLWK_musicPlayer_allMusicDurations";
+		_musicDurations = uiNamespace getVariable "BLWK_musicManager_allMusicDurations";
 	};
 
 
@@ -409,28 +478,47 @@ BLWK_fnc_populateAvailableMusicList = {
 		_control lnbAddRow [_musicNames select _forEachIndex,str (_musicDurations select _forEachIndex)];
 	} forEach _musicClasses;
 
+	_control lnbSort [0,false];
+};
+
+BLWK_fnc_musicManagerOnload_systemOnOffCombo = {
+	params ["_control","_display"];
+
+	private _systemOn = ["KISKA_musicSystemIsRunning",missionNamespace,2,false] call KISKA_fnc_getVariableTarget;
+	_control lbAdd "SYSTEM IS: OFF"; // 0
+	_control lbAdd "SYSTEM IS: ON"; // 1
+	_control ctrlSetFont "PuristaLight";
+	_control lbSetCurSel ([0,1] select _systemOn);
+
+	_control ctrlAddEventHandler ["onLBSelChanged",{
+		params ["_control", "_selectedIndex"];
+		
+		private _display = ctrlParent _control;
+		if (_selectedIndex isEqualTo 0) then {
+			missionNamespace setVariable ["KISKA_musicSystemIsRunning",false,2];
+		} else {
+			missionNamespace setVariable ["KISKA_musicSystemIsRunning",true,2];
+			
+		};
+	}];
+
 };
 
 
-BLWK_fnc_onLoadMusicPlayerEvent = {
+BLWK_fnc_musicManagerOnLoad = {
 	params ["_display"];
 	
 	// available tracks list
-	private _availableSongsList_ctrl = _display displayCtrl BLWK_MUSIC_PLAYER_SONGS_LIST_IDC;
-	[_availableSongsList_ctrl] call BLWK_fnc_populateAvailableMusicList;
-	_availableSongsList_ctrl lnbSort [0,false];
+	[_display displayCtrl BLWK_MUSIC_MANAGER_SONGS_LIST_IDC] call BLWK_fnc_musicManagerOnload_availableMusicList;
+	
 
 
 	// system on off combo
-	private _systemOnOff_ctrl = _display displayCtrl BLWK_MUSIC_PLAYER_ONOFF_COMBO_IDC;
-	_systemOnOff_ctrl lbAdd "SYSTEM IS: ON";
-	_systemOnOff_ctrl lbAdd "SYSTEM IS: OFF";
-	_systemOnOff_ctrl ctrlSetFont "PuristaLight";
-	_systemOnOff_ctrl lbSetCurSel 0; // sytem on
+	null = [_display,_display displayCtrl BLWK_MUSIC_MANAGER_ONOFF_COMBO_IDC] spawn BLWK_fnc_musicManagerOnload_systemOnOffCombo;
 
 
 	// volume slider
-	private _volumeSlider_ctrl = _display displayCtrl BLWK_MUSIC_PLAYER_VOLUME_SLIDER_IDC;
+	private _volumeSlider_ctrl = _display displayCtrl BLWK_MUSIC_MANAGER_VOLUME_SLIDER_IDC;
 	_volumeSlider_ctrl sliderSetPosition (musicVolume);
 	
 
@@ -438,7 +526,7 @@ BLWK_fnc_onLoadMusicPlayerEvent = {
 	// this will need to be auto adjusted based off of what the global is currently equal to
 	// will also need a function to adjust the global value to keep things from getting messed up
 	// will also need to change the edit box tooltip based upon what the combo is or the combo tooltip
-	private _trackSpacingCombo_ctrl = _display displayCtrl BLWK_MUSIC_PLAYER_SPACING_COMBO_IDC;
+	private _trackSpacingCombo_ctrl = _display displayCtrl BLWK_MUSIC_MANAGER_SPACING_COMBO_IDC;
 	_trackSpacingCombo_ctrl lbAdd "Random Max";
 	_trackSpacingCombo_ctrl lbSetTooltip [0,"You will get a random number between 0 and this number."];
 
@@ -449,7 +537,7 @@ BLWK_fnc_onLoadMusicPlayerEvent = {
 	_trackSpacingCombo_ctrl lbSetTooltip [2,"Time between tracks will ALWAYS be this many seconds."];
 
 	_trackSpacingCombo_ctrl ctrlSetFont "PuristaLight";
-	_trackSpacingCombo_ctrl lbSetCurSel 0; // sytem on
+	_trackSpacingCombo_ctrl lbSetCurSel 0; // set to random max
 
 };
 
