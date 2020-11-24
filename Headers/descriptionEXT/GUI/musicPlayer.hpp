@@ -350,33 +350,36 @@ uiNamespace setVariable ["BLWK_musicManager_allMusicDurations",nil];
 
 KISKA_fnc_getVariableTarget_sendBack = {
 	params ["_namespace","_variableName","_saveVariable","_defaultValue","_sendBackTarget"];
-	private _variable = _namespace getVariable [_variableName,_defaultValue];
+	private _getVariableValue = _namespace getVariable [_variableName,_defaultValue];
 
 	if (_sendBackTarget isEqualTo 0) then {
 		if (remoteExecutedOwner isEqualTo 0) then { // never broadcast to all clients
-			missionNamespace setVariable [_saveVariable,_variable];
+			missionNamespace setVariable [_saveVariable,_getVariableValue];
 			
 			diag_log "KISKA_fnc_getVariableTarget_sendBack: Did not send back to 0 target, saved locally";
-			diag_log "_saveVariable" + (str _saveVariable);
-			diag_log "_variable" + (str _variable);
+			diag_log ("_saveVariable: " + _saveVariable);
+			diag_log ("_getVariableValue: " + (str _getVariableValue));
 		} else {
-			missionNamespace setVariable [_saveVariable,_variable,remoteExecutedOwner];
+			missionNamespace setVariable [_saveVariable,_getVariableValue,remoteExecutedOwner];
 			
 			diag_log "KISKA_fnc_getVariableTarget_sendBack: Sent variable back";
-			diag_log "_saveVariable" + (str _saveVariable);
-			diag_log "_variable" + (str _variable);
-			diag_log "remoteExecutedOwner" + (str remoteExecutedOwner);
+			diag_log ("_saveVariable: " + _saveVariable);
+			diag_log ("_getVariableValue: " + (str _getVariableValue));
+			diag_log ("remoteExecutedOwner: " + (str remoteExecutedOwner));
 		};
 	} else {
-		missionNamespace setVariable [_saveVariable,_variable,_sendBackTarget];
+		// setVariable with a public flag of 2 in singleplayer does not work
+		if (!isMultiplayer AND {_sendBackTarget isEqualTo 2}) then { 
+			_sendBackTarget = 0;
+		};
+		missionNamespace setVariable [_saveVariable,_getVariableValue,_sendBackTarget];
 
 		diag_log "KISKA_fnc_getVariableTarget_sendBack: Sent variable back";
-		diag_log "_saveVariable" + (str _saveVariable);
-		diag_log "_variable" + (str _variable);
-		diag_log "_sendBackTarget" + (str _sendBackTarget);
+		diag_log ("_saveVariable: " + _saveVariable);
+		diag_log ("_getVariableValue: " + (str _getVariableValue));
+		diag_log ("_sendBackTarget: " + _sendBackTarget);
 	};
 };
-
 KISKA_fnc_getVariableTarget = {
 	if (!canSuspend) exitWith {
 		"KISKA_fnc_getVariableTarget: must be run scheduled" call BIS_fnc_error;
@@ -385,8 +388,8 @@ KISKA_fnc_getVariableTarget = {
 	params [
 		["_variableName","",[""]],
 		["_namespace",missionNamespace,[missionNamespace,objNull,grpNull,"",controlNull,locationNull]],
+		["_defaultValue",-1],
 		["_target",2,[123,objNull,grpNull,""]],
-		["_defaultValue",nil],
 		["_saveVariable","",[""]]
 	];
 
@@ -401,16 +404,16 @@ KISKA_fnc_getVariableTarget = {
 
 	waitUntil {
 		if (!isNil {missionNamespace getVariable _saveVariable}) exitWith {
-			diag_log "KISKA_fnc_getVariableTarget: Got variable " + _saveVariable + " from target";
+			diag_log ("KISKA_fnc_getVariableTarget: Got variable " + _saveVariable + " from target");
 			true
 		};
-		sleep 0.5;
+		sleep 0.25;
 		diag_log "KISKA_fnc_getVariableTarget: Waiting for variable from target";
 		false
 	};
 
 	private _return = missionNamespace getVariable _saveVariable;
-	missionNamespace setVariable [_saveVariable,nil];
+	missionNamespace setVariable [_saveVariable,nil]; // set to nil so that any other requesters don't get a duplicate
 
 	_return
 };
@@ -481,7 +484,7 @@ BLWK_fnc_musicManagerOnload_availableMusicList = {
 BLWK_fnc_musicManagerOnload_systemOnOffCombo = {
 	params ["_control","_display"];
 
-	private _systemOn = ["KISKA_musicSystemIsRunning",missionNamespace,2,false] call KISKA_fnc_getVariableTarget;
+	private _systemOn = ["KISKA_musicSystemIsRunning",missionNamespace,false] call KISKA_fnc_getVariableTarget;
 	_control lbAdd "SYSTEM IS: OFF"; // 0
 	_control lbSetTooltip [0,"Setting the system directly to off while music is playing will have that song finish"];
 	
@@ -497,7 +500,6 @@ BLWK_fnc_musicManagerOnload_systemOnOffCombo = {
 	_control ctrlAddEventHandler ["LBSelChanged",{
 		params ["_control", "_selectedIndex"];
 		
-		private _display = ctrlParent _control;
 		switch (_selectedIndex) do {
 			case 0:{ // system off
 				//missionNamespace setVariable ["KISKA_musicSystemIsRunning",false,2];
@@ -521,6 +523,85 @@ BLWK_fnc_musicManagerOnload_systemOnOffCombo = {
 	}];
 };
 
+BLWK_fnc_musicManagerOnload_trackSpacingControls = {
+	params ["_comboControl","_editBoxControl","_buttonControl"];
+
+	_comboControl ctrlSetFont "PuristaLight";
+
+	// combo box populate
+	_comboControl lbAdd "Random Max";
+	_comboControl lbSetTooltip [0,"You will get a random number between 0 and this number."];
+
+	_comboControl lbAdd "Random Bell Curve";
+	_comboControl lbSetTooltip [1,"[min,mid,max]. Time between tracks will likely be close to the 'mid' value but can be anything between 'min' and 'max'."];
+
+	_comboControl lbAdd "Exact Time Between";
+	_comboControl lbSetTooltip [2,"Time between tracks will ALWAYS be this many seconds."];
+
+
+	// get current spacing setting from server
+	private _currentSpacingSetting = ["KISKA_randomMusic_timeBetween",missionNamespace] call KISKA_fnc_getVariableTarget;
+	systemChat str _currentSpacingSetting;
+	if (_currentSpacingSetting isEqualTo -1) then {
+		_comboControl lbSetCurSel 1; // set to random bell curve by default
+		_editBoxControl ctrlSetText "[1,2,3]";
+	} else {
+		if (_currentSpacingSetting isEqualType []) then {
+			// if random bell curve
+			if (_currentSpacingSetting isEqualTypeArray [1,2,3]) then {
+				_comboControl lbSetCurSel 1;
+			} else { // if random max
+				_comboControl lbSetCurSel 0;
+			};
+		} else { // if exact time
+			_comboControl lbSetCurSel 2;
+		};
+
+		_editBoxControl ctrlSetText (str _currentSpacingSetting);
+	};
+
+	// combo change event
+	_comboControl ctrlAddEventHandler ["LBSelChanged",{
+		params ["_control", "_selectedIndex"];
+
+		private _display = ctrlParent _control;
+		private _editControl = _display displayCtrl BLWK_MUSIC_MANAGER_SPACING_EDIT_IDC;
+		switch (_selectedIndex) do {
+			case 0:{ // random max
+				_editControl ctrlSetText "[1]";
+			};
+			case 1:{ // random bell curve
+				_editControl ctrlSetText "[1,2,3]";
+			};
+			case 2:{ // exact time
+				_editControl ctrlSetText "1";
+			};
+		};
+	}];
+
+
+	// button event
+	_buttonControl ctrlAddEventHandler ["ButtonClick",{
+		params ["_control"];
+
+		private _display = ctrlParent _control;
+		private _editControl = _display displayCtrl BLWK_MUSIC_MANAGER_SPACING_EDIT_IDC;
+		private _editControlText = ctrlText _editControl;
+		private _textCompiled = call compile _editControlText;
+		if (
+			(_textCompiled isEqualType []) AND 
+			{!((count _textCompiled) isEqualTo 1) AND 
+			{!((count _textCompiled) isEqualTo 3) OR !(_textCompiled isEqualTypeParams [1,2,3])}}
+		) then {
+			hint "Format not accepted for track spacing!"
+		} else {
+			// send to server
+			missionNamespace setVariable ["KISKA_randomMusic_timeBetween",_textCompiled,2];
+			hint ("Track spacing set to " + (str _textCompiled));
+		};
+	}];
+};
+
 
 BLWK_fnc_musicManagerOnLoad = {
 	params ["_display"];
@@ -531,28 +612,18 @@ BLWK_fnc_musicManagerOnLoad = {
 	// system on off combo
 	null = [_display displayCtrl BLWK_MUSIC_MANAGER_ONOFF_COMBO_IDC,_display] spawn BLWK_fnc_musicManagerOnload_systemOnOffCombo;
 
-
 	// volume slider
 	private _volumeSlider_ctrl = _display displayCtrl BLWK_MUSIC_MANAGER_VOLUME_SLIDER_IDC;
 	_volumeSlider_ctrl sliderSetPosition (musicVolume);
 	
-
-	// track spacing combo 
-	// this will need to be auto adjusted based off of what the global is currently equal to
-	// will also need a function to adjust the global value to keep things from getting messed up
-	// will also need to change the edit box tooltip based upon what the combo is or the combo tooltip
-	private _trackSpacingCombo_ctrl = _display displayCtrl BLWK_MUSIC_MANAGER_SPACING_COMBO_IDC;
-	_trackSpacingCombo_ctrl lbAdd "Random Max";
-	_trackSpacingCombo_ctrl lbSetTooltip [0,"You will get a random number between 0 and this number."];
-
-	_trackSpacingCombo_ctrl lbAdd "Random Bell Curve";
-	_trackSpacingCombo_ctrl lbSetTooltip [1,"[min,mid,max]. Time between tracks will likely be close to the 'mid' value but can be anything between 'min' and 'max'."];
-
-	_trackSpacingCombo_ctrl lbAdd "Exact Time Between";
-	_trackSpacingCombo_ctrl lbSetTooltip [2,"Time between tracks will ALWAYS be this many seconds."];
-
-	_trackSpacingCombo_ctrl ctrlSetFont "PuristaLight";
-	_trackSpacingCombo_ctrl lbSetCurSel 0; // set to random max
+	
+	null = [
+		_display displayCtrl BLWK_MUSIC_MANAGER_SPACING_COMBO_IDC,
+		_display displayCtrl BLWK_MUSIC_MANAGER_SPACING_EDIT_IDC,
+		_display displayCtrl BLWK_MUSIC_MANAGER_SPACING_BUTTON_IDC
+	] spawn BLWK_fnc_musicManagerOnload_trackSpacingControls;
+	
+	
 
 };
 
