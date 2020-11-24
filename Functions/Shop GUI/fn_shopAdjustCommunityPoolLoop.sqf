@@ -53,17 +53,19 @@ if ((_poolTreeCtrl tvCount []) isEqualTo 0) then {
 
 private _fn_populateList = {
 	params ["_list","_mainBranchIndex"];
+	
 	private ["_displayName_temp","_data_temp","_index_temp","_class_temp","_value_temp"];
 	_list apply {
 		_displayName_temp = _x select 0;
-		_data_temp = _x select 1;
-		_class_temp = _x select 2;
-		_value_temp = _x select 3;
-
-
 		_index_temp = _poolTreeCtrl tvAdd [[_mainBranchIndex],_displayName_temp];
+		
+		_data_temp = _x select 1;
 		_poolTreeCtrl tvSetData [[_mainBranchIndex,_index_temp],_data_temp];
+		
+		_class_temp = _x select 2;
 		_poolTreeCtrl tvSetTooltip [[_mainBranchIndex,_index_temp],_class_temp];
+
+		_value_temp = _x select 3;
 		_poolTreeCtrl tvSetValue [[_mainBranchIndex,_index_temp],_value_temp];
 	};
 
