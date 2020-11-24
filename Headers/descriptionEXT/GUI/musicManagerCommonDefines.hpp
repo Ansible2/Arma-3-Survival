@@ -31,7 +31,7 @@
 
 #define BLWK_MUSIC_MANAGER_DELETE_BUTTON_IDC 61519
 
-
+#define BLWK_PUB_CURRENT_PLAYLIST KISKA_musicManager_currentPlaylist
 
 
 #ifndef TO_STRING
