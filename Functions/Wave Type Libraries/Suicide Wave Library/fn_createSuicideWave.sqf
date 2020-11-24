@@ -38,7 +38,7 @@ _bombersArray apply {
 	removeAllWeapons _x;
 
 	// CIPHER COMMENT: consider trying local eventhandler
-	_eventIdTemp = _x addMPEventHandler ["MPKILLED",{
+	_eventIdTemp = _x addMPEventHandler ["MPKilled",{
 		[_this Select 0,_thisEventHandler] call BLWK_fnc_explodeSuicideBomberEvent;
 	}];
 
