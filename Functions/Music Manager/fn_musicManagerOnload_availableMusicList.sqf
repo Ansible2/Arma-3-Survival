@@ -53,7 +53,8 @@ private "_row";
 private _durationColumn = _control lnbAddColumn 1;
 _control lnbSetColumnsPos [0,0.82];
 {
-	_control lnbAddRow [_musicNames select _forEachIndex,str (_musicDurations select _forEachIndex)];
+	_row = _control lnbAddRow [_musicNames select _forEachIndex,str (_musicDurations select _forEachIndex)];
+	_control lnbSetData [[_row,0],_x]; // set data to class name
 } forEach _musicClasses;
 
 _control lnbSort [0,false];
