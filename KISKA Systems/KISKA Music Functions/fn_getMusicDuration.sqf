@@ -28,6 +28,14 @@ if (_trackClass isEqualTo "") exitWith {
 	"No class string passed" call BIS_fnc_error;
 };
 
-private _duration = getNumber (configFile >> "cfgMusic" >> _trackClass >> "duration");
+
+private _duration = 0;
+private _config = [["cfgMusic",_trackClass]] call KISKA_fnc_findConfigAny;
+
+
+private _duration = ;
+if (_duration isEqualTo 0) then {
+	getNumber (onfigFile >> "cfgMusic" >> _trackClass >> "duration")
+};
 
 _duration

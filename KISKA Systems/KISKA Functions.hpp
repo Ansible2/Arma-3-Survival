@@ -65,6 +65,8 @@ class KISKA
 		{};
 		class deleteAtArray
 		{};
+		class findConfigAny
+		{};
 		class getVariableTarget
 		{};
 		class getVariableTarget_sendBack
