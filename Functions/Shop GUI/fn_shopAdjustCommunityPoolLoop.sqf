@@ -3,7 +3,8 @@
 Function: BLWK_fnc_shopAdjustCommunityPoolLoop
 
 Description:
-	Starts the loop that keeps the community pool of objects and supports synced.
+	Starts the loop that keeps the community pool of objects and supports synced
+	 across all players.
 
 Parameters:
 	0: _display : <DISPLAY> - The display the loop should reference
@@ -49,7 +50,7 @@ if ((_poolTreeCtrl tvCount []) isEqualTo 0) then {
 	_poolTreeCtrl tvAdd [[],"Supports"];
 };
 
-// populate list with what's current when the dialog is openned
+
 private _fn_populateList = {
 	params ["_list","_mainBranchIndex"];
 	private ["_displayName_temp","_data_temp","_index_temp","_class_temp","_value_temp"];
@@ -68,6 +69,8 @@ private _fn_populateList = {
 
 	tvExpandAll _poolTreeCtrl;
 };
+
+// populate list with what's current when the dialog is openned
 // populate both supports and build items
 {
 	if !(_x isEqualTo []) then {
