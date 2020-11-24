@@ -7,11 +7,8 @@ params [
 	["_playLastSong",false,[true]]
 ];
 
+missionNamespace setVariable ["KISKA_musicSystemIsRunning",false];
 if (_playLastSong) then {
-	missionNamespace setVariable ["KISKA_musicSystemIsRunning",false];
-} else {
-	missionNamespace setVariable ["KISKA_musicSystemIsRunning",false,2];
-	
 	null = remoteExec ["KISKA_fnc_stopRandomMusicClient",0];
 };
 
