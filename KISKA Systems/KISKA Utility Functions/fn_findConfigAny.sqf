@@ -27,3 +27,27 @@ private _configReturn = configNull;
 
 
 _configReturn
+
+// alt method, slightly slower (0.010s about) when _pathArray gets longer
+/*
+	private _newArray = [];
+	["musicManagerDialog","controls","musicManagerDialogcomboBox_trackSpacing","ComboScrollBar"] apply {
+	_newArray pushBack (str _x)
+	};
+
+	private _string = _newArray joinString ">>";
+
+	private _stringNew = ["configFile >>",_string] joinString "";
+	_config = call compile _stringNew;
+	if (isClass _config) exitWith {_config};
+
+	_stringNew = ["missionConfigFile >>",_string] joinString "";
+	_config = call compile _stringNew;
+	if (isClass _config) exitWith {_config};
+
+	_stringNew = ["campaignConfigFile >>",_string] joinString "";
+	_config = call compile _stringNew;
+	if (isClass _config) exitWith {_config};
+
+	configNull
+*/

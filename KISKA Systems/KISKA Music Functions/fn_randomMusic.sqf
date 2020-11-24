@@ -68,18 +68,22 @@ if (_musicTracks isEqualTo []) then {
 
 private _selectedTrack = selectRandom _musicTracks;
 
-
+/*
+	if the window becomes unfocused, the sleeps can become out of sync.
+	this use of _doInterrupt is used to guarantee a track starts playing on time if things are 
+	slightly out of sync, since it can interrupt the previous music
+*/
 private _doInterrupt = !(_playedFromLoop);
 if !(isDedicated) then {
-	// if the window becomes unfocused, the sleeps can become out of sync.
-	// this is used to guarantee a track starts playing on time if things are out of sync
 	if (!_doInterrupt AND {_lastPlayedTrack == (call KISKA_fnc_getMusicPlaying)}) then {
 		_doInterrupt = true;
 	};
 };
 
 // play song
-null = [_selectedTrack,0,_doInterrupt,0.5] remoteExec ["KISKA_fnc_playMusic",[0,-2] select isDedicated];
+private _targetId = [0,-2] select isDedicated;
+null = [_selectedTrack,0,_doInterrupt,0.5] remoteExec ["KISKA_fnc_playMusic",_targetId];
+null = [_selectedTrack] remoteExecCall ["KISKA_fnc_setCurrentRandomMusicTrack",_targetId];
 
 // if it is the intial running of the system
 if (isNil "KISKA_musicSystemIsRunning") then {
@@ -94,11 +98,7 @@ KISKA_randomMusic_tracks = _musicTracks;
 _usedMusicTracks pushBackUnique _selectedTrack;
 KISKA_randomMusic_usedTracks = _usedMusicTracks;
 
-// get duration of track
-private _durationOfTrack = getNumber (configFile >> "cfgMusic" >> _selectedTrack >> "duration");
-if (_durationOfTrack isEqualTo 0) then {
-	getNumber (missionConfigFile >> "cfgMusic" >> _selectedTrack >> "duration");
-};
+private _durationOfTrack = [_selectedTrack] call KISKA_fnc_getMusicDuration;
 
 // decide how much time should be between tracks
 private "_randomWaitTime";
@@ -117,7 +117,7 @@ if !(KISKA_randomMusic_timeBetween isEqualTo _timeBetween) then {
 };
 
 /*
-	track durations are not exact enough, so there always need to be a bit of a buffer
+	track durations are not (always) exact enough, so there needs to be a bit of a buffer
 	else, if the time between tracks is something like 0 or 1, the sleep will be done, 
 	and music will try to play, but because it does not interrupt,
 	and the previous track will not actually be done, no music will play until the next sleep is done

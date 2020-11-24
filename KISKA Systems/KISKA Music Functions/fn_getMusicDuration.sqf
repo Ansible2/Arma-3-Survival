@@ -5,7 +5,7 @@ Description:
 	Returns the duration of a track of music. Will return 0 if undefined duration or class.
 
 Parameters:
-	0: _trackClass <STRING> - a classname to check the duration of.
+	0: _track <STRING or CONFIG> - a classname to check the duration of or its config path
 
 Returns:
 	<NUMBER> - The duration of the requested track
@@ -21,21 +21,25 @@ Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 params [
-	["_trackClass","",[""]]
+	["_track","",["",configNull]]
 ];
 
-if (_trackClass isEqualTo "") exitWith {
+if (_track isEqualTo "") exitWith {
 	"No class string passed" call BIS_fnc_error;
 };
 
-
 private _duration = 0;
-private _config = [["cfgMusic",_trackClass]] call KISKA_fnc_findConfigAny;
-
-
-private _duration = ;
-if (_duration isEqualTo 0) then {
-	getNumber (onfigFile >> "cfgMusic" >> _trackClass >> "duration")
+private "_config";
+if (_track isEqualType configNull) then {
+	_config = _track;
+} else {
+	_config = [["cfgMusic",_track]] call KISKA_fnc_findConfigAny;
 };
 
+if (isNull _config) exitWith {
+	["_track %1 is not defined in any cfgMusic class",_track] call BIS_fnc_error;
+	_duration
+};
+
+_duration = getNumber(_config >> "duration");
 _duration

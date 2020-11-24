@@ -15,6 +15,7 @@ _fadeTime fadeMusic 0;
 
 playMusic "";
 
+// reset event handler values as "" does not activate music events
 diag_log "manual music stop";
 KISKA_musicPlaying = false;
 KISKA_currentTrack = "";
