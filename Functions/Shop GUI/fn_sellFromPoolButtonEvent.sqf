@@ -44,10 +44,10 @@ private _treeCategory = _selectedTreePath select 0;
 private _indexInPoolArray = _selectedTreePath select 1;
 switch (_treeCategory) do {
 	case BUILD_TREE: {
-		[TO_STRING(BLWK_SHOP_BUILD_POOL_GVAR),_indexInPoolArray] remoteExecCall ["BLWK_fnc_deleteAtGlobalArray",BLWK_allClientsTargetId,true];		
+		[TO_STRING(BLWK_SHOP_BUILD_POOL_GVAR),_indexInPoolArray] remoteExecCall ["KISKA_fnc_deleteAtArray",BLWK_allClientsTargetId,true];		
 	};
 	case SUPPORT_TREE: {
-		[TO_STRING(BLWK_SHOP_SUPP_POOL_GVAR),_indexInPoolArray] remoteExecCall ["BLWK_fnc_deleteAtGlobalArray",BLWK_allClientsTargetId,true];
+		[TO_STRING(BLWK_SHOP_SUPP_POOL_GVAR),_indexInPoolArray] remoteExecCall ["KISKA_fnc_deleteAtArray",BLWK_allClientsTargetId,true];
 	};
 };
 
