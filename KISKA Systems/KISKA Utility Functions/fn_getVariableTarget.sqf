@@ -24,7 +24,7 @@ waitUntil {
 		diag_log "KISKA_fnc_getVariableTarget: Got variable " + _saveVariable + " from target";
 		true
 	};
-	sleep 0.5;
+	sleep 0.25;
 	diag_log "KISKA_fnc_getVariableTarget: Waiting for variable from target";
 	false
 };
