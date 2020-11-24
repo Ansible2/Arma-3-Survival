@@ -48,7 +48,7 @@ switch (_treeCategory) do {
 		if !(isNil "BLWK_heldObject") exitWith {
 			hint parseText "<t color='#f51d1d'>You can't hold two objects at once</t>";
 		};
-		[TO_STRING(BLWK_SHOP_BUILD_POOL_GVAR),_indexInTree] remoteExecCall ["BLWK_fnc_deleteAtGlobalArray",BLWK_allClientsTargetId,true];
+		[TO_STRING(BLWK_SHOP_BUILD_POOL_GVAR),_indexInTree] remoteExecCall ["KISKA_fnc_deleteAtArray",BLWK_allClientsTargetId,true];
 		closeDialog 2;
 		null = [_indexInPurchaseArray,true] spawn BLWK_fnc_purchaseObject;
 	};
@@ -56,7 +56,7 @@ switch (_treeCategory) do {
 		if (count (player getVariable ["BIS_fnc_addCommMenuItem_menu",[]]) isEqualTo 10) exitWith {
 			hint parseText "<t color='#f51d1d'>You already have the max supports possible</t>";
 		};
-		[TO_STRING(BLWK_SHOP_SUPP_POOL_GVAR),_indexInTree] remoteExecCall ["BLWK_fnc_deleteAtGlobalArray",BLWK_allClientsTargetId,true];
+		[TO_STRING(BLWK_SHOP_SUPP_POOL_GVAR),_indexInTree] remoteExecCall ["KISKA_fnc_deleteAtArray",BLWK_allClientsTargetId,true];
 		[_indexInPurchaseArray,true] call BLWK_fnc_purchaseSupport;
 	};
 };

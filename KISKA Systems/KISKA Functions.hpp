@@ -57,11 +57,15 @@ class KISKA
 		file = "KISKA Systems\KISKA Utility Functions";
 		class addArsenal
 		{};
+		class deleteAtArray
+		{};
 		class getVariableTarget
 		{};
 		class getVariableTarget_sendBack
 		{};
 		class isPatchLoaded
+		{};
+		class pushBackToArray
 		{};
 		class removeArsenal
 		{};
