@@ -5,8 +5,8 @@ if (!canSuspend) exitWith {
 params [
 	["_variableName","",[""]],
 	["_namespace",missionNamespace,[missionNamespace,objNull,grpNull,"",controlNull,locationNull]],
+	["_defaultValue",-1],
 	["_target",2,[123,objNull,grpNull,""]],
-	["_defaultValue",nil],
 	["_saveVariable","",[""]]
 ];
 
@@ -21,7 +21,7 @@ if (_saveVariable isEqualTo "") then {
 
 waitUntil {
 	if (!isNil {missionNamespace getVariable _saveVariable}) exitWith {
-		diag_log "KISKA_fnc_getVariableTarget: Got variable " + _saveVariable + " from target";
+		diag_log ("KISKA_fnc_getVariableTarget: Got variable " + _saveVariable + " from target");
 		true
 	};
 	sleep 0.25;
@@ -30,7 +30,6 @@ waitUntil {
 };
 
 private _return = missionNamespace getVariable _saveVariable;
-missionNamespace setVariable [_saveVariable,nil];
-
+missionNamespace setVariable [_saveVariable,nil]; // set to nil so that any other requesters don't get a duplicate
 
 _return
