@@ -23,6 +23,10 @@ uiNamespace setVariable ["BLWK_musicManager_control_saveEdit",_saveEditControl];
 private _saveButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_SAVE_BUTTON_IDC;
 uiNamespace setVariable ["BLWK_musicManager_control_saveButton",_saveButtonControl];
 
+
+private _saveAsButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_SAVEAS_BUTTON_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_saveAsButton",_saveAsButtonControl];
+
 private _loadComboControl = _display displayCtrl BLWK_MUSIC_MANAGER_LOAD_COMBO_IDC;
 uiNamespace setVariable ["BLWK_musicManager_control_loadCombo",_loadComboControl];
 

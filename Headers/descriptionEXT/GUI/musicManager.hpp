@@ -265,7 +265,7 @@ class musicManagerDialog
 		{
 			idc = BLWK_MUSIC_MANAGER_SAVE_EDIT_IDC;
 
-			text = "A PlayList name"; //--- ToDo: Localize;
+			text = "A Playlist name"; //--- ToDo: Localize;
 			x = 0.5 * safezoneW + safezoneX;
 			y = 0.291667 * safezoneH + safezoneY;
 			w = 0.105469 * safezoneW;
@@ -295,11 +295,24 @@ class musicManagerDialog
 		{
 			idc = BLWK_MUSIC_MANAGER_SAVE_BUTTON_IDC;
 
-			text = "Save Current Playlist"; //--- ToDo: Localize;
+			text = "Save"; //--- ToDo: Localize;
+			x = 0.552734 * safezoneW + safezoneX;
+			y = 0.270833 * safezoneH + safezoneY;
+			w = 0.0527344 * safezoneW;
+			h = 0.0208333 * safezoneH;
+			toolTip = "Save over the current list selected in the drop down";
+			//colorBackground[] = {-1,-1,-1,1};
+		};
+		class musicManagerDialogbutton_saveAsPlaylist: RscButton
+		{
+			idc = BLWK_MUSIC_MANAGER_SAVEAS_BUTTON_IDC;
+
+			text = "Save As"; //--- ToDo: Localize;
 			x = 0.5 * safezoneW + safezoneX;
 			y = 0.270833 * safezoneH + safezoneY;
-			w = 0.105469 * safezoneW;
+			w = 0.0527344 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			toolTip = "Save a new playlist based upon the edit box";
 			//colorBackground[] = {-1,-1,-1,1};
 		};
 		class musicManagerDialogbutton_deletePlaylist: RscButton
