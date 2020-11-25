@@ -324,6 +324,7 @@ class musicManagerDialog
 			y = 0.270833 * safezoneH + safezoneY;
 			w = 0.0292969 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			toolTip = "Delete the currently selected list in the drop down";
 			//colorBackground[] = {-1,-1,-1,1};
 		};
 		class musicManagerDialogheaderText_loadPlaylist: RscText
