@@ -33,6 +33,7 @@ null = _this spawn {
 	params ["_control","_display"];
 
 	private _fn_adjustList = {
+		hint "adjust list 2";
 		params ["_displayedArray","_globalArray"];
 
 		// delete all entries if global is empty
@@ -51,13 +52,15 @@ null = _this spawn {
 			// check to see if we are out of bounds on the display array
 			// e.g. stop changing entries and start adding them
 			if (_indexesOfDisplayed >= _forEachIndex) then {
-				_comparedIndex = _indexesOfDisplayed select _forEachIndex;
+				_comparedIndex = _displayedArray select _forEachIndex;
 				// if the index is not already the same
 				if !(_comparedIndex == _x) then {
 					_control lbSetText [_forEachIndex,[_x] call (localNamespace getVariable "BLWK_fnc_getMusicName")];
 				};
-			} else {
-				_control lbAdd ([_x] call (localNamespace getVariable "BLWK_fnc_getMusicName"));
+			} else { ///////ERROR POSITION _name is undefined for some reason
+				_NAME = [_x] call (localNamespace getVariable "BLWK_fnc_getMusicName");
+				hint _NAME;
+				_control lbAdd _NAME;
 			};
 		} forEach _globalArray;
 
@@ -77,6 +80,7 @@ null = _this spawn {
 
 		// compare cached and public array
 		if !(_playlist_displayed isEqualTo GET_PUBLIC_ARRAY_DEFAULT) then {
+			hint "adjust list 1";
 			[_playlist_displayed,BLWK_PUB_CURRENT_PLAYLIST] call _fn_adjustList;		
 			_playlist_displayed = +BLWK_PUB_CURRENT_PLAYLIST;
 		};
