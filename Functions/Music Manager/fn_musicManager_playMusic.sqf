@@ -17,7 +17,13 @@ if (_startTime isEqualTo 0) then {
 	playMusic [_musicClass,_startTime];
 };
 
-while {	(uiNamespace getVariable ["BLWK_musicManager_doPlay",true]) AND {sliderPosition _sliderControl < _sliderMax} } do {
+uiNamespace setVariable ["BLWK_musicManager_doPlay",true];
+
+while {
+	(!isNull (uiNamespace getVariable "BLWK_musicManager_display")) AND 
+	{uiNamespace getVariable ["BLWK_musicManager_doPlay",true]} AND 
+	{sliderPosition _sliderControl < _sliderMax} } 
+do {
 	sleep INTERVAL;
  	_sliderControl sliderSetPosition ((sliderPosition _sliderControl) + INTERVAL);
 };
