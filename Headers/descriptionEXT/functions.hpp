@@ -114,6 +114,8 @@ class BLWK
 		file = "Functions\Music Manager";
 		class musicManager_playMusic
 		{};
+		class musicManager_updateLoadCombo
+		{};
 		class musicManagerOnLoad
 		{};
 		class musicManagerOnLoad_addAndRemoveButtons
@@ -123,6 +125,8 @@ class BLWK
 		class musicManagerOnLoad_closeButton
 		{};
 		class musicManagerOnLoad_currentPlaylistLoop
+		{};
+		class musicManagerOnLoad_loadCombo
 		{};
 		class musicManagerOnLoad_pauseAndPlayButtons
 		{};
