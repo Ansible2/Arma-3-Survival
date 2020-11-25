@@ -270,6 +270,7 @@ class musicManagerDialog
 			y = 0.291667 * safezoneH + safezoneY;
 			w = 0.105469 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			maxChars = 20;
 			colorBackground[] = GREY_COLOR(1,0.25);
 		};
 		class musicManagerDialogcomboBox_loadPlaylist: RscCombo
