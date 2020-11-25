@@ -12,7 +12,7 @@ _addButtonControl ctrlAddEventHandler ["ButtonClick",{
 		hint "You need to have a selection made from the songs list";
 	} else {
 		// class name of song is stored in its data
-		[TO_STRING(BLWK_PUB_CURRENT_PLAYLIST),_availableMusicListControl lnbData [_selectedIndex,0]] remoteExecCall ["KISKA_fnc_pushBackToArray",BLWK_allClientsTargetId,true];
+		[TO_STRING(BLWK_PUB_CURRENT_PLAYLIST),_availableMusicListControl lnbData [_selectedIndex,0]] remoteExecCall ["KISKA_fnc_pushBackToArray",0,true];
 	};
 }];
 
@@ -24,6 +24,6 @@ _removeButtonControl ctrlAddEventHandler ["ButtonClick",{
 		hint "You need to have a selection made from the Current Playlist";
 	} else {
 		// class name of song is stored in its data
-		[TO_STRING(BLWK_PUB_CURRENT_PLAYLIST),_selectedIndex] remoteExecCall ["KISKA_fnc_deleteAtArray",BLWK_allClientsTargetId,true];
+		[TO_STRING(BLWK_PUB_CURRENT_PLAYLIST),_selectedIndex] remoteExecCall ["KISKA_fnc_deleteAtArray",0,true];
 	};
 }];
