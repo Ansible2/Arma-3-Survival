@@ -62,8 +62,6 @@ if (_startTime < 0) then {
 uiSleep (_fadeTime + 0.1);
 
 playMusic [_track,_startTime];
-if ()
-
 
 0 fadeMusic 0;
 _fadeTime fadeMusic _volume;

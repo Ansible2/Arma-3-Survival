@@ -19,8 +19,7 @@ uiNamespace setVariable ["BLWK_musicManager_control_closeButton",_closeButtonCon
 private _commitButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_COMMIT_BUTTON_IDC;
 uiNamespace setVariable ["BLWK_musicManager_control_commitButton",_commitButtonControl];
 
-private _timelineSliderControl = _display displayCtrl BLWK_MUSIC_MANAGER_TIMELINE_SLIDER_IDC;
-uiNamespace setVariable ["BLWK_musicManager_control_timelineSlider",_timelineSliderControl];
+
 
 
 
@@ -81,8 +80,12 @@ null = [_onOffComboControl,_display] spawn BLWK_fnc_musicManagerOnload_systemOnO
 // volume slider
 private _volumeSliderControl = _display displayCtrl BLWK_MUSIC_MANAGER_VOLUME_SLIDER_IDC;
 uiNamespace setVariable ["BLWK_musicManager_control_volumeSLider",_volumeSliderControl];
-private _volumeSlider_ctrl = _display displayCtrl BLWK_MUSIC_MANAGER_VOLUME_SLIDER_IDC;
-_volumeSlider_ctrl sliderSetPosition (musicVolume);
+[_volumeSliderControl] call BLWK_fnc_musicManagerOnload_volumeSlider;
+
+// timeline slider
+private _timelineSliderControl = _display displayCtrl BLWK_MUSIC_MANAGER_TIMELINE_SLIDER_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_timelineSlider",_timelineSliderControl];
+[_timelineSliderControl] call BLWK_fnc_musicManagerOnload_timelineSlider;
 
 
 

@@ -1,21 +1,5 @@
 params ["_control"];
 
-
-/*
-_control ctrlAddEventHandler ["sliderPosChanged",{
-	params ["_control","_position"];
-
-	private _display = ctrlParent _control;
-	// don't immediately play music if the music is paused
-	if !(_display getVariable ["BLWK_musicManager_paused",false]) then {
-		private _musicClass = _display getVariable ["BLWK_musicManager_selectedTrack",""];
-		if !(_musicClass isEqualTo "") then {
-			playMusic [_musicClass,_position];
-		};
-	};
-}];
-*/
-
 // reset music pause state when selection is changed
 _control ctrlAddEventHandler ["LBSelChanged",{
 	params ["_control","_selectedIndex"];
