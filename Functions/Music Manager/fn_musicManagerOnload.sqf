@@ -7,24 +7,8 @@ params ["_display"];
 uiNamespace setVariable ["BLWK_musicManager_display",_display];
 
 
-private _pausePlayIndicatorControl = _display displayCtrl BLWK_MUSIC_MANAGER_PAUSED_PLAYING_INDICATOR_IDC;
-uiNamespace setVariable ["BLWK_musicManager_control_pausePlayIndicator",_pausePlayIndicatorControl];
-
-
-
 private _commitButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_COMMIT_BUTTON_IDC;
 uiNamespace setVariable ["BLWK_musicManager_control_commitButton",_commitButtonControl];
-
-
-private _saveEditControl = _display displayCtrl BLWK_MUSIC_MANAGER_SAVE_EDIT_IDC;
-uiNamespace setVariable ["BLWK_musicManager_control_saveEdit",_saveEditControl];
-
-private _saveButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_SAVE_BUTTON_IDC;
-uiNamespace setVariable ["BLWK_musicManager_control_saveButton",_saveButtonControl];
-
-
-private _saveAsButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_SAVEAS_BUTTON_IDC;
-uiNamespace setVariable ["BLWK_musicManager_control_saveAsButton",_saveAsButtonControl];
 
 
 
@@ -99,7 +83,15 @@ null = [_spacingComboControl,_spacingEditControl,_spacingButtonControl] spawn BL
 
 
 
+private _saveEditControl = _display displayCtrl BLWK_MUSIC_MANAGER_SAVE_EDIT_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_saveEdit",_saveEditControl];
 
+private _saveButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_SAVE_BUTTON_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_saveButton",_saveButtonControl];
+
+
+private _saveAsButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_SAVEAS_BUTTON_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_saveAsButton",_saveAsButtonControl];
 
 
 
@@ -114,7 +106,6 @@ _display displayAddEventHandler ["unload",{
 	uiNamespace setVariable ["BLWK_musicManager_display",nil];
 	uiNamespace setVariable ["BLWK_musicManager_control_currentPlaylist",nil];
 	uiNamespace setVariable ["BLWK_musicManager_control_songsList",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_pausePlayIndicator",nil];
 	uiNamespace setVariable ["BLWK_musicManager_control_closeButton",nil];
 	uiNamespace setVariable ["BLWK_musicManager_control_commitButton",nil];
 	uiNamespace setVariable ["BLWK_musicManager_control_timelineSlider",nil];
