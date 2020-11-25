@@ -16,7 +16,5 @@ if (_fadeTime > 0) then {
 };
 playMusic "";
 
-// reset event handler values as "" does not activate music events
-diag_log "manual music stop";
-KISKA_musicPlaying = false;
-KISKA_currentTrack = "";
+// reset event handler values as playMusic "" does not activate music events
+call KISKA_fnc_musicStopEvent;

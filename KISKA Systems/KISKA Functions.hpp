@@ -43,6 +43,10 @@ class KISKA
 		{
 			preInit = 1;
 		};
+		class musicStartEvent
+		{};
+		class musicStopEvent
+		{};
 		class playMusic
 		{};
 		class randomMusic

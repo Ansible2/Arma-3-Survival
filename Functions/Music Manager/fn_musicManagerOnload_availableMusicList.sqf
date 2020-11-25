@@ -9,6 +9,7 @@ _control ctrlAddEventHandler ["LBSelChanged",{
 		uiNamespace setVariable ["BLWK_musicManager_doPlay",false];
 		uiNamespace setVariable ["BLWK_musicManager_paused",false];
 		playMusic "";
+		call KISKA_fnc_musicStopEvent;
 	};
 
 	private _display = ctrlParent _control;
