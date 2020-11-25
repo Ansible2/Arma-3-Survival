@@ -26,8 +26,7 @@ uiNamespace setVariable ["BLWK_musicManager_control_saveButton",_saveButtonContr
 private _saveAsButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_SAVEAS_BUTTON_IDC;
 uiNamespace setVariable ["BLWK_musicManager_control_saveAsButton",_saveAsButtonControl];
 
-private _loadComboControl = _display displayCtrl BLWK_MUSIC_MANAGER_LOAD_COMBO_IDC;
-uiNamespace setVariable ["BLWK_musicManager_control_loadCombo",_loadComboControl];
+
 
 
 
@@ -80,6 +79,10 @@ private _pauseButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_PAUSE_BUTT
 uiNamespace setVariable ["BLWK_musicManager_control_pauseButton",_pauseButtonControl];
 [_playButtonControl,_pauseButtonControl] call BLWK_fnc_musicManagerOnload_pauseAndPlayButtons;
 
+// load playlist combo
+private _loadComboControl = _display displayCtrl BLWK_MUSIC_MANAGER_LOAD_COMBO_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_loadCombo",_loadComboControl];
+[_loadComboControl] call BLWK_fnc_musicManagerOnload_loadCombo;
 
 
 
