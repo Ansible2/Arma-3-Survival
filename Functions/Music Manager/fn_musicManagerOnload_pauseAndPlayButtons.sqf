@@ -10,16 +10,17 @@ _playButtonControl ctrlAddEventHandler ["ButtonClick",{
 	if (_selectedIndex isEqualTo -1) then {
 		hint "You need to have a selection made from the songs list";
 	} else {
-		_display displayCtrl BLWK_MUSIC_MANAGER_SONGS_LIST_IDC;
 		private _musicClass = _availableMusicListControl lnbData [_selectedIndex,0];
 		
-		if (missionNamespace getVariable ["BLWK_musicManager_paused",false]) then {
+		if (uiNamespace getVariable ["BLWK_musicManager_paused",false]) then {
 			private _sliderPosition = sliderPosition (uiNamespace getVariable "BLWK_musicManager_control_timelineSlider");
-
+			// resume song from slider position
+			playMusic [_musicClass,_sliderPosition];
 		} else {
 			// get song
-			
-			
-		}			
+			// play selected song from start			
+		};
+
+		uiNamespace setVariable ["BLWK_musicManager_doPlay",true];
 	};
 }];

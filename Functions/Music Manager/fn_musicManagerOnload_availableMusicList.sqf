@@ -22,8 +22,8 @@ _control ctrlAddEventHandler ["LBSelChanged",{
 
 	private _display = ctrlParent _control;
 	private _musicClass = _control lnbData [_selectedIndex,0];
-	_display setVariable ["BLWK_musicManager_selectedTrack",_musicClass];
-	_display setVariable ["BLWK_musicManager_paused",false];
+	uiNamespace setVariable ["BLWK_musicManager_selectedTrack",_musicClass];
+	uiNamespace setVariable ["BLWK_musicManager_paused",false];
 
 	// reset timeline slider to 0
 	private _timeLineSlider = uiNamespace getVariable "BLWK_musicManager_control_timelineSlider";

@@ -11,8 +11,9 @@ params [
 
 if !(call KISKA_fnc_isMusicPlaying) exitWith {};
 
-_fadeTime fadeMusic 0;
-
+if (_fadeTime > 0) then {
+	_fadeTime fadeMusic 0;
+};
 playMusic "";
 
 // reset event handler values as "" does not activate music events
