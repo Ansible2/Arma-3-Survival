@@ -36,7 +36,7 @@ class musicManagerDialog
 			y = 0.25 * safezoneH + safezoneY;
 			w = 0.492188 * safezoneW;
 			h = 0.53125 * safezoneH;
-			colorBackground[] = GREY_COLOR(0.24,1);
+			colorBackground[] = GREY_COLOR(0.24,0.7);
 		};
 		class musicManagerDialogbackground_filler_1: RscText
 		{
@@ -142,6 +142,7 @@ class musicManagerDialog
 			h = 0.03125 * safezoneH;
 			colorBackground[] = {-1,-1,-1,0.25};
 			sliderStep = 0.01;
+			lineSize = 0;
 		};
 		class musicManagerDialogbutton_play: RscButton
 		{
@@ -194,7 +195,7 @@ class musicManagerDialog
 			colorBackground[] = {-1,-1,-1,0.25};
 			sliderStep = 0.05;
 			sliderRange = [0,1];
-			//sliderPosition = 1;
+			lineSize = 0;
 		};
 		class musicManagerDialogheaderText_trackTitle: RscText
 		{
@@ -227,6 +228,7 @@ class musicManagerDialog
 			y = 0.302083 * safezoneH + safezoneY;
 			w = 0.0585937 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			colorBackground[] = GREY_COLOR(1,0.25);
 			
 		};
 		class musicManagerDialogbutton_trackSpacing: RscButton
@@ -268,6 +270,7 @@ class musicManagerDialog
 			y = 0.291667 * safezoneH + safezoneY;
 			w = 0.105469 * safezoneW;
 			h = 0.0208333 * safezoneH;
+			colorBackground[] = GREY_COLOR(1,0.25);
 		};
 		class musicManagerDialogcomboBox_loadPlaylist: RscCombo
 		{
