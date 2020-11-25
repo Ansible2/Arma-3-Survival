@@ -1,28 +1,130 @@
 #include "..\..\Headers\descriptionEXT\GUI\musicManagerCommonDefines.hpp"
+disableSerialization;
 
 params ["_display"];
+
+// prepare globals for controls
+uiNamespace setVariable ["BLWK_musicManager_display",_display];
+
+
+
+
+
+private _pausePlayIndicatorControl = _display displayCtrl BLWK_MUSIC_MANAGER_PAUSED_PLAYING_INDICATOR_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_pausePlayIndicator",_pausePlayIndicatorControl];
+
+private _closeButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_CLOSE_BUTTON_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_closeButton",_closeButtonControl];
+
+private _commitButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_COMMIT_BUTTON_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_commitButton",_commitButtonControl];
+
+private _timelineSliderControl = _display displayCtrl BLWK_MUSIC_MANAGER_TIMELINE_SLIDER_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_timelineSlider",_timelineSliderControl];
+
+
+
+private _playButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_PLAY_BUTTON_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_playButton",_playButtonControl];
+
+private _pauseButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_PAUSE_BUTTON_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_pauseButton",_pauseButtonControl];
+
+
+
+
+
+private _saveEditControl = _display displayCtrl BLWK_MUSIC_MANAGER_SAVE_EDIT_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_saveEdit",_saveEditControl];
+
+private _saveButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_SAVE_BUTTON_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_saveButton",_saveButtonControl];
+
+private _loadComboControl = _display displayCtrl BLWK_MUSIC_MANAGER_LOAD_COMBO_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_loadCombo",_loadComboControl];
+
+
+
+private _deleteButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_DELETE_BUTTON_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_deleteButton",_deleteButtonControl];
+
+
+
 	
 // available tracks list
-[_display displayCtrl BLWK_MUSIC_MANAGER_SONGS_LIST_IDC] call BLWK_fnc_musicManagerOnload_availableMusicList;
+private _songListControl = _display displayCtrl BLWK_MUSIC_MANAGER_SONGS_LIST_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_songsList",_songListControl];
+[_songListControl] call BLWK_fnc_musicManagerOnload_availableMusicList;
 
 // current playlist
-[_display displayCtrl BLWK_MUSIC_MANAGER_CURRENT_PLAYLIST_IDC,_display] call BLWK_fnc_musicManagerOnload_currentPlaylistLoop;
+private _currentPlaylistControl = _display displayCtrl BLWK_MUSIC_MANAGER_CURRENT_PLAYLIST_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_currentPlaylist",_currentPlaylistControl];
+[_currentPlaylistControl,_display] call BLWK_fnc_musicManagerOnload_currentPlaylistLoop;
+
+
 // add to and remove from current playlist buttons
-[
-	_display displayCtrl BLWK_MUSIC_MANAGER_ADDTO_BUTTON_IDC,
-	_display displayCtrl BLWK_MUSIC_MANAGER_REMOVEFROM_BUTTON_IDC
-] call BLWK_fnc_musicManagerOnload_addAndRemoveButtons;
+private _addToButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_ADDTO_BUTTON_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_addToButton",_addToButtonControl];
+private _removeFromButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_REMOVEFROM_BUTTON_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_removeFromButton",_removeFromButtonControl];
+[_addToButtonControl,_removeFromButtonControl] call BLWK_fnc_musicManagerOnload_addAndRemoveButtons;
+
+
 
 // system on off combo
-null = [_display displayCtrl BLWK_MUSIC_MANAGER_ONOFF_COMBO_IDC,_display] spawn BLWK_fnc_musicManagerOnload_systemOnOffCombo;
+private _onOffComboControl = _display displayCtrl BLWK_MUSIC_MANAGER_ONOFF_COMBO_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_onOffCombo",_onOffComboControl];
+null = [_onOffComboControl,_display] spawn BLWK_fnc_musicManagerOnload_systemOnOffCombo;
+
+
 
 // volume slider
+private _volumeSliderControl = _display displayCtrl BLWK_MUSIC_MANAGER_VOLUME_SLIDER_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_volumeSLider",_volumeSliderControl];
 private _volumeSlider_ctrl = _display displayCtrl BLWK_MUSIC_MANAGER_VOLUME_SLIDER_IDC;
 _volumeSlider_ctrl sliderSetPosition (musicVolume);
 
 
-null = [
-	_display displayCtrl BLWK_MUSIC_MANAGER_SPACING_COMBO_IDC,
-	_display displayCtrl BLWK_MUSIC_MANAGER_SPACING_EDIT_IDC,
-	_display displayCtrl BLWK_MUSIC_MANAGER_SPACING_BUTTON_IDC
-] spawn BLWK_fnc_musicManagerOnload_trackSpacingControls;
+
+
+// track spacing group
+private _spacingEditControl = _display displayCtrl BLWK_MUSIC_MANAGER_SPACING_EDIT_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_spacingEdit",_spacingEditControl];
+private _spacingButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_SPACING_BUTTON_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_spacingButton",_spacingButtonControl];
+private _spacingComboControl = _display displayCtrl BLWK_MUSIC_MANAGER_SPACING_COMBO_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_spacingCombo",_spacingComboControl];
+null = [_spacingComboControl,_spacingEditControl,_spacingButtonControl] spawn BLWK_fnc_musicManagerOnload_trackSpacingControls;
+
+
+
+
+
+
+
+
+
+
+_display displayAddEventHandler ["unload",{
+	uiNamespace setVariable ["BLWK_musicManager_display",_display];
+	uiNamespace setVariable ["BLWK_musicManager_control_currentPlaylist",nil];
+	uiNamespace setVariable ["BLWK_musicManager_control_songsList",nil];
+	uiNamespace setVariable ["BLWK_musicManager_control_pausePlayIndicator",nil];
+	uiNamespace setVariable ["BLWK_musicManager_control_closeButton",nil];
+	uiNamespace setVariable ["BLWK_musicManager_control_commitButton",nil];
+	uiNamespace setVariable ["BLWK_musicManager_control_timelineSlider",nil];
+	uiNamespace setVariable ["BLWK_musicManager_control_volumeSLider",nil];
+	uiNamespace setVariable ["BLWK_musicManager_control_playButton",nil];
+	uiNamespace setVariable ["BLWK_musicManager_control_pauseButton",nil];
+	uiNamespace setVariable ["BLWK_musicManager_control_spacingEdit",nil];
+	uiNamespace setVariable ["BLWK_musicManager_control_spacingButton",nil];
+	uiNamespace setVariable ["BLWK_musicManager_control_spacingCombo",nil];
+	uiNamespace setVariable ["BLWK_musicManager_control_onOffCombo",nil];
+	uiNamespace setVariable ["BLWK_musicManager_control_saveEdit",nil];
+	uiNamespace setVariable ["BLWK_musicManager_control_saveButton",nil];
+	uiNamespace setVariable ["BLWK_musicManager_control_loadCombo",nil];
+	uiNamespace setVariable ["BLWK_musicManager_control_addToButton",nil];
+	uiNamespace setVariable ["BLWK_musicManager_control_removeFromButton",nil];
+	uiNamespace setVariable ["BLWK_musicManager_control_deleteButton",nil];
+	uiNamespace setVariable ["BLWK_musicManager_paused",nil];
+}];

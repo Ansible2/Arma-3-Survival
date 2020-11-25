@@ -26,7 +26,7 @@ _control ctrlAddEventHandler ["LBSelChanged",{
 	_display setVariable ["BLWK_musicManager_paused",false];
 
 	// reset timeline slider to 0
-	private _timeLineSlider = _display displayCtrl BLWK_MUSIC_MANAGER_TIMELINE_SLIDER_IDC;
+	private _timeLineSlider = uiNamespace getVariable "BLWK_musicManager_control_timelineSlider";
 	if ((sliderPosition _timeLineSlider) != 0) then {
 		_timeLineSlider sliderSetPosition 0;
 	};

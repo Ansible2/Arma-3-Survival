@@ -39,8 +39,7 @@ if (_currentSpacingSetting isEqualTo -1) then {
 _comboControl ctrlAddEventHandler ["LBSelChanged",{
 	params ["_control", "_selectedIndex"];
 
-	private _display = ctrlParent _control;
-	private _editControl = _display displayCtrl BLWK_MUSIC_MANAGER_SPACING_EDIT_IDC;
+	private _editControl = (uiNamespace getVariable "BLWK_musicManager_control_spacingEdit");
 	switch (_selectedIndex) do {
 		case 0:{ // random max
 			_editControl ctrlSetText "[1]";
@@ -59,8 +58,7 @@ _comboControl ctrlAddEventHandler ["LBSelChanged",{
 _buttonControl ctrlAddEventHandler ["ButtonClick",{
 	params ["_control"];
 
-	private _display = ctrlParent _control;
-	private _editControl = _display displayCtrl BLWK_MUSIC_MANAGER_SPACING_EDIT_IDC;
+	private _editControl = (uiNamespace getVariable "BLWK_musicManager_control_spacingEdit");
 	private _editControlText = ctrlText _editControl;
 	private _textCompiled = call compile _editControlText;
 	if (
