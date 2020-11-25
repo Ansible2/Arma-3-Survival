@@ -9,9 +9,9 @@ if (isNil TO_STRING(BLWK_PUB_CURRENT_PLAYLIST)) then {
 	missionNamespace setVariable [TO_STRING(BLWK_PUB_CURRENT_PLAYLIST),[]];
 };
 
-locaNamespace setVariable ["BLWK_fnc_getMusicName",{
+uiNamespace setVariable ["BLWK_fnc_musicManager_getMusicName",{
 	params ["_configClass"];
-	private _configPath = ["cfgMusic",_configClass] call KISKA_fnc_findConfigAny;
+	private _configPath = [["cfgMusic",_configClass]] call KISKA_fnc_findConfigAny;
 	private _displayName = getText(_configPath >> "name");
 	if (_displayName isEqualTo "") then {
 		_displayName = configName _configPath;
@@ -24,7 +24,7 @@ locaNamespace setVariable ["BLWK_fnc_getMusicName",{
 if !(GET_PUBLIC_ARRAY_DEFAULT isEqualTo []) then {
 	private "_displayName_temp";
 	BLWK_PUB_CURRENT_PLAYLIST apply {
-		_displayName_temp = [_x] call (localNamespace getVariable "BLWK_fnc_getMusicName");
+		_displayName_temp = [_x] call (uiNamespace getVariable "BLWK_fnc_musicManager_getMusicName");
 		_control lbAdd _displayName_temp;
 	};
 };
@@ -55,12 +55,10 @@ null = _this spawn {
 				_comparedIndex = _displayedArray select _forEachIndex;
 				// if the index is not already the same
 				if !(_comparedIndex == _x) then {
-					_control lbSetText [_forEachIndex,[_x] call (localNamespace getVariable "BLWK_fnc_getMusicName")];
+					_control lbSetText [_forEachIndex,[_x] call (uiNamespace getVariable "BLWK_fnc_musicManager_getMusicName")];
 				};
 			} else { ///////ERROR POSITION _name is undefined for some reason
-				_NAME = [_x] call (localNamespace getVariable "BLWK_fnc_getMusicName");
-				hint _NAME;
-				_control lbAdd _NAME;
+				_control lbAdd ([_x] call (uiNamespace getVariable "BLWK_fnc_musicManager_getMusicName"));
 			};
 		} forEach _globalArray;
 

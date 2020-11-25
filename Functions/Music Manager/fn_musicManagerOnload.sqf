@@ -119,4 +119,5 @@ _display displayAddEventHandler ["unload",{
 	uiNamespace setVariable ["BLWK_musicManager_paused",nil];
 	uiNamespace setVariable ["BLWK_musicManager_selectedTrack",nil];
 	uiNamespace setVariable ["BLWK_musicManager_doPlay",nil];
+	uiNamespace setVariable ["BLWK_fnc_musicManager_getMusicName",nil];
 }];
