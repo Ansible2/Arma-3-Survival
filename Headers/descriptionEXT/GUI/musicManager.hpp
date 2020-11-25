@@ -92,10 +92,10 @@ class musicManagerDialog
 			colorBackground[] = GREY_COLOR(0.24,1);
 			sizeEx = 0.0208333 * safezoneH;
 		};
-		class musicManagerDialogheaderText_playlistMaker: RscText
+		class musicManagerDialogheaderText_musicManager: RscText
 		{
 			idc = -1;
-			text = "Playlist Maker"; //--- ToDo: Localize;
+			text = "Music Manager"; //--- ToDo: Localize;
 			x = 0.253906 * safezoneW + safezoneX;
 			y = 0.229167 * safezoneH + safezoneY;
 			w = 0.427734 * safezoneW;
