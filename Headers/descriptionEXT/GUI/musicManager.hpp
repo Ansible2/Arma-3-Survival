@@ -65,6 +65,16 @@ class musicManagerDialog
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = {-1,-1,-1,1};
 		};
+		class musicManagerDialogbackground_filler_4: RscText
+		{
+			idc = -1;
+			text = "";
+			x = 0.259766 * safezoneW + safezoneX;
+			y = 0.75 * safezoneH + safezoneY;
+			w = 0.480469 * safezoneW;
+			h = 0.0208333 * safezoneH;
+			colorBackground[] = {-1,-1,-1,1};
+		};
 	};
 	
 	class controls
@@ -101,16 +111,6 @@ class musicManagerDialog
 			w = 0.427734 * safezoneW;
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = PROFILE_BACKGROUND_COLOR(1);
-		};
-		class musicManagerDialogheaderText_pausedOrPlayingIndicator: RscText
-		{
-			idc = BLWK_MUSIC_MANAGER_PAUSED_PLAYING_INDICATOR;
-			text = "Playing"; //--- ToDo: Localize;
-			x = 0.259766 * safezoneW + safezoneX;
-			y = 0.75 * safezoneH + safezoneY;
-			w = 0.480469 * safezoneW;
-			h = 0.0208333 * safezoneH;
-			colorBackground[] = {-1,-1,-1,1};
 		};
 		class musicManagerDialogbutton_closeDialog: RscButton
 		{
