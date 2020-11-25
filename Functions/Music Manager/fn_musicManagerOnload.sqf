@@ -10,8 +10,7 @@ uiNamespace setVariable ["BLWK_musicManager_display",_display];
 private _pausePlayIndicatorControl = _display displayCtrl BLWK_MUSIC_MANAGER_PAUSED_PLAYING_INDICATOR_IDC;
 uiNamespace setVariable ["BLWK_musicManager_control_pausePlayIndicator",_pausePlayIndicatorControl];
 
-private _closeButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_CLOSE_BUTTON_IDC;
-uiNamespace setVariable ["BLWK_musicManager_control_closeButton",_closeButtonControl];
+
 
 private _commitButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_COMMIT_BUTTON_IDC;
 uiNamespace setVariable ["BLWK_musicManager_control_commitButton",_commitButtonControl];
@@ -36,7 +35,10 @@ private _deleteButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_DELETE_BU
 uiNamespace setVariable ["BLWK_musicManager_control_deleteButton",_deleteButtonControl];
 
 
-
+// close button
+private _closeButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_CLOSE_BUTTON_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_closeButton",_closeButtonControl];
+[_closeButtonControl] call BLWK_fnc_musicManagerOnload_closeButton;
 	
 // available tracks list
 private _songListControl = _display displayCtrl BLWK_MUSIC_MANAGER_SONGS_LIST_IDC;
@@ -100,6 +102,12 @@ null = [_spacingComboControl,_spacingEditControl,_spacingButtonControl] spawn BL
 
 
 _display displayAddEventHandler ["unload",{
+	// stop music if playing
+	if (uiNamespace getVariable ["BLWK_musicManager_doPlay",false]) then {
+		playMusic "";
+		call KISKA_fnc_musicStopEvent;
+	};
+
 	uiNamespace setVariable ["BLWK_musicManager_display",nil];
 	uiNamespace setVariable ["BLWK_musicManager_control_currentPlaylist",nil];
 	uiNamespace setVariable ["BLWK_musicManager_control_songsList",nil];
