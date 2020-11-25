@@ -1,7 +1,7 @@
 if (!canSuspend) exitWith {
 	"BLWK_fnc_musicManager_playMusic needs to be run in scheduled" call BIS_fnc_error;
 };
-#define INTERVAL 0.1
+#define INTERVAL 0.01
 
 params [
 	"_musicClass",
@@ -17,11 +17,7 @@ if (_startTime isEqualTo 0) then {
 	playMusic [_musicClass,_startTime];
 };
 
-while { 
-	(uiNamespace getVariable ["BLWK_musicManager_doPlay",true]) AND 
-	{sliderPosition _sliderControl < _sliderMax} AND
-	{_musicClass == (uiNamespace getVariable "BLWK_musicManager_selectedTrack")}
-} do {
+while {	(uiNamespace getVariable ["BLWK_musicManager_doPlay",true]) AND {sliderPosition _sliderControl < _sliderMax} } do {
 	sleep INTERVAL;
  	_sliderControl sliderSetPosition ((sliderPosition _sliderControl) + INTERVAL);
 };
