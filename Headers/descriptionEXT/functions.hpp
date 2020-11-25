@@ -120,6 +120,8 @@ class BLWK
 		{};
 		class musicManagerOnLoad_availableMusicList
 		{};
+		class musicManagerOnLoad_closeButton
+		{};
 		class musicManagerOnLoad_currentPlaylistLoop
 		{};
 		class musicManagerOnLoad_pauseAndPlayButtons
