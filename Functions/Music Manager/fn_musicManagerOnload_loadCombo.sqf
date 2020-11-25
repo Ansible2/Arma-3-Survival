@@ -5,7 +5,7 @@ params ["_loadComboControl"];
 _loadComboControl ctrlAddEventHandler ["LBSelChanged",{
 	params ["_control","_selectedIndex"];
 
-	private _playlistArray = profileNamespace getVariable [BLWK_musicManagerPlaylists,[]];
+	private _playlistArray = profileNamespace getVariable ["BLWK_musicManagerPlaylists",[]];
 	if !(_playlistArray isEqualTo []) then {
 		private _chosenPlaylist = _playlistArray select _selectedIndex;
 		private _musicClassesInList = _chosenPlaylist select 1;
@@ -35,5 +35,5 @@ _loadComboControl ctrlAddEventHandler ["LBSelChanged",{
 	};
 }];
 
-
+// fill in list with available ones
 [_loadComboControl] call BLWK_fnc_musicManager_updateLoadCombo;
