@@ -193,7 +193,7 @@ class musicManagerDialog
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = {-1,-1,-1,0.25};
 			sliderStep = 0.05;
-			sliderRange = [0,2];
+			sliderRange = [0,1];
 			//sliderPosition = 1;
 		};
 		class musicManagerDialogheaderText_trackTitle: RscText

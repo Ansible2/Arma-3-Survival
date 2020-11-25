@@ -1,7 +1,44 @@
 params ["_control"];
 
-// cache and/or get music info for list
 
+/*
+_control ctrlAddEventHandler ["sliderPosChanged",{
+	params ["_control","_position"];
+
+	private _display = ctrlParent _control;
+	// don't immediately play music if the music is paused
+	if !(_display getVariable ["BLWK_musicManager_paused",false]) then {
+		private _musicClass = _display getVariable ["BLWK_musicManager_selectedTrack",""];
+		if !(_musicClass isEqualTo "") then {
+			playMusic [_musicClass,_position];
+		};
+	};
+}];
+*/
+
+// reset music pause state when selection is changed
+_control ctrlAddEventHandler ["LBSelChanged",{
+	params ["_control","_selectedIndex"];
+
+	private _display = ctrlParent _control;
+	private _musicClass = _control lnbData [_selectedIndex,0];
+	_display setVariable ["BLWK_musicManager_selectedTrack",_musicClass];
+	_display setVariable ["BLWK_musicManager_paused",false];
+
+	// reset timeline slider to 0
+	private _timeLineSlider = _display displayCtrl BLWK_MUSIC_MANAGER_TIMELINE_SLIDER_IDC;
+	if ((sliderPosition _timeLineSlider) != 0) then {
+		_timeLineSlider sliderSetPosition 0;
+	};
+
+	// adjust slider range to song duration
+	private _musicDuration = [_control lnbText [_selectedIndex,1]] call BIS_fnc_parseNumber;
+	_timeLineSlider sliderSetRange [0,_musicDuration];
+
+}];
+
+
+// cache and/or get music info for list
 // get classes
 private "_musicClasses";
 if (isNil {uiNamespace getVariable "BLWK_musicManager_allMusicClasses"}) then {		

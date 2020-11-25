@@ -12,7 +12,7 @@ _addButtonControl ctrlAddEventHandler ["ButtonClick",{
 		hint "You need to have a selection made from the songs list";
 	} else {
 		// class name of song is stored in its data
-		[TO_STRING(BLWK_PUB_CURRENT_PLAYLIST),_control lnbData [_selectedIndex,0]] remoteExecCall ["KISKA_fnc_pushBackToGlobalArray",BLWK_allClientsTargetId,true];
+		[TO_STRING(BLWK_PUB_CURRENT_PLAYLIST),_availableMusicListControl lnbData [_selectedIndex,0]] remoteExecCall ["KISKA_fnc_pushBackToGlobalArray",BLWK_allClientsTargetId,true];
 	};
 }];
 
