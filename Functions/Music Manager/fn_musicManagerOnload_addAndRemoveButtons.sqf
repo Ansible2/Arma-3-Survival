@@ -8,7 +8,6 @@ _addButtonControl ctrlAddEventHandler ["ButtonClick",{
 	private _availableMusicListControl = (uiNamespace getVariable "BLWK_musicManager_control_songsList");
 
 	private _selectedIndex = lnbCurSelRow _availableMusicListControl;
-	hint str _selectedIndex;
 	if (_selectedIndex isEqualTo -1) then {
 		hint "You need to have a selection made from the songs list";
 	} else {
@@ -21,7 +20,6 @@ _removeButtonControl ctrlAddEventHandler ["ButtonClick",{
 	params ["_control"];
 	
 	private _selectedIndex = lbCurSel (uiNamespace getVariable "BLWK_musicManager_control_currentPlaylist");
-	hint str _selectedIndex;
 	if (_selectedIndex isEqualTo -1) then {
 		hint "You need to have a selection made from the Current Playlist";
 	} else {
