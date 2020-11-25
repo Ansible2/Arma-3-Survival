@@ -1,7 +1,7 @@
 if (!canSuspend) exitWith {
 	"BLWK_fnc_musicManager_playMusic needs to be run in scheduled" call BIS_fnc_error;
 };
-#define INTERVAL 0.25
+#define INTERVAL 0.1
 
 params [
 	"_musicClass",

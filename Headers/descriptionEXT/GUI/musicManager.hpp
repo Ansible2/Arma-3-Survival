@@ -141,7 +141,7 @@ class musicManagerDialog
 			w = 0.515625 * safezoneW;
 			h = 0.03125 * safezoneH;
 			colorBackground[] = {-1,-1,-1,0.25};
-			sliderStep = 1;
+			sliderStep = 0.1;
 		};
 		class musicManagerDialogbutton_play: RscButton
 		{
