@@ -4,6 +4,13 @@ params ["_control"];
 _control ctrlAddEventHandler ["LBSelChanged",{
 	params ["_control","_selectedIndex"];
 
+	// changing list index stops current song
+	if (uiNamespace getVariable ["BLWK_musicManager_doPlay",false]) then {
+		uiNamespace setVariable ["BLWK_musicManager_doPlay",false];
+		uiNamespace setVariable ["BLWK_musicManager_paused",false];
+		playMusic "";
+	};
+
 	private _display = ctrlParent _control;
 	private _musicClass = _control lnbData [_selectedIndex,0];
 	uiNamespace setVariable ["BLWK_musicManager_selectedTrack",_musicClass];
@@ -75,7 +82,7 @@ private _durationColumn = _control lnbAddColumn 1;
 _control lnbSetColumnsPos [0,0.82];
 {
 	_row = _control lnbAddRow [_musicNames select _forEachIndex,str (_musicDurations select _forEachIndex)];
-	_control lnbSetData [[_row,0],_x]; // set data to class name
+	_control lnbSetData [[_row,0],configName _x]; // set data to class name
 } forEach _musicClasses;
 
 _control lnbSort [0,false];

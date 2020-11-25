@@ -1,3 +1,5 @@
+#include "..\..\Headers\descriptionEXT\GUI\musicManagerCommonDefines.hpp"
+
 params ["_addButtonControl","_removeButtonControl"];
 
 _addButtonControl ctrlAddEventHandler ["ButtonClick",{

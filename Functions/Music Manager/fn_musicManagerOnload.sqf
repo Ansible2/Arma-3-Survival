@@ -7,9 +7,6 @@ params ["_display"];
 uiNamespace setVariable ["BLWK_musicManager_display",_display];
 
 
-
-
-
 private _pausePlayIndicatorControl = _display displayCtrl BLWK_MUSIC_MANAGER_PAUSED_PLAYING_INDICATOR_IDC;
 uiNamespace setVariable ["BLWK_musicManager_control_pausePlayIndicator",_pausePlayIndicatorControl];
 
@@ -99,7 +96,7 @@ null = [_spacingComboControl,_spacingEditControl,_spacingButtonControl] spawn BL
 
 
 _display displayAddEventHandler ["unload",{
-	uiNamespace setVariable ["BLWK_musicManager_display",_display];
+	uiNamespace setVariable ["BLWK_musicManager_display",nil];
 	uiNamespace setVariable ["BLWK_musicManager_control_currentPlaylist",nil];
 	uiNamespace setVariable ["BLWK_musicManager_control_songsList",nil];
 	uiNamespace setVariable ["BLWK_musicManager_control_pausePlayIndicator",nil];

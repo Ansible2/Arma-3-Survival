@@ -5,6 +5,6 @@ _control sliderSetPosition (musicVolume);
 _control ctrlAddEventHandler ["sliderPosChanged",{
 	_this spawn {
 		params ["_control", "_newValue"];
-		0 fadeMusic _newValue;
+		0.1 fadeMusic _newValue;
 	};
 }];

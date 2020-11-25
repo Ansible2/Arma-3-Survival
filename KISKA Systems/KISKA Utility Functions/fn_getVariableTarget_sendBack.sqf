@@ -26,5 +26,5 @@ if (_sendBackTarget isEqualTo 0) then {
 	diag_log "KISKA_fnc_getVariableTarget_sendBack: Sent variable back";
 	diag_log ("_saveVariable: " + _saveVariable);
 	diag_log ("_getVariableValue: " + (str _getVariableValue));
-	diag_log ("_sendBackTarget: " + _sendBackTarget);
+	diag_log ("_sendBackTarget: " + (str _sendBackTarget));
 };
