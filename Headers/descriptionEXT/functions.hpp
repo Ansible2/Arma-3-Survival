@@ -109,6 +109,31 @@ class BLWK
 		{};
 	};
 
+	class MusicManager
+	{
+		file = "Functions\Music Manager";
+		class musicManager_playMusic
+		{};
+		class musicManagerOnLoad
+		{};
+		class musicManagerOnLoad_addAndRemoveButtons
+		{};
+		class musicManagerOnLoad_availableMusicList
+		{};
+		class musicManagerOnLoad_currentPlaylistLoop
+		{};
+		class musicManagerOnLoad_pauseAndPlayButtons
+		{};
+		class musicManagerOnLoad_systemOnOffCombo
+		{};
+		class musicManagerOnLoad_timelineSlider
+		{};
+		class musicManagerOnLoad_trackSpacingControls
+		{};
+		class musicManagerOnLoad_volumeSlider
+		{};
+	};
+
 	class Other
 	{
 		file = "Functions\Other";

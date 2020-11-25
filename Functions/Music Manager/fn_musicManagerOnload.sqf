@@ -20,19 +20,6 @@ private _commitButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_COMMIT_BU
 uiNamespace setVariable ["BLWK_musicManager_control_commitButton",_commitButtonControl];
 
 
-
-
-
-private _playButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_PLAY_BUTTON_IDC;
-uiNamespace setVariable ["BLWK_musicManager_control_playButton",_playButtonControl];
-
-private _pauseButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_PAUSE_BUTTON_IDC;
-uiNamespace setVariable ["BLWK_musicManager_control_pauseButton",_pauseButtonControl];
-
-
-
-
-
 private _saveEditControl = _display displayCtrl BLWK_MUSIC_MANAGER_SAVE_EDIT_IDC;
 uiNamespace setVariable ["BLWK_musicManager_control_saveEdit",_saveEditControl];
 
@@ -68,14 +55,10 @@ private _removeFromButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_REMOV
 uiNamespace setVariable ["BLWK_musicManager_control_removeFromButton",_removeFromButtonControl];
 [_addToButtonControl,_removeFromButtonControl] call BLWK_fnc_musicManagerOnload_addAndRemoveButtons;
 
-
-
 // system on off combo
 private _onOffComboControl = _display displayCtrl BLWK_MUSIC_MANAGER_ONOFF_COMBO_IDC;
 uiNamespace setVariable ["BLWK_musicManager_control_onOffCombo",_onOffComboControl];
 null = [_onOffComboControl,_display] spawn BLWK_fnc_musicManagerOnload_systemOnOffCombo;
-
-
 
 // volume slider
 private _volumeSliderControl = _display displayCtrl BLWK_MUSIC_MANAGER_VOLUME_SLIDER_IDC;
@@ -86,6 +69,13 @@ uiNamespace setVariable ["BLWK_musicManager_control_volumeSLider",_volumeSliderC
 private _timelineSliderControl = _display displayCtrl BLWK_MUSIC_MANAGER_TIMELINE_SLIDER_IDC;
 uiNamespace setVariable ["BLWK_musicManager_control_timelineSlider",_timelineSliderControl];
 [_timelineSliderControl] call BLWK_fnc_musicManagerOnload_timelineSlider;
+
+// play pause buttons
+private _playButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_PLAY_BUTTON_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_playButton",_playButtonControl];
+private _pauseButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_PAUSE_BUTTON_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_pauseButton",_pauseButtonControl];
+[_playButtonControl,_pauseButtonControl] call BLWK_fnc_musicManagerOnload_pauseAndPlayButtons;
 
 
 

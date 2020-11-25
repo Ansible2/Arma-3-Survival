@@ -24,3 +24,13 @@ _playButtonControl ctrlAddEventHandler ["ButtonClick",{
 		null = [] spawn BLWK_fnc_musicManager_moveTimeline;
 	};
 }];
+
+_pauseButtonControl ctrlAddEventHandler ["ButtonClick",{
+	params ["_control"];
+
+	if (uiNamespace getVariable ["BLWK_musicManager_doPlay",false]) then {
+		uiNamespace setVariable ["BLWK_musicManager_doPlay",true];
+		uiNamespace setVariable ["BLWK_musicManager_paused",true];
+		playMusic "";
+	};
+}];
