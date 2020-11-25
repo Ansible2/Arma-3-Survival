@@ -33,10 +33,11 @@
 
 #define BLWK_PUB_CURRENT_PLAYLIST KISKA_musicManager_currentPlaylist
 
-
 #ifndef TO_STRING
 #define TO_STRING(NAME) #NAME
 #endif
+
+#define GET_PUBLIC_ARRAY_DEFAULT (missionNamespace getVariable [TO_STRING(BLWK_PUB_CURRENT_PLAYLIST),[]])
 
 #ifndef CT_EDIT
 #define CT_EDIT 2

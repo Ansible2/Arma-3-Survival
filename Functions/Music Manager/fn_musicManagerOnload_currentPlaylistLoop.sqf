@@ -1,7 +1,5 @@
 #include "..\..\Headers\descriptionEXT\GUI\musicManagerCommonDefines.hpp"
 
-
-#define GET_PUBLIC_ARRAY_DEFAULT (missionNamespace getVariable [TO_STRING(BLWK_PUB_CURRENT_PLAYLIST),[]])
 params ["_control","_display"];
 
 // initialize variable if not done
