@@ -12,4 +12,6 @@ if !(_playlistArray isEqualTo []) then {
 	_playlistNames apply {
 		_control lbAdd _x;
 	};
+
+	_control lbSetCurSel 0;
 };
