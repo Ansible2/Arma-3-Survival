@@ -69,3 +69,10 @@ _player createDiarySubject ["ReassignZeus_entry","Reassign Zeus",""];
 _player createDiaryRecord ["ReassignZeus_entry", ["Reassign Zeus Curator",
 	"<execute expression= '[true] call BLWK_fnc_reassignCurator;'>If You've Lost Zeus, Click Here</execute>"
 ]];
+
+
+_player createDiarySubject ["MusicManager_entry","Music Manager",""];
+
+_player createDiaryRecord ["MusicManager_entry", ["Music Manager Open", 
+	"<execute expression='openMap false; call BLWK_fnc_openMusicManager;'>OPEN Music Manager</execute>"
+]];
