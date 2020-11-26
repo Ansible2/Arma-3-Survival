@@ -24,7 +24,7 @@ _control ctrlAddEventHandler ["LBSelChanged",{
 				hint "System reseting...";
 				missionNamespace setVariable ["BLWK_musicManager_reset",false];
 			} else {
-				hint "System OFF, last played song will finish";
+				hint "System OFF, last played song will finish...";
 			};
 		};
 		case 1:{ // system on

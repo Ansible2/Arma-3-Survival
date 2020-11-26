@@ -25,14 +25,14 @@ Examples:
     (begin example)
 		
 		// space tracks by 20 seconds exactly each
-		[arrayOfTracks,20] spawn KISKA_fnc_randomMusic;
+		null = [false,"",arrayOfTracks,20] spawn KISKA_fnc_randomMusic;
 
    	(end)
 
 	(begin example)
 		
 		// space tracks by UP TO 20 seconds each
-		[arrayOfTracks,[20]] spawn KISKA_fnc_randomMusic; 
+		null = [false,"",arrayOfTracks,[20]] spawn KISKA_fnc_randomMusic; 
 
    	(end)
 
@@ -112,7 +112,8 @@ if (_timeBetween isEqualType []) then {
 	_randomWaitTime = _timeBetween;
 };
 
-if !(KISKA_randomMusic_timeBetween isEqualTo _timeBetween) then {
+// update timebetween if needed
+if !((missionNamespace getVariable ["KISKA_randomMusic_timeBetween",[300,420,540]]) isEqualTo _timeBetween) then {
 	KISKA_randomMusic_timeBetween = _timeBetween;
 };
 

@@ -7,15 +7,6 @@ params ["_display"];
 uiNamespace setVariable ["BLWK_musicManager_display",_display];
 
 
-private _commitButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_COMMIT_BUTTON_IDC;
-uiNamespace setVariable ["BLWK_musicManager_control_commitButton",_commitButtonControl];
-
-
-
-
-
-
-
 // close button
 private _closeButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_CLOSE_BUTTON_IDC;
 uiNamespace setVariable ["BLWK_musicManager_control_closeButton",_closeButtonControl];
@@ -73,17 +64,6 @@ private _loadComboControl = _display displayCtrl BLWK_MUSIC_MANAGER_LOAD_COMBO_I
 uiNamespace setVariable ["BLWK_musicManager_control_loadCombo",_loadComboControl];
 [_loadComboControl] call BLWK_fnc_musicManagerOnLoad_loadCombo;
 
-/*
-null = [_loadComboControl] spawn {
-	params ["_control"];
-	sleep 3;
-	hint "add 1";
-	_control lbAdd "1";
-	sleep 3;
-	hint "add 2";
-	_control lbAdd "2";
-};
-*/
 
 // saves
 private _saveEditControl = _display displayCtrl BLWK_MUSIC_MANAGER_SAVE_EDIT_IDC;
@@ -111,10 +91,10 @@ uiNamespace setVariable ["BLWK_musicManager_control_deleteButton",_deleteButtonC
 [_deleteButtonControl] call BLWK_fnc_musicManagerOnLoad_deleteButton;
 
 
-
-
-
-
+// commit button
+private _commitButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_COMMIT_BUTTON_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_commitButton",_commitButtonControl];
+[_commitButtonControl] call BLWK_fnc_musicManagerOnLoad_commitButton;
 
 
 _display displayAddEventHandler ["unload",{

@@ -114,6 +114,8 @@ class BLWK
 		file = "Functions\Music Manager";
 		class musicManager_playMusic
 		{};
+		class musicManager_setPlayListServer
+		{};
 		class musicManager_updateLoadCombo
 		{};
 		class musicManagerOnLoad
@@ -123,6 +125,8 @@ class BLWK
 		class musicManagerOnLoad_availableMusicList
 		{};
 		class musicManagerOnLoad_closeButton
+		{};
+		class musicManagerOnLoad_commitButton
 		{};
 		class musicManagerOnLoad_currentPlaylistLoop
 		{};
