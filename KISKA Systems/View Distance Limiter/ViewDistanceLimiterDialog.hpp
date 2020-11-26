@@ -6,6 +6,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 	movingEnabled = true;
 	enableSimulation = true;
 	onLoad = "[_this select 0] call KISKA_fnc_handleVDLDialogOpen"
+	onUnload = "hintSilent ''";
 
 	class controls
 	{
@@ -55,7 +56,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			y = 0.6875 * safezoneH + safezoneY;
 			w = 0.140625 * safezoneW;
 			h = 0.03125 * safezoneH;
-			onButtonClick = "_this call KISKA_fnc_setAllVDL";
+			onButtonClick = "_this call KISKA_fnc_setAllVDLButton";
 			sizeEx = 0.03125 * safezoneH;
 		};
 		class VDL_SYSTEM_ON_CHECKBOX: VDL_RSC_CHECKBOX_BASE

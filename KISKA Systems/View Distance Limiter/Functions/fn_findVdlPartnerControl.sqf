@@ -1,3 +1,4 @@
+#include "..\ViewDistanceLimiterCommonDefines.hpp"
 /* ----------------------------------------------------------------------------
 Function: KISKA_fnc_findVdlPartnerControl
 
@@ -22,7 +23,6 @@ if (!hasInterface) exitWith {};
 
 disableSerialization;
 
-#include "..\ViewDistanceLimiterCommonDefines.hpp"
 
 #define CONTROL(IDC) (findDisplay VIEW_DISTANCE_LIMITER_DIALOG_IDD) displayCtrl IDC
 

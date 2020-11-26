@@ -1,3 +1,5 @@
+#include "..\controlTypes.hpp"
+#include "..\ViewDistanceLimiterCommonDefines.hpp"
 /* ----------------------------------------------------------------------------
 Function: KISKA_fnc_setAllVdlButton
 
@@ -22,9 +24,6 @@ Author(s):
 if (!hasInterface) exitWith {};
 
 disableSerialization;
-
-#include "..\controlTypes.hpp"
-#include "..\ViewDistanceLimiterCommonDefines.hpp"
 
 params [
 	["_controlToRead",controlNull,[controlNull]]
