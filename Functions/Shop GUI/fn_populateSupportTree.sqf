@@ -91,5 +91,5 @@ private [
 	private _data = str _forEachIndex; // save array index in BLWK_supports_array for buying object
 
 	_tv tvSetData [_itemPath_temp,_data];
-	_tv tvSetTooltip [_itemPath_temp,_class_temp];		
+	_tv tvSetTooltip [_itemPath_temp,_displayName_temp];		
 } forEach BLWK_supports_array;
