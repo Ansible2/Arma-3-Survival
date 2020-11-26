@@ -49,7 +49,7 @@
 #endif
 
 
-#define SHOP_DIALOG_STRING "theCrateShopDialogShopDialog"
+#define SHOP_DIALOG_STRING "theCrateShopDialog"
 
 // other can be either in both support and build items
 #define OTHER_CATEGORY "Other"
