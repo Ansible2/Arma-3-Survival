@@ -20,7 +20,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [aStalkerGroup,bulwarkBox,20,{false}] spawn BLWK_fnc_startStalkingPlayers;
+		null = [aStalkerGroup,BLWK_mainCrate,20,{false}] spawn BLWK_fnc_startStalkingPlayers;
 
     (end)
 
@@ -35,7 +35,7 @@ if (!canSuspend) exitWith {
 
 params [
 	["_stalkerGroup",grpNull,[objNull,grpNull]],
-	["_defaultPosition",bulwarkBox,[objNull,grpNull,[]]],
+	["_defaultPosition",BLWK_mainCrate,[objNull,grpNull,[]]],
 	["_checkRate",20,[123]],
 	["_conditionToEndStalking",{false},[{}]]
 ];

@@ -8,14 +8,14 @@ call BLWK_fnc_prepareGlobals;
 
 ["<t size = '.5'>Preparing Play Area.<br/>Please wait...</t>", 0, 0, 10, 0] remoteExec ["BIS_fnc_dynamicText", 0];
 
-// find a location for the mission, setup area, create bulwark
+// find a location for the mission, setup area, create The Crate
 call BLWK_fnc_preparePlayArea;
 
 setDate [2020, 7, 1, BLWK_timeOfDay, 0];
 
 waitUntil {count (call CBAP_fnc_players) > 0};
 
-if (BLWK_buildingsNearBulwarkAreIndestructable_radius > 0) then {
+if (BLWK_buildingsNearTheCrateAreIndestructable_radius > 0) then {
 	null = [] spawn BLWK_fnc_bulwarkBuildingsLoop;
 };
 

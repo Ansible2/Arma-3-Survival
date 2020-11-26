@@ -2,12 +2,12 @@
 Function: BLWK_fnc_overrunBulwarkWave
 
 Description:
-	Heals the player when they select the action on the bulwark.
+	Heals the player when they select the action on The Crate.
 
 	Executed from "BLWK_fnc_handleOverrunWave"
 
 Parameters:
-	0: _startingEnemyUnits : <ARRAY> - The array of units to teleport to the bulwark
+	0: _startingEnemyUnits : <ARRAY> - The array of units to teleport to The Crate
 
 Returns:
 	NOTHING
@@ -40,7 +40,7 @@ _players apply {
 
 private "_positionTemp";
 _startingEnemyUnits apply {
-	_positionTemp = [bulwarkBox,50,random 360] call CBAP_fnc_randPos;
-	[group _x,bulwarkBox] call BLWK_fnc_stopStalking;
+	_positionTemp = [BLWK_mainCrate,50,random 360] call CBAP_fnc_randPos;
+	[group _x,BLWK_mainCrate] call BLWK_fnc_stopStalking;
 	_x setVehiclePosition [_positionTemp, [], 1, "NONE"];
 };

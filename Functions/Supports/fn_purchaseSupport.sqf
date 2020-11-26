@@ -2,9 +2,9 @@
 Function: BLWK_fnc_purchaseSupport
 
 Description:
-	Creates the object purchased from the bulwark 
+	Creates the object purchased from The Crate 
 
-	Executed from "bulwarkShopGUI.hpp" under the "bulwarkShopDialog_supportButton" class
+	Executed from "bulwarkShopGUI.hpp" under the "theCrateShopDialogsupportButton" class
 
 Parameters:
 	0: _selectedIndex : <NUMBER> - The index of the item in BLWK_supports_array

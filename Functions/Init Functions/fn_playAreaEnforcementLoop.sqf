@@ -2,7 +2,7 @@
 Function: BLWK_fnc_playAreaEnforcementLoop
 
 Description:
-	Starts the loop that plays the effects and teleports players back into bulwark bounds
+	Starts the loop that plays the effects and teleports players back into bounds
 	
 	It is executed from the "initPlayerLocal.sqf"
 	
@@ -25,7 +25,7 @@ Author(s):
 if (!hasInterface) exitWith {};
 // In the interest of potentially changing the play area dynamically, these percentages of the play area radius will not be cached
 
-waitUntil {!isNil "bulwarkBox" AND {!isNil "BLWK_playAreaCenter"}};
+waitUntil {!isNil "BLWK_mainCrate" AND {!isNil "BLWK_playAreaCenter"}};
 
 /*
  Each one of these functions checks the successive distance percentage to see if the player is farther away.
@@ -78,7 +78,7 @@ private _fn_110percentFromCenter = {
 private _fn_200percentFromCenter = {
 	private _radius = 2;
 	waitUntil {
-		if (player setVehiclePosition [bulwarkBox,[],_radius]) exitWith {true};
+		if (player setVehiclePosition [BLWK_mainCrate,[],_radius]) exitWith {true};
 		_radius = _radius + 0.5;
 		sleep 1;
 		false;

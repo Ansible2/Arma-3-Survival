@@ -2,11 +2,11 @@
 Function: BLWK_fnc_purchaseObject
 
 Description:
-	Creates the object purchased from the bulwark 
+	Creates the object purchased from the shop 
 
 	Executed from "BLWK_fnc_purchaseForSelf" under the 
-	 "bulwarkShopDialog_supports_purchaseForSelfButton" class.
-	And from "bulwarkShopDialog_buildableObjects_purchaseForSelfButton" class.
+	 "theCrateShopDialogsupports_purchaseForSelfButton" class.
+	And from "theCrateShopDialogbuildableObjects_purchaseForSelfButton" class.
 
 	Both classes are located in headers\descriptionEXT\GUI\shopGUI.hpp
 

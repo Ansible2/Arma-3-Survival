@@ -2,7 +2,7 @@
 Function: BLWK_fnc_createSuicideWave
 
 Description:
-	creates the suicide bombers and sends them towards the Bulwark
+	creates the suicide bombers and sends them towards The Crate
 
 	Executed from "BLWK_fnc_handleSuicideWave"
 
@@ -33,7 +33,7 @@ private "_eventIdTemp";
 _bombersArray apply {
 	_unitGroupTemp = group _x;
 	[_unitGroupTemp] call CBAP_fnc_clearWaypoints;
-	[_unitGroupTemp, bulwarkBox, 5, "MOVE", "CARELESS"] call CBAP_fnc_addWaypoint;
+	[_unitGroupTemp, BLWK_mainCrate, 5, "MOVE", "CARELESS"] call CBAP_fnc_addWaypoint;
 
 	removeAllWeapons _x;
 

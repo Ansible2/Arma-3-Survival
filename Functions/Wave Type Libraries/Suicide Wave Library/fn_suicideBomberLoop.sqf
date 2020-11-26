@@ -36,7 +36,7 @@ while {alive _bomber} do {
 	
 	_nearPlayer = _players findIf {(_bomber distance2D _x) <= _bomberDistanceToBlow};
 	
-	if (!(_nearPlayer isEqualTo -1) OR {_bomber distance2D bulwarkBox <= 10}) exitWith {
+	if (!(_nearPlayer isEqualTo -1) OR {_bomber distance2D BLWK_mainCrate <= 10}) exitWith {
 		[_bomber] call BLWK_fnc_explodeSuicideBomberEvent;
 	};
 

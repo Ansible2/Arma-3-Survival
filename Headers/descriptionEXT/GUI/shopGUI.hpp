@@ -15,7 +15,7 @@
 /* -------------------------------------------------------------------------
 	Base Classes
 ------------------------------------------------------------------------- */
-class bulwarkShopDialog_baseClass_button
+class theCrateShopDialogbaseClass_button
 {
 	deletable = 0;
 	fade = 0;
@@ -71,7 +71,7 @@ class bulwarkShopDialog_baseClass_button
 	borderSize = 0;
 };
 
-class bulwarkShopDialog_baseClass_treeView
+class theCrateShopDialogbaseClass_treeView
 {
 	deletable = 0;
 	fade = 0;
@@ -122,7 +122,7 @@ class bulwarkShopDialog_baseClass_treeView
 	};
 };
 
-class bulwarkShopDialog_baseClass_text
+class theCrateShopDialogbaseClass_text
 {
 	deletable = 0;
 	fade = 0;
@@ -148,7 +148,7 @@ class bulwarkShopDialog_baseClass_text
 	tooltipColorShade[] = {0,0,0,0.65};
 };
 
-class bulwarkShopDialog_baseClass_picture
+class theCrateShopDialogbaseClass_picture
 {
 	deletable = 0;
 	fade = 0;
@@ -173,7 +173,7 @@ class bulwarkShopDialog_baseClass_picture
 	tooltipColorShade[] = {0,0,0,0.65};
 };
 
-class bulwarkShopDialog_baseClass_shortcutButton
+class theCrateShopDialogbaseClass_shortcutButton
 {
 	deletable = 0;
 	fade = 0;
@@ -289,7 +289,7 @@ class bulwarkShopDialog_baseClass_shortcutButton
 	};
 };
 
-class bulwarkShopDialog_baseClass_menuButton: bulwarkShopDialog_baseClass_shortcutButton
+class theCrateShopDialogbaseClass_menuButton: theCrateShopDialogbaseClass_shortcutButton
 {
 	idc = -1;
 	type = CT_SHORTCUTBUTTON;
@@ -376,7 +376,7 @@ class bulwarkShopDialog_baseClass_menuButton: bulwarkShopDialog_baseClass_shortc
 	};
 };
 
-class bulwarkShopDialog_baseClass_editBox
+class theCrateShopDialogbaseClass_editBox
 {
 	deletable = 0;
 	fade = 0;
@@ -409,7 +409,7 @@ class bulwarkShopDialog_baseClass_editBox
 	tooltipColorShade[] = {0,0,0,0.65};
 };
 
-class bulwarkShopDialog_baseClass_xSliderH
+class theCrateShopDialogbaseClass_xSliderH
 {
 	deletable = 0;
 	fade = 0;
@@ -440,17 +440,17 @@ class bulwarkShopDialog_baseClass_xSliderH
 /* -------------------------------------------------------------------------
 	Additional Base Classes
 ------------------------------------------------------------------------- */
-class bulwarkShopDialog_baseClass_headerText: bulwarkShopDialog_baseClass_text
+class theCrateShopDialogbaseClass_headerText: theCrateShopDialogbaseClass_text
 {
 	font = "RobotoCondensed";
 	SizeEx = GUI_TEXT_SIZE_MEDIUM;
 	colorBackground[] = BORDER_COLOR(1);
 };
-class bulwarkShopDialog_baseClass_border: bulwarkShopDialog_baseClass_text
+class theCrateShopDialogbaseClass_border: theCrateShopDialogbaseClass_text
 {
 	colorBackground[] = BORDER_COLOR(0.75);
 };
-class bulwarkShopDialog_baseClass_background: bulwarkShopDialog_baseClass_text
+class theCrateShopDialogbaseClass_background: theCrateShopDialogbaseClass_text
 {
 	colorBackground[] = BACKGROUND_FRAME_COLOR(0.60);
 };
@@ -471,7 +471,7 @@ class bulwarkShopDialog
 		/* -------------------------------------------------------------------------
 			Backgrounds
 		------------------------------------------------------------------------- */
-		class bulwarkShopDialog_buildableObjects_background: bulwarkShopDialog_baseClass_background
+		class theCrateShopDialogbuildableObjects_background: theCrateShopDialogbaseClass_background
 		{
 			idc = -1;
 
@@ -480,7 +480,7 @@ class bulwarkShopDialog
 			w = 0.199219 * safezoneW;
 			h = 0.510417 * safezoneH;
 		};
-		class bulwarkShopDialog_supports_background: bulwarkShopDialog_baseClass_background
+		class theCrateShopDialogsupports_background: theCrateShopDialogbaseClass_background
 		{
 			idc = -1;
 
@@ -489,7 +489,7 @@ class bulwarkShopDialog
 			w = 0.199219 * safezoneW;
 			h = 0.28125 * safezoneH;
 		};
-		class bulwarkShopDialog_previewPic_background: bulwarkShopDialog_baseClass_background
+		class theCrateShopDialogpreviewPic_background: theCrateShopDialogbaseClass_background
 		{
 			idc = -1;
 
@@ -498,7 +498,7 @@ class bulwarkShopDialog
 			w = 0.199219 * safezoneW;
 			h = 0.229167 * safezoneH;
 		};
-		class bulwarkShopDialog_communityPool_background: bulwarkShopDialog_baseClass_background
+		class theCrateShopDialogcommunityPool_background: theCrateShopDialogbaseClass_background
 		{
 			idc = -1;
 
@@ -512,7 +512,7 @@ class bulwarkShopDialog
 		/* -------------------------------------------------------------------------
 			Borders
 		------------------------------------------------------------------------- */
-		class bulwarkShopDialog_border_right: bulwarkShopDialog_baseClass_border
+		class theCrateShopDialogborder_right: theCrateShopDialogbaseClass_border
 		{
 			idc = -1;
 
@@ -521,7 +521,7 @@ class bulwarkShopDialog
 			w = 0.00585938 * safezoneW;
 			h = 0.541667 * safezoneH;
 		};
-		class bulwarkShopDialog_border_left: bulwarkShopDialog_baseClass_border
+		class theCrateShopDialogborder_left: theCrateShopDialogbaseClass_border
 		{
 			idc = -1;
 
@@ -530,7 +530,7 @@ class bulwarkShopDialog
 			w = 0.00585938 * safezoneW;
 			h = 0.541667 * safezoneH;
 		};
-		class bulwarkShopDialog_border_bottom: bulwarkShopDialog_baseClass_border
+		class theCrateShopDialogborder_bottom: theCrateShopDialogbaseClass_border
 		{
 			idc = -1;
 			
@@ -544,7 +544,7 @@ class bulwarkShopDialog
 		/* -------------------------------------------------------------------------
 			Main Background
 		------------------------------------------------------------------------- */
-		class bulwarkShopDialog_backgroundPrimary: bulwarkShopDialog_baseClass_text
+		class theCrateShopDialogbackgroundPrimary: theCrateShopDialogbaseClass_text
 		{
 			idc = -1;
 			x = 0.183594 * safezoneW + safezoneX;
@@ -560,7 +560,7 @@ class bulwarkShopDialog
 		/* -------------------------------------------------------------------------
 			Header Texts
 		------------------------------------------------------------------------- */
-		class bulwarkShopDialog_headerText: bulwarkShopDialog_baseClass_headerText
+		class theCrateShopDialogheaderText: theCrateShopDialogbaseClass_headerText
 		{
 			idc = -1;
 
@@ -571,7 +571,7 @@ class bulwarkShopDialog
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = PROFILE_BACKGROUND_COLOR(1);
 		};
-		class bulwarkShopDialog_communityPool_headerText: bulwarkShopDialog_baseClass_headerText
+		class theCrateShopDialogcommunityPool_headerText: theCrateShopDialogbaseClass_headerText
 		{
 			idc = -1;
 			
@@ -581,7 +581,7 @@ class bulwarkShopDialog
 			w = 0.0878906 * safezoneW;
 			h = 0.0208333 * safezoneH;
 		};
-		class bulwarkShopDialog_supports_headerText: bulwarkShopDialog_baseClass_headerText
+		class theCrateShopDialogsupports_headerText: theCrateShopDialogbaseClass_headerText
 		{
 			idc = -1;
 
@@ -591,7 +591,7 @@ class bulwarkShopDialog
 			w = 0.0878906 * safezoneW;
 			h = 0.0208333 * safezoneH;
 		};
-		class bulwarkShopDialog_buildableObjects_headerText: bulwarkShopDialog_baseClass_headerText
+		class theCrateShopDialogbuildableObjects_headerText: theCrateShopDialogbaseClass_headerText
 		{
 			idc = -1;
 
@@ -605,7 +605,7 @@ class bulwarkShopDialog
 		/* -------------------------------------------------------------------------
 			Buttons
 		------------------------------------------------------------------------- */
-		class bulwarkShopDialog_buildableObjects_purchaseForSelfButton: bulwarkShopDialog_baseClass_button
+		class theCrateShopDialogbuildableObjects_purchaseForSelfButton: theCrateShopDialogbaseClass_button
 		{
 			idc = BLWK_SHOP_BUILD_PURCHASE_SELF_BUTT_IDC;
 			text = "Purchase (Self)"; //--- ToDo: Localize;
@@ -617,7 +617,7 @@ class bulwarkShopDialog
 
 			onButtonClick = "_this call BLWK_fnc_purchaseForSelf";
 		};
-		class bulwarkShopDialog_buildableObjects_purchaseForPoolButton: bulwarkShopDialog_baseClass_button
+		class theCrateShopDialogbuildableObjects_purchaseForPoolButton: theCrateShopDialogbaseClass_button
 		{
 			idc = BLWK_SHOP_BUILD_PURCHASE_POOL_BUTT_IDC;
 			text = "Purchase (Pool)"; //--- ToDo: Localize;
@@ -628,7 +628,7 @@ class bulwarkShopDialog
 
 			onButtonClick = "_this call BLWK_fnc_purchaseForPool";
 		};
-		class bulwarkShopDialog_communityPool_withdrawButton: bulwarkShopDialog_baseClass_button
+		class theCrateShopDialogcommunityPool_withdrawButton: theCrateShopDialogbaseClass_button
 		{
 			idc = BLWK_SHOP_POOL_WITHDRAW_BUTT_IDC;
 			text = "Withdraw"; //--- ToDo: Localize;
@@ -639,7 +639,7 @@ class bulwarkShopDialog
 
 			onButtonClick = "_this call BLWK_fnc_withdrawFromPoolButtonEvent";
 		};
-		class bulwarkShopDialog_communityPool_sellButton: bulwarkShopDialog_baseClass_button
+		class theCrateShopDialogcommunityPool_sellButton: theCrateShopDialogbaseClass_button
 		{
 			idc = BLWK_SHOP_POOL_SELL_BUTT_IDC;
 			text = "Sell Back"; //--- ToDo: Localize;
@@ -650,7 +650,7 @@ class bulwarkShopDialog
 
 			onButtonClick = "_this call BLWK_fnc_sellFromPoolButtonEvent";
 		};
-		class bulwarkShopDialog_points_deposit_button: bulwarkShopDialog_baseClass_button
+		class theCrateShopDialogpoints_deposit_button: theCrateShopDialogbaseClass_button
 		{
 			idc = BLWK_SHOP_POINTS_DEPOSIT_BUTT_IDC;
 			text = "Deposit Points"; //--- ToDo: Localize;
@@ -661,7 +661,7 @@ class bulwarkShopDialog
 
 			onButtonClick = "_this call BLWK_fnc_depositPointsButtonPressedEvent";
 		};
-		class bulwarkShopDialog_supports_purchaseForPoolButton: bulwarkShopDialog_baseClass_button
+		class theCrateShopDialogsupports_purchaseForPoolButton: theCrateShopDialogbaseClass_button
 		{
 			idc = BLWK_SHOP_SUPP_PURCHASE_POOL_BUTT_IDC;
 			text = "Purchase (Pool)"; //--- ToDo: Localize;
@@ -672,7 +672,7 @@ class bulwarkShopDialog
 
 			onButtonClick = "_this call BLWK_fnc_purchaseForPool";
 		};
-		class bulwarkShopDialog_supports_purchaseForSelfButton: bulwarkShopDialog_baseClass_button
+		class theCrateShopDialogsupports_purchaseForSelfButton: theCrateShopDialogbaseClass_button
 		{
 			idc = BLWK_SHOP_SUPP_PURCHASE_SELF_BUTT_IDC;
 			text = "Purchase (Self)"; //--- ToDo: Localize;
@@ -683,7 +683,7 @@ class bulwarkShopDialog
 
 			onButtonClick = "_this call BLWK_fnc_purchaseForSelf";
 		};
-		class bulwarkShopDialog_points_withdraw_button: bulwarkShopDialog_baseClass_button
+		class theCrateShopDialogpoints_withdraw_button: theCrateShopDialogbaseClass_button
 		{
 			idc = BLWK_SHOP_POINTS_WITHDRAW_BUTT_IDC;
 			
@@ -695,7 +695,7 @@ class bulwarkShopDialog
 
 			onButtonClick = "_this call BLWK_fnc_withdrawPointsButtonPressedEvent";
 		};
-		class bulwarkShopDialog_close_button: RscButtonMenu
+		class theCrateShopDialogclose_button: RscButtonMenu
 		{
 			idc = BLWK_SHOP_CLOSE_BUTT_IDC;
 			
@@ -725,7 +725,7 @@ class bulwarkShopDialog
 		/* -------------------------------------------------------------------------
 			Edit boxes
 		------------------------------------------------------------------------- */
-		class bulwarkShopDialog_supports_searchBar: bulwarkShopDialog_baseClass_editBox
+		class theCrateShopDialogsupports_searchBar: theCrateShopDialogbaseClass_editBox
 		{
 			idc = BLWK_SHOP_SUPP_EDIT_IDC;
 			
@@ -734,7 +734,7 @@ class bulwarkShopDialog
 			w = 0.0878906 * safezoneW;
 			h = 0.0208333 * safezoneH;
 		};
-		class bulwarkShopDialog_buildableObjects_searchBar: bulwarkShopDialog_baseClass_editBox
+		class theCrateShopDialogbuildableObjects_searchBar: theCrateShopDialogbaseClass_editBox
 		{
 			idc = BLWK_SHOP_BUILD_EDIT_IDC;
 			
@@ -743,7 +743,7 @@ class bulwarkShopDialog
 			w = 0.0878906 * safezoneW;
 			h = 0.0208333 * safezoneH;
 		};
-		class bulwarkShopDialog_communityPool_searchBar: bulwarkShopDialog_baseClass_editBox
+		class theCrateShopDialogcommunityPool_searchBar: theCrateShopDialogbaseClass_editBox
 		{
 			idc = BLWK_SHOP_POOL_EDIT_IDC;
 			
@@ -752,7 +752,7 @@ class bulwarkShopDialog
 			w = 0.0878906 * safezoneW;
 			h = 0.0208333 * safezoneH;
 		};
-		class bulwarkShopDialog_points_deposit_edit: bulwarkShopDialog_baseClass_editBox
+		class theCrateShopDialogpoints_deposit_edit: theCrateShopDialogbaseClass_editBox
 		{
 			idc = BLWK_SHOP_POINTS_DEPOSIT_EDIT_IDC;
 			
@@ -762,7 +762,7 @@ class bulwarkShopDialog
 			h = 0.0208333 * safezoneH;
 			onKeyDown = "_this call BLWK_fnc_shopAdjustPartnerControl";
 		};
-		class bulwarkShopDialog_points_withdraw_edit: bulwarkShopDialog_baseClass_editBox
+		class theCrateShopDialogpoints_withdraw_edit: theCrateShopDialogbaseClass_editBox
 		{
 			idc = BLWK_SHOP_POINTS_WITHDRAW_EDIT_IDC;
 			
@@ -776,7 +776,7 @@ class bulwarkShopDialog
 		/* -------------------------------------------------------------------------
 			Sliders
 		------------------------------------------------------------------------- */
-		class bulwarkShopDialog_points_deposit_slider: bulwarkShopDialog_baseClass_xSliderH
+		class theCrateShopDialogpoints_deposit_slider: theCrateShopDialogbaseClass_xSliderH
 		{
 			idc = BLWK_SHOP_POINTS_DEPOSIT_SLIDER_IDC;
 			
@@ -785,7 +785,7 @@ class bulwarkShopDialog
 			w = 0.117187 * safezoneW;
 			h = 0.0208333 * safezoneH;
 		};
-		class bulwarkShopDialog_points_withdraw_slider: bulwarkShopDialog_baseClass_xSliderH
+		class theCrateShopDialogpoints_withdraw_slider: theCrateShopDialogbaseClass_xSliderH
 		{
 			idc = BLWK_SHOP_POINTS_WITHDRAW_SLIDER_IDC;
 			
@@ -798,7 +798,7 @@ class bulwarkShopDialog
 		/* -------------------------------------------------------------------------
 			Tree Views
 		------------------------------------------------------------------------- */
-		class bulwarkShopDialog_buildableObjects_treeView: bulwarkShopDialog_baseClass_treeView
+		class theCrateShopDialogbuildableObjects_treeView: theCrateShopDialogbaseClass_treeView
 		{
 			idc = BLWK_SHOP_BUILD_TREE_IDC;
 			idcSearch = BLWK_SHOP_BUILD_EDIT_IDC;
@@ -812,7 +812,7 @@ class bulwarkShopDialog
 			onTreeMouseExit = "_this call BLWK_fnc_mouseExitTreeEvent";
 			sizeEx = TEXT_SIZE_SMALL(0.229167,12);
 		};
-		class bulwarkShopDialog_supports_treeView: bulwarkShopDialog_baseClass_treeView
+		class theCrateShopDialogsupports_treeView: theCrateShopDialogbaseClass_treeView
 		{
 			idc = BLWK_SHOP_SUPP_TREE_IDC;
 			idcSearch = BLWK_SHOP_SUPP_EDIT_IDC;
@@ -825,7 +825,7 @@ class bulwarkShopDialog
 			onLoad = "_this call BLWK_fnc_populateSupportTree";
 			sizeEx = TEXT_SIZE_SMALL(0.229167,12);
 		};
-		class bulwarkShopDialog_communityPool_treeView: bulwarkShopDialog_baseClass_treeView
+		class theCrateShopDialogcommunityPool_treeView: theCrateShopDialogbaseClass_treeView
 		{
 			idc = BLWK_SHOP_POOL_TREE_IDC;
 			idcSearch = BLWK_SHOP_POOL_EDIT_IDC;
@@ -844,7 +844,7 @@ class bulwarkShopDialog
 		/* -------------------------------------------------------------------------
 			Other
 		------------------------------------------------------------------------- */
-		class bulwarkShopDialog_previewPic: bulwarkShopDialog_baseClass_picture
+		class theCrateShopDialogpreviewPic: theCrateShopDialogbaseClass_picture
 		{
 			idc = BLWK_SHOP_PREVIEW_IDC;
 
@@ -859,7 +859,7 @@ class bulwarkShopDialog
 		/* -------------------------------------------------------------------------
 			Search Icons
 		------------------------------------------------------------------------- */
-		class bulwarkShopDialog_buildableObjects_searchIcon: bulwarkShopDialog_baseClass_picture
+		class theCrateShopDialogbuildableObjects_searchIcon: theCrateShopDialogbaseClass_picture
 		{
 			idc = 1200;
 			
@@ -869,7 +869,7 @@ class bulwarkShopDialog
 			w = 0.0117188 * safezoneW;
 			h = 0.0208333 * safezoneH;
 		};
-		class bulwarkShopDialog_supports_searchIcon: bulwarkShopDialog_baseClass_picture
+		class theCrateShopDialogsupports_searchIcon: theCrateShopDialogbaseClass_picture
 		{
 			idc = 1202;
 			
@@ -879,7 +879,7 @@ class bulwarkShopDialog
 			w = 0.0117188 * safezoneW;
 			h = 0.0208333 * safezoneH;
 		};
-		class bulwarkShopDialog_communityPool_searchIcon: bulwarkShopDialog_baseClass_picture
+		class theCrateShopDialogcommunityPool_searchIcon: theCrateShopDialogbaseClass_picture
 		{
 			idc = 1203;
 			

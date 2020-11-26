@@ -2,7 +2,7 @@
 Function: BLWK_fnc_faksToMedkitLoop
 
 Description:
-	Loops while players are looking at the bulwark's inventory 
+	Loops while players are looking at the The Crate's inventory 
 	 to see if a medkit should be made out of 15 first aid kits
 
 	Executed from players with a ContainerOpened event 
@@ -48,7 +48,7 @@ private _fn_someoneLookingInBulwark = {
 
 private ["_bulwarkItems","_numberOfFAKs"];
 while {sleep 2; (call _fn_someoneLookingInBulwark) AND {!BLWK_dontUseRevive}} do {
-	_bulwarkItems = itemCargo bulwarkBox;
+	_bulwarkItems = itemCargo BLWK_mainCrate;
 	_numberOfFAKs = count (_bulwarkItems select {_x == "FirstAidKit"});
 	
 	if (_numberOfFAKs >= BLWK_faksToMakeMedkit) then {
@@ -60,11 +60,11 @@ while {sleep 2; (call _fn_someoneLookingInBulwark) AND {!BLWK_dontUseRevive}} do
 
 		_bulwarkItems = _bulwarkItems - _subtractArray;
 
-		clearItemCargoGlobal  bulwarkBox;
+		clearItemCargoGlobal  BLWK_mainCrate;
 		_bulwarkItems apply {
-			bulwarkBox addItemCargoGlobal [_x,1];
+			BLWK_mainCrate addItemCargoGlobal [_x,1];
 		};	
-		bulwarkBox addItemCargoGlobal ["Medikit", 1];
+		BLWK_mainCrate addItemCargoGlobal ["Medikit", 1];
 	};
 };
 

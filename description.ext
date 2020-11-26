@@ -67,7 +67,7 @@ class CfgDebriefing
 	class End1
 	{
 		title = "[END]";
-		subtitle = "You were wiped out";
+		subtitle = "You Did Not Survive";
 		description = "Game Over";
 		pictureBackground = "";
 		picture = "KIA";
@@ -75,9 +75,9 @@ class CfgDebriefing
 	};
 	class End2
 	{
-		title = "[BULWARK SAFE]";
+		title = "[SAFE]";
 		subtitle = "You Won";
-		description = "Your bulwark is secure";
+		description = "You Survived";
 		pictureBackground = "";
 		picture = "b_inf";
 		pictureColor[] = {0.0,0.3,0.6,1};
@@ -108,5 +108,5 @@ class CfgNotifications
 #include "Headers\descriptionEXT\GUI\musicManager.hpp"
 #include "KISKA Systems\View Distance Limiter\ViewDistanceLimiterDialog.hpp"
 
-#include "Headers\descriptionEXT\supports.hpp"
+//#include "Headers\descriptionEXT\supports.hpp"
 #include "Headers\descriptionEXT\Build Items\Main Build Items.hpp"

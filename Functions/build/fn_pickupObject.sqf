@@ -10,7 +10,7 @@ Description:
 Parameters:
 	0: _object : <OBJECT> - The object to pickup
 	1: _player : <OBJECT> - The person picking up the object
-	2: _justPurchased : <BOOL> - Was the item just purchased from the Bulwark?
+	2: _justPurchased : <BOOL> - Was the item just purchased from the shop?
 
 Returns:
 	NOTHING
@@ -62,7 +62,7 @@ null = [_object] remoteExecCall ["BLWK_fnc_disableCollisionWithAllPlayers",_obje
 // make sure nobody else can manipulate the object through actions
 _object setVariable ["BLWK_objectPickedUp",true,true];
 
-// marks the client as holding an object for other functions such as trying to access the bulwark shop
+// marks the client as holding an object for other functions such as trying to access the shop
 missionNamespace setVariable ["BLWK_heldObject",_object];
 
 // add every action to the player for or them to manipulate the object while it is being held

@@ -2,7 +2,7 @@
 Function: BLWK_fnc_droneAttackLoop
 
 Description:
-	Loops to simulate the drones attacking the Bulwark by dropping bombs ever so often
+	Loops to simulate the drones attacking The Crate by dropping bombs ever so often
 
 	Executed from "BLWK_fnc_createDroneWave"
 
@@ -27,7 +27,7 @@ if (!canSuspend) exitWith {};
 params ["_droneGroup"];
 
 waitUntil {
-	if ((leader _droneGroup) distance2D bulwarkBox <= 25) exitWith {true};
+	if ((leader _droneGroup) distance2D BLWK_mainCrate <= 25) exitWith {true};
 	sleep 3;
 	false
 };
@@ -37,7 +37,7 @@ private _droneGroupUnits = units _droneGroup;
 while {!(_droneGroupUnits isEqualTo [])} do {
 	_droneTofire = selectRandom _droneGroupUnits;
 	
-	_didFire = _droneTofire fireAtTarget [bulwarkBox];
+	_didFire = _droneTofire fireAtTarget [BLWK_mainCrate];
 	if (_didFire) then {
 		sleep 10;
 	} else {

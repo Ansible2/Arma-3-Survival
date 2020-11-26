@@ -2,7 +2,7 @@
 Function: BLWK_fnc_addUnlockSupportAction
 
 Description:
-	Adds the action to unlock the bulwark support menu to a sattelite dish
+	Adds the action to unlock The Crate support menu to a sattelite dish
 
 	Executed from "BLWK_fnc_spawnLoot"
 
@@ -39,7 +39,7 @@ _satelliteDish addAction [
 		missionNamespace setVariable ["BLWK_supportDishFound",true,true];
 		
 		private _onlyPlayers = call CBAP_fnc_players;
-		["TaskAssigned",["Support","Support Menu Unlocked at Bulwark Box"]] remoteExec ["BIS_fnc_showNotification",_onlyPlayers];
+		["TaskAssigned",["Support","Support Menu Unlocked at The Crate"]] remoteExec ["BIS_fnc_showNotification",_onlyPlayers];
 		["comNoise"] remoteExec ["playSound",_onlyPlayers];
 
 		[BLWK_pointsForKill * 20] call BLWK_fnc_addPoints;

@@ -37,8 +37,8 @@ if (BLWK_magRepackEnabled) then {
 };
 
 // wait till the play area is defined
-waitUntil {!isNil "BLWK_playAreaCenter" AND {!isNil "bulwarkBox"}};
-_player setVehiclePosition [bulwarkBox,[],5,"NONE"];
+waitUntil {!isNil "BLWK_playAreaCenter" AND {!isNil "BLWK_mainCrate"}};
+_player setVehiclePosition [BLWK_mainCrate,[],5,"NONE"];
 sleep 0.25;
 _player switchMove "AidlPercMstpSrasWrflDnon_G01_player"; // set player standing
 

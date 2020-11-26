@@ -41,14 +41,14 @@ if (_actionDistance < 5) then {
 
 // CIPHER COMMENT: maybe make sell into a hold action?
 // sell object
-if (!(_object isEqualTo bulwarkBox) AND {!(_object isEqualTo BLWK_randomWeaponBox)}) then {
+if (!(_object isEqualTo BLWK_mainCrate) AND {!(_object isEqualTo BLWK_randomWeaponBox)}) then {
 	_object addAction [
 		"<t color='#ff0000'><t underline='true'><t font='RobotoCondensedBold'>-- Sell " + _objectName + " Back --</t></t></t>",
 		//"<t color='#ff0000'>-- Sell " + _objectName + " Back --</t>",  
 		{
 			params ["_object","_caller"];
 
-			if (_object isEqualTo bulwarkBox OR {(_object isEqualTo BLWK_randomWeaponBox)}) exitWith {
+			if (_object isEqualTo BLWK_mainCrate OR {(_object isEqualTo BLWK_randomWeaponBox)}) exitWith {
 				hint parseText "<t color='#ff0000'>You can't sell this item</t>";
 			};
 

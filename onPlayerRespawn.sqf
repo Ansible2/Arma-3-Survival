@@ -2,7 +2,7 @@ params ["_player"];
 
 ["Terminate"] call BIS_fnc_EGSpectator;
 
-_player setVehiclePosition [bulwarkBox,[],5,"NONE"];
+_player setVehiclePosition [BLWK_mainCrate,[],5,"NONE"];
 
 //remove and add gear
 if !(BLWK_saveRespawnLoadout) then {

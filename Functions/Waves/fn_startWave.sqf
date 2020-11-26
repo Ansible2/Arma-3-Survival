@@ -3,7 +3,7 @@
 Function: BLWK_fnc_healPlayer
 
 Description:
-	Heals the player when they select the action ont he bulwark
+	Heals the player when they select the action on The Crate
 
 	Executed from "initServer.sqf" & "BLWK_fnc_endWave"
 

@@ -2,7 +2,7 @@
 Function: BLWK_fnc_createMortarWave
 
 Description:
-	Creates the mortar and starts firing at the Bulwark
+	Creates the mortar and starts firing at The Crate
 
 	Executed from "BLWK_fnc_handleMortarWave"
 
@@ -41,7 +41,7 @@ private _ammo = getArtilleryAmmo [_mortarTube] select 0;
 private "_fireAtPosition";
 private _doFire = true; 
 while {_doFire} do {
-	_fireAtPosition = [bulwarkBox,random 45,random 360] call CBAP_fnc_randPos;
+	_fireAtPosition = [BLWK_mainCrate,random 45,random 360] call CBAP_fnc_randPos;
 	_mortarTube doArtilleryFire [_fireAtPosition,_ammo,1];
 
 	sleep (random [15,20,25]);

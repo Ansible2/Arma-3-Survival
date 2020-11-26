@@ -2,7 +2,7 @@
 Function: BLWK_fnc_healPlayer
 
 Description:
-	Heals the player when they select the action ont he bulwark
+	Heals the player when they select the action on The Crate
 
 	Executed from the action added in "BLWK_fnc_prepareBulwarkPlayer"
 

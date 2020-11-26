@@ -131,10 +131,10 @@ while {sleep _timeBetweenChecks; (_groupToCheck getVariable [LOOP_VAR_NAME,false
 			//["%1 leader reset",_groupToCheck] call BIS_fnc_error;
 			//_groupLeader setPos (selectRandom BLWK_infantrySpawnPositions);
 			[_groupLeader,"DOWN"] remoteExecCall ["setUnitPosWeak",_groupLeader];
-			_groupLeader setPos ([bulWarkBox, 75, 125, 2, 0] call BIS_fnc_findSafePos);
+			_groupLeader setPos ([BLWK_mainCrate, 75, 125, 2, 0] call BIS_fnc_findSafePos);
 			sleep 1;
 			[_groupLeader,"AUTO"] remoteExecCall ["setUnitPos",_groupLeader];
-			[_groupLeader,position bulwarkBox] remoteExecCall ["doMove",_groupLeader];
+			[_groupLeader,position BLWK_mainCrate] remoteExecCall ["doMove",_groupLeader];
 		};
 	};
 };

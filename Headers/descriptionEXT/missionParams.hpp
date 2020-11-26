@@ -132,7 +132,7 @@ class BLWK_supportDishFound
 };
 class BLWK_numMedKits
 {
-	title = "Medikits in Bulwark";
+	title = "Medikits in The Crate";
 	values[] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
 	texts[] = {"None", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight"};
 	default = 3;
@@ -202,7 +202,7 @@ class BLWK_playAreaRadius
 };
 class BLWK_minNumberOfHousesInArea
 {
-	title = "Minimum number of buildings in Bulwark radius";
+	title = "Minimum number of buildings in The Crate's radius";
 	values[] = {5, 10, 15, 20, 30};
 	texts[] = {"5","10","15","20","30"};
 	default = 20;
@@ -221,9 +221,9 @@ class BLWK_loot_roomDistribution
 	texts[] = {"Every location", "Every second location", "Every third location", "Every fourth location"};
 	default = 2;
 };
-class BLWK_buildingsNearBulwarkAreIndestructable_radius
+class BLWK_buildingsNearTheCrateAreIndestructable_radius
 {
-	title = "The radius of indestructable buildings around the Bulwark";
+	title = "The radius of indestructable buildings around The Crate";
 	values[] = {0,5,10,15,20,25,30};
 	texts[] = {"OFF","5m","10m","15m","20m","25m","30m"};
 	default = 20;

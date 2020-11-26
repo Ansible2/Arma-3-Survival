@@ -146,7 +146,7 @@ localNamespace setVariable ["BLWK_fnc_exitFromAircraft",{
 	setObjectViewDistance -1;
 
 	moveOut _caller;
-	_caller setVehiclePosition [bulwarkBox,[],5,"NONE"];
+	_caller setVehiclePosition [BLWK_mainCrate,[],5,"NONE"];
 	_caller setVelocity [0,0,0];
 	[_caller,true] call BLWK_fnc_adjustStalkable;
 
@@ -176,10 +176,10 @@ localNamespace setVariable ["BLWK_fnc_exitFromAircraft",{
 	_caller allowDamage true;
 }];
 
-// create action to exit the support and return to the bulwark
+// create action to exit the support and return to The Crate
 private _exitAction = [	
 	player,
-	"<t color='#c91306'>Return To Bulwark</t>", 
+	"<t color='#c91306'>Return To The Crate</t>", 
 	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
 	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
 	"true",
@@ -212,7 +212,7 @@ private _exitAction = [
 	};
 
 	// the null check for the vehicle is here so many times because at any given point
-	// the player can initiate a manual return to the bulwark
+	// the player can initiate a manual return to The Crate
 	if (isNull _vehicle) exitWith {};
 
 	// wait to delete support

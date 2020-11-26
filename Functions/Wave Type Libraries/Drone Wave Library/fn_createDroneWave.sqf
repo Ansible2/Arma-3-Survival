@@ -44,7 +44,7 @@ for "_i" from 1 to DRONE_NUMBER do {
 	// get directions for vehicle to fly 
 	_flyDirection = round (random 360);
 	_flyFromDirection = [_flyDirection + 180] call CBAP_fnc_simplifyAngle;
-	_spawnPosition_temp = bulwarkBox getPos [BLWK_playAreaRadius + (random [100,125,150]),_flyFromDirection];
+	_spawnPosition_temp = BLWK_mainCrate getPos [BLWK_playAreaRadius + (random [100,125,150]),_flyFromDirection];
 	_spawnPosition_temp set [2,FLY_HEIGHT];
 
 	// create drone
@@ -53,7 +53,7 @@ for "_i" from 1 to DRONE_NUMBER do {
 	_drone_temp flyInHeight FLY_HEIGHT;
 	_drone_temp setSkill 1;
 
-	// attack bulwark
+	// attack The Crate
 	null = [_drone_temp,_droneGroup_temp,_spawnPosition_temp] spawn {
 		params [
 			"_drone",
@@ -64,12 +64,12 @@ for "_i" from 1 to DRONE_NUMBER do {
 		private _distanceToFire = FLY_HEIGHT + 37;
 
 		while {alive _drone} do {
-			_drone move (position bulwarkBox);
+			_drone move (position BLWK_mainCrate);
 
 			// wait to be in position to fire
 			waitUntil {
 				if !(alive _drone) exitWith {true};
-				if ((_drone distance bulwarkBox) <= _distanceToFire) exitWith {true};
+				if ((_drone distance BLWK_mainCrate) <= _distanceToFire) exitWith {true};
 				sleep 2;
 				false
 			};
@@ -77,7 +77,7 @@ for "_i" from 1 to DRONE_NUMBER do {
 			// do fire
 			waitUntil {
 				if !(alive _drone) exitWith {true};
-				if (_drone fireAtTarget [bulwarkBox]) exitWith {true};
+				if (_drone fireAtTarget [BLWK_mainCrate]) exitWith {true};
 				sleep 2;
 				false
 			};

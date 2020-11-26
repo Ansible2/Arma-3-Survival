@@ -158,7 +158,7 @@ if (isServer) then {
     BLWK_timeBetweenRounds = ("BLWK_timeBetweenRounds" call BIS_fnc_getParamValue);
     BLWK_maxNumWaves = ("BLWK_maxNumWaves" call BIS_fnc_getParamValue);
 
-    BLWK_buildingsNearBulwarkAreIndestructable_radius = ("BLWK_buildingsNearBulwarkAreIndestructable_radius" call BIS_fnc_getParamValue);
+    BLWK_buildingsNearTheCrateAreIndestructable_radius = ("BLWK_buildingsNearTheCrateAreIndestructable_radius" call BIS_fnc_getParamValue);
 
     // for revealing loot and deleteing it at the end of the round
     BLWK_lootMarkers = [];
