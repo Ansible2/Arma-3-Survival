@@ -2,7 +2,6 @@ params ["_control"];
 
 
 _control ctrlAddEventHandler ["MouseButtonDown",{
-	hint "mouse down";
 	// if music was playing
 	if (uiNamespace getVariable ["BLWK_musicManager_doPlay",false]) then {
 		playMusic ""; // stop music while adjusting
@@ -14,7 +13,6 @@ _control ctrlAddEventHandler ["MouseButtonDown",{
 
 _control ctrlAddEventHandler ["MouseButtonUp",{
 	params ["_control"];
-	hint "mouse up";
 
 	// don't immediately play music if the music is paused
 	if (uiNamespace getVariable ["BLWK_musicManager_doResume",false]) then {

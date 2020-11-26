@@ -2,7 +2,6 @@
 
 params ["_control"];
 
-hint "added";
 _control ctrlAddEventHandler ["ButtonClick",{
 	if !(GET_PUBLIC_ARRAY_DEFAULT isEqualTo []) then {
 		null = remoteExecCall ["BLWK_fnc_musicManager_setPlaylistServer",2];

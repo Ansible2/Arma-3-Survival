@@ -53,6 +53,10 @@ class KISKA
 		{};
 		class setCurrentRandomMusicTrack
 		{};
+		class stopRandomMusicServer
+		{};
+		class stopRandomMusicClient
+		{};
 		class stopMusic
 		{};
 	};

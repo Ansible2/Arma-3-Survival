@@ -21,7 +21,7 @@ _control ctrlAddEventHandler ["LBSelChanged",{
 			missionNamespace setVariable ["KISKA_musicSystemIsRunning",false,[0,2] select isMultiplayer];
 			
 			if (missionNamespace getVariable ["BLWK_musicManager_reset",false]) then {
-				hint "System reseting...";
+				//hint "System reseting...";
 				missionNamespace setVariable ["BLWK_musicManager_reset",false];
 			} else {
 				hint "System OFF, last played song will finish...";
@@ -29,10 +29,16 @@ _control ctrlAddEventHandler ["LBSelChanged",{
 		};
 		case 1:{ // system on
 			hint "System starting...";
+
+			// if music is playing from the manager, stop the timeline
+			if (uiNamespace getVariable ["BLWK_musicManager_doPlay",false]) then {
+				uiNamespace setVariable ["BLWK_musicManager_doPlay",false];
+				uiNamespace setVariable ["BLWK_musicManager_paused",true];
+			};
 			null = [] remoteExec ["KISKA_fnc_randomMusic",2];
 		};
 		case 2:{ // system reset
-			null = remoteExecCall ["KISKA_fnc_stopRandomMusicServer",2];
+			null = [false] remoteExecCall ["KISKA_fnc_stopRandomMusicServer",2];
 			missionNamespace setVariable ["BLWK_musicManager_reset",true];
 			_control lbSetCurSel 0; // set to appear off
 		};

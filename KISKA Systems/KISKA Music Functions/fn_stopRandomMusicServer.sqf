@@ -8,8 +8,8 @@ params [
 ];
 
 missionNamespace setVariable ["KISKA_musicSystemIsRunning",false];
-if (_playLastSong) then {
-	null = remoteExec ["KISKA_fnc_stopRandomMusicClient",0];
+if (!_playLastSong) then {
+	null = remoteExec ["KISKA_fnc_stopRandomMusicClient",[0,-2] select isDedicated];
 };
 
 true

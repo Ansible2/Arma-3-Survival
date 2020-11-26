@@ -31,7 +31,6 @@ null = _this spawn {
 	params ["_control","_display"];
 
 	private _fn_adjustList = {
-		hint "adjust list 2";
 		params ["_displayedArray","_globalArray"];
 
 		// delete all entries if global is empty
@@ -76,7 +75,6 @@ null = _this spawn {
 
 		// compare cached and public array
 		if !(_playlist_displayed isEqualTo GET_PUBLIC_ARRAY_DEFAULT) then {
-			hint "adjust list 1";
 			[_playlist_displayed,BLWK_PUB_CURRENT_PLAYLIST] call _fn_adjustList;		
 			_playlist_displayed = +BLWK_PUB_CURRENT_PLAYLIST;
 		};
