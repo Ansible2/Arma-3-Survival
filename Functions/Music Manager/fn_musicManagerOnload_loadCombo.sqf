@@ -6,8 +6,10 @@ _loadComboControl ctrlAddEventHandler ["LBSelChanged",{
 	params ["_control","_selectedIndex"];
 
 	private _playlistArray = profileNamespace getVariable ["BLWK_musicManagerPlaylists",[]];
-	if !(_playlistArray isEqualTo []) then {
-		private _chosenPlaylist = _playlistArray select _selectedIndex;
+	// 0 is a blank spot used for having no entry
+	if (!(_selectedIndex isEqualTo 0) AND {!(_playlistArray isEqualTo [])}) then {
+		// _selectedIndex is offset from the profile array because of the DEFAULT entry in the combo box
+		private _chosenPlaylist = _playlistArray select (_selectedIndex - 1);
 		private _musicClassesInList = _chosenPlaylist select 1;
 		
 		// clear global array before adding to it
@@ -36,4 +38,4 @@ _loadComboControl ctrlAddEventHandler ["LBSelChanged",{
 }];
 
 // fill in list with available ones
-[_loadComboControl] call BLWK_fnc_musicManager_updateLoadCombo;
+null = [] spawn BLWK_fnc_musicManager_updateLoadCombo;

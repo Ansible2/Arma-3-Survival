@@ -126,9 +126,13 @@ class BLWK
 		{};
 		class musicManagerOnLoad_currentPlaylistLoop
 		{};
+		class musicManagerOnLoad_deleteButton
+		{};
 		class musicManagerOnLoad_loadCombo
 		{};
 		class musicManagerOnLoad_pauseAndPlayButtons
+		{};
+		class musicManagerOnLoad_savePlaylistControls
 		{};
 		class musicManagerOnLoad_systemOnOffCombo
 		{};
