@@ -6,15 +6,31 @@
 	"(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])",\
 	ALPHA\
 }
-#define BORDER_COLOR(ALPHA) {0,0,0,ALPHA}
+//#define BORDER_COLOR(ALPHA) {0,0,0,ALPHA}
 #define BACKGROUND_FRAME_COLOR(ALPHA) {0,0,0,ALPHA}
 #define GREY_COLOR(PERCENT,ALPHA) {PERCENT,PERCENT,PERCENT,ALPHA}
 
-//missionconfigfile >> "musicManagerDialog"
 /* -------------------------------------------------------------------------
 	Base Classes
 ------------------------------------------------------------------------- */
 
+class musicManagerDialogSliderX: RscXSliderH
+{
+	colorBackground[] = {-1,-1,-1,0.25};
+	arrowEmpty = "images\transparent.paa";
+	arrowFull = "images\transparent.paa";
+	lineSize = 0;
+};
+class musicManagerDialogButton: RscButton
+{
+	colorBackground[] = GREY_COLOR(0.5,0.25);
+	colorBackgroundActive[] = GREY_COLOR(0.5,0.65);
+	colorFocused[] = GREY_COLOR(0.5,0.25);
+	colorDisabled[] = {1,1,1,0.25};
+	colorBackgroundDisabled[] = {0,0,0,0.5};
+	colorShadow[] = {0,0,0,1};
+	colorBorder[] = {0,0,0,1};
+};
 
 
 
@@ -93,7 +109,6 @@ class musicManagerDialog
 		class musicManagerDialoglistNBox_availableSongs: RscListNBox
 		{
 			idc = BLWK_MUSIC_MANAGER_SONGS_LIST_IDC;
-			//onLoad = "[(_this select 0)] call loadMusic";
 
 			x = 0.259766 * safezoneW + safezoneX;
 			y = 0.416667 * safezoneH + safezoneY;
@@ -112,7 +127,7 @@ class musicManagerDialog
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = PROFILE_BACKGROUND_COLOR(1);
 		};
-		class musicManagerDialogbutton_closeDialog: RscButton
+		class musicManagerDialogbutton_closeDialog: musicManagerDialogButton
 		{
 			idc = BLWK_MUSIC_MANAGER_CLOSE_BUTTON_IDC;
 
@@ -121,8 +136,12 @@ class musicManagerDialog
 			y = 0.229167 * safezoneH + safezoneY;
 			w = 0.0644531 * safezoneW;
 			h = 0.0208333 * safezoneH;
+
+			colorBackground[] = {1,0,0,0.45};
+			colorBackgroundActive[] = {1,0,0,0.75};
+			colorFocused[] = {1,0,0,0.45};
 		};
-		class musicManagerDialogbutton_commit: RscButton
+		class musicManagerDialogbutton_commit: musicManagerDialogButton
 		{
 			idc = BLWK_MUSIC_MANAGER_COMMIT_BUTTON_IDC;
 
@@ -131,8 +150,13 @@ class musicManagerDialog
 			y = 0.28125 * safezoneH + safezoneY;
 			w = 0.105469 * safezoneW;
 			h = 0.0416667 * safezoneH;
+			colorBackground[] = {1,0,0,0.45};
+			colorBackgroundActive[] = {1,0,0,0.75};
+			colorFocused[] = {1,0,0,0.45};
+
+			toolTip = "Save Current Playlist to the server for use with the system";
 		};
-		class musicManagerDialogslider_timeline: RscXSliderH
+		class musicManagerDialogslider_timeline: musicManagerDialogSliderX
 		{
 			idc = BLWK_MUSIC_MANAGER_TIMELINE_SLIDER_IDC;
 
@@ -140,11 +164,9 @@ class musicManagerDialog
 			y = 0.364583 * safezoneH + safezoneY;
 			w = 0.515625 * safezoneW;
 			h = 0.03125 * safezoneH;
-			colorBackground[] = {-1,-1,-1,0.25};
 			sliderStep = 0.01;
-			lineSize = 0;
 		};
-		class musicManagerDialogbutton_play: RscButton
+		class musicManagerDialogbutton_play: musicManagerDialogButton
 		{
 			idc = BLWK_MUSIC_MANAGER_PLAY_BUTTON_IDC;
 			text = "Play"; //--- ToDo: Localize;
@@ -153,7 +175,7 @@ class musicManagerDialog
 			w = 0.0527344 * safezoneW;
 			h = 0.0208333 * safezoneH;
 		};
-		class musicManagerDialogbutton_pause: RscButton
+		class musicManagerDialogbutton_pause: musicManagerDialogButton
 		{
 			idc = BLWK_MUSIC_MANAGER_PAUSE_BUTTON_IDC;
 			text = "Pause"; //--- ToDo: Localize;
@@ -184,7 +206,7 @@ class musicManagerDialog
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = PROFILE_BACKGROUND_COLOR(1);
 		};
-		class musicManagerDialogslider_volume: RscXSliderH
+		class musicManagerDialogslider_volume: musicManagerDialogSliderX
 		{
 			idc = BLWK_MUSIC_MANAGER_VOLUME_SLIDER_IDC;
 
@@ -192,10 +214,8 @@ class musicManagerDialog
 			y = 0.333333 * safezoneH + safezoneY;
 			w = 0.123047 * safezoneW;
 			h = 0.0208333 * safezoneH;
-			colorBackground[] = {-1,-1,-1,0.25};
 			sliderStep = 0.05;
 			sliderRange = [0,1];
-			lineSize = 0;
 		};
 		class musicManagerDialogheaderText_trackTitle: RscText
 		{
@@ -231,7 +251,7 @@ class musicManagerDialog
 			colorBackground[] = GREY_COLOR(1,0.25);
 			
 		};
-		class musicManagerDialogbutton_trackSpacing: RscButton
+		class musicManagerDialogbutton_trackSpacing: musicManagerDialogButton
 		{
 			idc = BLWK_MUSIC_MANAGER_SPACING_BUTTON_IDC;
 
@@ -240,7 +260,6 @@ class musicManagerDialog
 			y = 0.302083 * safezoneH + safezoneY;
 			w = 0.046875 * safezoneW;
 			h = 0.0208333 * safezoneH;
-			colorBackground[] = {-1,-1,-1,1};
 			toolTip = "Setting will be saved to the server";
 		};
 		class musicManagerDialogcomboBox_trackSpacing: RscCombo
@@ -292,7 +311,7 @@ class musicManagerDialog
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = PROFILE_BACKGROUND_COLOR(1);
 		};
-		class musicManagerDialogbutton_savePlaylist: RscButton
+		class musicManagerDialogbutton_savePlaylist: musicManagerDialogButton
 		{
 			idc = BLWK_MUSIC_MANAGER_SAVE_BUTTON_IDC;
 
@@ -304,7 +323,7 @@ class musicManagerDialog
 			toolTip = "Save over the current list selected in the drop down";
 			//colorBackground[] = {-1,-1,-1,1};
 		};
-		class musicManagerDialogbutton_saveAsPlaylist: RscButton
+		class musicManagerDialogbutton_saveAsPlaylist: musicManagerDialogButton
 		{
 			idc = BLWK_MUSIC_MANAGER_SAVEAS_BUTTON_IDC;
 
@@ -316,7 +335,7 @@ class musicManagerDialog
 			toolTip = "Save a new playlist based upon the edit box";
 			//colorBackground[] = {-1,-1,-1,1};
 		};
-		class musicManagerDialogbutton_deletePlaylist: RscButton
+		class musicManagerDialogbutton_deletePlaylist: musicManagerDialogButton
 		{
 			idc = BLWK_MUSIC_MANAGER_DELETE_BUTTON_IDC;
 
@@ -339,7 +358,7 @@ class musicManagerDialog
 			colorBackground[] = PROFILE_BACKGROUND_COLOR(1);
 		};
 		
-		class musicManagerDialogbutton_addToCurrentPlaylist: RscButton
+		class musicManagerDialogbutton_addToCurrentPlaylist: musicManagerDialogButton
 		{
 			idc = BLWK_MUSIC_MANAGER_ADDTO_BUTTON_IDC;
 
@@ -351,7 +370,7 @@ class musicManagerDialog
 
 			toolTip = "Add to Current Playlist";
 		};
-		class musicManagerDialogbutton_removeFromCurrentPlaylist: RscButton
+		class musicManagerDialogbutton_removeFromCurrentPlaylist: musicManagerDialogButton
 		{
 			idc = BLWK_MUSIC_MANAGER_REMOVEFROM_BUTTON_IDC;
 
