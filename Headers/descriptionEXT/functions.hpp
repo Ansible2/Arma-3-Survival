@@ -146,6 +146,8 @@ class BLWK
 		{};
 		class musicManagerOnLoad_volumeSlider
 		{};
+		class openMusicManager
+		{};
 	};
 
 	class Other
