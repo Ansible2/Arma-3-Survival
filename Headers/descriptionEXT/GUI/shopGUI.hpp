@@ -460,7 +460,7 @@ class theCrateShopDialogbaseClass_background: theCrateShopDialogbaseClass_text
 /* -------------------------------------------------------------------------
 	Dialog
 ------------------------------------------------------------------------- */
-class bulwarkShopDialog
+class theCrateShopDialog
 {
     idd = BLWK_SHOP_IDD;
     movingEnabled = false;

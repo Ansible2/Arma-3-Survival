@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_overrunBulwarkWave
+Function: BLWK_fnc_overrunTheCrateWave
 
 Description:
 	Heals the player when they select the action on The Crate.
@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		[unitArray] call BLWK_fnc_overrunBulwarkWave;
+		[unitArray] call BLWK_fnc_overrunTheCrateWave;
 
     (end)
 

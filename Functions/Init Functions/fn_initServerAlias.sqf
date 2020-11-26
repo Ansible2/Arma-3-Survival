@@ -16,7 +16,7 @@ setDate [2020, 7, 1, BLWK_timeOfDay, 0];
 waitUntil {count (call CBAP_fnc_players) > 0};
 
 if (BLWK_buildingsNearTheCrateAreIndestructable_radius > 0) then {
-	null = [] spawn BLWK_fnc_bulwarkBuildingsLoop;
+	null = [] spawn BLWK_fnc_theCrateBuildingsLoop;
 };
 
 call BLWK_fnc_spawnLoot;

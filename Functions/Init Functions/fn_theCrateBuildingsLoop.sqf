@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_bulwarkBuildingsLoop
+Function: BLWK_fnc_theCrateBuildingsLoop
 
 Description:
 	Makes (terrain) buildings within the selected radius of the Crate indestructable
@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn BLWK_fnc_bulwarkBuildingsLoop;
+		null = [] spawn BLWK_fnc_theCrateBuildingsLoop;
 
     (end)
 

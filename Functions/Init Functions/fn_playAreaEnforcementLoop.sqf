@@ -33,28 +33,28 @@ waitUntil {!isNil "BLWK_mainCrate" AND {!isNil "BLWK_playAreaCenter"}};
  the vast majority of the time which is when the player is WITHIN the boundries
 */
 private _fn_90percentFromCenter = {
-	if (BLWK_playerDistanceToBulwark >= BLWK_playAreaRadius * 0.95) then {
+	if (BLWK_playerDistanceToTheCrate >= BLWK_playAreaRadius * 0.95) then {
 		call _fn_95percentFromCenter;
 	} else {
 		["<t color='#ffffff'>Warning: Leaving mission area!</t>", 0, 0.1, 2, 0] spawn BIS_fnc_dynamicText;
 	};
 };
 private _fn_95percentFromCenter = {
-	if (BLWK_playerDistanceToBulwark >= BLWK_playAreaRadius * 0.99) then {
+	if (BLWK_playerDistanceToTheCrate >= BLWK_playAreaRadius * 0.99) then {
 		call _fn_99percentFromCenter;
 	} else {
 		["<t color='#ffff00'>Warning: Leaving mission area!</t>", 0, 0.1, 2, 0] spawn BIS_fnc_dynamicText;
 	};
 };
 private _fn_99percentFromCenter = {
-	if (BLWK_playerDistanceToBulwark >= BLWK_playAreaRadius * 1.1) then {
+	if (BLWK_playerDistanceToTheCrate >= BLWK_playAreaRadius * 1.1) then {
 		call _fn_110percentFromCenter;
 	} else {
 		["<t color='#ff0000'>Warning: Leaving mission area!</t>", 0, 0.1, 2, 0] spawn BIS_fnc_dynamicText;
 	};
 };
 private _fn_110percentFromCenter = {
-	if (BLWK_playerDistanceToBulwark > BLWK_playAreaRadius * 2) then {
+	if (BLWK_playerDistanceToTheCrate > BLWK_playAreaRadius * 2) then {
 		call _fn_200percentFromCenter;
 	} else {
 		// blur screen
@@ -92,10 +92,10 @@ if !(missionNamespace getVariable ["BLWK_enforceArea",false]) then {
 };
 
 while {sleep 2; BLWK_enforceArea} do {
-	_playerDistanceToBulwark = player distance2D BLWK_playAreaCenter;
+	_playerDistanceToTheCrate = player distance2D BLWK_playAreaCenter;
 
-	if (_playerDistanceToBulwark >= (BLWK_playAreaRadius * 0.9)) then {
-		BLWK_playerDistanceToBulwark = _playerDistanceToBulwark;
+	if (_playerDistanceToTheCrate >= (BLWK_playAreaRadius * 0.9)) then {
+		BLWK_playerDistanceToTheCrate = _playerDistanceToTheCrate;
 		call _fn_90percentFromCenter;
 	};
 };

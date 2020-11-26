@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_prepareBulwarkServer
+Function: BLWK_fnc_prepareTheCrateServer
 
 Description:
 	Creates and sets up The Crate, syncs the box global to all machines.
@@ -16,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		call BLWK_fnc_prepareBulwarkServer;
+		call BLWK_fnc_prepareTheCrateServer;
 
     (end)
 
@@ -35,12 +35,11 @@ clearMagazineCargoGlobal _mainCrate;
 clearBackpackCargoGlobal _mainCrate;
 _mainCrate allowDamage false;
 
-private _bulwarkLaptop = createVehicle ["Land_Laptop_device_F", [0,0,0], [], 0, "NONE"];
-_bulwarkLaptop allowDamage false;
-_bulwarkLaptop setObjectTextureGlobal [0,"preview.paa"];
-//[_bulwarkLaptop,[0,"preview.paa"]] remoteExec ["setObjectTexture",BLWK_allClientsTargetID,true];
-_bulwarkLaptop attachTo [_mainCrate, [0,0.1,0.6]];
-_bulwarkLaptop setDir 180;
+private _theCrateLaptop = createVehicle ["Land_Laptop_device_F", [0,0,0], [], 0, "NONE"];
+_theCrateLaptop allowDamage false;
+_theCrateLaptop setObjectTextureGlobal [0,"preview.paa"];
+_theCrateLaptop attachTo [_mainCrate, [0,0.1,0.6]];
+_theCrateLaptop setDir 180;
 
 // add medkits
 if (BLWK_numMedKits > 0) then {

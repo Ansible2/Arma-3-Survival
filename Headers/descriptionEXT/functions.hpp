@@ -61,7 +61,7 @@ class BLWK
 		{};
 		class arePlayersAliveLoop
 		{};
-		class bulwarkBuildingsLoop
+		class theCrateBuildingsLoop
 		{};
 		class createBattleAmbienceSound
 		{};
@@ -91,9 +91,9 @@ class BLWK
 		};
 		class playAreaEnforcementLoop
 		{};
-		class prepareBulwarkPlayer
+		class prepareTheCratePlayer
 		{};
-		class prepareBulwarkServer
+		class prepareTheCrateServer
 		{};
 		class prepareGlobals
 		{};
@@ -338,7 +338,7 @@ class BLWK
 		file = "Functions\Wave Type Libraries\Overrun Wave Library";
 		class handleOverrunWave
 		{};
-		class overrunBulwarkWave
+		class overrunTheCrateWave
 		{};
 	};
 

@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_prepareBulwarkPlayer
+Function: BLWK_fnc_prepareTheCratePlayer
 
 Description:
 	Creates The Crate icon on the player's screen
@@ -17,7 +17,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn BLWK_fnc_prepareBulwarkPlayer;
+		null = [] spawn BLWK_fnc_prepareTheCratePlayer;
 
     (end)
 
@@ -76,13 +76,13 @@ _mainCrate addEventHandler ["ContainerOpened",{
 // start and end medkit check loop on server when openned and closed
 _mainCrate addEventHandler ["ContainerOpened",{
 	if !(BLWK_dontUseRevive) then {
-		player setVariable ["BLWK_lookingInBulwark",true,2];
+		player setVariable ["BLWK_lookingInTheCrate",true,2];
 		remoteExec ["BLWK_fnc_faksToMedkitLoop",2];
 	};
 }];
 _mainCrate addEventHandler ["ContainerClosed",{
 	if !(BLWK_dontUseRevive) then {
-		player setVariable ["BLWK_lookingInBulwark",false,2];
+		player setVariable ["BLWK_lookingInTheCrate",false,2];
 	};
 }];
 

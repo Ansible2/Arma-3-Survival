@@ -68,11 +68,11 @@ missionNamespace setVariable ["BLWK_vehicleSpawnPositions",_vehicleSpawnPosition
 
 
 // create and setup the actual box
-BLWK_mainCrate = call BLWK_fnc_prepareBulwarkServer;
+BLWK_mainCrate = call BLWK_fnc_prepareTheCrateServer;
 private _bulwarkSpawn = [BLWK_playAreaCenter,3,20,1] call BIS_fnc_findSafePos;
 waitUntil {
 	BLWK_mainCrate setVehiclePosition [_bulwarkSpawn,[],3,"NONE"]
 };
 
 // push player relavent actions and the loop to show The Crate icon
-null = [BLWK_mainCrate] remoteExec ["BLWK_fnc_prepareBulwarkPlayer",BLWK_allClientsTargetID,true];
+null = [BLWK_mainCrate] remoteExec ["BLWK_fnc_prepareTheCratePlayer",BLWK_allClientsTargetID,true];

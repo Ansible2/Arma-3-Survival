@@ -4,7 +4,7 @@ Function: BLWK_fnc_healPlayer
 Description:
 	Heals the player when they select the action on The Crate
 
-	Executed from the action added in "BLWK_fnc_prepareBulwarkPlayer"
+	Executed from the action added in "BLWK_fnc_prepareTheCratePlayer"
 
 Parameters:
 	0: _player : <OBJECT> - The person to heal
