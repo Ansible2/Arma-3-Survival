@@ -17,9 +17,9 @@ class EditorData
 	class Camera
 	{
 		pos[]={7.8241673,542.95264,5.7377934};
-		dir[]={-0.74159271,-0.50832087,0.43783122};
-		up[]={-0.43773088,0.86116076,0.25843817};
-		aside[]={0.50841385,-3.8298786e-006,0.86114383};
+		dir[]={-0.81230479,-0.37189472,0.44936234};
+		up[]={-0.32543626,0.92826337,0.18003444};
+		aside[]={0.48408359,-3.6922575e-006,0.87506592};
 	};
 };
 binarizationWanted=0;
@@ -1132,12 +1132,12 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={4.6725349,540.70575,12.573437};
+				position[]={4.6729999,540.70605,12.573};
 			};
 			name="BLWK_zeus";
 			id=116;
 			type="ModuleCurator_F";
-			atlOffset=726.67578;
+			atlOffset=726.67603;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -1212,7 +1212,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=2;
+							value=3;
 						};
 					};
 				};
