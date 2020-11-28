@@ -1,3 +1,4 @@
+#include "..\..\..\Headers\String Constants.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_createStdWaveInfantry
 
@@ -24,16 +25,11 @@ Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#include "..\..\..\Headers\String Constants.hpp"
-
 params [
 	["_isDefectorWave",false,[true]]
 ];
 
 #define BASE_ENEMY_NUMBER 2
-BLWK_enemiesPerWaveMultiplier = 0.5;
-BLWK_enemiesPerPlayerMultiplier = 1;
-
 
 private _fn_getAvailableEnemyLists = {
 	if (_isDefectorWave) exitWith {
