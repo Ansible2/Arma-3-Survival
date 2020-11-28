@@ -9,7 +9,7 @@ Parameters:
 	1: _invincibleOnDrop <BOOL> - Should the units be invincible while dropping?
 
 Returns:
-	BOOL
+	<BOOL> - False if encountered a problem, true if units will be dropped
 
 Examples:
     (begin example)
@@ -27,6 +27,8 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "KISKA_fnc_staticLine";
+
 params [
 	["_dropArray",[],[[],grpNull,objNull]],
 	["_invincibleOnDrop",true,[true]]
@@ -100,7 +102,7 @@ localNamespace setVariable ["KISKA_fnc_staticline_doEJect",{
 			params ["_unit","_aircraft","_sideOfAircraft"];
 
 			_unit setPosATL ((getPosATLVisual _unit) vectorAdd (_aircraft vectorModelToWorldVisual [_sideOfAircraft,0,0]));
-			// if a unit is moving too fast whent they open the chute, it will sometimes cause it to not attach
+			// if a unit is moving too fast when they open the chute, it will sometimes cause it to not attach
 			[_unit,[0,0,0]] remoteExecCall ["setVelocity",_unit];
 			sleep 1;
 			[_unit,["OpenParachute", _unit]] remoteExecCall ["action",_unit];

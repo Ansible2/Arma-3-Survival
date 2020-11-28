@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: KISKA_fnc_addArsenal
+Function: KISKA_fnc_removeArsenal
 
 Description:
 	Removes both BIS and ACE arsenals from several or a single object.
@@ -9,7 +9,7 @@ Parameters:
 	0: _arsenals <ARRAY or OBJECT> - An array of objects to add arsenals to
 
 Returns:
-	BOOL
+	<BOOL> - true if done, false if not
 
 Examples:
     (begin example)
@@ -21,6 +21,8 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "KISKA_fnc_removeArsenal";
+
 params [
     ["_arsenals",[],[[],objNull]]
 ];
@@ -37,7 +39,6 @@ if !(_arsenals isequalType []) then {
 private _aceLoaded = ["ace_arsenal"] call KISKA_fnc_isPatchLoaded;
 
 _arsenals apply {
-	
 	if (_aceLoaded) then {
 		[_x, true] call ace_arsenal_fnc_removeBox
 	};

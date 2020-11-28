@@ -23,6 +23,8 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "KISKA_fnc_battleSound";
+
 if (!canSuspend) exitWith {
 	"Must be run in a scheduled environement" call BIS_fnc_error;
 };

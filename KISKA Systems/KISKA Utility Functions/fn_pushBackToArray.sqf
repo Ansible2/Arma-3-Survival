@@ -10,10 +10,10 @@ Description:
 Parameters:
 	0: _arrayVariableName : <STRING> - The array in string format
 	1: _entryToAdd : <ANY> - The value to pushBack
-	2: _namespace : <NAMESPACE,OBJECT,GROUP,LOCATION,CONTROL,DISPLAY> - What namespace the array is in
+	2: _namespace : <NAMESPACE,OBJECT,GROUP,LOCATION,CONTROL, or DISPLAY> - What namespace the array is in
 
 Returns:
-	BOOL
+	<BOOL> - true if added, false if not
 
 Examples:
     (begin example)
@@ -25,14 +25,24 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "KISKA_fnc_pushBackToArray";
+
 params [
 	["_arrayVariableName","",[""]],
 	"_entryToAdd",
 	["_namespace",missionNamespace,[missionNamespace,objNull,grpNull,controlNull,displayNull,locationNull]]
 ];
 
+if (isNil "_entryToAdd") exitWith {
+	"KISKA_fnc_pushBackToArray: _entryToAdd was undefined, nothing to pushback" call BIS_fnc_error;
+
+	false
+};
+
 if (_arrayVariableName isEqualTo "") exitWith {
 	"KISKA_fnc_pushBackToArray: Array variable name is empty string" call BIS_fnc_error;
+
+	false
 };
 
 private _array = _namespace getVariable [_arrayVariableName,[]];

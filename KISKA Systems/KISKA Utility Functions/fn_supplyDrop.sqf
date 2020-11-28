@@ -5,13 +5,12 @@ Description:
 	Spawns a supply drop near the requested position. Crates will parachute in.
 
 Parameters:
-
 	0: _classNames <ARRAY> - Classnames of boxes you want dropped. Also determines the number of crates
 	1: _altittude <NUMBER> - Start height of drop
 	2: _dropPosition <OBJECT, GROUP, ARRAY, LOCATION, TASK> - Position you want the drop to be near
 
 Returns:
-	ARRAY - the containers
+	<ARRAY> - The containers dropped
 
 Examples:
     (begin example)
@@ -23,6 +22,8 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "KISKA_fnc_supplyDrop";
+
 params [
 	["_classNames",["B_supplyCrate_F"],[[]]],
 	["_altittude",100,[1]],
@@ -101,7 +102,7 @@ KISKA_fnc_SD_markDropPosition = {
 	private _deleteTime = time + 60;
     waitUntil {
         // waitUntil a player is within 10m of the first container
-        if (!(((call CBA_fnc_players) findIf {(_x distance2D _firstContainer) <= 10}) isEqualTo -1) OR {time > _deleteTime}) exitWith {true};
+        if (!(((call CBAP_fnc_players) findIf {(_x distance2D _firstContainer) <= 10}) isEqualTo -1) OR {time > _deleteTime}) exitWith {true};
         
         sleep 2;
         false

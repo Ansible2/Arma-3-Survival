@@ -1,5 +1,32 @@
+/* ----------------------------------------------------------------------------
+Function: KISKA_fnc_findConfigAny
+
+Description:
+	Searchs configFile, missionConfigFile, and the campaignConfigFile
+	 (in that order) to find a config based upon the sub paths provided.
+	
+	Reutrns the first one it finds.
+
+Parameters:
+	0: _pathArray : <ARRAY> - The global array in string format
+
+Returns:
+	<CONFIG> - The first config path if found or configNull if not
+
+Examples:
+    (begin example)
+
+		[["CfgMusic","Music_Intro_02_MissionStart"]] call KISKA_fnc_findConfigAny;
+
+    (end)
+
+Author(s):
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
+scriptName "KISKA_fnc_findConfigAny";
+
 params [
-	["_pathArray",[],[]]
+	["_pathArray",[],[[]]]
 ];
 
 if (_pathArray isEqualTo []) exitWith {
