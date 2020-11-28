@@ -1,3 +1,4 @@
+#include "..\..\Headers\descriptionEXT\supportDefines.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_callForArtillery
 
@@ -32,7 +33,6 @@ if (_ammoType == "Flare_82mm_AMOS_White") exitWith {
 	null = [_fireAtPosition,_ammoType,15,1,1,{},nil,250,1] spawn BIS_fnc_fireSupportVirtual;
 };
 
-#include "..\..\Headers\descriptionEXT\supportDefines.hpp"
 [TYPE_ARTILLERY,player] call BLWK_fnc_supportRadioGlobal;
 
 // create markers
