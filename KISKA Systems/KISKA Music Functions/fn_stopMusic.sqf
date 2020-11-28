@@ -1,3 +1,27 @@
+/* ----------------------------------------------------------------------------
+Function: KISKA_fnc_stopMusic
+
+Description:
+	Stops the currently playing music with a fade if desired.
+
+Parameters:
+	0: _fadeTime <NUMBER> - How long to fade out
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+
+		call KISKA_fnc_stopMusic;
+
+    (end)
+
+Author(s):
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
+scriptName "KISKA_fnc_stopMusic";
+
 if (!hasInterface) exitWith {};
 
 if (!canSuspend) exitWith {

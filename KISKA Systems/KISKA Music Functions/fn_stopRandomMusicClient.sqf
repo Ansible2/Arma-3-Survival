@@ -1,3 +1,28 @@
+/* ----------------------------------------------------------------------------
+Function: KISKA_fnc_stopRandomMusicClient
+
+Description:
+	The clientside part of stopping random music system.
+	Ideally, should not be called on its own but used from KISKA_fnc_stopRandomMusicServer
+
+Parameters:
+	NONE
+
+Returns:
+	<BOOL> - True if done, false if nothing done
+
+Examples:
+    (begin example)
+
+		call KISKA_fnc_stopRandomMusicClient;
+
+    (end)
+
+Author(s):
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
+scriptName "KISKA_fnc_stopRandomMusicClient";
+
 if (!hasInterface) exitWith {false};
 
 if ((call KISKA_fnc_getMusicPlaying) == (call KISKA_fnc_getCurrentRandomMusicTrack)) then {

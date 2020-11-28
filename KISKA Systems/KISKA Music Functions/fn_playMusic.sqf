@@ -5,7 +5,6 @@ Description:
 	Plays music with smooth fade between tracks. Must be run in scheduled environment (spawn)
 
 Parameters:
-
 	0: _track <STRING> - Music to play
 	1: _startTime <NUMBER> - Starting time of music. -1 for random start time
 	2: _canInterrupt <BOOL> - Interrupt playing music
@@ -25,10 +24,13 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "KISKA_fnc_playMusic";
+
 if !(hasInterface) exitWith {};
 
 if !(canSuspend) exitWith {
-	"fadeMusic does not work in unscheduled environment" call BIS_fnc_error;
+	"KISKA_fnc_playMusic does not entirely work in unscheduled environment" call BIS_fnc_error;
+	_this spawn KISKA_fnc_playMusic;
 };
 
 params [

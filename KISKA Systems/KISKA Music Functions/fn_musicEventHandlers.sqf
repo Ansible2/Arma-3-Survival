@@ -20,6 +20,8 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "KISKA_fnc_musicEventHandlers";
+
 if (!hasInterface) exitWith {};
 
 addMusicEventHandler ["MusicStart", {

@@ -20,6 +20,8 @@ Examples:
 Author(s):
 	Ansible2 // Cipher (modified by)
 ---------------------------------------------------------------------------- */
+scriptName "KISKA_fnc_getMusicFromClass";
+
 params [
 	["_musicClass","",[""]]
 ];
@@ -28,7 +30,7 @@ if (_musicClass isEqualTo "") exitWith {
 	"no class string passed" call BIS_fnc_error;
 };
 
-private _configCondition = ["getText (_x >> 'musicClass') == ",str _musicCLass] joinString "";
+private _configCondition = ["getText (_x >> 'musicClass') == ",str _musicClass] joinString "";
 
 private _configs = _configCondition configClasses (configFile >> "CfgMusic");
 
@@ -40,5 +42,6 @@ _configs apply {
 
 	_trackNames pushBackUnique _class;
 };
+
 
 _trackNames
