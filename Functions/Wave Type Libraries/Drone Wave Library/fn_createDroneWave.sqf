@@ -31,6 +31,8 @@ if (!canSuspend) exitWith {
 	"Must be run in scheduled environment" call BIS_fnc_error;
 };
 
+missionNamespace setVariable ["BLWK_allDronesCreated",false,[0,2] select isMultiplayer];
+
 private [
 	"_drone_temp",
 	"_droneArray_temp",
@@ -115,3 +117,5 @@ for "_i" from 1 to DRONE_NUMBER do {
 	// space out spawns so that you don't get spammed
 	sleep 10;
 };
+
+missionNamespace setVariable ["BLWK_allDronesCreated",true,[0,2] select isMultiplayer];

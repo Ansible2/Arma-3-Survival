@@ -23,10 +23,11 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if (!isServer) exitWith {};
+if (!isServer) exitWith {false};
 
 private _index = (missionNamespace getVariable [WAVE_ENEMIES_ARRAY,[]]) findIf {alive _x};
-if !(_index isEqualTo -1) then {
+private _allDronesCreated = missionNamespace getVariable ["BLWK_allDronesCreated",true];
+if (_index != -1 OR {!_allDronesCreated}) then {
 	false
 } else {
 	true

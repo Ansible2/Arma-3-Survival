@@ -27,6 +27,9 @@ Author(s):
 ---------------------------------------------------------------------------- */
 if (!isServer OR {!canSuspend}) exitWith {};
 
+// handle drone wave global
+missionNamespace setVariable ["BLWK_allDronesCreated",nil,[0,2] select isMultiplayer];
+
 // check for mission complete
 if (BLWK_currentWaveNumber isEqualTo BLWK_maxNumWaves) exitWith {
 	"End2" call BIS_fnc_endMissionServer;

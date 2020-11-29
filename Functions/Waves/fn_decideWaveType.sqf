@@ -27,7 +27,7 @@ Author(s):
 if (!isServer) exitWith {false};
 
 #define SPECIAL_WAVE_LIKELIHOOD 0.4
-#define STANDARD_WAVE_LIKELIHOOD 1
+#define STANDARD_WAVE_LIKELIHOOD 1.25
 
 private _specialWaves = [
 	[SUICIDE_WAVE, SPECIAL_WAVE_LIKELIHOOD],
