@@ -56,8 +56,8 @@ if (isNull _unitWithCurator) then {
 			hint "You are already the curator";
 		};
 	} else {
-		null = [_unitWithCurator,_isManual] spawn {
-			params ["_unitWithCurator","_isManual"];
+		null = [_unitWithCurator,_isManual,_curatorObject] spawn {
+			params ["_unitWithCurator","_isManual","_curatorObject"];
 			null = [_curatorObject] remoteExec ["unAssignCurator",2];
 			
 			// wait till curator doesn't have a unit to give it the player
