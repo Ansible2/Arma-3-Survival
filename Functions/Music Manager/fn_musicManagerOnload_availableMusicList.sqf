@@ -68,7 +68,7 @@ private _musicDurations = [];
 if (isNil {uiNamespace getVariable "BLWK_musicManager_allMusicDurations"}) then {
 	private "_duration_temp";
 	_musicClasses apply {
-		_duration_temp = round ([_x >> "duration"] call BIS_fnc_getCfgData);
+		_duration_temp = round (getNumber(_x >> "duration"));
 		_musicDurations pushBack _duration_temp;
 	};
 	uiNamespace setVariable ["BLWK_musicManager_allMusicDurations",_musicDurations];
