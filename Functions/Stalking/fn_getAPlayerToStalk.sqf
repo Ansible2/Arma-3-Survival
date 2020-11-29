@@ -1,3 +1,4 @@
+#include "..\..\Headers\Stalker Global Strings.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_getAPlayerToStalk
 
@@ -20,8 +21,6 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#include "..\..\Headers\Stalker Global Strings.hpp"
-
 private _players = call CBAP_fnc_players;
 // sort players that can be stalked
 _players = _players select {[_x] call BLWK_fnc_canUnitBeStalked};
