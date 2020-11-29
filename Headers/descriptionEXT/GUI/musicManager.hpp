@@ -45,7 +45,7 @@ class musicManagerDialog
 
 	class controlsBackground
 	{
-		class musicManagerDialogbackground_frame: RscText
+		class musicManagerDialogBackground_frame: RscText
 		{
 			idc = -1;
 			x = 0.253906 * safezoneW + safezoneX;
@@ -54,7 +54,7 @@ class musicManagerDialog
 			h = 0.53125 * safezoneH;
 			colorBackground[] = GREY_COLOR(0.24,0.7);
 		};
-		class musicManagerDialogbackground_filler_1: RscText
+		class musicManagerDialogBackground_filler_1: RscText
 		{
 			idc = -1;
 			x = 0.552734 * safezoneW + safezoneX;
@@ -63,7 +63,7 @@ class musicManagerDialog
 			h = 0.114583 * safezoneH;
 			colorBackground[] = {-1,-1,-1,1};
 		};
-		class musicManagerDialogbackground_filler_2: RscText
+		class musicManagerDialogBackground_filler_2: RscText
 		{
 			idc = -1;
 			x = 0.552734 * safezoneW + safezoneX;
@@ -72,7 +72,7 @@ class musicManagerDialog
 			h = 0.15625 * safezoneH;
 			colorBackground[] = {-1,-1,-1,1};
 		};
-		class musicManagerDialogbackground_filler_3: RscText
+		class musicManagerDialogBackground_filler_3: RscText
 		{
 			idc = -1;
 			x = 0.552734 * safezoneW + safezoneX;
@@ -81,7 +81,7 @@ class musicManagerDialog
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = {-1,-1,-1,1};
 		};
-		class musicManagerDialogbackground_filler_4: RscText
+		class musicManagerDialogBackground_filler_4: RscText
 		{
 			idc = -1;
 			text = "";
@@ -95,7 +95,7 @@ class musicManagerDialog
 	
 	class controls
 	{
-		class musicManagerDialoglistBox_currentPlaylist: RscListBox
+		class musicManagerDialogListBox_currentPlaylist: RscListBox
 		{
 			idc = BLWK_MUSIC_MANAGER_CURRENT_PLAYLIST_IDC;
 
@@ -106,7 +106,7 @@ class musicManagerDialog
 			colorBackground[] = GREY_COLOR(0,1);
 			sizeEx = 0.0208333 * safezoneH;
 		};
-		class musicManagerDialoglistNBox_availableSongs: RscListNBox
+		class musicManagerDialogListNBox_availableSongs: RscListNBox
 		{
 			idc = BLWK_MUSIC_MANAGER_SONGS_LIST_IDC;
 
@@ -117,7 +117,7 @@ class musicManagerDialog
 			colorBackground[] = GREY_COLOR(0.24,1);
 			sizeEx = 0.0208333 * safezoneH;
 		};
-		class musicManagerDialogheaderText_musicManager: RscText
+		class musicManagerDialogHeaderText_musicManager: RscText
 		{
 			idc = -1;
 			text = "Music Manager"; //--- ToDo: Localize;
@@ -127,7 +127,7 @@ class musicManagerDialog
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = PROFILE_BACKGROUND_COLOR(1);
 		};
-		class musicManagerDialogbutton_closeDialog: musicManagerDialogButton
+		class musicManagerDialogButton_closeDialog: musicManagerDialogButton
 		{
 			idc = BLWK_MUSIC_MANAGER_CLOSE_BUTTON_IDC;
 
@@ -141,7 +141,7 @@ class musicManagerDialog
 			colorBackgroundActive[] = {1,0,0,0.75};
 			colorFocused[] = {1,0,0,0.45};
 		};
-		class musicManagerDialogbutton_commit: musicManagerDialogButton
+		class musicManagerDialogButton_commit: musicManagerDialogButton
 		{
 			idc = BLWK_MUSIC_MANAGER_COMMIT_BUTTON_IDC;
 
@@ -156,7 +156,7 @@ class musicManagerDialog
 
 			toolTip = "Save Current Playlist to the server for use with the system";
 		};
-		class musicManagerDialogslider_timeline: musicManagerDialogSliderX
+		class musicManagerDialogSlider_timeline: musicManagerDialogSliderX
 		{
 			idc = BLWK_MUSIC_MANAGER_TIMELINE_SLIDER_IDC;
 
@@ -166,7 +166,7 @@ class musicManagerDialog
 			h = 0.03125 * safezoneH;
 			sliderStep = 0.01;
 		};
-		class musicManagerDialogbutton_play: musicManagerDialogButton
+		class musicManagerDialogButton_play: musicManagerDialogButton
 		{
 			idc = BLWK_MUSIC_MANAGER_PLAY_BUTTON_IDC;
 			text = "Play"; //--- ToDo: Localize;
@@ -175,7 +175,7 @@ class musicManagerDialog
 			w = 0.0527344 * safezoneW;
 			h = 0.0208333 * safezoneH;
 		};
-		class musicManagerDialogbutton_pause: musicManagerDialogButton
+		class musicManagerDialogButton_pause: musicManagerDialogButton
 		{
 			idc = BLWK_MUSIC_MANAGER_PAUSE_BUTTON_IDC;
 			text = "Pause"; //--- ToDo: Localize;
@@ -184,7 +184,7 @@ class musicManagerDialog
 			w = 0.0527344 * safezoneW;
 			h = 0.0208333 * safezoneH;
 		};
-		class musicManagerDialogheaderText_currentPlaylist: RscText
+		class musicManagerDialogHeaderText_currentPlaylist: RscText
 		{
 			idc = -1;
 
@@ -195,7 +195,7 @@ class musicManagerDialog
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = PROFILE_BACKGROUND_COLOR(1);
 		};
-		class musicManagerDialogheaderText_volume: RscText
+		class musicManagerDialogHeaderText_volume: RscText
 		{
 			idc = -1;
 
@@ -206,7 +206,7 @@ class musicManagerDialog
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = PROFILE_BACKGROUND_COLOR(1);
 		};
-		class musicManagerDialogslider_volume: musicManagerDialogSliderX
+		class musicManagerDialogSlider_volume: musicManagerDialogSliderX
 		{
 			idc = BLWK_MUSIC_MANAGER_VOLUME_SLIDER_IDC;
 
@@ -217,7 +217,7 @@ class musicManagerDialog
 			sliderStep = 0.05;
 			sliderRange = [0,1];
 		};
-		class musicManagerDialogheaderText_trackTitle: RscText
+		class musicManagerDialogHeaderText_trackTitle: RscText
 		{
 			idc = -1;
 
@@ -228,7 +228,7 @@ class musicManagerDialog
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = PROFILE_BACKGROUND_COLOR(1);
 		};
-		class musicManagerDialogheaderText_duration: RscText
+		class musicManagerDialogHeaderText_duration: RscText
 		{
 			idc = -1;
 
@@ -239,7 +239,7 @@ class musicManagerDialog
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = PROFILE_BACKGROUND_COLOR(1);
 		};
-		class musicManagerDialogedit_trackSpacing: RscEdit
+		class musicManagerDialogEdit_trackSpacing: RscEdit
 		{
 			idc = BLWK_MUSIC_MANAGER_SPACING_EDIT_IDC;
 
@@ -251,7 +251,7 @@ class musicManagerDialog
 			colorBackground[] = GREY_COLOR(1,0.25);
 			
 		};
-		class musicManagerDialogbutton_trackSpacing: musicManagerDialogButton
+		class musicManagerDialogButton_trackSpacing: musicManagerDialogButton
 		{
 			idc = BLWK_MUSIC_MANAGER_SPACING_BUTTON_IDC;
 
@@ -262,7 +262,7 @@ class musicManagerDialog
 			h = 0.0208333 * safezoneH;
 			toolTip = "Setting will be saved to the server";
 		};
-		class musicManagerDialogcomboBox_trackSpacing: RscCombo
+		class musicManagerDialogComboBox_trackSpacing: RscCombo
 		{
 			idc = BLWK_MUSIC_MANAGER_SPACING_COMBO_IDC;
 
@@ -271,7 +271,7 @@ class musicManagerDialog
 			w = 0.105469 * safezoneW;
 			h = 0.0208333 * safezoneH;
 		};
-		class musicManagerDialogcomboBox_systemOnOff: RscCombo
+		class musicManagerDialogComboBox_systemOnOff: RscCombo
 		{
 			idc = BLWK_MUSIC_MANAGER_ONOFF_COMBO_IDC;
 
@@ -280,7 +280,7 @@ class musicManagerDialog
 			w = 0.105469 * safezoneW;
 			h = 0.0208333 * safezoneH;
 		};
-		class musicManagerDialogedit_savePlaylist: RscEdit
+		class musicManagerDialogEdit_savePlaylist: RscEdit
 		{
 			idc = BLWK_MUSIC_MANAGER_SAVE_EDIT_IDC;
 
@@ -292,7 +292,7 @@ class musicManagerDialog
 			maxChars = 20;
 			colorBackground[] = GREY_COLOR(1,0.25);
 		};
-		class musicManagerDialogcomboBox_loadPlaylist: RscCombo
+		class musicManagerDialogComboBox_loadPlaylist: RscCombo
 		{
 			idc = BLWK_MUSIC_MANAGER_LOAD_COMBO_IDC;
 
@@ -301,7 +301,7 @@ class musicManagerDialog
 			w = 0.105469 * safezoneW;
 			h = 0.0208333 * safezoneH;
 		};
-		class musicManagerDialogheaderText_trackSpacing: RscText
+		class musicManagerDialogHeaderText_trackSpacing: RscText
 		{
 			idc = -1;
 			text = "Track Spacing"; //--- ToDo: Localize;
@@ -311,7 +311,7 @@ class musicManagerDialog
 			h = 0.0208333 * safezoneH;
 			colorBackground[] = PROFILE_BACKGROUND_COLOR(1);
 		};
-		class musicManagerDialogbutton_savePlaylist: musicManagerDialogButton
+		class musicManagerDialogButton_savePlaylist: musicManagerDialogButton
 		{
 			idc = BLWK_MUSIC_MANAGER_SAVE_BUTTON_IDC;
 
@@ -323,7 +323,7 @@ class musicManagerDialog
 			toolTip = "Save over the current list selected in the drop down";
 			//colorBackground[] = {-1,-1,-1,1};
 		};
-		class musicManagerDialogbutton_saveAsPlaylist: musicManagerDialogButton
+		class musicManagerDialogButton_saveAsPlaylist: musicManagerDialogButton
 		{
 			idc = BLWK_MUSIC_MANAGER_SAVEAS_BUTTON_IDC;
 
@@ -335,7 +335,7 @@ class musicManagerDialog
 			toolTip = "Save a new playlist based upon the edit box";
 			//colorBackground[] = {-1,-1,-1,1};
 		};
-		class musicManagerDialogbutton_deletePlaylist: musicManagerDialogButton
+		class musicManagerDialogButton_deletePlaylist: musicManagerDialogButton
 		{
 			idc = BLWK_MUSIC_MANAGER_DELETE_BUTTON_IDC;
 
@@ -347,7 +347,7 @@ class musicManagerDialog
 			toolTip = "Delete the currently selected list in the drop down";
 			//colorBackground[] = {-1,-1,-1,1};
 		};
-		class musicManagerDialogheaderText_loadPlaylist: RscText
+		class musicManagerDialogHeaderText_loadPlaylist: RscText
 		{
 			idc = -1;
 			text = "Load Playlist"; //--- ToDo: Localize;
@@ -358,7 +358,7 @@ class musicManagerDialog
 			colorBackground[] = PROFILE_BACKGROUND_COLOR(1);
 		};
 		
-		class musicManagerDialogbutton_addToCurrentPlaylist: musicManagerDialogButton
+		class musicManagerDialogButton_addToCurrentPlaylist: musicManagerDialogButton
 		{
 			idc = BLWK_MUSIC_MANAGER_ADDTO_BUTTON_IDC;
 
@@ -370,7 +370,7 @@ class musicManagerDialog
 
 			toolTip = "Add to Current Playlist";
 		};
-		class musicManagerDialogbutton_removeFromCurrentPlaylist: musicManagerDialogButton
+		class musicManagerDialogButton_removeFromCurrentPlaylist: musicManagerDialogButton
 		{
 			idc = BLWK_MUSIC_MANAGER_REMOVEFROM_BUTTON_IDC;
 
