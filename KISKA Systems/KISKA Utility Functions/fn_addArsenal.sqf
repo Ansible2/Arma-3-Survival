@@ -6,11 +6,10 @@ Description:
 	This has a global effect.
 
 Parameters:
-
-	0: _arsenals <ARRAY or OBJECT> - An array of objects to add arsenals to
+	0: _arsenals <ARRAY or OBJECT> - An array of objects or a single one to add arsenals to
 
 Returns:
-	BOOL
+	<BOOL> - True if arsenal added, false if not
 
 Examples:
     (begin example)
@@ -22,6 +21,8 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "KISKA_fnc_addArsenal";
+
 params [
     ["_arsenals",[],[[],objNull]]
 ];
@@ -40,7 +41,7 @@ private _aceLoaded = ["ace_arsenal"] call KISKA_fnc_isPatchLoaded;
 _arsenals apply {
 	
 	if (_aceLoaded) then {
-		[_x, true, true] call ace_Arsenal_FNC_InitBox;
+		[_x, true, true] call ace_Arsenal_fnc_InitBox;
 	};
 	
 	["AmmoboxInit",[_x,true]] call BIS_fnc_arsenal;

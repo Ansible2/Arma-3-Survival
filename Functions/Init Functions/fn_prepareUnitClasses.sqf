@@ -1,3 +1,11 @@
+// set up MACRO vars that can be used between files and make changes easier
+#include "..\..\Headers\Faction Headers\Define Factions.hpp"
+#include "..\..\Headers\Faction Headers\Unit Tables\vanillaUnitTables.hpp"
+#include "..\..\Headers\Faction Headers\Unit Tables\optreUnitTables.hpp"
+#include "..\..\Headers\Faction Headers\Unit Tables\opcanUnitTables.hpp"
+#include "..\..\Headers\Faction Headers\Unit Tables\RHS_AFRF Unit Tables.hpp"
+#include "..\..\Headers\Faction Headers\Unit Tables\RHS_USAF Unit Tables.hpp"
+#include "..\..\Headers\Faction Headers\Unit Tables\Z&DUnitTables.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_prepareUnitClasses
 
@@ -37,15 +45,6 @@ Author(s):
 	Ansible2 // Cipher,
 	Hilltop(Willtop) & omNomios
 ---------------------------------------------------------------------------- */
-// set up MACRO vars that can be used between files and make changes easier
-#include "..\..\Headers\Faction Headers\Define Factions.hpp"
-#include "..\..\Headers\Faction Headers\Unit Tables\vanillaUnitTables.hpp"
-#include "..\..\Headers\Faction Headers\Unit Tables\optreUnitTables.hpp"
-#include "..\..\Headers\Faction Headers\Unit Tables\opcanUnitTables.hpp"
-#include "..\..\Headers\Faction Headers\Unit Tables\RHS_AFRF Unit Tables.hpp"
-#include "..\..\Headers\Faction Headers\Unit Tables\RHS_USAF Unit Tables.hpp"
-
-
 // to save on allocation time for memory, we are going to use temp values
 private "_defaultFactionClasses";
 private _tempUnitClass = "";
@@ -85,7 +84,7 @@ private _fn_sortFactionClasses = {
 			};
 		} else {
 		// else, just load the default faction for that level
-			["A faction you selected does not have any of units available. It may not be loaded on the server. The mission will use that level's default faction instead"] remoteExecCall ["hint",0,true];
+			["One or more factions you selected does not have any units available. It may not be loaded on the server. The mission will use that level's default faction instead"] remoteExecCall ["hint",0,true];
 			[_defaultFactionClasses] call _fn_sortFactionClasses
 		};
 	};

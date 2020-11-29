@@ -10,6 +10,7 @@ class BLWK_genericBuildItemBase
 	attachmentY = 3; // how far out in front of you
 	attachmentZ = 1; // height
 	invincible = 0; // 0 false, 1 true
+	keepInventory = 0; // don't clear inventory
 };
 class BLWK_genericTurretBase: BLWK_genericBuildItemBase
 {
@@ -332,6 +333,14 @@ class BLWK_buildableItems
 		price = 500;
 		category = STORAGE_CATEGORY;
 		attachmentY = 2;
+		keepInventory = 1;
+	};
+	class ACE_medicalSupplyCrate : BLWK_genericBuildItemBase
+	{
+		price = 250;
+		category = STORAGE_CATEGORY;
+		attachmentY = 2;
+		keepInventory = 1;
 	};
 	#include "OPTRE Build Items.hpp"
 	#include "RHS Build Items.hpp"

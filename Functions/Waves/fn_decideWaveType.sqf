@@ -27,31 +27,44 @@ Author(s):
 if (!isServer) exitWith {false};
 
 #define SPECIAL_WAVE_LIKELIHOOD 0.4
-#define STANDARD_WAVE_LIKELIHOOD 1
-#define SUICIDE_WAVE_LIKELIHOOD SPECIAL_WAVE_LIKELIHOOD
-#define CIVILIAN_WAVE_LIKELIHOOD SPECIAL_WAVE_LIKELIHOOD
-#define DRONE_WAVE_LIKELIHOOD SPECIAL_WAVE_LIKELIHOOD
-#define MORTAR_WAVE_LIKELIHOOD SPECIAL_WAVE_LIKELIHOOD
-#define DEFECTOR_WAVE_LIKELIHOOD SPECIAL_WAVE_LIKELIHOOD
-#define OVERRUN_WAVE_LIKELIHOOD SPECIAL_WAVE_LIKELIHOOD
-#define PARATROOPER_WAVE_LIKELIHOOD SPECIAL_WAVE_LIKELIHOOD
+#define STANDARD_WAVE_LIKELIHOOD 1.25
+
+private _specialWaves = [
+	[SUICIDE_WAVE, SPECIAL_WAVE_LIKELIHOOD],
+	[CIVILIAN_WAVE, SPECIAL_WAVE_LIKELIHOOD],
+	[DRONE_WAVE, SPECIAL_WAVE_LIKELIHOOD],
+	[MORTAR_WAVE, SPECIAL_WAVE_LIKELIHOOD],
+	[DEFECTOR_WAVE, SPECIAL_WAVE_LIKELIHOOD],
+	[OVERRUN_WAVE, SPECIAL_WAVE_LIKELIHOOD],
+	[PARATROOPER_WAVE, SPECIAL_WAVE_LIKELIHOOD]
+];
+
+private _usedSpecialWaves = missionNamespace getVariable ["BLWK_usedSpecialWaves",[]];
 
 private _fn_getWaveType = {
-	private _decideArray = [];
-	_decideArray append [STANDARD_WAVE, STANDARD_WAVE_LIKELIHOOD];
-	
+	private _decideArray = [STANDARD_WAVE, STANDARD_WAVE_LIKELIHOOD];
+
 	// these aren't cache'd for the desire to have this be a potential toggle option mid-session in the future
 	if (BLWK_currentWaveNumber >= BLWK_specialWavesStartAt) then {
-		_decideArray append [SUICIDE_WAVE, SUICIDE_WAVE_LIKELIHOOD];
-		_decideArray append [CIVILIAN_WAVE, CIVILIAN_WAVE_LIKELIHOOD];
-		_decideArray append [DRONE_WAVE, DRONE_WAVE_LIKELIHOOD];
-		_decideArray append [MORTAR_WAVE, MORTAR_WAVE_LIKELIHOOD];
-		_decideArray append [DEFECTOR_WAVE, DEFECTOR_WAVE_LIKELIHOOD];
-		_decideArray append [OVERRUN_WAVE, OVERRUN_WAVE_LIKELIHOOD];
-		_decideArray append [PARATROOPER_WAVE,PARATROOPER_WAVE_LIKELIHOOD];
+		_specialWaves apply {
+			if !((_x select 0) in _usedSpecialWaves) then {
+				_decideArray append _x;
+			};
+		};
+		
+		// if we just got the standard wave (2 entries in _decideArray), assume we've used up all the special waves and need to reset the queue
+		if ((count _decideArray) isEqualTo 2) then {
+			missionNamespace setVariable ["BLWK_usedSpecialWaves",[]];
+		};
 	};
 
-	selectRandomWeighted _decideArray;
+	private _usedWave = selectRandomWeighted _decideArray;
+	if (_usedWave != STANDARD_WAVE) then {
+		_usedSpecialWaves pushBack _usedWave;
+		missionNamespace setVariable ["BLWK_usedSpecialWaves",_usedSpecialWaves];
+	};
+
+	_usedWave
 };
 
 private _selectedWaveType = call _fn_getWaveType;

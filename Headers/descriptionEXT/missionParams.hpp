@@ -36,7 +36,7 @@ class BLWK_timeBetweenRounds
 	title = "Time between rounds";
 	values[] = {0, 15, 30, 60, 90, 120, 180, 240, 300};
 	texts[] = {"0", "15 Seconds", "30 Seconds", "1 Minute", "1 Minute 30 Seconds", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
-	default = 120;
+	default = 60;
 };
 class BLWK_vehicleStartWave
 {
@@ -198,7 +198,7 @@ class BLWK_playAreaRadius
 	title = "Mission area size";
 	values[] = {50, 100, 150, 200, 250};
 	texts[] = {"(50m) Tiny", "(100m) Small", "(150m) Normal", "(200m) Large", "(250m) Huge"};
-	default = 250;
+	default = 150;
 };
 class BLWK_minNumberOfHousesInArea
 {

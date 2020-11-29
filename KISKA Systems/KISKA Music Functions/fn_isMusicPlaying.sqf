@@ -1,25 +1,27 @@
 /* ----------------------------------------------------------------------------
-Function: KISKA_fnc_getMusicPlaying
+Function: KISKA_fnc_isMusicPlaying
 
 Description:
-	Returns the classname of the music that is currently playing
+	Returns whether or not music is currently playing
 
 Parameters:
 	NONE
 
 Returns:
-	NOTHING
+	<BOOL> - false if nothing is playing, true if something is
 
 Examples:
     (begin example)
 
-		call KISKA_fnc_getMusicPlaying;
+		_isSomethingPlaying = call KISKA_fnc_isMusicPlaying;
 
     (end)
 
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "KISKA_fnc_isMusicPlaying";
+
 private _musicPlaying = missionNameSpace getVariable ["KISKA_musicPlaying",false];
 
 _musicPlaying

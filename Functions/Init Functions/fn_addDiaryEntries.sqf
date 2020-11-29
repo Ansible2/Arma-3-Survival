@@ -29,6 +29,8 @@ params [
 	["_player",player]
 ];
 
+_player createDiarySubject ["Survival Tips","Survival Tips",""];
+
 _player createDiaryRecord ["Survival Tips", ["Looting", "
 Across the play area you will be able to find various loot in buildings.
 <br/>

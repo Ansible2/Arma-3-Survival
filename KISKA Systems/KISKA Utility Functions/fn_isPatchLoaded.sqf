@@ -8,7 +8,7 @@ Parameters:
 	0: _configName <STRING> - The patch config name to check for
 
 Returns:
-	BOOL
+	<BOOL> - False if not, true if is loaded
 
 Examples:
     (begin example)
@@ -20,12 +20,14 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "KISKA_fnc_isPatchLoaded";
+
 params [
     ["_configName","",[""]]
 ];
 
 if (_configName isEqualTo "") exitWith {
-    ["_configName is empty string"] call BIS_fnc_error;
+    "_configName is empty string" call BIS_fnc_error;
     false
 };
 

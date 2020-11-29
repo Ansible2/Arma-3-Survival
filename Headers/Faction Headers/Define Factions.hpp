@@ -52,7 +52,14 @@
 	50,\
 	51,\
 	52,\
-	53
+	53,\
+	54,\
+	55,\
+	56,\
+	57,\
+	58,\
+	59,\
+	60
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -108,7 +115,14 @@
 	"RHS USAF - USMC RECON (Desert)", \
 	"RHS USAF - USMC Infantry (Desert)", \
 	"RHS USAF - USMC Infantry (Woodland)", \
-	"RHS USAF - USMC RECON (Woodland)"
+	"RHS USAF - USMC RECON (Woodland)", \
+	"Zombies & Demons - Brittle Crawlers", \
+	"Zombies & Demons - Demons", \
+	"Zombies & Demons - Fast Zombies", \
+	"Zombies & Demons - Medium Zombies", \
+	"Zombies & Demons - Slow Zombies", \
+	"Zombies & Demons - Spider Zombies", \
+	"Zombies & Demons - Walkers"
 
 #define FACTION_VARS \
 [ \
@@ -165,5 +179,12 @@
 	RHS_USF_USMC_DES_RECON_UNITS, \
 	RHS_USF_USMC_DES_UNITS, \
 	RHS_USF_USMC_WOODLAND_UNITS, \
-	RHS_USF_USMC_WOODLAND_RECON_UNITS\
+	RHS_USF_USMC_WOODLAND_RECON_UNITS, \
+	ZND_BRITLLE_CRAWLERS, \
+	ZND_DEMONS, \
+	ZND_FAST, \
+	ZND_MEDIUM, \
+	ZND_SLOW, \
+	ZND_SPIDERS, \
+	ZND_WALKERS \
 ]

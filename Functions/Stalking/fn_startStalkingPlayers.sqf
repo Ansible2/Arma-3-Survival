@@ -1,3 +1,4 @@
+#include "..\..\Headers\Stalker Global Strings.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_startStalkingPlayers
 
@@ -27,8 +28,6 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#include "..\..\Headers\Stalker Global Strings.hpp"
-
 if (!canSuspend) exitWith {
 	"BLWK_fnc_startStalkingPlayers must be run in a scheduled environment" call BIS_fnc_error;
 };

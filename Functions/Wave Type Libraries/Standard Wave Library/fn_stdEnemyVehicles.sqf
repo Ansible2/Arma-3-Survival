@@ -132,6 +132,11 @@ if !(_heavyArmourArray isEqualTo []) then {
 	_vehicleTypeSelection append [_heavyArmourArray,LIKELIHOOD_HEAVY_ARMOUR];
 };
 
+if (_vehicleTypeSelection isEqualTo []) exitWith {
+	diag_log "No vehicles to spawn for enemy factions, exiting";
+	[]
+};
+
 private _returnedVehicles = [];
 private _fn_spawnAVehicle = {
 	private _selectedTypeArray = selectRandomWeighted _vehicleTypeSelection;

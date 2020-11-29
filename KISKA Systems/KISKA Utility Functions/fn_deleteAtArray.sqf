@@ -13,7 +13,7 @@ Parameters:
 	2: _namespace : <NAMESPACE,OBJECT,GROUP,LOCATION,CONTROL,DISPLAY> - What namespace the array is in
 
 Returns:
-	BOOL
+	<BOOL> - True if done, false if not
 
 Examples:
     (begin example)
@@ -25,6 +25,8 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "KISKA_fnc_deleteAtArray";
+
 params [
 	["_arrayVariableName","",[""]],
 	"_indexToRemove",
@@ -33,6 +35,7 @@ params [
 
 if (_arrayVariableName isEqualTo "") exitWith {
 	"KISKA_fnc_deleteAtArray: Array variable name is empty string" call BIS_fnc_error;
+	false
 };
 
 private _array = _namespace getVariable [_arrayVariableName,[]];

@@ -81,6 +81,9 @@ private _fn_leaderVelocityCheck = {
 
 private ["_currentPosition","_positionDifference","_needsReset"];
 private _fn_handleStationaryLeader = {
+	// don't mess with vehicle units
+	if (!isNull (objectParent _groupLeader)) exitWith {false};
+
 	_currentPosition = getPosWorld _groupLeader;
 	
 	sleep 20;
@@ -130,10 +133,8 @@ while {sleep _timeBetweenChecks; (_groupToCheck getVariable [LOOP_VAR_NAME,false
 		if (call _fn_handleStationaryLeader) then {
 			//["%1 leader reset",_groupToCheck] call BIS_fnc_error;
 			//_groupLeader setPos (selectRandom BLWK_infantrySpawnPositions);
-			[_groupLeader,"DOWN"] remoteExecCall ["setUnitPosWeak",_groupLeader];
 			_groupLeader setPos ([BLWK_mainCrate, 75, 125, 2, 0] call BIS_fnc_findSafePos);
 			sleep 1;
-			[_groupLeader,"AUTO"] remoteExecCall ["setUnitPos",_groupLeader];
 			[_groupLeader,position BLWK_mainCrate] remoteExecCall ["doMove",_groupLeader];
 		};
 	};

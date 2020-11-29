@@ -21,6 +21,8 @@ Authors:
 	Arma 3 Discord,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "BLWK_fnc_cruiseMissileStrike";
+
 if (!canSuspend) exitWith {
 	"Must be run in scheduled envrionment" call BIS_fnc_error
 };
@@ -30,7 +32,7 @@ params [
 ];
 
 // get firing position and give it some alititude
-private _missileLaunchPosition = [BLWK_playAreaMarker,true] call CBAP_fnc_randPosArea;
+private _missileLaunchPosition = [_target,1000] call CBAP_fnc_randPos;
 _missileLaunchPosition = _missileLaunchPosition vectorAdd [0,0,1000];
 private _launcher = createVehicle ["B_Ship_MRLS_01_F",_missileLaunchPosition vectorDiff [0,0,7],[],0,"FLY"];
 createVehicleCrew _launcher;

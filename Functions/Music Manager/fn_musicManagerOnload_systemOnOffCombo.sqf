@@ -28,14 +28,14 @@ _control ctrlAddEventHandler ["LBSelChanged",{
 			};
 		};
 		case 1:{ // system on
-			hint "System starting...";
+			hint "System starting... Make sure you commited a playlist to the server";
 
 			// if music is playing from the manager, stop the timeline
 			if (uiNamespace getVariable ["BLWK_musicManager_doPlay",false]) then {
 				uiNamespace setVariable ["BLWK_musicManager_doPlay",false];
 				uiNamespace setVariable ["BLWK_musicManager_paused",true];
 			};
-			null = [] remoteExec ["KISKA_fnc_randomMusic",2];
+			null = remoteExec ["KISKA_fnc_randomMusic",2];
 		};
 		case 2:{ // system reset
 			null = [false] remoteExecCall ["KISKA_fnc_stopRandomMusicServer",2];
