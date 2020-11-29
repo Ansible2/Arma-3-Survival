@@ -42,13 +42,12 @@ private _specialWaves = [
 private _usedSpecialWaves = missionNamespace getVariable ["BLWK_usedSpecialWaves",[]];
 
 private _fn_getWaveType = {
-	private _decideArray = [];
-	_decideArray append [STANDARD_WAVE, STANDARD_WAVE_LIKELIHOOD];
-	
+	private _decideArray = [STANDARD_WAVE, STANDARD_WAVE_LIKELIHOOD];
+
 	// these aren't cache'd for the desire to have this be a potential toggle option mid-session in the future
 	if (BLWK_currentWaveNumber >= BLWK_specialWavesStartAt) then {
 		_specialWaves apply {
-			if !(_x in _usedSpecialWaves) then {
+			if !((_x select 0) in _usedSpecialWaves) then {
 				_decideArray append _x;
 			};
 		};
@@ -60,8 +59,9 @@ private _fn_getWaveType = {
 	};
 
 	private _usedWave = selectRandomWeighted _decideArray;
-	if (_usedWave in _specialWaves) then {
+	if (_usedWave != STANDARD_WAVE) then {
 		_usedSpecialWaves pushBack _usedWave;
+		missionNamespace setVariable ["BLWK_usedSpecialWaves",_usedSpecialWaves];
 	};
 
 	_usedWave
