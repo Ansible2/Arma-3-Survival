@@ -284,7 +284,7 @@ class musicManagerDialog
 		{
 			idc = BLWK_MUSIC_MANAGER_SAVE_EDIT_IDC;
 
-			text = "A Playlist name"; //--- ToDo: Localize;
+			text = "A Playlist Name"; //--- ToDo: Localize;
 			x = 0.5 * safezoneW + safezoneX;
 			y = 0.291667 * safezoneH + safezoneY;
 			w = 0.105469 * safezoneW;
