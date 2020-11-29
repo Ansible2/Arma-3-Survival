@@ -93,6 +93,9 @@ private _targetId = [0,-2] select isDedicated;
 null = [_selectedTrack,0,_doInterrupt,0.5] remoteExec ["KISKA_fnc_playMusic",_targetId];
 null = [_selectedTrack] remoteExecCall ["KISKA_fnc_setCurrentRandomMusicTrack",_targetId];
 
+if !(missionNamespace getVariable ["KISKA_musicSystemIsRunning",false]) then {
+	missionNamespace setVariable ["KISKA_musicSystemIsRunning",true];
+};
 
 // clear array of selected Track
 _musicTracks deleteAt (_musicTracks findIf {_x isEqualTo _selectedTrack});
