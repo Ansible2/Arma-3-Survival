@@ -81,6 +81,9 @@ private _fn_leaderVelocityCheck = {
 
 private ["_currentPosition","_positionDifference","_needsReset"];
 private _fn_handleStationaryLeader = {
+	// don't mess with vehicle units
+	if (!isNull (objectParent _groupLeader)) exitWith {false};
+
 	_currentPosition = getPosWorld _groupLeader;
 	
 	sleep 20;
