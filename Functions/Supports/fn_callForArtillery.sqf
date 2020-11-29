@@ -20,7 +20,8 @@ Examples:
     (end)
 
 Authors:
-	Ansible2 // Cipher
+	Ansible2 // Cipher,
+	h - // for flare script
 ---------------------------------------------------------------------------- */
 if (!canSuspend) exitWith {};
 params [
@@ -29,8 +30,30 @@ params [
 ];
 
 // flare round need to fall slower
-if (_ammoType == "Flare_82mm_AMOS_White") exitWith {
-	null = [_fireAtPosition,_ammoType,15,1,1,{},nil,250,1] spawn BIS_fnc_fireSupportVirtual;
+if (_ammoType == "F_20mm_white") exitWith {
+	[TYPE_ARTILLERY,player] call BLWK_fnc_supportRadioGlobal;
+	
+	// delay for fire
+	sleep 3;
+	
+	private _flare = "F_20mm_white" createvehicle (_fireAtPosition vectorAdd [0,0,200]);  
+	_flare setVelocity [0,0,-10];
+	private _light = "#lightpoint" createVehicle (getPosASL _flare);
+	_light attachTo [_flare, [0, 0, 0]];
+	_light setLightColor [1, 1, 1];
+	_light setLightAmbient [1, 1, 1];
+	_light setLightIntensity 100000;
+	_light setLightUseFlare true;
+	_light setLightFlareSize 10;
+	_light setLightFlareMaxDistance 600;
+	_light setLightDayLight true;
+	_light setLightAttenuation [4, 0, 0, 0.2, 1000, 2000];
+
+	waitUntil {
+		sleep 0.5;
+		!alive _flare;
+	};
+	deletevehicle _light;
 };
 
 [TYPE_ARTILLERY,player] call BLWK_fnc_supportRadioGlobal;
@@ -48,3 +71,5 @@ sleep 20;
 deleteVehicle _chemlight;
 deleteVehicle _smoke;
 //deleteVehicle _flare;
+
+
