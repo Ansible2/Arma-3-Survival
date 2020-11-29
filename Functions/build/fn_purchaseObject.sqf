@@ -40,7 +40,8 @@ params [
 	"", // don't need shop category
 	"", // don't need attachment info
 	"_hasAi",
-	["_indestructable",false]
+	["_indestructable",false],
+	["_keepInventory",false]
 ];
 
 /*
@@ -69,10 +70,12 @@ if !(_free) then {
 
 closeDialog 0;
 
-clearItemCargoGlobal _purchasedObject;
-clearWeaponCargoGlobal _purchasedObject;
-clearMagazineCargoGlobal _purchasedObject;
-clearBackpackCargoGlobal _purchasedObject;
+if !(_keepInventory) then {
+	clearItemCargoGlobal _purchasedObject;
+	clearWeaponCargoGlobal _purchasedObject;
+	clearMagazineCargoGlobal _purchasedObject;
+	clearBackpackCargoGlobal _purchasedObject;
+};
 
 // attach object to player
 null = [_purchasedObject,player,true] spawn BLWK_fnc_pickupObject;

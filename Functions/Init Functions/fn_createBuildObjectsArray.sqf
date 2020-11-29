@@ -48,7 +48,8 @@ private [
 	"_attachmentX_temp",
 	"_attachmentY_temp",
 	"_attachmentZ_temp",
-	"_invincible_temp"
+	"_invincible_temp",
+	"_keepInventory_temp"
 ];
 _configs apply {
 	_class_temp = configName _x;
@@ -62,6 +63,7 @@ _configs apply {
 		_attachmentY_temp = [_x >> "attachmentY"] call BIS_fnc_getCfgData;
 		_attachmentZ_temp = [_x >> "attachmentZ"] call BIS_fnc_getCfgData;
 		_invincible_temp = [_x >> "invincible"] call BIS_fnc_getCfgDataBool;
+		_keepInventory_temp = [_x >> "keepInventory"] call BIS_fnc_getCfgDataBool;
 
 
 		_returnArray pushBack [
@@ -70,7 +72,8 @@ _configs apply {
 			_category_temp,
 			[_rotation_temp,[_attachmentX_temp,_attachmentY_temp,_attachmentZ_temp]],
 			_hasAI_temp,
-			_invincible_temp
+			_invincible_temp,
+			_keepInventory_temp
 		];
 	};
 };
