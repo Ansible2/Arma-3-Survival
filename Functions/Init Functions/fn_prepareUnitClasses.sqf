@@ -84,7 +84,7 @@ private _fn_sortFactionClasses = {
 			};
 		} else {
 		// else, just load the default faction for that level
-			["A faction you selected does not have any of units available. It may not be loaded on the server. The mission will use that level's default faction instead"] remoteExecCall ["hint",0,true];
+			["One or more factions you selected does not have any units available. It may not be loaded on the server. The mission will use that level's default faction instead"] remoteExecCall ["hint",0,true];
 			[_defaultFactionClasses] call _fn_sortFactionClasses
 		};
 	};
