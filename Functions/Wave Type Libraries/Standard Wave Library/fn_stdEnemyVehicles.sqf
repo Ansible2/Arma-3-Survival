@@ -160,7 +160,7 @@ private _fn_spawnAVehicle = {
 	[_group,_createdVehicle] call BLWK_fnc_setCrew;
 	[_group, BLWK_mainCrate, 20, "SAD", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
 
-	[BLWK_zeus, [[_createdVehicle],false]] remoteExec ["addCuratorEditableObjects",BLWK_zeus];
+	[BLWK_zeus, [[_createdVehicle],false]] remoteExecCall ["addCuratorEditableObjects",2];
 
 	_returnedVehicles pushBack _createdVehicle
 };
