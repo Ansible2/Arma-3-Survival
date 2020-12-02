@@ -202,7 +202,7 @@ class BLWK_playAreaRadius
 };
 class BLWK_minNumberOfHousesInArea
 {
-	title = "Minimum number of buildings in The Crate's radius";
+	title = "Minimum number of buildings in the play area radius";
 	values[] = {5, 10, 15, 20, 30};
 	texts[] = {"5","10","15","20","30"};
 	default = 20;
@@ -226,7 +226,7 @@ class BLWK_buildingsNearTheCrateAreIndestructable_radius
 	title = "The radius of indestructable buildings around The Crate";
 	values[] = {0,5,10,15,20,25,30};
 	texts[] = {"OFF","5m","10m","15m","20m","25m","30m"};
-	default = 20;
+	default = 10;
 };
 
 
