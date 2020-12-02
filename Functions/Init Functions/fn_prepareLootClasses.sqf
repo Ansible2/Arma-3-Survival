@@ -107,7 +107,7 @@ private _fn_sortMagazines = {
 		This is because the magazines spawned in BLWK_fnc_spawnLoot are taken directly
 		 from the weapon classes available so that, for instance, no mags for a blacklisted gun spawn.
 	*/
-	if ((toLower _tempItemType) in ["grenade","flare"]) exitWith {call _fn_sortExplosives};
+	if ((toLowerANSI _tempItemType) in ["grenade","flare"]) exitWith {call _fn_sortExplosives};
 };
 
 private _fn_sortType = {

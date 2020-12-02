@@ -77,7 +77,7 @@ _planeClassWeapons apply {
 
 	// get weapon type to see if it matches any in the _attackTypesString array
 	// "in" command is CASE SENSETIVE
-	_weaponType_temp = tolower ((_x call BIS_fnc_itemType) select 1);
+	_weaponType_temp = toLowerANSI ((_x call BIS_fnc_itemType) select 1);
 	if (_weaponType_temp in _attackTypesString) then {
 		// get the weapon's modes
 		_fireModes_temp = getarray(configfile >> "cfgweapons" >> _x >> "modes");

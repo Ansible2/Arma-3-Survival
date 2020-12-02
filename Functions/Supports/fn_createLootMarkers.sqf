@@ -135,8 +135,8 @@ private _fn_setLootInfoToCheck = {
 		_markerText_temp = [_config_temp] call BIS_fnc_displayName;
 		
 		_categoryAndType_temp = [_lootClassName_temp] call BIS_fnc_itemType;
-		_category_temp = toLower (_categoryAndType_temp select 0);
-		_type_temp = toLower (_categoryAndType_temp select 1);
+		_category_temp = toLowerANSI (_categoryAndType_temp select 0);
+		_type_temp = toLowerANSI (_categoryAndType_temp select 1);
 	} else {
 		_markerText_temp = "unknown";
 	};
