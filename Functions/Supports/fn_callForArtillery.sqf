@@ -40,14 +40,8 @@ if (_ammoType == "F_20mm_white") exitWith {
 	_flare setVelocity [0,0,-10];
 	private _light = "#lightpoint" createVehicle (getPosASL _flare);
 	_light attachTo [_flare, [0, 0, 0]];
-	_light setLightColor [1, 1, 1];
-	_light setLightAmbient [1, 1, 1];
-	_light setLightIntensity 100000;
-	_light setLightUseFlare true;
-	_light setLightFlareSize 10;
-	_light setLightFlareMaxDistance 600;
-	_light setLightDayLight true;
-	_light setLightAttenuation [4, 0, 0, 0.2, 1000, 2000];
+	
+	[_light,_flare] remoteExecCall ["BLWK_fnc_updateFlareEffects",BLWK_allClientsTargetId,true];
 
 	waitUntil {
 		sleep 0.5;

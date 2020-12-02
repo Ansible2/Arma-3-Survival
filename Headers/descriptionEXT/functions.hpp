@@ -282,6 +282,8 @@ class BLWK
 		{};
 		class supportRadioGlobal
 		{};
+		class updateFlareEffects
+		{};
 	};
 
 	class Stalking
