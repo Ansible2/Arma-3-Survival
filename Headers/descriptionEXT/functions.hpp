@@ -280,6 +280,8 @@ class BLWK
 		{};
 		class purchaseSupport
 		{};
+		class reconUAV
+		{};
 		class supportRadioGlobal
 		{};
 		class updateFlareEffects

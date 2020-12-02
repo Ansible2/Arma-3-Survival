@@ -79,6 +79,11 @@
 #define REINFORCE_PARATROOPERS_TEXT "Paratroopers (5)"
 
 
+// recon uav
+#define RECON_UAV_CLASS reconUAV_commMenu
+#define RECON_UAV_TEXT "Recon UAV (2 min)"
+
+
 // support radio message types
 #define TYPE_ARTILLERY "artillery"
 #define TYPE_STRIKE "strike"

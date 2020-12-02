@@ -197,3 +197,15 @@ if (CHECK_SUPPORT_CLASS(REINFORCE_PARATROOPERS_CLASS)) exitWith {
 	[BLWK_zeus, [_unitsToDrop,false]] remoteExecCall ["addCuratorEditableObjects",2];
 	null = [_targetPosition,_unitsToDrop,"B_T_VTOL_01_infantry_F"] spawn BLWK_fnc_paratroopers;	
 };
+
+
+// recon
+if (CHECK_SUPPORT_CLASS(RECON_UAV_CLASS)) exitWith {
+	if !(missionNamespace getVariable ["BLWK_reconUavActive",false]) then {
+		null = remoteExec ["BLWK_fnc_reconUAV",2];
+		[TYPE_UAV_REQUEST] call BLWK_fnc_supportRadioGlobal;
+	} else {
+		ADD_SUPPORT_BACK
+		hint "Recon UAV is already active";
+	};
+};

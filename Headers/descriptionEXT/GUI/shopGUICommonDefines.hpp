@@ -75,3 +75,4 @@
 #define GUNNER_CATEGORY "Aircraft Gunner"
 #define SUPPLY_CATEGORY "Supplies"
 #define REINFORCEMENTS_CATEGORY "Reinforcements"
+#define RECON_CATEGORY "Recon"
