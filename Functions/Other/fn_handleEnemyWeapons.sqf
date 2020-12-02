@@ -17,16 +17,16 @@ Returns:
 Examples:
     (begin example)
 
-		call BLWK_fnc_handleEnemyWeapons;
+		[_unit] call BLWK_fnc_handleEnemyWeapons;
 
     (end)
 
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-params ["_unit"];
-
 #define PISTOL_MAG_CLASS "16Rnd_9x21_Mag"
+
+params ["_unit"];
 
 if (!local _unit) exitWith {false};
 
