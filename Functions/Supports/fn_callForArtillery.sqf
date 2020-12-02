@@ -24,6 +24,7 @@ Authors:
 	h - // for flare script
 ---------------------------------------------------------------------------- */
 if (!canSuspend) exitWith {};
+
 params [
 	"_fireAtPosition",
 	["_ammoType","Sh_155mm_AMOS",[""]]
@@ -41,6 +42,7 @@ if (_ammoType == "F_20mm_white") exitWith {
 	private _light = "#lightpoint" createVehicle (getPosASL _flare);
 	_light attachTo [_flare, [0, 0, 0]];
 	
+	// light characteristic adjustments must be done locally for each player
 	[_light,_flare] remoteExecCall ["BLWK_fnc_updateFlareEffects",BLWK_allClientsTargetId,true];
 
 	waitUntil {
@@ -65,5 +67,3 @@ sleep 20;
 deleteVehicle _chemlight;
 deleteVehicle _smoke;
 //deleteVehicle _flare;
-
-
