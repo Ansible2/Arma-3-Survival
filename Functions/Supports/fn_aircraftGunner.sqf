@@ -92,8 +92,8 @@ null = [] spawn {3 fadeSound 0.25}; // turrets are stupid loud
 _vehicle lock true; // keep player from ejecting or switching seats with vanilla actions
 _vehicle enableCoPilot false; // disable the ability to take control of the aircraft
 
-
-
+// set variable to limit player points while using the support
+missionNamespace setVariable ["BLWK_isAircraftGunner",true];
 missionNamespace setVariable [_globalUseVarString,true,true]; // set this type of gunner as active so multiple people can't spam it
 
 
@@ -139,6 +139,8 @@ private ["_turretAction_temp","_turretMagazines_temp","_turretPath_temp"];
 
 localNamespace setVariable ["BLWK_fnc_exitFromAircraft",{
 	params ["_caller","_actionId","_arguments"];
+
+	missionNamespace setVariable ["BLWK_isAircraftGunner",false];
 
 	3 fadeSound (localNamespace getVariable "BLWK_soundVolume");
 
@@ -226,6 +228,8 @@ private _exitAction = [
 		};
 		if (BLWK_currentWaveNumber >= _endWave) exitWith {true};
 		if (isNull _vehicle) exitWith {true};
+		// if player died
+		if !(player in _vehicle) exitWith {true};
 		sleep 10;
 		false
 	};

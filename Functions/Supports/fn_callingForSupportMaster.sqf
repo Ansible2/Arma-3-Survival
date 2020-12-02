@@ -147,6 +147,10 @@ if (CHECK_SUPPORT_CLASS(CAS_GUNS_AND_ROCKETS_CLASS)) exitWith {
 
 // turret supports
 if (CHECK_SUPPORT_CLASS(TURRET_DOOR_GUNNER_CLASS)) exitWith {
+	if (missionNamespace getVariable ["BLWK_isAircraftGunner",false]) exitWith {
+		hint "You can not go straight into another gunner support";
+	};
+
 	if !(missionNamespace getVariable ["BLWK_doorGunnerInUse",false]) then {
 		private _friendlyTransportHeliClass = [4] call BLWK_fnc_getFriendlyVehicleClass;
 		TURRET_EXPRESSION(_friendlyTransportHeliClass,125,BLWK_playAreaRadius * 1.5,"B_Heli_Transport_01_F","BLWK_doorGunnerInUse")
