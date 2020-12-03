@@ -49,27 +49,33 @@ if (isServer OR {!hasInterface}) then {
     // some of these are public to be used with BLWK_fnc_getPointsForKill or for friendlies to call support
     private _unitTypeInfo = call BLWK_fnc_prepareUnitClasses;
     
+    // friendly
     BLWK_friendly_menClasses = _unitTypeInfo select 0;
     publicVariable "BLWK_friendly_menClasses";
     BLWK_friendly_vehicleClasses = _unitTypeInfo select 1;
     publicVariable "BLWK_friendly_vehicleClasses";
     
+    // level 1
     BLWK_level1_menClasses = _unitTypeInfo select 2;
     publicVariable "BLWK_level1_menClasses";
     BLWK_level1_vehicleClasses = _unitTypeInfo select 3;
     
+    // level 2
     BLWK_level2_menClasses = _unitTypeInfo select 4;
     publicVariable "BLWK_level2_menClasses";
     BLWK_level2_vehicleClasses = _unitTypeInfo select 5;
     
+    // level 3
     BLWK_level3_menClasses = _unitTypeInfo select 6;
     publicVariable "BLWK_level3_menClasses";
     BLWK_level3_vehicleClasses = _unitTypeInfo select 7;
     
+    // level 4
     BLWK_level4_menClasses = _unitTypeInfo select 8;
     publicVariable "BLWK_level4_menClasses";
     BLWK_level4_vehicleClasses = _unitTypeInfo select 9;
     
+    // level 5
     BLWK_level5_menClasses = _unitTypeInfo select 10;
     publicVariable "BLWK_level5_menClasses";
     BLWK_level5_vehicleClasses = _unitTypeInfo select 11;
@@ -81,6 +87,12 @@ if (isServer OR {!hasInterface}) then {
 
     BLWK_vehicleStartWave = ("BLWK_vehicleStartWave" call BIS_fnc_getParamValue);
     BLWK_specialWavesStartAt = ("BLWK_specialWavesStartAt" call BIS_fnc_getParamValue);
+
+    // vehicle spawns
+    BLWK_lightCarLikelihood = ("BLWK_lightCarLikelihood" call BIS_fnc_getParamValue);
+    BLWK_heavyCarLikelihood = ("BLWK_heavyCarLikelihood" call BIS_fnc_getParamValue);
+    BLWK_lightArmorLikelihood = ("BLWK_lightArmorLikelihood" call BIS_fnc_getParamValue);
+    BLWK_heavyArmorLikelihood = ("BLWK_heavyArmorLikelihood" call BIS_fnc_getParamValue);
 
 
     BLWK_infantrySpawnPositions = [];

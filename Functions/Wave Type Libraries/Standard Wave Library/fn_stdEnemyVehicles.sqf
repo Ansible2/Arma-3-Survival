@@ -27,10 +27,6 @@ Author(s):
 ---------------------------------------------------------------------------- */
 if !(BLWK_currentWaveNumber >= BLWK_vehicleStartWave) exitWith {[]};
 
-#define LIKELIHOOD_HEAVY_ARMOUR 0.10
-#define LIKELIHOOD_LIGHT_ARMOUR 0.15
-#define LIKELIHOOD_HEAVY_CAR 0.25
-#define LIKELIHOOD_LIGHT_CAR 0.50
 #define BASE_VEHICLE_SPAWN_LIKELIHOOD 0.30
 #define VEHICLE_SPAWN_INCREMENT 0.05 // how much to increase likelihood by each round
 #define ROUNDS_SINCE_MINUS_TWO(TOTAL_ROUNDS_SINCE) TOTAL_ROUNDS_SINCE - 2
@@ -120,16 +116,16 @@ if !(_isDefectorWave) then {
 // get all available classes for each vehicle type
 private _vehicleTypeSelection = [];
 if !(_lightCarsArray isEqualTo []) then {
-	_vehicleTypeSelection append [_lightCarsArray,LIKELIHOOD_LIGHT_CAR];
+	_vehicleTypeSelection append [_lightCarsArray,BLWK_lightCarLikelihood];
 };
 if !(_heavyCarsArray isEqualTo []) then {
-	_vehicleTypeSelection append [_heavyCarsArray,LIKELIHOOD_HEAVY_CAR];
+	_vehicleTypeSelection append [_heavyCarsArray,BLWK_heavyCarLikelihood];
 };
 if !(_lightArmourArray isEqualTo []) then {
-	_vehicleTypeSelection append [_lightArmourArray,LIKELIHOOD_LIGHT_ARMOUR];
+	_vehicleTypeSelection append [_lightArmourArray,BLWK_lightArmorLikelihood];
 };
 if !(_heavyArmourArray isEqualTo []) then {
-	_vehicleTypeSelection append [_heavyArmourArray,LIKELIHOOD_HEAVY_ARMOUR];
+	_vehicleTypeSelection append [_heavyArmourArray,BLWK_heavyArmorLikelihood];
 };
 
 if (_vehicleTypeSelection isEqualTo []) exitWith {
