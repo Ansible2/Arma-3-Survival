@@ -75,14 +75,14 @@ private _fn_setMarkerDetails = {
 private ["_marker_temp","_lootIndex_temp","_lootHolder_temp","_markerText_temp"];
 private _fn_createMarker = {
 	call _fn_setMarkerDetails;
-	_marker_temp = createMarker ["BLWK_lootMarker_" + str _lootIndex_temp,getPos _lootHolder_temp];
+	_marker_temp = createMarkerLocal ["BLWK_lootMarker_" + str _lootIndex_temp,getPos _lootHolder_temp];
 
 	// in the future, may have more then one reveal box, this can be used to skip over things in main forEach
 	//_lootHolder_temp setVariable ["BLWK_lootMarkerCreated",true]; // to make sure we don't create double markers
 
-	_marker_temp setMarkerText _markerText_temp;
-	_marker_temp setMarkerColor _markerColor_temp; 
-	_marker_temp setMarkerAlpha _markerAlpha_temp;
+	_marker_temp setMarkerTextLocal _markerText_temp;
+	_marker_temp setMarkerColorLocal _markerColor_temp; 
+	_marker_temp setMarkerAlphaLocal _markerAlpha_temp;
 	_marker_temp setMarkerType _markerType_temp;
 
 	BLWK_lootMarkers pushBack _marker_temp;
