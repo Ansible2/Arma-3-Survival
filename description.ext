@@ -23,11 +23,11 @@ ReviveRequiredItemsFakConsumed = 1;
 
 corpseManagerMode = 1; // manage all units
 corpseLimit = 10;
-corpseRemovalMinTime = 300;
-corpseRemovalMaxTime = 800;
+corpseRemovalMinTime = 240;
+corpseRemovalMaxTime = 600;
 wreckManagerMode = 1;		// manage all wrecks
 wreckLimit = 3;
-wreckRemovalMinTime = 250;
+wreckRemovalMinTime = 240;
 wreckRemovalMaxTime = 600;
 minPlayerDistance = 10;
 
@@ -108,5 +108,4 @@ class CfgNotifications
 #include "Headers\descriptionEXT\GUI\musicManager.hpp"
 #include "KISKA Systems\View Distance Limiter\ViewDistanceLimiterDialog.hpp"
 
-//#include "Headers\descriptionEXT\supports.hpp"
 #include "Headers\descriptionEXT\Build Items\Main Build Items.hpp"

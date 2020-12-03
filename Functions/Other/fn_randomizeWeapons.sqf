@@ -29,7 +29,7 @@ Author(s):
 //  but keep it impossible to get to 0 or 4
 #define RANOM_123 [0.51,2,3.49]
 #define RANDOM_345 [2.51,4,5.49]
-#defin RANOM_234 [1.51,3,4.49]
+#define RANOM_234 [1.51,3,4.49]
 
 params ["_unit"];
 

@@ -34,8 +34,8 @@ null = [_group] spawn BLWK_fnc_startStalkingPlayers;
 
 
 // add to server's list of units that must be dead before the round can end
-null = [_unit] remoteExec ["BLWK_fnc_addToMustKillArray",2];
-null = [BLWK_zeus, [[_unit],false]] remoteExec ["addCuratorEditableObjects",BLWK_zeus];
+null = [_unit] remoteExecCall ["BLWK_fnc_addToMustKillArray",2];
+null = [BLWK_zeus, [[_unit],false]] remoteExecCall ["addCuratorEditableObjects",2];
 
 
 // keep items (maps, nvgs, binoculars, etc.) so that they can just be loot drops

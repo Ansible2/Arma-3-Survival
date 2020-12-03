@@ -1,3 +1,4 @@
+#include "..\..\Headers\String Constants.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_addToMustKillArray
 
@@ -23,8 +24,6 @@ Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {false};
-
-#include "..\..\Headers\String Constants.hpp"
 
 params [
 	["_unitToAdd",objNull,[objNull]]

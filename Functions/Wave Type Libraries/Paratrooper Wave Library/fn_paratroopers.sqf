@@ -94,7 +94,9 @@ _spawnPosition set [2,_flyInHeight];
 // create vehicle
 private _vehicleArray = [_spawnPosition,_flyDirection,_dropVehicleClass,_side] call BIS_fnc_spawnVehicle;
 private _aircraft = _vehicleArray select 0;
-allCurators apply {_x addCuratorEditableObjects [[_aircraft],true]};
+allCurators apply {
+	[_x,[_aircraft],true] remoteExecCall ["addCuratorEditableObjects",2];
+};
 _aircraft flyInHeight _flyInHeight;
 private _aircraftGroup = _vehicleArray select 2;
 _aircraftGroup setBehaviour "SAFE";

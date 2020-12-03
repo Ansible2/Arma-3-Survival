@@ -254,3 +254,15 @@ class REINFORCE_PARATROOPERS_CLASS : basicSupport
     expression = CALL_SUPPORT_MASTER(REINFORCE_PARATROOPERS_CLASS);
     icon = TRANSPORT_ICON;
 };
+
+
+// Recon
+class RECON_UAV_CLASS : basicSupport
+{
+	price = 800;
+	category = RECON_CATEGORY;
+
+	text = RECON_UAV_TEXT;
+    expression = CALL_SUPPORT_MASTER(RECON_UAV_CLASS);
+    icon = CALL_ICON;
+};

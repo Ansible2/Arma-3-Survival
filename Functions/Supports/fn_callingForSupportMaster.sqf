@@ -147,6 +147,10 @@ if (CHECK_SUPPORT_CLASS(CAS_GUNS_AND_ROCKETS_CLASS)) exitWith {
 
 // turret supports
 if (CHECK_SUPPORT_CLASS(TURRET_DOOR_GUNNER_CLASS)) exitWith {
+	if (missionNamespace getVariable ["BLWK_isAircraftGunner",false]) exitWith {
+		hint "You can not go straight into another gunner support";
+	};
+
 	if !(missionNamespace getVariable ["BLWK_doorGunnerInUse",false]) then {
 		private _friendlyTransportHeliClass = [4] call BLWK_fnc_getFriendlyVehicleClass;
 		TURRET_EXPRESSION(_friendlyTransportHeliClass,125,BLWK_playAreaRadius * 1.5,"B_Heli_Transport_01_F","BLWK_doorGunnerInUse")
@@ -194,6 +198,18 @@ if (CHECK_SUPPORT_CLASS(REINFORCE_PARATROOPERS_CLASS)) exitWith {
 		_unitsToDrop pushBack _unit_temp;
 	};
 	
-	[BLWK_zeus, [_unitsToDrop,false]] remoteExec ["addCuratorEditableObjects",BLWK_zeus];
+	[BLWK_zeus, [_unitsToDrop,false]] remoteExecCall ["addCuratorEditableObjects",2];
 	null = [_targetPosition,_unitsToDrop,"B_T_VTOL_01_infantry_F"] spawn BLWK_fnc_paratroopers;	
+};
+
+
+// recon
+if (CHECK_SUPPORT_CLASS(RECON_UAV_CLASS)) exitWith {
+	if !(missionNamespace getVariable ["BLWK_reconUavActive",false]) then {
+		null = remoteExec ["BLWK_fnc_reconUAV",2];
+		[TYPE_UAV_REQUEST] call BLWK_fnc_supportRadioGlobal;
+	} else {
+		ADD_SUPPORT_BACK
+		hint "Recon UAV is already active";
+	};
 };

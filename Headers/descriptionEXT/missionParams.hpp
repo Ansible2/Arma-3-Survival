@@ -2,6 +2,9 @@
 #define NO_OR_YES {"NO","YES"}
 #define ZERO_OR_ONE {0,1}
 
+#define ZERO_TO_TEN {0,1,2,3,4,5,6,7,8,9,10}
+#define ZERO_TO_TEN_STRINGS {"0","1","2","3","4","5","6","7","8","9","10"}
+
 #define A_SECTION_HEADER(NAME)\
 	class NAME##_LABEL \
 	{ \
@@ -202,7 +205,7 @@ class BLWK_playAreaRadius
 };
 class BLWK_minNumberOfHousesInArea
 {
-	title = "Minimum number of buildings in The Crate's radius";
+	title = "Minimum number of buildings in the play area radius";
 	values[] = {5, 10, 15, 20, 30};
 	texts[] = {"5","10","15","20","30"};
 	default = 20;
@@ -226,7 +229,7 @@ class BLWK_buildingsNearTheCrateAreIndestructable_radius
 	title = "The radius of indestructable buildings around The Crate";
 	values[] = {0,5,10,15,20,25,30};
 	texts[] = {"OFF","5m","10m","15m","20m","25m","30m"};
-	default = 20;
+	default = 10;
 };
 
 
@@ -366,6 +369,36 @@ class BLWK_level5Faction
 };
 
 
+A_SPACE(Vehicles);
+A_SECTION_HEADER(Vehicles);
+class BLWK_lightCarLikelihood
+{
+	title = "Enemy Light Car Likelihood";
+	values[] = ZERO_TO_TEN;
+	texts[] = ZERO_TO_TEN_STRINGS;
+	default = 5;
+};
+class BLWK_heavyCarLikelihood
+{
+	title = "Enemy Heavy Car Likelihood";
+	values[] = ZERO_TO_TEN;
+	texts[] = ZERO_TO_TEN_STRINGS;
+	default = 3;
+};
+class BLWK_lightArmorLikelihood
+{
+	title = "Enemy Light Armor Likelihood";
+	values[] = ZERO_TO_TEN;
+	texts[] = ZERO_TO_TEN_STRINGS;
+	default = 2;
+};
+class BLWK_heavyArmorLikelihood
+{
+	title = "Enemy Heavy Armor Likelihood";
+	values[] = ZERO_TO_TEN;
+	texts[] = ZERO_TO_TEN_STRINGS;
+	default = 1;
+};
 
 // Other
 A_SPACE(Other);

@@ -35,12 +35,19 @@ private _instigator = _this select 3;
 if (_instigator isEqualTo player) then {
 	private _unit = _this select 0;
 	
-	// multiply by damage
-	private _damagePoints = BLWK_pointsMultiForDamage * (_this select 2);
-	if (_damagePoints > BLWK_maxPointsForDamage) then {
-		_damagePoints = BLWK_maxPointsForDamage;
+	// aircraft gunners get limited points
+	if (missionNamespace getVariable ["BLWK_isAircraftGunner",false]) then {
+		[1] call BLWK_fnc_addPoints;
+		[_unit,1] call BLWK_fnc_createHitMarker;
+	} else {
+		// multiply by damage
+		private _damagePoints = BLWK_pointsMultiForDamage * (_this select 2);
+		if (_damagePoints > BLWK_maxPointsForDamage) then {
+			_damagePoints = BLWK_maxPointsForDamage;
+		};
+		
+		private _points = round (BLWK_pointsForHit + _damagePoints);
+		[_points] call BLWK_fnc_addPoints;
+		[_unit,_points] call BLWK_fnc_createHitMarker;
 	};
-	private _points = round (BLWK_pointsForHit + _damagePoints);
-	[_points] call BLWK_fnc_addPoints;
-	[_unit,_points] call BLWK_fnc_createHitMarker;
 };

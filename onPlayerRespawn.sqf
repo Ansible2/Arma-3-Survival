@@ -30,6 +30,11 @@ if !(missionNamespace getVariable ["BLWK_inBetweenWaves",false]) then {
 
 [false] call BLWK_fnc_reassignCurator;
 
+// handle if someone died while an aircraft gunner
+if (missionNamespace getVariable ["BLWK_isAircraftGunner",false]) then {
+    missionNamespace setVariable ["BLWK_isAircraftGunner",false];
+};
+
 // make players briefly invincible
 _player allowDamage false;
 null = [] spawn {

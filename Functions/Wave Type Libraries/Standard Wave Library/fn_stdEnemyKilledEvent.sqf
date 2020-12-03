@@ -48,6 +48,11 @@ if (local BLWK_theAIHandlerEntity) then {
 // points for players
 if ((hasInterface) AND {local _instigator} AND {isPlayer _instigator}) then {
 	private _points = [_killedUnit] call BLWK_fnc_getPointsForKill;
+	
+	// aircraft gunners get limited points
+	if (missionNamespace getVariable ["BLWK_isAircraftGunner",false]) then {
+		_points = round (_points / 4);
+	};
 	[_points] call BLWK_fnc_addPoints;
 	[_killedUnit,_points,true] call BLWK_fnc_createHitMarker;
 };
@@ -55,6 +60,7 @@ if ((hasInterface) AND {local _instigator} AND {isPlayer _instigator}) then {
 if (isServer) then {
 	removeFromRemainsCollector [_killedunit];
 };
+
 /*
 // mp events need to be removed on the unit where they are local
 if (local _killedUnit) then {

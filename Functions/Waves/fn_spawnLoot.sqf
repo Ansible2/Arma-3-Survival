@@ -232,7 +232,7 @@ _sortedPositions apply {
 	BLWK_spawnedLoot pushBack _holder;
 };
 
-BLWK_zeus addCuratorEditableObjects [_addToZeusArray, true];
+[BLWK_zeus, [_addToZeusArray,true]] remoteExecCall ["addCuratorEditableObjects",2];
 
 
 true
