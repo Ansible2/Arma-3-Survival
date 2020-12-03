@@ -366,6 +366,8 @@ class BLWK_level5Faction
 };
 
 
+A_SPACE(Vehicles);
+
 
 // Other
 A_SPACE(Other);
