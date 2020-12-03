@@ -34,7 +34,6 @@ missionNamespace setVariable ["BLWK_reconUavActive",true,true];
 
 private [
 	"_unit_temp",
-	"_position_temp",
 	"_markerName_temp",
 	"_marker_temp"
 ];
@@ -44,15 +43,18 @@ private _markerCount = 0;
 private _fn_createMarker = {
 	_markerCount = _markerCount + 1;
 	_markerName_temp = [RECON_MARKER,_markerCount] joinString "_";
-	_marker_temp = createMarker [_markerName_temp,_position_temp];
+	_marker_temp = createMarkerLocal [_markerName_temp,_unit_temp];
 	
 	_unit_temp setVariable [RECON_MARKER,_marker_temp];
 	_createdMarkers pushBack _marker_temp;
 
-	diag_log (["created marker:",_marker_temp] joinString " ");
+	//diag_log (["created marker:",_marker_temp] joinString " ");
 
-	_marker_temp setMarkerType "hd_dot";
+	// see https://community.bistudio.com/wiki/setMarkerPos as to why this is local
+	_marker_temp setMarkerTypeLocal "mil_triangle";
 	_marker_temp setMarkerColor "colorOPFOR";
+
+	diag_log (["created marker:",_marker_temp] joinString " ");
 };
 
 
@@ -68,14 +70,13 @@ while {sleep 1; time < _endTime} do {
 			
 			if (alive _unit_temp) then {
 				diag_log "_unit_temp is alive";
-				_position_temp = getPosWorld _unit_temp;
 				
 				if (_marker_temp isEqualTo "") then {
 					diag_log "_marker_temp is empty string";
 					call _fn_createMarker;
 				} else {
 					diag_log (["Updating position of",_marker_temp] joinString " ");
-					_marker_temp setMarkerPos _position_temp;
+					_marker_temp setMarkerPos _unit_temp;
 				};
 				
 				sleep 1;
@@ -84,6 +85,7 @@ while {sleep 1; time < _endTime} do {
 				// get rid of markers for the dead
 				if !(_marker_temp isEqualTo "") then {
 					diag_log (["_marker_temp isn't empty string, deleting:", _marker_temp] joinString " ");
+					_unit_temp setVariable [RECON_MARKER,nil];
 					deleteMarker _marker_temp;
 				};
 			};
@@ -91,6 +93,14 @@ while {sleep 1; time < _endTime} do {
 	};
 };
 
+// clear unit globals
+_unitsArray apply {
+	if ((_x getVariable [RECON_MARKER,""]) != "") then {
+		_x setVariable [RECON_MARKER,nil];
+	};
+};
+
+// delete markers
 _createdMarkers apply {
 	// if marker is not already deleted
 	if !((getMarkerType _x) isEqualTo "") then {
