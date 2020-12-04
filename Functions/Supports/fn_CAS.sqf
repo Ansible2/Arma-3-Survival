@@ -9,6 +9,9 @@ Parameters:
 	1: _attackTypeID : <NUMBER> - 0 - Guns, 1 - Rockets, 2 - Guns & Rockets, 3 - Bomb
 	2: _attackDirection : <NUMBER> - The direction the aircraft should approach from relative to North
 	3: _planeClass : <STRING> - The className of the aircraft
+	4: _attackHeight : <NUMBER> - At what height should the aircraft start firing
+	5: _spawnDistance : <NUMBER> - How far away to spawn the aircraft
+	6: _breakOffDistance : <NUMBER> - The distance to target at which the aircraft should definately disengage and fly away (to not crash)
 
 Returns:
 	NOTHING
@@ -32,15 +35,15 @@ Author(s):
 #define PLANE_SPEED 75// m/s
 #define PLANE_VELOCITY(THE_SPEED) [0,THE_SPEED,0]
 
-#define ATTACK_HEIGHT 1000
-#define ATTACK_DISTANCE 2000
-#define BREAK_OFF_DISTANCE 500
-
+scriptName "BLWK_fnc_CAS";
 params [
 	["_attackPosition",objNull,[[],objNull]],
 	["_attackTypeID",0,[123]],
 	["_attackDirection",0,[123]],
-	["_planeClass","B_Plane_CAS_01_F",[""]]
+	["_planeClass","B_Plane_CAS_01_F",[""]],
+	["_attackHeight",1300,[123]],
+	["_spawnDistance",2000,[123]],
+	["_breakOffDistance",500,[123]]
 ];
 
 if (_attackPosition isEqualType objNull AND {isNull _attackPosition} OR {_attackPosition isEqualTo []}) exitWith {
@@ -77,7 +80,7 @@ _planeClassWeapons apply {
 
 	// get weapon type to see if it matches any in the _attackTypesString array
 	// "in" command is CASE SENSETIVE
-	_weaponType_temp = toLowerANSI ((_x call BIS_fnc_itemType) select 1);
+	_weaponType_temp = tolower ((_x call BIS_fnc_itemType) select 1);
 	if (_weaponType_temp in _attackTypesString) then {
 		// get the weapon's modes
 		_fireModes_temp = getarray(configfile >> "cfgweapons" >> _x >> "modes");
@@ -94,7 +97,8 @@ _planeClassWeapons apply {
 if (_weaponsToUse isEqualTo []) exitwith {
 	["No weapon of types %2 found on '%1', moving to default Aircraft",_planeClass,_attackTypesString] call BIS_fnc_error;
 	// exit to default aircraft type 
-	null = [_attackPosition,_attackTypeID,_attackDirection,"B_Plane_CAS_01_F"] spawn BLWK_fnc_CAS;
+	_this set [3,"B_Plane_CAS_01_F"];
+	null = _this spawn BLWK_fnc_CAS;
 };
 
 
@@ -104,7 +108,7 @@ if (_weaponsToUse isEqualTo []) exitwith {
 
 ---------------------------------------------------------------------------- */
 BLWK_fnc_casAttack = {
-	params ["_plane","_dummyTarget","_weaponsToUse","_attackTypeID"];
+	params ["_plane","_dummyTarget","_weaponsToUse","_attackTypeID","_attackPosition","_breakOffDistance"];
 	
 	private ["_weapon_temp","_weaponArray_temp"];
 	private _pilot = currentPilot _plane;
@@ -115,6 +119,7 @@ BLWK_fnc_casAttack = {
 		_weaponArray_temp = _weaponsToUse select (_weaponsToUse findIf {(_x select 2) == "machinegun"});
 		_weapon_temp = _weaponArray_temp select 0;
 		for "_i" from 1 to _numRounds do {
+			if ((_plane distance _attackPosition) < _breakOffDistance) exitWith {};
 			_pilot fireAtTarget [_dummyTarget,_weapon_temp];
 			sleep 0.03;
 		};
@@ -125,6 +130,7 @@ BLWK_fnc_casAttack = {
 		_weaponArray_temp = _weaponsToUse select (_weaponsToUse findIf {(_x select 2) == "rocketlauncher"});
 		_weapon_temp = _weaponArray_temp select 0;
 		for "_i" from 1 to _numRounds do {
+			if ((_plane distance _attackPosition) < _breakOffDistance) exitWith {};
 			_pilot fireAtTarget [_dummyTarget,_weapon_temp];
 			sleep 0.5;
 		};
@@ -157,8 +163,8 @@ BLWK_fnc_casAttack = {
 	Position plane towards target
 
 ---------------------------------------------------------------------------- */
-private _planeSpawnPosition = _attackPosition getPos [ATTACK_DISTANCE,_attackDirection + 180];
-_planeSpawnPosition set [2,ATTACK_HEIGHT];
+private _planeSpawnPosition = _attackPosition getPos [_spawnDistance,_attackDirection + 180];
+_planeSpawnPosition set [2,_attackHeight];
 private _planeSide = (getnumber (_planeCfg >> "side")) call BIS_fnc_sideType;
 private _planeArray = [_planeSpawnPosition,_attackDirection,_planeClass,_planeSide] call BIS_fnc_spawnVehicle;
 private _plane = _planeArray select 0;
@@ -183,7 +189,7 @@ private _planePositionASL = getPosASLVisual _plane;
 private _planeVectorDir = _planePositionASL vectorFromTo _attackPosition;
 _plane setVectorDir _planeVectorDir;
 // pitch
-private _planePitch = atan (ATTACK_DISTANCE / ATTACK_HEIGHT);
+private _planePitch = atan (_spawnDistance / _attackHeight);
 [_plane,-90 + _planePitch,0] call BIS_fnc_setPitchBank;
 
 // set plane's speed to 200 km/h
@@ -197,13 +203,13 @@ _plane setVelocityModelSpace PLANE_VELOCITY(PLANE_SPEED);
 ---------------------------------------------------------------------------- */
 // get flight characteristics to steer the plane onto target
 private _distanceToTarget = _attackPosition vectorDistance _planePositionASL;
-private _flightTime = (_distanceToTarget - BREAK_OFF_DISTANCE) / PLANE_SPEED;
+private _flightTime = (_distanceToTarget - _breakOffDistance) / PLANE_SPEED;
 private _startTime = time;
 private _timeAfterFlight = time + _flightTime;
 private _planeVectorUp = vectorUpVisual _plane;
 
 private ["_interval","_planeVectorDirTo","_planeVectorDirFrom"];
-while {!(_plane getVariable ["BLWK_completedFiring",false])} do {
+while {!(_plane getVariable ["BLWK_completedFiring",false]) AND {(_plane distance _attackPosition) > _breakOffDistance}} do {
 	//--- Set the plane approach vector
 	_interval = linearConversion [_startTime,_timeAfterFlight,time,0,1];
 	_planeVectorDirTo = _planePositionASL vectorFromTo _attackPosition;
@@ -237,7 +243,7 @@ while {!(_plane getVariable ["BLWK_completedFiring",false])} do {
 			_plane dowatch laserTarget _dummyTarget;
 			_plane dotarget laserTarget _dummyTarget;
 
-			null = [_plane,_dummyTarget,_weaponsToUse,_attackTypeID] spawn BLWK_fnc_casAttack;
+			null = [_plane,_dummyTarget,_weaponsToUse,_attackTypeID,_attackPosition,_breakOffDistance] spawn BLWK_fnc_casAttack;
 		} else {
 			// ensures strafing effect with the above setVelocityTransformation
 			if !("bomblauncher" in _attackTypesString) then {
@@ -264,7 +270,7 @@ while {!(_plane getVariable ["BLWK_completedFiring",false])} do {
 _plane setVelocityModelSpace PLANE_VELOCITY(PLANE_SPEED);
 
 // after fire is complete
-_plane flyInHeight (ATTACK_HEIGHT * 2);
+_plane flyInHeight (_attackHeight * 2);
 
 
 // pop flares
