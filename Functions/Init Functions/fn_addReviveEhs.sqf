@@ -62,11 +62,18 @@ BLWK_animStateChangedEh_ID = _player addEventHandler ["AnimStateChanged",{
 // while it can be persisant on player object, the persistence is somewhat unreliable
 BLWK_handleDamageEh_ID = _player addEventHandler ["HandleDamage", {
 	private _unit = _this select 0;
-	
 	if (alive _unit) then {
 		private _instigator = _this select 6;
+		private _source = _this select 3;
+		private _projectile = _this select 4;
+
 		// check if it is friendly fire or the player is already downed
 		// in which case, the damage will be 0
-		if ((!BLWK_friendlyFireOn AND {(side _unit) isEqualTo (side _instigator)}) OR {!(incapacitatedState _unit isEqualTo "")}) then {0};
+		if (
+			(!BLWK_friendlyFireOn AND {(side _unit) isEqualTo (side _instigator)}) OR // if friendly fire
+			{!((incapacitatedState _unit) isEqualTo "")} OR // if player is unconcious
+			{!BLWK_fallDamageOn AND {_unit isEqualTo _source AND {_projectile == ""}}} // fall damage, sometimes fires on a players own explosives, 
+			// ...but not often enough to be considered game breaking
+		) then {0};
 	};
 }];
