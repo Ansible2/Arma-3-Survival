@@ -35,7 +35,8 @@
     "rhs_mag_30Rnd_556x45_M200_Stanag", \
     "rhs_mag_20Rnd_556x45_M200_Stanag", \
     "rhsusf_100Rnd_762x51_m82_blank", \
-    "rhsusf_50Rnd_762x51_m82_blank" \
+    "rhsusf_50Rnd_762x51_m82_blank", \
+    "hgun_Pistol_Signal_F" \
 ]
 
 
