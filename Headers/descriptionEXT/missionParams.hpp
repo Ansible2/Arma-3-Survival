@@ -100,6 +100,39 @@ class BLWK_roundsBeforeBodyDeletion
 };
 
 
+// Players
+A_SPACE(Player);
+A_SECTION_HEADER(Player);
+class BLWK_friendlyFireOn
+{
+	title = "Friendly Fire";
+	values[] = ZERO_OR_ONE;
+	texts[] = OFF_OR_ON;
+	default = 1;
+};
+class BLWK_fallDamageOn
+{
+	title = "Fall Damage";
+	values[] = ZERO_OR_ONE;
+	texts[] = OFF_OR_ON;
+	default = 0;
+};
+class BLWK_staminaEnabled
+{
+	title = "Enable stamina";
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
+	default = 0;
+};
+class BLWK_weaponSwayCoef
+{
+	title = "Weaponsway coefficient (zero means no sway)";
+	values[] = {0, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1};
+	texts[] = {"0", "0.1", "0.15", "0.2", "0.25", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
+	default = 0;
+};
+
+
 
 // start
 A_SPACE(Start);
@@ -301,15 +334,6 @@ class BLWK_saveRespawnLoadout
 	default = 0;
 };
 
-class BLWK_friendlyFireOn
-{
-	title = "Friendly Fire";
-	values[] = ZERO_OR_ONE;
-	texts[] = OFF_OR_ON;
-	default = 1;
-};
-
-
 
 A_SPACE(Revive);
 A_SECTION_HEADER(Revive);
@@ -369,8 +393,8 @@ class BLWK_level5Faction
 };
 
 
-A_SPACE(Vehicles);
-A_SECTION_HEADER(Vehicles);
+A_SPACE(Vehicle);
+A_SECTION_HEADER(Vehicle);
 class BLWK_lightCarLikelihood
 {
 	title = "Enemy Light Car Likelihood";
@@ -431,20 +455,6 @@ class BLWK_faksToMakeMedkit
 	values[] = {5, 10, 15};
 	texts[] = {"5", "10", "15"};
 	default = 10;
-};
-class BLWK_staminaEnabled
-{
-	title = "Enable stamina";
-	values[] = ZERO_OR_ONE;
-	texts[] = NO_OR_YES;
-	default = 0;
-};
-class BLWK_weaponSwayCoef
-{
-	title = "Weaponsway coefficient (zero means no sway)";
-	values[] = {0, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1};
-	texts[] = {"0", "0.1", "0.15", "0.2", "0.25", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
-	default = 0;
 };
 class BLWK_deleteDroppedItemsEvery
 {

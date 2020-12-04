@@ -205,6 +205,7 @@ if (hasInterface) then {
     BLWK_playersStartWith_NVGs = [false,true] select ("BLWK_playersStartWith_NVGs" call BIS_fnc_getParamValue);
 
     BLWK_friendlyFireOn = [false,true] select ("BLWK_friendlyFireOn" call BIS_fnc_getParamValue);
+    BLWK_fallDamageOn = [false,true] select ("BLWK_fallDamageOn" call BIS_fnc_getParamValue);
     BLWK_showHitPoints = [false,true] select ("BLWK_showHitPoints" call BIS_fnc_getParamValue);
 
     BLWK_saveRespawnLoadout = [false,true] select ("BLWK_saveRespawnLoadout" call BIS_fnc_getParamValue);
