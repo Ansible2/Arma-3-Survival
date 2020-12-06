@@ -30,6 +30,13 @@ class BLWK_buildableItems
 		attachmentY = 6;
 	};
 
+	class Land_ConcretePanels_02_single_v1_F: BLWK_genericBuildItemBase
+	{
+		price = 100;
+		category = PLATFORMS_CATEGORY;
+		attachmentY = 5;
+	};
+
 	class Land_BagFence_End_F: BLWK_genericBuildItemBase
 	{
 		price = 25;
