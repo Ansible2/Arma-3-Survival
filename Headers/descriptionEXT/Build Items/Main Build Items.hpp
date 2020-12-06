@@ -30,6 +30,13 @@ class BLWK_buildableItems
 		attachmentY = 6;
 	};
 
+	class Land_ConcretePanels_02_single_v1_F: BLWK_genericBuildItemBase
+	{
+		price = 100;
+		category = PLATFORMS_CATEGORY;
+		attachmentY = 5;
+	};
+
 	class Land_BagFence_End_F: BLWK_genericBuildItemBase
 	{
 		price = 25;
@@ -175,6 +182,7 @@ class BLWK_buildableItems
 		category = STORAGE_CATEGORY;
 		rotation = 90;
 		attachmentY = 2;
+		invincible = 1;
 	};
 
 	class Land_GH_Stairs_F : BLWK_genericBuildItemBase
@@ -214,6 +222,7 @@ class BLWK_buildableItems
 	{
 		price = 1200;
 		category = STORAGE_CATEGORY;
+		invincible = 1;
 	};
 
 	class B_HMG_01_high_F : BLWK_genericTurretBase
@@ -270,6 +279,7 @@ class BLWK_buildableItems
 	{
 		price = 100;
 		category = OBSTACLES_CATEGORY;
+		invincible = 1;
 	};
 	
 	class Land_CncBarrier_F : BLWK_genericBuildItemBase

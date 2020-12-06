@@ -81,9 +81,9 @@ _stalkerGroupUnits apply {
 // do the stalking
 while { !isNull _stalkerGroup AND {_stalkerGroup getVariable DO_STALK_VAR} } do {
 	
-	//[_stalkerGroup] call CBAP_fnc_clearWaypoints;
-	//[_stalkerGroup, _playerToStalk, 10, "MOVE", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
-	_stalkerGroup move (getPosWorld _playerToStalk);
+	[_stalkerGroup] call CBAP_fnc_clearWaypoints;
+	[_stalkerGroup, _playerToStalk, 10, "MOVE", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
+	//_stalkerGroup move (getPosWorld _playerToStalk);
 
 	// check if there are any units left in the stalker group to do the stalking
 	_stalkerGroupUnits = units _stalkerGroup;

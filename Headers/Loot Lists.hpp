@@ -2,7 +2,6 @@
 /*
 #define WHITELIST_LAUNCHERS \
 [ \
- 
 	"myExampleClass_1", \
 	"myExampleClass_2" \
 ]

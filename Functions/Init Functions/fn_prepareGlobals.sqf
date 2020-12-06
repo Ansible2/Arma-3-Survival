@@ -132,7 +132,7 @@ if (isServer) then {
     /* Whitelist Loot Modes */
     /* 0 = Off */
     /* 1 = Only Whitelist Items will spawn as loot */
-    /* 2 = Whitelist items get added to existing loot (increases the chance of loot spawning */
+    /* 2 = Whitelist items get added to existing loot (increases the chance of loot spawning) */
     BLWK_loot_whiteListMode = 0;
 
     // loot classes
