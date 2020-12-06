@@ -182,6 +182,7 @@ class BLWK_buildableItems
 		category = STORAGE_CATEGORY;
 		rotation = 90;
 		attachmentY = 2;
+		invincible = 1;
 	};
 
 	class Land_GH_Stairs_F : BLWK_genericBuildItemBase
@@ -221,6 +222,7 @@ class BLWK_buildableItems
 	{
 		price = 1200;
 		category = STORAGE_CATEGORY;
+		invincible = 1;
 	};
 
 	class B_HMG_01_high_F : BLWK_genericTurretBase
