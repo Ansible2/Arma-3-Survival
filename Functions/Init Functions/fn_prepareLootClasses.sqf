@@ -11,7 +11,17 @@ Parameters:
 	NONE
 
 Returns:
-	ARRAY - Format [primary weapons, secondary weapons, launchers, backpacks, vests, uniforms, headgear, items, explosives]
+	ARRAY - Format [
+		primary weapons,
+		secondary weapons,
+		launchers,
+		backpacks, 
+		vests, 
+		uniforms, 
+		headgear, 
+		items, 
+		explosives
+	]
 
 Examples:
     (begin example)
