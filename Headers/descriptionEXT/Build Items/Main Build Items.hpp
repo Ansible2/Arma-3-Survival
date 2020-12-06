@@ -277,6 +277,7 @@ class BLWK_buildableItems
 	{
 		price = 100;
 		category = OBSTACLES_CATEGORY;
+		invincible = 1;
 	};
 	
 	class Land_CncBarrier_F : BLWK_genericBuildItemBase
