@@ -135,7 +135,7 @@ while {sleep _timeBetweenChecks; (_groupToCheck getVariable [LOOP_VAR_NAME,false
 			//_groupLeader setPos (selectRandom BLWK_infantrySpawnPositions);
 			_groupLeader setPos ([BLWK_mainCrate, 75, 125, 2, 0] call BIS_fnc_findSafePos);
 			sleep 1;
-			[_groupLeader,position BLWK_mainCrate] remoteExecCall ["doMove",_groupLeader];
+			[_groupLeader,position BLWK_mainCrate] remoteExecCall ["move",_groupLeader];
 		};
 	};
 };
