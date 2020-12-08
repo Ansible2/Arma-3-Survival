@@ -112,7 +112,7 @@ class BLWK_friendlyFireOn
 };
 class BLWK_fallDamageOn
 {
-	title = "Fall Damage (Not ACE Compatabile)";
+	title = "Fall Damage (Not ACE Medical Compatabile)";
 	values[] = ZERO_OR_ONE;
 	texts[] = OFF_OR_ON;
 	default = 0;
