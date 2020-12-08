@@ -437,3 +437,27 @@
 	"LOP_IRAN_Infantry_SF_junior_sergeant",\
 	["LOP_IRAN_UAZ_DshKM","LOP_IRAN_BTR70","LOP_IRAN_BMP2","LOP_IRAN_T72BA","LOP_IRAN_CH47F","LOP_IRAN_CH47F","rhs_l159_cdf_b_CDF","rhs_mi28n_vvsc"]\
 ]
+
+
+//ION PMC
+#define PROJOP_PMC_UNITS \
+[ \
+	"LOP_PMC_Infantry_AA",\
+	"LOP_PMC_Infantry_AT_Asst",\
+	"LOP_PMC_Infantry_AT",\
+	"LOP_PMC_Infantry_EOD",\
+	"LOP_PMC_Infantry_Marksman",\
+	"LOP_PMC_Infantry_Rifleman_2",\
+	"LOP_PMC_Infantry_GL",\
+	"LOP_PMC_Infantry_MG_Asst",\
+	"LOP_PMC_Infantry_MG",\
+	"LOP_PMC_Infantry_Rifleman_3",\
+	"LOP_PMC_Infantry_Rifleman",\
+	"LOP_PMC_Infantry_Corpsman",\
+	"LOP_PMC_Infantry_Marksman_2",\
+	"LOP_PMC_Infantry_Rifleman_4",\
+	"LOP_PMC_Infantry_Engineer",\
+	"LOP_PMC_Infantry_SL",\
+	"LOP_PMC_Infantry_TL",\
+	["LOP_PMC_Offroad_M2","LOP_ISTS_OPF_M1025_W_M2","rhsgref_BRDM2_vmf","rhs_btr80a_vdv","O_Heli_Light_02_unarmed_F","LOP_PMC_Mi8AMT","rhs_l159_cdf_b_CDF","rhs_mi28n_vvs"]\
+]
