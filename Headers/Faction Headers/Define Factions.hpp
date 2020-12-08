@@ -59,7 +59,13 @@
 	57,\
 	58,\
 	59,\
-	60
+	60,\
+	61,\
+	62,\
+	63,\
+	64,\
+	65,\
+	66
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -107,6 +113,12 @@
 	"RHS AFRF - Russia VMF (RECON)", \
 	"RHS AFRF - Russia VMF (Flora)", \
 	"RHS AFRF - Russia VMF (OSN)", \
+	"RHS GREF - Horizon Islands Defence Force", \
+	"RHS GREF - CDF Guard", \
+	"RHS GREF - CDF Paratroopers", \
+	"RHS GREF - CDF", \
+	"RHS GREF - ChDKZ", \
+	"RHS GREF - TLA", \
 	"RHS USAF - US ARMY (Desert)", \
 	"RHS USAF - US ARMY (Desert CRYE)", \
 	"RHS USAF - US ARMY (Woodland)", \
@@ -171,6 +183,12 @@
 	RHS_AFRF_RUS_VMF_RECON_UNITS, \
 	RHS_AFRF_RUS_VMF_FLORA_UNITS, \
 	RHS_AFRF_RUS_VV_OSN_UNITS, \
+	RHS_GREF_HIDF,\
+	RHS_GREF_CDF_GUARD,\
+	RHS_GREF_CDF_PARA,\
+	RHS_GREF_CDF,\
+	RHS_GREF_ChDKZ,\
+	RHS_GREF_TLA,\
 	RHS_USF_ARMY_DES_UNITS, \
 	RHS_USF_ARMY_DES_CRYE_UNITS, \
 	RHS_USF_ARMY_WOODLAND_UNITS, \

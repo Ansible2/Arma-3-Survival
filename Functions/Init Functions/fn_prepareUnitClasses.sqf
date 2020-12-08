@@ -6,6 +6,7 @@
 #include "..\..\Headers\Faction Headers\Unit Tables\RHS_AFRF Unit Tables.hpp"
 #include "..\..\Headers\Faction Headers\Unit Tables\RHS_USAF Unit Tables.hpp"
 #include "..\..\Headers\Faction Headers\Unit Tables\Z&DUnitTables.hpp"
+#include "..\..\Headers\Faction Headers\Unit Tables\RHS_GREF Unit Tables.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_prepareUnitClasses
 
