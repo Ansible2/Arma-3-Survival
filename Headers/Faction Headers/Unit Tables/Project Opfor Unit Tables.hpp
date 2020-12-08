@@ -373,7 +373,7 @@
 	"LOP_PESH_Infantry_Rifleman_3",\
 	"LOP_PESH_Infantry_Sniper",\
 	"LOP_PESH_Infantry_TL",\
-	["LOP_PESH_Offroad_M2","LOP_PESH_M1025_W_M2","LOP_IA_BMP1","LOP_IA_T34","LOP_IA_Mi8MTV3_UPK23","RHS_C130J","RHSGREF_A29B_HIDF","RHS_AH64D_wd"]\
+	["LOP_PESH_Offroad_M2","LOP_PESH_M1025_W_M2","LOP_IA_BMP1","LOP_IA_T34","LOP_IA_Mi8MTV3_UPK23","RHS_AN2_B","RHSGREF_A29B_HIDF","RHS_AH64D_wd"]\
 ]
 
 //Chernarus National Insurgents
@@ -393,7 +393,7 @@
 	"LOP_NAPA_Infantry_Corpsman",\
 	"LOP_NAPA_Infantry_TL",\
 	"LOP_NAPA_Infantry_Prizrak",\
-	["LOP_NAPA_Offroad_M2","LOP_NAPA_Landrover_M2","","","I_C_Heli_Light_01_civil_F","",""]\
+	["LOP_NAPA_Offroad_M2","rhsgref_BRDM2_vmf","rhsgref_nat_btr70","","I_C_Heli_Light_01_civil_F","RHS_AN2_B",""]\
 ]
 
 //Iranian Armed Forces
@@ -558,7 +558,7 @@
 	"LOP_UA_Officer",\
 	"LOP_UA_Infantry_SL",\
 	"LOP_UA_Infantry_TL",\
-	["LOP_UA_UAZ_DshKM","LOP_UA_UAZ_AGS","LOP_UA_BMP2","LOP_UA_T72BB","LOP_UA_Mi8MTV3_UPK23","LOP_UA_Mi8MT_Cargo","rhs_l159_cdf_b_CDF","rhs_mi28n_vvs"]\
+	["LOP_UA_UAZ_DshKM","LOP_UA_UAZ_AGS","LOP_UA_BMP2","LOP_UA_T72BB","LOP_UA_Mi8MTV3_UPK23","RHS_AN2_B","rhs_l159_cdf_b_CDF","rhs_mi28n_vvs"]\
 ]
 
 //United Nations
