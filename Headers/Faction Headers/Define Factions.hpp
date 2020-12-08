@@ -67,7 +67,36 @@
 	65,\
 	66,\
 	67,\
-	68
+	68,\
+	69,\
+	70,\
+	71,\
+	72,\
+	73,\
+	74,\
+	75,\
+	76,\
+	77,\
+	78,\
+	79,\
+	80,\
+	81,\
+	82,\
+	83,\
+	84,\
+	85,\
+	86,\
+	87,\
+	88,\
+	89,\
+	90,\
+	91,\
+	92,\
+	93,\
+	94,\
+	95,\
+	96,\
+	97
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -105,6 +134,35 @@
 	"OPTRE - UNSC Army", \
 	"OPTRE - UNSC Marines", \
 	"OPTRE FC - Covenant", \
+	"PROJECT OPFOR - African Militia",\
+	"PROJECT OPFOR - Afghan National Army",\
+	"PROJECT OPFOR - Afghan National Police",\
+	"PROJECT OPFOR - Boko Harem",\
+	"PROJECT OPFOR - CDF",\
+	"PROJECT OPFOR - ChDKZ",\
+	"PROJECT OPFOR - Chernarus National Insurgents",\
+	"PROJECT OPFOR - Hellnic Armed Forces",\
+	"PROJECT OPFOR - Iraqi Armed Forces",\
+	"PROJECT OPFOR - Iraqi Armed Forces (Woodland)",\
+	"PROJECT OPFOR - Iraqi Special Forces",\
+	"PROJECT OPFOR - Iranian Armed Forces",\
+	"PROJECT OPFOR - Iranian Special Forces",\
+	"PROJECT OPFOR - Irish Republic Army",\
+	"PROJECT OPFOR - Islamic State",\
+	"PROJECT OPFOR - Korean Peoples Army",\
+	"PROJECT OPFOR - Kurdish Peshmerga",\
+	"PROJECT OPFOR - Middle East Militia",\
+	"PROJECT OPFOR - Novorossiya Armed Forces",\
+	"PROJECT OPFOR - PMC",\
+	"PROJECT OPFOR - Royal Army Corps of Sahrani",\
+	"PROJECT OPFOR - Syrian Armed Forces",\
+	"PROJECT OPFOR - Sahrani Liberation Army",\
+	"PROJECT OPFOR - Takistan Armed Forces",\
+	"PROJECT OPFOR - Turkish Armed Forces",\
+	"PROJECT OPFOR - Ukrainian Armed Forces",\
+	"PROJECT OPFOR - Ulseter Volunteer Force",\
+	"PROJECT OPFOR - Ultranationalists",\
+	"PROJECT OPFOR - United Nations",\
 	"RHS AFRF - Russia MSV (EMR)", \
 	"RHS AFRF - Russia MSV (Flora)", \
 	"RHS AFRF - Russia VDV (EMR)", \
@@ -177,6 +235,41 @@
 	OPTRE_ARMY_SNOW_UNITS, \
 	OPTRE_MARINE_UNITS, \
 	OPTRE_COVENANT_UNITS, \
+	
+
+	PROJOP_AFRICAN_MILITIA_UNITS,\
+	PROJOP_ANA_UNITS,\
+	PROJOP_ANP_UNITS,\
+	PROJOP_BOKO_HAREM_UNITS,\
+	PROJOP_CDF_UNITS,\
+	PROJOP_CHDKZ_UNITS,\
+	PROJOP_CNI_UNITS,\
+	PROJOP_HAF_UNITS,\
+	PROJOP_IAF_UNITS,\
+	PROJOP_IAF_WDL_UNITS,\
+	PROJOP_IAF_SF_UNITS,\
+	PROJOP_IRAN_UNITS,\
+	PROJOP_IRAN_SF_UNITS,\
+	PROJOP_IRA_UNITS,\
+	PROJOP_ISIS_UNITS,\
+	PROJOP_KPA_UNITS,\
+	PROJOP_KPF_UNITS,\
+	PROJOP_MEM_UNITS,\
+	PROJOP_NAF_UNITS,\
+	PROJOP_PMC_UNITS,\
+	PROJOP_RACS_UNITS,\
+	PROJOP_SAF_UNITS,\
+	PROJOP_SLA_UNITS,\
+	PROJOP_TAF_UNITS,\
+	PROJOP_TURK_UNITS,\
+	PROJOP_UAF_UNITS,\
+	PROJOP_UVF_UNITS,\
+	PROJOP_ULT_UNITS,\
+	PROJOP_UN_UNITS,\
+
+
+
+
 	RHS_AFRF_RUS_MSV_EMR_UNITS, \
 	RHS_AFRF_RUS_MSV_FLORA_UNITS, \
 	RHS_AFRF_RUS_VDV_EMR_UNITS, \
