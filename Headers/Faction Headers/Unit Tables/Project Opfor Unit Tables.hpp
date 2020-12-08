@@ -312,7 +312,7 @@
 	"LOP_IA_Infantry_Rifleman_3",\
 	"LOP_IA_Infantry_Rifleman_6",\
 	"LOP_IA_Infantry_SL",\
-	["LOP_IA_Offroad_M2","LOP_IA_M1025_W_M2","LOP_IA_BTR80","LOP_IA_T72BB","LOP_IA_Mi8MTV3_UPK23","RHS_C130J","RHSGREF_A29B_HIDF","RHS_AH64D_wd"]\
+	["LOP_IA_Offroad_M2","LOP_IA_M1025_W_M2","LOP_IA_BTR80","LOP_IA_T72BB","LOP_RACS_UH60M","RHS_C130J","RHSGREF_A29B_HIDF","RHS_AH64D_wd"]\
 ]
 
 // Iraqi Armed Forces Woodland
@@ -460,4 +460,42 @@
 	"LOP_PMC_Infantry_SL",\
 	"LOP_PMC_Infantry_TL",\
 	["LOP_PMC_Offroad_M2","LOP_ISTS_OPF_M1025_W_M2","rhsgref_BRDM2_vmf","rhs_btr80a_vdv","O_Heli_Light_02_unarmed_F","LOP_PMC_Mi8AMT","rhs_l159_cdf_b_CDF","rhs_mi28n_vvs"]\
+]
+
+
+//Royal Army Corps of Sahrani
+#define PROJOP_RACS_UNITS \
+[ \
+	"LOP_RACS_Infantry_Corpsman",\
+	"LOP_RACS_Infantry_Engineer",\
+	"LOP_RACS_Infantry_GL",\
+	"LOP_RACS_Infantry_GL_2",\
+	"LOP_RACS_Infantry_AT",\
+	"LOP_RACS_Infantry_AT_Asst",\
+	"LOP_RACS_Infantry_MG",\
+	"LOP_RACS_Infantry_MG_Asst",\
+	"LOP_RACS_Infantry_Marksman",\
+	"LOP_RACS_Infantry_Rifleman",\
+	"LOP_RACS_Infantry_Rifleman_2",\
+	"LOP_RACS_Infantry_Rifleman_3",\
+	"LOP_RACS_Infantry_SL",\
+	"LOP_RACS_Infantry_TL",\
+	["LOP_RACS_Landrover_M2","LOP_AA_M1025_W_M2","LOP_AA_BMP2","LOP_RACS_T72BB","LOP_RACS_UH60M","LOP_PMC_Mi8AMT","LOP_IRAN_CH47F","rhs_mi28n_vvsc"]\
+]
+
+//Turkish Armed Forces
+#define PROJOP_TURK_UNITS \
+[ \
+	"LOP_TRK_Infantry_AT_Asst",\
+	"LOP_TRK_Infantry_AT",\
+	"LOP_TRK_Infantry_Corpsman",\
+	"LOP_TRK_Infantry_Engineer",\
+	"LOP_TRK_Infantry_MG",\
+	"LOP_TRK_Infantry_MG_Asst",\
+	"LOP_TRK_Infantry_Marksman",\
+	"LOP_TRK_Infantry_Rifleman",\
+	"LOP_TRK_Infantry_Rifleman_2",\
+	"LOP_TRK_Infantry_SL",\
+	"LOP_TRK_Infantry_TL",\
+	["LOP_RACS_Landrover_M2","LOP_AA_M1025_W_M2","LOP_TRK_BTR80","LOP_RACS_T72BB","LOP_RACS_UH60M","LOP_PMC_Mi8AMT","LOP_IRAN_CH47F","rhs_mi28n_vvsc"]\
 ]
