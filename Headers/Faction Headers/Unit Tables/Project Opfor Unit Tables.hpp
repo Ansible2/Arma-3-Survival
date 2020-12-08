@@ -375,3 +375,65 @@
 	"LOP_PESH_Infantry_TL",\
 	["LOP_PESH_Offroad_M2","LOP_PESH_M1025_W_M2","LOP_IA_BMP1","LOP_IA_T34","LOP_IA_Mi8MTV3_UPK23","RHS_C130J","RHSGREF_A29B_HIDF","RHS_AH64D_wd"]\
 ]
+
+//Chernarus National Insurgents
+#define PROJOP_CNI_UNITS \
+[ \
+	"LOP_NAPA_Infantry_SL",\
+	"LOP_NAPA_Infantry_Engineer",\
+	"LOP_NAPA_Infantry_GL_2",\
+	"LOP_NAPA_Infantry_GL",\
+	"LOP_NAPA_Infantry_Rifleman_3",\
+	"LOP_NAPA_Infantry_Rifleman",\
+	"LOP_NAPA_Infantry_AT",\
+	"LOP_NAPA_Infantry_Rifleman_2",\
+	"LOP_NAPA_Infantry_Marksman",\
+	"LOP_NAPA_Infantry_MG",\
+	"LOP_NAPA_Infantry_MG_Asst",\
+	"LOP_NAPA_Infantry_Corpsman",\
+	"LOP_NAPA_Infantry_TL",\
+	"LOP_NAPA_Infantry_Prizrak",\
+	["LOP_NAPA_Offroad_M2","LOP_NAPA_Landrover_M2","","","I_C_Heli_Light_01_civil_F","",""]\
+]
+
+//Iranian Armed Forces
+#define PROJOP_IRAN_UNITS \
+[ \
+	"LOP_IRAN_Infantry_AA",\
+	"LOP_IRAN_Infantry_engineer",\
+	"LOP_IRAN_Infantry_Grenadier",\
+	"LOP_IRAN_Infantry_RPG",\
+	"LOP_IRAN_Infantry_RPG_Asst",\
+	"LOP_IRAN_Infantry_AR_2",\
+	"LOP_IRAN_Infantry_AR",\
+	"LOP_IRAN_Infantry_AR_Asst_2",\
+	"LOP_IRAN_Infantry_AR_Asst",\
+	"LOP_IRAN_Infantry_Marksman",\
+	"LOP_IRAN_Infantry_medic",\
+	"LOP_IRAN_Infantry_officer_armored",\
+	"LOP_IRAN_Infantry_Rifleman_2",\
+	"LOP_IRAN_Infantry_Rifleman",\
+	"LOP_IRAN_Infantry_Light",\
+	"LOP_IRAN_Infantry_LAT",\
+	"LOP_IRAN_Infantry_sergeant",\
+	"LOP_IRAN_Infantry_junior_sergeant",\
+	["LOP_IRAN_UAZ_DshKM","LOP_IRAN_BTR70","LOP_IRAN_BMP2","LOP_IRAN_T72BA","LOP_IRAN_CH47F","LOP_IRAN_CH47F","rhs_l159_cdf_b_CDF","rhs_mi28n_vvsc"]\
+]
+
+//Iranian Armed Forces SF
+#define PROJOP_IRAN_SF_UNITS \
+[ \
+	"LOP_IRAN_Infantry_SF_engineer",\
+	"LOP_IRAN_Infantry_SF_Grenadier",\
+	"LOP_IRAN_Infantry_SF_RPG",\
+	"LOP_IRAN_Infantry_SF_RPG_Asst",\
+	"LOP_IRAN_Infantry_SF_AR",\
+	"LOP_IRAN_Infantry_SF_AR_Asst",\
+	"LOP_IRAN_Infantry_SF_Marksman",\
+	"LOP_IRAN_Infantry_SF_medic",\
+	"LOP_IRAN_Infantry_SF_Rifleman",\
+	"LOP_IRAN_Infantry_SF_LAT",\
+	"LOP_IRAN_Infantry_SF_sergeant",\
+	"LOP_IRAN_Infantry_SF_junior_sergeant",\
+	["LOP_IRAN_UAZ_DshKM","LOP_IRAN_BTR70","LOP_IRAN_BMP2","LOP_IRAN_T72BA","LOP_IRAN_CH47F","LOP_IRAN_CH47F","rhs_l159_cdf_b_CDF","rhs_mi28n_vvsc"]\
+]
