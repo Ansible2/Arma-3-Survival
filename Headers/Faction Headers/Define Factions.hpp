@@ -65,7 +65,9 @@
 	63,\
 	64,\
 	65,\
-	66
+	66,\
+	67,\
+	68
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -119,6 +121,8 @@
 	"RHS GREF - CDF", \
 	"RHS GREF - ChDKZ", \
 	"RHS GREF - TLA", \
+	"RHS GREF - NAPA Militia", \
+	"RHS GREF - NAPA Paramilitary", \
 	"RHS USAF - US ARMY (Desert)", \
 	"RHS USAF - US ARMY (Desert CRYE)", \
 	"RHS USAF - US ARMY (Woodland)", \
@@ -189,6 +193,8 @@
 	RHS_GREF_CDF,\
 	RHS_GREF_CHDKZ,\
 	RHS_GREF_TLA,\
+	RHS_GREF_NAPA_MILITIA_UNITS,\
+	RHS_GREF_NAPA_PARAMILITARY_UNITS,\
 	RHS_USF_ARMY_DES_UNITS, \
 	RHS_USF_ARMY_DES_CRYE_UNITS, \
 	RHS_USF_ARMY_WOODLAND_UNITS, \

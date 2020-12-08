@@ -108,3 +108,42 @@
 	"rhsgref_tla_saboteur",\
 	["rhsgref_tla_offroad_armed","rhsgref_tla_offroad_at","rhsgref_tla_btr60","rhsgref_ins_t72ba","rhsgref_cdf_b_reg_Mi17Sh","RHS_AN2_B","rhsgref_cdf_b_su25","rhs_mi28n_vvsc"]\
 ]
+
+
+#define RHS_GREF_NAPA_MILITIA_UNITS \
+[\
+	"rhsgref_nat_specialist_aa",\
+	"rhsgref_nat_grenadier_rpg",\
+	"rhsgref_nat_commander",\
+	"rhsgref_nat_hunter",\
+	"rhsgref_nat_machinegunner",\
+	"rhsgref_nat_machinegunner_mg42",\
+	"rhsgref_nat_medic",\
+	"rhsgref_nat_militiaman_kar98k",\
+	"rhsgref_nat_rifleman_akms",\
+	"rhsgref_nat_rifleman_aks74",\
+	"rhsgref_nat_grenadier",\
+	"rhsgref_nat_rifleman_mp44",\
+	"rhsgref_nat_rifleman",\
+	"rhsgref_nat_rifleman_vz58",\
+	"rhsgref_nat_saboteur",\
+	"rhsgref_nat_scout",\
+	"rhsgref_nat_warlord",\
+	["rhsgref_nat_uaz_dshkm","rhs_tigr_sts_msv","rhsgref_BRDM2_vmf","rhsgref_nat_btr70","rhsgref_cdf_b_reg_Mi17Sh","RHS_AN2_B","rhs_l159_cdf_b_CDF","rhs_mi28n_vvs"]\
+]
+#define RHS_GREF_NAPA_PARAMILITARY_UNITS \
+[\
+	"rhsgref_nat_pmil_specialist_aa",\
+	"rhsgref_nat_pmil_grenadier_rpg",\
+	"rhsgref_nat_pmil_commander",\
+	"rhsgref_nat_pmil_machinegunner",\
+	"rhsgref_nat_pmil_hunter",\
+	"rhsgref_nat_pmil_medic",\
+	"rhsgref_nat_pmil_rifleman_akm",\
+	"rhsgref_nat_pmil_rifleman_aksu",\
+	"rhsgref_nat_pmil_grenadier",\
+	"rhsgref_nat_pmil_rifleman",\
+	"rhsgref_nat_pmil_saboteur",\
+	"rhsgref_nat_pmil_scout",\
+	["rhsgref_nat_uaz_dshkm","rhs_tigr_sts_msv","rhsgref_BRDM2_vmf","rhsgref_nat_btr70","rhsgref_cdf_b_reg_Mi17Sh","RHS_AN2_B","rhs_l159_cdf_b_CDF","rhs_mi28n_vvs"]\
+]
