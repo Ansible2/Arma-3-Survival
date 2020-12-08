@@ -84,27 +84,27 @@
 	"CONTACT - NATO WOODLAND", \
 	"CONTACT - LDF", \
 	"CONTACT - Spetznas", \
-	"OPTRE - UNSC Marines", \
-	"OPTRE - ODSTs", \
-	"OPTRE - UNSC Army Snow", \
-	"OPTRE - United Rebel Front", \
 	"OPTRE - Battle Jumpers Urban", \
 	"OPTRE - Insurgents", \
+	"OPTRE - ODSTs", \
+	"OPTRE - United Rebel Front", \
+	"OPTRE - UNSC Army", \
+	"OPTRE - UNSC Marines", \
 	"OPTRE FC - Covenant", \
 	"OPCAN - Colonial Guard Corps", \
+	"OPCAN - Colonial Military Authority", \
+	"OPCAN - Colonial Police Force", \
+	"OPCAN - Fridens", \
+	"OPCAN - Fridens Desert", \
+	"OPCAN - Fridens Woodland", \
+	"OPCAN - Koslovics", \
+	"OPCAN - United Rebel Army", \
 	"OPCAN - UNSC Army Desert", \
 	"OPCAN - UNSC Army Woodland", \
 	"OPCAN - UNSC Marine CE-A", \
 	"OPCAN - UNSC Marine Desert", \
 	"OPCAN - UNSC Marine Infinite", \
 	"OPCAN - UNSC Marine Woodland", \
-	"OPCAN - United Rebel Army", \
-	"OPCAN - Koslovics", \
-	"OPCAN - Fridens Woodland", \
-	"OPCAN - Fridens Desert", \
-	"OPCAN - Fridens", \
-	"OPCAN - Colonial Military Authority", \
-	"OPCAN - Colonial Police Force", \
 	"RHS AFRF - Russia MSV (EMR)", \
 	"RHS AFRF - Russia MSV (Flora)", \
 	"RHS AFRF - Russia VDV (EMR)", \
@@ -115,22 +115,22 @@
 	"RHS AFRF - Russia VMF (RECON)", \
 	"RHS AFRF - Russia VMF (Flora)", \
 	"RHS AFRF - Russia VMF (OSN)", \
-	"RHS GREF - Horizon Islands Defence Force", \
+	"RHS GREF - CDF", \
 	"RHS GREF - CDF Guard", \
 	"RHS GREF - CDF Paratroopers", \
-	"RHS GREF - CDF", \
 	"RHS GREF - ChDKZ", \
-	"RHS GREF - TLA", \
+	"RHS GREF - Horizon Islands Defence Force", \
 	"RHS GREF - NAPA Militia", \
 	"RHS GREF - NAPA Paramilitary", \
+	"RHS GREF - TLA", \
 	"RHS USAF - US ARMY (Desert)", \
 	"RHS USAF - US ARMY (Desert CRYE)", \
 	"RHS USAF - US ARMY (Woodland)", \
 	"RHS USAF - US ARMY (Woodland CRYE)", \
 	"RHS USAF - MARSOC", \
-	"RHS USAF - USMC RECON (Desert)", \
 	"RHS USAF - USMC Infantry (Desert)", \
 	"RHS USAF - USMC Infantry (Woodland)", \
+	"RHS USAF - USMC RECON (Desert)", \
 	"RHS USAF - USMC RECON (Woodland)", \
 	"Zombies & Demons - Brittle Crawlers", \
 	"Zombies & Demons - Demons", \
@@ -205,10 +205,10 @@
 	RHS_USF_USMC_WOODLAND_UNITS, \
 	RHS_USF_USMC_WOODLAND_RECON_UNITS, \
 	ZND_BRITLLE_CRAWLERS, \
-	ZND_DEMONS, \
-	ZND_FAST, \
-	ZND_MEDIUM, \
-	ZND_SLOW, \
-	ZND_SPIDERS, \
+	ZND_DEMONS,\
+	ZND_FAST,\
+	ZND_MEDIUM,\
+	ZND_SLOW,\
+	ZND_SPIDERS,\
 	ZND_WALKERS \
 ]
