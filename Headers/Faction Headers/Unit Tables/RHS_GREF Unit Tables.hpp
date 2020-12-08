@@ -64,7 +64,7 @@
 ]
 
 // ChDKZ
-#define RHS_GREF_ChDKZ \
+#define RHS_GREF_CHDKZ \
 [\
 	"rhsgref_ins_specialist_aa",\
 	"rhsgref_ins_grenadier_rpg",\
