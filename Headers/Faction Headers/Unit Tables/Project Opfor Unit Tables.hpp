@@ -480,7 +480,7 @@
 	"LOP_RACS_Infantry_Rifleman_3",\
 	"LOP_RACS_Infantry_SL",\
 	"LOP_RACS_Infantry_TL",\
-	["LOP_RACS_Landrover_M2","LOP_AA_M1025_W_M2","LOP_AA_BMP2","LOP_RACS_T72BB","LOP_RACS_UH60M","LOP_PMC_Mi8AMT","LOP_IRAN_CH47F","rhs_mi28n_vvsc"]\
+	["LOP_RACS_Landrover_M2","LOP_AA_M1025_W_M2","LOP_AA_BMP2","LOP_RACS_T72BB","LOP_RACS_UH60M","LOP_IRAN_CH47F","rhs_l159_cdf_b_CDF","rhs_mi28n_vvsc"]\
 ]
 
 //Turkish Armed Forces
@@ -497,5 +497,88 @@
 	"LOP_TRK_Infantry_Rifleman_2",\
 	"LOP_TRK_Infantry_SL",\
 	"LOP_TRK_Infantry_TL",\
-	["LOP_RACS_Landrover_M2","LOP_AA_M1025_W_M2","LOP_TRK_BTR80","LOP_RACS_T72BB","LOP_RACS_UH60M","LOP_PMC_Mi8AMT","LOP_IRAN_CH47F","rhs_mi28n_vvsc"]\
+	["LOP_RACS_Landrover_M2","LOP_AA_M1025_W_M2","LOP_TRK_BTR80","LOP_RACS_T72BB","LOP_RACS_UH60M","LOP_IRAN_CH47F","rhs_l159_cdf_b_CDF","rhs_mi28n_vvsc"]\
+]
+
+//Ukrainian Armed Forces
+#define PROJOP_UAF_UNITS \
+[ \
+	"LOP_UKR_Infantry_AA",\
+	"LOP_UKR_Infantry_engineer",\
+	"LOP_UKR_Infantry_Grenadier",\
+	"LOP_UKR_Infantry_RPG",\
+	"LOP_UKR_Infantry_RPG_Asst",\
+	"LOP_UKR_Infantry_junior_sergeant",\
+	"LOP_UKR_Infantry_AR",\
+	"LOP_UKR_Infantry_AR_Asst",\
+	"LOP_UKR_Infantry_Marksman",\
+	"LOP_UKR_Infantry_medic",\
+	"LOP_UKR_Infantry_officer",\
+	"LOP_UKR_Infantry_Rifleman",\
+	"LOP_UKR_Infantry_Light",\
+	"LOP_UKR_Infantry_LAT",\
+	"LOP_UKR_Infantry_RShG2",\
+	"LOP_UKR_Infantry_sergeant",\
+	["LOP_UKR_UAZ_DshKM","LOP_AA_M1025_W_M2","LOP_UKR_BTR80","LOP_UKR_T72BB","LOP_UKR_Mi8MTV3_UPK23","LOP_UKR_Mi8MT_Cargo","rhs_l159_cdf_b_CDF","rhs_mi28n_vvsc"]\
+]
+
+//Ulseter Volunteer Force
+#define PROJOP_UVF_UNITS \
+[ \
+	"LOP_UVF_Infantry_IED",\
+	"LOP_UVF_Infantry_TL",\
+	"LOP_UVF_Infantry_Rifleman",\
+	"LOP_UVF_Infantry_Rifleman_lite",\
+	"LOP_UVF_Infantry_GL",\
+	"LOP_UVF_Infantry_Corpsman",\
+	"LOP_UVF_Infantry_AR_Asst",\
+	"LOP_UVF_Infantry_AR",\
+	"LOP_UVF_Infantry_AT",\
+	"LOP_UVF_Infantry_Marksman",\
+	"LOP_UVF_Infantry_Rifleman_vz58",\
+	"LOP_UVF_Infantry_Driver",\
+	"LOP_UVF_Infantry_SL",\
+	["LOP_UVF_Offroad_M2","LOP_ISTS_OPF_M1025_W_M2","rhsgref_BRDM2_vmf","rhs_btr80a_vdv","LOP_UKR_Mi8MTV3_UPK23","O_Heli_Light_02_unarmed_F","rhs_l159_cdf_b_CDF","rhs_mi28n_vvs"]\
+]
+
+//Ultranationalists
+#define PROJOP_ULT_UNITS \
+[ \
+	"LOP_UA_Infantry_AT_Asst",\
+	"LOP_UA_Infantry_Corpsman",\
+	"LOP_UA_Infantry_Engineer",\
+	"LOP_UA_Infantry_GL",\
+	"LOP_UA_Infantry_AT",\
+	"LOP_UA_Infantry_Rifleman_2",\
+	"LOP_UA_Infantry_Rifleman",\
+	"LOP_UA_Infantry_Rifleman_3",\
+	"LOP_UA_Infantry_Marksman",\
+	"LOP_UA_Infantry_MG",\
+	"LOP_UA_Infantry_MG_Asst",\
+	"LOP_UA_Officer",\
+	"LOP_UA_Infantry_SL",\
+	"LOP_UA_Infantry_TL",\
+	["LOP_UA_UAZ_DshKM","LOP_UA_UAZ_AGS","LOP_UA_BMP2","LOP_UA_T72BB","LOP_UA_Mi8MTV3_UPK23","LOP_UA_Mi8MT_Cargo","rhs_l159_cdf_b_CDF","rhs_mi28n_vvs"]\
+]
+
+//United Nations
+#define PROJOP_UN_UNITS \
+[ \
+	"LOP_UN_Infantry_AA",\
+	"LOP_UN_Infantry_AT_Asst",\
+	"LOP_UN_Infantry_Corpsman",\
+	"LOP_UN_Infantry_Engineer",\
+	"LOP_UN_Infantry_GL",\
+	"LOP_UN_Infantry_AT",\
+	"LOP_UN_Infantry_MG",\
+	"LOP_UN_Infantry_MG_Asst",\
+	"LOP_UN_Infantry_Marksman",\
+	"LOP_UN_Infantry_Officer",\
+	"LOP_UN_Infantry_Rifleman",\
+	"LOP_UN_Infantry_Rifleman_2",\
+	"LOP_UN_Infantry_Rifleman_3",\
+	"LOP_UN_Infantry_Rifleman_4",\
+	"LOP_UN_Infantry_SL",\
+	"LOP_UN_Infantry_TL",\
+	["LOP_UN_UAZ_DshKM","LOP_UN_BTR60","LOP_UN_BTR70","LOP_UN_BMP2D","LOP_UN_Mi8MTV3_UPK23","LOP_UN_Mi8MT_Cargo","rhs_l159_cdf_b_CDF","rhs_mi28n_vvs"]\
 ]
