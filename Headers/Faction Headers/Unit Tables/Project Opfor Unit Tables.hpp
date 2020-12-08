@@ -221,3 +221,157 @@
 	"LOP_US_Infantry_TL",\
 	["LOP_US_UAZ_DshKM","LOP_US_BTR60","LOP_US_BMP2","LOP_US_T72BA","LOP_TKA_Mi8MTV3_UPK23","RHS_AN2_B","rhsgref_cdf_b_su25","rhs_mi28n_vvsc"]\
 ]
+
+// Afghan National Army
+#define PROJOP_ANA_UNITS \
+[\
+	"LOP_AA_Infantry_Corpsman",\
+	"LOP_AA_Infantry_Engineer",\
+	"LOP_AA_Infantry_GL",\
+	"LOP_AA_Infantry_AT",\
+	"LOP_AA_Infantry_AT_Asst",\
+	"LOP_AA_Infantry_MG_2",\
+	"LOP_AA_Infantry_MG",\
+	"LOP_AA_Infantry_MG_Asst_2",\
+	"LOP_AA_Infantry_MG_Asst",\
+	"LOP_AA_Infantry_Marksman",\
+	"LOP_AA_Infantry_Rifleman_3",\
+	"LOP_AA_Infantry_Rifleman_2",\
+	"LOP_AA_Infantry_Rifleman",\
+	"LOP_AA_Infantry_SL",\
+	"LOP_AA_Infantry_TL",\
+	["LOP_AA_M1025_W_M2","LOP_AA_M1117_D","LOP_AA_BMP2_C","LOP_AA_T72BA","LOP_AA_Mi8MTV3_UPK23","RHS_C130J","RHSGREF_A29B_HIDF","rhs_mi28n_vvsc"]\
+]
+
+//Afghan National Police
+#define PROJOP_ANP_UNITS \
+[\
+	"LOP_AA_Police_Corpsman",\
+	"LOP_AA_Police_MG",\
+	"LOP_AA_Police_MG_Asst",\
+	"LOP_AA_Police_Rifleman_2",\
+	"LOP_AA_Police_Rifleman",\
+	"LOP_AA_Police_Rifleman_3",\
+	"LOP_AA_Police_SL",\
+	"LOP_AA_Police_TL",\
+	["LOP_AA_Offroad_M2_Police","LOP_AA_M113_W","LOP_AA_M1117_D","LOP_AA_BMP2_C","LOP_AA_Mi8MTV3_UPK23","RHS_C130J","RHSGREF_A29B_HIDF","rhs_mi28n_vvsc"]\
+]
+
+#define PROJOP_CDF_UNITS \
+[\
+	"LOP_CDF_Infantry_AA",\
+	"LOP_CDF_Infantry_AT_Asst",\
+	"LOP_CDF_Infantry_Corpsman",\
+	"LOP_CDF_Infantry_Engineer",\
+	"LOP_CDF_Infantry_GL",\
+	"LOP_CDF_Infantry_AT",\
+	"LOP_CDF_Infantry_MG",\
+	"LOP_CDF_Infantry_MG_2",\
+	"LOP_CDF_Infantry_MG_Asst",\
+	"LOP_CDF_Infantry_Marksman",\
+	"LOP_CDF_Infantry_Officer",\
+	"LOP_CDF_Infantry_Rifleman",\
+	"LOP_CDF_Infantry_Rifleman_2",\
+	"LOP_CDF_Infantry_SL",\
+	"LOP_CDF_Infantry_TL",\
+	["LOP_CDF_UAZ_DshKM","rhsgref_BRDM2_b","LOP_CDF_BTR70","LOP_CDF_T72BB","LOP_CDF_Mi8MTV3_UPK23","RHS_AN2_B","LOP_CDF_SU25SM","rhs_mi28n_vvsc"]\
+]
+
+// Hellnic Armed Forces
+#define PROJOP_HAF_UNITS \
+[\
+	"LOP_GRE_Infantry_AT_Asst",\
+	"LOP_GRE_Infantry_AT",\
+	"LOP_GRE_Infantry_Corpsman",\
+	"LOP_GRE_Infantry_Engineer",\
+	"LOP_GRE_Infantry_MG",\
+	"LOP_GRE_Infantry_MG_Asst",\
+	"LOP_GRE_Infantry_Rifleman",\
+	"LOP_GRE_Infantry_Rifleman_2",\
+	"LOP_GRE_Infantry_SL",\
+	"LOP_GRE_Infantry_TL",\
+	["LOP_GRE_M1025_W_M2","LOP_GRE_M1025_W_Mk19","rhsgref_hidf_m113a3_m2","rhsgref_hidf_m113a3_mk19","rhs_uh1h_hidf","RHS_C130J","RHSGREF_A29B_HIDF","RHS_AH64D_wd"]\
+]
+
+// Iraqi Armed Forces
+#define PROJOP_IAF_UNITS \
+[\
+	"LOP_IA_Infantry_Corpsman",\
+	"LOP_IA_Infantry_Engineer",\
+	"LOP_IA_Infantry_GL",\
+	"LOP_IA_Infantry_AT",\
+	"LOP_IA_Infantry_AT_Asst",\
+	"LOP_IA_Infantry_MG_2",\
+	"LOP_IA_Infantry_MG",\
+	"LOP_IA_Infantry_MG_Asst_2",\
+	"LOP_IA_Infantry_MG_Asst",\
+	"LOP_IA_Infantry_Marksman",\
+	"LOP_IA_Infantry_Rifleman",\
+	"LOP_IA_Infantry_Rifleman_4",\
+	"LOP_IA_Infantry_Rifleman_2",\
+	"LOP_IA_Infantry_Rifleman_3",\
+	"LOP_IA_Infantry_Rifleman_6",\
+	"LOP_IA_Infantry_SL",\
+	["LOP_IA_Offroad_M2","LOP_IA_M1025_W_M2","LOP_IA_BTR80","LOP_IA_T72BB","LOP_IA_Mi8MTV3_UPK23","RHS_C130J","RHSGREF_A29B_HIDF","RHS_AH64D_wd"]\
+]
+
+// Iraqi Armed Forces Woodland
+#define PROJOP_IAF_WDL_UNITS \
+[\
+	"LOP_IA_Infantry_W_Corpsman",\
+	"LOP_IA_Infantry_W_Engineer",\
+	"LOP_IA_Infantry_W_GL",\
+	"LOP_IA_Infantry_W_AT",\
+	"LOP_IA_Infantry_W_AT_Asst",\
+	"LOP_IA_Infantry_W_MG_2",\
+	"LOP_IA_Infantry_W_MG",\
+	"LOP_IA_Infantry_W_MG_Asst_2",\
+	"LOP_IA_Infantry_W_MG_Asst",\
+	"LOP_IA_Infantry_W_Marksman",\
+	"LOP_IA_Infantry_W_Rifleman_3",\
+	"LOP_IA_Infantry_W_Rifleman",\
+	"LOP_IA_Infantry_W_Rifleman_4",\
+	"LOP_IA_Infantry_W_Rifleman_2",\
+	"LOP_IA_Infantry_W_Rifleman_6",\
+	"LOP_IA_Infantry_W_SL",\
+	"LOP_IA_Infantry_W_TL",\
+	["LOP_IA_Offroad_M2","LOP_IA_M1025_W_M2","LOP_IA_BTR80","LOP_IA_T72BB","LOP_IA_Mi8MTV3_UPK23","RHS_C130J","RHSGREF_A29B_HIDF","RHS_AH64D_wd"]\
+]
+
+
+// Iraqi Armed Forces SF
+#define PROJOP_IAF_SF_UNITS \
+[\
+	"PO_IA_Infantry_SF_Corpsman",\
+	"PO_IA_Infantry_SF_AT",\
+	"PO_IA_Infantry_SF_AT_Asst",\
+	"PO_IA_Infantry_SF_MG",\
+	"PO_IA_Infantry_SF_MG_Asst",\
+	"PO_IA_Infantry_SF_Marksman",\
+	"PO_IA_Infantry_SF_Mechanic",\
+	"PO_IA_Infantry_SF_Operator",\
+	"PO_IA_Infantry_SF_Operator_2",\
+	"PO_IA_Infantry_SF_GL",\
+	"PO_IA_Infantry_SF_SL",\
+	"PO_IA_Infantry_SF_TL",\
+	["LOP_IA_Offroad_M2","LOP_IA_M1025_W_M2","LOP_IA_BTR80","LOP_IA_M1A1_AIM_D","LOP_IA_Mi8MTV3_UPK23","RHS_C130J","RHSGREF_A29B_HIDF","RHS_AH64D_wd"]\
+]
+
+// Kurdish Peshmerga 
+#define PROJOP_KPF_UNITS \
+[\
+	"LOP_Pesh_Infantry_Corpsman",\
+	"LOP_PESH_Infantry_SL",\
+	"LOP_PESH_Infantry_Engineer",\
+	"LOP_PESH_Infantry_GL",\
+	"LOP_PESH_Infantry_AT",\
+	"LOP_PESH_Infantry_MG",\
+	"LOP_PESH_Infantry_Marksman",\
+	"LOP_PESH_Infantry_Rifleman_4",\
+	"LOP_PESH_Infantry_Rifleman",\
+	"LOP_PESH_Infantry_Rifleman_2",\
+	"LOP_PESH_Infantry_Rifleman_3",\
+	"LOP_PESH_Infantry_Sniper",\
+	"LOP_PESH_Infantry_TL",\
+	["LOP_PESH_Offroad_M2","LOP_PESH_M1025_W_M2","LOP_IA_BMP1","LOP_IA_T34","LOP_IA_Mi8MTV3_UPK23","RHS_C130J","RHSGREF_A29B_HIDF","RHS_AH64D_wd"]\
+]
