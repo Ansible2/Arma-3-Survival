@@ -44,7 +44,17 @@
     "OPTRE_UNSC_ODST_Soldier_Scout_AT", \
     "OPTRE_UNSC_ODST_Soldier_Scout_Sniper", \
     "OPTRE_UNSC_ODST_Soldier_TeamLeader", \
-    ["OPTRE_M12_LRV","OPTRE_M12G1_LRV","OPTRE_M412_IFV_UNSC","","","","","",""]\
+    [\
+        "OPTRE_M12_LRV",\
+        "OPTRE_M12G1_LRV",\
+        "OPTRE_M412_IFV_UNSC",\
+        "",\
+        "",\
+        "",\
+        "",\
+        "",\
+        ""\
+    ]\
 ]
 
 #define OPTRE_ARMY_SNOW_UNITS \
