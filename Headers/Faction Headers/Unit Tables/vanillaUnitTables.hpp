@@ -16,7 +16,7 @@
 		"B_MRAP_01_hmg_F",\ 					1 // heavy car
 		"B_APC_Wheeled_01_cannon_F",\ 			2 // light armour
 		"B_MBT_01_cannon_F",\ 					3 // heavy armour
-		"B_Heli_Transport_01_F",\ 				4 // transport aircraft (used for door gunner)
+		"B_Heli_Transport_01_F",\ 				4 // transport Helicopter (used for door gunner)
 		"B_T_VTOL_01_vehicle_F",\ 				5 // cargo aircraft (used to paradrop from and drop off arsenal)
 		"B_Plane_CAS_01_F",\ 					6 // CAS plane 
 		"B_Heli_Attack_01_dynamicLoadout_F",\ 	7 // attack helicopter
@@ -67,7 +67,17 @@
 	"B_Patrol_Soldier_M_F", \
 	"B_Patrol_Soldier_AT_F", \
 	"B_Patrol_Soldier_TL_F", \
-	["B_LSV_01_armed_F","B_MRAP_01_hmg_F","B_APC_Wheeled_01_cannon_F","B_MBT_01_cannon_F","B_Heli_Transport_01_F","B_T_VTOL_01_vehicle_F","B_Plane_CAS_01_F","B_Heli_Attack_01_dynamicLoadout_F","B_T_VTOL_01_armed_F"]\
+	[\
+		"B_LSV_01_armed_F",\
+		"B_MRAP_01_hmg_F",\
+		"B_APC_Wheeled_01_cannon_F",\
+		"B_MBT_01_cannon_F",\
+		"B_Heli_Transport_01_F",\
+		"B_T_VTOL_01_vehicle_F",\
+		"B_Plane_CAS_01_F",\
+		"B_Heli_Attack_01_dynamicLoadout_F",\
+		"B_T_VTOL_01_armed_F"\
+	]\
 ]
 
 #define NATO_PACIFIC_UNITS \
@@ -187,7 +197,17 @@
 	"O_recon_F", \
 	"O_recon_LAT_F", \
 	"O_recon_TL_F", \
-	["O_LSV_02_armed_F","O_MRAP_02_hmg_F","O_APC_Wheeled_02_rcws_v2_F","O_MBT_02_cannon_F","O_Heli_Light_02_unarmed_F","O_Heli_Transport_04_box_F","O_Plane_CAS_02_dynamicLoadout_F","O_Heli_Attack_02_dynamicLoadout_F",""]\
+	[\
+		"O_LSV_02_armed_F",\
+		"O_MRAP_02_hmg_F",\
+		"O_APC_Wheeled_02_rcws_v2_F",\
+		"O_MBT_02_cannon_F",\
+		"O_Heli_Light_02_unarmed_F",\
+		"O_Heli_Transport_04_box_F",\
+		"O_Plane_CAS_02_dynamicLoadout_F",\
+		"O_Heli_Attack_02_dynamicLoadout_F",\
+		""\
+	]\
 ]
 
 #define CSAT_PACIFIC_UNITS \
