@@ -126,7 +126,6 @@ localNamespace setVariable ["KISKA_fnc_staticline_doEJect",{
 		_unit setUnitLoadout _loadout;
 	};
 }];
-attachedObjects
 
 // execute eject
 {
