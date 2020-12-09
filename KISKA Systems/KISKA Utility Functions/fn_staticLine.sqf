@@ -115,7 +115,7 @@ localNamespace setVariable ["KISKA_fnc_staticline_doEJect",{
 		};
 
 		waitUntil { 
-			if (((getPosATL _unit) select 2) < 1) exitWith {true};
+			if (((getPosATL _unit) select 2) < 0.1 OR {isTouchingGround _unit}) exitWith {true};
 			sleep 2;
 			false;
 		};
@@ -126,7 +126,7 @@ localNamespace setVariable ["KISKA_fnc_staticline_doEJect",{
 		_unit setUnitLoadout _loadout;
 	};
 }];
-
+attachedObjects
 
 // execute eject
 {
