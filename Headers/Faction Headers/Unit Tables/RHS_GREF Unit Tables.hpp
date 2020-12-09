@@ -12,7 +12,14 @@
 	"rhsgref_hidf_sniper",\
 	"rhsgref_hidf_squadleader",\
 	"rhsgref_hidf_teamleader",\
-	["rhsgref_hidf_m1025_m2","rhsgref_hidf_m1025_mk19","rhsgref_hidf_m113a3_m2","rhsgref_hidf_m113a3_mk19","rhs_uh1h_hidf","RHS_C130J","RHSGREF_A29B_HIDF","RHS_AH64D_wd"]\
+	[\
+		"rhsgref_hidf_m1025_m2",\
+		"rhsgref_hidf_m1025_mk19",\
+		"rhsgref_hidf_m113a3_m2",\
+		"rhsgref_hidf_m113a3_mk19",\
+		"rhs_uh1h_hidf","RHS_C130J",\
+		"RHSGREF_A29B_HIDF","RHS_AH64D_wd"\
+	]\
 ]
 
 // CDF
@@ -28,7 +35,16 @@
 	"rhsgref_cdf_b_ngd_rifleman_lite",\
 	"rhsgref_cdf_b_ngd_rifleman_rpg75",\
 	"rhsgref_cdf_b_ngd_squadleader",\
-	["rhsgref_cdf_b_reg_uaz_dshkm","rhsgref_BRDM2_b","rhsgref_cdf_b_bmp2e","rhsgref_cdf_b_t72ba_tv","rhsgref_cdf_b_reg_Mi17Sh","RHS_AN2_B","rhsgref_cdf_b_su25","rhs_mi28n_vvsc"]\
+	[\
+		"rhsgref_cdf_b_reg_uaz_dshkm",\
+		"rhsgref_BRDM2_b",\
+		"rhsgref_cdf_b_bmp2e",\
+		"rhsgref_cdf_b_t72ba_tv",\
+		"rhsgref_cdf_b_reg_Mi17Sh",\
+		"RHS_AN2_B",\
+		"rhsgref_cdf_b_su25",\
+		"rhs_mi28n_vvsc"\
+	]\
 ]
 
 #define RHS_GREF_CDF_PARA \
