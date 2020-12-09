@@ -25,17 +25,17 @@ params [
 ];
 
 if (isNull _configToSearch) exitWith {
-	"_configToSearch isNull" call BIS_fnc_error;
+	"BLWK_fnc_createBuildObjectsArray: _configToSearch isNull" call BIS_fnc_error;
 };
 
 if !(isClass _configToSearch) exitWith {
-	["_configToSearch %1 is not a class",_configToSearch] call BIS_fnc_error;
+	["BLWK_fnc_createBuildObjectsArray: _configToSearch %1 is not a class",_configToSearch] call BIS_fnc_error;
 };
 
 private _configs = "true" configClasses _configToSearch;
 
 if (_configs isEqualTo []) exitWith {
-	["No classes found in _configToSearch %1",_configToSearch] call BIS_fnc_error;
+	["BLWK_fnc_createBuildObjectsArray: No classes found in _configToSearch %1",_configToSearch] call BIS_fnc_error;
 };
 
 private _returnArray = [];
@@ -49,7 +49,8 @@ private [
 	"_attachmentY_temp",
 	"_attachmentZ_temp",
 	"_invincible_temp",
-	"_keepInventory_temp"
+	"_keepInventory_temp",
+	"_detectCollision_temp"
 ];
 _configs apply {
 	_class_temp = configName _x;
@@ -64,6 +65,7 @@ _configs apply {
 		_attachmentZ_temp = [_x >> "attachmentZ"] call BIS_fnc_getCfgData;
 		_invincible_temp = [_x >> "invincible"] call BIS_fnc_getCfgDataBool;
 		_keepInventory_temp = [_x >> "keepInventory"] call BIS_fnc_getCfgDataBool;
+		_detectCollision_temp = [_x >> "detectCollsion"] call BIS_fnc_getCfgDataBool;
 
 
 		_returnArray pushBack [
@@ -73,7 +75,8 @@ _configs apply {
 			[_rotation_temp,[_attachmentX_temp,_attachmentY_temp,_attachmentZ_temp]],
 			_hasAI_temp,
 			_invincible_temp,
-			_keepInventory_temp
+			_keepInventory_temp,
+			_detectCollision_temp
 		];
 	};
 };

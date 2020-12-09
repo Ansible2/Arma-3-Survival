@@ -11,6 +11,7 @@ class BLWK_genericBuildItemBase
 	attachmentZ = 1; // height
 	invincible = 0; // 0 false, 1 true
 	keepInventory = 0; // don't clear inventory
+	detectCollsion = 1; // registers with ai collision script
 };
 class BLWK_genericTurretBase: BLWK_genericBuildItemBase
 {
@@ -19,6 +20,7 @@ class BLWK_genericTurretBase: BLWK_genericBuildItemBase
 	attachmentY = 2;
 	attachmentZ = 1;
 	invincible = 1;
+	detectCollsion = 0;
 };
 
 class BLWK_buildableItems
@@ -183,6 +185,7 @@ class BLWK_buildableItems
 		rotation = 90;
 		attachmentY = 2;
 		invincible = 1;
+		detectCollsion = 0;
 	};
 
 	class Land_GH_Stairs_F : BLWK_genericBuildItemBase
@@ -223,6 +226,7 @@ class BLWK_buildableItems
 		price = 1200;
 		category = STORAGE_CATEGORY;
 		invincible = 1;
+		detectCollsion = 0;
 	};
 
 	class B_HMG_01_high_F : BLWK_genericTurretBase
@@ -256,6 +260,7 @@ class BLWK_buildableItems
 		rotation = 180;
 		attachmentY = 6;
 		attachmentZ = 5;
+		detectCollsion = 0;
 	};
 
 	class B_HMG_01_A_F : BLWK_genericTurretBase
@@ -344,6 +349,7 @@ class BLWK_buildableItems
 		category = STORAGE_CATEGORY;
 		attachmentY = 2;
 		keepInventory = 1;
+		detectCollsion = 0;
 	};
 	class ACE_medicalSupplyCrate : BLWK_genericBuildItemBase
 	{
@@ -351,6 +357,7 @@ class BLWK_buildableItems
 		category = STORAGE_CATEGORY;
 		attachmentY = 2;
 		keepInventory = 1;
+		detectCollsion = 0;
 	};
 	#include "OPTRE Build Items.hpp"
 	#include "RHS Build Items.hpp"
