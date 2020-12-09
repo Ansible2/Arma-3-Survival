@@ -41,7 +41,8 @@ params [
 	"", // don't need attachment info
 	"_hasAi",
 	["_indestructable",false],
-	["_keepInventory",false]
+	["_keepInventory",false],
+	["_doDetectCollision",false]
 ];
 
 /*
@@ -82,6 +83,11 @@ null = [_purchasedObject,player,true] spawn BLWK_fnc_pickupObject;
 
 sleep 1;
 [_purchasedObject] call BLWK_fnc_addBuildableObjectActions; // give local player object actions
+
+if (_doDetectCollision) then {
+	// only the AI needs to know about it
+	_purchasedObject setVariable ["BLWK_collisionObject",true,BLWK_theAIHandlerOwnerID];
+};
 
 /*
 	Due to network issues with setOwner

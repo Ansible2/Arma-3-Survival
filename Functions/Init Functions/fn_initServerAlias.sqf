@@ -25,6 +25,7 @@ null = [] spawn BLWK_fnc_createBattleAmbienceSound;
 
 sleep (BLWK_timeBetweenRounds - 15);
 null = remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
+
 sleep 15;
 
 null = [] spawn BLWK_fnc_startWave;

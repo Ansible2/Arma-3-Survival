@@ -30,6 +30,8 @@ if (isNil "_group") then {
 
 null = [_group] spawn BLWK_fnc_pathingLoop;
 
+null = [_unit] spawn BLWK_fnc_aiCollisionLoop;
+
 null = [_group] spawn BLWK_fnc_startStalkingPlayers;
 
 

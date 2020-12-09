@@ -56,16 +56,21 @@ private "_playerTemp";
 _players apply {
 	_playerTemp = _x;
 
-	if (lifeState _playerTemp == "DEAD") exitWith {
-		[_playerTemp] remoteExec ["forceRespawn",_playerTemp];
-	};
-	if (lifeState _playerTemp == "INCAPACITATED") then {
-		if (BLWK_dontUseRevive) then {
-			if (BLWK_ACELoaded) then {
-				[_playerTemp] remoteExecCall ["ace_medical_treatment_fnc_fullHealLocal",_playerTemp];
+	if (!alive _playerTemp) then {
+		// add a single respawn ticket for each dead unit
+		private _respawns = [BLUFOR,1] call BIS_fnc_respawnTickets;
+		missionNamespace setVariable ["BLWK_numRespawnTickets",_respawns,true];
+		[0] remoteExecCall ["setPlayerRespawnTime",_playerTemp];
+		[_playerTemp] remoteExecCall ["forceRespawn",_playerTemp];
+	} else {
+		if (lifeState _playerTemp == "INCAPACITATED") then {
+			if (BLWK_dontUseRevive) then {
+				if (BLWK_ACELoaded) then {
+					[_playerTemp] remoteExecCall ["ace_medical_treatment_fnc_fullHealLocal",_playerTemp];
+				};
+			} else {
+				["BLWK_reviveOnStateVar", 1, _playerTemp] remoteExecCall ["BIS_fnc_reviveOnState",_playerTemp];
 			};
-		} else {
-			["BLWK_reviveOnStateVar", 1, _playerTemp] remoteExecCall ["BIS_fnc_reviveOnState",_playerTemp];
 		};
 	};
 };

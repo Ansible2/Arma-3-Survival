@@ -38,7 +38,7 @@ params [
 ];
 
 if (isNull _groupToCheck) exitWith {
-	"null _groupToCheck" call BIS_fnc_error;
+	"BLWK_fnc_pathingLoop: null _groupToCheck" call BIS_fnc_error;
 };
 
 // follower units won't likely get stuck as their primary goal is to join the formation at all cost
@@ -48,7 +48,7 @@ if (_groupToCheck isEqualType objNull) then {
 
 private _groupLeader = leader _groupToCheck;
 if (!alive _groupLeader) exitWith {
-	["_groupLeader %1 is dead!",_groupLeader] call BIS_fnc_error;
+	["BLWK_fnc_pathingLoop: _groupLeader %1 is dead!",_groupLeader] call BIS_fnc_error;
 };
 
 
@@ -115,7 +115,6 @@ private _fn_handleStationaryLeader = {
 };
 
 
-
 #define LOOP_VAR_NAME "BLWK_runPathingLoop"
 _groupToCheck setVariable [LOOP_VAR_NAME,true];
 
@@ -135,7 +134,7 @@ while {sleep _timeBetweenChecks; (_groupToCheck getVariable [LOOP_VAR_NAME,false
 			//_groupLeader setPos (selectRandom BLWK_infantrySpawnPositions);
 			_groupLeader setPos ([BLWK_mainCrate, 75, 125, 2, 0] call BIS_fnc_findSafePos);
 			sleep 1;
-			[_groupLeader,position BLWK_mainCrate] remoteExecCall ["doMove",_groupLeader];
+			[_groupLeader,position BLWK_mainCrate] remoteExecCall ["move",_groupLeader];
 		};
 	};
 };

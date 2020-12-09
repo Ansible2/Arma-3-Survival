@@ -103,6 +103,8 @@ if (isServer OR {!hasInterface}) then {
 
     // used for chaning medical items of OPTRE units (biofoam to FAKs)
     BLWK_isOptreLoaded = ["OPTRE_core"] call KISKA_fnc_ispatchLoaded;
+
+    BLWK_doDetectCollision = [false,true] select ("BLWK_doDetectCollision" call BIS_fnc_getParamValue);
 };
 if (isServer) then {
     // We don't need to constantly check if the server is dedicated, and we only want to run things like

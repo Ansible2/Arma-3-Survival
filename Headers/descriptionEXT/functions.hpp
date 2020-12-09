@@ -157,6 +157,8 @@ class BLWK
 		{};
 		class adjustPlayerTraits
 		{};
+		class aiCollisionLoop
+		{};
 	/*	
 		class checkDLC
 		{};

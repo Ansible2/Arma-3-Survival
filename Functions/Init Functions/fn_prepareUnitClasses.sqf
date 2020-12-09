@@ -6,6 +6,8 @@
 #include "..\..\Headers\Faction Headers\Unit Tables\RHS_AFRF Unit Tables.hpp"
 #include "..\..\Headers\Faction Headers\Unit Tables\RHS_USAF Unit Tables.hpp"
 #include "..\..\Headers\Faction Headers\Unit Tables\Z&DUnitTables.hpp"
+#include "..\..\Headers\Faction Headers\Unit Tables\RHS_GREF Unit Tables.hpp"
+#include "..\..\Headers\Faction Headers\Unit Tables\Project OPFOR Unit Tables.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_prepareUnitClasses
 
@@ -67,7 +69,7 @@ private _fn_sortFactionClasses = {
 	private _allowedUnitClasses = [];
 	_unitClassesToCheck apply {
 		_tempUnitClass = _x;
-		// exclude the vehicle array and make sure unit actual exists
+		// exclude the vehicle array and make sure unit actually exists
 		if (_tempUnitClass isEqualType "" AND {call _fn_checkTempClass}) then {
 			_allowedUnitClasses pushBack _tempUnitClass;
 		};
@@ -78,7 +80,7 @@ private _fn_sortFactionClasses = {
 		// exit the mission
 		if (_unitClassesToCheck isEqualTo _defaultFactionClasses) then {
 			null = [] spawn {
-				null = ["A default faction appears to be empty, the mission will now end to reconfigure parameters"] remoteExec ["hint",0,true];
+				null = ["A default faction appears to be empty, the mission will now end to reconfigure parameters"] remoteExecCall ["BIS_fnc_error",0];
 				sleep 20;
 				call BIS_fnc_endMissionServer;
 			};
