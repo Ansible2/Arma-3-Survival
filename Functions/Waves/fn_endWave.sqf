@@ -58,7 +58,8 @@ _players apply {
 
 	if (!alive _playerTemp) then {
 		// add a single respawn ticket for each dead unit
-		[BLUFOR,1] call BIS_fnc_respawnTickets;
+		private _respawns = [BLUFOR,1] call BIS_fnc_respawnTickets;
+		missionNamespace setVariable ["BLWK_numRespawnTickets",_respawns,true];
 		[0] remoteExecCall ["setPlayerRespawnTime",_playerTemp];
 		[_playerTemp] remoteExecCall ["forceRespawn",_playerTemp];
 	} else {
