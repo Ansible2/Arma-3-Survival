@@ -115,6 +115,35 @@ private _fn_handleStationaryLeader = {
 };
 
 
+null = [_groupLeader] spawn {
+	sleep 1;
+
+	params ["_unit"];
+	if (!isNull (objectParent _unit)) exitWith {};
+
+	private ["_objects","_position","_index","_moveToPosition"];
+	while {alive _unit AND {BLWK_doRunLoop}} do {
+		sleep 0.1;
+
+		_position = getposASL _unit;
+		_objects = lineIntersectsObjs [_position,AGLToASL (_unit getRelPos [1,0]), objNull, _unit, false, 4];
+		if !(_objects isEqualTo []) then {
+			_index = _objects findIf {_x getVariable ["BLWK_builtObject",false]};
+			if (_index != -1) then {
+				_moveToPosition = (_unit getRelPos [20,180]);
+				_unit setPosATL (_unit getRelPos [2,180]);
+
+				waitUntil {
+					_unit move _moveToPosition;
+					sleep 0.25;
+					_unit distance2D _moveToPosition < 5;
+				}
+			};
+		};
+	};
+
+};
+
 
 #define LOOP_VAR_NAME "BLWK_runPathingLoop"
 _groupToCheck setVariable [LOOP_VAR_NAME,true];

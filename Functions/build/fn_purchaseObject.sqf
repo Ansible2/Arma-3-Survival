@@ -83,6 +83,8 @@ null = [_purchasedObject,player,true] spawn BLWK_fnc_pickupObject;
 sleep 1;
 [_purchasedObject] call BLWK_fnc_addBuildableObjectActions; // give local player object actions
 
+_purchasedObject setVariable ["BLWK_builtObject",true];
+
 /*
 	Due to network issues with setOwner
 	objects that are too quickly manipulated by other players after being set down
