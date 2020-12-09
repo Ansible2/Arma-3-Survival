@@ -71,21 +71,39 @@ private _lightArmourArray = [];
 private _heavyArmourArray = [];
 private _fn_checkLevelsClasses = {
 	params ["_levelsVehicleArray"];
+
+	private _fn_handleVehicleArray = {
+		params ["_array"];
+
+		private _return = "";
+		if !(_array isEqualTo []) then {
+			_return = selectRandom _array;
+		};
+
+		_return
+	};
+
+	private "_class";
 	{
-		// if the vehicle type is not empty
-		if !(_x isEqualTo "") then {
+		_class = _x;
+		if (_class isEqualType []) then {
+			_class = [_class] call _fn_handleVehicleArray; 
+		};
+
+		if !(_class isEqualTo "") then {
+			// if the vehicle type is not empty
 			switch (_forEachIndex) do {
 				case 0:{
-					_lightCarsArray pushBack _x
+					_lightCarsArray pushBack _class
 				};
 				case 1:{
-					_heavyCarsArray pushBack _x
+					_heavyCarsArray pushBack _class
 				};
 				case 2:{
-					_lightArmourArray pushBack _x
+					_lightArmourArray pushBack _class
 				};
 				case 3:{
-					_heavyArmourArray pushBack _x
+					_heavyArmourArray pushBack _class
 				};
 				default {};
 			};
