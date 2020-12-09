@@ -428,6 +428,13 @@ class BLWK_heavyArmorLikelihood
 A_SPACE(Other);
 A_SECTION_HEADER(Other);
 
+class BLWK_doDetectCollision
+{
+	title = "Run Enemy AI Collision Script? (If you plan to be in a mostly rural environment, turn off)";
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
+	default = 1;
+};
 class BLWK_multipleLootReveals
 {
 	title = "Show all loot with reveal?";
