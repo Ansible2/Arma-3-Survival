@@ -260,6 +260,7 @@ class BLWK_buildableItems
 		rotation = 180;
 		attachmentY = 6;
 		attachmentZ = 5;
+		invincible = 1;
 		detectCollsion = 0;
 	};
 
