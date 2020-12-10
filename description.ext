@@ -109,3 +109,4 @@ class CfgNotifications
 #include "KISKA Systems\View Distance Limiter\ViewDistanceLimiterDialog.hpp"
 
 #include "Headers\descriptionEXT\Build Items\Main Build Items.hpp"
+#include "Headers\descriptionEXT\Faction Headers\Faction Master.hpp"
