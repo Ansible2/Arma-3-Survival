@@ -27,6 +27,8 @@ params [
 	["_player",player,[objNull]]
 ];
 
+_player addVest "V_RangeMaster_Belt";
+
 if (BLWK_playersStartWith_pistol) then {
 	_player addMagazine "16Rnd_9x21_Mag";
 	_player addMagazine "16Rnd_9x21_Mag";
