@@ -189,7 +189,7 @@ class BLWK_playersStartWith_compass
 };
 class BLWK_playersStartWith_radio
 {
-	title = "Start with a radio (TFAR Compatabile) (You must have one to get support radio messages)";
+	title = "Start with a radio (TFAR & ACRE Compatabile) (You must have one to get support radio messages)";
 	values[] = ZERO_OR_ONE;
 	texts[] = NO_OR_YES;
 	default = 1;

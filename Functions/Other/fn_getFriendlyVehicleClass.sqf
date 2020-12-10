@@ -34,6 +34,10 @@ private _numFriendlyClasses = count BLWK_friendly_vehicleClasses;
 if (_numFriendlyClasses - 1 >= _typeId) then {
 	// check that custom class is actually configed
 	private _testClass = BLWK_friendly_vehicleClasses select _typeId;
+	if (_testClass isEqualType [] AND {!(_testClass isEqualTo [])}) then {
+		_testClass = _testClass select 0;
+	};
+
 	if (isClass (configFile >> "CfgVehicles" >> _testClass)) then {
 		_returnVehicleClass = _testClass;
 	};

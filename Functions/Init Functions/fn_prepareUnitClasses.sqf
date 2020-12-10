@@ -1,13 +1,6 @@
 // set up MACRO vars that can be used between files and make changes easier
 #include "..\..\Headers\Faction Headers\Define Factions.hpp"
-#include "..\..\Headers\Faction Headers\Unit Tables\vanillaUnitTables.hpp"
-#include "..\..\Headers\Faction Headers\Unit Tables\optreUnitTables.hpp"
-#include "..\..\Headers\Faction Headers\Unit Tables\opcanUnitTables.hpp"
-#include "..\..\Headers\Faction Headers\Unit Tables\RHS_AFRF Unit Tables.hpp"
-#include "..\..\Headers\Faction Headers\Unit Tables\RHS_USAF Unit Tables.hpp"
-#include "..\..\Headers\Faction Headers\Unit Tables\Z&DUnitTables.hpp"
-#include "..\..\Headers\Faction Headers\Unit Tables\RHS_GREF Unit Tables.hpp"
-#include "..\..\Headers\Faction Headers\Unit Tables\Project OPFOR Unit Tables.hpp"
+#include "..\..\Headers\Faction Headers\Unit Tables\Master Unit Table.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_prepareUnitClasses
 
