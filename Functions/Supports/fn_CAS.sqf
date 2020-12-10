@@ -52,7 +52,7 @@ params [
 	["_attackPosition",objNull,[[],objNull]],
 	["_attackTypeID",0,[123]],
 	["_attackDirection",0,[123]],
-	["_planeClass","B_Plane_CAS_01_F",[""]],
+	["_planeClass","B_Plane_CAS_01_dynamicLoadout_F",[""]],
 	["_attackHeight",1300,[123]],
 	["_spawnDistance",2000,[123]],
 	["_breakOffDistance",500,[123]]
@@ -65,7 +65,7 @@ if (_attackPosition isEqualType objNull AND {isNull _attackPosition} OR {_attack
 private _planeCfg = configfile >> "cfgvehicles" >> _planeClass;
 if !(isclass _planeCfg) exitwith {
 	["Vehicle class '%1' not found, moving to default aircraft",_planeClass] call BIS_fnc_error;
-	_this set [3,"B_Plane_CAS_01_F"];
+	_this set [3,"B_Plane_CAS_01_dynamicLoadout_F"];
 	null = _this spawn BLWK_fnc_CAS; 
 };
 
@@ -119,14 +119,14 @@ if (isClass _pylonConfig) then {
 		// find the canon weapon in the planes default loadout
 		private _canonIndex = _planeClassWeapons findIf {
 			[
-				configFile >> "cfgWeapons" >> _x;
-				configFile >> "cfgWeapons" >> "canonCore";
+				(configFile >> "cfgWeapons" >> _x),
+				(configFile >> "cfgWeapons" >> "canonCore")
 			] call CBAP_fnc_inheritsFrom;
 		};
 
 		private _canonClass = "";
 		// if a canon is found
-		if (_gunIndex != -1) then {
+		if (_canonIndex != -1) then {
 			_canonClass = _planeClassWeapons select _canonIndex;
 			// we need the magazines for the weapon for plyon checks
 			private _magazinesForCanon = [configFile >> "cfgWeapons" >> _canonClass >> "magazines"] call BIS_fnc_getCfgDataArray;
@@ -165,7 +165,7 @@ if (isClass _pylonConfig) then {
 if (_exitToDefault) exitwith {
 	["Weapon types of %2 not entrirely found on '%1', moving to default Aircraft",_planeClass,_attackMagazines] call BIS_fnc_error;
 	// exit to default aircraft type 
-	_this set [3,"B_Plane_CAS_01_F"];
+	_this set [3,"B_Plane_CAS_01_dynamicLoadout_F"];
 	null = _this spawn BLWK_fnc_CAS;
 };
 
@@ -184,7 +184,7 @@ BLWK_fnc_casAttack = {
 	private _fn_setWeaponTemp = {
 		params ["_type"];
 		_weaponArray_temp = _weaponsToUse select (_weaponsToUse findIf {(_x select 0) == _type});
-		_weapon_temp = _weaponArray_temp select 0;
+		_weapon_temp = _weaponArray_temp select 1;
 	};
 	private _fn_fireGun = {
 		params ["_numRounds"];
@@ -219,11 +219,11 @@ BLWK_fnc_casAttack = {
 		};
 		case GUNS_AND_ROCKETS_ARMOR_PIERCING_ID: {
 			[100] call _fn_fireGun;
-			[4,ROCKETS_AP_TYPE] call _fn_fireRockets;
+			[6,ROCKETS_AP_TYPE] call _fn_fireRockets;
 		};
 		case GUNS_AND_ROCKETS_HE_ID: {
 			[100] call _fn_fireGun;
-			[4,ROCKETS_HE_TYPE] call _fn_fireRockets;
+			[6,ROCKETS_HE_TYPE] call _fn_fireRockets;
 		};
 		case ROCKETS_ARMOR_PIERCING_ID: {
 			[8,ROCKETS_AP_TYPE] call _fn_fireRockets;
