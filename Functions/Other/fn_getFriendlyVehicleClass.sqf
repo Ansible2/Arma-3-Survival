@@ -9,7 +9,7 @@ params ["_typeId"];
 			"B_MBT_01_cannon_F",\ 					3 // heavy armour
 			"B_Heli_Transport_01_F",\ 				4 // transport aircraft
 			"B_T_VTOL_01_vehicle_F",\ 				5 // cargo aircraft
-			"B_Plane_CAS_01_F",\ 					6 // CAS plane 
+			"B_Plane_CAS_01_dynamicLoadout_F",\ 					6 // CAS plane 
 			"B_Heli_Attack_01_dynamicLoadout_F",\ 	7 // attack helicopter
 			"B_T_VTOL_01_armed_F"\ 					8 // gunship (ac130 type aircraft)
 		]
@@ -22,7 +22,7 @@ params ["_typeId"];
 		"B_MBT_01_cannon_F",\
 		"B_Heli_Transport_01_F",\
 		"B_T_VTOL_01_vehicle_F",\
-		"B_Plane_CAS_01_F",\
+		"B_Plane_CAS_01_dynamicLoadout_F",\
 		"B_Heli_Attack_01_dynamicLoadout_F",\
 		"B_T_VTOL_01_armed_F"\
 	]

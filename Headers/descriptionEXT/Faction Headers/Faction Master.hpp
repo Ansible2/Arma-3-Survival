@@ -24,9 +24,15 @@ class BLWK_factions
 		{};
 	};
 */
+
+/*
+	should be able to add addon vehicles to lists too
+	just need to verify in prepare classes function that the class exists
+*/
+
 	class AAF_faction
 	{
-		displayName "VANILLA - AAF";
+		displayName = "VANILLA - AAF";
 		lightCars[] = {
 			"B_T_LSV_01_armed_F"
 		};
@@ -162,7 +168,7 @@ class BLWK_factions
 		displayName = "VANILLA - CSAT URBAN";
 
 
-		"O_Heli_Attack_02_dynamicLoadout_black_F"
+		//"O_Heli_Attack_02_dynamicLoadout_black_F"
 	};
 
 	class NATO_faction
@@ -194,7 +200,7 @@ class BLWK_factions
 		};
 		casAircraft[] = 
 		{
-			"B_Plane_CAS_01_F"
+			"B_Plane_CAS_01_dynamicLoadout_F"
 		};
 		attackHelicopters[] = 
 		{
@@ -301,7 +307,6 @@ class BLWK_factions
 			"B_T_Recon_TL_F"
 		};
 	};
-	
 	class NATO_woodland_faction : NATO_pacific_faction
 	{
 		displayName = "CONTACT - NATO WOODLAND";
@@ -334,7 +339,6 @@ class BLWK_factions
 			"B_W_Soldier_TL_F"
 		};
 	};
-simulation = "shotRocket";
 	class CTRG_pacific_faction : NATO_pacific_faction
 	{
 		displayName = "APEX - CTRG PACIFIC";
