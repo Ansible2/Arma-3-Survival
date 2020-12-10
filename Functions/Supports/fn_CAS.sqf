@@ -33,18 +33,21 @@ Author(s):
 #define ROCKETS_ARMOR_PIERCING_ID 3
 #define ROCKETS_HE_ID 4
 #define AGM_ID 5
-#define BOMB_ID 6
+#define BOMB_UGB_ID 6
+#define BOMB_CLUSTER_ID 7
 
 #define CANON_TYPE "CANON"
 #define AGM_TYPE "AGM"
 #define ROCKETS_AP_TYPE "ROCKETS_AP"
 #define ROCKETS_HE_TYPE "ROCKETS_HE"
-#define BOMB_TYPE "BOMB"
+#define BOMB_UGB_TYPE "BOMB UGB"
+#define BOMB_CLUSTER_TYPE "BOMB CLUSTER"
 
 #define PLANE_SPEED 75// m/s
 #define PLANE_VELOCITY(THE_SPEED) [0,THE_SPEED,0]
 
 scriptName "BLWK_fnc_CAS";
+
 params [
 	["_attackPosition",objNull,[[],objNull]],
 	["_attackTypeID",0,[123]],
@@ -91,8 +94,11 @@ private _attackMagazines = switch _attackTypeID do {
 	case AGM_ID: {
 		[[AGM_TYPE,"PylonRack_1Rnd_Missile_AGM_02_F"]]
 	};
-	case BOMB_ID: {
-		[[BOMB_TYPE,"PylonMissile_1Rnd_Bomb_04_F"]]
+	case BOMB_UGB_ID: {
+		[[BOMB_UGB_TYPE,"PylonMissile_1Rnd_Bomb_04_F"]]
+	};
+	case BOMB_CLUSTER_ID: {
+		[[BOMB_CLUSTER_TYPE,"PylonMissile_1Rnd_BombCluster_01_F"]]
 	};
 };
 
@@ -100,8 +106,6 @@ private _attackMagazines = switch _attackTypeID do {
 private _exitToDefault = false;
 // Verify the plane has the right weapons for what is asked of it and adjust if it doesn't
 private _weaponsToUse = [];
-private _canonClass = "";
-private _magazinesForCanon = [];
 private _planeClassWeapons = _planeClass call BIS_fnc_weaponsEntityType;
 private _pylonConfig = _planeCfg >> "Components" >> "TransportPylonsComponent" >> "pylons";
 
@@ -120,33 +124,39 @@ if (isClass _pylonConfig) then {
 			] call CBAP_fnc_inheritsFrom;
 		};
 
+		private _canonClass = "";
 		// if a canon is found
 		if (_gunIndex != -1) then {
 			_canonClass = _planeClassWeapons select _canonIndex;
 			// we need the magazines for the weapon for plyon checks
-			_magazinesForCanon = [configFile >> "cfgWeapons" >> _canonClass >> "magazines"] call BIS_fnc_getCfgDataArray;
-			_weaponsToUse pushBack [CANON_TYPE,_canonClass,[]];
+			private _magazinesForCanon = [configFile >> "cfgWeapons" >> _canonClass >> "magazines"] call BIS_fnc_getCfgDataArray;
+			_weaponsToUse pushBack [CANON_TYPE,_canonClass];
+			// remove canon so we don't need to check it later
 			_attackMagazines deleteAt (_attackMagazines findIf {_x == CANON_TYPE});
 		};
 		
-		// if the canon is on a pylon delete the pylon from the list so it's no changed
-		private _canonPylonIndex = _allVehiclePylons findIf {
-			getText(_pylonConfig >> _x >> "attachment") == _canonClass;
-		};
-		if (_canonPylonIndex != -1) then {
-			_allVehiclePylons deleteAt _canonPylonIndex;
+		if (_canonClass != "") then {
+			// if the canon is on a pylon delete the pylon from the list so it's not changed
+			private _canonPylonIndex = _allVehiclePylons findIf {
+				getText(_pylonConfig >> _x >> "attachment") == _canonClass;
+			};
+			if (_canonPylonIndex != -1) then {
+				_allVehiclePylons deleteAt _canonPylonIndex;
+			};
 		};
 	};
 
-	private ["_attackTypeString","_attackMagazineClass","_attackWeaponClass"];
-	{	
-		_attackMagazineClass = _x select 1;
-		_attackWeaponClass = [configFile >> "cfgMagazines" >> _attackMagazineClass >> "pylonWeapon"] call BIS_fnc_getCfgData;
+	if !(_attackMagazines isEqualTo []) then {
+		private ["_attackTypeString","_attackMagazineClass","_attackWeaponClass"];
+		{	
+			_attackMagazineClass = _x select 1;
+			_attackWeaponClass = [configFile >> "cfgMagazines" >> _attackMagazineClass >> "pylonWeapon"] call BIS_fnc_getCfgData;
 
-		_attackTypeString = _x select 0;
-		// pushBack string for attack type, the weapon used, the mag for adding a pylon, and what pylon to add it to
-		_weaponsToUse pushBack [_attackTypeString,_attackWeaponClass,[_attackMagazineClass,_allVehiclePylons deleteAt 0]];
-	} forEach _attackMagazines;
+			_attackTypeString = _x select 0;
+			// pushBack string for attack type, the weapon used, the mag for adding a pylon, and what pylon to add it to
+			_weaponsToUse pushBack [_attackTypeString,_attackWeaponClass,[_attackMagazineClass,_allVehiclePylons deleteAt 0]];
+		} forEach _attackMagazines;
+	};
 } else {
 	_exitToDefault = true;
 };
@@ -176,7 +186,6 @@ BLWK_fnc_casAttack = {
 		_weaponArray_temp = _weaponsToUse select (_weaponsToUse findIf {(_x select 0) == _type});
 		_weapon_temp = _weaponArray_temp select 0;
 	};
-
 	private _fn_fireGun = {
 		params ["_numRounds"];
 		// set _weapon_temp to gun
@@ -197,33 +206,43 @@ BLWK_fnc_casAttack = {
 			sleep 0.5;
 		};
 	};
-GUN_RUN_ID
-GUNS_AND_ROCKETS_ARMOR_PIERCING_ID
-GUNS_AND_ROCKETS_HE_ID
-ROCKETS_ARMOR_PIERCING_ID
-ROCKETS_HE_ID
-AGM_ID
-BOMB_ID
-
-
-	if (_attackTypeID isEqualTo GUN_RUN_ID) exitWith {
-		[200] call _fn_fireGun;
-		_plane setVariable ["BLWK_completedFiring",true];
-	};
-	if (_attackTypeID isEqualTo ROCKETS_ID) exitWith {
-		[8] call _fn_fireRockets;
-		_plane setVariable ["BLWK_completedFiring",true];
-	};
-	if (_attackTypeID isEqualTo GUNS_AND_ROCKETS_ID) exitWith {
-		[100] call _fn_fireGun;
-		[4] call _fn_fireRockets;
-		_plane setVariable ["BLWK_completedFiring",true];
-	};
-	if (_attackTypeID isEqualTo BOMBS_ID) exitWith {
-		[BOMB_TYPE] call _fn_setWeaponTemp;
+	private _fn_fireSimple = {
+		params ["_type"];
+		[_type] call _fn_setWeaponTemp;
 		_pilot fireAtTarget [_dummyTarget,_weapon_temp];
-		_plane setVariable ["BLWK_completedFiring",true];
 	};
+
+	// decide how to fire
+	switch (_attackTypeID) do {
+		case GUN_RUN_ID: {
+			[200] call _fn_fireGun;
+		};
+		case GUNS_AND_ROCKETS_ARMOR_PIERCING_ID: {
+			[100] call _fn_fireGun;
+			[4,ROCKETS_AP_TYPE] call _fn_fireRockets;
+		};
+		case GUNS_AND_ROCKETS_HE_ID: {
+			[100] call _fn_fireGun;
+			[4,ROCKETS_HE_TYPE] call _fn_fireRockets;
+		};
+		case ROCKETS_ARMOR_PIERCING_ID: {
+			[8,ROCKETS_AP_TYPE] call _fn_fireRockets;
+		};
+		case ROCKETS_HE_ID: {
+			[8,ROCKETS_HE_TYPE] call _fn_fireRockets;
+		};
+		case AGM_ID: {
+			[AGM_TYPE] call _fn_fireSimple;
+		};
+		case BOMB_UGB_ID: {
+			[BOMB_UGB_TYPE] call _fn_fireSimple;
+		};
+		case BOMB_CLUSTER_ID: {
+			[BOMB_CLUSTER_TYPE] call _fn_fireSimple;
+		};
+	};
+
+	_plane setVariable ["BLWK_completedFiring",true];
 };
 
 
@@ -242,7 +261,7 @@ private _plane = _planeArray select 0;
 _weaponsToUse apply {
 	// filter out the canon as it should not need to be put on the vehicle
 	if ((_x select 0) != CANON_TYPE) then {
-
+		// get pylon array set up earlier
 		(_x select 2) params ["_magClass","_pylon"];
 		_plane setPylonLoadout [_pylon,_magClass,true];
 	};
@@ -253,10 +272,10 @@ _plane setDir _attackDirection;
 
 // telling the plane to ultimately fly past the target after we're done controlling it
 _plane move (_attackPosition getPos [5000,_attackDirection]);
-_plane disableai "move";
-_plane disableai "target";
-_plane disableai "autotarget";
-_plane setcombatmode "blue";
+_plane disableAi "move";
+_plane disableAi "target";
+_plane disableAi "autotarget";
+_plane setCombatMode "blue";
 
 
 // angling the plane towards the target
@@ -326,13 +345,11 @@ while {!(_plane getVariable ["BLWK_completedFiring",false]) AND {(_plane distanc
 			null = [_plane,_dummyTarget,_weaponsToUse,_attackTypeID,_attackPosition,_breakOffDistance] spawn BLWK_fnc_casAttack;
 		} else {
 			// ensures strafing effect with the above setVelocityTransformation
-			if !("bomblauncher" in _attackMagazines) then {
-				// for some reason, private variables outside the main if here do not work
-				// had to use this method of storing the target instead
-				private _dummyTarget = _plane getVariable "BLWK_casDummyTarget";
-				_attackPosition = AGLToASL(_dummyTarget getPos [0.1,(getDirVisual _plane)]);
-				_dummyTarget setPosASL _attackPosition;
-			};
+			/// for some reason, private variables outside the main if here do not work
+			/// had to use this method of storing the target instead
+			private _dummyTarget = _plane getVariable "BLWK_casDummyTarget";
+			_attackPosition = AGLToASL(_dummyTarget getPos [0.1,(getDirVisual _plane)]);
+			_dummyTarget setPosASL _attackPosition;
 		};
 	};
 
