@@ -83,12 +83,10 @@ private _fn_checkLevelsClasses = {
 		_return
 	};
 
-	private "_class";
+	private ["_class","_vehicleTypeArray"];
 	{
-		_class = _x;
-		if (_class isEqualType []) then {
-			_class = [_class] call _fn_handleVehicleArray; 
-		};
+		_vehicleTypeArray = _x;
+		_class = [_vehicleTypeArray] call _fn_handleVehicleArray; 
 
 		if !(_class isEqualTo "") then {
 			// if the vehicle type is not empty

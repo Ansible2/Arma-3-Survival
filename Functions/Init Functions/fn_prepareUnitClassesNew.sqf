@@ -67,8 +67,9 @@ private [
 	"_sortArray",
 	"_infantryClasses",
 	"_lighCarClasses",
+	"_heavyCarClasses",
 	"_heavyArmorClasses",
-	"_transportHelicoprterClasses",
+	"_transportHelicopterClasses",
 	"_cargoAircraftClasses",
 	"_casAircraftClasses",
 	"_attackHelicopterClasses",
@@ -78,62 +79,68 @@ private [
 private _fn_sortFactionClasses = {
 	params ["_configToCheck"];
 
+	private _vehicleTypes = [];
 	private _fn_sortArray = {
-		params ["_arrayToPushTo"];
+		params ["_arrayToPushTo",["_pushToVehicle",true]];
 		_sortArray apply {
 			if (isClass (configFile >> "cfgVehicles" >> _x)) then {
 				_arrayToPushTo pushBack _x;
 			};
 		};
+
+		if (_pushToVehicle) then {
+			_vehicleTypes pushBack _arrayToPushTo;
+		};
 	};
 
+	
 	_infantryClasses = [];
 	_sortArray = [_configToCheck >> "infantry"] call BIS_fnc_getCfgDataArray;
-	[_infantryClasses] call _fn_sortArray;
+	[_infantryClasses,false] call _fn_sortArray;
 	// exit if no infantry
 	if (_infantryClasses isEqualTo []) exitWith {
 		["Found no infantry classes in %1 config",_configToCheck] call BIS_fnc_error;
 		[]
 	};
-
+		
 	_lighCarClasses = [];
-	_sortArray = [_configToCheck >> "infantry"] call BIS_fnc_getCfgDataArray;
+	_sortArray = [_configToCheck >> "lightCars"] call BIS_fnc_getCfgDataArray;
 	[_lighCarClasses] call _fn_sortArray;
-
-	private _lighCarClasses = [_configToCheck >> "lightCars"] call BIS_fnc_getCfgDataArray;
-	private _lightArmorClasses = [_configToCheck >> "lightArmor"] call BIS_fnc_getCfgDataArray;
-	private _heavyArmorClasses = [_configToCheck >> "heavyArmor"] call BIS_fnc_getCfgDataArray;
-	private _transportHelicoprterClasses = [_configToCheck >> "transportHelicopters"] call BIS_fnc_getCfgDataArray;
-	private _cargoAircraftClasses = [_configToCheck >> "cargoAircraft"] call BIS_fnc_getCfgDataArray;
-	private _casAircraftClasses = [_configToCheck >> "casAircraft"] call BIS_fnc_getCfgDataArray;
-	private _attackHelicopterClasses = [_configToCheck >> "attackHelicopters"] call BIS_fnc_getCfgDataArray;
-	private _heavyGunshipClasses = [_configToCheck >> "heavyGunships"] call BIS_fnc_getCfgDataArray;
-
-
-	params ["_unitClassesToCheck"];
 	
-	private _allowedUnitClasses = [];
-	_unitClassesToCheck apply {
-		_tempUnitClass = _x;
-		// exclude the vehicle array and make sure unit actually exists
-		if (_tempUnitClass isEqualType "" AND {call _fn_checkTempClass}) then {
-			_allowedUnitClasses pushBack _tempUnitClass;
-		};
-	};
+	_heavyCarClasses = [];
+	_sortArray = [_configToCheck >> "heavyCars"] call BIS_fnc_getCfgDataArray;
+	[_heavyCarClasses] call _fn_sortArray;
 
-	if (_allowedUnitClasses isEqualTo []) exitWith {
+	_lightArmorClasses = [];
+	_sortArray = [_configToCheck >> "lightArmor"] call BIS_fnc_getCfgDataArray;
+	[_lightArmorClasses] call _fn_sortArray;
 
-	};
+	_heavyArmorClasses = [];
+	_sortArray = [_configToCheck >> "heavyArmor"] call BIS_fnc_getCfgDataArray;
+	[_heavyArmorClasses] call _fn_sortArray;
 
-	// seperate vehicle types
-	private _vehicleArrayIndex = _unitClassesToCheck findIf {_x isEqualType []};
-	private _vehicleTypes = [];
-	// if the vehicle array is found
-	if !(_vehicleArrayIndex isEqualTo -1) then {
-		_vehicleTypes = _unitClassesToCheck select _vehicleArrayIndex;
-	};
+	_transportHelicopterClasses = [];
+	_sortArray = [_configToCheck >> "transportHelicopters"] call BIS_fnc_getCfgDataArray;
+	[_heavyArmorClasses] call _fn_sortArray;
 
-	[_allowedUnitClasses,_vehicleTypes];
+	_cargoAircraftClasses = [];
+	_sortArray = [_configToCheck >> "cargoAircraft"] call BIS_fnc_getCfgDataArray;
+	[_cargoAircraftClasses] call _fn_sortArray;
+
+	_casAircraftClasses = [];
+	_sortArray = [_configToCheck >> "casAircraft"] call BIS_fnc_getCfgDataArray;
+	[_casAircraftClasses] call _fn_sortArray;
+
+	_attackHelicopterClasses = [];
+	_sortArray = [_configToCheck >> "attackHelicopters"] call BIS_fnc_getCfgDataArray;
+	[_attackHelicopterClasses] call _fn_sortArray;
+
+	_heavyGunshipClasses = [];
+	_sortArray = [_configToCheck >> "heavyGunships"] call BIS_fnc_getCfgDataArray;
+	[_heavyGunshipClasses] call _fn_sortArray;
+
+
+	[_infantryClasses,_vehicleTypes]
 };
 
 private _fn_getSelectedClasses = {
