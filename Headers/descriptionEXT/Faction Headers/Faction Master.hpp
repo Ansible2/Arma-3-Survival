@@ -34,6 +34,7 @@ class BLWK_factions
 */
 #include "Vanilla Unit Table"
 #include "OPTRE Unit Table"
+#include "OPTRE FC Unit Table"
 #include "OPCAN Unit Table"
 
 };

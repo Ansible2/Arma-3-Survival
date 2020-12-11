@@ -148,6 +148,7 @@
 	"OPTRE - UNSC Army Woodland", \
 	"OPTRE - UNSC Marines", \
 	"OPTRE FC - Covenant", \
+	"OPTRE FC - UNSC Marines HCW", \
 	"PROJECT OPFOR - African Militia",\
 	"PROJECT OPFOR - Afghan National Army",\
 	"PROJECT OPFOR - Afghan National Police",\
