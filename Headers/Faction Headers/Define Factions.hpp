@@ -1,3 +1,4 @@
+
 #define FACTION_COUNT \
 	0,\
 	1,\
@@ -96,7 +97,8 @@
 	94,\
 	95,\
 	96,\
-	97
+	97,\
+	98
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -120,8 +122,10 @@
 	"OPCAN - Fridens Desert", \
 	"OPCAN - Fridens Woodland", \
 	"OPCAN - Koslovics", \
+	"OPCAN - Secessionist Union",\
 	"OPCAN - United Rebel Army", \
 	"OPCAN - UNSC Army Desert", \
+	"OPCAN - UNSC Army Mixed", \
 	"OPCAN - UNSC Army Woodland", \
 	"OPCAN - UNSC Marine CE-A", \
 	"OPCAN - UNSC Marine Desert", \

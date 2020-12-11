@@ -24,6 +24,7 @@ class BLWK_factions
 		};
 		infantry[] = {
 		};
+
 	};
 */
 
@@ -31,6 +32,7 @@ class BLWK_factions
 	should be able to add addon vehicles to lists too
 	just need to verify in prepare classes function that the class exists
 */
-
+#include "Vanilla Unit Table"
+#include "OPCAN Unit Table"
 
 };
