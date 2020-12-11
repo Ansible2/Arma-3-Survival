@@ -252,7 +252,7 @@ class OPCAN_UNSC_MARINE_DES_faction : OPCAN_UNSC_MARINE_WDL_faction
 	};
 };
 
-OPCAN_URA_faction : CSAT_pacific_faction
+class OPCAN_URA_faction : CSAT_pacific_faction
 {
 	displayName = "OPCAN - United Rebel Army";
 
@@ -295,7 +295,7 @@ OPCAN_URA_faction : CSAT_pacific_faction
 	};
 };
 
-OPCAN_SU_faction : OPCAN_URA_faction
+class OPCAN_SU_faction : OPCAN_URA_faction
 {
 	displayName = "OPCAN - Secessionist Union";
 	lightCars[] = {
@@ -328,7 +328,7 @@ OPCAN_SU_faction : OPCAN_URA_faction
 	};
 };
 
-OPCAN_KOSLOVICS_faction : OPCAN_URA_faction
+class OPCAN_KOSLOVICS_faction : OPCAN_URA_faction
 {
 	displayName = "OPCAN - Koslovics";
 
@@ -348,7 +348,7 @@ OPCAN_KOSLOVICS_faction : OPCAN_URA_faction
 	};
 };
 
-OPCAN_FRIDENS_faction : OPCAN_URA_faction
+class OPCAN_FRIDENS_faction : OPCAN_URA_faction
 {
 	displayName = "OPCAN - Fridens";
 
@@ -378,7 +378,7 @@ OPCAN_FRIDENS_faction : OPCAN_URA_faction
 	};	
 };
 
-OPCAN_FRIDENS_WDL_faction : OPCAN_FRIDENS_faction
+class OPCAN_FRIDENS_WDL_faction : OPCAN_FRIDENS_faction
 {
 	displayName = "OPCAN - Fridens Woodland";
 
@@ -398,7 +398,7 @@ OPCAN_FRIDENS_WDL_faction : OPCAN_FRIDENS_faction
 	};
 };
 
-OPCAN_FRIDENS_WDL_faction : OPCAN_FRIDENS_faction
+class OPCAN_FRIDENS_WDL_faction : OPCAN_FRIDENS_faction
 {
 	displayName = "OPCAN - Fridens Desert";
 
