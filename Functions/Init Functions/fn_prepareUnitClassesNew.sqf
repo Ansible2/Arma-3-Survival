@@ -41,9 +41,8 @@ Author(s):
 	Hilltop(Willtop) & omNomios
 ---------------------------------------------------------------------------- */
 // to save on allocation time for memory, we are going to use temp values
-private "_defaultFactionClasses";
 private _tempUnitClass = "";
-
+private _factionClasses = "true" configClasses (missionConfigFile >> "BLWK_factions");
 
 // check if a unit is an actual class and if they are dependent on exluded DLC
 private _fn_checkTempClass = {
@@ -55,17 +54,60 @@ private _fn_checkTempClass = {
 };
 
 
+private _fn_exitForUndefinedDefault = {
+	null = [] spawn {
+		null = ["A default faction appears to be empty, the mission will now end to reconfigure parameters"] remoteExecCall ["BIS_fnc_error",0];
+		sleep 20;
+		call BIS_fnc_endMissionServer;
+	};
+};
+
+
+private [
+	"_sortArray",
+	"_infantryClasses",
+	"_lighCarClasses",
+	"_heavyArmorClasses",
+	"_transportHelicoprterClasses",
+	"_cargoAircraftClasses",
+	"_casAircraftClasses",
+	"_attackHelicopterClasses",
+	"_heavyGunshipClasses"
+];
 // Sort a faction's units based upon what DLC is excluded and whether or not a unit class exists
 private _fn_sortFactionClasses = {
 	params ["_configToCheck"];
 
-	[_x >> "attachmentX"] call BIS_fnc_getCfgData;
+	private _fn_sortArray = {
+		params ["_arrayToPushTo"];
+		_sortArray apply {
+			if (isClass (configFile >> "cfgVehicles" >> _x)) then {
+				_arrayToPushTo pushBack _x;
+			};
+		};
+	};
 
+	_infantryClasses = [];
+	_sortArray = [_configToCheck >> "infantry"] call BIS_fnc_getCfgDataArray;
+	[_infantryClasses] call _fn_sortArray;
+	// exit if no infantry
+	if (_infantryClasses isEqualTo []) exitWith {
+		["Found no infantry classes in %1 config",_configToCheck] call BIS_fnc_error;
+		[]
+	};
 
+	_lighCarClasses = [];
+	_sortArray = [_configToCheck >> "infantry"] call BIS_fnc_getCfgDataArray;
+	[_lighCarClasses] call _fn_sortArray;
 
-
-
-
+	private _lighCarClasses = [_configToCheck >> "lightCars"] call BIS_fnc_getCfgDataArray;
+	private _lightArmorClasses = [_configToCheck >> "lightArmor"] call BIS_fnc_getCfgDataArray;
+	private _heavyArmorClasses = [_configToCheck >> "heavyArmor"] call BIS_fnc_getCfgDataArray;
+	private _transportHelicoprterClasses = [_configToCheck >> "transportHelicopters"] call BIS_fnc_getCfgDataArray;
+	private _cargoAircraftClasses = [_configToCheck >> "cargoAircraft"] call BIS_fnc_getCfgDataArray;
+	private _casAircraftClasses = [_configToCheck >> "casAircraft"] call BIS_fnc_getCfgDataArray;
+	private _attackHelicopterClasses = [_configToCheck >> "attackHelicopters"] call BIS_fnc_getCfgDataArray;
+	private _heavyGunshipClasses = [_configToCheck >> "heavyGunships"] call BIS_fnc_getCfgDataArray;
 
 
 	params ["_unitClassesToCheck"];
@@ -80,19 +122,7 @@ private _fn_sortFactionClasses = {
 	};
 
 	if (_allowedUnitClasses isEqualTo []) exitWith {
-		// if the faction turns up empty based upon sorting, AND it is the default
-		// exit the mission
-		if (_unitClassesToCheck isEqualTo _defaultFactionClasses) then {
-			null = [] spawn {
-				null = ["A default faction appears to be empty, the mission will now end to reconfigure parameters"] remoteExecCall ["BIS_fnc_error",0];
-				sleep 20;
-				call BIS_fnc_endMissionServer;
-			};
-		} else {
-		// else, just load the default faction for that level
-			["One or more factions you selected does not have any units available. It may not be loaded on the server. The mission will use that level's default faction instead"] remoteExecCall ["hint",0,true];
-			[_defaultFactionClasses] call _fn_sortFactionClasses
-		};
+
 	};
 
 	// seperate vehicle types
@@ -109,19 +139,40 @@ private _fn_sortFactionClasses = {
 private _fn_getSelectedClasses = {
 	params ["_factionString","_defaultFactionString"];
 
-	// get faction to check
-	if (isClass(missionConfigFile >> "BLWK_factions" >> ))
-	""
-	_factionString
+	private "_factionArray";
+	private _goToDefaultFaction = false;
+	private _factionIndex = _factionClasses findIf {(_x >> "displayName") == _factionString};
+	// if a faction was found for the string
+	if (_factionIndex != -1) then {
+		_factionArray = [_factionClasses select _factionIndex] call _fn_sortFactionClasses;
+		if (_factionArray isEqualTo []) then {
+			_goToDefaultFaction = true
+		};
+	} else {
+		_goToDefaultFaction = true
+	};
 	
+	// default fall through faction if the selected is unavailable
+	if (_goToDefaultFaction) then {
+		private _doExit = false;
+		_factionIndex = _factionClasses findIf {(_x >> "displayName") == _defaultFactionString};
+		// if a faction is found
+		if (_factionIndex != -1) then {
+			_factionArray = [_factionClasses select _factionIndex] call _fn_sortFactionClasses;	
+			// if faction still came up empty	
+			if (_factionArray isEqualTo []) then {
+				_doExit = true;
+			};
+		} else {
+			_doExit = true;
+		};
 
-	// setup default fall through faction
-	_index = [FACTION_STRINGS] findIf {_x == _defaultFactionString};
-	_defaultFactionClasses = FACTION_VARS select _index;
+		if (_doExit) then {
+			call _fn_exitForUndefinedDefault
+		};
+	};
 
-	private _return = [] call _fn_sortFactionClasses;
-	
-	_return
+	_factionArray
 };
 
 private _fn_getFactionString = {

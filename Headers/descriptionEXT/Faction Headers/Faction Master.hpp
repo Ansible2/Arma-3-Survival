@@ -12,13 +12,15 @@ class BLWK_factions
 		{};
 		heavyArmor[] = 
 		{};
-		transportHelicoprters[] = 
+		transportHelicopters[] = 
 		{};
 		cargoAircraft[] = 
 		{};
 		casAircraft[] = 
 		{};
 		attackHelicopters[] = 
+		{};
+		heavyGunships[] = 
 		{};
 		infantry[] = 
 		{};
@@ -46,7 +48,7 @@ class BLWK_factions
 		heavyArmor[] = {
 			"I_MBT_03_cannon_F"			
 		};
-		transportHelicoprters[] = {
+		transportHelicopters[] = {
 			"I_Heli_light_03_unarmed_F"
 		};
 		cargoAircraft[] = {
@@ -107,7 +109,7 @@ class BLWK_factions
 		{
 			"O_MBT_02_cannon_F"
 		};
-		transportHelicoprters[] = 
+		transportHelicopters[] = 
 		{
 			"O_Heli_Light_02_unarmed_F"
 		};
@@ -190,7 +192,7 @@ class BLWK_factions
 		{
 			"B_MBT_01_cannon_F"
 		};
-		transportHelicoprters[] = 
+		transportHelicopters[] = 
 		{
 			"B_Heli_Transport_01_F"
 		};
@@ -342,7 +344,7 @@ class BLWK_factions
 	class CTRG_pacific_faction : NATO_pacific_faction
 	{
 		displayName = "APEX - CTRG PACIFIC";
-		transportHelicoprters[] = 
+		transportHelicopters[] = 
 		{
 			"B_CTRG_Heli_Transport_01_sand_F"
 		};
