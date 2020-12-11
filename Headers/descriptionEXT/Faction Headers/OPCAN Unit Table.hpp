@@ -35,6 +35,7 @@ class OPCAN_CGC_faction
 		"LM_OPCAN_UH144_CGC"
 	};
 	casAircraft[] = {
+		"B_Plane_Fighter_01_F",
 		"B_Plane_CAS_01_dynamicLoadout_F"
 	};
 	attackHelicopters[] = {
