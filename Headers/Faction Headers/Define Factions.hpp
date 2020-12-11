@@ -98,7 +98,12 @@
 	95,\
 	96,\
 	97,\
-	98
+	98,\
+	99,\
+	100,\
+	101,\
+	102,\
+	103
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -135,7 +140,12 @@
 	"OPTRE - Insurgents", \
 	"OPTRE - ODSTs", \
 	"OPTRE - United Rebel Front", \
-	"OPTRE - UNSC Army", \
+	"OPTRE - UNSC Army Desert", \
+	"OPTRE - UNSC Army Olive", \
+	"OPTRE - UNSC Army Snow", \
+	"OPTRE - UNSC Army Tropical", \
+	"OPTRE - UNSC Army Urban", \
+	"OPTRE - UNSC Army Woodland", \
 	"OPTRE - UNSC Marines", \
 	"OPTRE FC - Covenant", \
 	"PROJECT OPFOR - African Militia",\

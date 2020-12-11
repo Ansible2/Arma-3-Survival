@@ -33,6 +33,7 @@ class BLWK_factions
 	just need to verify in prepare classes function that the class exists
 */
 #include "Vanilla Unit Table"
+#include "OPTRE Unit Table"
 #include "OPCAN Unit Table"
 
 };
