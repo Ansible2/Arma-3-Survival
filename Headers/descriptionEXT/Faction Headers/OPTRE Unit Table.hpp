@@ -29,25 +29,25 @@ class OPTRE_MARINES_faction
 		"B_Heli_Attack_01_dynamicLoadout_F"
 	};
 	infantry[] = {
-		"OPTRE_UNSC_Marine_Soldier_AA_Specialist", \
-		"OPTRE_UNSC_Marine_Soldier_AT_Specialist", \
-		"OPTRE_UNSC_Marine_Soldier_Breacher", \
-		"OPTRE_UNSC_Marine_Soldier_Corpsman", \
-		"OPTRE_UNSC_Marine_Soldier_Demolitions", \
-		"OPTRE_UNSC_Marine_Soldier_Marksman", \
-		"OPTRE_UNSC_Marine_Soldier_Engineer", \
-		"OPTRE_UNSC_Marine_Soldier_ForwardObserver", \
-		"OPTRE_UNSC_Marine_Soldier_Grenadier", \
-		"OPTRE_UNSC_Marine_Soldier_Officer", \
-		"OPTRE_UNSC_Marine_Soldier_Radioman", \
-		"OPTRE_UNSC_Marine_Soldier_Rifleman_AT", \
-		"OPTRE_UNSC_Marine_Soldier_Rifleman_BR", \
-		"OPTRE_UNSC_Marine_Soldier_Rifleman_Light", \
-		"OPTRE_UNSC_Marine_Soldier_Rifleman_AR", \
-		"OPTRE_UNSC_Marine_Soldier_SquadLead", \
-		"OPTRE_UNSC_Marine_Soldier_TeamLead", \
-		"OPTRE_UNSC_Marine_Soldier_Autorifleman", \
-		"OPTRE_UNSC_Marine_Soldier_Assist_Autorifleman" \
+		"OPTRE_UNSC_Marine_Soldier_AA_Specialist",
+		"OPTRE_UNSC_Marine_Soldier_AT_Specialist",
+		"OPTRE_UNSC_Marine_Soldier_Breacher",
+		"OPTRE_UNSC_Marine_Soldier_Corpsman",
+		"OPTRE_UNSC_Marine_Soldier_Demolitions",
+		"OPTRE_UNSC_Marine_Soldier_Marksman",
+		"OPTRE_UNSC_Marine_Soldier_Engineer",
+		"OPTRE_UNSC_Marine_Soldier_ForwardObserver",
+		"OPTRE_UNSC_Marine_Soldier_Grenadier",
+		"OPTRE_UNSC_Marine_Soldier_Officer",
+		"OPTRE_UNSC_Marine_Soldier_Radioman",
+		"OPTRE_UNSC_Marine_Soldier_Rifleman_AT",
+		"OPTRE_UNSC_Marine_Soldier_Rifleman_BR",
+		"OPTRE_UNSC_Marine_Soldier_Rifleman_Light",
+		"OPTRE_UNSC_Marine_Soldier_Rifleman_AR",
+		"OPTRE_UNSC_Marine_Soldier_SquadLead",
+		"OPTRE_UNSC_Marine_Soldier_TeamLead",
+		"OPTRE_UNSC_Marine_Soldier_Autorifleman",
+		"OPTRE_UNSC_Marine_Soldier_Assist_Autorifleman"
 	};
 
 };
@@ -72,17 +72,17 @@ class OPTRE_ODST_faction : OPTRE_MARINES_faction
 		"OPTRE_UNSC_falcon_black"
 	};
 	infantry[] = {
-		"OPTRE_UNSC_ODST_Soldier_Automatic_Rifleman", \
-		"OPTRE_UNSC_ODST_Soldier_DemolitionsExpert", \
-		"OPTRE_UNSC_ODST_Soldier_Marksman", \
-		"OPTRE_UNSC_ODST_Soldier_Paramedic", \
-		"OPTRE_UNSC_ODST_Soldier_Rifleman_AT", \
-		"OPTRE_UNSC_ODST_Soldier_Rifleman_BR", \
-		"OPTRE_UNSC_ODST_Soldier_Rifleman_AR", \
-		"OPTRE_UNSC_ODST_Soldier_Scout", \
-		"OPTRE_UNSC_ODST_Soldier_Scout_AT", \
-		"OPTRE_UNSC_ODST_Soldier_Scout_Sniper", \
-		"OPTRE_UNSC_ODST_Soldier_TeamLeader" \
+		"OPTRE_UNSC_ODST_Soldier_Automatic_Rifleman",
+		"OPTRE_UNSC_ODST_Soldier_DemolitionsExpert",
+		"OPTRE_UNSC_ODST_Soldier_Marksman",
+		"OPTRE_UNSC_ODST_Soldier_Paramedic",
+		"OPTRE_UNSC_ODST_Soldier_Rifleman_AT",
+		"OPTRE_UNSC_ODST_Soldier_Rifleman_BR",
+		"OPTRE_UNSC_ODST_Soldier_Rifleman_AR",
+		"OPTRE_UNSC_ODST_Soldier_Scout",
+		"OPTRE_UNSC_ODST_Soldier_Scout_AT",
+		"OPTRE_UNSC_ODST_Soldier_Scout_Sniper",
+		"OPTRE_UNSC_ODST_Soldier_TeamLeader"
 	};
 };
 
@@ -99,25 +99,25 @@ class OPTRE_ARMY_SNOW_faction : OPTRE_MARINES_faction
 		"OPTRE_UNSC_hornet_snow"
 	};
 	infantry[] = {
-		"OPTRE_UNSC_Army_Soldier_AA_Specialist_SNO", \
-		"OPTRE_UNSC_Army_Soldier_AT_Specialist_SNO", \
-		"OPTRE_UNSC_Army_Soldier_Autorifleman_SNO", \
-		"OPTRE_UNSC_Army_Soldier_Breacher_SNO", \
-		"OPTRE_UNSC_Army_Soldier_Demolitions_SNO", \
-		"OPTRE_UNSC_Army_Soldier_Marksman_SNO", \
-		"OPTRE_UNSC_Army_Soldier_Engineer_SNO", \
-		"OPTRE_UNSC_Army_Soldier_ForwardObserver_SNO", \
-		"OPTRE_UNSC_Army_Soldier_Grenadier_SNO", \
-		"OPTRE_UNSC_Army_Soldier_Medic_SNO", \
-		"OPTRE_UNSC_Army_Soldier_Officer_SNO", \
-		"OPTRE_UNSC_Army_Soldier_Radioman_SNO", \
-		"OPTRE_UNSC_Army_Soldier_Rifleman_AT_SNO", \
-		"OPTRE_UNSC_Army_Soldier_Rifleman_BR_SNO", \
-		"OPTRE_UNSC_Army_Soldier_Rifleman_Light_SNO", \
-		"OPTRE_UNSC_Army_Soldier_Rifleman_AR_SNO", \
-		"OPTRE_UNSC_Army_Soldier_SquadLead_SNO", \
-		"OPTRE_UNSC_Army_Soldier_TeamLead_SNO", \
-		"OPTRE_UNSC_Army_Soldier_Assist_Autorifleman_SNO" \
+		"OPTRE_UNSC_Army_Soldier_AA_Specialist_SNO",
+		"OPTRE_UNSC_Army_Soldier_AT_Specialist_SNO",
+		"OPTRE_UNSC_Army_Soldier_Autorifleman_SNO",
+		"OPTRE_UNSC_Army_Soldier_Breacher_SNO",
+		"OPTRE_UNSC_Army_Soldier_Demolitions_SNO",
+		"OPTRE_UNSC_Army_Soldier_Marksman_SNO",
+		"OPTRE_UNSC_Army_Soldier_Engineer_SNO",
+		"OPTRE_UNSC_Army_Soldier_ForwardObserver_SNO",
+		"OPTRE_UNSC_Army_Soldier_Grenadier_SNO",
+		"OPTRE_UNSC_Army_Soldier_Medic_SNO",
+		"OPTRE_UNSC_Army_Soldier_Officer_SNO",
+		"OPTRE_UNSC_Army_Soldier_Radioman_SNO",
+		"OPTRE_UNSC_Army_Soldier_Rifleman_AT_SNO",
+		"OPTRE_UNSC_Army_Soldier_Rifleman_BR_SNO",
+		"OPTRE_UNSC_Army_Soldier_Rifleman_Light_SNO",
+		"OPTRE_UNSC_Army_Soldier_Rifleman_AR_SNO",
+		"OPTRE_UNSC_Army_Soldier_SquadLead_SNO",
+		"OPTRE_UNSC_Army_Soldier_TeamLead_SNO",
+		"OPTRE_UNSC_Army_Soldier_Assist_Autorifleman_SNO"
 	};
 };
 
@@ -289,26 +289,26 @@ class OPTRE_URF_faction : CSAT_pacific_faction
 		"OPTRE_UNSC_falcon_unarmed"
 	};
 	infantry[] = {
-		"OPTRE_Ins_URF_AA_Specialist", \
-		"OPTRE_Ins_URF_Assist_Autorifleman", \
-		"OPTRE_Ins_URF_AT_Specialist", \
-		"OPTRE_Ins_URF_Autorifleman", \
-		"OPTRE_Ins_URF_Breacher", \
-		"OPTRE_Ins_URF_Demolitions", \
-		"OPTRE_Ins_URF_Marksman", \
-		"OPTRE_Ins_URF_Engineer", \
-		"OPTRE_Ins_URF_Grenadier", \
-		"OPTRE_Ins_URF_Medic", \
-		"OPTRE_Ins_ER_MAdvisor", \
-		"OPTRE_Ins_URF_Observer", \
-		"OPTRE_Ins_URF_Officer", \
-		"OPTRE_Ins_URF_Radioman", \
-		"OPTRE_Ins_URF_Rifleman_AT", \
-		"OPTRE_Ins_URF_Rifleman_BR", \
-		"OPTRE_Ins_URF_Rifleman_Light", \
-		"OPTRE_Ins_URF_Rifleman_AR", \
-		"OPTRE_Ins_URF_SquadLead", \
-		"OPTRE_Ins_URF_TeamLead" \
+		"OPTRE_Ins_URF_AA_Specialist",
+		"OPTRE_Ins_URF_Assist_Autorifleman",
+		"OPTRE_Ins_URF_AT_Specialist",
+		"OPTRE_Ins_URF_Autorifleman",
+		"OPTRE_Ins_URF_Breacher",
+		"OPTRE_Ins_URF_Demolitions",
+		"OPTRE_Ins_URF_Marksman",
+		"OPTRE_Ins_URF_Engineer",
+		"OPTRE_Ins_URF_Grenadier",
+		"OPTRE_Ins_URF_Medic",
+		"OPTRE_Ins_ER_MAdvisor",
+		"OPTRE_Ins_URF_Observer",
+		"OPTRE_Ins_URF_Officer",
+		"OPTRE_Ins_URF_Radioman",
+		"OPTRE_Ins_URF_Rifleman_AT",
+		"OPTRE_Ins_URF_Rifleman_BR",
+		"OPTRE_Ins_URF_Rifleman_Light",
+		"OPTRE_Ins_URF_Rifleman_AR",
+		"OPTRE_Ins_URF_SquadLead",
+		"OPTRE_Ins_URF_TeamLead"
 	};
 };
 
@@ -316,15 +316,15 @@ class OPTRE_BJ_URBAN_faction : OPTRE_URF_faction
 {
 	displayName = "OPTRE - Battle Jumpers Urban";
 	infantry[] = {
-		"OPTRE_Ins_BJ_Soldier_URB_Automatic_Rifleman", \
-		"OPTRE_Ins_BJ_Soldier_URB_Engineer", \
-		"OPTRE_Ins_BJ_Soldier_URB_Marksman", \
-		"OPTRE_Ins_BJ_Soldier_URB_Rifleman_AT", \
-		"OPTRE_Ins_BJ_Soldier_URB_Rifleman_BR", \
-		"OPTRE_Ins_BJ_Soldier_URB_Rifleman_AR", \
-		"OPTRE_Ins_BJ_Soldier_URB_Scout", \
-		"OPTRE_Ins_BJ_Soldier_URB_TeamLeader", \
-		"OPTRE_Ins_BJ_Soldier_URB_Corpsman" \
+		"OPTRE_Ins_BJ_Soldier_URB_Automatic_Rifleman",
+		"OPTRE_Ins_BJ_Soldier_URB_Engineer",
+		"OPTRE_Ins_BJ_Soldier_URB_Marksman",
+		"OPTRE_Ins_BJ_Soldier_URB_Rifleman_AT",
+		"OPTRE_Ins_BJ_Soldier_URB_Rifleman_BR",
+		"OPTRE_Ins_BJ_Soldier_URB_Rifleman_AR",
+		"OPTRE_Ins_BJ_Soldier_URB_Scout",
+		"OPTRE_Ins_BJ_Soldier_URB_TeamLeader",
+		"OPTRE_Ins_BJ_Soldier_URB_Corpsman"
 	};
 };
 
@@ -338,15 +338,15 @@ class OPTRE_INSURGENTS_faction : FIA_faction
 		"OPTRE_M12G1_LRV"
 	};
 	infantry[] = {
-		"OPTRE_Ins_ER_Farmer", \
-		"OPTRE_Ins_ER_Guerilla_AR", \
-		"OPTRE_Ins_ER_Hacker", \
-		"OPTRE_Ins_ER_Insurgent_BR", \
-		"OPTRE_Ins_ER_Militia_MG", \
-		"OPTRE_Ins_ER_Rebel_AT", \
-		"OPTRE_Ins_ER_Surgeon", \
-		"OPTRE_Ins_ER_Terrorist", \
-		"OPTRE_Ins_ER_Warlord", \
-		"OPTRE_Ins_ER_Deserter_GL" \
+		"OPTRE_Ins_ER_Farmer",
+		"OPTRE_Ins_ER_Guerilla_AR",
+		"OPTRE_Ins_ER_Hacker",
+		"OPTRE_Ins_ER_Insurgent_BR",
+		"OPTRE_Ins_ER_Militia_MG",
+		"OPTRE_Ins_ER_Rebel_AT",
+		"OPTRE_Ins_ER_Surgeon",
+		"OPTRE_Ins_ER_Terrorist",
+		"OPTRE_Ins_ER_Warlord",
+		"OPTRE_Ins_ER_Deserter_GL"
 	};
 };
