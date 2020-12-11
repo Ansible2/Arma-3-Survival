@@ -212,9 +212,6 @@ if (hasInterface) then {
 
     BLWK_saveRespawnLoadout = [false,true] select ("BLWK_saveRespawnLoadout" call BIS_fnc_getParamValue);
     BLWK_magRepackEnabled = [false,true] select ("BLWK_magRepackEnabled" call BIS_fnc_getParamValue);
-    BLWK_dontUseRevive = (("ReviveMode" call BIS_fnc_getParamValue) isEqualTo 0);
-
-    BLWK_ACELoaded = ["ACE_Medical_StateMachine"] call KISKA_fnc_ispatchLoaded;
 
     BLWK_staminaEnabled = [false,true] select ("BLWK_staminaEnabled" call BIS_fnc_getParamValue);
     BLWK_weaponSwayCoef = "BLWK_weaponSwayCoef" call BIS_fnc_getParamValue;
@@ -232,6 +229,7 @@ if (hasInterface) then {
         BLWK_enforceArea = false;
     };
 };
+
 if (isNil "BLWK_currentWaveNumber") then {
     BLWK_currentWaveNumber = "BLWK_startingWaveNumber" call BIS_fnc_getParamValue;
     BLWK_startingFromWaveNumber = BLWK_currentWaveNumber + 1;
@@ -255,6 +253,8 @@ BLWK_pointsForHit = "BLWK_pointsForHit" call BIS_fnc_getParamValue;             
 BLWK_pointsMultiForDamage = "BLWK_pointsMultiForDamage" call BIS_fnc_getParamValue;   // Extra points awarded for damage. 100% = BLWK_pointsMultiForDamage. 50% = BLWK_pointsMultiForDamage/2
 BLWK_maxPointsForDamage = BLWK_pointsForHit * 2; // There are certain weapons that cause extreme amounts of damage that will give an immense amount of points, so this caps it
 
+BLWK_dontUseRevive = (("ReviveMode" call BIS_fnc_getParamValue) isEqualTo 0);
+BLWK_ACELoaded = ["ACE_Medical_StateMachine"] call KISKA_fnc_ispatchLoaded;
 
 BLWK_costToSpinRandomBox = 950; 
 if (isNil "BLWK_supportDishFound") then {
