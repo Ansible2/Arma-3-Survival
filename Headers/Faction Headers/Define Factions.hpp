@@ -103,7 +103,11 @@
 	100,\
 	101,\
 	102,\
-	103
+	103,\
+	104,\
+	105,\
+	106,\
+	107
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -200,6 +204,10 @@
 	"RHS USAF - US ARMY (Desert CRYE)", \
 	"RHS USAF - US ARMY (Woodland)", \
 	"RHS USAF - US ARMY (Woodland CRYE)", \
+	"RHS USAF - US ARMY (Desert UCP)", \
+	"RHS USAF - US ARMY (Woodland UCP)", \
+	"RHS USAF - US ARMY (Desert UCP CRYE)", \
+	"RHS USAF - US ARMY (Woodland UCP CRYE)", \
 	"RHS USAF - MARSOC", \
 	"RHS USAF - USMC Infantry (Desert)", \
 	"RHS USAF - USMC Infantry (Woodland)", \
