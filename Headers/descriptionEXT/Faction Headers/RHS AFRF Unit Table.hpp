@@ -1,4 +1,4 @@
-class RHSAFRF_MSV_EMR
+class RHSAFRF_MSV_EMR_faction
 {
 	displayName = "RHS AFRF - Russia MSV (EMR)";
 	lightCars[] = {
@@ -92,7 +92,7 @@ class RHSAFRF_MSV_EMR
 	};
 };
 
-class RHSAFRF_MSV_FLORA : RHSAFRF_MSV_EMR
+class RHSAFRF_MSV_FLORA_faction : RHSAFRF_MSV_EMR_faction
 {
 	displayName = "RHS AFRF - Russia MSV (Flora)";
 
@@ -115,7 +115,7 @@ class RHSAFRF_MSV_FLORA : RHSAFRF_MSV_EMR
 	};
 };
 
-class RHSAFRF_VDV_EMR : RHSAFRF_MSV_EMR
+class RHSAFRF_VDV_EMR_faction : RHSAFRF_MSV_EMR_faction
 {
 	displayName = "RHS AFRF - Russia VDV (EMR)";
 	
@@ -146,7 +146,7 @@ class RHSAFRF_VDV_EMR : RHSAFRF_MSV_EMR
 	};
 };
 
-class RHSAFRF_VDV_EMR_DES : RHSAFRF_VDV_EMR
+class RHSAFRF_VDV_EMR_faction_DES : RHSAFRF_VDV_EMR_faction
 {
 	displayName = "RHS AFRF - Russia VDV (EMR-Des)";
 
@@ -171,9 +171,9 @@ class RHSAFRF_VDV_EMR_DES : RHSAFRF_VDV_EMR
 	};
 };
 
-class RHSAFRF_VDV_FLORA : RHSAFRF_VDV_EMR
+class RHSAFRF_VDV_FLORA_faction : RHSAFRF_VDV_EMR_faction
 {
-	displayName = "RHS AFRF - Russia VDV (EMR-Des)";
+	displayName = "RHS AFRF - Russia VDV (Flora)";
 
 	infantry[] = {
 		"rhs_vdv_flora_at",
@@ -190,5 +190,115 @@ class RHSAFRF_VDV_FLORA : RHSAFRF_VDV_EMR
 		"rhs_vdv_flora_LAT",
 		"rhs_vdv_flora_RShG2",
 		"rhs_vdv_flora_sergeant"
+	};
+};
+
+class RHSAFRF_VDV_MFLORA_faction : RHSAFRF_VDV_EMR_faction
+{
+	displayName = "RHS AFRF - Russia VDV (M-Flora)";
+
+	infantry[] = {
+		"rhs_vdv_mflora_at",
+		"rhs_vdv_mflora_engineer",
+		"rhs_vdv_mflora_grenadier_rpg",
+		"rhs_vdv_mflora_strelok_rpg_assist",
+		"rhs_vdv_mflora_junior_sergeant",
+		"rhs_vdv_mflora_machinegunner",
+		"rhs_vdv_mflora_machinegunner_assistant",
+		"rhs_vdv_mflora_marksman",
+		"rhs_vdv_mflora_medic",
+		"rhs_vdv_mflora_rifleman",
+		"rhs_vdv_mflora_grenadier",
+		"rhs_vdv_mflora_LAT",
+		"rhs_vdv_mflora_RShG2",
+		"rhs_vdv_mflora_sergeant"
+	};
+};
+
+class RHSAFRF_VDV_RECON_faction : RHSAFRF_VDV_EMR_faction
+{
+	displayName = "RHS AFRF - Russia VDV (RECON)";
+
+	infantry[] = {
+		"rhs_vdv_mflora_at",
+		"rhs_vdv_mflora_engineer",
+		"rhs_vdv_mflora_grenadier_rpg",
+		"rhs_vdv_mflora_strelok_rpg_assist",
+		"rhs_vdv_mflora_junior_sergeant",
+		"rhs_vdv_mflora_machinegunner",
+		"rhs_vdv_mflora_machinegunner_assistant",
+		"rhs_vdv_mflora_marksman",
+		"rhs_vdv_mflora_medic",
+		"rhs_vdv_mflora_rifleman",
+		"rhs_vdv_mflora_grenadier",
+		"rhs_vdv_mflora_LAT",
+		"rhs_vdv_mflora_RShG2",
+		"rhs_vdv_mflora_sergeant"
+	};
+};
+
+class RHSAFRF_VMF_RECON_faction : RHSAFRF_VDV_EMR_faction
+{
+	displayName = "RHS AFRF - Russia VMF (RECON)";
+
+	infantry[] = {
+		"rhs_vmf_recon_arifleman",
+		"rhs_vmf_recon_efreitor",
+		"rhs_vmf_recon_machinegunner_assistant",
+		"rhs_vmf_recon_marksman",
+		"rhs_vmf_recon_marksman_vss",
+		"rhs_vmf_recon_medic",
+		"rhs_vmf_recon_rifleman",
+		"rhs_vmf_recon_rifleman_akms",
+		"rhs_vmf_recon_rifleman_l",
+		"rhs_vmf_recon_rifleman_asval",
+		"rhs_vmf_recon_grenadier",
+		"rhs_vmf_recon_rifleman_lat",
+		"rhs_vmf_recon_rifleman_scout_akm",
+		"rhs_vmf_recon_rifleman_scout",
+		"rhs_vmf_recon_grenadier_scout",
+		"rhs_vmf_recon_arifleman_scout",
+		"rhs_vmf_recon_sergeant"
+	};
+};
+
+class RHSAFRF_VMF_FLORA_faction : RHSAFRF_VDV_EMR_faction
+{
+	displayName = "RHS AFRF - Russia VMF (RECON)";
+
+	infantry[] = {
+		"rhs_vmf_flora_at",
+		"rhs_vmf_flora_efreitor",
+		"rhs_vmf_flora_engineer",
+		"rhs_vmf_flora_grenadier_rpg",
+		"rhs_vmf_flora_strelok_rpg_assist",
+		"rhs_vmf_flora_junior_sergeant",
+		"rhs_vmf_flora_machinegunner",
+		"rhs_vmf_flora_machinegunner_assistant",
+		"rhs_vmf_flora_marksman",
+		"rhs_vmf_flora_medic",
+		"rhs_vmf_flora_rifleman",
+		"rhs_vmf_flora_grenadier",
+		"rhs_vmf_flora_LAT",
+		"rhs_vmf_flora_RShG2",
+		"rhs_vmf_flora_sergeant"
+	};
+};
+
+class RHSAFRF_VV_OSN_faction : RHSAFRF_VDV_EMR_faction
+{
+	displayName = "RHS AFRF - Russia VMF (OSN)";
+
+	infantry[] = {
+		"rhs_mvd_izlom_arifleman",
+		"rhs_mvd_izlom_efreitor",
+		"rhs_mvd_izlom_grenadier_rpg",
+		"rhs_mvd_izlom_machinegunner",
+		"rhs_mvd_izlom_marksman",
+		"rhs_mvd_izlom_marksman_vss",
+		"rhs_mvd_izlom_rifleman",
+		"rhs_mvd_izlom_rifleman_asval",
+		"rhs_mvd_izlom_rifleman_LAT",
+		"rhs_mvd_izlom_sergeant"
 	};
 };
