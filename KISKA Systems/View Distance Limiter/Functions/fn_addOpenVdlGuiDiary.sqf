@@ -20,7 +20,12 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-waitUntil {!isNull player};
+if (!hasInterface) exitWith {};
+
+waitUntil {
+	sleep 0.1;
+	!isNull player
+};
 
 player createDiarySubject ["VDL_entry","View Distance Limiter",""];
 
