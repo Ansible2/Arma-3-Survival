@@ -1,3 +1,5 @@
+if (!hasInterface) exitWith {};
+
 waitUntil {
 	if (missionNamespace getVariable ["BLWK_serverGlobalsInitialized",false]) exitWith {true};
 	false
@@ -40,7 +42,7 @@ if (BLWK_magRepackEnabled) then {
 waitUntil {!isNil "BLWK_playAreaCenter" AND {!isNil "BLWK_mainCrate"}};
 _player setVehiclePosition [BLWK_mainCrate,[],5,"NONE"];
 sleep 0.25;
-_player switchMove "AidlPercMstpSrasWrflDnon_G01_player"; // set player standing
+_player switchMove ""; // set player standing
 
 // a loop that updates the info panel in the top left (respawn tickets, current wave #, points)
 null = [] spawn BLWK_fnc_infoPanelLoop;
