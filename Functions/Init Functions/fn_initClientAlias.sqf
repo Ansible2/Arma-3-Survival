@@ -1,17 +1,27 @@
-if (!hasInterface) exitWith {};
+// dedicated server needs nothing here
+if (isDedicated) exitWith {};
 
 waitUntil {
 	if (missionNamespace getVariable ["BLWK_serverGlobalsInitialized",false]) exitWith {true};
+    sleep 0.1;
 	false
 };
 
-waitUntil {!isNull player};
-
-private _player = player;
-
+// if you are a client and not a mission host, you now prep your globals
 if (!isServer) then {
 	call BLWK_fnc_prepareGlobals;
 };
+
+// headless client only needs BLWK_fnc_prepareGlobals
+if (!hasInterface) exitWith {};
+
+waitUntil {
+    if !(isNull player) exitWith {true};
+    sleep 0.1;
+    false
+};
+
+private _player = player;
 
 // Lower recoil, lower sway, remove stamina on respawn, make medic and engineer
 [_player] call BLWK_fnc_adjustPlayerTraits;
@@ -55,7 +65,10 @@ null = [] spawn BLWK_fnc_infoPanelLoop;
 
 null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
 
-waitUntil {!isNil "BLWK_playerGroup"};
+waitUntil {
+    sleep 0.1;
+    !isNil "BLWK_playerGroup"
+};
 
 sleep 1;
 [_player] joinSilent BLWK_playerGroup;
