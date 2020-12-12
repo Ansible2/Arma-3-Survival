@@ -16,8 +16,9 @@ if (!isServer) then {
 if (!hasInterface) exitWith {};
 
 waitUntil {
+    if !(isNull player) exitWith {true};
     sleep 0.1;
-    !isNull player
+    false
 };
 
 private _player = player;
