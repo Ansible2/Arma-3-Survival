@@ -100,9 +100,10 @@ if (isServer OR {!hasInterface}) then {
 
     // this is used to only allow only so many AI to be active at any time
     BLWK_maxEnemyInfantryAtOnce = ("BLWK_maxEnemyInfantryAtOnce" call BIS_fnc_getParamValue);
+    //profileNamespace setVariable ["BLWK_maxEnemyInfantryAtOnce",BLWK_maxEnemyInfantryAtOnce];
 
-    // used for chaning medical items of OPTRE units (biofoam to FAKs)
-    BLWK_isOptreLoaded = ["OPTRE_core"] call KISKA_fnc_ispatchLoaded;
+    // used for chaning medical items of OPTRE units (e.g. biofoam to FAKs)
+    BLWK_isOptreLoaded = ["OPTRE_core"] call KISKA_fnc_isPatchLoaded;
 
     BLWK_doDetectCollision = [false,true] select ("BLWK_doDetectCollision" call BIS_fnc_getParamValue);
 };
@@ -212,9 +213,6 @@ if (hasInterface) then {
 
     BLWK_saveRespawnLoadout = [false,true] select ("BLWK_saveRespawnLoadout" call BIS_fnc_getParamValue);
     BLWK_magRepackEnabled = [false,true] select ("BLWK_magRepackEnabled" call BIS_fnc_getParamValue);
-    BLWK_dontUseRevive = (("ReviveMode" call BIS_fnc_getParamValue) isEqualTo 0);
-
-    BLWK_ACELoaded = ["ACE_Medical_StateMachine"] call KISKA_fnc_ispatchLoaded;
 
     BLWK_staminaEnabled = [false,true] select ("BLWK_staminaEnabled" call BIS_fnc_getParamValue);
     BLWK_weaponSwayCoef = "BLWK_weaponSwayCoef" call BIS_fnc_getParamValue;
@@ -232,6 +230,7 @@ if (hasInterface) then {
         BLWK_enforceArea = false;
     };
 };
+
 if (isNil "BLWK_currentWaveNumber") then {
     BLWK_currentWaveNumber = "BLWK_startingWaveNumber" call BIS_fnc_getParamValue;
     BLWK_startingFromWaveNumber = BLWK_currentWaveNumber + 1;
@@ -274,7 +273,8 @@ BLWK_pointsMulti_man_level5 = 1.50;
 BLWK_pointsMulti_car = 2;
 BLWK_pointsMulti_armour = 4;
 
-
+BLWK_dontUseRevive = (("ReviveMode" call BIS_fnc_getParamValue) isEqualTo 0);
+BLWK_ACELoaded = ["ACE_Medical_StateMachine"] call KISKA_fnc_ispatchLoaded;
 
 // shop arrays
 BLWK_supports_array = [missionConfigFile >> "CfgCommunicationMenu"] call BLWK_fnc_createSupportsArray;
