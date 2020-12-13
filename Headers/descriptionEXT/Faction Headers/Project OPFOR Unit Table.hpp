@@ -400,3 +400,253 @@ class PROJOP_NAF_faction : PROJOP_TAF_faction
 	};
 };
 
+class PROJOP_ANA_faction
+{
+	displayName = "PROJECT OPFOR - Afghan National Army";
+
+	lightCars[] = {
+		"LOP_AA_Offroad_M2"
+	};
+	heavyCars[] = {
+		"LOP_AA_M1025_W_M2",
+		"LOP_AA_M1025_W_Mk19"
+	};
+	lightArmor[] = {
+		"LOP_AA_M113_C",
+		"LOP_AA_M113_D",
+		"LOP_AA_M113_W",
+		"LOP_AA_BMP1",
+		"LOP_AA_BMP1_C",
+		"LOP_AA_BMP2_C",
+		"LOP_AA_BMP2",
+		"LOP_AA_M1117_D"
+	};
+	heavyArmor[] = {
+		"LOP_AA_T34",
+		"LOP_AA_T55",
+		"LOP_AA_T72BA",
+		"LOP_AA_T72BB"
+	};
+	transportHelicopters[] = {
+		"LOP_AA_Mi8MTV3_UPK23"
+	};
+	cargoAircraft[] = {
+		"RHS_C130J"
+	};
+	casAircraft[] = {
+		"RHSGREF_A29B_HIDF"
+	};
+	attackHelicopters[] = {
+		"rhs_mi28n_vvsc"
+	};
+	infantry[] = {
+		"LOP_AA_Infantry_Corpsman",
+		"LOP_AA_Infantry_Engineer",
+		"LOP_AA_Infantry_GL",
+		"LOP_AA_Infantry_AT",
+		"LOP_AA_Infantry_AT_Asst",
+		"LOP_AA_Infantry_MG_2",
+		"LOP_AA_Infantry_MG",
+		"LOP_AA_Infantry_MG_Asst_2",
+		"LOP_AA_Infantry_MG_Asst",
+		"LOP_AA_Infantry_Marksman",
+		"LOP_AA_Infantry_Rifleman_3",
+		"LOP_AA_Infantry_Rifleman_2",
+		"LOP_AA_Infantry_Rifleman",
+		"LOP_AA_Infantry_SL",
+		"LOP_AA_Infantry_TL"
+	};
+};
+
+class PROJOP_ANP_faction : PROJOP_ANA_faction
+{
+	displayName = "PROJECT OPFOR - Afghan National Police";
+
+	lightCars[] = {
+		"LOP_AA_Offroad_M2_Police"
+	};
+	heavyCars[] = {
+		"rhsgref_hidf_m1025_m2",
+		"rhsgref_hidf_m1025_mk19"
+	};
+	lightArmor[] = {
+		"LOP_AA_M113_D",
+		"LOP_AA_M113_W",
+		"LOP_AA_BMP1",
+		"LOP_AA_BMP2",
+		"LOP_AA_M1117_D"
+	};
+	heavyArmor[] = {
+		"LOP_AA_T34",
+		"LOP_AA_T55",
+		"LOP_AA_T72BA",
+		"LOP_AA_T72BB"
+	};
+	transportHelicopters[] = {
+		"LOP_AA_Mi8MTV3_UPK23"
+	};
+	cargoAircraft[] = {
+		"RHS_C130J"
+	};
+	casAircraft[] = {
+		"RHSGREF_A29B_HIDF"
+	};
+	attackHelicopters[] = {
+		"rhs_mi28n_vvsc"
+	};
+	infantry[] = {
+		"LOP_AA_Police_Corpsman",
+		"LOP_AA_Police_MG",
+		"LOP_AA_Police_MG_Asst",
+		"LOP_AA_Police_Rifleman_2",
+		"LOP_AA_Police_Rifleman",
+		"LOP_AA_Police_Rifleman_3",
+		"LOP_AA_Police_SL",
+		"LOP_AA_Police_TL"
+	};
+};
+
+class PROJOP_CDF_faction : RHSGREF_CDF_faction
+{
+	displayName = "PROJECT OPFOR - CDF";
+
+	infantry[] = {
+		"LOP_CDF_Infantry_AA",
+		"LOP_CDF_Infantry_AT_Asst",
+		"LOP_CDF_Infantry_Corpsman",
+		"LOP_CDF_Infantry_Engineer",
+		"LOP_CDF_Infantry_GL",
+		"LOP_CDF_Infantry_AT",
+		"LOP_CDF_Infantry_MG",
+		"LOP_CDF_Infantry_MG_2",
+		"LOP_CDF_Infantry_MG_Asst",
+		"LOP_CDF_Infantry_Marksman",
+		"LOP_CDF_Infantry_Officer",
+		"LOP_CDF_Infantry_Rifleman",
+		"LOP_CDF_Infantry_Rifleman_2",
+		"LOP_CDF_Infantry_SL",
+		"LOP_CDF_Infantry_TL"
+	};
+};
+
+class PROJOP_HAF_faction : RHSGREF_HIDF_faction
+{
+	displayName = "PROJECT OPFOR - Hellnic Armed Forces";
+
+	infantry[] = {
+		"LOP_GRE_Infantry_AT_Asst",
+		"LOP_GRE_Infantry_AT",
+		"LOP_GRE_Infantry_Corpsman",
+		"LOP_GRE_Infantry_Engineer",
+		"LOP_GRE_Infantry_MG",
+		"LOP_GRE_Infantry_MG_Asst",
+		"LOP_GRE_Infantry_Rifleman",
+		"LOP_GRE_Infantry_Rifleman_2",
+		"LOP_GRE_Infantry_SL",
+		"LOP_GRE_Infantry_TL"
+	};
+};
+
+class PROJOP_IAF_faction
+{
+	displayName = "PROJECT OPFOR - Iraqi Armed Forces";
+	
+	lightCars[] = {
+		"LOP_IA_Offroad_M2"
+	};
+	heavyCars[] = {
+		"LOP_IA_M1025_W_M2",
+		"LOP_IA_M1025_W_Mk19"
+	};
+	lightArmor[] = {
+		"LOP_IA_BTR80",
+		"LOP_IA_M113_W",
+		"LOP_IA_BMP1",
+		"LOP_IA_BMP2"
+	};
+	heavyArmor[] = {
+		"LOP_IA_T34",
+		"LOP_IA_T55",
+		"LOP_IA_T72BA",
+		"LOP_IA_T72BB",
+		"LOP_IA_M1A1_AIM_D"
+	};
+	transportHelicopters[] = {
+		"LOP_IA_Mi8MTV3_UPK23",
+		"LOP_RACS_UH60M",
+		"LOP_IA_Mi8MTV3_FAB"
+	};
+	cargoAircraft[] = {
+		"RHS_C130J"
+	};
+	casAircraft[] = {
+		"rhs_l159_cdf_b_CDF",
+		"RHSGREF_A29B_HIDF"
+	};
+	attackHelicopters[] = {
+		"rhs_mi28n_vvsc"
+	};
+	infantry[] = {
+		"LOP_IA_Infantry_Corpsman",
+		"LOP_IA_Infantry_Engineer",
+		"LOP_IA_Infantry_GL",
+		"LOP_IA_Infantry_AT",
+		"LOP_IA_Infantry_AT_Asst",
+		"LOP_IA_Infantry_MG_2",
+		"LOP_IA_Infantry_MG",
+		"LOP_IA_Infantry_MG_Asst_2",
+		"LOP_IA_Infantry_MG_Asst",
+		"LOP_IA_Infantry_Marksman",
+		"LOP_IA_Infantry_Rifleman",
+		"LOP_IA_Infantry_Rifleman_4",
+		"LOP_IA_Infantry_Rifleman_2",
+		"LOP_IA_Infantry_Rifleman_3",
+		"LOP_IA_Infantry_Rifleman_6",
+		"LOP_IA_Infantry_SL"
+	};
+};
+
+class PROJOP_IAF_WDL_faction : PROJOP_IAF_faction
+{
+	displayName = "PROJECT OPFOR - Iraqi Armed Forces (Woodland)";
+
+	infantry[] = {
+		"LOP_IA_Infantry_W_Corpsman",
+		"LOP_IA_Infantry_W_Engineer",
+		"LOP_IA_Infantry_W_GL",
+		"LOP_IA_Infantry_W_AT",
+		"LOP_IA_Infantry_W_AT_Asst",
+		"LOP_IA_Infantry_W_MG_2",
+		"LOP_IA_Infantry_W_MG",
+		"LOP_IA_Infantry_W_MG_Asst_2",
+		"LOP_IA_Infantry_W_MG_Asst",
+		"LOP_IA_Infantry_W_Marksman",
+		"LOP_IA_Infantry_W_Rifleman_3",
+		"LOP_IA_Infantry_W_Rifleman",
+		"LOP_IA_Infantry_W_Rifleman_4",
+		"LOP_IA_Infantry_W_Rifleman_2",
+		"LOP_IA_Infantry_W_Rifleman_6",
+		"LOP_IA_Infantry_W_SL",
+		"LOP_IA_Infantry_W_TL"
+	};
+};
+
+class PROJOP_IAF_WDL_faction : PROJOP_IAF_faction
+{
+	displayName = "PROJECT OPFOR - Iraqi Special Forces";
+
+	infantry[] = {
+		"PO_IA_Infantry_SF_Corpsman",
+		"PO_IA_Infantry_SF_AT",
+		"PO_IA_Infantry_SF_AT_Asst",
+		"PO_IA_Infantry_SF_MG",
+		"PO_IA_Infantry_SF_MG_Asst",
+		"PO_IA_Infantry_SF_Marksman",
+		"PO_IA_Infantry_SF_Mechanic",
+		"PO_IA_Infantry_SF_Operator",
+		"PO_IA_Infantry_SF_Operator_2",
+		"PO_IA_Infantry_SF_GL",
+		"PO_IA_Infantry_SF_SL",
+		"PO_IA_Infantry_SF_TL"
+	};
+};
