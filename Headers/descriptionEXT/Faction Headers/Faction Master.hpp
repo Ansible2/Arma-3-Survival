@@ -32,9 +32,12 @@ class BLWK_factions
 	should be able to add addon vehicles to lists too
 	just need to verify in prepare classes function that the class exists
 */
-#include "Vanilla Unit Table"
-#include "OPTRE Unit Table"
-#include "OPTRE FC Unit Table"
-#include "OPCAN Unit Table"
+#include "Vanilla Unit Table.hpp"
+#include "OPTRE Unit Table.hpp"
+#include "OPTRE FC Unit Table.hpp"
+#include "OPCAN Unit Table.hpp"
+#include "RHS USAF Unit Table.hpp"
+#include "RHS AFRF Unit Table.hpp"
+#include "RHS GREF Unit Table.hpp"
 
 };

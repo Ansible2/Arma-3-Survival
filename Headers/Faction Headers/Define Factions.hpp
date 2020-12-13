@@ -199,7 +199,7 @@
 	"RHS GREF - Horizon Islands Defence Force", \
 	"RHS GREF - NAPA Militia", \
 	"RHS GREF - NAPA Paramilitary", \
-	"RHS GREF - TLA", \
+	"RHS GREF - Tanoan Liberation Army", \
 	"RHS USAF - US ARMY (Desert)", \
 	"RHS USAF - US ARMY (Desert CRYE)", \
 	"RHS USAF - US ARMY (Woodland)", \

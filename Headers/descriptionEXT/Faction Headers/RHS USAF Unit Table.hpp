@@ -555,6 +555,22 @@ class RHSUSF_USMC_DES_RECON_faction : RHSUSF_USMC_DES_faction
 class RHSUSF_MARSOC_faction : RHSUSF_USMC_DES_faction
 {
 	displayName = "RHS USAF - MARSOC";
+	lightCars[] = {
+		"rhsusf_M1084A1R_SOV_M2_D_fmtv_socom",
+		"rhsusf_M1078A1R_SOV_M2_D_fmtv_socom"
+	};
+	heavyCars[] = {
+		"rhsusf_M1238A1_M2_socom_d",
+		"rhsusf_M1238A1_Mk19_socom_d",
+		"rhsusf_M1239_M2_socom_d",
+		"rhsusf_M1239_MK19_socom_d",
+		"rhsusf_M1239_M2_Deploy_socom_d",
+		"rhsusf_M1239_MK19_Deploy_socom_d",
+		"rhsusf_m1245_m2crows_socom_d",
+		"rhsusf_m1245_mk19crows_socom_d",
+		"rhsusf_m1245_m2crows_socom_deploy",
+		"rhsusf_m1245_mk19crows_socom_deploy"
+	};
 	transportHelicopters[] = {
 		"RHS_UH1Y_d",
 		"RHS_MELB_MH6M"
