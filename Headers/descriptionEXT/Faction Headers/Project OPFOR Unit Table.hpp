@@ -225,22 +225,22 @@ class PROJOP_MEM_faction : PROJOP_KPA_faction
 		"LOP_AM_OPF_BTR60"
 	};
 	infantry[] = {
-		"LOP_AM_OPF_Infantry_Engineer",\
-		"LOP_AM_OPF_Infantry_Corpsman",\
-		"LOP_AM_OPF_Infantry_GL",\
-		"LOP_AM_OPF_Infantry_Rifleman_6",\
-		"LOP_AM_OPF_Infantry_Rifleman",\
-		"LOP_AM_OPF_Infantry_Rifleman_2",\
-		"LOP_AM_OPF_Infantry_Rifleman_4",\
-		"LOP_AM_OPF_Infantry_Rifleman_5",\
-		"LOP_AM_OPF_Infantry_Rifleman_7",\
-		"LOP_AM_OPF_Infantry_Rifleman_8",\
-		"LOP_AM_OPF_Infantry_AT",\
-		"LOP_AM_OPF_Infantry_Marksman",\
-		"LOP_AM_OPF_Infantry_Rifleman_9",\
-		"LOP_AM_OPF_Infantry_AR",\
-		"LOP_AM_OPF_Infantry_AR_Asst",\
-		"LOP_AM_OPF_Infantry_SL"\
+		"LOP_AM_OPF_Infantry_Engineer",
+		"LOP_AM_OPF_Infantry_Corpsman",
+		"LOP_AM_OPF_Infantry_GL",
+		"LOP_AM_OPF_Infantry_Rifleman_6",
+		"LOP_AM_OPF_Infantry_Rifleman",
+		"LOP_AM_OPF_Infantry_Rifleman_2",
+		"LOP_AM_OPF_Infantry_Rifleman_4",
+		"LOP_AM_OPF_Infantry_Rifleman_5",
+		"LOP_AM_OPF_Infantry_Rifleman_7",
+		"LOP_AM_OPF_Infantry_Rifleman_8",
+		"LOP_AM_OPF_Infantry_AT",
+		"LOP_AM_OPF_Infantry_Marksman",
+		"LOP_AM_OPF_Infantry_Rifleman_9",
+		"LOP_AM_OPF_Infantry_AR",
+		"LOP_AM_OPF_Infantry_AR_Asst",
+		"LOP_AM_OPF_Infantry_SL"
 	};
 };
 
@@ -271,19 +271,19 @@ class PROJOP_SLA_faction : RHSGREF_CDF_faction
 		"LOP_SLA_Mi8MTV3_UPK23"
 	};
 	infantry[] = {
-		"LOP_SLA_Infantry_AA",\
-		"LOP_SLA_Infantry_AT_Asst",\
-		"LOP_SLA_Infantry_Corpsman",\
-		"LOP_SLA_Infantry_Engineer",\
-		"LOP_SLA_Infantry_GL",\
-		"LOP_SLA_Infantry_AT",\
-		"LOP_SLA_Infantry_MG",\
-		"LOP_SLA_Infantry_MG_Asst",\
-		"LOP_SLA_Infantry_Marksman",\
-		"LOP_SLA_Infantry_Rifleman",\
-		"LOP_SLA_Infantry_Rifleman_2",\
-		"LOP_SLA_Infantry_SL",\
-		"LOP_SLA_Infantry_TL"\
+		"LOP_SLA_Infantry_AA",
+		"LOP_SLA_Infantry_AT_Asst",
+		"LOP_SLA_Infantry_Corpsman",
+		"LOP_SLA_Infantry_Engineer",
+		"LOP_SLA_Infantry_GL",
+		"LOP_SLA_Infantry_AT",
+		"LOP_SLA_Infantry_MG",
+		"LOP_SLA_Infantry_MG_Asst",
+		"LOP_SLA_Infantry_Marksman",
+		"LOP_SLA_Infantry_Rifleman",
+		"LOP_SLA_Infantry_Rifleman_2",
+		"LOP_SLA_Infantry_SL",
+		"LOP_SLA_Infantry_TL"
 	};
 };
 
@@ -297,18 +297,18 @@ class PROJOP_SAF_faction : PROJOP_SLA_faction
 		"LOP_SYR_T72BB"
 	};
 	infantry[] = {
-		"LOP_SYR_Infantry_AT_Asst",\
-		"LOP_SYR_Infantry_AT",\
-		"LOP_SYR_Infantry_Corpsman",\
-		"LOP_SYR_Infantry_Engineer",\
-		"LOP_SYR_Infantry_Grenadier",\
-		"LOP_SYR_Infantry_MG",\
-		"LOP_SYR_Infantry_MG_Asst",\
-		"LOP_SYR_Infantry_Marksman",\
-		"LOP_SYR_Infantry_Rifleman",\
-		"LOP_SYR_Infantry_Rifleman_2",\
-		"LOP_SYR_Infantry_SL",\
-		"LOP_SYR_Infantry_TL"\		
+		"LOP_SYR_Infantry_AT_Asst",
+		"LOP_SYR_Infantry_AT",
+		"LOP_SYR_Infantry_Corpsman",
+		"LOP_SYR_Infantry_Engineer",
+		"LOP_SYR_Infantry_Grenadier",
+		"LOP_SYR_Infantry_MG",
+		"LOP_SYR_Infantry_MG_Asst",
+		"LOP_SYR_Infantry_Marksman",
+		"LOP_SYR_Infantry_Rifleman",
+		"LOP_SYR_Infantry_Rifleman_2",
+		"LOP_SYR_Infantry_SL",
+		"LOP_SYR_Infantry_TL"		
 	};
 };
 
@@ -339,20 +339,20 @@ class PROJOP_TAF_faction : PROJOP_SLA_faction
 	};
 
 	infantry[] = {
-		"LOP_TKA_Infantry_AA",\
-		"LOP_TKA_Infantry_Corpsman",\
-		"LOP_TKA_Infantry_Engineer",\
-		"LOP_TKA_Infantry_GL",\
-		"LOP_TKA_Infantry_AT",\
-		"LOP_TKA_Infantry_AT_Asst",\
-		"LOP_TKA_Infantry_MG",\
-		"LOP_TKA_Infantry_MG_Asst",\
-		"LOP_TKA_Infantry_Marksman",\
-		"LOP_TKA_Infantry_Rifleman",\
-		"LOP_TKA_Infantry_Rifleman_2",\
-		"LOP_TKA_Infantry_Rifleman_3",\
-		"LOP_TKA_Infantry_SL",\
-		"LOP_TKA_Infantry_TL"\
+		"LOP_TKA_Infantry_AA",
+		"LOP_TKA_Infantry_Corpsman",
+		"LOP_TKA_Infantry_Engineer",
+		"LOP_TKA_Infantry_GL",
+		"LOP_TKA_Infantry_AT",
+		"LOP_TKA_Infantry_AT_Asst",
+		"LOP_TKA_Infantry_MG",
+		"LOP_TKA_Infantry_MG_Asst",
+		"LOP_TKA_Infantry_Marksman",
+		"LOP_TKA_Infantry_Rifleman",
+		"LOP_TKA_Infantry_Rifleman_2",
+		"LOP_TKA_Infantry_Rifleman_3",
+		"LOP_TKA_Infantry_SL",
+		"LOP_TKA_Infantry_TL"
 	};
 };
 
@@ -378,25 +378,25 @@ class PROJOP_NAF_faction : PROJOP_TAF_faction
 		"LOP_US_T72BC"
 	};
 	infantry[] = {
-		"LOP_US_Infantry_AA",\
-		"LOP_US_Infantry_Engineer",\
-		"LOP_US_Infantry_GL",\
-		"LOP_US_Infantry_GL_2",\
-		"LOP_US_Infantry_AT",\
-		"LOP_US_Infantry_AT_Asst",\
-		"LOP_US_Infantry_SL",\
-		"LOP_US_Infantry_MG_3",\
-		"LOP_US_Infantry_MG",\
-		"LOP_US_Infantry_MG_2",\
-		"LOP_US_Infantry_MG_Asst",\
-		"LOP_US_Infantry_Marksman",\
-		"LOP_US_Infantry_Corpsman",\
-		"LOP_US_Infantry_Officer",\
-		"LOP_US_Infantry_Rifleman",\
-		"LOP_US_Infantry_Rifleman_2",\
-		"LOP_US_Infantry_Rifleman_3",\
-		"LOP_US_Infantry_Rifleman_4",\
-		"LOP_US_Infantry_TL"\
+		"LOP_US_Infantry_AA",
+		"LOP_US_Infantry_Engineer",
+		"LOP_US_Infantry_GL",
+		"LOP_US_Infantry_GL_2",
+		"LOP_US_Infantry_AT",
+		"LOP_US_Infantry_AT_Asst",
+		"LOP_US_Infantry_SL",
+		"LOP_US_Infantry_MG_3",
+		"LOP_US_Infantry_MG",
+		"LOP_US_Infantry_MG_2",
+		"LOP_US_Infantry_MG_Asst",
+		"LOP_US_Infantry_Marksman",
+		"LOP_US_Infantry_Corpsman",
+		"LOP_US_Infantry_Officer",
+		"LOP_US_Infantry_Rifleman",
+		"LOP_US_Infantry_Rifleman_2",
+		"LOP_US_Infantry_Rifleman_3",
+		"LOP_US_Infantry_Rifleman_4",
+		"LOP_US_Infantry_TL"
 	};
 };
 
