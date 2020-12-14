@@ -785,6 +785,7 @@ class PROJOP_IRAN_SF_faction : PROJOP_IRAN_faction
 class PROJOP_PMC_faction
 {
 	displayName = "PROJECT OPFOR - PMC";
+
 	lightCars[] = {
 		"LOP_PMC_Offroad_M2"
 	};
@@ -829,6 +830,53 @@ class PROJOP_PMC_faction
 		"LOP_PMC_Infantry_SL",
 		"LOP_PMC_Infantry_TL"
 	};
+};
 
+class PROJOP_RACS_faction
+{
+	displayName = "PROJECT OPFOR - Royal Army Corps of Sahrani";
 
+	lightCars[] = {
+		"LOP_RACS_Landrover_M2"
+	};
+	heavyCars[] = {
+		"LOP_AA_M1025_W_M2",
+		"LOP_AA_M1025_W_Mk19"
+	};
+	lightArmor[] = {
+		"LOP_RACS_M113_W"
+	};
+	heavyArmor[] = {
+		"LOP_RACS_T72BA",
+		"LOP_RACS_T72BB"
+	};
+	transportHelicopters[] = {
+		"LOP_RACS_MH9",
+		"LOP_RACS_UH60M"
+	};
+	cargoAircraft[] = {
+		"RHS_C130J"
+	};
+	attackHelicopters[] = {
+		"rhs_mi28n_vvsc"
+	};
+};
+
+class PROJOP_TURK_faction : PROJOP_CDF_faction
+{
+	displayName = "PROJECT OPFOR - Turkish Armed Forces";
+
+	infantry[] = {
+		"LOP_TRK_Infantry_AT_Asst",
+		"LOP_TRK_Infantry_AT",
+		"LOP_TRK_Infantry_Corpsman",
+		"LOP_TRK_Infantry_Engineer",
+		"LOP_TRK_Infantry_MG",
+		"LOP_TRK_Infantry_MG_Asst",
+		"LOP_TRK_Infantry_Marksman",
+		"LOP_TRK_Infantry_Rifleman",
+		"LOP_TRK_Infantry_Rifleman_2",
+		"LOP_TRK_Infantry_SL",
+		"LOP_TRK_Infantry_TL"
+	};
 };
