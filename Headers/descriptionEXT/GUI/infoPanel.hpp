@@ -5,7 +5,7 @@ class BLWK_infoPanel {
     fadein = 0;
 	duration = 1e+011; // we want this to be up for as long as the mission is
 	name = INFO_PANEL_DISPLAYNAME;
-	onLoad = "uiNamespace setVariable ['BLWK_infoPanel',_this select 0]"
+	onLoad = "uiNamespace setVariable ['BLWK_infoPanel',_this select 0]";
 
 	class controlsBackground {
 		class BLWK_infoPanel_frame_static: RscText
@@ -30,7 +30,7 @@ class BLWK_infoPanel {
 			y = 0.0208333 * safezoneH + safezoneY;
 			w = 0.0527344 * safezoneW;
 			h = 0.03125 * safezoneH;
-			onLoad = "(_this select 0) ctrlSetText (name player)"
+			onLoad = "(_this select 0) ctrlSetText (name player)";
 			colorBackground[] = {-1,-1,-1,-1};
 			sizeEx = 0.03125 * safezoneH;
 		};

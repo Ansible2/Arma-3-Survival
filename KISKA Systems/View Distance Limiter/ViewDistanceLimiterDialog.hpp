@@ -2,10 +2,10 @@
 
 class VIEW_DISTANCE_LIMITER_DIALOG 
 {
-	idd = VIEW_DISTANCE_LIMITER_DIALOG_IDD
+	idd = VIEW_DISTANCE_LIMITER_DIALOG_IDD;
 	movingEnabled = true;
 	enableSimulation = true;
-	onLoad = "[_this select 0] call KISKA_fnc_handleVDLDialogOpen"
+	onLoad = "[_this select 0] call KISKA_fnc_handleVDLDialogOpen";
 	onUnload = "hintSilent ''";
 
 	class controls
@@ -70,7 +70,7 @@ class VIEW_DISTANCE_LIMITER_DIALOG
 			colorText[] = {-1,-1,-1,1};
 			colorActive[] = {-1,-1,-1,1};
 			onCheckedChanged = "_this call KISKA_fnc_handleVdlGUICheckBox";
-			onload = "(_this select 0) cbSetChecked (call KISKA_fnc_isVDLSystemRunning)";
+			onload = "(_this select 0) cbSetChecked (call KISKA_fnc_isVDLSystemRunning);";
 		};
 		class VDL_SYSTEM_ON_TEXT: VDL_RSC_TEXT_BASE
 		{
