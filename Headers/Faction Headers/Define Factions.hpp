@@ -107,7 +107,18 @@
 	104,\
 	105,\
 	106,\
-	107
+	107,\
+	108,\
+	109,\
+	110,\
+	111,\
+	112,\
+	113,\
+	114,\
+	115,\
+	116,\
+	117,\
+	118
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -124,6 +135,19 @@
 	"CONTACT - NATO WOODLAND", \
 	"CONTACT - LDF", \
 	"CONTACT - Spetznas", \
+
+	"CUP - Army of the Czech Republic (Desert)", \
+	"CUP - Army of the Czech Republic (Woodland)", \
+	"CUP - Army of the Czech Republic Special Forces (Desert)", \
+	"CUP - Army of the Czech Republic Special Forces (Woodland)", \
+	"CUP - British Armed Forces (Multicam)", \
+	"CUP - British Armed Forces (Desert)", \
+	"CUP - British Armed Forces (Woodland)", \
+	"CUP - Bundeswehr (Desert)", \
+	"CUP - Bundeswehr (Woodland)", \
+	"CUP - Bundeswehr KSK (Desert)", \
+	"CUP - Bundeswehr KSK (Woodland)", \
+
 	"OPCAN - Colonial Guard Corps", \
 	"OPCAN - Colonial Military Authority", \
 	"OPCAN - Colonial Police Force", \
