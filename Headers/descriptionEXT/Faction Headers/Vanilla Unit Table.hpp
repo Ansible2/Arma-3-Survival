@@ -165,10 +165,10 @@ class CSAT_pacific_faction
 		"O_T_VTOL_02_infantry_dynamicLoadout_F"
 	};
 	casAircraft[] = {
+		"O_Plane_CAS_02_dynamicLoadout_F",
 		"CUP_O_Su25_Dyn_CSAT_T",
 		"O_T_VTOL_02_infantry_dynamicLoadout_F",
-		"O_Plane_Fighter_02_F",
-		"O_Plane_CAS_02_dynamicLoadout_F"
+		"O_Plane_Fighter_02_F"
 	};
 	attackHelicopters[] = {
 		"O_Heli_Attack_02_dynamicLoadout_black_F",
