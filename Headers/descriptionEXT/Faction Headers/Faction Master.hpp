@@ -39,5 +39,6 @@ class BLWK_factions
 #include "RHS USAF Unit Table.hpp"
 #include "RHS AFRF Unit Table.hpp"
 #include "RHS GREF Unit Table.hpp"
+#include "PROJECT OPFOR Unit Table.hpp"
 
 };

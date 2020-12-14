@@ -880,3 +880,159 @@ class PROJOP_TURK_faction : PROJOP_CDF_faction
 		"LOP_TRK_Infantry_TL"
 	};
 };
+
+class PROJOP_UAF_faction
+{
+	displayName = "PROJECT OPFOR - Ukrainian Armed Forces";
+
+	lightCars[] = {
+		"LOP_UKR_UAZ_AGS",
+		"LOP_UKR_UAZ_DshKM"
+	};
+	heavyCars[] = {
+		"LOP_AA_M1025_W_M2",
+		"LOP_AA_M1025_W_Mk19"
+	};
+	lightArmor[] = {
+		"LOP_UKR_BTR60",
+		"LOP_UKR_BTR70",
+		"LOP_UKR_BTR80",
+		"LOP_UKR_BMD1",
+		"LOP_UKR_BMD2",
+		"LOP_UKR_BMP1",
+		"LOP_UKR_BMP1D",
+		"LOP_UKR_BMP2",
+		"LOP_UKR_BMP2D"
+	};
+	heavyArmor[] = {
+		"LOP_UKR_T72BA",
+		"LOP_UKR_T72BB",
+		"LOP_UKR_T72BC"
+	};
+	transportHelicopters[] = {
+		"LOP_UKR_Mi8MTV3_UPK23"
+	};
+	cargoAircraft[] = {
+		"RHS_C130J"
+	};
+	attackHelicopters[] = {
+		"rhs_mi28n_vvsc"
+	};
+	casAircraft[] = {
+		"rhs_l159_cdf_b_CDF"
+	};
+
+};
+
+class PROJOP_UVF_faction : PROJOP_PMC_faction
+{
+	displayName = "PROJECT OPFOR - Ulseter Volunteer Force";
+
+	infantry[] = {
+		"LOP_UVF_Infantry_IED",
+		"LOP_UVF_Infantry_TL",
+		"LOP_UVF_Infantry_Rifleman",
+		"LOP_UVF_Infantry_Rifleman_lite",
+		"LOP_UVF_Infantry_GL",
+		"LOP_UVF_Infantry_Corpsman",
+		"LOP_UVF_Infantry_AR_Asst",
+		"LOP_UVF_Infantry_AR",
+		"LOP_UVF_Infantry_AT",
+		"LOP_UVF_Infantry_Marksman",
+		"LOP_UVF_Infantry_Rifleman_vz58",
+		"LOP_UVF_Infantry_Driver",
+		"LOP_UVF_Infantry_SL"
+	};
+};
+
+class PROJOP_ULT_faction
+{
+	displayName = "PROJECT OPFOR - Ultranationalists";
+	
+	lightCars[] = {
+		"LOP_UA_UAZ_DshKM",
+		"LOP_UA_UAZ_AGS"
+	};
+	heavyCars[] = {
+		"rhsgref_BRDM2_vmf"
+	};
+	lightArmor[] = {
+		"LOP_UA_BMP1",
+		"LOP_UA_BMP2"
+	};
+	heavyArmor[] = {
+		"LOP_UA_T72BA",
+		"LOP_UA_T72BB"
+	};
+	transportHelicopters[] = {
+		"LOP_UA_Mi8MTV3_UPK23"
+	};
+	cargoAircraft[] = {
+		"LOP_UA_Mi8MT_Cargo"
+	};
+	casAircraft[] = {
+		"rhs_l159_cdf_b_CDF"
+	};
+	attackHelicopters[] = {
+		"rhs_mi28n_vvs"
+	};
+	infantry[] = {
+		"LOP_UA_Infantry_AT_Asst",
+		"LOP_UA_Infantry_Corpsman",
+		"LOP_UA_Infantry_Engineer",
+		"LOP_UA_Infantry_GL",
+		"LOP_UA_Infantry_AT",
+		"LOP_UA_Infantry_Rifleman_2",
+		"LOP_UA_Infantry_Rifleman",
+		"LOP_UA_Infantry_Rifleman_3",
+		"LOP_UA_Infantry_Marksman",
+		"LOP_UA_Infantry_MG",
+		"LOP_UA_Infantry_MG_Asst",
+		"LOP_UA_Officer",
+		"LOP_UA_Infantry_SL",
+		"LOP_UA_Infantry_TL"
+	};	
+};
+
+class PROJOP_UN_faction
+{
+	lightCars[] = {
+		"LOP_UN_UAZ_DshKM",
+		"LOP_UN_UAZ_AGS"
+	};
+	lightArmor[] = {
+		"LOP_UN_BTR60",
+		"LOP_UN_BTR70",
+		"LOP_UN_BMP1",
+		"LOP_UN_BMP1D",
+		"LOP_UN_BMP2",
+		"LOP_UN_BMP2D"
+	};
+	transportHelicopters[] = {
+		"LOP_UN_Mi8MTV3_UPK23"
+	};
+	cargoAircraft[] = {
+		"LOP_UN_Mi8MT_Cargo"
+	};
+	casAircraft[] = {
+		"rhs_l159_cdf_b_CDF"
+	};
+	infantry[] = {
+		"LOP_UN_Infantry_AA",
+		"LOP_UN_Infantry_AT_Asst",
+		"LOP_UN_Infantry_Corpsman",
+		"LOP_UN_Infantry_Engineer",
+		"LOP_UN_Infantry_GL",
+		"LOP_UN_Infantry_AT",
+		"LOP_UN_Infantry_MG",
+		"LOP_UN_Infantry_MG_Asst",
+		"LOP_UN_Infantry_Marksman",
+		"LOP_UN_Infantry_Officer",
+		"LOP_UN_Infantry_Rifleman",
+		"LOP_UN_Infantry_Rifleman_2",
+		"LOP_UN_Infantry_Rifleman_3",
+		"LOP_UN_Infantry_Rifleman_4",
+		"LOP_UN_Infantry_SL",
+		"LOP_UN_Infantry_TL"
+	};
+};
