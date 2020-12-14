@@ -650,3 +650,185 @@ class PROJOP_IAF_WDL_faction : PROJOP_IAF_faction
 		"PO_IA_Infantry_SF_TL"
 	};
 };
+
+class PROJOP_KPF_faction : PROJOP_ANP_faction
+{
+	displayName = "PROJECT OPFOR - Kurdish Peshmerga";
+
+	lightCars[] = {
+		"LOP_PESH_Nissan_PKM",
+		"LOP_PESH_Offroad_M2"
+	};
+	heavyCars[] = {
+		"LOP_PESH_M1025_W_M2",
+		"LOP_PESH_M1025_W_Mk19"
+	};
+	cargoAircraft[] = {
+		"RHS_AN2_B"
+	};
+	infantry[] = {
+		"LOP_Pesh_Infantry_Corpsman",
+		"LOP_PESH_Infantry_SL",
+		"LOP_PESH_Infantry_Engineer",
+		"LOP_PESH_Infantry_GL",
+		"LOP_PESH_Infantry_AT",
+		"LOP_PESH_Infantry_MG",
+		"LOP_PESH_Infantry_Marksman",
+		"LOP_PESH_Infantry_Rifleman_4",
+		"LOP_PESH_Infantry_Rifleman",
+		"LOP_PESH_Infantry_Rifleman_2",
+		"LOP_PESH_Infantry_Rifleman_3",
+		"LOP_PESH_Infantry_Sniper",
+		"LOP_PESH_Infantry_TL"
+	};
+};
+
+class PROJOP_CNI_faction : RHSGREF_NAPA_MILITIA_faction
+{
+	displayName = "PROJECT OPFOR - Chernarus National Insurgents";
+
+	infantry[] = {
+		"LOP_NAPA_Infantry_SL",
+		"LOP_NAPA_Infantry_Engineer",
+		"LOP_NAPA_Infantry_GL_2",
+		"LOP_NAPA_Infantry_GL",
+		"LOP_NAPA_Infantry_Rifleman_3",
+		"LOP_NAPA_Infantry_Rifleman",
+		"LOP_NAPA_Infantry_AT",
+		"LOP_NAPA_Infantry_Rifleman_2",
+		"LOP_NAPA_Infantry_Marksman",
+		"LOP_NAPA_Infantry_MG",
+		"LOP_NAPA_Infantry_MG_Asst",
+		"LOP_NAPA_Infantry_Corpsman",
+		"LOP_NAPA_Infantry_TL",
+		"LOP_NAPA_Infantry_Prizrak"
+	};
+};
+
+class PROJOP_IRAN_faction
+{
+	displayName = "PROJECT OPFOR - Iranian Armed Forces";
+
+	lightCars[] = {
+		"LOP_IRAN_UAZ_AGS",
+		"LOP_IRAN_UAZ_DshKM"
+	};
+	heavyCars[] = {
+		"rhs_tigr_m_3camo_vdv"
+	};
+	lightArmor[] = {
+		"LOP_IRAN_BTR60",
+		"LOP_IRAN_BTR70",
+		"LOP_IRAN_BTR80",
+		"LOP_IRAN_M113_C",
+		"LOP_IRAN_BMP1",
+		"LOP_IRAN_BMP2"
+	};
+	heavyArmor[] = {
+		"LOP_IRAN_T72BA"
+	};
+	transportHelicopters[] = {
+		"LOP_IRAN_Mi8MTV3_FAB",
+		"LOP_IRAN_Mi8MTV3_UPK23"
+	};
+	cargoAircraft[] = {
+		"LOP_IRAN_CH47F"
+	};
+	casAircraft[] = {
+		"rhs_l159_cdf_b_CDF"
+	};
+	attackHelicopters[] = {
+		"rhs_mi28n_vvsc"
+	};
+	infantry[] = {
+		"LOP_IRAN_Infantry_AA",
+		"LOP_IRAN_Infantry_engineer",
+		"LOP_IRAN_Infantry_Grenadier",
+		"LOP_IRAN_Infantry_RPG",
+		"LOP_IRAN_Infantry_RPG_Asst",
+		"LOP_IRAN_Infantry_AR_2",
+		"LOP_IRAN_Infantry_AR",
+		"LOP_IRAN_Infantry_AR_Asst_2",
+		"LOP_IRAN_Infantry_AR_Asst",
+		"LOP_IRAN_Infantry_Marksman",
+		"LOP_IRAN_Infantry_medic",
+		"LOP_IRAN_Infantry_officer_armored",
+		"LOP_IRAN_Infantry_Rifleman_2",
+		"LOP_IRAN_Infantry_Rifleman",
+		"LOP_IRAN_Infantry_Light",
+		"LOP_IRAN_Infantry_LAT",
+		"LOP_IRAN_Infantry_sergeant",
+		"LOP_IRAN_Infantry_junior_sergeant"
+	};
+};
+
+class PROJOP_IRAN_SF_faction : PROJOP_IRAN_faction
+{
+	displayName = "PROJECT OPFOR - Iranian Special Forces";
+
+	infantry[] = {
+		"LOP_IRAN_Infantry_SF_engineer",
+		"LOP_IRAN_Infantry_SF_Grenadier",
+		"LOP_IRAN_Infantry_SF_RPG",
+		"LOP_IRAN_Infantry_SF_RPG_Asst",
+		"LOP_IRAN_Infantry_SF_AR",
+		"LOP_IRAN_Infantry_SF_AR_Asst",
+		"LOP_IRAN_Infantry_SF_Marksman",
+		"LOP_IRAN_Infantry_SF_medic",
+		"LOP_IRAN_Infantry_SF_Rifleman",
+		"LOP_IRAN_Infantry_SF_LAT",
+		"LOP_IRAN_Infantry_SF_sergeant",
+		"LOP_IRAN_Infantry_SF_junior_sergeant"
+	};
+};
+
+class PROJOP_PMC_faction
+{
+	displayName = "PROJECT OPFOR - PMC";
+	lightCars[] = {
+		"LOP_PMC_Offroad_M2"
+	};
+	heavyCars[] = {
+		"LOP_ISTS_OPF_M1025_W_M2"
+	};
+	lightArmor[] = {
+		"rhs_btr80a_vdv"
+	};
+	heavyArmor[] = {
+		"LOP_NK_T72BA"
+	};
+	transportHelicopters[] = {
+		"LOP_UN_Mi8MTV3_UPK23"
+	};
+	cargoAircraft[] = {
+		"LOP_PMC_Mi8AMT",
+		"O_Heli_Light_02_unarmed_F"
+	};
+	casAircraft[] = {
+		"rhs_l159_cdf_b_CDF"
+	};
+	attackHelicopters[] = {
+		"O_Heli_Attack_02_dynamicLoadout_black_F"
+	};
+	infantry[] = {
+		"LOP_PMC_Infantry_AA",
+		"LOP_PMC_Infantry_AT_Asst",
+		"LOP_PMC_Infantry_AT",
+		"LOP_PMC_Infantry_EOD",
+		"LOP_PMC_Infantry_Marksman",
+		"LOP_PMC_Infantry_Rifleman_2",
+		"LOP_PMC_Infantry_GL",
+		"LOP_PMC_Infantry_MG_Asst",
+		"LOP_PMC_Infantry_MG",
+		"LOP_PMC_Infantry_Rifleman_3",
+		"LOP_PMC_Infantry_Rifleman",
+		"LOP_PMC_Infantry_Corpsman",
+		"LOP_PMC_Infantry_Marksman_2",
+		"LOP_PMC_Infantry_Rifleman_4",
+		"LOP_PMC_Infantry_Engineer",
+		"LOP_PMC_Infantry_SL",
+		"LOP_PMC_Infantry_TL"
+	};
+
+
+};
