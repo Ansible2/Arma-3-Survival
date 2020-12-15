@@ -32,7 +32,8 @@ private _hitEvent = _unit addMPEventHandler ["mpHit",{
 	_this call BLWK_fnc_stdEnemyHitEvent;
 }];
 // so we can remove it on death of the unit
-_unit setVariable ["BLWK_stdHitEH",_hitEvent];
+//_unit setVariable ["BLWK_stdHitEH",_hitEvent];
+
 
 _unit addMPEventHandler ["mpKilled",{
 	[_this,_thisEventHandler] call BLWK_fnc_stdEnemyKilledEvent;
