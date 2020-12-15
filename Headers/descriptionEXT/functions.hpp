@@ -171,6 +171,8 @@ class BLWK
 		{};
 		class handleEnemyWeapons
 		{};
+		class hintDroppedDelete
+		{};
 		class optreMedicalToVanilla
 		{};
 		class pathingLoop
