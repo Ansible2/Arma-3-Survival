@@ -33,8 +33,7 @@ Author(s):
 ---------------------------------------------------------------------------- */
 params ["_eventInfo","_handlerID"];
 
-private _killedUnit = _eventInfo select 0;
-private _instigator = _eventInfo select 2;
+
 
 // spawn the next in queue
 if (local BLWK_theAIHandlerEntity) then {	
@@ -45,16 +44,21 @@ if (local BLWK_theAIHandlerEntity) then {
 
 };
 
-// points for players
-if ((hasInterface) AND {local _instigator} AND {isPlayer _instigator}) then {
-	private _points = [_killedUnit] call BLWK_fnc_getPointsForKill;
-	
-	// aircraft gunners get limited points
-	if (missionNamespace getVariable ["BLWK_isAircraftGunner",false]) then {
-		_points = round (_points / 4);
+private _killedUnit = _eventInfo select 0;
+private _instigator = _eventInfo select 2;
+
+if !(isNull _instigator) then {
+	// points for players
+	if ((hasInterface) AND {local _instigator} AND {isPlayer _instigator}) then {
+		private _points = [_killedUnit] call BLWK_fnc_getPointsForKill;
+		
+		// aircraft gunners get limited points
+		if (missionNamespace getVariable ["BLWK_isAircraftGunner",false]) then {
+			_points = round (_points / 4);
+		};
+		[_points] call BLWK_fnc_addPoints;
+		[_killedUnit,_points,true] call BLWK_fnc_createHitMarker;
 	};
-	[_points] call BLWK_fnc_addPoints;
-	[_killedUnit,_points,true] call BLWK_fnc_createHitMarker;
 };
 
 if (isServer) then {
