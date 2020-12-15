@@ -67,7 +67,9 @@ private _stalkerGroupUnits = units _stalkerGroup;
 private "_id_temp";
 _stalkerGroupUnits apply {
 	_id_temp = _x addEventHandler ["KILLED",{
-		private _stalkedPlayer = (group _x) getVariable STALKED_UNIT_VAR;
+		params ["_unit"];
+
+		private _stalkedPlayer = (group _unit) getVariable STALKED_UNIT_VAR;
 		private _numberOfStalkers = _stalkedPlayer getVariable STALKER_COUNT_VAR;
 		_numberOfStalkers = _numberOfStalkers - 1;
 		_stalkedPlayer setVariable [STALKER_COUNT_VAR,_numberOfStalkers];
