@@ -34,14 +34,13 @@ Author(s):
 params ["_eventInfo","_handlerID"];
 
 
-
 // spawn the next in queue
 if (local BLWK_theAIHandlerEntity) then {	
 	// if the spawn queue is not empty
 	if !((missionNamespace getVariable [STANDARD_ENEMY_INFANTRY_QUEUE,[]]) isEqualTo []) then {
-		[STANDARD_ENEMY_INFANTRY_QUEUE,"_this call BLWK_fnc_stdEnemyManCreateCode"] call BLWK_fnc_createFromQueue;
+		// got CTD if this was run in unscheduled too many times (by wave 15 start)
+		[STANDARD_ENEMY_INFANTRY_QUEUE,"_this call BLWK_fnc_stdEnemyManCreateCode"] spawn BLWK_fnc_createFromQueue;
 	};
-
 };
 
 private _killedUnit = _eventInfo select 0;

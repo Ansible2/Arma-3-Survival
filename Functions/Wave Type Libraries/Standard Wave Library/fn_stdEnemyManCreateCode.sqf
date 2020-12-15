@@ -22,6 +22,9 @@ Author(s):
 ---------------------------------------------------------------------------- */
 params ["_unit","_queueName","_group"];
 
+// hit and killed events
+[_unit] call BLWK_fnc_addStdEnemyManEHs;
+
 [_unit] call BLWK_fnc_setSkill;
 
 if (isNil "_group") then {
@@ -42,9 +45,6 @@ null = [BLWK_zeus, [[_unit],false]] remoteExecCall ["addCuratorEditableObjects",
 
 // keep items (maps, nvgs, binoculars, etc.) so that they can just be loot drops
 removeAllAssignedItems _unit;
-
-// hit and killed events
-[_unit] call BLWK_fnc_addStdEnemyManEHs;
 
 // for pistol only waves and randomized weapons
 [_unit] call BLWK_fnc_handleEnemyWeapons;

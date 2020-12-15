@@ -48,6 +48,7 @@ private _previousWaveNum = missionNamespace getVariable ["BLWK_currentWaveNumber
 missionNamespace setVariable ["BLWK_currentWaveNumber", _previousWaveNum + 1,true];
 
 missionNamespace setVariable ["BLWK_inBetweenWaves",false,true];
+missionNamespace setVariable ["BLWK_initialWaveSpawnComplete",false];
 
 call BLWK_fnc_decideWaveType;
 
@@ -60,8 +61,12 @@ if (BLWK_currentWaveNumber > BLWK_startingFromWaveNumber) then {
 call BLWK_fnc_cleanUpTheDead;
 
 // check to make sure there are actually units inside the wave array before looping
+// or that all initial units are spawned
 waitUntil {
-	if !(missionNamespace getVariable [WAVE_ENEMIES_ARRAY,[]] isEqualTo []) exitWith {true};
+	if (
+		missionNamespace getVariable ["BLWK_initialWaveSpawnComplete",false] OR
+		{!(missionNamespace getVariable [WAVE_ENEMIES_ARRAY,[]] isEqualTo [])}
+	) exitWith {true};
 	sleep 1;
 	false
 };
