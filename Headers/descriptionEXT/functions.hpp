@@ -370,6 +370,8 @@ class BLWK
 		{};
 		class handleDefectorWave
 		{};
+		class handleKillEventPlayer
+		{};
 		class handleStandardWave
 		{};
 		class removeStdEnemyHitEvent
