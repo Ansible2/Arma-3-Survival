@@ -43,7 +43,7 @@ if (BLWK_magRepackEnabled) then {
 
         // passes the pressed key and whether or not a ctrl key is down. The proper combo is ctrl+R
         if ((_this select 1) isEqualTo 19 AND {_this select 3}) exitWith {
-            [_player] call BLWK_fnc_doMagRepack;
+            [player,true] call BLWK_fnc_doMagRepack;
         };
     }];
 };
