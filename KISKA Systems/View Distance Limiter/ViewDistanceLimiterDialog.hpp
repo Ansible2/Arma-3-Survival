@@ -2,10 +2,10 @@
 
 class VIEW_DISTANCE_LIMITER_DIALOG 
 {
-	idd = VIEW_DISTANCE_LIMITER_DIALOG_IDD
+	idd = VIEW_DISTANCE_LIMITER_DIALOG_IDD;
 	movingEnabled = true;
 	enableSimulation = true;
-	onLoad = "[_this select 0] call KISKA_fnc_handleVDLDialogOpen"
+	onLoad = "[_this select 0] call KISKA_fnc_handleVDLDialogOpen";
 	onUnload = "hintSilent ''";
 
 	class controls
