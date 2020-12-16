@@ -100,10 +100,9 @@ if (isServer OR {!hasInterface}) then {
 
     // this is used to only allow only so many AI to be active at any time
     BLWK_maxEnemyInfantryAtOnce = ("BLWK_maxEnemyInfantryAtOnce" call BIS_fnc_getParamValue);
-    //profileNamespace setVariable ["BLWK_maxEnemyInfantryAtOnce",BLWK_maxEnemyInfantryAtOnce];
 
-    // used for chaning medical items of OPTRE units (e.g. biofoam to FAKs)
-    BLWK_isOptreLoaded = ["OPTRE_core"] call KISKA_fnc_isPatchLoaded;
+    // used for chaning medical items of OPTRE units (biofoam to FAKs)
+    BLWK_isOptreLoaded = ["OPTRE_core"] call KISKA_fnc_ispatchLoaded;
 
     BLWK_doDetectCollision = [false,true] select ("BLWK_doDetectCollision" call BIS_fnc_getParamValue);
 };
@@ -254,6 +253,8 @@ BLWK_pointsForHit = "BLWK_pointsForHit" call BIS_fnc_getParamValue;             
 BLWK_pointsMultiForDamage = "BLWK_pointsMultiForDamage" call BIS_fnc_getParamValue;   // Extra points awarded for damage. 100% = BLWK_pointsMultiForDamage. 50% = BLWK_pointsMultiForDamage/2
 BLWK_maxPointsForDamage = BLWK_pointsForHit * 2; // There are certain weapons that cause extreme amounts of damage that will give an immense amount of points, so this caps it
 
+BLWK_dontUseRevive = (("ReviveMode" call BIS_fnc_getParamValue) isEqualTo 0);
+BLWK_ACELoaded = ["ACE_Medical_StateMachine"] call KISKA_fnc_ispatchLoaded;
 
 BLWK_costToSpinRandomBox = 950; 
 if (isNil "BLWK_supportDishFound") then {
@@ -273,8 +274,7 @@ BLWK_pointsMulti_man_level5 = 1.50;
 BLWK_pointsMulti_car = 2;
 BLWK_pointsMulti_armour = 4;
 
-BLWK_dontUseRevive = (("ReviveMode" call BIS_fnc_getParamValue) isEqualTo 0);
-BLWK_ACELoaded = ["ACE_Medical_StateMachine"] call KISKA_fnc_ispatchLoaded;
+
 
 // shop arrays
 BLWK_supports_array = [missionConfigFile >> "CfgCommunicationMenu"] call BLWK_fnc_createSupportsArray;
