@@ -11,7 +11,7 @@ Parameters:
 	3: _group : <GROUP> - The group the unit can be in; if empty, a new one is made
 
 Returns:
-	BOOL
+	OBJECT - The created unit
 
 Examples:
     (begin example)
@@ -30,8 +30,12 @@ params [
 	["_group",grpNull,[grpNull]]
 ];
 
-if (_queueName isEqualTo "") exitWith {objNull};
+if (_queueName isEqualTo "") exitWith {
+	"BLWK_fnc_createFromQueue: _queueName is empty string ''" call BIS_fnc_error;
+	objNull
+};
 
+// check if queue is empty
 private _queueArray = missionNamespace getVariable [_queueName,[]];
 if (_queueArray isEqualTo []) exitWith {objNull};
 
@@ -40,6 +44,8 @@ if (_queueArray isEqualTo []) exitWith {objNull};
 (_queueArray deleteAt 0) params ["_type","_position"];
 missionNamespace setVariable [_queueName,_queueArray];
 
+
+// create unit
 if (isNull _group) then {
 	_group = createGroup _side;
 };
@@ -47,7 +53,7 @@ private _unit = _group createUnit [_type, _position, [], 0, "NONE"];
 [_unit] joinSilent _group;
 _group deleteGroupWhenEmpty true;
 
-
+// run code on the unit
 if !(_codeToRun isEqualTo "") then {
 	[_unit,_queueName,_group] call (compile _codeToRun);
 };
