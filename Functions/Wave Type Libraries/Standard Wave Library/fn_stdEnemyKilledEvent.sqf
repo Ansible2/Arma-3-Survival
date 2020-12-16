@@ -42,7 +42,6 @@ if (!(isNull _instigator) AND {isPlayer _instigator}) then {
 if (local BLWK_theAIHandlerEntity) then {
 	// if the spawn queue is not empty
 	if !((missionNamespace getVariable [STANDARD_ENEMY_INFANTRY_QUEUE,[]]) isEqualTo []) then {
-		// got CTD if this was run in unscheduled too many times (by wave 15 start)
 		[STANDARD_ENEMY_INFANTRY_QUEUE,"_this call BLWK_fnc_stdEnemyManCreateCode"] call BLWK_fnc_createFromQueue;
 	};
 };
