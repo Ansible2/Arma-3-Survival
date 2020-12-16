@@ -171,6 +171,8 @@ class BLWK
 		{};
 		class handleEnemyWeapons
 		{};
+		class hintDroppedDelete
+		{};
 		class optreMedicalToVanilla
 		{};
 		class pathingLoop
@@ -367,6 +369,8 @@ class BLWK
 		class createStdWaveInfantry
 		{};
 		class handleDefectorWave
+		{};
+		class handleKillEventPlayer
 		{};
 		class handleStandardWave
 		{};
