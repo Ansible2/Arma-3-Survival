@@ -71,43 +71,74 @@ _unitMags apply {
 };
 
 
-private _fn_magTypeInWeapon = {
-	if (_magClassnameTemp == _primaryWeaponMagClass) exitWith {
-		_unit removePrimaryWeaponItem _magClassnameTemp;
-		_unit addPrimaryWeaponItem _magClassnameTemp;
-		true
-	};
-	if (_magClassnameTemp == _handgunWeaponMagClass) exitWith {
-		_unit removeHandgunItem _magClassnameTemp;
-		_unit addHandgunItem _magClassnameTemp;
-		true
-	};
-	if (_magClassnameTemp == _secondaryWeaponMagClass) exitWith {
-		_unit removeSecondaryWeaponItem _magClassnameTemp;
-		_unit addSecondaryWeaponItem _magClassnameTemp;
-		true
-	};
 
-	false
-};
 // if there are no mags to repack, just hint
 if !(_unitMagsSorted isEqualTo []) then {
 	_unit playMove "AinvPknlMstpSnonWnonDr_medic2";
 
 	// get mags loaded into current handgun and primary
-	private _primaryWeaponMagClass = (primaryWeaponMagazine _unit) select 0;
-	private _handgunWeaponMagClass = (handgunMagazine _unit) select 0;
-	private _secondaryWeaponMagClass = (secondaryWeaponMagazine _unit) select 0;
+	private _primaryMag = primaryWeaponMagazine _unit;
+	private _primaryWeaponMagClass = "";
+	if !(_primaryMag isEqualTo []) then { // if there is a primary magazine
+		_primaryWeaponMagClass = _primaryMag select 0;
+	};
+	
+	private _handgunMag = handgunMagazine _unit;
+	private _handgunWeaponMagClass = "";
+	if !(_handgunMag isEqualTo []) then { // if there is a handgun magazine
+		_handgunWeaponMagClass = _handgunMag select 0;
+	};
+
+	private _secondaryMag = secondaryWeaponMagazine _unit;
+	private _secondaryWeaponMagClass = "";
+	if !(_secondaryMag isEqualTo []) then { // if there is a secondary magazine
+		_secondaryWeaponMagClass = _secondaryMag select 0;
+	};
+	
+
+	private _fn_magTypeInWeapon = {
+		params [
+			["_doAddMag",true]
+		];
+
+		if (_magClassnameTemp == _primaryWeaponMagClass) exitWith {
+			if (_doAddMag) then {
+				_unit removePrimaryWeaponItem _magClassnameTemp;
+				_unit addPrimaryWeaponItem _magClassnameTemp;
+			};
+			true
+		};
+		if (_magClassnameTemp == _handgunWeaponMagClass) exitWith {
+			if (_doAddMag) then {
+				_unit removeHandgunItem _magClassnameTemp;
+				_unit addHandgunItem _magClassnameTemp;
+			};
+			true
+		};
+		if (_magClassnameTemp == _secondaryWeaponMagClass) exitWith {
+			if (_doAddMag) then {
+				_unit removeSecondaryWeaponItem _magClassnameTemp;
+				_unit addSecondaryWeaponItem _magClassnameTemp;
+			};
+			true
+		};
+
+		false
+	};
+
 
 	private ["_magCapacity","_numberOfFullMagsToAdd","_totalBulletCountForClass","_remainderMagBulletCount","_magClassnameTemp"];
 	_unitMagsSorted apply {
 		_magClassnameTemp = _x select 0;
 		_totalBulletCountForClass = _x select 1;
 		_magCapacity = getNumber (configFile >> "CfgMagazines" >> _magClassnameTemp >> "Count");
+
+		// remove every mag (that's not in the gun) including empty ones
+		_unit removeMagazines _magClassnameTemp;
 		
 		// if the total bullets for the mag are not going to equal more than one mag
 		if (_totalBulletCountForClass <= _magCapacity) then {
-			if (call _fn_magTypeInWeapon) then {
+			if ([false] call _fn_magTypeInWeapon) then {
 				private _index = [_primaryWeaponMagClass,_handgunWeaponMagClass,_secondaryWeaponMagClass] findIf {_x == _magClassnameTemp};
 				switch _index do {
 					case 0: {_unit setAmmo [primaryWeapon _unit,_totalBulletCountForClass]};
@@ -117,16 +148,14 @@ if !(_unitMagsSorted isEqualTo []) then {
 			} else {
 				_unit addMagazine [_magClassnameTemp,_totalBulletCountForClass];
 			};
-		} else {		
+		} else {
 			_numberOfFullMagsToAdd = floor (_totalBulletCountForClass / _magCapacity);
 			
 			// if the mag type is currently inserted into a weapon
-			if (call _fn_magTypeInWeapon) then {
+			if ([true] call _fn_magTypeInWeapon) then {
 				_numberOfFullMagsToAdd = _numberOfFullMagsToAdd - 1;
 			};
 			
-			// remove every mag (that's not in the gun) including empty ones
-			_unit removeMagazines _magClassnameTemp;
 			_unit addMagazines [_magClassnameTemp,_numberOfFullMagsToAdd];
 
 			// check for if we need that one not full mag to hold the excess ammo
