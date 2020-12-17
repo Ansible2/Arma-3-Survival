@@ -31,40 +31,19 @@ Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-params ["_eventInfo","_handlerID"];
+params ["_killedUnit", "_killer", "_instigator", "_useEffects"];
 
-private _killedUnit = _eventInfo select 0;
-private _instigator = _eventInfo select 2;
+if (!(isNull _instigator) AND {isPlayer _instigator}) then {
+	// show a player hit points and add them to there score
+	[_killedunit] remoteExecCall ["BLWK_fnc_handleKillEventPlayer",_instigator];
+};
 
 // spawn the next in queue
-if (local BLWK_theAIHandlerEntity) then {	
+if (local BLWK_theAIHandlerEntity) then {
 	// if the spawn queue is not empty
 	if !((missionNamespace getVariable [STANDARD_ENEMY_INFANTRY_QUEUE,[]]) isEqualTo []) then {
 		[STANDARD_ENEMY_INFANTRY_QUEUE,"_this call BLWK_fnc_stdEnemyManCreateCode"] call BLWK_fnc_createFromQueue;
 	};
-
 };
 
-// points for players
-if ((hasInterface) AND {local _instigator} AND {isPlayer _instigator}) then {
-	private _points = [_killedUnit] call BLWK_fnc_getPointsForKill;
-	
-	// aircraft gunners get limited points
-	if (missionNamespace getVariable ["BLWK_isAircraftGunner",false]) then {
-		_points = round (_points / 4);
-	};
-	[_points] call BLWK_fnc_addPoints;
-	[_killedUnit,_points,true] call BLWK_fnc_createHitMarker;
-};
-
-if (isServer) then {
-	removeFromRemainsCollector [_killedunit];
-};
-
-/*
-// mp events need to be removed on the unit where they are local
-if (local _killedUnit) then {
-	_killedUnit removeMPEventHandler ["mpKilled",_handlerID];
-	_killedUnit removeMPEventHandler ["mpHit",_killedUnit getVariable "BLWK_stdHitEH"];
-};
-*/
+[[_killedunit]] remoteExecCall ["removeFromRemainsCollector",2];
