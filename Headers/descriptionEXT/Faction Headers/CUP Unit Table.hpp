@@ -1099,3 +1099,279 @@ class CUP_USARMY_OEFCP_WDL_faction : CUP_USARMY_WDL_base
 		"CUP_B_US_Soldier_SL_UCP"
 	};
 };
+
+class CUP_USMC_base
+{
+	displayName = "CUP - USMC Base";
+
+	transportHelicopters[] = {
+		"CUP_B_UH1Y_Gunship_Dynamic_USMC",
+		"CUP_B_CH53E_USMC",
+		"CUP_B_MH60S_USMC",
+		"CUP_B_UH60S_USN"
+	};
+	casAircraft[] = {
+		"CUP_B_AV8B_DYN_USMC",
+		"CUP_B_F35B_USMC"
+	};
+	cargoAircraft = {
+		"CUP_B_C130J_USMC",
+		"CUP_B_MV22_USMC"
+	};
+	attackHelicopters[] = {
+		"CUP_B_AH64D_DL_USA",
+		"CUP_B_AH64_DL_USA"
+	};
+};
+
+class CUP_USMC_DES_base : CUP_USMC_base
+{
+	displayName = "CUP - USMC Base (Desert)";
+
+	lightCars[] = {
+		"CUP_B_M1165_GMV_DSRT_USMC",
+		"CUP_B_HMMWV_MK19_USA",
+		"CUP_B_HMMWV_M2_USA",
+		"CUP_B_HMMWV_SOV_M2_USA",
+		"CUP_B_HMMWV_SOV_USA"
+	};
+	heavyCars[] = {
+		"CUP_B_M1151_M2_DSRT_USMC",
+		"CUP_B_M1151_Deploy_DSRT_USMC",
+		"CUP_B_M1151_Mk19_DSRT_USMC",
+		"CUP_B_RG31_Mk19_USMC",
+		"CUP_B_RG31E_M2_USMC",
+		"CUP_B_RG31_M2_USMC",
+		"CUP_B_RG31_M2_GC_USMC"
+	};
+	lightArmor[] = {
+		"CUP_B_LAV25_desert_USMC",
+		"CUP_B_LAV25M240_desert_USMC",
+		"CUP_B_AAV_USMC"
+	};
+	heavyArmor[] = {
+		"CUP_B_M1A1_DES_USMC",
+		"CUP_B_M1A2_TUSK_MG_DES_USMC"
+	};
+};
+
+class CUP_USMC_WDL_base : CUP_USMC_base
+{
+	displayName = "CUP - USMC Base (Woodland)";
+
+	lightCars[] = {
+		"CUP_B_HMMWV_M1114_USMC",
+		"CUP_B_HMMWV_MK19_USMC",
+		"CUP_B_HMMWV_M2_USMC",
+		"CUP_B_M1165_GMV_USMC",
+		"CUP_B_HMMWV_SOV_NATO_T",
+		"CUP_B_HMMWV_SOV_M2_NATO_T"
+	};
+	heavyCars[] = {
+		"CUP_B_M1151_Deploy_USMC",
+		"CUP_B_M1151_Mk19_USMC",
+		"CUP_B_RG31_Mk19_OD_USMC",
+		"CUP_B_RG31E_M2_OD_USMC",
+		"CUP_B_RG31_M2_OD_USMC",
+		"CUP_B_RG31_M2_OD_GC_USMC"
+	};
+	lightArmor[] = {
+		"CUP_B_AAV_USMC",
+		"CUP_B_LAV25_USMC",
+		"CUP_B_LAV25M240_USMC",
+		"CUP_B_LAV25M240_green"
+	};
+	heavyArmor[] = {
+		"CUP_B_M1A1_Woodland_USMC",
+		"CUP_B_M1A2_TUSK_MG_USMC"
+	};
+};
+
+class CUP_USMC_DES_faction : CUP_USMC_DES_base
+{
+	displayName = "CUP - USMC (Desert)";
+
+	infantry[] = {
+		"CUP_B_USMC_Soldier_UAV_des",
+		"CUP_B_USMC_Soldier_HAT_des",
+		"CUP_B_USMC_Soldier_AT_des",
+		"CUP_B_USMC_Soldier_AR_des",
+		"CUP_B_USMC_Medic_des",
+		"CUP_B_USMC_Engineer_des",
+		"CUP_B_USMC_Soldier_GL_des",
+		"CUP_B_USMC_Soldier_MG_des",
+		"CUP_B_USMC_Soldier_Marksman_des",
+		"CUP_B_USMC_Soldier_AA_des",
+		"CUP_B_USMC_Soldier_des",
+		"CUP_B_USMC_SpecOps_SD_des",
+		"CUP_B_USMC_Soldier_LAT_des",
+		"CUP_B_USMC_SpecOps_des",
+		"CUP_B_USMC_Sniper_M40A3_des",
+		"CUP_B_USMC_Sniper_M107_des",
+		"CUP_B_USMC_Spotter_des",
+		"CUP_B_USMC_Soldier_SL_des",
+		"CUP_B_USMC_Soldier_TL_des"
+	};
+};
+
+class CUP_USMC_WDL_faction : CUP_USMC_WDL_base
+{
+	displayName = "CUP - USMC (Woodland)";
+
+	infantry[] = {
+		"CUP_B_USMC_Soldier_TL",
+		"CUP_B_USMC_Soldier_HAT",
+		"CUP_B_USMC_Soldier_AT",
+		"CUP_B_USMC_Soldier_AR",
+		"CUP_B_USMC_Medic",
+		"CUP_B_USMC_Engineer",
+		"CUP_B_USMC_Soldier_GL",
+		"CUP_B_USMC_Soldier_MG",
+		"CUP_B_USMC_Soldier_Marksman",
+		"CUP_B_USMC_Soldier_AA",
+		"CUP_B_USMC_Soldier",
+		"CUP_B_USMC_SpecOps_SD",
+		"CUP_B_USMC_Soldier_LAT",
+		"CUP_B_USMC_SpecOps",
+		"CUP_B_USMC_Sniper_M40A3",
+		"CUP_B_USMC_Sniper_M107",
+		"CUP_B_USMC_Spotter",
+		"CUP_B_USMC_Soldier_SL"
+	};
+};
+
+class CUP_USMC_FR_DES_faction : CUP_USMC_DES_base
+{
+	displayName = "CUP - USMC Force Recon (Desert)";
+
+	infantry[] = {
+		"CUP_B_FR_Soldier_UAV_DES",
+		"CUP_B_FR_Soldier_Assault_GL_DES",
+		"CUP_B_FR_Soldier_Assault_DES",
+		"CUP_B_FR_Commander_DES",
+		"CUP_B_FR_Medic_DES",
+		"CUP_B_FR_Soldier_Exp_DES",
+		"CUP_B_FR_Soldier_Operator_DES",
+		"CUP_B_FR_Soldier_GL_DES",
+		"CUP_B_FR_Soldier_AR_DES",
+		"CUP_B_FR_Soldier_Marksman_DES",
+		"CUP_B_FR_Saboteur_DES",
+		"CUP_B_FR_Soldier_TL_DES"
+	};
+};
+
+class CUP_USMC_FR_WDL_faction : CUP_USMC_WDL_base
+{
+	displayName = "CUP - USMC Force Recon (Woodland)";
+
+	infantry[] = {
+		"CUP_B_FR_Soldier_Assault_GL",
+		"CUP_B_FR_Soldier_Assault",
+		"CUP_B_FR_Commander",
+		"CUP_B_FR_Medic",
+		"CUP_B_FR_Soldier_Exp",
+		"CUP_B_FR_Soldier_Operator",
+		"CUP_B_FR_Soldier_GL",
+		"CUP_B_FR_Soldier_AR",
+		"CUP_B_FR_Soldier_Marksman",
+		"CUP_B_FR_Saboteur",
+		"CUP_B_FR_Soldier_TL",
+		"CUP_B_FR_Soldier_UAV"
+	};
+};
+
+class CUP_USMC_FROG_DES_faction : CUP_USMC_DES_base
+{
+	displayName = "CUP - USMC FROG (Desert)";
+
+	infantry[] = {
+		"CUP_B_FR_Soldier_UAV_DES",
+		"CUP_B_FR_Soldier_Assault_GL_DES",
+		"CUP_B_FR_Soldier_Assault_DES",
+		"CUP_B_FR_Commander_DES",
+		"CUP_B_FR_Medic_DES",
+		"CUP_B_FR_Soldier_Exp_DES",
+		"CUP_B_FR_Soldier_Operator_DES",
+		"CUP_B_FR_Soldier_GL_DES",
+		"CUP_B_FR_Soldier_AR_DES",
+		"CUP_B_FR_Soldier_Marksman_DES",
+		"CUP_B_FR_Saboteur_DES",
+		"CUP_B_FR_Soldier_TL_DES"
+	};
+};
+
+class CUP_USMC_FROG_WDL_faction : CUP_USMC_WDL_base
+{
+	displayName = "CUP - USMC FROG (Woodland)";
+
+	infantry[] = {
+		"CUP_B_USMC_Soldier_HAT_FROG_DES",
+		"CUP_B_USMC_Soldier_AT_FROG_DES",
+		"CUP_B_USMC_Soldier_AR_FROG_DES",
+		"CUP_B_USMC_Medic_FROG_DES",
+		"CUP_B_USMC_Engineer_FROG_DES",
+		"CUP_B_USMC_Soldier_GL_FROG_DES",
+		"CUP_B_USMC_Soldier_MG_FROG_DES",
+		"CUP_B_USMC_Soldier_Marksman_FROG_DES",
+		"CUP_B_USMC_Soldier_AA_FROG_DES",
+		"CUP_B_USMC_Officer_FROG_DES",
+		"CUP_B_USMC_Soldier_RTO_FROG_DES",
+		"CUP_B_USMC_Soldier_FROG_DES",
+		"CUP_B_USMC_Soldier_LAT_FROG_DES",
+		"CUP_B_USMC_Soldier_SL_FROG_DES",
+		"CUP_B_USMC_Soldier_TL_FROG_DES",
+		"CUP_B_USMC_Soldier_UAV_FROG_DES"
+	};
+};
+
+class CUP_USMC_FROG_DES_faction : CUP_USMC_DES_base
+{
+	displayName = "CUP - MARSOC (Desert)";
+
+	infantry[] = {
+		"CUP_B_USMC_MARSOC_Medic_DA",
+		"CUP_B_USMC_MARSOC_AR_DA",
+		"CUP_B_USMC_MARSOC_AR",
+		"CUP_B_USMC_MARSOC_CC",
+		"CUP_B_USMC_MARSOC_CC_DA",
+		"CUP_B_USMC_MARSOC_EL",
+		"CUP_B_USMC_MARSOC_EL_DA",
+		"CUP_B_USMC_MARSOC_Marksman",
+		"CUP_B_USMC_MARSOC_Marksman_DA",
+		"CUP_B_USMC_MARSOC_OC",
+		"CUP_B_USMC_MARSOC_OC_DA",
+		"CUP_B_USMC_MARSOC",
+		"CUP_B_USMC_MARSOC_DA",
+		"CUP_B_USMC_MARSOC_TC",
+		"CUP_B_USMC_MARSOC_TC_DA",
+		"CUP_B_USMC_MARSOC_TL",
+		"CUP_B_USMC_MARSOC_TL_DA",
+		"CUP_B_USMC_MARSOC_Medic"
+	};
+};
+
+class CUP_USMC_FROG_WDL_faction : CUP_USMC_WDL_base
+{
+	displayName = "CUP - MARSOC (Woodland)";
+
+	infantry[] = {
+		"CUP_B_USMC_MARSOC_Medic_DA",
+		"CUP_B_USMC_MARSOC_AR_DA",
+		"CUP_B_USMC_MARSOC_AR",
+		"CUP_B_USMC_MARSOC_CC",
+		"CUP_B_USMC_MARSOC_CC_DA",
+		"CUP_B_USMC_MARSOC_EL",
+		"CUP_B_USMC_MARSOC_EL_DA",
+		"CUP_B_USMC_MARSOC_Marksman",
+		"CUP_B_USMC_MARSOC_Marksman_DA",
+		"CUP_B_USMC_MARSOC_OC",
+		"CUP_B_USMC_MARSOC_OC_DA",
+		"CUP_B_USMC_MARSOC",
+		"CUP_B_USMC_MARSOC_DA",
+		"CUP_B_USMC_MARSOC_TC",
+		"CUP_B_USMC_MARSOC_TC_DA",
+		"CUP_B_USMC_MARSOC_TL",
+		"CUP_B_USMC_MARSOC_TL_DA",
+		"CUP_B_USMC_MARSOC_Medic"
+	};
+};

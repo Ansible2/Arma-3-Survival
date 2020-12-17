@@ -133,7 +133,15 @@
 	130,\
 	131,\
 	132,\
-	133
+	133,\
+	134,\
+	135,\
+	136,\
+	137,\
+	138,\
+	139,\
+	140,\
+	141
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -178,6 +186,14 @@
 	"CUP - US Army Special Forces (Woodland)", \
 	"CUP - US Army UCP (Desert)", \
 	"CUP - US Army UCP (Woodland)", \
+	"CUP - USMC (Desert)", \
+	"CUP - USMC (Woodland)", \
+	"CUP - USMC Force Recon (Desert)", \
+	"CUP - USMC Force Recon (Woodland)", \
+	"CUP - USMC FROG (Desert)", \
+	"CUP - USMC FROG (Woodland)", \
+	"CUP - MARSOC (Desert)", \
+	"CUP - MARSOC (Woodland)", \
 
 	"OPCAN - Colonial Guard Corps", \
 	"OPCAN - Colonial Military Authority", \
