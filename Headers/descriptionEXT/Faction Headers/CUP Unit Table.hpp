@@ -1375,3 +1375,502 @@ class CUP_USMC_FROG_WDL_faction : CUP_USMC_WDL_base
 		"CUP_B_USMC_MARSOC_Medic"
 	};
 };
+
+class CUP_AFRF_base
+{
+	displayName = "CUP - Armed Forces of the Russian Federation Base";
+
+	lightCars[] = {
+		"CUP_O_UAZ_AGS30_RU",
+		"CUP_O_UAZ_MG_RU"
+	};
+	heavyCars[] = {
+		"CUP_O_BRDM2_RUS",
+		"CUP_O_BRDM2_HQ_RUS",
+		"CUP_O_GAZ_Vodnik_PK_RU",
+		"CUP_O_GAZ_Vodnik_AGS_RU",
+		"CUP_O_GAZ_Vodnik_BPPU_RU",
+		"CUP_O_GAZ_Vodnik_KPVT_RU"
+	};
+	heavyArmor[] = {
+		"CUP_O_T72_RU",
+		"CUP_O_T90_RU"
+	};
+	transportHelicopters[] = {
+		"CUP_O_Mi8AMT_RU",
+		"CUP_O_Ka60_Grey_RU"
+	};
+	cargoAircraft[] = {
+		"CUP_O_Mi8AMT_RU"
+	};
+	casAircraft[] = {
+		"CUP_O_Su25_Dyn_RU",
+		"CUP_O_SU34_RU"
+	};
+	attackHelicopters[] = {
+		"O_Heli_Attack_02_dynamicLoadout_black_F"
+	};
+};
+
+class CUP_AFRF_WDL_base : CUP_AFRF_base
+{
+	displayName = "CUP - Armed Forces of the Russian Federation Base (WDL)";
+
+	lightArmor[] = {
+		"CUP_O_BMP2_RU",
+		"CUP_O_BMP_HQ_RU",
+		"CUP_O_BMP3_RU",
+		"CUP_O_BTR60_Green_RU",
+		"CUP_O_BTR80_CAMO_RU",
+		"CUP_O_BTR80_GREEN_RU",
+		"CUP_O_BTR80A_CAMO_RU",
+		"CUP_O_BTR80A_GREEN_RU"
+	};
+};
+
+class CUP_AFRF_DES_base : CUP_AFRF_base
+{
+	displayName = "CUP - Armed Forces of the Russian Federation Base (DES)";
+
+	lightArmor[] = {
+		"CUP_O_BMP2_RU",
+		"CUP_O_BMP_HQ_RU",
+		"CUP_O_BMP3_RU",
+		"CUP_O_BTR60_RU",
+		"CUP_O_BTR80_DESERT_RU",
+		"CUP_O_BTR80A_DESERT_RU",
+		"CUP_O_BTR90_RU"
+	};
+};
+
+class CUP_AFRF_SNW_base : CUP_AFRF_base
+{
+	displayName = "CUP - Armed Forces of the Russian Federation Base (SNW)";
+
+	lightArmor[] = {
+		"CUP_O_BTR60_Winter_RU",
+		"CUP_O_BTR80_WINTER_RU",
+		"CUP_O_BTR80A_WINTER_RU"
+	};
+};
+
+class CUP_AFRF_ARID_base : CUP_AFRF_base
+{
+	displayName = "CUP - Armed Forces of the Russian Federation Base (ARID)";
+
+	lightArmor[] = {
+		"CUP_O_BTR60_RU",
+		"CUP_O_BTR90_RU",
+		"CUP_O_BMP3_RU",
+		"CUP_O_BMP_HQ_RU",
+		"CUP_O_BMP2_RU"
+	};
+};
+
+class CUP_AFRF_MSV_MODERN_faction : CUP_AFRF_WDL_base
+{
+	displayName = "CUP - Armed Forces of the Russian Federation (MSV - Modern - EMR)";
+
+	infantry[] = {
+		"CUP_O_RU_Soldier_TL_M_EMR",
+		"CUP_O_RU_Soldier_AR_M_EMR",
+		"CUP_O_RU_Engineer_M_EMR",
+		"CUP_O_RU_Explosive_Specialist_M_EMR",
+		"CUP_O_RU_Soldier_GL_M_EMR",
+		"CUP_O_RU_Soldier_MG_M_EMR",
+		"CUP_O_RU_Soldier_Marksman_M_EMR",
+		"CUP_O_RU_Medic_M_EMR",
+		"CUP_O_RU_Soldier_AA_M_EMR",
+		"CUP_O_RU_Soldier_HAT_M_EMR",
+		"CUP_O_RU_Officer_M_EMR",
+		"CUP_O_RU_Soldier_M_EMR",
+		"CUP_O_RU_Soldier_LAT_M_EMR",
+		"CUP_O_RU_Soldier_AT_M_EMR",
+		"CUP_O_RU_Soldier_Saiga_M_EMR",
+		"CUP_O_RU_Sniper_M_EMR",
+		"CUP_O_RU_Sniper_KSVK_M_EMR",
+		"CUP_O_RU_Spotter_M_EMR",
+		"CUP_O_RU_Soldier_SL_M_EMR"
+	};
+};
+
+class CUP_AFRF_VDV_MODERN_faction : CUP_AFRF_WDL_base
+{
+	displayName = "CUP - Armed Forces of the Russian Federation (VDV - Modern - EMR)";
+
+	infantry[] = {
+		"CUP_O_RU_Soldier_AR_VDV_M_EMR",
+		"CUP_O_RU_Engineer_VDV_M_EMR",
+		"CUP_O_RU_Explosive_Specialist_VDV_M_EMR",
+		"CUP_O_RU_Soldier_GL_VDV_M_EMR",
+		"CUP_O_RU_Soldier_MG_VDV_M_EMR",
+		"CUP_O_RU_Soldier_Marksman_VDV_M_EMR",
+		"CUP_O_RU_Medic_VDV_M_EMR",
+		"CUP_O_RU_Soldier_AA_VDV_M_EMR",
+		"CUP_O_RU_Soldier_HAT_VDV_M_EMR",
+		"CUP_O_RU_Officer_VDV_M_EMR",
+		"CUP_O_RU_Soldier_VDV_M_EMR",
+		"CUP_O_RU_Soldier_LAT_VDV_M_EMR",
+		"CUP_O_RU_Soldier_AT_VDV_M_EMR",
+		"CUP_O_RU_Soldier_Saiga_VDV_M_EMR",
+		"CUP_O_RU_Sniper_VDV_M_EMR",
+		"CUP_O_RU_Sniper_KSVK_VDV_M_EMR",
+		"CUP_O_RU_Spotter_VDV_M_EMR",
+		"CUP_O_RU_Soldier_SL_VDV_M_EMR",
+		"CUP_O_RU_Soldier_TL_VDV_M_EMR"
+	};
+};
+
+class CUP_AFRF_MSV_EMR_faction : CUP_AFRF_WDL_base
+{
+	displayName = "CUP - Armed Forces of the Russian Federation (MSV - EMR)";
+
+	infantry[] = {
+		"CUP_O_RU_Soldier_AR_EMR",
+		"CUP_O_RU_Engineer_EMR",
+		"CUP_O_RU_Explosive_Specialist_EMR",
+		"CUP_O_RU_Soldier_GL_EMR",
+		"CUP_O_RU_Soldier_MG_EMR",
+		"CUP_O_RU_Soldier_Marksman_EMR",
+		"CUP_O_RU_Medic_EMR",
+		"CUP_O_RU_Soldier_AA_EMR",
+		"CUP_O_RU_Soldier_HAT_EMR",
+		"CUP_O_RU_Officer_EMR",
+		"CUP_O_RU_Soldier_EMR",
+		"CUP_O_RU_Soldier_LAT_EMR",
+		"CUP_O_RU_Soldier_AT_EMR",
+		"CUP_O_RU_Soldier_Saiga_EMR",
+		"CUP_O_RU_Sniper_EMR",
+		"CUP_O_RU_Sniper_KSVK_EMR",
+		"CUP_O_RU_Spotter_EMR",
+		"CUP_O_RU_Soldier_SL_EMR",
+		"CUP_O_RU_Soldier_TL_EMR"
+	};
+};
+
+class CUP_AFRF_MSV_TTSKO_faction : CUP_AFRF_DES_base
+{
+	displayName = "CUP - Armed Forces of the Russian Federation (MSV - TTsKO)";
+
+	infantry[] = {
+		"CUP_O_RU_Soldier_AR",
+		"CUP_O_RU_Engineer",
+		"CUP_O_RU_Explosive_Specialist",
+		"CUP_O_RU_Soldier_GL",
+		"CUP_O_RU_Soldier_MG",
+		"CUP_O_RU_Soldier_Marksman",
+		"CUP_O_RU_Medic",
+		"CUP_O_RU_Soldier_AA",
+		"CUP_O_RU_Soldier_HAT",
+		"CUP_O_RU_Officer",
+		"CUP_O_RU_Soldier",
+		"CUP_O_RU_Soldier_LAT",
+		"CUP_O_RU_Soldier_AT",
+		"CUP_O_RU_Soldier_Saiga",
+		"CUP_O_RU_Sniper",
+		"CUP_O_RU_Sniper_KSVK",
+		"CUP_O_RU_Spotter",
+		"CUP_O_RU_Soldier_SL",
+		"CUP_O_RU_Soldier_TL"
+	};
+};
+
+class CUP_AFRF_MSV_VSR93_faction : CUP_AFRF_WDL_base
+{
+	displayName = "CUP - Armed Forces of the Russian Federation (MSV - VSR-93)";
+
+	infantry[] = {
+		"CUP_O_RU_Soldier_AAR_MSV_VSR93",
+		"CUP_O_RU_Soldier_AAT_MSV_VSR93",
+		"CUP_O_RU_Soldier_AR_MSV_VSR93",
+		"CUP_O_RU_Soldier_Medic_MSV_VSR93",
+		"CUP_O_RU_Soldier_Engineer_MSV_VSR93",
+		"CUP_O_RU_Soldier_Exp_MSV_VSR93",
+		"CUP_O_RU_Soldier_GL_MSV_VSR93",
+		"CUP_O_RU_Soldier_MG_MSV_VSR93",
+		"CUP_O_RU_Soldier_Marksman_MSV_VSR93",
+		"CUP_O_RU_Soldier_AA_MSV_VSR93",
+		"CUP_O_RU_Soldier_MSV_VSR93",
+		"CUP_O_RU_Soldier_AT_MSV_VSR93",
+		"CUP_O_RU_Soldier_HAT_MSV_VSR93",
+		"CUP_O_RU_Soldier_LAT_MSV_VSR93",
+		"CUP_O_RU_Soldier_Lite_MSV_VSR93",
+		"CUP_O_RU_Soldier_SL_MSV_VSR93",
+		"CUP_O_RU_Soldier_TL_MSV_VSR93"
+	};
+};
+
+class CUP_AFRF_MVD_faction : CUP_AFRF_DES_base
+{
+	displayName = "CUP - Armed Forces of the Russian Federation (MVD)";
+
+	infantry[] = {
+		"CUP_O_MVD_Soldier_MG",
+		"CUP_O_MVD_Soldier_Marksman",
+		"CUP_O_MVD_Soldier",
+		"CUP_O_MVD_Soldier_GL",
+		"CUP_O_MVD_Soldier_AT",
+		"CUP_O_MVD_Sniper",
+		"CUP_O_MVD_Soldier_TL"
+	};
+};
+
+class CUP_AFRF_RATNIK_AUT_faction : CUP_AFRF_ARID_base
+{
+	displayName = "CUP - Armed Forces of the Russian Federation (Ratnik - Autumn)";
+
+	infantry[] = {
+		"CUP_O_RU_Soldier_A_Ratnik_Autumn",
+		"CUP_O_RU_Soldier_AAR_Ratnik_Autumn",
+		"CUP_O_RU_Soldier_AHAT_Ratnik_Autumn",
+		"CUP_O_RU_Soldier_AAT_Ratnik_Autumn",
+		"CUP_O_RU_Soldier_AR_Ratnik_Autumn",
+		"CUP_O_RU_Soldier_Medic_Ratnik_Autumn",
+		"CUP_O_RU_Soldier_Engineer_Ratnik_Autumn",
+		"CUP_O_RU_Soldier_Exp_Ratnik_Autumn",
+		"CUP_O_RU_Soldier_GL_Ratnik_Autumn",
+		"CUP_O_RU_Soldier_MG_Ratnik_Autumn",
+		"CUP_O_RU_Soldier_Marksman_Ratnik_Autumn",
+		"CUP_O_RU_Soldier_AA_Ratnik_Autumn",
+		"CUP_O_RU_Soldier_LAT_Ratnik_Autumn",
+		"CUP_O_RU_Recon_Marksman_Ratnik_Autumn",
+		"CUP_O_RU_Recon_Exp_Ratnik_Autumn",
+		"CUP_O_RU_Recon_Medic_Ratnik_Autumn",
+		"CUP_O_RU_Recon_Ratnik_Autumn",
+		"CUP_O_RU_Recon_LAT_Ratnik_Autumn",
+		"CUP_O_RU_Recon_TL_Ratnik_Autumn",
+		"CUP_O_RU_Soldier_Repair_Ratnik_Autumn",
+		"CUP_O_RU_Soldier_Ratnik_Autumn",
+		"CUP_O_RU_Soldier_AT_Ratnik_Autumn",
+		"CUP_O_RU_Soldier_HAT_Ratnik_Autumn",
+		"CUP_O_RU_Soldier_Lite_Ratnik_Autumn",
+		"CUP_O_RU_Soldier_SL_Ratnik_Autumn",
+		"CUP_O_RU_Soldier_TL_Ratnik_Autumn"
+	};
+};
+
+class CUP_AFRF_RATNIK_BD_faction : CUP_AFRF_ARID_base
+{
+	displayName = "CUP - Armed Forces of the Russian Federation (Ratnik - Beige Digital)";
+
+	infantry[] = {
+		"CUP_O_RU_Soldier_A_Ratnik_BeigeDigital",
+		"CUP_O_RU_Soldier_AAR_Ratnik_BeigeDigital",
+		"CUP_O_RU_Soldier_AHAT_Ratnik_BeigeDigital",
+		"CUP_O_RU_Soldier_AAT_Ratnik_BeigeDigital",
+		"CUP_O_RU_Soldier_AR_Ratnik_BeigeDigital",
+		"CUP_O_RU_Soldier_Medic_Ratnik_BeigeDigital",
+		"CUP_O_RU_Soldier_Engineer_Ratnik_BeigeDigital",
+		"CUP_O_RU_Soldier_Exp_Ratnik_BeigeDigital",
+		"CUP_O_RU_Soldier_GL_Ratnik_BeigeDigital",
+		"CUP_O_RU_Soldier_MG_Ratnik_BeigeDigital",
+		"CUP_O_RU_Soldier_Marksman_Ratnik_BeigeDigital",
+		"CUP_O_RU_Soldier_AA_Ratnik_BeigeDigital",
+		"CUP_O_RU_Soldier_LAT_Ratnik_BeigeDigital",
+		"CUP_O_RU_Recon_Exp_Ratnik_BeigeDigital",
+		"CUP_O_RU_Recon_Marksman_Ratnik_BeigeDigital",
+		"CUP_O_RU_Recon_Medic_Ratnik_BeigeDigital",
+		"CUP_O_RU_Recon_Ratnik_BeigeDigital",
+		"CUP_O_RU_Recon_LAT_Ratnik_BeigeDigital",
+		"CUP_O_RU_Recon_TL_Ratnik_BeigeDigital",
+		"CUP_O_RU_Soldier_Repair_Ratnik_BeigeDigital",
+		"CUP_O_RU_Soldier_Ratnik_BeigeDigital",
+		"CUP_O_RU_Soldier_AT_Ratnik_BeigeDigital",
+		"CUP_O_RU_Soldier_HAT_Ratnik_BeigeDigital",
+		"CUP_O_RU_Soldier_Lite_Ratnik_BeigeDigital",
+		"CUP_O_RU_Soldier_SL_Ratnik_BeigeDigital",
+		"CUP_O_RU_Soldier_TL_Ratnik_BeigeDigital"
+	};
+};
+
+class CUP_AFRF_RATNIK_DES_faction : CUP_AFRF_DES_base
+{
+	displayName = "CUP - Armed Forces of the Russian Federation (Ratnik - Desert)";
+
+	infantry[] = {
+		"CUP_O_RU_Soldier_A_Ratnik_Desert",
+		"CUP_O_RU_Soldier_AAR_Ratnik_Desert",
+		"CUP_O_RU_Soldier_AHAT_Ratnik_Desert",
+		"CUP_O_RU_Soldier_AAT_Ratnik_Desert",
+		"CUP_O_RU_Soldier_AR_Ratnik_Desert",
+		"CUP_O_RU_Soldier_Medic_Ratnik_Desert",
+		"CUP_O_RU_Soldier_Engineer_Ratnik_Desert",
+		"CUP_O_RU_Soldier_Exp_Ratnik_Desert",
+		"CUP_O_RU_Soldier_GL_Ratnik_Desert",
+		"CUP_O_RU_Soldier_MG_Ratnik_Desert",
+		"CUP_O_RU_Soldier_Marksman_Ratnik_Desert",
+		"CUP_O_RU_Soldier_AA_Ratnik_Desert",
+		"CUP_O_RU_Soldier_LAT_Ratnik_Desert",
+		"CUP_O_RU_Recon_Exp_Ratnik_Desert",
+		"CUP_O_RU_Recon_Marksman_Ratnik_Desert",
+		"CUP_O_RU_Recon_Medic_Ratnik_Desert",
+		"CUP_O_RU_Recon_Ratnik_Desert",
+		"CUP_O_RU_Recon_LAT_Ratnik_Desert",
+		"CUP_O_RU_Recon_TL_Ratnik_Desert",
+		"CUP_O_RU_Soldier_Repair_Ratnik_Desert",
+		"CUP_O_RU_Soldier_Ratnik_Desert",
+		"CUP_O_RU_Soldier_AT_Ratnik_Desert",
+		"CUP_O_RU_Soldier_HAT_Ratnik_Desert",
+		"CUP_O_RU_Soldier_Lite_Ratnik_Desert",
+		"CUP_O_RU_Soldier_SL_Ratnik_Desert",
+		"CUP_O_RU_Soldier_TL_Ratnik_Desert"
+	};
+};
+
+class CUP_AFRF_RATNIK_SUM_faction : CUP_AFRF_WDL_base
+{
+	displayName = "CUP - Armed Forces of the Russian Federation (Ratnik - Summer)";
+
+	infantry[] = {
+		"CUP_O_RU_Soldier_A_Ratnik_Summer",
+		"CUP_O_RU_Soldier_AAR_Ratnik_Summer",
+		"CUP_O_RU_Soldier_AHAT_Ratnik_Summer",
+		"CUP_O_RU_Soldier_AAT_Ratnik_Summer",
+		"CUP_O_RU_Soldier_AR_Ratnik_Summer",
+		"CUP_O_RU_Soldier_Medic_Ratnik_Summer",
+		"CUP_O_RU_Soldier_Engineer_Ratnik_Summer",
+		"CUP_O_RU_Soldier_Exp_Ratnik_Summer",
+		"CUP_O_RU_Soldier_GL_Ratnik_Summer",
+		"CUP_O_RU_Soldier_MG_Ratnik_Summer",
+		"CUP_O_RU_Soldier_Marksman_Ratnik_Summer",
+		"CUP_O_RU_Soldier_AA_Ratnik_Summer",
+		"CUP_O_RU_Soldier_LAT_Ratnik_Summer",
+		"CUP_O_RU_Recon_Exp_Ratnik_Summer",
+		"CUP_O_RU_Recon_Marksman_Ratnik_Summer",
+		"CUP_O_RU_Recon_Medic_Ratnik_Summer",
+		"CUP_O_RU_Recon_Ratnik_Summer",
+		"CUP_O_RU_Recon_LAT_Ratnik_Summer",
+		"CUP_O_RU_Recon_TL_Ratnik_Summer",
+		"CUP_O_RU_Soldier_Repair_Ratnik_Summer",
+		"CUP_O_RU_Soldier_Ratnik_Summer",
+		"CUP_O_RU_Soldier_AT_Ratnik_Summer",
+		"CUP_O_RU_Soldier_HAT_Ratnik_Summer",
+		"CUP_O_RU_Soldier_Lite_Ratnik_Summer",
+		"CUP_O_RU_Soldier_SL_Ratnik_Summer",
+		"CUP_O_RU_Soldier_TL_Ratnik_Summer"
+	};
+};
+
+class CUP_AFRF_RATNIK_SNW_faction : CUP_AFRF_SNW_base
+{
+	displayName = "CUP - Armed Forces of the Russian Federation (Ratnik - Winter)";
+
+	infantry[] = {
+		"CUP_O_RU_Soldier_A_Ratnik_Winter",
+		"CUP_O_RU_Soldier_AAR_Ratnik_Winter",
+		"CUP_O_RU_Soldier_AHAT_Ratnik_Winter",
+		"CUP_O_RU_Soldier_AAT_Ratnik_Winter",
+		"CUP_O_RU_Soldier_AR_Ratnik_Winter",
+		"CUP_O_RU_Soldier_Medic_Ratnik_Winter",
+		"CUP_O_RU_Soldier_Engineer_Ratnik_Winter",
+		"CUP_O_RU_Soldier_Exp_Ratnik_Winter",
+		"CUP_O_RU_Soldier_GL_Ratnik_Winter",
+		"CUP_O_RU_Soldier_MG_Ratnik_Winter",
+		"CUP_O_RU_Soldier_Marksman_Ratnik_Winter",
+		"CUP_O_RU_Soldier_AA_Ratnik_Winter",
+		"CUP_O_RU_Soldier_LAT_Ratnik_Winter",
+		"CUP_O_RU_Recon_Exp_Ratnik_Winter",
+		"CUP_O_RU_Recon_Marksman_Ratnik_Winter",
+		"CUP_O_RU_Recon_Medic_Ratnik_Winter",
+		"CUP_O_RU_Recon_Ratnik_Winter",
+		"CUP_O_RU_Recon_LAT_Ratnik_Winter",
+		"CUP_O_RU_Recon_TL_Ratnik_Winter",
+		"CUP_O_RU_Soldier_Repair_Ratnik_Winter",
+		"CUP_O_RU_Soldier_Ratnik_Winter",
+		"CUP_O_RU_Soldier_AT_Ratnik_Winter",
+		"CUP_O_RU_Soldier_HAT_Ratnik_Winter",
+		"CUP_O_RU_Soldier_Lite_Ratnik_Winter",
+		"CUP_O_RU_Soldier_SL_Ratnik_Winter",
+		"CUP_O_RU_Soldier_TL_Ratnik_Winter"
+	};
+};
+
+class CUP_AFRF_SPETSNAZ_AUT_faction : CUP_AFRF_ARID_base
+{
+	displayName = "CUP - Armed Forces of the Russian Federation (Spetsnaz - Autumn)";
+
+	infantry[] = {
+		"CUP_O_RUS_Saboteur_Autumn",
+		"CUP_O_RUS_Soldier_Marksman_Autumn",
+		"CUP_O_RUS_Commander_Autumn",
+		"CUP_O_RUS_SpecOps_Autumn",
+		"CUP_O_RUS_SpecOps_Night_Autumn",
+		"CUP_O_RUS_SpecOps_SD_Autumn",
+		"CUP_O_RUS_SpecOps_Scout_Autumn",
+		"CUP_O_RUS_SpecOps_Scout_Night_Autumn",
+		"CUP_O_RUS_Soldier_TL_Autumn",
+		"CUP_O_RUS_Soldier_GL_Autumn"
+	};
+};
+
+class CUP_AFRF_SPETSNAZ_SUM_faction : CUP_AFRF_WDL_base
+{
+	displayName = "CUP - Armed Forces of the Russian Federation (Spetsnaz - Summer)";
+
+	infantry[] = {
+		"CUP_O_RUS_Saboteur",
+		"CUP_O_RUS_Soldier_GL",
+		"CUP_O_RUS_Soldier_Marksman",
+		"CUP_O_RUS_Commander",
+		"CUP_O_RUS_SpecOps",
+		"CUP_O_RUS_SpecOps_Night",
+		"CUP_O_RUS_SpecOps_SD",
+		"CUP_O_RUS_SpecOps_Scout",
+		"CUP_O_RUS_SpecOps_Scout_Night",
+		"CUP_O_RUS_Soldier_TL"
+	};
+};
+
+class CUP_AFRF_VDV_EMR_faction : CUP_AFRF_WDL_base
+{
+	displayName = "CUP - Armed Forces of the Russian Federation (VDV - EMR)";
+
+	infantry[] = {
+		"CUP_O_RU_Soldier_AR_VDV_EMR",
+		"CUP_O_RU_Engineer_VDV_EMR",
+		"CUP_O_RU_Explosive_Specialist_VDV_EMR",
+		"CUP_O_RU_Soldier_GL_VDV_EMR",
+		"CUP_O_RU_Soldier_MG_VDV_EMR",
+		"CUP_O_RU_Soldier_Marksman_VDV_EMR",
+		"CUP_O_RU_Medic_VDV_EMR",
+		"CUP_O_RU_Soldier_AA_VDV_EMR",
+		"CUP_O_RU_Soldier_HAT_VDV_EMR",
+		"CUP_O_RU_Officer_VDV_EMR",
+		"CUP_O_RU_Soldier_VDV_EMR",
+		"CUP_O_RU_Soldier_LAT_VDV_EMR",
+		"CUP_O_RU_Soldier_AT_VDV_EMR",
+		"CUP_O_RU_Soldier_Saiga_VDV_EMR",
+		"CUP_O_RU_Sniper_VDV_EMR",
+		"CUP_O_RU_Sniper_KSVK_VDV_EMR",
+		"CUP_O_RU_Spotter_VDV_EMR",
+		"CUP_O_RU_Soldier_SL_VDV_EMR",
+		"CUP_O_RU_Soldier_TL_VDV_EMR"
+	};
+};
+
+class CUP_AFRF_VDV_TTSKO_faction : CUP_AFRF_DES_base
+{
+	displayName = "CUP - Armed Forces of the Russian Federation (VDV - TTsKO)";
+
+	infantry[] = {
+		"CUP_O_RU_Soldier_AR_VDV",
+		"CUP_O_RU_Engineer_VDV",
+		"CUP_O_RU_Explosive_Specialist_VDV",
+		"CUP_O_RU_Soldier_GL_VDV",
+		"CUP_O_RU_Soldier_MG_VDV",
+		"CUP_O_RU_Soldier_Marksman_VDV",
+		"CUP_O_RU_Medic_VDV",
+		"CUP_O_RU_Soldier_AA_VDV",
+		"CUP_O_RU_Soldier_HAT_VDV",
+		"CUP_O_RU_Officer_VDV",
+		"CUP_O_RU_Soldier_VDV",
+		"CUP_O_RU_Soldier_LAT_VDV",
+		"CUP_O_RU_Soldier_AT_VDV",
+		"CUP_O_RU_Soldier_Saiga_VDV",
+		"CUP_O_RU_Sniper_VDV",
+		"CUP_O_RU_Sniper_KSVK_VDV",
+		"CUP_O_RU_Spotter_VDV",
+		"CUP_O_RU_Soldier_SL_VDV",
+		"CUP_O_RU_Soldier_TL_VDV"
+	};
+};

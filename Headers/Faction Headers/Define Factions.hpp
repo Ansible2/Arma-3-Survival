@@ -141,7 +141,22 @@
 	138,\
 	139,\
 	140,\
-	141
+	141,\
+	142,\
+	143,\
+	144,\
+	145,\
+	146,\
+	147,\
+	148,\
+	149,\
+	150,\
+	151,\
+	152,\
+	153,\
+	154,\
+	155,\
+	156
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -194,6 +209,21 @@
 	"CUP - USMC FROG (Woodland)", \
 	"CUP - MARSOC (Desert)", \
 	"CUP - MARSOC (Woodland)", \
+	"CUP - Armed Forces of the Russian Federation (MSV - Modern - EMR)", \
+	"CUP - Armed Forces of the Russian Federation (VDV - Modern - EMR)", \
+	"CUP - Armed Forces of the Russian Federation (MSV - EMR)", \
+	"CUP - Armed Forces of the Russian Federation (MSV - TTsKO)", \
+	"CUP - Armed Forces of the Russian Federation (MSV - VSR-93)", \
+	"CUP - Armed Forces of the Russian Federation (MVD)", \
+	"CUP - Armed Forces of the Russian Federation (Ratnik - Autumn)", \
+	"CUP - Armed Forces of the Russian Federation (Ratnik - Beige Digital)", \
+	"CUP - Armed Forces of the Russian Federation (Ratnik - Desert)", \
+	"CUP - Armed Forces of the Russian Federation (Ratnik - Summer)", \
+	"CUP - Armed Forces of the Russian Federation (Ratnik - Winter)", \
+	"CUP - Armed Forces of the Russian Federation (Spetsnaz - Autumn)", \
+	"CUP - Armed Forces of the Russian Federation (Spetsnaz - Summer)", \
+	"CUP - Armed Forces of the Russian Federation (VDV - EMR)", \
+	"CUP - Armed Forces of the Russian Federation (VDV - TTsKO)", \
 
 	"OPCAN - Colonial Guard Corps", \
 	"OPCAN - Colonial Military Authority", \
