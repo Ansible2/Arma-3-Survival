@@ -231,7 +231,7 @@ class OPCAN_UNSC_MARINE_DES_faction : OPCAN_UNSC_MARINE_WDL_faction
 	};
 };
 
-class OPCAN_UNSC_MARINE_DES_faction : OPCAN_UNSC_MARINE_WDL_faction
+class OPCAN_UNSC_MARINE_INF_faction : OPCAN_UNSC_MARINE_WDL_faction
 {
 	displayName = "OPCAN - UNSC Marine Infinite";
 
@@ -398,7 +398,7 @@ class OPCAN_FRIDENS_WDL_faction : OPCAN_FRIDENS_faction
 	};
 };
 
-class OPCAN_FRIDENS_WDL_faction : OPCAN_FRIDENS_faction
+class OPCAN_FRIDENS_DES_faction : OPCAN_FRIDENS_faction
 {
 	displayName = "OPCAN - Fridens Desert";
 

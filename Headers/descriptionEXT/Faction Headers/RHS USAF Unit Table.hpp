@@ -219,7 +219,7 @@ class RHSUSF_ARMY_WDL_faction : RHSUSF_ARMY_DES_faction
 	};
 };
 
-class RHSUSF_ARMY_WDL_faction : RHSUSF_ARMY_DES_faction
+class RHSUSF_ARMY_WDL_CRYE_faction : RHSUSF_ARMY_DES_faction
 {
 	displayName = "RHS USAF - US ARMY (Woodland CRYE)";
 
@@ -276,7 +276,7 @@ class RHSUSF_ARMY_DES_UCP_faction : RHSUSF_ARMY_DES_faction
 	};
 };
 
-class RHSUSF_ARMY_DES_UCP_faction : RHSUSF_ARMY_WDL_faction
+class RHSUSF_ARMY_WDL_UCP_faction : RHSUSF_ARMY_WDL_faction
 {
 	displayName = "RHS USAF - US ARMY (Woodland UCP)";
 
@@ -310,7 +310,7 @@ class RHSUSF_ARMY_DES_UCP_faction : RHSUSF_ARMY_WDL_faction
 	};
 };
 
-class RHSUSF_ARMY_DES_UCP_faction : RHSUSF_ARMY_DES_faction
+class RHSUSF_ARMY_DES_UCP_CRYE_faction : RHSUSF_ARMY_DES_faction
 {
 	displayName = "RHS USAF - US ARMY (Desert UCP CRYE)";
 
@@ -334,7 +334,7 @@ class RHSUSF_ARMY_DES_UCP_faction : RHSUSF_ARMY_DES_faction
 	};
 };
 
-class RHSUSF_ARMY_DES_UCP_faction : RHSUSF_ARMY_WDL_faction
+class RHSUSF_ARMY_WDL_UCP_CRYE_faction : RHSUSF_ARMY_WDL_faction
 {
 	displayName = "RHS USAF - US ARMY (Woodland UCP CRYE)";
 

@@ -631,7 +631,7 @@ class PROJOP_IAF_WDL_faction : PROJOP_IAF_faction
 	};
 };
 
-class PROJOP_IAF_WDL_faction : PROJOP_IAF_faction
+class PROJOP_IAF_SF_faction : PROJOP_IAF_faction
 {
 	displayName = "PROJECT OPFOR - Iraqi Special Forces";
 
