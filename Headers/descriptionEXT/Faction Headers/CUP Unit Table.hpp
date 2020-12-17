@@ -500,3 +500,137 @@ class CUP_GER_KSK_WDL_faction : CUP_GER_WDL_faction
 		"CUP_B_GER_Fleck_Soldier_TL"	
 	};
 };
+
+class CUP_CDF_DES_faction
+{
+	displayName = "CUP - Chernarus Defense Forces (Desert)";
+	
+	lightCars[] = {
+		"CUP_B_UAZ_AGS30_CDF",
+		"CUP_B_UAZ_MG_CDF"
+	};
+	heavyCars[] = {
+		"CUP_B_BRDM2_CDF",
+		"CUP_B_BRDM2_HQ_CDF"
+	};
+	lightArmor[] = {
+		"CUP_B_BMP2_CDF",
+		"CUP_B_BMP_HQ_CDF",
+		"CUP_B_BTR60_CDF",
+		"CUP_B_BTR80_CDF",
+		"CUP_B_BTR80A_CDF",
+		"CUP_B_MTLB_pk_CDF"
+	};
+	heavyArmor[] = {
+		"CUP_B_T72_CDF"
+	};
+	transportHelicopters[] = {
+		"CUP_B_Mi17_CDF"
+	};
+	cargoAircraft[] = {
+		"CUP_O_AN2_TK"
+	};
+	casAircraft[] = {
+		"CUP_B_Su25_Dyn_CDF",
+		"CUP_B_SU34_CDF"
+	};
+	attackHelicopters[] = {
+		"CUP_I_Mi24_Mk3_ION",
+		"CUP_I_Mi24_Mk4_ION"
+	};
+	
+	infantry[] = {
+		"CUP_B_CDF_Soldier_AA_DST",
+		"CUP_B_CDF_Soldier_AAT_DST",
+		"CUP_B_CDF_Soldier_AMG_DST",
+		"CUP_B_CDF_Soldier_LAT_DST",
+		"CUP_B_CDF_Soldier_AR_DST",
+		"CUP_B_CDF_Engineer_DST",
+		"CUP_B_CDF_Soldier_GL_DST",
+		"CUP_B_CDF_Soldier_MG_DST",
+		"CUP_B_CDF_Soldier_Marksman_DST",
+		"CUP_B_CDF_Medic_DST",
+		"CUP_B_CDF_Militia_DST",
+		"CUP_B_CDF_Officer_DST",
+		"CUP_B_CDF_Soldier_DST",
+		"CUP_B_CDF_Soldier_RPG18_DST",
+		"CUP_B_CDF_Sniper_DST",
+		"CUP_B_CDF_Spotter_DST",
+		"CUP_B_CDF_Soldier_TL_DST"
+	};
+};
+
+class CUP_CDF_FST_faction : CUP_CDF_DES_faction
+{
+	displayName = "CUP - Chernarus Defense Forces (Forest)";
+
+	infantry[] = {
+		"CUP_B_CDF_Soldier_LAT_FST",
+		"CUP_B_CDF_Soldier_AA_FST",
+		"CUP_B_CDF_Soldier_AAT_FST",
+		"CUP_B_CDF_Soldier_AMG_FST",
+		"CUP_B_CDF_Soldier_AR_FST",
+		"CUP_B_CDF_Engineer_FST",
+		"CUP_B_CDF_Soldier_GL_FST",
+		"CUP_B_CDF_Soldier_MG_FST",
+		"CUP_B_CDF_Soldier_Marksman_FST",
+		"CUP_B_CDF_Medic_FST",
+		"CUP_B_CDF_Militia_FST",
+		"CUP_B_CDF_Officer_FST",
+		"CUP_B_CDF_Soldier_FST",
+		"CUP_B_CDF_Soldier_RPG18_FST",
+		"CUP_B_CDF_Sniper_FST",
+		"CUP_B_CDF_Spotter_FST",
+		"CUP_B_CDF_Soldier_TL_FST"
+	};
+};
+
+class CUP_CDF_MNT_faction : CUP_CDF_DES_faction
+{
+	displayName = "CUP - Chernarus Defense Forces (Mountain)";
+
+	infantry[] = {
+		"CUP_B_CDF_Spotter_MNT",
+		"CUP_B_CDF_Soldier_AA_MNT",
+		"CUP_B_CDF_Soldier_AAT_MNT",
+		"CUP_B_CDF_Soldier_AMG_MNT",
+		"CUP_B_CDF_Soldier_LAT_MNT",
+		"CUP_B_CDF_Soldier_AR_MNT",
+		"CUP_B_CDF_Engineer_MNT",
+		"CUP_B_CDF_Soldier_GL_MNT",
+		"CUP_B_CDF_Soldier_MG_MNT",
+		"CUP_B_CDF_Soldier_Marksman_MNT",
+		"CUP_B_CDF_Medic_MNT",
+		"CUP_B_CDF_Militia_MNT",
+		"CUP_B_CDF_Officer_MNT",
+		"CUP_B_CDF_Soldier_MNT",
+		"CUP_B_CDF_Soldier_RPG18_MNT",
+		"CUP_B_CDF_Sniper_MNT",
+		"CUP_B_CDF_Soldier_TL_MNT"
+	};
+};
+
+class CUP_CDF_SNW_faction : CUP_CDF_DES_faction
+{
+	displayName = "CUP - Chernarus Defense Forces (Snow)";
+
+	infantry[] = {
+		"CUP_B_CDF_Soldier_TL_SNW",
+		"CUP_B_CDF_Soldier_AA_SNW",
+		"CUP_B_CDF_Soldier_AAT_SNW",
+		"CUP_B_CDF_Soldier_AMG_SNW",
+		"CUP_B_CDF_Soldier_LAT_SNW",
+		"CUP_B_CDF_Soldier_AR_SNW",
+		"CUP_B_CDF_Engineer_SNW",
+		"CUP_B_CDF_Soldier_GL_SNW",
+		"CUP_B_CDF_Soldier_MG_SNW",
+		"CUP_B_CDF_Soldier_Marksman_SNW",
+		"CUP_B_CDF_Medic_SNW",
+		"CUP_B_CDF_Militia_SNW",
+		"CUP_B_CDF_Officer_SNW",
+		"CUP_B_CDF_Soldier_SNW",
+		"CUP_B_CDF_Soldier_RPG18_SNW",
+		"CUP_B_CDF_Sniper_SNW",
+		"CUP_B_CDF_Spotter_SNW"
+	};
+};
