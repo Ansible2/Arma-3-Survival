@@ -125,7 +125,15 @@
 	122,\
 	123,\
 	124,\
-	125
+	125,\
+	126,\
+	127,\
+	128,\
+	129,\
+	130,\
+	131,\
+	132,\
+	133
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -162,6 +170,14 @@
 	"CUP - Horizon Islands Legion (Recon)", \
 	"CUP - Horizon Islands Legion (Reservists)", \
 	"CUP - Horizon Islands Legion (Special Forces)", \
+	"CUP - US Army OCP (Desert)", \
+	"CUP - US Army OCP (Woodland)", \
+	"CUP - US Army OEF-CP (Desert)", \
+	"CUP - US Army OEF-CP (Woodland)", \
+	"CUP - US Army Special Forces (Desert)", \
+	"CUP - US Army Special Forces (Woodland)", \
+	"CUP - US Army UCP (Desert)", \
+	"CUP - US Army UCP (Woodland)", \
 
 	"OPCAN - Colonial Guard Corps", \
 	"OPCAN - Colonial Military Authority", \

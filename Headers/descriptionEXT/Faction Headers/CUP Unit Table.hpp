@@ -745,3 +745,357 @@ class CUP_HIL_SF_faction
 		"CUP_B_HIL_Scout_MP7_SF"
 	};
 };
+
+class CUP_USARMY_base
+{
+	displayName "CUP - US ARMY Base";
+
+	transportHelicopters[] = {
+		"CUP_B_CH47F_USA",
+		"CUP_B_UH60M_US"
+	};
+	attackHelicopters[] = {
+		"CUP_B_AH64D_DL_USA",
+		"CUP_B_AH64_DL_USA"
+	};
+	cargoAircraft[] = {
+		"CUP_B_C130J_USMC"
+	};
+	casAircraft[] = {
+		"CUP_B_A10_DYN_USA"
+	};
+};
+
+class CUP_USARMY_DES_base : CUP_USARMY_base
+{
+	displayName = displayName "CUP - US ARMY Base (Desert)";
+
+	lightCars[] = {
+		"CUP_B_HMMWV_MK19_USA",
+		"CUP_B_HMMWV_M2_USA",
+		"CUP_B_HMMWV_SOV_M2_USA",
+		"CUP_B_HMMWV_SOV_USA",
+		"CUP_B_M1165_GMV_USA"		
+	};
+	heavyCars[] = {
+		"CUP_B_HMMWV_Crows_M2_USA",
+		"CUP_B_HMMWV_Crows_MK19_USA",
+		"CUP_B_HMMWV_M2_GPK_USA",
+		"CUP_B_M1151_M2_USA",
+		"CUP_B_M1151_Deploy_USA",
+		"CUP_B_M1151_Mk19_USA",
+		"CUP_B_RG31_Mk19_USA",
+		"CUP_B_RG31E_M2_USA",
+		"CUP_B_RG31_M2_USA",
+		"CUP_B_RG31_M2_GC_USA"
+	};
+	lightArmor[] = {
+		"CUP_B_M1126_ICV_M2_Desert",
+		"CUP_B_M1126_ICV_MK19_Desert",
+		"CUP_B_M1128_MGS_Desert",
+		"CUP_B_M1130_CV_M2_Desert",
+		"CUP_B_M113_desert_USA",
+		"CUP_B_M2Bradley_USA_D",
+		"CUP_B_M2A3Bradley_USA_D",
+		"CUP_B_M7Bradley_USA_D"
+	};
+	heavyArmor[] = {
+		"CUP_B_M1A1_DES_US_Army",
+		"CUP_B_M1A2_TUSK_MG_DES_US_Army"
+	};
+};
+
+class CUP_USARMY_WDL_base : CUP_USARMY_base
+{
+	displayName = displayName "CUP - US ARMY Base (Woodland)";
+
+	lightCars[] = {
+		"CUP_B_M1165_GMV_WDL_USA",
+		"CUP_B_HMMWV_SOV_NATO_T",
+		"CUP_B_HMMWV_SOV_M2_NATO_T",
+		"CUP_B_HMMWV_M2_NATO_T",
+		"CUP_B_HMMWV_MK19_NATO_T"
+	};
+	heavyCars[] = {
+		"CUP_B_RG31_M2_OD_GC_USA",
+		"CUP_B_RG31_M2_OD_USA",
+		"CUP_B_RG31E_M2_OD_USA",
+		"CUP_B_RG31_Mk19_OD_USA",
+		"CUP_B_M1151_Mk19_WDL_USA",
+		"CUP_B_M1151_Deploy_WDL_USA",
+		"CUP_B_M1151_M2_WDL_USA",
+		"CUP_B_HMMWV_M2_GPK_NATO_T",
+		"CUP_B_HMMWV_Crows_MK19_NATO_T",
+		"CUP_B_HMMWV_Crows_M2_NATO_T"
+	};
+	lightArmor[] = {
+		"CUP_B_M1126_ICV_M2_Woodland",
+		"CUP_B_M1126_ICV_MK19_Woodland",
+		"CUP_B_M1128_MGS_Woodland",
+		"CUP_B_M113_USA",
+		"CUP_B_M1130_CV_M2_Woodland",
+		"CUP_B_M2Bradley_USA_W",
+		"CUP_B_M2A3Bradley_USA_W",
+		"CUP_B_M7Bradley_USA_W"
+	};
+	heavyArmor[] = {
+		"CUP_B_M1A1_Woodland_US_Army",
+		"CUP_B_M1A2_TUSK_MG_US_Army"
+	};
+};
+
+class CUP_USARMY_OCP_DES_faction : CUP_USARMY_DES_base
+{
+	displayName = "CUP - US Army OCP (Desert)";
+
+	infantry[] = {
+		"CUP_B_US_Soldier_TL_OCP",
+		"CUP_B_US_Soldier_AAT_OCP",
+		"CUP_B_US_Soldier_AHAT_OCP",
+		"CUP_B_US_Soldier_AAR_OCP",
+		"CUP_B_US_Soldier_AMG_OCP",
+		"CUP_B_US_Soldier_AT_OCP",
+		"CUP_B_US_Soldier_HAT_OCP",
+		"CUP_B_US_Soldier_AR_OCP",
+		"CUP_B_US_Soldier_Engineer_OCP",
+		"CUP_B_US_Soldier_Engineer_EOD_OCP",
+		"CUP_B_US_Soldier_GL_OCP",
+		"CUP_B_US_Soldier_MG_OCP",
+		"CUP_B_US_Soldier_Marksman_OCP",
+		"CUP_B_US_Soldier_Marksman_EBR_OCP",
+		"CUP_B_US_Medic_OCP",
+		"CUP_B_US_Soldier_AA_OCP",
+		"CUP_B_US_Soldier_OCP",
+		"CUP_B_US_Soldier_ACOG_OCP",
+		"CUP_B_US_Soldier_LAT_OCP",
+		"CUP_B_US_Soldier_Backpack_OCP",
+		"CUP_B_US_Soldier_Engineer_Sapper_OCP",
+		"CUP_B_US_Sniper_OCP",
+		"CUP_B_US_Sniper_M107_OCP",
+		"CUP_B_US_Sniper_M110_TWS_OCP",
+		"CUP_B_US_Spotter_OCP",
+		"CUP_B_US_Soldier_SL_OCP"
+	};
+};
+
+class CUP_USARMY_OCP_WDL_faction : CUP_USARMY_WDL_base
+{
+	displayName = "CUP - US Army OCP (Woodland)";
+
+	infantry[] = {
+		"CUP_B_US_Soldier_TL_OCP",
+		"CUP_B_US_Soldier_AAT_OCP",
+		"CUP_B_US_Soldier_AHAT_OCP",
+		"CUP_B_US_Soldier_AAR_OCP",
+		"CUP_B_US_Soldier_AMG_OCP",
+		"CUP_B_US_Soldier_AT_OCP",
+		"CUP_B_US_Soldier_HAT_OCP",
+		"CUP_B_US_Soldier_AR_OCP",
+		"CUP_B_US_Soldier_Engineer_OCP",
+		"CUP_B_US_Soldier_Engineer_EOD_OCP",
+		"CUP_B_US_Soldier_GL_OCP",
+		"CUP_B_US_Soldier_MG_OCP",
+		"CUP_B_US_Soldier_Marksman_OCP",
+		"CUP_B_US_Soldier_Marksman_EBR_OCP",
+		"CUP_B_US_Medic_OCP",
+		"CUP_B_US_Soldier_AA_OCP",
+		"CUP_B_US_Soldier_OCP",
+		"CUP_B_US_Soldier_ACOG_OCP",
+		"CUP_B_US_Soldier_LAT_OCP",
+		"CUP_B_US_Soldier_Backpack_OCP",
+		"CUP_B_US_Soldier_Engineer_Sapper_OCP",
+		"CUP_B_US_Sniper_OCP",
+		"CUP_B_US_Sniper_M107_OCP",
+		"CUP_B_US_Sniper_M110_TWS_OCP",
+		"CUP_B_US_Spotter_OCP",
+		"CUP_B_US_Soldier_SL_OCP"
+	};
+};
+
+class CUP_USARMY_OEFCP_DES_faction : CUP_USARMY_DES_base
+{
+	displayName = "CUP - US Army OEF-CP (Desert)";
+
+	infantry[] = {
+		"CUP_B_US_Soldier_TL_OEFCP",
+		"CUP_B_US_Soldier_AAT_OEFCP",
+		"CUP_B_US_Soldier_AHAT_OEFCP",
+		"CUP_B_US_Soldier_AAR_OEFCP",
+		"CUP_B_US_Soldier_AMG_OEFCP",
+		"CUP_B_US_Soldier_AT_OEFCP",
+		"CUP_B_US_Soldier_HAT_OEFCP",
+		"CUP_B_US_Soldier_AR_OEFCP",
+		"CUP_B_US_Soldier_Engineer_OEFCP",
+		"CUP_B_US_Soldier_Engineer_EOD_OEFCP",
+		"CUP_B_US_Soldier_GL_OEFCP",
+		"CUP_B_US_Soldier_MG_OEFCP",
+		"CUP_B_US_Soldier_Marksman_OEFCP",
+		"CUP_B_US_Soldier_Marksman_EBR_OEFCP",
+		"CUP_B_US_Medic_OEFCP",
+		"CUP_B_US_Soldier_AA_OEFCP",
+		"CUP_B_US_Soldier_OEFCP",
+		"CUP_B_US_Soldier_ACOG_OEFCP",
+		"CUP_B_US_Soldier_LAT_OEFCP",
+		"CUP_B_US_Soldier_Backpack_OEFCP",
+		"CUP_B_US_Soldier_Engineer_Sapper_OEFCP",
+		"CUP_B_US_Sniper_OEFCP",
+		"CUP_B_US_Sniper_M107_OEFCP",
+		"CUP_B_US_Sniper_M110_TWS_OEFCP",
+		"CUP_B_US_Spotter_OEFCP",
+		"CUP_B_US_Soldier_SL_OEFCP"
+	};
+};
+
+class CUP_USARMY_OEFCP_WDL_faction : CUP_USARMY_WDL_base
+{
+	displayName = "CUP - US Army OEF-CP (Woodland)";
+
+	infantry[] = {
+		"CUP_B_US_Soldier_TL_OEFCP",
+		"CUP_B_US_Soldier_AAT_OEFCP",
+		"CUP_B_US_Soldier_AHAT_OEFCP",
+		"CUP_B_US_Soldier_AAR_OEFCP",
+		"CUP_B_US_Soldier_AMG_OEFCP",
+		"CUP_B_US_Soldier_AT_OEFCP",
+		"CUP_B_US_Soldier_HAT_OEFCP",
+		"CUP_B_US_Soldier_AR_OEFCP",
+		"CUP_B_US_Soldier_Engineer_OEFCP",
+		"CUP_B_US_Soldier_Engineer_EOD_OEFCP",
+		"CUP_B_US_Soldier_GL_OEFCP",
+		"CUP_B_US_Soldier_MG_OEFCP",
+		"CUP_B_US_Soldier_Marksman_OEFCP",
+		"CUP_B_US_Soldier_Marksman_EBR_OEFCP",
+		"CUP_B_US_Medic_OEFCP",
+		"CUP_B_US_Soldier_AA_OEFCP",
+		"CUP_B_US_Soldier_OEFCP",
+		"CUP_B_US_Soldier_ACOG_OEFCP",
+		"CUP_B_US_Soldier_LAT_OEFCP",
+		"CUP_B_US_Soldier_Backpack_OEFCP",
+		"CUP_B_US_Soldier_Engineer_Sapper_OEFCP",
+		"CUP_B_US_Sniper_OEFCP",
+		"CUP_B_US_Sniper_M107_OEFCP",
+		"CUP_B_US_Sniper_M110_TWS_OEFCP",
+		"CUP_B_US_Spotter_OEFCP",
+		"CUP_B_US_Soldier_SL_OEFCP"
+	};
+};
+
+class CUP_USARMY_SF_DES_faction : CUP_USARMY_DES_base
+{
+	displayName = "CUP - US Army Special Forces (Desert)";
+
+	transportHelicopters[] = {
+		"CUP_B_MH47E_USA",
+		"CUP_B_UH60M_US",
+		"CUP_B_MH6J_USA",
+		"CUP_B_MH6M_USA"
+	};
+	infantry[] = {
+		"CUP_B_US_SpecOps_UAV",
+		"CUP_B_US_SpecOps_AR",
+		"CUP_B_US_SpecOps_JTAC",
+		"CUP_B_US_SpecOps_MG",
+		"CUP_B_US_SpecOps_M",
+		"CUP_B_US_SpecOps_Medic",
+		"CUP_B_US_SpecOps",
+		"CUP_B_US_SpecOps_Assault",
+		"CUP_B_US_SpecOps_M14",
+		"CUP_B_US_SpecOps_Night",
+		"CUP_B_US_SpecOps_SD",
+		"CUP_B_US_SpecOps_TL"
+	};
+};
+
+class CUP_USARMY_SF_WDL_faction : CUP_USARMY_WDL_base
+{
+	displayName = "CUP - US Army Special Forces (Woodland)";
+	
+	transportHelicopters[] = {
+		"CUP_B_MH47E_USA",
+		"CUP_B_UH60M_US",
+		"CUP_B_MH6J_USA",
+		"CUP_B_MH6M_USA"
+	};
+	infantry[] = {
+		"CUP_B_US_SpecOps_UAV",
+		"CUP_B_US_SpecOps_AR",
+		"CUP_B_US_SpecOps_JTAC",
+		"CUP_B_US_SpecOps_MG",
+		"CUP_B_US_SpecOps_M",
+		"CUP_B_US_SpecOps_Medic",
+		"CUP_B_US_SpecOps",
+		"CUP_B_US_SpecOps_Assault",
+		"CUP_B_US_SpecOps_M14",
+		"CUP_B_US_SpecOps_Night",
+		"CUP_B_US_SpecOps_SD",
+		"CUP_B_US_SpecOps_TL"
+	};
+};
+
+class CUP_USARMY_OEFCP_DES_faction : CUP_USARMY_DES_base
+{
+	displayName = "CUP - US Army UCP (Desert)";
+
+	infantry[] = {
+		"CUP_B_US_Soldier_TL_UCP",
+		"CUP_B_US_Soldier_AAT_UCP",
+		"CUP_B_US_Soldier_AHAT_UCP",
+		"CUP_B_US_Soldier_AAR_UCP",
+		"CUP_B_US_Soldier_AMG_UCP",
+		"CUP_B_US_Soldier_AT_UCP",
+		"CUP_B_US_Soldier_HAT_UCP",
+		"CUP_B_US_Soldier_AR_UCP",
+		"CUP_B_US_Soldier_Engineer_UCP",
+		"CUP_B_US_Soldier_Engineer_EOD_UCP",
+		"CUP_B_US_Soldier_GL_UCP",
+		"CUP_B_US_Soldier_MG_UCP",
+		"CUP_B_US_Soldier_Marksman_UCP",
+		"CUP_B_US_Soldier_Marksman_EBR_UCP",
+		"CUP_B_US_Medic_UCP",
+		"CUP_B_US_Soldier_AA_UCP",
+		"CUP_B_US_Soldier_UCP",
+		"CUP_B_US_Soldier_ACOG_UCP",
+		"CUP_B_US_Soldier_LAT_UCP",
+		"CUP_B_US_Soldier_Backpack_UCP",
+		"CUP_B_US_Soldier_Engineer_Sapper_UCP",
+		"CUP_B_US_Sniper_UCP",
+		"CUP_B_US_Sniper_M107_UCP",
+		"CUP_B_US_Sniper_M110_TWS_UCP",
+		"CUP_B_US_Spotter_UCP",
+		"CUP_B_US_Soldier_SL_UCP"
+	};
+};
+
+class CUP_USARMY_OEFCP_WDL_faction : CUP_USARMY_WDL_base
+{
+	displayName = "CUP - US Army UCP (Woodland)";
+
+	infantry[] = {
+		"CUP_B_US_Soldier_TL_UCP",
+		"CUP_B_US_Soldier_AAT_UCP",
+		"CUP_B_US_Soldier_AHAT_UCP",
+		"CUP_B_US_Soldier_AAR_UCP",
+		"CUP_B_US_Soldier_AMG_UCP",
+		"CUP_B_US_Soldier_AT_UCP",
+		"CUP_B_US_Soldier_HAT_UCP",
+		"CUP_B_US_Soldier_AR_UCP",
+		"CUP_B_US_Soldier_Engineer_UCP",
+		"CUP_B_US_Soldier_Engineer_EOD_UCP",
+		"CUP_B_US_Soldier_GL_UCP",
+		"CUP_B_US_Soldier_MG_UCP",
+		"CUP_B_US_Soldier_Marksman_UCP",
+		"CUP_B_US_Soldier_Marksman_EBR_UCP",
+		"CUP_B_US_Medic_UCP",
+		"CUP_B_US_Soldier_AA_UCP",
+		"CUP_B_US_Soldier_UCP",
+		"CUP_B_US_Soldier_ACOG_UCP",
+		"CUP_B_US_Soldier_LAT_UCP",
+		"CUP_B_US_Soldier_Backpack_UCP",
+		"CUP_B_US_Soldier_Engineer_Sapper_UCP",
+		"CUP_B_US_Sniper_UCP",
+		"CUP_B_US_Sniper_M107_UCP",
+		"CUP_B_US_Sniper_M110_TWS_UCP",
+		"CUP_B_US_Spotter_UCP",
+		"CUP_B_US_Soldier_SL_UCP"
+	};
+};
