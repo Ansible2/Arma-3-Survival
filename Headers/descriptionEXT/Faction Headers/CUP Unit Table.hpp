@@ -528,7 +528,7 @@ class CUP_CDF_DES_faction
 		"CUP_B_Mi17_CDF"
 	};
 	cargoAircraft[] = {
-		"CUP_O_AN2_TK"
+		"CUP_O_C47_SLA"
 	};
 	casAircraft[] = {
 		"CUP_B_Su25_Dyn_CDF",
@@ -632,5 +632,116 @@ class CUP_CDF_SNW_faction : CUP_CDF_DES_faction
 		"CUP_B_CDF_Soldier_RPG18_SNW",
 		"CUP_B_CDF_Sniper_SNW",
 		"CUP_B_CDF_Spotter_SNW"
+	};
+};
+
+class CUP_HIL_faction
+{
+	displayName = "CUP - Horizon Islands Legion";
+
+	lightCars[] = {
+		"CUP_B_M151_M2_HIL"
+	};
+	heavyCars[] = {
+		"CUP_B_HMMWV_M2_GPK_NATO_T"
+	};
+	lightArmor[] = {
+		"CUP_B_Boxer_GMG_HIL",
+		"CUP_B_Boxer_HMG_HIL"
+	};
+	heavyArmor[] = {
+		"CUP_B_Leopard2A6_HIL"
+	};
+	transportHelicopters[] = {
+		"CUP_B_CH47F_HIL",
+		"CUP_B_AW159_Unarmed_HIL"
+	};
+	cargoAircraft[] = {
+		"CUP_B_C130J_USMC"
+	};
+	casAircraft[] = {
+		"CUP_B_JAS39_HIL"
+	};
+	attackHelicopters[] = {
+		"CUP_B_AH1_DL_BAF"
+	};
+
+	infantry[] = {
+		"CUP_B_HIL_SL",
+		"CUP_B_HIL_Soldier_AAT",
+		"CUP_B_HIL_AMG",
+		"CUP_B_HIL_Engineer",
+		"CUP_B_HIL_GL",
+		"CUP_B_HIL_MMG",
+		"CUP_B_HIL_M",
+		"CUP_B_HIL_Medic",
+		"CUP_B_HIL_Soldier_AA",
+		"CUP_B_HIL_Soldier_HAT",
+		"CUP_B_HIL_Officer",
+		"CUP_B_HIL_Soldier",
+		"CUP_B_HIL_Soldier_LAT",
+		"CUP_B_HIL_Soldier_MAT",
+		"CUP_B_HIL_Soldier_Light"
+	};
+};
+
+class CUP_HIL_RECON_faction
+{
+	displayName = "CUP - Horizon Islands Legion (Recon)";
+
+	infantry[] = {
+		"CUP_B_HIL_Engineer_Recon",
+		"CUP_B_HIL_GL_Recon",
+		"CUP_B_HIL_MMG_Recon",
+		"CUP_B_HIL_M_Recon",
+		"CUP_B_HIL_Soldier_HAT_Recon",
+		"CUP_B_HIL_Medic_Recon",
+		"CUP_B_HIL_Soldier_MAT_Recon",
+		"CUP_B_HIL_Soldier_Recon",
+		"CUP_B_HIL_Soldier_LAT_Recon",
+		"CUP_B_HIL_SL_Recon"
+	};
+};
+
+class CUP_HIL_RES_faction
+{
+	displayName = "CUP - Horizon Islands Legion (Reservists)";
+
+	infantry[] = {
+		"CUP_B_HIL_SL_Res",
+		"CUP_B_HIL_AMG_Res",
+		"CUP_B_HIL_Engineer_Res",
+		"CUP_B_HIL_GL_Res",
+		"CUP_B_HIL_MMG_Res",
+		"CUP_B_HIL_M_Res",
+		"CUP_B_HIL_Medic_Res",
+		"CUP_B_HIL_Officer_Res",
+		"CUP_B_HIL_Soldier_Res",
+		"CUP_B_HIL_Soldier_MAT_Res",
+		"CUP_B_HIL_Soldier_HAT_Res",
+		"CUP_B_HIL_Soldier_LAT_Res",
+		"CUP_B_HIL_Soldier_Light_Res"
+	};
+};
+
+class CUP_HIL_SF_faction
+{
+	displayName = "CUP - Horizon Islands Legion (Special Forces)";
+
+	infantry[] = {
+		"CUP_B_HIL_SL_SF",
+		"CUP_B_HIL_Soldier_SF",
+		"CUP_B_HIL_Soldier_LAT_SF",
+		"CUP_B_HIL_Engineer_SF",
+		"CUP_B_HIL_GL_SF",
+		"CUP_B_HIL_MMG_SF",
+		"CUP_B_HIL_M_SF",
+		"CUP_B_HIL_Medic_SF",
+		"CUP_B_HIL_Soldier_HAT_SF",
+		"CUP_B_HIL_Soldier_PM_SF",
+		"CUP_B_HIL_Soldier_MAT_SF",
+		"CUP_B_HIL_Scout_SF",
+		"CUP_B_HIL_Scout_MP5_SF",
+		"CUP_B_HIL_Scout_MP7_SF"
 	};
 };

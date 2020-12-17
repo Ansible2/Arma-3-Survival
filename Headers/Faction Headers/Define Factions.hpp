@@ -118,7 +118,14 @@
 	115,\
 	116,\
 	117,\
-	118
+	118,\
+	119,\
+	120,\
+	121,\
+	122,\
+	123,\
+	124,\
+	125
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -147,6 +154,14 @@
 	"CUP - Bundeswehr (Woodland)", \
 	"CUP - Bundeswehr KSK (Desert)", \
 	"CUP - Bundeswehr KSK (Woodland)", \
+	"CUP - Chernarus Defense Forces (Desert)", \
+	"CUP - Chernarus Defense Forces (Forest)", \
+	"CUP - Chernarus Defense Forces (Mountain)", \
+	"CUP - Chernarus Defense Forces (Snow)", \
+	"CUP - Horizon Islands Legion", \
+	"CUP - Horizon Islands Legion (Recon)", \
+	"CUP - Horizon Islands Legion (Reservists)", \
+	"CUP - Horizon Islands Legion (Special Forces)", \
 
 	"OPCAN - Colonial Guard Corps", \
 	"OPCAN - Colonial Military Authority", \
