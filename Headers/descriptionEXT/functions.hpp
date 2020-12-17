@@ -199,6 +199,17 @@ class BLWK
 		class addWeaponBoxSpinAction
 		{};
 	};
+
+	class ParameterSaving
+	{
+		file = "Functions\Parameter Saving";
+		class getSavedParamIndex
+		{};
+		class getSavedParamValue
+		{};
+		class saveParam
+		{};
+	};
 	
 	class Points
 	{
