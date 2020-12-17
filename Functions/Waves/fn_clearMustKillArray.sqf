@@ -24,4 +24,11 @@ Author(s):
 	#include "..\..\Headers\String Constants.hpp"
 #endif
 
-missionNamespace setVariable [WAVE_ENEMIES_ARRAY,[],2];
+// need to check if anyone is still alive before clearing
+waitUntil {
+	if (call BLWK_fnc_isWaveCleared) exitWith {true};
+	sleep 0.5;
+	false
+};
+
+missionNamespace setVariable [WAVE_ENEMIES_ARRAY,[]];

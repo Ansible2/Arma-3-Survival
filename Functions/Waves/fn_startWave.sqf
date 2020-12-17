@@ -30,6 +30,19 @@ params [
 	["_clearDroppedItems",false]
 ];
 
+// wait for array to be cleared
+/*
+	it's rare, but if enemies die too quickly, 
+	this can cause overlap in the next wave of enemies.
+	These are people that were just being added into the array when it is cleared
+*/
+private _arrayCleared = [] spawn BLWK_fnc_clearMustKillArray;
+waitUntil {
+	if (scriptDone _arrayCleared) exitWith {true};
+	sleep 0.1;
+	false
+};
+
 if (_clearDroppedItems) then {
 	private _weaponHolders = BLWK_playAreaCenter nearObjects ["weaponHolder",250];
 	_weaponHolders = _weaponHolders select {typeOf _x == "groundWeaponHolder" AND {!(_x in BLWK_spawnedLoot)}};
@@ -41,13 +54,12 @@ if (_clearDroppedItems) then {
 	};
 };
 
-call BLWK_fnc_clearMustKillArray;
-
 // update wave number
 private _previousWaveNum = missionNamespace getVariable ["BLWK_currentWaveNumber",0];
 missionNamespace setVariable ["BLWK_currentWaveNumber", _previousWaveNum + 1,true];
 
 missionNamespace setVariable ["BLWK_inBetweenWaves",false,true];
+missionNamespace setVariable ["BLWK_initialWaveSpawnComplete",false];
 
 call BLWK_fnc_decideWaveType;
 
@@ -60,11 +72,20 @@ if (BLWK_currentWaveNumber > BLWK_startingFromWaveNumber) then {
 call BLWK_fnc_cleanUpTheDead;
 
 // check to make sure there are actually units inside the wave array before looping
+// or that all initial units are spawned
 waitUntil {
-	if !(missionNamespace getVariable [WAVE_ENEMIES_ARRAY,[]] isEqualTo []) exitWith {true};
+	if (
+		missionNamespace getVariable ["BLWK_initialWaveSpawnComplete",false] OR
+		{!(missionNamespace getVariable [WAVE_ENEMIES_ARRAY,[]] isEqualTo [])}
+	) exitWith {true};
 	sleep 1;
 	false
 };
+
+// log wave
+diag_log "Start Wave";
+diag_log BLWK_currentWaveNumber;
+
 // loop to check wave end
 waitUntil {
 	if (call BLWK_fnc_isWaveCleared) exitWith {
