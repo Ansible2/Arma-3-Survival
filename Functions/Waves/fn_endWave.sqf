@@ -28,7 +28,9 @@ Author(s):
 if (!isServer OR {!canSuspend}) exitWith {};
 
 // handle drone wave global
-missionNamespace setVariable ["BLWK_allDronesCreated",nil,[0,2] select isMultiplayer];
+if !(isNil "BLWK_allDronesCreated") then {
+	missionNamespace setVariable ["BLWK_allDronesCreated",nil,[0,2] select isMultiplayer];
+};
 
 // check for mission complete
 if (BLWK_currentWaveNumber isEqualTo BLWK_maxNumWaves) exitWith {
@@ -82,8 +84,7 @@ if (((BLWK_currentWaveNumber + 1) mod BLWK_deleteDroppedItemsEvery) isEqualTo 0)
 
 	// don't send the notification every wave if items are cleared every time. Would be annoying.
 	if (BLWK_deleteDroppedItemsEvery > 1) then {
-		private _text = parseText "<t color='#03d7fc'>At the start of the next wave, dropped items will be DELETED</t>";
-		null = [_text] remoteExecCall ["hint",BLWK_allClientsTargetID];
+		null = remoteExecCall ["BLWK_fnc_hintDroppedDelete",BLWK_allClientsTargetID];
 	};
 };
 
