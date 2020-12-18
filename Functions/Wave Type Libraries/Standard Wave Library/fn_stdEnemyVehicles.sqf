@@ -156,8 +156,8 @@ private _fn_spawnAVehicle = {
 	private _spawnPosition = selectRandom BLWK_vehicleSpawnPositions;
 	private _createdVehicle = _selectedVehicleClass createVehicle _spawnPosition;
 
-	_createdVehicle addMPEventHandler ["MPKILLED",{
-		[_this,_thisEventHandler] call BLWK_fnc_stdVehicleKilledEvent;
+	_createdVehicle addEventHandler ["KILLED",{
+		_this call BLWK_fnc_stdVehicleKilledEvent;
 	}];
 
 	private _crew = _availableInfantry select [0,3];
