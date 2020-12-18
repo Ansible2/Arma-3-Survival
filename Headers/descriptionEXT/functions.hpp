@@ -207,7 +207,7 @@ class BLWK
 		{};
 		class getSavedParamValue
 		{};
-		class saveParam
+		class setParam
 		{};
 	};
 	
