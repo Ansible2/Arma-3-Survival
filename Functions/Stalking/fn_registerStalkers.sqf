@@ -30,5 +30,7 @@ params [
 	["_stalkerGroup",grpNull,[grpNull]]
 ];
 
+if (isNull _unit) exitWith {};
+
 private _currentStalkerCount = _unit getVariable [STALKER_COUNT_VAR,0];
 _unit setVariable [STALKER_COUNT_VAR,_currentStalkerCount + (count (units _stalkerGroup))];

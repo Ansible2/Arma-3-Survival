@@ -118,9 +118,11 @@ private _fn_handleStationaryLeader = {
 #define LOOP_VAR_NAME "BLWK_runPathingLoop"
 _groupToCheck setVariable [LOOP_VAR_NAME,true];
 
-while {sleep _timeBetweenChecks; (_groupToCheck getVariable [LOOP_VAR_NAME,false])} do {
+while {sleep _timeBetweenChecks; true} do {
 	// update unit list and check if they are still up
 	
+	if (!(isNull _groupToCheck) AND {_groupToCheck getVariable [LOOP_VAR_NAME,false]}) exitWith {};
+
 	if !(call _fn_checkGroupStatus) exitWith {
 		//["%1 exited pathing loop because of failed group status",_groupToCheck] call BIS_fnc_error;
 		_groupToCheck setVariable [LOOP_VAR_NAME,nil];

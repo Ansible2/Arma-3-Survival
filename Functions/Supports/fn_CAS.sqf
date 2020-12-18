@@ -308,7 +308,7 @@ private _timeAfterFlight = time + _flightTime;
 private _planeVectorUp = vectorUpVisual _plane;
 
 private ["_interval","_planeVectorDirTo","_planeVectorDirFrom"];
-while {!(_plane getVariable ["BLWK_completedFiring",false]) AND {(_plane distance _attackPosition) > _breakOffDistance}} do {
+while {!(isNull _plane) AND {!(_plane getVariable ["BLWK_completedFiring",false])} AND {(_plane distance _attackPosition) > _breakOffDistance}} do {
 	//--- Set the plane approach vector
 	_interval = linearConversion [_startTime,_timeAfterFlight,time,0,1];
 	_planeVectorDirTo = _planePositionASL vectorFromTo _attackPosition;
@@ -331,7 +331,7 @@ while {!(_plane getVariable ["BLWK_completedFiring",false]) AND {(_plane distanc
 		
 		
 		//private "_dummyTarget";
-		if !(_plane getVariable ["BLWK_startedFiring",false]) then {
+		if (!(isNull _plane) AND {_plane getVariable ["BLWK_startedFiring",false]}) then {
 			_plane setVariable ["BLWK_startedFiring",true];
 			// create a target to shoot at
 			private _dummyTargetClass = ["LaserTargetE","LaserTargetW"] select (_planeSide getfriend west > 0.6);
@@ -347,9 +347,11 @@ while {!(_plane getVariable ["BLWK_completedFiring",false]) AND {(_plane distanc
 			// ensures strafing effect with the above setVelocityTransformation
 			/// for some reason, private variables outside the main if here do not work
 			/// had to use this method of storing the target instead
-			private _dummyTarget = _plane getVariable "BLWK_casDummyTarget";
-			_attackPosition = AGLToASL(_dummyTarget getPos [0.1,(getDirVisual _plane)]);
-			_dummyTarget setPosASL _attackPosition;
+			if !(isNull _plane) then {
+				private _dummyTarget = _plane getVariable "BLWK_casDummyTarget";
+				_attackPosition = AGLToASL(_dummyTarget getPos [0.1,(getDirVisual _plane)]);
+				_dummyTarget setPosASL _attackPosition;
+			};
 		};
 	};
 

@@ -59,8 +59,10 @@ if (!isNull _stalkedUnit) then {
 // remove events
 private "_id_temp";
 _stalkerGroupUnits apply {
-	_id_temp = _x getVariable UNIT_KILLED_EVENT_VAR;
-	_x removeEventHandler ["KILLED",_id_temp];
+	if !(isNull _x) then {
+		_id_temp = _x getVariable UNIT_KILLED_EVENT_VAR;
+		_x removeEventHandler ["KILLED",_id_temp];
+	};
 };
 
 // move units to default position if defined
