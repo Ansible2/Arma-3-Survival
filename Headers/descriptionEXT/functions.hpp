@@ -414,6 +414,8 @@ class BLWK
 		{};
 		class handleSuicideWave
 		{};
+		class playBomberAudio
+		{};
 		class suicideBomberLoop
 		{};
 	};
