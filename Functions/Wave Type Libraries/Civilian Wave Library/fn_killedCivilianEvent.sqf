@@ -8,10 +8,10 @@ Description:
 	Executed from the eventhandeler added in "BLWK_fnc_civiliansWave"
 
 Parameters:
-	0: _killedUnit : <OBJECT> - The unit killed
-	1: _killer : <OBJECT> - Object that killed the unit
-	2: _instigator : <OBJECT> - The unit that instigated the attack
-	3: _useEffects : <BOOL> - Were damage effects used
+	0: _killedUnit : <OBJECT> - Object the event handler is assigned to
+	1: _killer : <OBJECT> - Object that killed _killedUnit – contains unit itself in case of collisions (not used)
+	2: _instigator : <OBJECT> - Person who pulled the trigger
+	3: _useEffects : <BOOL> - same as useEffects in setDamage alt syntax (not used)
 
 Returns:
 	NOTHING

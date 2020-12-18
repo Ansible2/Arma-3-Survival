@@ -9,13 +9,11 @@ Description:
 	Executed from the event added by "BLWK_fnc_addStdEnemyManEHs"
 
 Parameters:
-	0: _eventInfo: <ARRAY> -
-		0: _unit : <OBJECT> - Object the event handler is assigned to
-		1: _killer : <OBJECT> - Object that killed _unit – contains unit itself in case of collisions (not used)
-		2: _instigator : <OBJECT> - Person who pulled the trigger
-		3: _useEffects : <BOOL> - same as useEffects in setDamage alt syntax (not used)
+	0: _killedUnit : <OBJECT> - Object the event handler is assigned to
+	1: _killer : <OBJECT> - Object that killed _killedUnit – contains unit itself in case of collisions (not used)
+	2: _instigator : <OBJECT> - Person who pulled the trigger
+	3: _useEffects : <BOOL> - same as useEffects in setDamage alt syntax (not used)
 		
-	1: _handlerID : <NUMBER> - The eventhandler's id number
 
 Returns:
 	NOTHING
@@ -23,7 +21,7 @@ Returns:
 Examples:
     (begin example)
 
-		[_this,_thisEventhandler] call BLWK_fnc_stdEnemyKilledEvent;
+		_this call BLWK_fnc_stdEnemyKilledEvent;
 
     (end)
 
