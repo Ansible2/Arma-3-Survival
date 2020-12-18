@@ -34,9 +34,11 @@ clearWeaponCargoGlobal _mainCrate;
 clearMagazineCargoGlobal _mainCrate;
 clearBackpackCargoGlobal _mainCrate;
 _mainCrate allowDamage false;
+[_mainCrate] remoteExecCall ["BLWK_fnc_addLocalDamageEventHandler",BLWK_allClientsTargetID,true]; 
 
 private _theCrateLaptop = createVehicle ["Land_Laptop_device_F", [0,0,0], [], 0, "NONE"];
 _theCrateLaptop allowDamage false;
+[_theCrateLaptop] remoteExecCall ["BLWK_fnc_addLocalDamageEventHandler",BLWK_allClientsTargetID,true]; 
 _theCrateLaptop setObjectTextureGlobal [0,"preview.paa"];
 _theCrateLaptop attachTo [_mainCrate, [0,0.1,0.6]];
 _theCrateLaptop setDir 180;
