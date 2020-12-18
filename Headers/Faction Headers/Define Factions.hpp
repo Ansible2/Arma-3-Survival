@@ -1,4 +1,3 @@
-
 #define FACTION_COUNT \
 	0,\
 	1,\
@@ -156,7 +155,10 @@
 	153,\
 	154,\
 	155,\
-	156
+	156,\
+	157,\
+	158,\
+	159
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
