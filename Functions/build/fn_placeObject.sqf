@@ -57,7 +57,7 @@ null = [_object] remoteExec ["BLWK_fnc_enableCollisionWithAllPlayers",_object];
 
 // make sure people can manipulate up the object now
 missionNamespace setVariable ["BLWK_heldObject",nil];
-_object setVariable ["BLWK_objectPickedUp",false,true];
+[_object,false] remoteExecCall ["BLWK_fnc_registerObjectPickup",BLWK_allClientsTargetId,true];
 
 // remove the actions tied to the player
 call BLWK_fnc_removePickedUpObjectActions;

@@ -21,6 +21,8 @@ class BLWK
 		{};
 		class purchaseObject 
 		{};
+		class registerObjectPickup
+		{};
 		class removePickedUpObjectActions 
 		{};
 		class resetObjectRotation 
