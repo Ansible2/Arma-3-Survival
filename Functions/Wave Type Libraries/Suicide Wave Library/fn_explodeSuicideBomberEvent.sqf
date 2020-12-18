@@ -22,12 +22,9 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-params [
-	"_bomber",
-	["_eventHandlerId",-1]
-];
+params ["_bomber"];
 
-if (!local _bomber) exitWith {};
+if (isNull _bomber) exitWith {};
 
 private _explosiveType = selectRandom ["DemoCharge_Remote_Ammo_Scripted","SatchelCharge_Remote_Ammo_Scripted","ClaymoreDirectionalMine_Remote_Ammo_Scripted"];
 
