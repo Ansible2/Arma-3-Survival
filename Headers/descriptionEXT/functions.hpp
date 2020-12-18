@@ -389,8 +389,6 @@ class BLWK
 		{};
 		class handleStandardWave
 		{};
-		class removeStdEnemyHitEvent
-		{};
 		class stdEnemyHitEvent
 		{};
 		class stdEnemyKilledEvent
