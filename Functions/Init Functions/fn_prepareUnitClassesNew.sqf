@@ -41,18 +41,7 @@ Author(s):
 	Hilltop(Willtop) & omNomios
 ---------------------------------------------------------------------------- */
 // to save on allocation time for memory, we are going to use temp values
-private _tempUnitClass = "";
 private _factionClasses = "true" configClasses (missionConfigFile >> "BLWK_factions");
-
-// check if a unit is an actual class and if they are dependent on exluded DLC
-private _fn_checkTempClass = {
-	if (isClass (configFile >> "CfgVehicles" >> _tempUnitClass) /*AND {[_tempUnitClass,"CfgVehicles"] call BLWK_fnc_checkDLC}*/) then {
-		true;
-	} else {
-		false;
-	};
-};
-
 
 private _fn_exitForUndefinedDefault = {
 	null = [] spawn {
@@ -82,6 +71,7 @@ private _fn_sortFactionClasses = {
 	private _vehicleTypes = [];
 	private _fn_sortArray = {
 		params ["_arrayToPushTo",["_pushToVehicle",true]];
+
 		_sortArray apply {
 			if (isClass (configFile >> "cfgVehicles" >> _x)) then {
 				_arrayToPushTo pushBack _x;
