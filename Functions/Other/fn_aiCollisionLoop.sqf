@@ -46,7 +46,7 @@ while {BLWK_doDetectCollision AND {alive _unit}} do {
 		if !(_objects isEqualTo []) then {
 
 			// check if any encountered object is a built one
-			_index = _objects findIf {_x getVariable ["BLWK_collisionObject",false]};
+			_index = _objects findIf {!(isNull _x) AND {_x getVariable ["BLWK_collisionObject",false]}};
 			if (_index != -1) then {
 				_moveToPosition = (_unit getRelPos [20,180]);
 				// push the unit back from the object
