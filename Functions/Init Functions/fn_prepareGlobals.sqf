@@ -30,13 +30,15 @@ if (isServer) then {
     BLWK_logicCenter = createCenter sideLogic;
 
     // check if headless client is loaded
-    private _aiHandlerEntity = call BLWK_fnc_getHeadless;
-    if (isNull _aiHandlerEntity) then {
+    if (isNil "BLWK_headlessClient") then {
         private _logicGroup = createGroup BLWK_logicCenter;
         _aiHandlerEntity = _logicGroup createUnit ["Logic", [0,0,0], [], 0, "NONE"];
+        BLWK_theAIHandlerEntity = _aiHandlerEntity;
+    } else {
+        BLWK_theAIHandlerEntity = BLWK_headlessClient;
     };
-    BLWK_theAIHandlerEntity = _aiHandlerEntity;
     publicVariable "BLWK_theAIHandlerEntity";
+    
     // number should never be zero, but it can be for some time until the server has initialized
     waitUntil {
         if (owner BLWK_theAIHandlerEntity != 0) exitWith {true};

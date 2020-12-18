@@ -75,8 +75,6 @@ class BLWK
 		{};
 		class faksToMedkitLoop
 		{};
-		class getHeadless
-		{};
 		class infoPanelLoop
 		{};
 		class initClientAlias
