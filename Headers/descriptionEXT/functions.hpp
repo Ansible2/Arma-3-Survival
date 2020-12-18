@@ -5,6 +5,8 @@ class BLWK
 		file = "functions\Build";
 		class addBuildableObjectActions 
 		{};
+		class addLocalDamageEventHandler
+		{};
 		class addPickedUpObjectActions 
 		{};
 		class disableCollisionWithAllPlayers
