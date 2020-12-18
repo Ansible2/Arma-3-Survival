@@ -173,7 +173,6 @@
 	"CONTACT - NATO WOODLAND", \
 	"CONTACT - LDF", \
 	"CONTACT - Spetznas", \
-
 	"CUP - Army of the Czech Republic (Desert)", \
 	"CUP - Army of the Czech Republic (Woodland)", \
 	"CUP - Army of the Czech Republic Special Forces (Desert)", \
@@ -224,7 +223,6 @@
 	"CUP - Armed Forces of the Russian Federation (Spetsnaz - Summer)", \
 	"CUP - Armed Forces of the Russian Federation (VDV - EMR)", \
 	"CUP - Armed Forces of the Russian Federation (VDV - TTsKO)", \
-
 	"OPCAN - Colonial Guard Corps", \
 	"OPCAN - Colonial Military Authority", \
 	"OPCAN - Colonial Police Force", \
