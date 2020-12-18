@@ -35,7 +35,7 @@ params ["_killedUnit", "_killer", "_instigator", "_useEffects"];
 
 if (!(isNull _instigator) AND {isPlayer _instigator}) then {
 	// show a player hit points and add them to there score
-	[_killedunit] remoteExecCall ["BLWK_fnc_handleKillEventPlayer",_instigator];
+	[_killedUnit] remoteExecCall ["BLWK_fnc_handleKillEventPlayer",_instigator];
 };
 
 // spawn the next in queue
@@ -46,4 +46,4 @@ if (local BLWK_theAIHandlerEntity) then {
 	};
 };
 
-[[_killedunit]] remoteExecCall ["removeFromRemainsCollector",2];
+[[_killedUnit]] remoteExecCall ["removeFromRemainsCollector",2];
