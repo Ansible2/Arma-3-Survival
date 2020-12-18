@@ -334,6 +334,8 @@ class BLWK
 		{};
 		class civRandomGear
 		{};
+		class handleCivilianKilledEventPlayer
+		{};
 		class killedCivilianEvent
 		{};
 	};

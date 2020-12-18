@@ -2,13 +2,16 @@
 Function: BLWK_fnc_killedCivilianEvent
 
 Description:
-	Docks points from player when they kill a civilian
+	Initiates a check to see if a civilian was killed by a player and sends
+	 a dock of points to the player if found.
 
 	Executed from the eventhandeler added in "BLWK_fnc_civiliansWave"
 
 Parameters:
-	0: _eventInfo : <ARRAY> - The default params passed through a MPKILLED event handler
-	1: _handlerID : <NUMBER> - The event handler's ID to be used for removal
+	0: _killedUnit : <OBJECT> - The unit killed
+	1: _killer : <OBJECT> - Object that killed the unit
+	2: _instigator : <OBJECT> - The unit that instigated the attack
+	3: _useEffects : <BOOL> - Were damage effects used
 
 Returns:
 	NOTHING
@@ -24,20 +27,9 @@ Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-params ["_eventInfo","_handlerID"];
-private _killedUnit = _eventInfo select 0;
-private _instigator = _eventInfo select 2;
+params ["_killedUnit", "_killer", "_instigator", "_useEffects"];
 
-
-if (hasInterface AND {local _instigator} AND {isPlayer _instigator}) then {
-	
-	[_killedUnit, round (BLWK_pointsForKill * -10), true] call BLWK_fnc_createHitMarker;
-	[BLWK_pointsForKill * 10] call BLWK_fnc_subtractPoints;
-	
-	playSound "alarm";
-};
-
-// mp events need to be removed on the unit where they are local
-if (local _killedUnit) then {
-	_killedUnit removeMPEventHandler ["mpKilled",_handlerID];
+if (!(isNull _instigator) AND {isPlayer _instigator}) then {
+	// show a player hit points and add them to there score
+	[_killedUnit] remoteExecCall ["BLWK_fnc_handleCivilianKilledEventPlayer",_instigator];
 };
