@@ -39,7 +39,6 @@ if (isServer OR {!hasInterface}) then {
     if (BLWK_canUseMarksmanDLC) then {BLWK_useableDLCs pushBack ""}; 
 
     BLWK_canUseContactDLC = [false,true] select ("BLWK_canUseContactDLC" call BIS_fnc_getParamValue);
-    if (BLWK_canUseContactDLC) then {BLWK_useableDLCs pushBack ""}; 
 
     BLWK_canUseTankstDLC = [false,true] select ("BLWK_canUseTankstDLC" call BIS_fnc_getParamValue);
     if (BLWK_canUseTankstDLC) then {BLWK_useableDLCs pushBack ""}; 

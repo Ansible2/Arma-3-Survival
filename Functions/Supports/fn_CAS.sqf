@@ -326,12 +326,12 @@ while {!(isNull _plane) AND {!(_plane getVariable ["BLWK_completedFiring",false]
 
 
 	// start firing
-	// check if plane is 1000m from target and hasn't already started shooting
+	// check if plane is 1200m from target and hasn't already started shooting
 	if ((_planePositionASL vectorDistance _attackPosition) <= 1200) then {
 		
 		
 		//private "_dummyTarget";
-		if (!(isNull _plane) AND {_plane getVariable ["BLWK_startedFiring",false]}) then {
+		if (!(isNull _plane) AND {!(_plane getVariable ["BLWK_startedFiring",false])}) then {
 			_plane setVariable ["BLWK_startedFiring",true];
 			// create a target to shoot at
 			private _dummyTargetClass = ["LaserTargetE","LaserTargetW"] select (_planeSide getfriend west > 0.6);
