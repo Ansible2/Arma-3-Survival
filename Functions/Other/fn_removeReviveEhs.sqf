@@ -23,6 +23,8 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+if (!hasInterface OR {BLWK_dontUseRevive}) exitWith {};
+
 params ["_unit"];
 
 _unit removeEventHandler ["handleDamage",BLWK_handleDamageEh_ID];
