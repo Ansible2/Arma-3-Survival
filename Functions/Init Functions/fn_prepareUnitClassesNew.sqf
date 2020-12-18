@@ -1,8 +1,7 @@
 // set up MACRO vars that can be used between files and make changes easier
 #include "..\..\Headers\Faction Headers\Define Factions.hpp"
-//#include "..\..\Headers\Faction Headers\Unit Tables\Master Unit Table.hpp"
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_prepareUnitClasses
+Function: BLWK_fnc_prepareUnitClassesNew
 
 Description:
 	Gets the user selected unit class tables to use for each level
@@ -32,7 +31,7 @@ Returns:
 Examples:
     (begin example)
 
-		_classes = call BLWK_fnc_prepareUnitClasses;
+		_classes = call BLWK_fnc_prepareUnitClassesNew;
 
     (end)
 
@@ -72,14 +71,16 @@ private _fn_sortFactionClasses = {
 	private _fn_sortArray = {
 		params ["_arrayToPushTo",["_pushToVehicle",true]];
 
-		_sortArray apply {
-			if (isClass (configFile >> "cfgVehicles" >> _x)) then {
-				_arrayToPushTo pushBack _x;
+		if !(_sortArray isEqualTo []) then {
+			_sortArray apply {
+				if (isClass (configFile >> "cfgVehicles" >> _x)) then {
+					_arrayToPushTo pushBack _x;
+				};
 			};
-		};
 
-		if (_pushToVehicle) then {
-			_vehicleTypes pushBack _arrayToPushTo;
+			if (_pushToVehicle) then {
+				_vehicleTypes pushBack _arrayToPushTo;
+			};
 		};
 	};
 
@@ -164,7 +165,7 @@ private _fn_getSelectedClasses = {
 			_doExit = true;
 		};
 
-		if (_doExit) then {
+		if (_doExit AND {isServer}) then {
 			call _fn_exitForUndefinedDefault
 		};
 	};
