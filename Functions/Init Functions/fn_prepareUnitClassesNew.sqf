@@ -1,6 +1,6 @@
 // set up MACRO vars that can be used between files and make changes easier
 #include "..\..\Headers\Faction Headers\Define Factions.hpp"
-#include "..\..\Headers\Faction Headers\Unit Tables\Master Unit Table.hpp"
+//#include "..\..\Headers\Faction Headers\Unit Tables\Master Unit Table.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_prepareUnitClasses
 
@@ -138,7 +138,7 @@ private _fn_getSelectedClasses = {
 
 	private "_factionArray";
 	private _goToDefaultFaction = false;
-	private _factionIndex = _factionClasses findIf {(_x >> "displayName") == _factionString};
+	private _factionIndex = _factionClasses findIf {getText(_x >> "displayName") == _factionString};
 	// if a faction was found for the string
 	if (_factionIndex != -1) then {
 		_factionArray = [_factionClasses select _factionIndex] call _fn_sortFactionClasses;
