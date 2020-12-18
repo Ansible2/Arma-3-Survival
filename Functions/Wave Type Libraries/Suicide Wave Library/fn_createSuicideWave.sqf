@@ -36,7 +36,6 @@ _bombersArray apply {
 
 	removeAllWeapons _x;
 
-	// CIPHER COMMENT: consider trying local eventhandler
 	_x addEventHandler ["KILLED",{
 		[_this select 0] call BLWK_fnc_explodeSuicideBomberEvent;
 	}];
