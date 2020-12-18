@@ -153,7 +153,7 @@ private _fn_getSelectedClasses = {
 	// default fall through faction if the selected is unavailable
 	if (_goToDefaultFaction) then {
 		private _doExit = false;
-		_factionIndex = _factionClasses findIf {(_x >> "displayName") == _defaultFactionString};
+		_factionIndex = _factionClasses findIf {getText(_x >> "displayName") == _defaultFactionString};
 		// if a faction is found
 		if (_factionIndex != -1) then {
 			_factionArray = [_factionClasses select _factionIndex] call _fn_sortFactionClasses;	
