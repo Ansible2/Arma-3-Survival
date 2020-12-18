@@ -22,20 +22,20 @@ ReviveRequiredItemsFakConsumed = 1;
 
 
 corpseManagerMode = 1; // manage all units
-corpseLimit = 10;
-corpseRemovalMinTime = 240;
-corpseRemovalMaxTime = 600;
+corpseLimit = 50;
+corpseRemovalMinTime = 600;
+corpseRemovalMaxTime = 1200;
 wreckManagerMode = 1;		// manage all wrecks
 wreckLimit = 3;
 wreckRemovalMinTime = 240;
 wreckRemovalMaxTime = 600;
-minPlayerDistance = 10;
+minPlayerDistance = 50;
 
 class Header
 {
 	gameType =  Defend;
 	minPlayers =  	 1;
-	maxPlayers = 	 25;
+	maxPlayers = 	 26;
 };
 
 class CfgFunctions
