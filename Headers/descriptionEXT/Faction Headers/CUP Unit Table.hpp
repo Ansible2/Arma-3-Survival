@@ -2190,25 +2190,27 @@ class CUP_TKM_faction
 		"CUP_O_LR_MG_TKM"
 	};
 	heavyCars[] = {
-		"CUP_O_BTR40_MG_TKM",
+		"CUP_I_BTR40_MG_TKG",
 		"CUP_O_Hilux_BMP1_TK_INS",
 		"CUP_O_Hilux_btr60_TK_INS",
 		"CUP_O_Hilux_armored_AGS30_TK_INS",
 		"CUP_O_Hilux_armored_DSHKM_TK_INS",
-		"CUP_O_Hilux_armored_M2_TK_INS"
+		"CUP_O_Hilux_armored_M2_TK_INS",
+		"CUP_I_BRDM2_HQ_TK_Gue"
 	};
 	lightArmor[] = {
 		"CUP_O_MTLB_pk_TK_MILITIA",
 		"CUP_O_Hilux_armored_BMP1_TK_INS",
-		"CUP_O_Hilux_armored_BTR60_TK_INS"
+		"CUP_O_Hilux_armored_BTR60_TK_INS",
+		"CUP_I_BRDM2_TK_Gue",
+		"CUP_I_BMP1_TK_GUE"
 	};
 	heavyArmor[] = {
-		"CUP_I_T34_NAPA",
-		"CUP_I_T55_NAPA",
-		"CUP_I_T72_NAPA"
+		"CUP_I_T34_TK_GUE",
+		"CUP_I_T55_TK_GUE"
 	};
 	transportHelicopters[] = {
-		"CUP_O_UH1H_TKA"
+		"CUP_I_UH1H_TK_GUE"
 	};
 	cargoAircraft[] = {
 		"CUP_O_AN2_TK"
@@ -2405,21 +2407,259 @@ class CUP_RACS_base
 	displayName = "CUP - Royal Army Corps of Sahrani";
 
 	lightCars[] = {
+		"CUP_I_LR_MG_RACS"
 	};
 	heavyCars[] = {
+		"CUP_B_HMMWV_Crows_M2_USA",
+		"CUP_B_HMMWV_Crows_MK19_USA"
 	};
 	lightArmor[] = {
+		"CUP_I_AAV_RACS",
+		"CUP_I_LAV25_RACS",
+		"CUP_I_LAV25M240_RACS",
+		"CUP_I_M113_RACS",
+		"CUP_I_M113_RACS_URB"
 	};
 	heavyArmor[] = {
+		"CUP_I_M60A3_RACS",
+		"CUP_I_M60A3_TTS_RACS",
+		"CUP_I_T72_RACS"
 	};
 	transportHelicopters[] = {
+		"CUP_I_UH60L_RACS",
+		"CUP_I_CH47F_RACS",
+		"CUP_I_UH1H_RACS"
 	};
 	cargoAircraft[] = {
+		"CUP_I_C130J_RACS"
 	};
 	casAircraft[] = {
+		"CUP_I_JAS39_RACS"
 	};
 	attackHelicopters[] = {
 		"CUP_I_Mi24_Mk3_ION",
 		"CUP_I_Mi24_Mk4_ION"
+	};
+};
+class CUP_RACS_DES_faction : CUP_RACS_base
+{
+	displayName = "CUP - Royal Army Corps of Sahrani (Desert)";
+
+	infantry[] = {
+		"CUP_I_RACS_SL",
+		"CUP_I_RACS_Soldier_AA",
+		"CUP_I_RACS_Soldier_AAT",
+		"CUP_I_RACS_Soldier_AMG",
+		"CUP_I_RACS_Soldier_MAT",
+		"CUP_I_RACS_AR",
+		"CUP_I_RACS_Engineer",
+		"CUP_I_RACS_GL",
+		"CUP_I_RACS_Soldier_HAT",
+		"CUP_I_RACS_MMG",
+		"CUP_I_RACS_M",
+		"CUP_I_RACS_Medic",
+		"CUP_I_RACS_Officer",
+		"CUP_I_RACS_Soldier",
+		"CUP_I_RACS_Soldier_Light",
+		"CUP_I_RACS_Soldier_LAT",
+		"CUP_I_RACS_Sniper"
+	};
+};
+class CUP_RACS_JUNGLE_faction : CUP_RACS_base
+{
+	displayName = "CUP - Royal Army Corps of Sahrani (Jungle)";
+
+	infantry[] = {
+		"CUP_I_RACS_M_Mech",
+		"CUP_I_RACS_Soldier_AA_Mech",
+		"CUP_I_RACS_Soldier_AAT_Mech",
+		"CUP_I_RACS_Soldier_AMG_Mech",
+		"CUP_I_RACS_Soldier_MAT_Mech",
+		"CUP_I_RACS_AR_Mech",
+		"CUP_I_RACS_Engineer_Mech",
+		"CUP_I_RACS_GL_Mech",
+		"CUP_I_RACS_Soldier_HAT_Mech",
+		"CUP_I_RACS_MMG_Mech",
+		"CUP_I_RACS_Medic_Mech",
+		"CUP_I_RACS_Officer_Mech",
+		"CUP_I_RACS_Soldier_Mech",
+		"CUP_I_RACS_Soldier_Light_Mech",
+		"CUP_I_RACS_Soldier_LAT_Mech",
+		"CUP_I_RACS_Sniper_Mech",
+		"CUP_I_RACS_SL_Mech"
+	};
+};
+class CUP_RACS_URBAN_faction : CUP_RACS_base
+{
+	displayName = "CUP - Royal Army Corps of Sahrani (Urban)";
+
+	infantry[] = {
+		"CUP_I_RACS_SL_Urban",
+		"CUP_I_RACS_Soldier_AA_Urban",
+		"CUP_I_RACS_Soldier_AAT_Urban",
+		"CUP_I_RACS_Soldier_AMG_Urban",
+		"CUP_I_RACS_Soldier_MAT_Urban",
+		"CUP_I_RACS_AR_Urban",
+		"CUP_I_RACS_Engineer_Urban",
+		"CUP_I_RACS_GL_Urban",
+		"CUP_I_RACS_Soldier_HAT_Urban",
+		"CUP_I_RACS_MMG_Urban",
+		"CUP_I_RACS_M_Urban",
+		"CUP_I_RACS_Medic_Urban",
+		"CUP_I_RACS_Officer_Urban",
+		"CUP_I_RACS_Soldier_Urban",
+		"CUP_I_RACS_Soldier_Light_Urban",
+		"CUP_I_RACS_Soldier_LAT_Urban",
+		"CUP_I_RACS_Sniper_Urban"
+	};
+};
+class CUP_RACS_WDL_faction : CUP_RACS_base
+{
+	displayName = "CUP - Royal Army Corps of Sahrani (Woodland)";
+
+	infantry[] = {
+		"CUP_I_RACS_SL_wdl",
+		"CUP_I_RACS_Soldier_AA_wdl",
+		"CUP_I_RACS_Soldier_AAT_wdl",
+		"CUP_I_RACS_Soldier_AMG_wdl",
+		"CUP_I_RACS_Soldier_MAT_wdl",
+		"CUP_I_RACS_AR_wdl",
+		"CUP_I_RACS_Engineer_wdl",
+		"CUP_I_RACS_GL_wdl",
+		"CUP_I_RACS_Soldier_HAT_wdl",
+		"CUP_I_RACS_MMG_wdl",
+		"CUP_I_RACS_M_wdl",
+		"CUP_I_RACS_Medic_wdl",
+		"CUP_I_RACS_Officer_wdl",
+		"CUP_I_RACS_Soldier_wdl",
+		"CUP_I_RACS_Soldier_Light_wdl",
+		"CUP_I_RACS_Soldier_LAT_wdl",
+		"CUP_I_RACS_Sniper_wdl",
+		"CUP_I_RACS_RoyalCommando",
+		"CUP_I_RACS_RoyalGuard",
+		"CUP_I_RACS_RoyalMarksman"
+	};
+};
+
+class CUP_TKL_faction : CUP_TKM_faction
+{
+	displayName = "CUP - Takistani Locals";
+
+	infantry[] = {
+		"CUP_I_TK_GUE_Commander",
+		"CUP_I_TK_GUE_Soldier_AA",
+		"CUP_I_TK_GUE_Soldier_AR",
+		"CUP_I_TK_GUE_Guerilla_Medic",
+		"CUP_I_TK_GUE_Demo",
+		"CUP_I_TK_GUE_Soldier",
+		"CUP_I_TK_GUE_Soldier_AK_47S",
+		"CUP_I_TK_GUE_Soldier_HAT",
+		"CUP_I_TK_GUE_Guerilla_Enfield",
+		"CUP_I_TK_GUE_Soldier_GL",
+		"CUP_I_TK_GUE_Soldier_M16A2",
+		"CUP_I_TK_GUE_Soldier_AAT",
+		"CUP_I_TK_GUE_Soldier_LAT",
+		"CUP_I_TK_GUE_Soldier_AT",
+		"CUP_I_TK_GUE_Sniper",
+		"CUP_I_TK_GUE_Mechanic",
+		"CUP_I_TK_GUE_Soldier_MG",
+		"CUP_I_TK_GUE_Soldier_TL"
+	};
+};
+
+class CUP_UN_DES_faction
+{
+	displayName = "CUP - United Nations (Desert)";
+
+	lightCars[] = {
+		"CUP_I_UAZ_AGS30_UN",
+		"CUP_I_UAZ_MG_UN"
+	};
+	heavyCars[] = {
+		"CUP_I_BRDM2_UN",
+		"CUP_I_BRDM2_HQ_UN"
+	};
+	lightArmor[] = {
+		"CUP_I_BMP2_UN",
+		"CUP_I_BMP_HQ_UN",
+		"CUP_I_BTR60_UN",
+		"CUP_I_BTR80_UN",
+		"CUP_I_BTR80A_UN",
+		"CUP_I_M113_UN",
+		"CUP_I_MTLB_pk_UN"
+	};
+	heavyArmor[] = {
+		"CUP_B_Challenger2_Snow_BAF"
+	};
+	transportHelicopters[] = {
+		"CUP_I_Mi17_UN"
+	};
+	cargoAircraft[] = {
+		"CUP_B_C130J_USMC"
+	};
+	casAircraft[] = {
+		"CUP_B_L39_CZ_GREY"
+	};
+	attackHelicopters[] = {
+		"CUP_I_Mi24_Mk3_UN",
+		"CUP_I_Mi24_Mk4_UN"
+	};
+
+	infantry[] = {
+		"CUP_I_UN_CDF_Soldier_SL_DST",
+		"CUP_I_UN_CDF_Soldier_AAT_DST",
+		"CUP_I_UN_CDF_Soldier_AMG_DST",
+		"CUP_I_UN_CDF_Guard_DST",
+		"CUP_I_UN_CDF_Soldier_AR_DST",
+		"CUP_I_UN_CDF_Soldier_GL_DST",
+		"CUP_I_UN_CDF_Soldier_MG_DST",
+		"CUP_I_UN_CDF_Officer_DST",
+		"CUP_I_UN_CDF_Soldier_DST",
+		"CUP_I_UN_CDF_Soldier_Backpack_DST",
+		"CUP_I_UN_CDF_Soldier_Light_DST",
+		"CUP_I_UN_CDF_Soldier_LAT_DST",
+		"CUP_I_UN_CDF_Soldier_AT_DST"		
+	};
+};
+
+class CUP_UN_FOREST_faction : CUP_UN_DES_faction
+{
+	displayName = "CUP - United Nations (Forest)";
+
+	infantry[] = {
+		"CUP_I_UN_CDF_Soldier_SL_FST",
+		"CUP_I_UN_CDF_Soldier_AAT_FST",
+		"CUP_I_UN_CDF_Soldier_AMG_FST",
+		"CUP_I_UN_CDF_Guard_FST",
+		"CUP_I_UN_CDF_Soldier_AR_FST",
+		"CUP_I_UN_CDF_Soldier_GL_FST",
+		"CUP_I_UN_CDF_Soldier_MG_FST",
+		"CUP_I_UN_CDF_Officer_FST",
+		"CUP_I_UN_CDF_Soldier_FST",
+		"CUP_I_UN_CDF_Soldier_Backpack_FST",
+		"CUP_I_UN_CDF_Soldier_Light_FST",
+		"CUP_I_UN_CDF_Soldier_LAT_FST",
+		"CUP_I_UN_CDF_Soldier_AT_FST"
+	};
+};
+
+class CUP_UN_MNT_faction : CUP_UN_DES_faction
+{
+	displayName = "CUP - United Nations (Mountain)";
+
+	infantry[] = {
+		"CUP_I_UN_CDF_Soldier_SL_MNT",
+		"CUP_I_UN_CDF_Soldier_AAT_MNT",
+		"CUP_I_UN_CDF_Soldier_AMG_MNT",
+		"CUP_I_UN_CDF_Guard_MNT",
+		"CUP_I_UN_CDF_Soldier_AR_MNT",
+		"CUP_I_UN_CDF_Soldier_GL_MNT",
+		"CUP_I_UN_CDF_Soldier_MG_MNT",
+		"CUP_I_UN_CDF_Officer_MNT",
+		"CUP_I_UN_CDF_Soldier_MNT",
+		"CUP_I_UN_CDF_Soldier_Backpack_MNT",
+		"CUP_I_UN_CDF_Soldier_Light_MNT",
+		"CUP_I_UN_CDF_Soldier_LAT_MNT",
+		"CUP_I_UN_CDF_Soldier_AT_MNT"
 	};
 };

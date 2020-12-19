@@ -168,7 +168,16 @@
 	166,\
 	167,\
 	168,\
-	169
+	169,\
+	170,\
+	171,\
+	172,\
+	173,\
+	174,\
+	175,\
+	176,\
+	177
+
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -225,12 +234,20 @@
 	"CUP - MARSOC (Desert)", \
 	"CUP - MARSOC (Woodland)", \
 	"CUP - National Party of Chernarus", \
+	"CUP - Royal Army Corps of Sahrani (Desert)", \
+	"CUP - Royal Army Corps of Sahrani (Jungle)", \
+	"CUP - Royal Army Corps of Sahrani (Urban)", \
+	"CUP - Royal Army Corps of Sahrani (Woodland)", \
 	"CUP - Sahrani Liberation Army (Desert)", \
 	"CUP - Sahrani Liberation Army (Forest)", \
 	"CUP - Sahrani Liberation Army (Militia)", \
 	"CUP - Sahrani Liberation Army (Urban)", \
 	"CUP - Takistani Army", \
+	"CUP - Takistani Locals", \
 	"CUP - Takistani Militia", \
+	"CUP - United Nations (Desert)", \
+	"CUP - United Nations (Forest)", \
+	"CUP - United Nations (Mountain)", \
 	"CUP - US Army OCP (Desert)", \
 	"CUP - US Army OCP (Woodland)", \
 	"CUP - US Army OEF-CP (Desert)", \
