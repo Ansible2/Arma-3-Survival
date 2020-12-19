@@ -395,6 +395,13 @@ class BLWK_level5Faction
 
 A_SPACE(Vehicle);
 A_SECTION_HEADER(Vehicle);
+class BLWK_baseVehicleSpawnLikelihood
+{
+	title = "Base Vehicle Spawn Likelihood";
+	values[] = ZERO_TO_TEN;
+	texts[] = ZERO_TO_TEN_STRINGS;
+	default = 3;
+};
 class BLWK_lightCarLikelihood
 {
 	title = "Enemy Light Car Likelihood";

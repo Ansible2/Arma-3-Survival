@@ -151,7 +151,7 @@ if (isServer OR {!hasInterface}) then {
     BLWK_heavyCarLikelihood = ("BLWK_heavyCarLikelihood" call BIS_fnc_getParamValue);
     BLWK_lightArmorLikelihood = ("BLWK_lightArmorLikelihood" call BIS_fnc_getParamValue);
     BLWK_heavyArmorLikelihood = ("BLWK_heavyArmorLikelihood" call BIS_fnc_getParamValue);
-
+    BLWK_baseVehicleSpawnLikelihood = ("BLWK_baseVehicleSpawnLikelihood" call BIS_fnc_getParamValue);
 
     BLWK_infantrySpawnPositions = [];
     BLWK_vehicleSpawnPositions = [];

@@ -27,9 +27,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 if !(BLWK_currentWaveNumber >= BLWK_vehicleStartWave) exitWith {[]};
 
-#define BASE_VEHICLE_SPAWN_LIKELIHOOD 0.30
+//#define BASE_VEHICLE_SPAWN_LIKELIHOOD 0.30
 #define VEHICLE_SPAWN_INCREMENT 0.05 // how much to increase likelihood by each round
-#define ROUNDS_SINCE_MINUS_TWO(TOTAL_ROUNDS_SINCE) TOTAL_ROUNDS_SINCE - 2
 
 params [
 	"_availableInfantry",
@@ -40,20 +39,20 @@ if (!local BLWK_theAIHandlerEntity) exitWith {[]};
 
 // special waves will not contribute to this count
 private _roundsSinceVehicleSpawned = missionNamespace getVariable ["BLWK_roundsSinceVehicleSpawned",2];
-// wait until it has been at least two rounds since a vehicle spawn to get another one
-if (_roundsSinceVehicleSpawned <= 1) exitWith {
+// wait until it has been at least one round since a vehicle spawn to get another one
+if (_roundsSinceVehicleSpawned < 1) exitWith {
 	BLWK_roundsSinceVehicleSpawned = _roundsSinceVehicleSpawned + 1;
 	[]
 };
 
 
-// only the rounds after the two will contribute to the LIKELIHOOD percentage (5% per round, with a starting percentage of 30%)
-private _howLikelyIsAVehicleToSpawn = (ROUNDS_SINCE_MINUS_TWO(_roundsSinceVehicleSpawned) * VEHICLE_SPAWN_INCREMENT) + BASE_VEHICLE_SPAWN_LIKELIHOOD;
-diag_log "Vehicle spawn likelihood:";
-diag_log _howLikelyIsAVehicleToSpawn;
+// each round increases the likelihood of a vehicle spawn by 5%
+private _howLikelyIsAVehicleToSpawn = (_roundsSinceVehicleSpawned * VEHICLE_SPAWN_INCREMENT) + (BLWK_baseVehicleSpawnLikelihood / 100);
 if (_howLikelyIsAVehicleToSpawn > 1) then {
 	_howLikelyIsAVehicleToSpawn = 1;
 };
+
+["BLWK_fnc_stdEnemyVehicles",["Vehicle spawn likelihood is",_howLikelyIsAVehicleToSpawn]] call KISKA_fnc_log;
 private _howLikelyIsAVehicleNOTToSpawn = 1 - _howLikelyIsAVehicleToSpawn;
 
 private _vehicleWillSpawn = selectRandomWeighted [true,_howLikelyIsAVehicleToSpawn,false,_howLikelyIsAVehicleNOTToSpawn];
