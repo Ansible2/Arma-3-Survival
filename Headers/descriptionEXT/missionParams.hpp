@@ -22,7 +22,7 @@
 		default = 0; \
 	};
 
-#include "..\Faction Headers\Define Factions.hpp"
+#include "Faction Headers\Define Factions.hpp"
 
 // waves
 A_SECTION_HEADER(WAVE);
