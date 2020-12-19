@@ -35,6 +35,7 @@ if (_targetPosition isEqualTo []) exitWith { \
 #define ARTY_EXPRESSION(AMMO_TYPE) CHECK_POSITION null = [_targetPosition,AMMO_TYPE] spawn BLWK_fnc_callForArtillery
 
 #define CAS_RADIO [TYPE_CAS_REQUEST] call BLWK_fnc_supportRadioGlobal;
+
 #define CAS_EXPRESSSION(CAS_TYPE) \
 	CHECK_POSITION \
 	_targetPosition = AGLToASL(_targetPosition);\
@@ -52,6 +53,9 @@ if (_targetPosition isEqualTo []) exitWith { \
 
 params ["_caller","_targetPosition","_supportClass"];
 
+/* ----------------------------------------------------------------------------
+	Other
+---------------------------------------------------------------------------- */
 // cruise missile
 if (CHECK_SUPPORT_CLASS(CRUISE_MISSILE_CLASS)) exitWith {
 	CHECK_POSITION
@@ -59,8 +63,9 @@ if (CHECK_SUPPORT_CLASS(CRUISE_MISSILE_CLASS)) exitWith {
 	[TYPE_STRIKE] call BLWK_fnc_supportRadioGlobal;
 };
 
-
-
+/* ----------------------------------------------------------------------------
+	155 Artillery
+---------------------------------------------------------------------------- */
 // 155 HE
 if (CHECK_SUPPORT_CLASS(ARTILLERY_STRIKE_155MM_HE_CLASS)) exitWith {
 	ARTY_EXPRESSION("Sh_155mm_AMOS")
@@ -79,6 +84,9 @@ if (CHECK_SUPPORT_CLASS(ARTILLERY_STRIKE_155MM_AT_MINES_CLASS)) exitWith {
 };
 
 
+/* ----------------------------------------------------------------------------
+	120 Artillery
+---------------------------------------------------------------------------- */
 // 120 HE
 if (CHECK_SUPPORT_CLASS(CANNON_120MM_HE_CLASS)) exitWith {
 	ARTY_EXPRESSION("ammo_ShipCannon_120mm_HE")
@@ -101,6 +109,9 @@ if (CHECK_SUPPORT_CLASS(CANNON_120MM_SMOKE_CLASS)) exitWith {
 };
 
 
+/* ----------------------------------------------------------------------------
+	82 Mortar
+---------------------------------------------------------------------------- */
 // 82 HE
 if (CHECK_SUPPORT_CLASS(MORTAR_STRIKE_82MM_HE_CLASS)) exitWith {
 	ARTY_EXPRESSION("Sh_82mm_AMOS")
@@ -115,7 +126,9 @@ if (CHECK_SUPPORT_CLASS(MORTAR_STRIKE_82MM_FLARE_CLASS)) exitWith {
 };
 
 
-// arsenal supply drop
+/* ----------------------------------------------------------------------------
+	Supplies
+---------------------------------------------------------------------------- */
 if (CHECK_SUPPORT_CLASS(SUPPLY_ARSENAL_DROP_CLASS)) exitWith {
 	CHECK_POSITION
 
@@ -132,20 +145,39 @@ if (CHECK_SUPPORT_CLASS(SUPPLY_ARSENAL_DROP_CLASS)) exitWith {
 };
 
 
-// CAS
+/* ----------------------------------------------------------------------------
+	CAS
+---------------------------------------------------------------------------- */
 if (CHECK_SUPPORT_CLASS(CAS_GUN_RUN_CLASS)) exitWith {
 	CAS_EXPRESSSION(0)
 };
-if (CHECK_SUPPORT_CLASS(CAS_ROCKETS_CLASS)) exitWith {
-	CAS_EXPRESSSION(4)
+if (CHECK_SUPPORT_CLASS(CAS_GUNS_AND_ROCKETS_AP_CLASS)) exitWith {
+	CAS_EXPRESSSION(1)
 };
-if (CHECK_SUPPORT_CLASS(CAS_GUNS_AND_ROCKETS_CLASS)) exitWith {
+if (CHECK_SUPPORT_CLASS(CAS_GUNS_AND_ROCKETS_HE_CLASS)) exitWith {
 	CAS_EXPRESSSION(2)
 };
+if (CHECK_SUPPORT_CLASS(CAS_ROCKETS_AP_CLASS)) exitWith {
+	CAS_EXPRESSSION(3)
+};
+if (CHECK_SUPPORT_CLASS(CAS_ROCKETS_HE_CLASS)) exitWith {
+	CAS_EXPRESSSION(4)
+};
+if (CHECK_SUPPORT_CLASS(CAS_AGM_CLASS)) exitWith {
+	CAS_EXPRESSSION(5)
+};
+if (CHECK_SUPPORT_CLASS(CAS_BOMB_UGB_CLASS)) exitWith {
+	CAS_EXPRESSSION(6)
+};
+if (CHECK_SUPPORT_CLASS(CAS_BOMB_CLUSTER_CLASS)) exitWith {
+	CAS_EXPRESSSION(7)
+};
 
 
 
-// turret supports
+/* ----------------------------------------------------------------------------
+	Aircraft Gunner
+---------------------------------------------------------------------------- */
 if (CHECK_SUPPORT_CLASS(TURRET_DOOR_GUNNER_CLASS)) exitWith {
 	if (missionNamespace getVariable ["BLWK_isAircraftGunner",false]) exitWith {
 		hint "You can not go straight into another gunner support";
@@ -179,7 +211,9 @@ if (CHECK_SUPPORT_CLASS(TURRET_GUNSHIP_CLASS)) exitWith {
 };
 
 
-// reinforcement
+/* ----------------------------------------------------------------------------
+	Reinforcements
+---------------------------------------------------------------------------- */
 if (CHECK_SUPPORT_CLASS(REINFORCE_PARATROOPERS_CLASS)) exitWith {
 	CHECK_POSITION
 
@@ -203,7 +237,9 @@ if (CHECK_SUPPORT_CLASS(REINFORCE_PARATROOPERS_CLASS)) exitWith {
 };
 
 
-// recon
+/* ----------------------------------------------------------------------------
+	Recon
+---------------------------------------------------------------------------- */
 if (CHECK_SUPPORT_CLASS(RECON_UAV_CLASS)) exitWith {
 	if !(missionNamespace getVariable ["BLWK_reconUavActive",false]) then {
 		null = remoteExec ["BLWK_fnc_reconUAV",2];
