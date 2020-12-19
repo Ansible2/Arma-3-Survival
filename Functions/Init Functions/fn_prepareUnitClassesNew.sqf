@@ -144,9 +144,11 @@ private _fn_getSelectedClasses = {
 	if (_factionIndex != -1) then {
 		_factionArray = [_factionClasses select _factionIndex] call _fn_sortFactionClasses;
 		if (_factionArray isEqualTo []) then {
+			["BLWK_fnc_prepareUnitClassesNew",["Faction",_factionString,"returned empty array, going to faction",_defaultFactionString]] call KISKA_fnc_log;
 			_goToDefaultFaction = true
 		};
 	} else {
+		["BLWK_fnc_prepareUnitClassesNew",["Faction",_factionString,"was not found, going to default faction",_defaultFactionString]] call KISKA_fnc_log;
 		_goToDefaultFaction = true
 	};
 	
@@ -180,22 +182,28 @@ private _fn_getFactionString = {
 
 
 // get faction classes
-private _selectedClassString_friendly = ["BLWK_friendlyFaction" call BIS_fnc_getParamValue] call _fn_getFactionString;
+private _index_temp = "BLWK_friendlyFaction" call BIS_fnc_getParamValue;
+private _selectedClassString_friendly = [_index_temp] call _fn_getFactionString;
 private _friendlyClasses = [_selectedClassString_friendly,"VANILLA - NATO"] call _fn_getSelectedClasses;
 
-private _selectedClassString_level_1 = ["BLWK_level1Faction" call BIS_fnc_getParamValue] call _fn_getFactionString;
+_index_temp = "BLWK_level1Faction" call BIS_fnc_getParamValue;
+private _selectedClassString_level_1 = [_index_temp] call _fn_getFactionString;
 private _level1Classes = [_selectedClassString_level_1,"VANILLA - FIA"] call _fn_getSelectedClasses;
 
-private _selectedClassString_level_2 = ["BLWK_level2Faction" call BIS_fnc_getParamValue] call _fn_getFactionString;
+_index_temp = "BLWK_level2Faction" call BIS_fnc_getParamValue;
+private _selectedClassString_level_2 = [_index_temp] call _fn_getFactionString;
 private _level2Classes = [_selectedClassString_level_2,"VANILLA - AAF"] call _fn_getSelectedClasses;
 
-private _selectedClassString_level_3 = ["BLWK_level3Faction" call BIS_fnc_getParamValue] call _fn_getFactionString;
+_index_temp = "BLWK_level3Faction" call BIS_fnc_getParamValue;
+private _selectedClassString_level_3 = [_index_temp] call _fn_getFactionString;
 private _level3Classes = [_selectedClassString_level_3,"VANILLA - CSAT"] call _fn_getSelectedClasses;
 
-private _selectedClassString_level_4 = ["BLWK_level4Faction" call BIS_fnc_getParamValue] call _fn_getFactionString;
+_index_temp = "BLWK_level4Faction" call BIS_fnc_getParamValue;
+private _selectedClassString_level_4 = [_index_temp] call _fn_getFactionString;
 private _level4Classes = [_selectedClassString_level_4,"VANILLA - CSAT URBAN"] call _fn_getSelectedClasses;
 
-private _selectedClassString_level_5 = ["BLWK_level5Faction" call BIS_fnc_getParamValue] call _fn_getFactionString;
+_index_temp = "BLWK_level5Faction" call BIS_fnc_getParamValue;
+private _selectedClassString_level_5 = [_index_temp] call _fn_getFactionString;
 private _level5Classes = [_selectedClassString_level_5,"APEX - VIPER"] call _fn_getSelectedClasses;
 
 // return for global var definition
