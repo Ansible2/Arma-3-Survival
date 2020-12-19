@@ -29,7 +29,7 @@ params [
 	["_joinString",true,[true]]
 ];
 
-diag_log "KISKA Log......: " + _scriptName;
+diag_log ("KISKA Log......: " + _scriptName);
 if (_message isEqualType [] AND {_joinString}) then {
 	_message = _message joinString " ";
 };
