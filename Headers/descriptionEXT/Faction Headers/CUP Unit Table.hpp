@@ -272,7 +272,7 @@ class CUP_BAF_DES_faction : CUP_BAF_MTP_faction
 	};
 };
 
-class CUP_BAF_DES_faction : CUP_BAF_MTP_faction
+class CUP_BAF_WDL_faction : CUP_BAF_MTP_faction
 {
 	displayName = "CUP - British Armed Forces (Woodland)";
 
@@ -748,7 +748,7 @@ class CUP_HIL_SF_faction
 
 class CUP_USARMY_base
 {
-	displayName "CUP - US ARMY Base";
+	displayName = "CUP - US ARMY Base";
 
 	transportHelicopters[] = {
 		"CUP_B_CH47F_USA",
@@ -1032,7 +1032,7 @@ class CUP_USARMY_SF_WDL_faction : CUP_USARMY_WDL_base
 	};
 };
 
-class CUP_USARMY_OEFCP_DES_faction : CUP_USARMY_DES_base
+class CUP_USARMY_UCP_DES_faction : CUP_USARMY_DES_base
 {
 	displayName = "CUP - US Army UCP (Desert)";
 
@@ -1066,7 +1066,7 @@ class CUP_USARMY_OEFCP_DES_faction : CUP_USARMY_DES_base
 	};
 };
 
-class CUP_USARMY_OEFCP_WDL_faction : CUP_USARMY_WDL_base
+class CUP_USARMY_UCP_WDL_faction : CUP_USARMY_WDL_base
 {
 	displayName = "CUP - US Army UCP (Woodland)";
 
@@ -1114,7 +1114,7 @@ class CUP_USMC_base
 		"CUP_B_AV8B_DYN_USMC",
 		"CUP_B_F35B_USMC"
 	};
-	cargoAircraft = {
+	cargoAircraft[] = {
 		"CUP_B_C130J_USMC",
 		"CUP_B_MV22_USMC"
 	};
@@ -1324,7 +1324,7 @@ class CUP_USMC_FROG_WDL_faction : CUP_USMC_WDL_base
 	};
 };
 
-class CUP_USMC_FROG_DES_faction : CUP_USMC_DES_base
+class CUP_USMC_MARSOC_DES_faction : CUP_USMC_DES_base
 {
 	displayName = "CUP - MARSOC (Desert)";
 
@@ -1350,7 +1350,7 @@ class CUP_USMC_FROG_DES_faction : CUP_USMC_DES_base
 	};
 };
 
-class CUP_USMC_FROG_WDL_faction : CUP_USMC_WDL_base
+class CUP_USMC_MARSOC_WDL_faction : CUP_USMC_WDL_base
 {
 	displayName = "CUP - MARSOC (Woodland)";
 
