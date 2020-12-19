@@ -28,7 +28,7 @@ Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if (!hasInterface) exitWith {};
+if !(hasInterface) exitWith {};
 
 private _instigator = _this select 3;
 
