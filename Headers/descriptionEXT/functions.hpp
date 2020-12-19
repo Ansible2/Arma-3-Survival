@@ -381,9 +381,13 @@ class BLWK
 		{};
 		class handleKillEventPlayer
 		{};
+		class handleHitEventPlayer
+		{};
 		class handleStandardWave
 		{};
 		class stdEnemyHitEvent
+		{};
+		class stdEnemyHitEventLocal
 		{};
 		class stdEnemyKilledEvent
 		{};
