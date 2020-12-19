@@ -26,7 +26,7 @@ if (!isServer OR {!canSuspend}) exitWith {};
 
 private _invincibleBuildings = [];
 // get "houses" within the mission param radius (in 2d space) of The Crate that are terrain objects
-private _buildingsCurrentlyNear = nearestTerrainObjects [BLWK_mainCrate,["house"],BLWK_buildingsNearTheCrateAreIndestructable_radius,false,true];
+private _buildingsCurrentlyNear = [];
 private _buildingsToMakeVulnerable = [];
 
 while {BLWK_buildingsNearTheCrateAreIndestructable_radius > 0} do {
