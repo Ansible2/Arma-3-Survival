@@ -1,5 +1,6 @@
 #define WAIT_FOR_OWNERSHIP(TRANSFER_OBJECT) \
 	if !(local TRANSFER_OBJECT) then {\
+		private _isDamageAllowed = isDamageAllowed TRANSFER_OBJECT;\
 		[TRANSFER_OBJECT,clientOwner] remoteExecCall ["setOwner",2];\
 		hint (parseText "Standby.<br></br>Tansfering object to your machine.");\
 		private _ownershipWaitTime = 0;\
@@ -24,4 +25,5 @@
 			};\
 			false\
 		};\
+		if !(_isDamageAllowed) then {TRANSFER_OBJECT allowDamage false};\
 	};

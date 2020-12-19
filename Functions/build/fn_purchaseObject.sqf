@@ -64,7 +64,6 @@ if (_indestructable) then {
 	_purchasedObject allowDamage false;
 	// allowDamage needs to be reset if the object changes owners
 	private _players = call CBAP_fnc_players;
-	[_purchasedObject] remoteExecCall ["BLWK_fnc_addLocalDamageEventHandler",_players,true];
 };
 
 
