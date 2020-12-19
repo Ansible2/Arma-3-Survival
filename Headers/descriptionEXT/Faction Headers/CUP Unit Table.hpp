@@ -1916,7 +1916,8 @@ class CUP_CHDKZ_faction
 		"CUP_O_Su25_Dyn_RU"
 	};
 	attackHelicopters[] = {
-		"O_Heli_Attack_02_dynamicLoadout_black_F"
+		"CUP_I_Mi24_Mk3_ION",
+		"CUP_I_Mi24_Mk4_ION"
 	};
 
 	infantry[] = {
@@ -1982,7 +1983,8 @@ class CUP_SLA_base
 		"CUP_O_SU34_SLA"
 	};
 	attackHelicopters[] = {
-		"O_Heli_Attack_02_dynamicLoadout_black_F"
+		"CUP_B_AH64_DL_USA",
+		"CUP_B_AH64D_DL_USA"
 	};
 };
 
@@ -2071,7 +2073,7 @@ class CUP_SLA_MILITIA_faction : CUP_SLA_base
 	};
 };
 
-class CUP_SLA_MILITIA_faction : CUP_SLA_base
+class CUP_SLA_URBAN_faction : CUP_SLA_base
 {
 	displayName = "CUP - Sahrani Liberation Army (Urban)";
 
@@ -2142,7 +2144,8 @@ class CUP_TKA_faction
 		"CUP_O_Su25_Dyn_TKA"
 	};
 	attackHelicopters[] = {
-		"O_Heli_Attack_02_dynamicLoadout_black_F"
+		"CUP_B_AH64_DL_USA",
+		"CUP_B_AH64D_DL_USA"
 	};
 	
 	infantry[] = {
@@ -2200,8 +2203,9 @@ class CUP_TKM_faction
 		"CUP_O_Hilux_armored_BTR60_TK_INS"
 	};
 	heavyArmor[] = {
-		"CUP_B_M60A3_USMC",
-		"CUP_B_M60A3_TTS_USMC"
+		"CUP_I_T34_NAPA",
+		"CUP_I_T55_NAPA",
+		"CUP_I_T72_NAPA"
 	};
 	transportHelicopters[] = {
 		"CUP_O_UH1H_TKA"
@@ -2213,7 +2217,8 @@ class CUP_TKM_faction
 		"CUP_O_L39_TK"
 	};
 	attackHelicopters[] = {
-		"O_Heli_Attack_02_dynamicLoadout_black_F"
+		"CUP_I_Mi24_Mk3_ION",
+		"CUP_I_Mi24_Mk4_ION"
 	};
 
 	infantry[] = {
@@ -2233,4 +2238,188 @@ class CUP_TKM_faction
 		"CUP_O_TK_INS_Sniper",
 		"CUP_O_TK_INS_Soldier_TL"
 	};	
+};
+
+class CUP_PMC_faction
+{
+	displayName = "CUP - ION PMC";
+
+	lightCars[] = {
+		"CUP_I_SUV_Armored_ION",
+		"CUP_I_4WD_LMG_ION",
+		"CUP_I_LSV_02_Minigun_ION"
+	};
+	heavyCars[] = {
+		"CUP_I_FENNEK_GMG_ION",
+		"CUP_I_FENNEK_HMG_ION",
+		"CUP_I_MATV_GMG_ION",
+		"CUP_I_MATV_HMG_ION",
+		"CUP_I_RG31_Mk19_ION",
+		"CUP_I_RG31E_M2_ION",
+		"CUP_I_RG31_M2_ION",
+		"CUP_I_RG31_M2_GC_ION"
+	};
+	lightArmor[] = {
+		"CUP_I_BTR80_ION",
+		"CUP_I_BTR80A_ION"
+	};
+	heavyArmor[] = {
+		"CUP_B_Challenger2_Woodland_BAF"
+	};
+	transportHelicopters[] = {
+		"CUP_I_Ka60_GL_Blk_ION",
+		"CUP_I_MH6M_ION",
+		"CUP_I_Ka60_Blk_ION"
+	};
+	cargoAircraft[] = {
+		"CUP_C_C47_CIV"
+	};
+	casAircraft[] = {
+		"CUP_B_L39_CZ_GREY"
+	};
+	attackHelicopters[] = {
+		"CUP_I_Mi24_Mk3_ION",
+		"CUP_I_Mi24_Mk4_ION"
+	};
+	
+	infantry[] = {
+		"CUP_I_PMC_Soldier_TL",
+		"CUP_I_PMC_Bodyguard_AA12",
+		"CUP_I_PMC_Bodyguard_M4",
+		"CUP_I_PMC_Contractor1",
+		"CUP_I_PMC_Contractor2",
+		"CUP_I_PMC_Sniper",
+		"CUP_I_PMC_Medic",
+		"CUP_I_PMC_Soldier_MG",
+		"CUP_I_PMC_Soldier_MG_PKM",
+		"CUP_I_PMC_Soldier_AT",
+		"CUP_I_PMC_Engineer",
+		"CUP_I_PMC_Soldier_M4A3",
+		"CUP_I_PMC_Soldier",
+		"CUP_I_PMC_Soldier_GL",
+		"CUP_I_PMC_Soldier_GL_M16A2",
+		"CUP_I_PMC_Crew",
+		"CUP_I_PMC_Sniper_KSVK",
+		"CUP_I_PMC_Soldier_AA"
+	};
+};	
+
+class CUP_PMC_ARTIC_faction : CUP_PMC_faction
+{
+	displayName = "CUP - ION PMC (Artic)";
+
+	heavyCars[] = {
+		"CUP_I_RG31_Mk19_W_ION",
+		"CUP_I_RG31E_M2_W_ION",
+		"CUP_I_RG31_M2_W_ION",
+		"CUP_I_RG31_M2_W_GC_ION",
+		"CUP_I_MATV_HMG_ION",
+		"CUP_I_MATV_GMG_ION",
+		"CUP_I_FENNEK_HMG_ION",
+		"CUP_I_FENNEK_GMG_ION"
+	};
+	heavyArmor[] = {
+		"CUP_B_Challenger2_Snow_BAF"
+	};
+	infantry[] = {
+		"CUP_I_PMC_Winter_Soldier",
+		"CUP_I_PMC_Winter_Sniper",
+		"CUP_I_PMC_Winter_Medic",
+		"CUP_I_PMC_Winter_Soldier_MG",
+		"CUP_I_PMC_Winter_Soldier_MG_PKM",
+		"CUP_I_PMC_Winter_Soldier_AT",
+		"CUP_I_PMC_Winter_Engineer",
+		"CUP_I_PMC_Winter_Soldier_M4A3",
+		"CUP_I_PMC_Winter_Soldier_GL",
+		"CUP_I_PMC_Winter_Crew",
+		"CUP_I_PMC_Winter_Sniper_KSVK",
+		"CUP_I_PMC_Winter_Soldier_AA",
+		"CUP_I_PMC_Winter_Soldier_TL"
+	};
+};
+
+class CUP_NAPA_faction : CUP_CHDKZ_faction
+{
+	displayName = "CUP - National Party of Chernarus";
+
+	lightCars[] = {
+		"CUP_I_Datsun_PK",
+		"CUP_I_Datsun_PK_Random",
+		"CUP_I_Datsun_4seat",
+		"CUP_I_Hilux_AGS30_NAPA",
+		"CUP_I_Hilux_DSHKM_NAPA",
+		"CUP_I_Hilux_armored_AGS30_NAPA",
+		"CUP_I_Hilux_armored_DSHKM_NAPA"
+	};
+	heavyCars[] = {
+		"CUP_I_BRDM2_HQ_NAPA",
+		"CUP_I_Hilux_BMP1_NAPA",
+		"CUP_I_Hilux_btr60_NAPA",
+		"CUP_I_Hilux_armored_BMP1_NAPA",
+		"CUP_I_Hilux_armored_BTR60_NAPA"
+	};
+	lightArmor[] = {
+		"CUP_I_BMP2_NAPA",
+		"CUP_I_BMP_HQ_NAPA",
+		"CUP_I_BRDM2_NAPA",
+		"CUP_I_MTLB_pk_NAPA"
+	};
+	heavyArmor[] = {
+		"CUP_I_T34_NAPA",
+		"CUP_I_T55_NAPA",
+		"CUP_I_T72_NAPA"
+	};
+
+	infantry[] = {
+		"CUP_I_GUE_Commander",
+		"CUP_I_GUE_Soldier_AA",
+		"CUP_I_GUE_Ammobearer",
+		"CUP_I_GUE_Soldier_AR",
+		"CUP_I_GUE_Officer",
+		"CUP_I_GUE_Crew",
+		"CUP_I_GUE_Soldier_GL",
+		"CUP_I_GUE_Sniper",
+		"CUP_I_GUE_Soldier_MG",
+		"CUP_I_GUE_Engineer",
+		"CUP_I_GUE_Medic",
+		"CUP_I_GUE_Pilot",
+		"CUP_I_GUE_Soldier_AKS74",
+		"CUP_I_GUE_Soldier_AKM",
+		"CUP_I_GUE_Soldier_AKSU",
+		"CUP_I_GUE_Soldier_LAT",
+		"CUP_I_GUE_Soldier_AT",
+		"CUP_I_GUE_Soldier_AA2",
+		"CUP_I_GUE_Saboteur",
+		"CUP_I_GUE_Soldier_Scout",
+		"CUP_I_GUE_Farmer",
+		"CUP_I_GUE_Forester",
+		"CUP_I_GUE_Gamekeeper",
+		"CUP_I_GUE_Local",
+		"CUP_I_GUE_Villager",
+		"CUP_I_GUE_Woodman"
+	};
+};
+
+class CUP_RACS_base
+{
+	displayName = "CUP - Royal Army Corps of Sahrani";
+
+	lightCars[] = {
+	};
+	heavyCars[] = {
+	};
+	lightArmor[] = {
+	};
+	heavyArmor[] = {
+	};
+	transportHelicopters[] = {
+	};
+	cargoAircraft[] = {
+	};
+	casAircraft[] = {
+	};
+	attackHelicopters[] = {
+		"CUP_I_Mi24_Mk3_ION",
+		"CUP_I_Mi24_Mk4_ION"
+	};
 };

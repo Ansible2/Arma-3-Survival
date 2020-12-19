@@ -165,7 +165,10 @@
 	163,\
 	164,\
 	165,\
-	166
+	166,\
+	167,\
+	168,\
+	169
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -217,8 +220,11 @@
 	"CUP - Horizon Islands Legion (Recon)", \
 	"CUP - Horizon Islands Legion (Reservists)", \
 	"CUP - Horizon Islands Legion (Special Forces)", \
+	"CUP - ION PMC", \
+	"CUP - ION PMC (Artic)", \
 	"CUP - MARSOC (Desert)", \
 	"CUP - MARSOC (Woodland)", \
+	"CUP - National Party of Chernarus", \
 	"CUP - Sahrani Liberation Army (Desert)", \
 	"CUP - Sahrani Liberation Army (Forest)", \
 	"CUP - Sahrani Liberation Army (Militia)", \
