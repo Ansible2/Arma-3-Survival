@@ -373,8 +373,6 @@ class BLWK
 	class StandardWaveLibrary
 	{
 		file = "Functions\Wave Type Libraries\Standard Wave Library";
-		class addStdEnemyHitEH
-		{};
 		class addStdEnemyManEHs
 		{};
 		class createStdWaveInfantry
