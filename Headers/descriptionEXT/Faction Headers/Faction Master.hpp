@@ -1,31 +1,31 @@
 class BLWK_factions 
 {
 /*
-	class factionBase
-	{	
-		displayName = "Faction Base";
-		lightCars[] = {
-		};
-		heavyCars[] = {
-		};
-		lightArmor[] = {
-		};
-		heavyArmor[] = {
-		};
-		transportHelicopters[] = {
-		};
-		cargoAircraft[] = {
-		};
-		casAircraft[] = {
-		};
-		attackHelicopters[] = {
-		};
-		heavyGunships[] = {
-		};
-		infantry[] = {
-		};
-
+class factionBase
+{	
+	displayName = "Faction Base";
+	lightCars[] = {
 	};
+	heavyCars[] = {
+	};
+	lightArmor[] = {
+	};
+	heavyArmor[] = {
+	};
+	transportHelicopters[] = {
+	};
+	cargoAircraft[] = {
+	};
+	casAircraft[] = {
+	};
+	attackHelicopters[] = {
+	};
+	heavyGunships[] = {
+	};
+	infantry[] = {
+	};
+
+};
 */
 
 /*

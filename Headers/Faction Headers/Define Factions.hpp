@@ -158,7 +158,14 @@
 	156,\
 	157,\
 	158,\
-	159
+	159,\
+	160,\
+	161,\
+	162,\
+	163,\
+	164,\
+	165,\
+	166
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -175,41 +182,6 @@
 	"CONTACT - NATO WOODLAND", \
 	"CONTACT - LDF", \
 	"CONTACT - Spetznas", \
-	"CUP - Army of the Czech Republic (Desert)", \
-	"CUP - Army of the Czech Republic (Woodland)", \
-	"CUP - Army of the Czech Republic Special Forces (Desert)", \
-	"CUP - Army of the Czech Republic Special Forces (Woodland)", \
-	"CUP - British Armed Forces (Multicam)", \
-	"CUP - British Armed Forces (Desert)", \
-	"CUP - British Armed Forces (Woodland)", \
-	"CUP - Bundeswehr (Desert)", \
-	"CUP - Bundeswehr (Woodland)", \
-	"CUP - Bundeswehr KSK (Desert)", \
-	"CUP - Bundeswehr KSK (Woodland)", \
-	"CUP - Chernarus Defense Forces (Desert)", \
-	"CUP - Chernarus Defense Forces (Forest)", \
-	"CUP - Chernarus Defense Forces (Mountain)", \
-	"CUP - Chernarus Defense Forces (Snow)", \
-	"CUP - Horizon Islands Legion", \
-	"CUP - Horizon Islands Legion (Recon)", \
-	"CUP - Horizon Islands Legion (Reservists)", \
-	"CUP - Horizon Islands Legion (Special Forces)", \
-	"CUP - US Army OCP (Desert)", \
-	"CUP - US Army OCP (Woodland)", \
-	"CUP - US Army OEF-CP (Desert)", \
-	"CUP - US Army OEF-CP (Woodland)", \
-	"CUP - US Army Special Forces (Desert)", \
-	"CUP - US Army Special Forces (Woodland)", \
-	"CUP - US Army UCP (Desert)", \
-	"CUP - US Army UCP (Woodland)", \
-	"CUP - USMC (Desert)", \
-	"CUP - USMC (Woodland)", \
-	"CUP - USMC Force Recon (Desert)", \
-	"CUP - USMC Force Recon (Woodland)", \
-	"CUP - USMC FROG (Desert)", \
-	"CUP - USMC FROG (Woodland)", \
-	"CUP - MARSOC (Desert)", \
-	"CUP - MARSOC (Woodland)", \
 	"CUP - Armed Forces of the Russian Federation (MSV - Modern - EMR)", \
 	"CUP - Armed Forces of the Russian Federation (VDV - Modern - EMR)", \
 	"CUP - Armed Forces of the Russian Federation (MSV - EMR)", \
@@ -225,6 +197,48 @@
 	"CUP - Armed Forces of the Russian Federation (Spetsnaz - Summer)", \
 	"CUP - Armed Forces of the Russian Federation (VDV - EMR)", \
 	"CUP - Armed Forces of the Russian Federation (VDV - TTsKO)", \
+	"CUP - Army of the Czech Republic (Desert)", \
+	"CUP - Army of the Czech Republic (Woodland)", \
+	"CUP - Army of the Czech Republic Special Forces (Desert)", \
+	"CUP - Army of the Czech Republic Special Forces (Woodland)", \
+	"CUP - British Armed Forces (Multicam)", \
+	"CUP - British Armed Forces (Desert)", \
+	"CUP - British Armed Forces (Woodland)", \
+	"CUP - Bundeswehr (Desert)", \
+	"CUP - Bundeswehr (Woodland)", \
+	"CUP - Bundeswehr KSK (Desert)", \
+	"CUP - Bundeswehr KSK (Woodland)", \
+	"CUP - Chernarus Defense Forces (Desert)", \
+	"CUP - Chernarus Defense Forces (Forest)", \
+	"CUP - Chernarus Defense Forces (Mountain)", \
+	"CUP - Chernarus Defense Forces (Snow)", \
+	"CUP - Chernarus Movement of the Red Star", \
+	"CUP - Horizon Islands Legion", \
+	"CUP - Horizon Islands Legion (Recon)", \
+	"CUP - Horizon Islands Legion (Reservists)", \
+	"CUP - Horizon Islands Legion (Special Forces)", \
+	"CUP - MARSOC (Desert)", \
+	"CUP - MARSOC (Woodland)", \
+	"CUP - Sahrani Liberation Army (Desert)", \
+	"CUP - Sahrani Liberation Army (Forest)", \
+	"CUP - Sahrani Liberation Army (Militia)", \
+	"CUP - Sahrani Liberation Army (Urban)", \
+	"CUP - Takistani Army", \
+	"CUP - Takistani Militia", \
+	"CUP - US Army OCP (Desert)", \
+	"CUP - US Army OCP (Woodland)", \
+	"CUP - US Army OEF-CP (Desert)", \
+	"CUP - US Army OEF-CP (Woodland)", \
+	"CUP - US Army Special Forces (Desert)", \
+	"CUP - US Army Special Forces (Woodland)", \
+	"CUP - US Army UCP (Desert)", \
+	"CUP - US Army UCP (Woodland)", \
+	"CUP - USMC (Desert)", \
+	"CUP - USMC (Woodland)", \
+	"CUP - USMC Force Recon (Desert)", \
+	"CUP - USMC Force Recon (Woodland)", \
+	"CUP - USMC FROG (Desert)", \
+	"CUP - USMC FROG (Woodland)", \
 	"OPCAN - Colonial Guard Corps", \
 	"OPCAN - Colonial Military Authority", \
 	"OPCAN - Colonial Police Force", \

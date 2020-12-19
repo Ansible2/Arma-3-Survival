@@ -1874,3 +1874,363 @@ class CUP_AFRF_VDV_TTSKO_faction : CUP_AFRF_DES_base
 		"CUP_O_RU_Soldier_TL_VDV"
 	};
 };
+
+class CUP_CHDKZ_faction
+{
+	displayName = "CUP - Chernarus Movement of the Red Star";
+
+	lightCars[] = {
+		"CUP_O_Datsun_PK",
+		"CUP_O_Datsun_PK_Random",
+		"CUP_O_Datsun_4seat",
+		"CUP_O_Hilux_AGS30_CHDKZ",
+		"CUP_O_Hilux_DSHKM_CHDKZ",
+		"CUP_O_Hilux_zu23_CHDKZ",
+		"CUP_O_UAZ_AGS30_CHDKZ",
+		"CUP_O_UAZ_MG_CHDKZ"
+	};
+	heavyCars[] = {
+		"CUP_O_BRDM2_HQ_CHDKZ"
+	};
+	lightArmor[] = {
+		"CUP_O_BMP2_CHDKZ",
+		"CUP_O_BMP_HQ_CHDKZ",
+		"CUP_O_BRDM2_CHDKZ",
+		"CUP_O_BTR60_CHDKZ",
+		"CUP_O_BTR80_CHDKZ",
+		"CUP_O_BTR80A_CHDKZ",
+		"CUP_O_MTLB_pk_ChDKZ"
+	};
+	heavyArmor[] = {
+		"CUP_O_T55_CHDKZ",
+		"CUP_O_T72_CHDKZ"
+	};
+	transportHelicopters[] = {
+		"CUP_O_Mi8_CHDKZ"
+	};
+	cargoAircraft[] = {
+		"CUP_O_AN2_TK",
+		"CUP_O_C47_SLA"
+	};
+	casAircraft[] = {
+		"CUP_O_Su25_Dyn_RU"
+	};
+	attackHelicopters[] = {
+		"O_Heli_Attack_02_dynamicLoadout_black_F"
+	};
+
+	infantry[] = {
+		"CUP_O_INS_Woodlander1",
+		"CUP_O_INS_Soldier_AA",
+		"CUP_O_INS_Soldier_Ammo",
+		"CUP_O_INS_Soldier_AT",
+		"CUP_O_INS_Soldier_AR",
+		"CUP_O_INS_Story_Lopotev",
+		"CUP_O_INS_Commander",
+		"CUP_O_INS_Soldier_Engineer",
+		"CUP_O_INS_Soldier_GL",
+		"CUP_O_INS_Soldier_MG",
+		"CUP_O_INS_Medic",
+		"CUP_O_INS_Officer",
+		"CUP_O_INS_Soldier",
+		"CUP_O_INS_Soldier_AK74",
+		"CUP_O_INS_Soldier_LAT",
+		"CUP_O_INS_Saboteur",
+		"CUP_O_INS_Soldier_Exp",
+		"CUP_O_INS_Sniper",
+		"CUP_O_INS_Villager3",
+		"CUP_O_INS_Woodlander3",
+		"CUP_O_INS_Woodlander2",
+		"CUP_O_INS_Worker2",
+		"CUP_O_INS_Villager4"
+	};	
+};
+
+class CUP_SLA_base
+{
+	displayName = "CUP - Sahrani Liberation Army Base";
+
+	lightCars[] = {
+		"CUP_O_UAZ_AGS30_SLA",
+		"CUP_O_UAZ_MG_SLA"
+	};
+	heavyCars[] = {
+		"CUP_O_BRDM2_SLA",
+		"CUP_O_BRDM2_HQ_SLA"
+	};
+	lightArmor[] = {
+		"CUP_O_BMP2_SLA",
+		"CUP_O_BMP_HQ_sla",
+		"CUP_O_BTR60_SLA",
+		"CUP_O_BTR80_SLA",
+		"CUP_O_BTR80A_SLA",
+		"CUP_O_MTLB_pk_SLA"
+	};
+	heavyArmor[] = {
+		"CUP_O_T55_SLA",
+		"CUP_O_T72_SLA"
+	};
+	transportHelicopters[] = {
+		"CUP_O_UH1H_SLA",
+		"CUP_O_Mi8_SLA_1"
+	};
+	cargoAircraft[] = {
+		"CUP_O_C47_SLA"
+	};
+	casAircraft[] = {
+		"CUP_O_Su25_Dyn_SLA",
+		"CUP_O_SU34_SLA"
+	};
+	attackHelicopters[] = {
+		"O_Heli_Attack_02_dynamicLoadout_black_F"
+	};
+};
+
+class CUP_SLA_FOREST_faction : CUP_SLA_base
+{
+	displayName = "CUP - Sahrani Liberation Army (Forest)";
+
+	infantry[] = {
+		"CUP_O_sla_Soldier_AKS_74_GOSHAWK",
+		"CUP_O_sla_Soldier_AA",
+		"CUP_O_sla_Soldier_AAT",
+		"CUP_O_sla_Soldier_AMG",
+		"CUP_O_sla_Soldier_HAT",
+		"CUP_O_sla_Soldier_AR",
+		"CUP_O_sla_Engineer",
+		"CUP_O_sla_Soldier_GL",
+		"CUP_O_sla_Soldier_MG",
+		"CUP_O_sla_Medic",
+		"CUP_O_sla_Officer",
+		"CUP_O_sla_Soldier",
+		"CUP_O_SLA_Soldier_Backpack",
+		"CUP_O_sla_Soldier_LAT",
+		"CUP_O_sla_Soldier_AT",
+		"CUP_O_sla_Sniper",
+		"CUP_O_sla_Sniper_KSVK",
+		"CUP_O_SLA_Sniper_SVD_Night",
+		"CUP_O_sla_Soldier_AKS_Night",
+		"CUP_O_SLA_Spotter",
+		"CUP_O_sla_Soldier_SL",
+		"CUP_O_sla_SpecOps_Demo",
+		"CUP_O_sla_SpecOps_LAT",
+		"CUP_O_sla_SpecOps",
+		"CUP_O_sla_SpecOps_MG",
+		"CUP_O_sla_SpecOps_TL"
+	};
+};
+
+class CUP_SLA_DESERT_faction : CUP_SLA_base
+{
+	displayName = "CUP - Sahrani Liberation Army (Desert)";
+
+	infantry[] = {
+		"CUP_O_sla_Sniper_KSVK_desert",
+		"CUP_O_sla_Soldier_AA_desert",
+		"CUP_O_sla_Soldier_AAT_desert",
+		"CUP_O_sla_Soldier_AMG_desert",
+		"CUP_O_sla_Soldier_HAT_desert",
+		"CUP_O_sla_Soldier_AR_desert",
+		"CUP_O_sla_Engineer_desert",
+		"CUP_O_sla_Soldier_GL_desert",
+		"CUP_O_sla_Soldier_MG_desert",
+		"CUP_O_sla_Medic_desert",
+		"CUP_O_sla_Officer_desert",
+		"CUP_O_sla_soldier_desert",
+		"CUP_O_SLA_Soldier_Backpack_desert",
+		"CUP_O_sla_Soldier_LAT_desert",
+		"CUP_O_sla_Soldier_AT_desert",
+		"CUP_O_sla_Sniper_desert",
+		"CUP_O_SLA_Sniper_SVD_Night_desert",
+		"CUP_O_sla_Soldier_AKS_Night_desert",
+		"CUP_O_sla_Soldier_AKS_74_GOSHAWK_desert",
+		"CUP_O_SLA_Spotter_desert",
+		"CUP_O_sla_Soldier_SL_desert"
+	};
+};
+
+class CUP_SLA_MILITIA_faction : CUP_SLA_base
+{
+	displayName = "CUP - Sahrani Liberation Army (Militia)";
+
+	infantry[] = {
+		"CUP_O_sla_Soldier_militia",
+		"CUP_O_sla_Soldier_AAT_militia",
+		"CUP_O_sla_Soldier_AMG_militia",
+		"CUP_O_sla_Soldier_AR_militia",
+		"CUP_O_SLA_Soldier_Backpack_militia",
+		"CUP_O_sla_Engineer_militia",
+		"CUP_O_sla_Soldier_GL_militia",
+		"CUP_O_sla_Soldier_MG_militia",
+		"CUP_O_sla_Medic_militia",
+		"CUP_O_sla_Soldier_AA_militia",
+		"CUP_O_sla_Officer_militia",
+		"CUP_O_sla_Soldier_SL_militia",
+		"CUP_O_sla_Soldier_LAT_militia",
+		"CUP_O_sla_Soldier_AT_militia"
+	};
+};
+
+class CUP_SLA_MILITIA_faction : CUP_SLA_base
+{
+	displayName = "CUP - Sahrani Liberation Army (Urban)";
+
+	infantry[] = {
+		"CUP_O_sla_Soldier_SL_urban",
+		"CUP_O_sla_Soldier_AA_urban",
+		"CUP_O_sla_Soldier_AAT_urban",
+		"CUP_O_sla_Soldier_AMG_urban",
+		"CUP_O_sla_Soldier_HAT_urban",
+		"CUP_O_sla_Soldier_AR_urban",
+		"CUP_O_sla_Engineer_urban",
+		"CUP_O_sla_Soldier_GL_urban",
+		"CUP_O_sla_Soldier_MG_urban",
+		"CUP_O_sla_Medic_urban",
+		"CUP_O_sla_Officer_urban",
+		"CUP_O_sla_Soldier_urban",
+		"CUP_O_SLA_Soldier_Backpack_urban",
+		"CUP_O_sla_Soldier_LAT_urban",
+		"CUP_O_sla_Soldier_AT_urban",
+		"CUP_O_sla_Sniper_urban",
+		"CUP_O_sla_Sniper_KSVK_urban",
+		"CUP_O_SLA_Sniper_SVD_Night_urban",
+		"CUP_O_sla_Soldier_AKS_Night_urban",
+		"CUP_O_sla_Soldier_AKS_74_GOSHAWK_urban",
+		"CUP_O_SLA_Spotter_urban"
+	};
+};
+
+class CUP_TKA_faction
+{
+	displayName = "CUP - Takistani Army";
+
+	lightCars[] = {
+		"CUP_O_LR_MG_TKA",
+		"CUP_O_UAZ_AGS30_TKA",
+		"CUP_O_UAZ_MG_TKA"
+	};
+	heavyCars[] = {
+		"CUP_O_BRDM2_HQ_TKA",
+		"CUP_O_BTR40_MG_TKA"
+	};
+	lightArmor[] = {
+		"CUP_O_BMP1_TKA",
+		"CUP_O_BMP1P_TKA",
+		"CUP_O_BMP2_TKA",
+		"CUP_O_BMP_HQ_TKA",
+		"CUP_O_BRDM2_TKA",
+		"CUP_O_BTR60_TK",
+		"CUP_O_BTR80_TK",
+		"CUP_O_BTR80A_TK",
+		"CUP_O_M113_TKA",
+		"CUP_O_MTLB_pk_TKA"
+	};
+	heavyArmor[] = {
+		"CUP_O_T34_TKA",
+		"CUP_O_T55_TK",
+		"CUP_O_T72_TKA"
+	};
+	transportHelicopters[] = {
+		"CUP_O_UH1H_TKA",
+		"CUP_O_Mi17_TK"
+	};
+	cargoAircraft[] = {
+		"CUP_O_C130J_TKA"
+	};
+	casAircraft[] = {
+		"CUP_O_L39_TK",
+		"CUP_O_Su25_Dyn_TKA"
+	};
+	attackHelicopters[] = {
+		"O_Heli_Attack_02_dynamicLoadout_black_F"
+	};
+	
+	infantry[] = {
+		"CUP_O_TK_Soldier_SL",
+		"CUP_O_TK_Soldier_AA",
+		"CUP_O_TK_Soldier_AAT",
+		"CUP_O_TK_Soldier_AMG",
+		"CUP_O_TK_Soldier_HAT",
+		"CUP_O_TK_Soldier_AR",
+		"CUP_O_TK_Commander",
+		"CUP_O_TK_Engineer",
+		"CUP_O_TK_Soldier_GL",
+		"CUP_O_TK_Soldier_MG",
+		"CUP_O_TK_Soldier_M",
+		"CUP_O_TK_Medic",
+		"CUP_O_TK_Officer",
+		"CUP_O_TK_Soldier",
+		"CUP_O_TK_Soldier_Backpack",
+		"CUP_O_TK_Soldier_LAT",
+		"CUP_O_TK_Soldier_AT",
+		"CUP_O_TK_Sniper",
+		"CUP_O_TK_Sniper_KSVK",
+		"CUP_O_TK_Sniper_SVD_Night",
+		"CUP_O_TK_Soldier_AKS_Night",
+		"CUP_O_TK_Soldier_FNFAL_Night",
+		"CUP_O_TK_Soldier_AKS_74_GOSHAWK",
+		"CUP_O_TK_Spotter",
+		"CUP_O_TK_SpecOps_MG",
+		"CUP_O_TK_SpecOps",
+		"CUP_O_TK_SpecOps_TL"
+	};
+};
+
+class CUP_TKM_faction
+{
+	displayName = "CUP - Takistani Militia";
+
+	lightCars[] = {
+		"CUP_O_Hilux_AGS30_TK_INS",
+		"CUP_O_Hilux_DSHKM_TK_INS",
+		"CUP_O_Hilux_M2_TK_INS",
+		"CUP_O_LR_MG_TKM"
+	};
+	heavyCars[] = {
+		"CUP_O_BTR40_MG_TKM",
+		"CUP_O_Hilux_BMP1_TK_INS",
+		"CUP_O_Hilux_btr60_TK_INS",
+		"CUP_O_Hilux_armored_AGS30_TK_INS",
+		"CUP_O_Hilux_armored_DSHKM_TK_INS",
+		"CUP_O_Hilux_armored_M2_TK_INS"
+	};
+	lightArmor[] = {
+		"CUP_O_MTLB_pk_TK_MILITIA",
+		"CUP_O_Hilux_armored_BMP1_TK_INS",
+		"CUP_O_Hilux_armored_BTR60_TK_INS"
+	};
+	heavyArmor[] = {
+		"CUP_B_M60A3_USMC",
+		"CUP_B_M60A3_TTS_USMC"
+	};
+	transportHelicopters[] = {
+		"CUP_O_UH1H_TKA"
+	};
+	cargoAircraft[] = {
+		"CUP_O_AN2_TK"
+	};
+	casAircraft[] = {
+		"CUP_O_L39_TK"
+	};
+	attackHelicopters[] = {
+		"O_Heli_Attack_02_dynamicLoadout_black_F"
+	};
+
+	infantry[] = {
+		"CUP_O_TK_INS_Commander",
+		"CUP_O_TK_INS_Soldier_AA",
+		"CUP_O_TK_INS_Soldier_AR",
+		"CUP_O_TK_INS_Guerilla_Medic",
+		"CUP_O_TK_INS_Soldier_MG",
+		"CUP_O_TK_INS_Bomber",
+		"CUP_O_TK_INS_Mechanic",
+		"CUP_O_TK_INS_Soldier_GL",
+		"CUP_O_TK_INS_Soldier",
+		"CUP_O_TK_INS_Soldier_FNFAL",
+		"CUP_O_TK_INS_Soldier_Enfield",
+		"CUP_O_TK_INS_Soldier_AAT",
+		"CUP_O_TK_INS_Soldier_AT",
+		"CUP_O_TK_INS_Sniper",
+		"CUP_O_TK_INS_Soldier_TL"
+	};	
+};
