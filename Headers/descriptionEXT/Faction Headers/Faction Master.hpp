@@ -41,5 +41,6 @@ class BLWK_factions
 #include "RHS GREF Unit Table.hpp"
 #include "PROJECT OPFOR Unit Table.hpp"
 #include "Zombies And Demons Unit Table.hpp"
+#include "CUP Unit Table.hpp"
 
 };
