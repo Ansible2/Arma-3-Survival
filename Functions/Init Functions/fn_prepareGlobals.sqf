@@ -201,8 +201,7 @@ if (hasInterface) then {
 // AI unit classes
 
 // some of these are public to be used with BLWK_fnc_getPointsForKill or for friendlies to call support
-//private _unitTypeInfo = call BLWK_fnc_prepareUnitClasses;
-private _unitTypeInfo = call BLWK_fnc_prepareUnitClassesNew;
+private _unitTypeInfo = call BLWK_fnc_prepareUnitClasses;
 
 // friendly
 BLWK_friendly_menClasses = _unitTypeInfo select 0;

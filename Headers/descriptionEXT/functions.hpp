@@ -11,8 +11,6 @@ class BLWK
 		{};
 		class enableCollisionWithAllPlayers
 		{};
-		class locality
-		{};
 		class moveUpOrDown
 		{};
 		class pickupObject 
@@ -102,8 +100,6 @@ class BLWK
 		class preparePlayArea
 		{};
 		class prepareUnitClasses
-		{};
-		class prepareUnitClassesNew
 		{};
 		class selectCustomPlayArea
 		{};
