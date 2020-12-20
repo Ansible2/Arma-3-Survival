@@ -53,9 +53,10 @@ while {BLWK_doDetectCollision AND {alive _unit}} do {
 				_unit setPosATL (_unit getRelPos [2,180]);
 
 				waitUntil {
+					if (isNull _unit) exitWith {true};
 					// tell the unit to move away
 					_unit move _moveToPosition;
-					sleep 0.1;
+					sleep 0.01;
 					if (_unit distance2D _moveToPosition < 5 OR {!alive _unit}) exitWith {true};
 					false
 				};
