@@ -128,6 +128,7 @@ class BLWK_buildableItems
 		rotation = 180;
 		attachmentY = 4;
 		attachmentZ = 2;
+		invincible = 1;
 	};
 
 	class Land_PortableLight_double_F : BLWK_genericBuildItemBase
