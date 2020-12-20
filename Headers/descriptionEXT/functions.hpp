@@ -151,6 +151,8 @@ class BLWK
 	class Other
 	{
 		file = "Functions\Other";
+		class addACESupportMenuAction
+		{};
 		class addPlayerItems
 		{};
 		class adjustPlayerTraits

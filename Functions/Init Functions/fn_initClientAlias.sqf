@@ -35,6 +35,8 @@ missionNamespace setVariable ["BLWK_playerKillPoints",_startingKillPoints];
 
 [_player] call BLWK_fnc_addDiaryEntries;
 
+[_player] call BLWK_fnc_addACESupportMenuAction;
+
 // vanilla mag repack
 if (BLWK_magRepackEnabled) then {
     waituntil {!isNull (findDisplay 46)};
