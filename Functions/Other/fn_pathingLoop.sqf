@@ -60,14 +60,14 @@ private "_aliveIndex";
 private _fn_checkGroupStatus = {
 	// check if it was deleted
 	if (isNull _groupToCheck) exitWith {
-		[SCRIPT_NAME,["Found that",_groupToCheck,"is a null group"]] call KISKA_fnc_log;
+		//[SCRIPT_NAME,["Found that",_groupToCheck,"is a null group"]] call KISKA_fnc_log;
 		false
 	};
 
 	// check if anyone is in it
 	_groupUnits = units _groupToCheck;
 	if (_groupUnits isEqualTo []) exitWith {
-		[SCRIPT_NAME,["Found that",_groupToCheck,"is am empty group"]] call KISKA_fnc_log;
+		//[SCRIPT_NAME,["Found that",_groupToCheck,"is am empty group"]] call KISKA_fnc_log;
 		false
 	};
 
@@ -132,7 +132,7 @@ while {sleep _timeBetweenChecks; true} do {
 	// update unit list and check if they are still up
 	
 	if (!(isNull _groupToCheck) AND {!(_groupToCheck getVariable [LOOP_VAR_NAME,false])}) exitWith {
-		[SCRIPT_NAME,["Loop var for group",_groupToCheck,"was set to false. Exiting"]] call KISKA_fnc_log;
+		//[SCRIPT_NAME,["Loop var for group",_groupToCheck,"was set to false. Exiting"]] call KISKA_fnc_log;
 	};
 
 	if !(call _fn_checkGroupStatus) exitWith {
@@ -145,8 +145,7 @@ while {sleep _timeBetweenChecks; true} do {
 		//["%1 failed velocity test",_groupToCheck] call BIS_fnc_error;
 		
 		if (call _fn_handleStationaryLeader) then {
-			[SCRIPT_NAME,["Reset leader of group",_groupToCheck]] call KISKA_fnc_log;
-			//_groupLeader setPos (selectRandom BLWK_infantrySpawnPositions);
+			//[SCRIPT_NAME,["Reset leader of group",_groupToCheck]] call KISKA_fnc_log;
 			_groupLeader setPos ([BLWK_mainCrate, 75, 125, 2, 0] call BIS_fnc_findSafePos);
 			sleep 1;
 			[_groupLeader,position BLWK_mainCrate] remoteExecCall ["move",_groupLeader];
