@@ -1,6 +1,7 @@
 class OPTRE_FC_COVENANT_faction
 {
 	displayName = "OPTRE FC - Covenant";
+	
 	infantry[] = {
 		"OPTRE_FC_Elite_FieldMarshal",
 		"OPTRE_FC_Elite_HonorGuard",
@@ -21,6 +22,7 @@ class OPTRE_FC_COVENANT_faction
 class OPTRE_FC_MARINES_HCW_faction : OPTRE_MARINES_faction
 {
 	displayName = "OPTRE FC - UNSC Marines HCW";
+
 	infantry[] = {
 		"OPTRE_FC_Marines_Soldier_AA_Specialist",
 		"OPTRE_FC_Marines_Soldier_Assist_Autorifleman",
