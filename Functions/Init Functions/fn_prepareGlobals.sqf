@@ -250,7 +250,7 @@ BLWK_pointsMultiForDamage = "BLWK_pointsMultiForDamage" call BIS_fnc_getParamVal
 BLWK_maxPointsForDamage = BLWK_pointsForHit * 2; // There are certain weapons that cause extreme amounts of damage that will give an immense amount of points, so this caps it
 
 BLWK_dontUseRevive = (("ReviveMode" call BIS_fnc_getParamValue) isEqualTo 0);
-BLWK_ACELoaded = ["ACE_Medical_StateMachine"] call KISKA_fnc_ispatchLoaded;
+BLWK_ACELoaded = ["ace_common"] call KISKA_fnc_ispatchLoaded;
 
 BLWK_costToSpinRandomBox = 950; 
 if (isNil "BLWK_supportDishFound") then {
