@@ -400,7 +400,7 @@ class BLWK_baseVehicleSpawnLikelihood
 	title = "Base Vehicle Spawn Likelihood";
 	values[] = ZERO_TO_TEN;
 	texts[] = ZERO_TO_TEN_STRINGS;
-	default = 3;
+	default = 6;
 };
 class BLWK_lightCarLikelihood
 {
