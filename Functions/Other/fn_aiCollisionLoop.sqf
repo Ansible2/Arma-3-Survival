@@ -54,10 +54,10 @@ while {BLWK_doDetectCollision AND {alive _unit}} do {
 
 				waitUntil {
 					if (isNull _unit) exitWith {true};
+					if (_unit distance2D _moveToPosition < 5 OR {!alive _unit}) exitWith {true};
 					// tell the unit to move away
 					_unit move _moveToPosition;
 					sleep 0.01;
-					if (_unit distance2D _moveToPosition < 5 OR {!alive _unit}) exitWith {true};
 					false
 				};
 			};
