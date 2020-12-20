@@ -24,7 +24,11 @@ Author(s):
 ---------------------------------------------------------------------------- */
 params ["_object"];
 
-if (!local _object) exitWith {
+if (!canSuspend) exitWith {
+	_this spawn BLWK_fnc_disableCollisionWithAllPlayers;
+};
+
+if !(local _object) exitWith {
 	null = [_object] remoteExec ["BLWK_fnc_disableCollisionWithAllPlayers",_object];
 };
 
