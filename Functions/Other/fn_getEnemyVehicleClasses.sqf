@@ -35,14 +35,16 @@ private _defaultVehicleClass = DEFAULT_VEHICLE_CLASSES select _typeId;
 
 private _fn_pushVehicleForLevel = {
 	params ["_classes"];
-	private _class = _classes select _typeId;
+	private _classesOfType = _classes select _typeId;
 
-	if !(_class isEqualTo "") exitWith {
-		_availableClasses pushBackUnique _class;
-	};
-	
-	if (_supplementEmpty) then {
-		_availableClasses pushBackUnique _defaultVehicleClass;
+	if ((_classesOfType isEqualTo [])) then {
+		if (_supplementEmpty) then {
+			_availableClasses pushBackUnique _defaultVehicleClass;
+		};
+	} else {
+		_classesOfType apply {
+			_availableClasses pushBackUnique _x;
+		};
 	};
 };
 
