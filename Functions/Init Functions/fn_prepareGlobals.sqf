@@ -138,8 +138,8 @@ if (isServer OR {!hasInterface}) then {
     if (BLWK_canUseTankstDLC) then {BLWK_useableDLCs pushBack ""}; 
 */
 
-    BLWK_enemiesPerWaveMultiplier = ("BLWK_enemiesPerWaveMultiplier" call BIS_fnc_getParamValue);  // How many hostiles per wave (waveCount x BLWK_enemiesPerWaveMultiplier)
-    BLWK_enemiesPerPlayerMultiplier = ("BLWK_enemiesPerPlayerMultiplier" call BIS_fnc_getParamValue);   // How many extra units are added per player
+    BLWK_enemiesPerWaveMultiplier = ("BLWK_enemiesPerWaveMultiplier" call BIS_fnc_getParamValue) / 10;  // How many hostiles per wave (waveCount x BLWK_enemiesPerWaveMultiplier)
+    BLWK_enemiesPerPlayerMultiplier = ("BLWK_enemiesPerPlayerMultiplier" call BIS_fnc_getParamValue) / 10;   // How many extra units are added per player
     BLWK_maxPistolOnlyWaves = ("BLWK_maxPistolOnlyWaves" call BIS_fnc_getParamValue);  //What wave enemies stop only using pistols
     BLWK_randomizeEnemyWeapons = [false,true] select ("BLWK_randomizeEnemyWeapons" call BIS_fnc_getParamValue);
 
@@ -181,7 +181,7 @@ if (hasInterface) then {
     BLWK_magRepackEnabled = [false,true] select ("BLWK_magRepackEnabled" call BIS_fnc_getParamValue);
 
     BLWK_staminaEnabled = [false,true] select ("BLWK_staminaEnabled" call BIS_fnc_getParamValue);
-    BLWK_weaponSwayCoef = "BLWK_weaponSwayCoef" call BIS_fnc_getParamValue;
+    BLWK_weaponSwayCoef = ("BLWK_weaponSwayCoef" call BIS_fnc_getParamValue) / 100;
 
     BLWK_multipleLootReveals = [false,true] select ("BLWK_multipleLootReveals" call BIS_fnc_getParamValue);
     BLWK_aircraftGunnerLifetime = "BLWK_aircraftGunnerLifetime" call BIS_fnc_getParamValue;

@@ -92,17 +92,17 @@ class BLWK_maxPistolOnlyWaves
 class BLWK_enemiesPerWaveMultiplier
 {
 	title = "Enemies Per Wave Multiplier";
-	values[] = {0.5,1,1.5,2,2.5,3};
+	values[] = {5,10,15,20,25,30};
 	texts[] = {"0.5","1","1.5","2","2.5","3"};
-	GET_DEFAULT_PARAM(BLWK_enemiesPerWaveMultiplier,1)
+	GET_DEFAULT_PARAM(BLWK_enemiesPerWaveMultiplier,10)
 };
 // CIPHER COMMENT: The utility of this value should be replaced with a simple: add this number of enemies per round per player in addition to the number already spawned
 class BLWK_enemiesPerPlayerMultiplier
 {
 	title = "Extra Enemies Per Player";
-	values[] = {0.5, 1, 1.5, 2};
+	values[] = {5, 10, 15, 20};
 	texts[] = {"0.5", "1", "1.5", "2"};
-	GET_DEFAULT_PARAM(BLWK_enemiesPerPlayerMultiplier,1)
+	GET_DEFAULT_PARAM(BLWK_enemiesPerPlayerMultiplier,10)
 };
 class BLWK_roundsBeforeBodyDeletion
 {
@@ -140,9 +140,9 @@ class BLWK_staminaEnabled
 class BLWK_weaponSwayCoef
 {
 	title = "Weaponsway coefficient (zero means no sway)";
-	values[] = {0, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1};
+	values[] = {0, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100};
 	texts[] = {"0", "0.1", "0.15", "0.2", "0.25", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
-	GET_DEFAULT_PARAM(BLWK_weaponSwayCoef,0)
+	GET_DEFAULT_PARAM(BLWK_weaponSwayCoef,15)
 };
 
 
