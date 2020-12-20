@@ -66,6 +66,7 @@
 #define TURRETS_CATEGORY "Turrets"
 #define STORAGE_CATEGORY "Storage"
 #define BUILDINGS_CATEGORY "Buildings"
+#define HBARR_CATEGORY "H-Barriers"
 
 // categories for support items
 #define HEAVY_ARTILLERY_CATEGORY "Heavy Artillery"
