@@ -48,13 +48,14 @@ while {BLWK_doDetectCollision AND {alive _unit}} do {
 			// check if any encountered object is a built one
 			_index = _objects findIf {!(isNull _x) AND {_x getVariable ["BLWK_collisionObject",false]}};
 			if (_index != -1) then {
+				private _collisionObject = _objects select _index;
 				_moveToPosition = (_unit getRelPos [20,180]);
 				// push the unit back from the object
 				_unit setPosATL (_unit getRelPos [2,180]);
 
 				waitUntil {
-					if (isNull _unit) exitWith {true};
-					if (_unit distance2D _moveToPosition < 5 OR {!alive _unit}) exitWith {true};
+					if (isNull _unit OR {!alive _unit}) exitWith {true};
+					if (_unit distance2D _collisionObject >= 15) exitWith {true};
 					// tell the unit to move away
 					_unit move _moveToPosition;
 					sleep 0.01;
