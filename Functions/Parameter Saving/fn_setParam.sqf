@@ -1,3 +1,5 @@
+if !(isServer) exitWith {};
+
 params [
 	["_missionParamName",""]
 ];
@@ -16,5 +18,5 @@ if (_saveIndex isEqualTo -1) then { // if param not found
 	_missionParameterArray set [_saveIndex,[_missionParamName,_paramValue]]
 };
 
-// CIPHER COMMENT: make sure you need this, may not need to use setVar on a global array
+// this is required
 profileNamespace setVariable ["BLWK_savedMissionParameters",_missionParameterArray];

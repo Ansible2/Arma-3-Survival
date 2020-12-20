@@ -201,9 +201,19 @@ class BLWK
 	class ParameterSaving
 	{
 		file = "Functions\Parameter Saving";
+		class addParameterDiaryEntries
+		{
+			postInit = 1;
+		};
+		class deleteSavedMissionParameters
+		{};
 		class getSavedParamIndex
 		{};
 		class getSavedParamValue
+		{};
+		class paramsQuery
+		{};
+		class saveAllMissionParameters
 		{};
 		class setParam
 		{};
