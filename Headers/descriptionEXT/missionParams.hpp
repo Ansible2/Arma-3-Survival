@@ -46,14 +46,14 @@ class BLWK_vehicleStartWave
 	title = "Vehicles can spawn after wave";
 	values[] = {5, 10, 15, 20, 25, 9999};
 	texts[] = {"5", "10", "15", "20", "25", "Never"};
-	default = 10;
+	default = 5;
 };
 class BLWK_specialWavesStartAt
 {
 	title = "Special Wave Possibility Starts At Wave";
 	values[] = {5, 10, 15, 20, 25, 9999};
 	texts[] = {"5", "10", "15", "20", "25", "Never"};
-	default = 15;
+	default = 10;
 };
 class BLWK_maxEnemyInfantryAtOnce
 {
