@@ -10,7 +10,7 @@ if (_missionParamName == "") exitWith {
 
 private _saveIndex = [_missionParamName] call BLWK_fnc_getSavedParamIndex;
 private _missionParameterArray = profileNamespace getVariable ["BLWK_savedMissionParameters",[]];
-private _paramValue = _missionParamName call BIS_fnc_getParamValue
+private _paramValue = _missionParamName call BIS_fnc_getParamValue;
 
 if (_saveIndex isEqualTo -1) then { // if param not found
 	_missionParameterArray pushBack [_missionParamName,_paramValue]
