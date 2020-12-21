@@ -33,23 +33,33 @@ Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if (!isServer) exitWith {false};
+if (!isServer AND {hasInterface}) exitWith {false};
 
 // get white and black lists for loot
-#include "..\..\Headers\Loot Lists.hpp"
+BLWK_lootBlacklist = [missionConfigFile >> "BLWK_lootLists" >> "lootBlacklist"] call BIS_fnc_getCfgDataArray;
+private _whitelist_primaries = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_primaries"] call BIS_fnc_getCfgDataArray;
+private _whitelist_handguns = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_handguns"] call BIS_fnc_getCfgDataArray;
+private _whitelist_launchers = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_launchers"] call BIS_fnc_getCfgDataArray;	
+private _whitelist_backpacks = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_backpacks"] call BIS_fnc_getCfgDataArray;
+private _whitelist_vests = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_vests"] call BIS_fnc_getCfgDataArray;
+private _whitelist_uniforms = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_uniforms"] call BIS_fnc_getCfgDataArray;
+private _whitelist_headgear = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_headgear"] call BIS_fnc_getCfgDataArray;
+private _whitelist_items = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_items"] call BIS_fnc_getCfgDataArray;
+private _whitelist_explosives = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_explosives"] call BIS_fnc_getCfgDataArray;
+
 
 // Check if we are in whitelisted items only mode
 if (BLWK_loot_whiteListMode isEqualTo 1) exitWith {
 	[
-		WHITELIST_PRIMARY_WEAPONS,
-		WHITELIST_HANDGUN_WEAPONS,
-		WHITELIST_LAUNCHERS,
-		WHITELIST_BACKPACKS,
-		WHITELIST_VESTS,
-		WHITELIST_UNIFORMS,
-		WHITELIST_HEADGEAR,
-		WHITELIST_ITEMS,
-		WHITELIST_EXPLOSIVES
+		_whitelist_primaries,
+		_whitelist_handguns,
+		_whitelist_launchers,
+		_whitelist_backpacks,
+		_whitelist_vests,
+		_whitelist_uniforms,
+		_whitelist_headgear,
+		_whitelist_items,
+		_whitelist_explosives
 	]
 };
 
@@ -170,19 +180,18 @@ _publicMagazineConfigs apply {
 
 // check white list mode to see if we should add whitelisted items to arrays
 if (BLWK_loot_whiteListMode isEqualTo 2) then {
-    _backpackClasses append WHITELIST_BACKPACKS;
-    _explosiveClasses append WHITELIST_EXPLOSIVES;
-    _itemClasses append WHITELIST_ITEMS;
-    _uniformClasses append WHITELIST_UNIFORMS;
-    _vestClasses append WHITELIST_VESTS;
-	_headgearClasses append WHITELIST_HEADGEAR;
-	_primaryWeaponClasses append WHITELIST_PRIMARY_WEAPONS;
-	_handgunWeaponClasses append WHITELIST_HANDGUN_WEAPONS;
-	_launcherClasses append WHITELIST_LAUNCHERS;
+    _backpackClasses append _whitelist_backpacks;
+    _explosiveClasses append _whitelist_explosives;
+    _itemClasses append _whitelist_items;
+    _uniformClasses append _whitelist_uniforms;
+    _vestClasses append _whitelist_vests;
+	_headgearClasses append _whitelist_headgear;
+	_primaryWeaponClasses append _whitelist_primaries;
+	_handgunWeaponClasses append _whitelist_handguns;
+	_launcherClasses append _whitelist_launchers;
 };
 
-
-
+// return
 [
 	_primaryWeaponClasses,
 	_handgunWeaponClasses,
