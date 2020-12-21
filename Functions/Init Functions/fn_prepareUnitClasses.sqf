@@ -112,7 +112,7 @@ private _fn_sortFactionClasses = {
 
 	_transportHelicopterClasses = [];
 	_sortArray = [_configToCheck >> "transportHelicopters"] call BIS_fnc_getCfgDataArray;
-	[_heavyArmorClasses] call _fn_sortArray;
+	[_transportHelicopterClasses] call _fn_sortArray;
 
 	_cargoAircraftClasses = [];
 	_sortArray = [_configToCheck >> "cargoAircraft"] call BIS_fnc_getCfgDataArray;
