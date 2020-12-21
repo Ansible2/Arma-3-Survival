@@ -44,4 +44,5 @@ if (local BLWK_theAIHandlerEntity) then {
 	};
 };
 
+
 [[_killedUnit]] remoteExecCall ["removeFromRemainsCollector",2];

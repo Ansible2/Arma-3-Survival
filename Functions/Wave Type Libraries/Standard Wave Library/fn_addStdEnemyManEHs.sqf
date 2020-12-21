@@ -38,7 +38,6 @@ _unit addEventHandler ["Hit",{
 	_this call BLWK_fnc_stdEnemyHitEventLocal;
 }];
 
-
 _unit addEventHandler ["Killed",{
 	diag_log "kill event";
 	_this call BLWK_fnc_stdEnemyKilledEvent;

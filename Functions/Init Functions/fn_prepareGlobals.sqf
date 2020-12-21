@@ -198,6 +198,7 @@ if (hasInterface) then {
 };
 
 
+
 // AI unit classes
 
 // some of these are public to be used with BLWK_fnc_getPointsForKill or for friendlies to call support
@@ -223,9 +224,6 @@ BLWK_level4_vehicleClasses = _unitTypeInfo select 9;
 BLWK_level5_menClasses = _unitTypeInfo select 10;
 BLWK_level5_vehicleClasses = _unitTypeInfo select 11;
 
-
-
-
 if (isNil "BLWK_currentWaveNumber") then {
     BLWK_currentWaveNumber = "BLWK_startingWaveNumber" call BIS_fnc_getParamValue;
     BLWK_startingFromWaveNumber = BLWK_currentWaveNumber + 1;
@@ -250,7 +248,9 @@ BLWK_pointsMultiForDamage = "BLWK_pointsMultiForDamage" call BIS_fnc_getParamVal
 BLWK_maxPointsForDamage = BLWK_pointsForHit * 2; // There are certain weapons that cause extreme amounts of damage that will give an immense amount of points, so this caps it
 
 BLWK_dontUseRevive = (("ReviveMode" call BIS_fnc_getParamValue) isEqualTo 0);
+
 BLWK_ACELoaded = ["ace_common"] call KISKA_fnc_ispatchLoaded;
+
 
 BLWK_costToSpinRandomBox = 950; 
 if (isNil "BLWK_supportDishFound") then {
