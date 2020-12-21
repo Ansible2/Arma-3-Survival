@@ -11,6 +11,7 @@ private _points = [_killedUnit] call BLWK_fnc_getPointsForKill;
 		
 // aircraft gunners get limited points
 if (missionNamespace getVariable ["BLWK_isAircraftGunner",false] AND {!_isVehicle}) then {
+
 	_points = round (_points / 4);
 };
 
