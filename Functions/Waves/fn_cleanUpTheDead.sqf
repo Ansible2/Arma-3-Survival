@@ -31,7 +31,9 @@ private _allDeadMen = allDeadMen;
 
 if (BLWK_roundsBeforeBodyDeletion isEqualTo 0) exitWith {
 	_allDeadMen apply {
-		deleteVehicle _x;
+		if !(isNull _x) then {
+			deleteVehicle _x;
+		};
 	};
 };
 
@@ -40,9 +42,11 @@ if (BLWK_deadBodies_1 isEqualTo []) then {
 	BLWK_deadBodies_1 = _allDeadMen;
 } else {
 	if (BLWK_roundsBeforeBodyDeletion isEqualTo 1) then {
-		private _killed1WaveAgo = _allDeadMen select {!(_x in BLWK_deadBodies_1)};
+		private _killed1WaveAgo = _allDeadMen select {!(isNull _x) AND {!(_x in BLWK_deadBodies_1)}};
 		BLWK_deadBodies_1 apply {
-			deleteVehicle _x;
+			if !(isNull _x) then {
+				deleteVehicle _x;
+			};
 		};
 
 		BLWK_deadBodies_1 = _killed1WaveAgo;
@@ -54,12 +58,14 @@ if (BLWK_roundsBeforeBodyDeletion isEqualTo 2) then {
 
 	if (BLWK_deadBodies_2 isEqualTo []) then {
 		// get all the guys who weren't already added to BLWK_deadBodies_1 the last wave
-		private _killed1WaveAgo = _allDeadMen select {!(_x in BLWK_deadBodies_1)};
+		private _killed1WaveAgo = _allDeadMen select {!(isNull _x) AND {!(_x in BLWK_deadBodies_1)}};
 		BLWK_deadBodies_2 = BLWK_deadBodies_1;
 		BLWK_deadBodies_1 = _killed1WaveAgo;
 	} else {
 		BLWK_deadBodies_2 apply {
-			deleteVehicle _x;
+			if !(isNull _x) then {
+				deleteVehicle _x;
+			};
 		};
 		BLWK_deadBodies_2 = [];
 	};

@@ -26,6 +26,6 @@ class Weather
 		$STR_A3_rscattributeovercast_value075_tooltip,
 		$STR_A3_rscattributeovercast_value100_tooltip
 	};
-	default = WEATHER_DEFAULT;
+	GET_DEFAULT_PARAM(Weather,WEATHER_DEFAULT)
 	function = "BIS_fnc_paramWeather";
 };

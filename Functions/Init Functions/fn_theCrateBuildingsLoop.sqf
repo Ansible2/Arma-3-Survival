@@ -26,7 +26,7 @@ if (!isServer OR {!canSuspend}) exitWith {};
 
 private _invincibleBuildings = [];
 // get "houses" within the mission param radius (in 2d space) of The Crate that are terrain objects
-private _buildingsCurrentlyNear = nearestTerrainObjects [BLWK_mainCrate,["house"],BLWK_buildingsNearTheCrateAreIndestructable_radius,false,true];
+private _buildingsCurrentlyNear = [];
 private _buildingsToMakeVulnerable = [];
 
 while {BLWK_buildingsNearTheCrateAreIndestructable_radius > 0} do {
@@ -36,15 +36,19 @@ while {BLWK_buildingsNearTheCrateAreIndestructable_radius > 0} do {
 		// get the buildings no longer in the The Crate's radius
 		_buildingsToMakeVulnerable = _invincibleBuildings select {!(_x in _buildingsCurrentlyNear)};
 		_buildingsToMakeVulnerable apply {
-			_x allowDamage true;
+			sleep 0.5;
+			[_x,true] remoteExecCall ["allowDamage",0,true];
+			//_x allowDamage true;
 		};
 		_buildingsCurrentlyNear apply {
 			if (isDamageAllowed _x) then {
-				_x allowDamage false;
+				// terrain objects are local to everyone and need to be set as allowed false on every machine
+				[_x,false] remoteExecCall ["allowDamage",0,true];
+				//_x allowDamage false;
 			};
 		};
 
-		_invincibleBuildings = _buildingsCurrentlyNear;
+		_invincibleBuildings = +_buildingsCurrentlyNear;
 	};
 
 	sleep 5;

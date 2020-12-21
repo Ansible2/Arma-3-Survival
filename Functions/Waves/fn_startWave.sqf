@@ -83,8 +83,7 @@ waitUntil {
 };
 
 // log wave
-diag_log "Start Wave";
-diag_log BLWK_currentWaveNumber;
+["BLWK_fnc_startWave",["Start Wave:",BLWK_currentWaveNumber]] call KISKA_fnc_log;
 
 // loop to check wave end
 waitUntil {

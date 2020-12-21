@@ -13,7 +13,7 @@ params [
 			"B_MBT_01_cannon_F",\ 					3 // heavy armour
 			"B_Heli_Transport_01_F",\ 				4 // transport aircraft
 			"B_T_VTOL_01_vehicle_F",\ 				5 // cargo aircraft
-			"B_Plane_CAS_01_F",\ 					6 // CAS plane 
+			"B_Plane_CAS_01_dynamicLoadout_F",\ 					6 // CAS plane 
 			"B_Heli_Attack_01_dynamicLoadout_F"\ 	7 // attack helicopter
 		]
 */
@@ -35,14 +35,16 @@ private _defaultVehicleClass = DEFAULT_VEHICLE_CLASSES select _typeId;
 
 private _fn_pushVehicleForLevel = {
 	params ["_classes"];
-	private _class = _classes select _typeId;
+	private _classesOfType = _classes select _typeId;
 
-	if !(_class isEqualTo "") exitWith {
-		_availableClasses pushBackUnique _class;
-	};
-	
-	if (_supplementEmpty) then {
-		_availableClasses pushBackUnique _defaultVehicleClass;
+	if ((_classesOfType isEqualTo [])) then {
+		if (_supplementEmpty) then {
+			_availableClasses pushBackUnique _defaultVehicleClass;
+		};
+	} else {
+		_classesOfType apply {
+			_availableClasses pushBackUnique _x;
+		};
 	};
 };
 

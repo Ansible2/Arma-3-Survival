@@ -28,10 +28,15 @@ if !(local _unit) exitWith {false};
 
 // CIPHER COMMENT: This may be better off just being a local hit handler that remoteExec's onto the instigator
 // It may spam the network in this case
-private _hitEvent = _unit addMPEventHandler ["mpHit",{
+/*
+_unit addMPEventHandler ["mpHit",{
 	_this call BLWK_fnc_stdEnemyHitEvent;
 }];
+*/
 
+_unit addEventHandler ["Hit",{
+	_this call BLWK_fnc_stdEnemyHitEventLocal;
+}];
 
 _unit addEventHandler ["Killed",{
 	diag_log "kill event";

@@ -11,8 +11,6 @@ class BLWK
 		{};
 		class enableCollisionWithAllPlayers
 		{};
-		class locality
-		{};
 		class moveUpOrDown
 		{};
 		class pickupObject 
@@ -20,6 +18,8 @@ class BLWK
 		class placeObject 
 		{};
 		class purchaseObject 
+		{};
+		class registerObjectPickup
 		{};
 		class removePickedUpObjectActions 
 		{};
@@ -70,8 +70,6 @@ class BLWK
 		class createSupportsArray
 		{};
 		class faksToMedkitLoop
-		{};
-		class getHeadless
 		{};
 		class infoPanelLoop
 		{};
@@ -153,6 +151,8 @@ class BLWK
 	class Other
 	{
 		file = "Functions\Other";
+		class addACESupportMenuAction
+		{};
 		class addPlayerItems
 		{};
 		class adjustPlayerTraits
@@ -197,6 +197,27 @@ class BLWK
 		class addUnlockSupportAction
 		{};
 		class addWeaponBoxSpinAction
+		{};
+	};
+
+	class ParameterSaving
+	{
+		file = "Functions\Parameter Saving";
+		class addParameterDiaryEntries
+		{
+			postInit = 1;
+		};
+		class deleteSavedMissionParameters
+		{};
+		class getSavedParamIndex
+		{};
+		class getSavedParamValue
+		{};
+		class paramsQuery
+		{};
+		class saveAllMissionParameters
+		{};
+		class setParam
 		{};
 	};
 	
@@ -317,6 +338,8 @@ class BLWK
 		{};
 		class civRandomGear
 		{};
+		class handleCivilianKilledEventPlayer
+		{};
 		class killedCivilianEvent
 		{};
 	};
@@ -362,8 +385,6 @@ class BLWK
 	class StandardWaveLibrary
 	{
 		file = "Functions\Wave Type Libraries\Standard Wave Library";
-		class addStdEnemyHitEH
-		{};
 		class addStdEnemyManEHs
 		{};
 		class createStdWaveInfantry
@@ -372,11 +393,13 @@ class BLWK
 		{};
 		class handleKillEventPlayer
 		{};
+		class handleHitEventPlayer
+		{};
 		class handleStandardWave
 		{};
-		class removeStdEnemyHitEvent
-		{};
 		class stdEnemyHitEvent
+		{};
+		class stdEnemyHitEventLocal
 		{};
 		class stdEnemyKilledEvent
 		{};
@@ -396,6 +419,8 @@ class BLWK
 		class explodeSuicideBomberEvent
 		{};
 		class handleSuicideWave
+		{};
+		class playBomberAudio
 		{};
 		class suicideBomberLoop
 		{};

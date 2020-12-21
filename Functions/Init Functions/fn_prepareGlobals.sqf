@@ -21,91 +21,6 @@ Examples:
 
     (end)
 ---------------------------------------------------------------------------- */
-if (isServer OR {!hasInterface}) then {
-    /* DLC exclusion */
-/*
-    // all of theses still need to be added to missionParams
-
-    // need to get the DLC strigs returned by getAssetDLCInfo when 2.00 comes out
-    BLWK_useableDLCs = [];
-
-    BLWK_canUseApexDLC = [false,true] select ("BLWK_canUseApexDLC" call BIS_fnc_getParamValue); 
-    if (BLWK_canUseApexDLC) then {BLWK_useableDLCs pushBack ""};
-
-    BLWK_canUseLOWDLC = [false,true] select ("BLWK_canUseLOWDLC" call BIS_fnc_getParamValue);
-    if (BLWK_canUseLOWDLC) then {BLWK_useableDLCs pushBack ""}; 
-
-    BLWK_canUseMarksmanDLC = [false,true] select ("BLWK_canUseMarksmanDLC" call BIS_fnc_getParamValue);
-    if (BLWK_canUseMarksmanDLC) then {BLWK_useableDLCs pushBack ""}; 
-
-    BLWK_canUseContactDLC = [false,true] select ("BLWK_canUseContactDLC" call BIS_fnc_getParamValue);
-    if (BLWK_canUseContactDLC) then {BLWK_useableDLCs pushBack ""}; 
-
-    BLWK_canUseTankstDLC = [false,true] select ("BLWK_canUseTankstDLC" call BIS_fnc_getParamValue);
-    if (BLWK_canUseTankstDLC) then {BLWK_useableDLCs pushBack ""}; 
-*/
-
-    // AI unit classes
-    // some of these are public to be used with BLWK_fnc_getPointsForKill or for friendlies to call support
-    private _unitTypeInfo = call BLWK_fnc_prepareUnitClasses;
-    
-    // friendly
-    BLWK_friendly_menClasses = _unitTypeInfo select 0;
-    publicVariable "BLWK_friendly_menClasses";
-    BLWK_friendly_vehicleClasses = _unitTypeInfo select 1;
-    publicVariable "BLWK_friendly_vehicleClasses";
-    
-    // level 1
-    BLWK_level1_menClasses = _unitTypeInfo select 2;
-    publicVariable "BLWK_level1_menClasses";
-    BLWK_level1_vehicleClasses = _unitTypeInfo select 3;
-    
-    // level 2
-    BLWK_level2_menClasses = _unitTypeInfo select 4;
-    publicVariable "BLWK_level2_menClasses";
-    BLWK_level2_vehicleClasses = _unitTypeInfo select 5;
-    
-    // level 3
-    BLWK_level3_menClasses = _unitTypeInfo select 6;
-    publicVariable "BLWK_level3_menClasses";
-    BLWK_level3_vehicleClasses = _unitTypeInfo select 7;
-    
-    // level 4
-    BLWK_level4_menClasses = _unitTypeInfo select 8;
-    publicVariable "BLWK_level4_menClasses";
-    BLWK_level4_vehicleClasses = _unitTypeInfo select 9;
-    
-    // level 5
-    BLWK_level5_menClasses = _unitTypeInfo select 10;
-    publicVariable "BLWK_level5_menClasses";
-    BLWK_level5_vehicleClasses = _unitTypeInfo select 11;
-
-    BLWK_enemiesPerWaveMultiplier = ("BLWK_enemiesPerWaveMultiplier" call BIS_fnc_getParamValue);  // How many hostiles per wave (waveCount x BLWK_enemiesPerWaveMultiplier)
-    BLWK_enemiesPerPlayerMultiplier = ("BLWK_enemiesPerPlayerMultiplier" call BIS_fnc_getParamValue);   // How many extra units are added per player
-    BLWK_maxPistolOnlyWaves = ("BLWK_maxPistolOnlyWaves" call BIS_fnc_getParamValue);  //What wave enemies stop only using pistols
-    BLWK_randomizeEnemyWeapons = [false,true] select ("BLWK_randomizeEnemyWeapons" call BIS_fnc_getParamValue);
-
-    BLWK_vehicleStartWave = ("BLWK_vehicleStartWave" call BIS_fnc_getParamValue);
-    BLWK_specialWavesStartAt = ("BLWK_specialWavesStartAt" call BIS_fnc_getParamValue);
-
-    // vehicle spawns
-    BLWK_lightCarLikelihood = ("BLWK_lightCarLikelihood" call BIS_fnc_getParamValue);
-    BLWK_heavyCarLikelihood = ("BLWK_heavyCarLikelihood" call BIS_fnc_getParamValue);
-    BLWK_lightArmorLikelihood = ("BLWK_lightArmorLikelihood" call BIS_fnc_getParamValue);
-    BLWK_heavyArmorLikelihood = ("BLWK_heavyArmorLikelihood" call BIS_fnc_getParamValue);
-
-
-    BLWK_infantrySpawnPositions = [];
-    BLWK_vehicleSpawnPositions = [];
-
-    // this is used to only allow only so many AI to be active at any time
-    BLWK_maxEnemyInfantryAtOnce = ("BLWK_maxEnemyInfantryAtOnce" call BIS_fnc_getParamValue);
-
-    // used for chaning medical items of OPTRE units (biofoam to FAKs)
-    BLWK_isOptreLoaded = ["OPTRE_core"] call KISKA_fnc_ispatchLoaded;
-
-    BLWK_doDetectCollision = [false,true] select ("BLWK_doDetectCollision" call BIS_fnc_getParamValue);
-};
 if (isServer) then {
     // We don't need to constantly check if the server is dedicated, and we only want to run things like
     /// playSound and hud updates on a server with an interface (0) or just clients (-2)
@@ -115,13 +30,15 @@ if (isServer) then {
     BLWK_logicCenter = createCenter sideLogic;
 
     // check if headless client is loaded
-    private _aiHandlerEntity = call BLWK_fnc_getHeadless;
-    if (isNull _aiHandlerEntity) then {
+    if (isNil "BLWK_headlessClient") then {
         private _logicGroup = createGroup BLWK_logicCenter;
         _aiHandlerEntity = _logicGroup createUnit ["Logic", [0,0,0], [], 0, "NONE"];
+        BLWK_theAIHandlerEntity = _aiHandlerEntity;
+    } else {
+        BLWK_theAIHandlerEntity = BLWK_headlessClient;
     };
-    BLWK_theAIHandlerEntity = _aiHandlerEntity;
     publicVariable "BLWK_theAIHandlerEntity";
+    
     // number should never be zero, but it can be for some time until the server has initialized
     waitUntil {
         if (owner BLWK_theAIHandlerEntity != 0) exitWith {true};
@@ -197,6 +114,56 @@ if (isServer) then {
     BLWK_playerGroup = createGroup [BLUFOR,false];
     publicVariable "BLWK_playerGroup";
 };
+if (isServer OR {!hasInterface}) then {
+    /* DLC exclusion */
+/*
+    // all of theses still need to be added to missionParams
+
+    // need to get the DLC strigs returned by getAssetDLCInfo when 2.00 comes out
+    BLWK_useableDLCs = [];
+
+    BLWK_canUseApexDLC = [false,true] select ("BLWK_canUseApexDLC" call BIS_fnc_getParamValue); 
+    if (BLWK_canUseApexDLC) then {BLWK_useableDLCs pushBack ""};
+
+    BLWK_canUseLOWDLC = [false,true] select ("BLWK_canUseLOWDLC" call BIS_fnc_getParamValue);
+    if (BLWK_canUseLOWDLC) then {BLWK_useableDLCs pushBack ""}; 
+
+    BLWK_canUseMarksmanDLC = [false,true] select ("BLWK_canUseMarksmanDLC" call BIS_fnc_getParamValue);
+    if (BLWK_canUseMarksmanDLC) then {BLWK_useableDLCs pushBack ""}; 
+
+    BLWK_canUseContactDLC = [false,true] select ("BLWK_canUseContactDLC" call BIS_fnc_getParamValue);
+    if (BLWK_canUseContactDLC) then {BLWK_useableDLCs pushBack ""}; 
+
+    BLWK_canUseTankstDLC = [false,true] select ("BLWK_canUseTankstDLC" call BIS_fnc_getParamValue);
+    if (BLWK_canUseTankstDLC) then {BLWK_useableDLCs pushBack ""}; 
+*/
+
+    BLWK_enemiesPerWaveMultiplier = ("BLWK_enemiesPerWaveMultiplier" call BIS_fnc_getParamValue) / 10;  // How many hostiles per wave (waveCount x BLWK_enemiesPerWaveMultiplier)
+    BLWK_enemiesPerPlayerMultiplier = ("BLWK_enemiesPerPlayerMultiplier" call BIS_fnc_getParamValue) / 10;   // How many extra units are added per player
+    BLWK_maxPistolOnlyWaves = ("BLWK_maxPistolOnlyWaves" call BIS_fnc_getParamValue);  //What wave enemies stop only using pistols
+    BLWK_randomizeEnemyWeapons = [false,true] select ("BLWK_randomizeEnemyWeapons" call BIS_fnc_getParamValue);
+
+    BLWK_vehicleStartWave = ("BLWK_vehicleStartWave" call BIS_fnc_getParamValue);
+    BLWK_specialWavesStartAt = ("BLWK_specialWavesStartAt" call BIS_fnc_getParamValue);
+
+    // vehicle spawns
+    BLWK_lightCarLikelihood = ("BLWK_lightCarLikelihood" call BIS_fnc_getParamValue);
+    BLWK_heavyCarLikelihood = ("BLWK_heavyCarLikelihood" call BIS_fnc_getParamValue);
+    BLWK_lightArmorLikelihood = ("BLWK_lightArmorLikelihood" call BIS_fnc_getParamValue);
+    BLWK_heavyArmorLikelihood = ("BLWK_heavyArmorLikelihood" call BIS_fnc_getParamValue);
+    BLWK_baseVehicleSpawnLikelihood = ("BLWK_baseVehicleSpawnLikelihood" call BIS_fnc_getParamValue);
+
+    BLWK_infantrySpawnPositions = [];
+    BLWK_vehicleSpawnPositions = [];
+
+    // this is used to only allow only so many AI to be active at any time
+    BLWK_maxEnemyInfantryAtOnce = ("BLWK_maxEnemyInfantryAtOnce" call BIS_fnc_getParamValue);
+
+    // used for chaning medical items of OPTRE units (biofoam to FAKs)
+    BLWK_isOptreLoaded = ["OPTRE_core"] call KISKA_fnc_ispatchLoaded;
+
+    BLWK_doDetectCollision = [false,true] select ("BLWK_doDetectCollision" call BIS_fnc_getParamValue);
+};
 if (hasInterface) then {
     /* Starting Items */
     BLWK_playersStartWith_pistol = [false,true] select ("BLWK_playersStartWith_pistol" call BIS_fnc_getParamValue);
@@ -214,7 +181,7 @@ if (hasInterface) then {
     BLWK_magRepackEnabled = [false,true] select ("BLWK_magRepackEnabled" call BIS_fnc_getParamValue);
 
     BLWK_staminaEnabled = [false,true] select ("BLWK_staminaEnabled" call BIS_fnc_getParamValue);
-    BLWK_weaponSwayCoef = "BLWK_weaponSwayCoef" call BIS_fnc_getParamValue;
+    BLWK_weaponSwayCoef = ("BLWK_weaponSwayCoef" call BIS_fnc_getParamValue) / 100;
 
     BLWK_multipleLootReveals = [false,true] select ("BLWK_multipleLootReveals" call BIS_fnc_getParamValue);
     BLWK_aircraftGunnerLifetime = "BLWK_aircraftGunnerLifetime" call BIS_fnc_getParamValue;
@@ -229,6 +196,33 @@ if (hasInterface) then {
         BLWK_enforceArea = false;
     };
 };
+
+
+
+// AI unit classes
+
+// some of these are public to be used with BLWK_fnc_getPointsForKill or for friendlies to call support
+private _unitTypeInfo = call BLWK_fnc_prepareUnitClasses;
+
+// friendly
+BLWK_friendly_menClasses = _unitTypeInfo select 0;
+BLWK_friendly_vehicleClasses = _unitTypeInfo select 1;
+
+// level 1
+BLWK_level1_menClasses = _unitTypeInfo select 2;
+BLWK_level1_vehicleClasses = _unitTypeInfo select 3;
+// level 2
+BLWK_level2_menClasses = _unitTypeInfo select 4;
+BLWK_level2_vehicleClasses = _unitTypeInfo select 5;
+// level 3
+BLWK_level3_menClasses = _unitTypeInfo select 6;
+BLWK_level3_vehicleClasses = _unitTypeInfo select 7;
+// level 4
+BLWK_level4_menClasses = _unitTypeInfo select 8;
+BLWK_level4_vehicleClasses = _unitTypeInfo select 9;
+// level 5
+BLWK_level5_menClasses = _unitTypeInfo select 10;
+BLWK_level5_vehicleClasses = _unitTypeInfo select 11;
 
 if (isNil "BLWK_currentWaveNumber") then {
     BLWK_currentWaveNumber = "BLWK_startingWaveNumber" call BIS_fnc_getParamValue;
@@ -254,7 +248,9 @@ BLWK_pointsMultiForDamage = "BLWK_pointsMultiForDamage" call BIS_fnc_getParamVal
 BLWK_maxPointsForDamage = BLWK_pointsForHit * 2; // There are certain weapons that cause extreme amounts of damage that will give an immense amount of points, so this caps it
 
 BLWK_dontUseRevive = (("ReviveMode" call BIS_fnc_getParamValue) isEqualTo 0);
-BLWK_ACELoaded = ["ACE_Medical_StateMachine"] call KISKA_fnc_ispatchLoaded;
+
+BLWK_ACELoaded = ["ace_common"] call KISKA_fnc_ispatchLoaded;
+
 
 BLWK_costToSpinRandomBox = 950; 
 if (isNil "BLWK_supportDishFound") then {

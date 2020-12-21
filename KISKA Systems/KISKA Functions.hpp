@@ -81,6 +81,8 @@ class KISKA
 		{};
 		class isPatchLoaded
 		{};
+		class log
+		{};
 		class pushBackToArray
 		{};
 		class removeArsenal

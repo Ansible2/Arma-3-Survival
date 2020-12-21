@@ -28,6 +28,9 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+#define SCRIPT_NAME "BLWK_fnc_pathingLoop"
+scriptName SCRIPT_NAME;
+
 if (!canSuspend) exitWith {
 	"BLWK_fnc_pathingLoop should be run in scheduled environment" call BIS_fnc_error;
 };
@@ -55,13 +58,22 @@ if (!alive _groupLeader) exitWith {
 private _groupUnits = units _groupToCheck;
 private "_aliveIndex";
 private _fn_checkGroupStatus = {
-	if (isNull _groupToCheck) exitWith {false};// check if it was deleted
+	// check if it was deleted
+	if (isNull _groupToCheck) exitWith {
+		//[SCRIPT_NAME,["Found that",_groupToCheck,"is a null group"]] call KISKA_fnc_log;
+		false
+	};
 
+	// check if anyone is in it
 	_groupUnits = units _groupToCheck;
-	if (_groupUnits isEqualTo []) exitWith {false};// check if anyone is in it
+	if (_groupUnits isEqualTo []) exitWith {
+		//[SCRIPT_NAME,["Found that",_groupToCheck,"is am empty group"]] call KISKA_fnc_log;
+		false
+	};
 
+	// check if anyone is alive
 	_aliveIndex = _groupUnits findIf {alive _x};
-	if (_aliveIndex != -1) exitWith {true}; // check if anyone is alive
+	if (_aliveIndex != -1) exitWith {true}; 
 
 	false
 };
@@ -71,9 +83,7 @@ private _fn_leaderVelocityCheck = {
 	_groupLeader = leader _groupToCheck; 
 	// forward/backward velocity is the most telling of movement
 	_leaderVelocity = (velocityModelSpace _groupLeader) select 0;
-	
-	//diag_log _leaderVelocity;
-	
+
 	// if leader is stationary
 	if (_leaderVelocity isEqualTo 0) exitWith {false};
 	true
@@ -118,10 +128,15 @@ private _fn_handleStationaryLeader = {
 #define LOOP_VAR_NAME "BLWK_runPathingLoop"
 _groupToCheck setVariable [LOOP_VAR_NAME,true];
 
-while {sleep _timeBetweenChecks; (_groupToCheck getVariable [LOOP_VAR_NAME,false])} do {
+while {sleep _timeBetweenChecks; true} do {
 	// update unit list and check if they are still up
 	
+	if (!(isNull _groupToCheck) AND {!(_groupToCheck getVariable [LOOP_VAR_NAME,false])}) exitWith {
+		//[SCRIPT_NAME,["Loop var for group",_groupToCheck,"was set to false. Exiting"]] call KISKA_fnc_log;
+	};
+
 	if !(call _fn_checkGroupStatus) exitWith {
+		[SCRIPT_NAME,["Found that",_groupToCheck,"failed group status check. Exiting"]] call KISKA_fnc_log;
 		//["%1 exited pathing loop because of failed group status",_groupToCheck] call BIS_fnc_error;
 		_groupToCheck setVariable [LOOP_VAR_NAME,nil];
 	};
@@ -130,8 +145,7 @@ while {sleep _timeBetweenChecks; (_groupToCheck getVariable [LOOP_VAR_NAME,false
 		//["%1 failed velocity test",_groupToCheck] call BIS_fnc_error;
 		
 		if (call _fn_handleStationaryLeader) then {
-			//["%1 leader reset",_groupToCheck] call BIS_fnc_error;
-			//_groupLeader setPos (selectRandom BLWK_infantrySpawnPositions);
+			//[SCRIPT_NAME,["Reset leader of group",_groupToCheck]] call KISKA_fnc_log;
 			_groupLeader setPos ([BLWK_mainCrate, 75, 125, 2, 0] call BIS_fnc_findSafePos);
 			sleep 1;
 			[_groupLeader,position BLWK_mainCrate] remoteExecCall ["move",_groupLeader];

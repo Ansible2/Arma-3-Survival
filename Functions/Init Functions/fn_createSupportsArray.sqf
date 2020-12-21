@@ -49,7 +49,7 @@ _configs apply {
 	_patch_temp = [_x >> "patch"] call BIS_fnc_getCfgData;
 	if ((_patch_temp isEqualTo "") OR {[_patch_temp] call KISKA_fnc_isPatchLoaded}) then {
 		_class_temp = configName _x;
-		if !(_class_temp == "basicSupport") then {
+		if !("_baseClass" in _class_temp) then {
 			_price_temp = [_x >> "price"] call BIS_fnc_getCfgData;
 			_category_temp = [_x >> "category"] call BIS_fnc_getCfgData;
 

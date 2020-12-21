@@ -31,7 +31,9 @@ if (_players isEqualTo []) exitWith {
 // get the player with the least amount of stalkers
 private _playerStalkerCounts = [];
 _players apply {
-	_playerStalkerCounts pushBack (_x getVariable [STALKER_COUNT_VAR,0]); 
+	if !(isNull _x) then {
+		_playerStalkerCounts pushBack (_x getVariable [STALKER_COUNT_VAR,0]);
+	};
 };
 private _lowestStalkerCount = selectMin _playerStalkerCounts;
 private _playerWithLowestStalkers = _players select (_playerStalkerCounts findIf {_x isEqualTo _lowestStalkerCount});

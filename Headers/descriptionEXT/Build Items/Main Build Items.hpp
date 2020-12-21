@@ -128,6 +128,7 @@ class BLWK_buildableItems
 		rotation = 180;
 		attachmentY = 4;
 		attachmentZ = 2;
+		invincible = 1;
 	};
 
 	class Land_PortableLight_double_F : BLWK_genericBuildItemBase
@@ -140,7 +141,7 @@ class BLWK_buildableItems
 
 	class Land_CncBarrierMedium4_F : BLWK_genericBuildItemBase
 	{
-		price = 300;
+		price = 800;
 		category = WALLS_CATEGORY;
 		attachmentX = 0.25;
 		attachmentY = 5;
@@ -166,8 +167,28 @@ class BLWK_buildableItems
 	class Land_HBarrier_3_F : BLWK_genericBuildItemBase
 	{
 		price = 500;
-		category = WALLS_CATEGORY;
+		category = HBARR_CATEGORY;
 		attachmentY = 4;
+	};
+
+	class Land_HBarrier_5_F : Land_HBarrier_3_F
+	{
+		price = 900;
+	};
+
+	class Land_HBarrier_Big_F : Land_HBarrier_3_F
+	{
+		price = 1100;
+		attachmentZ = 1.5;
+		attachmentY = 6;
+	};
+
+	class Land_HBarrierTower_F : Land_HBarrier_3_F
+	{
+		price = 3000;
+		attachmentY = 9;
+		attachmentZ = 3;
+		rotation = 180;
 	};
 
 	class Land_PierLadder_F : BLWK_genericBuildItemBase
@@ -209,8 +230,12 @@ class BLWK_buildableItems
 	class Land_HBarrierWall4_F : BLWK_genericBuildItemBase
 	{
 		price = 1000;
-		category = WALLS_CATEGORY;
+		category = HBARR_CATEGORY;
 		attachmentY = 5;
+	};
+	class Land_HBarrierWall_corner_F : Land_HBarrierWall4_F
+	{
+		price = 900;
 	};
 
 	class BlockConcrete_F : BLWK_genericBuildItemBase
@@ -303,7 +328,7 @@ class BLWK_buildableItems
 	class Land_HBarrierWall_corridor_F : BLWK_genericBuildItemBase
 	{
 		price = 400;
-		category = WALLS_CATEGORY;
+		category = HBARR_CATEGORY;
 		rotation = 90;
 		attachmentY = 5;
 	};

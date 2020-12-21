@@ -28,7 +28,7 @@ class ReviveMode
 		$STR_A3_Disabled,
 		$STR_A3_EnabledForAllPlayers
 	};
-	default = 1;
+	GET_DEFAULT_PARAM(ReviveMode,1)
 	function = "bis_fnc_paramReviveMode";
 };
 
@@ -59,7 +59,7 @@ class ReviveDuration
 		25,
 		30
 	};
-	default = 8;
+	GET_DEFAULT_PARAM(ReviveDuration,8)
 	function = "bis_fnc_paramReviveDuration";
 };
 
@@ -78,7 +78,7 @@ class ReviveRequiredTrait
 		$STR_A3_None,
 		$STR_A3_Medic
 	};
-	default = 0;
+	GET_DEFAULT_PARAM(ReviveRequiredTrait,0)
 	function = "bis_fnc_paramReviveRequiredTrait";
 };
 
@@ -103,7 +103,7 @@ class ReviveMedicSpeedMultiplier
 		"2.5x",
 		"3x"
 	};
-	default = 1;
+	GET_DEFAULT_PARAM(ReviveMedicSpeedMultiplier,1)
 	function = "bis_fnc_paramReviveMedicSpeedMultiplier";
 };
 
@@ -124,7 +124,7 @@ class ReviveRequiredItems
 		$STR_A3_Medikit,
 		$STR_A3_FirstAidKitOrMedikit
 	};
-	default = 2;
+	GET_DEFAULT_PARAM(ReviveRequiredItems,2)
 	function = "bis_fnc_paramReviveRequiredItems";
 };
 
@@ -143,7 +143,7 @@ class UnconsciousStateMode
 		$STR_A3_Basic,
 		$STR_A3_Advanced
 	};
-	default = -100;
+	GET_DEFAULT_PARAM(UnconsciousStateMode,-100)
 	function = "bis_fnc_paramReviveUnconsciousStateMode";
 };
 
@@ -176,7 +176,7 @@ class ReviveBleedOutDuration
 		120,
 		180
 	};
-	default = 120;
+	GET_DEFAULT_PARAM(ReviveBleedOutDuration,120)
 	function = "bis_fnc_paramReviveBleedOutDuration";
 };
 
@@ -207,6 +207,6 @@ class ReviveForceRespawnDuration
 		9,
 		10
 	};
-	default = -100;
+	GET_DEFAULT_PARAM(ReviveForceRespawnDuration,-100)
 	function = "bis_fnc_paramReviveForceRespawnDuration";
 };

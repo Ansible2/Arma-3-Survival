@@ -54,6 +54,33 @@
 // CAS Gun Run
 #define CAS_GUN_RUN_CLASS casGunRun_commMenu
 #define CAS_GUN_RUN_TEXT "CAS - Gun Run"
+
+// CAS Guns and Rockets HE
+#define CAS_GUNS_AND_ROCKETS_HE_CLASS casGunsAndRocketsHE_commMenu
+#define CAS_GUNS_AND_ROCKETS_HE_TEXT "CAS - Guns And Rockets (HE)"
+// CAS Guns and Rockets AP
+#define CAS_GUNS_AND_ROCKETS_AP_CLASS casGunsAndRocketsAP_commMenu
+#define CAS_GUNS_AND_ROCKETS_AP_TEXT "CAS - Guns And Rockets (Armor Piercing)"
+
+// CAS Rockets HE
+#define CAS_ROCKETS_HE_CLASS casRocketsHE_commMenu
+#define CAS_ROCKETS_HE_TEXT "CAS - Rockets (HE)"
+// CAS Rockets AP
+#define CAS_ROCKETS_AP_CLASS casRocketsAP_commMenu
+#define CAS_ROCKETS_AP_TEXT "CAS - Rockets (Armor Piercing)"
+
+// CAS UGB Bomb
+#define CAS_BOMB_UGB_CLASS casUGB_commMenu
+#define CAS_BOMB_UGB_TEXT "CAS - Unguided Bomb Drop"
+// CAS Cluster Bomb
+#define CAS_BOMB_CLUSTER_CLASS casClusterBomb_commMenu
+#define CAS_BOMB_CLUSTER_TEXT "CAS - Cluster Bomb Drop"
+
+// CAS AGM
+#define CAS_AGM_CLASS casAGM_commMenu
+#define CAS_AGM_TEXT "CAS - Air to Ground Missile"
+
+
 // CAS Rockets
 #define CAS_ROCKETS_CLASS casRockets_commMenu
 #define CAS_ROCKETS_TEXT "CAS - Rockets"

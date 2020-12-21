@@ -1,11 +1,17 @@
 if !(hasInterface) exitWith {};
 
-params ["_killedUnit"];
+params [
+	["_killedUnit",objNull],
+	["_isVehicle",false]
+];
+
+if (isNull _killedUnit) exitWith {};
 
 private _points = [_killedUnit] call BLWK_fnc_getPointsForKill;
 		
 // aircraft gunners get limited points
-if (missionNamespace getVariable ["BLWK_isAircraftGunner",false]) then {
+if (missionNamespace getVariable ["BLWK_isAircraftGunner",false] AND {!_isVehicle}) then {
+
 	_points = round (_points / 4);
 };
 

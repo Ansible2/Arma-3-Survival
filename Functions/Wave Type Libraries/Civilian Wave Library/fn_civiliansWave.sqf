@@ -42,8 +42,8 @@ for "_i" from 1 to NUM_CIVILIANS do {
 
 	// if a player kills the civilian, remove points
 	// CIPHER COMMENT: make sure you need MP event instead of local one
-	_unit addMpEventHandler ["MPKILLED",{
-		[_this,_thisEventhandler] call BLWK_fnc_killedCivilianEvent;
+	_unit addEventHandler ["KILLED",{
+		_this call BLWK_fnc_killedCivilianEvent;
 	}];
 
 	// create cycle waypoints for them

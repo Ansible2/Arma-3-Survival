@@ -66,22 +66,29 @@ _stalkerGroup setVariable [STALKED_UNIT_VAR,_playerToStalk];
 private _stalkerGroupUnits = units _stalkerGroup;
 private "_id_temp";
 _stalkerGroupUnits apply {
-	_id_temp = _x addEventHandler ["KILLED",{
-		params ["_unit"];
+	if !(isNull _x) then {
+		_id_temp = _x addEventHandler ["KILLED",{
+			params ["_unit"];
 
-		private _stalkedPlayer = (group _unit) getVariable STALKED_UNIT_VAR;
-		private _numberOfStalkers = _stalkedPlayer getVariable STALKER_COUNT_VAR;
-		_numberOfStalkers = _numberOfStalkers - 1;
-		_stalkedPlayer setVariable [STALKER_COUNT_VAR,_numberOfStalkers];
-	}];
+			private _group = group _unit;
+			if !(isNull _group) then {
+				private _stalkedPlayer = _group getVariable STALKED_UNIT_VAR;
+				if !(isNull _stalkedPlayer) then {
+					private _numberOfStalkers = _stalkedPlayer getVariable STALKER_COUNT_VAR;
+					_numberOfStalkers = _numberOfStalkers - 1;
+					_stalkedPlayer setVariable [STALKER_COUNT_VAR,_numberOfStalkers];
+				};
+			};
+		}];
 
-	// for removal with BLWK_fnc_stopStalking
-	_x setVariable [UNIT_KILLED_EVENT_VAR,_id_temp];
+		// for removal with BLWK_fnc_stopStalking
+		_x setVariable [UNIT_KILLED_EVENT_VAR,_id_temp];
+	};
 };
 
 
 // do the stalking
-while { !isNull _stalkerGroup AND {_stalkerGroup getVariable DO_STALK_VAR} } do {
+while {!(isNull _stalkerGroup) AND {_stalkerGroup getVariable DO_STALK_VAR} } do {
 	
 	[_stalkerGroup] call CBAP_fnc_clearWaypoints;
 	[_stalkerGroup, _playerToStalk, 10, "MOVE", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
