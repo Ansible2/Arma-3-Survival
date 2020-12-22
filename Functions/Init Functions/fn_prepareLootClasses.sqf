@@ -41,10 +41,10 @@ if (!isServer AND {hasInterface}) exitWith {false};
 BLWK_lootBlacklist = [];
 private _blackList = [missionConfigFile >> "BLWK_lootLists" >> "lootBlacklist"] call BIS_fnc_getCfgDataArray;
 if !(_blackList isEqualTo []) then {
-	private _tempClass = "";
+	private _class = "";
 	_blackList apply {
-		_tempClass = toLower _x;
-		BLWK_lootBlacklist pushBack _tempClass;
+		_class = toLower _x;
+		BLWK_lootBlacklist pushBack _class;
 	};
 };
 
@@ -144,7 +144,7 @@ private _fn_sortMagazines = {
 private _fn_sortType = {
 	// get the class name of the item and check if it is in the blacklist
 	_tempClass = configName (_this select 0);
-	if (_tempClass in LOOT_BLACKLIST) exitWith {};
+	if (_tempClass in BLWK_lootBlacklist) exitWith {};
 
 	// CIPHER COMMENT: DLC check is awaiting 2.0 release for getAssetDLCInfo command
 	/*
