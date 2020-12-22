@@ -193,7 +193,7 @@ if (CHECK_SUPPORT_CLASS(TURRET_DOOR_GUNNER_CLASS)) exitWith {
 };
 if (CHECK_SUPPORT_CLASS(TURRET_ATTACK_HELI_GUNNER_CLASS)) exitWith {
 	if !(missionNamespace getVariable ["BLWK_heliGunnerInUse",false]) then {
-		private _friendlyAttackHeliClass = [7,false] call BLWK_fnc_getFriendlyVehicleClass;
+		private _friendlyAttackHeliClass = [7] call BLWK_fnc_getFriendlyVehicleClass;
 		TURRET_EXPRESSION(_friendlyAttackHeliClass,400,550,"B_Heli_Attack_01_dynamicLoadout_F","BLWK_heliGunnerInUse")	
 	} else {
 		hint "Only one helicopter gunner support may be active at a time.";

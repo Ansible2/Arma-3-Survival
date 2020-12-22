@@ -52,25 +52,7 @@ if (isServer) then {
     /* 0 = Off */
     /* 1 = Only Whitelist Items will spawn as loot */
     /* 2 = Whitelist items get added to existing loot (increases the chance of loot spawning) */
-    BLWK_loot_whiteListMode = 0;
-
-    // loot classes
-    private _lootClasses = call BLWK_fnc_prepareLootClasses;
-
-    BLWK_loot_weaponClasses = []; // for getting all weapons into the same pool for spawning loot
-    BLWK_loot_primaryWeapons = _lootClasses select 0; // the individual split ups are for use with BLWK_fnc_randomizeWeapons
-    BLWK_loot_weaponClasses append BLWK_loot_primaryWeapons;
-    BLWK_loot_handgunWeapons = _lootClasses select 1;
-    BLWK_loot_weaponClasses append BLWK_loot_handgunWeapons;
-    BLWK_loot_launchers = _lootClasses select 2;
-    BLWK_loot_weaponClasses append BLWK_loot_launchers;
-
-    BLWK_loot_backpackClasses = _lootClasses select 3;
-    BLWK_loot_vestClasses = _lootClasses select 4;
-    BLWK_loot_uniformClasses = _lootClasses select 5;
-    BLWK_loot_headGearClasses = _lootClasses select 6;
-    BLWK_loot_itemClasses = _lootClasses select 7;
-    BLWK_loot_explosiveClasses = _lootClasses select 8;
+    BLWK_loot_whiteListMode = ("BLWK_loot_whiteListMode" call BIS_fnc_getParamValue);
 
     /* LOCATION LIST OPTIONS */
     BLWK_locations = nearestlocations [[0,0,0],["nameVillage","nameCity","nameCityCapital","nameMarine","Airport"],worldsize * sqrt 2]; 
@@ -137,6 +119,24 @@ if (isServer OR {!hasInterface}) then {
     BLWK_canUseTankstDLC = [false,true] select ("BLWK_canUseTankstDLC" call BIS_fnc_getParamValue);
     if (BLWK_canUseTankstDLC) then {BLWK_useableDLCs pushBack ""}; 
 */
+
+    // loot classes
+    private _lootClasses = call BLWK_fnc_prepareLootClasses;
+    // the headless client needs this for weapon randomization
+    BLWK_loot_weaponClasses = []; // for getting all weapons into the same pool for spawning loot
+    BLWK_loot_primaryWeapons = _lootClasses select 0; // the individual split ups are for use with BLWK_fnc_randomizeWeapons
+    BLWK_loot_weaponClasses append BLWK_loot_primaryWeapons;
+    BLWK_loot_handgunWeapons = _lootClasses select 1;
+    BLWK_loot_weaponClasses append BLWK_loot_handgunWeapons;
+    BLWK_loot_launchers = _lootClasses select 2;
+    BLWK_loot_weaponClasses append BLWK_loot_launchers;
+
+    BLWK_loot_backpackClasses = _lootClasses select 3;
+    BLWK_loot_vestClasses = _lootClasses select 4;
+    BLWK_loot_uniformClasses = _lootClasses select 5;
+    BLWK_loot_headGearClasses = _lootClasses select 6;
+    BLWK_loot_itemClasses = _lootClasses select 7;
+    BLWK_loot_explosiveClasses = _lootClasses select 8;
 
     BLWK_enemiesPerWaveMultiplier = ("BLWK_enemiesPerWaveMultiplier" call BIS_fnc_getParamValue) / 10;  // How many hostiles per wave (waveCount x BLWK_enemiesPerWaveMultiplier)
     BLWK_enemiesPerPlayerMultiplier = ("BLWK_enemiesPerPlayerMultiplier" call BIS_fnc_getParamValue) / 10;   // How many extra units are added per player

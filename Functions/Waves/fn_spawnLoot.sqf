@@ -151,6 +151,27 @@ BLWK_spawnedLoot pushBack BLWK_moneyPile;
 	Everything else
 
 ---------------------------------------------------------------------------- */
+private _fn_findAMagazine = {
+	params ["_weaponClass"];
+
+	private _magArray = [configFile >> "CfgWeapons" >> _weaponClass >> "magazines"] call BIS_fnc_getCfgDataArray;
+	// if no mags are found
+	if (_magArray isEqualTo []) exitWith {""};
+
+	_magArray = [_magArray] call CBAP_fnc_shuffle;
+
+	private _index = _magArray findIf {
+		!((toLower _x) in BLWK_lootBlacklist)
+	};
+
+	// if a mag is found
+	if (_index != -1) then {
+		_magArray select _index
+	} else { // if a mag is not found
+		""
+	};
+};
+
 private _fn_addLoot = {
 	params ["_holder"];
 	
@@ -195,17 +216,24 @@ private _fn_addLoot = {
 	// weapons
 	if (_typeToSpawn isEqualTo 5 OR {_typeToSpawn isEqualTo 8} OR {_typeToSpawn isEqualTo 9}) exitWith { // there are three numbers here to encourage more weapon spawns
 		_selectedItemClass = selectRandom BLWK_loot_weaponClasses;
-		_magazineClass = selectRandom (getArray (configFile >> "CfgWeapons" >> _selectedItemClass >> "magazines"));
 		_holder addWeaponCargoGlobal [_selectedItemClass,1];
-		_holder addMagazineCargoGlobal [_magazineClass,round random [1,2,3]];
+
+		_magazineClass = [_selectedItemClass] call _fn_findAMagazine;
+		// if weapon has mags capable of spawning
+		if (_magazineClass != "") then {
+			_holder addMagazineCargoGlobal [_magazineClass,round random [1,2,3]];
+		};
 
 		_selectedItemClass  
 	};
 	// magazines
 	if (_typeToSpawn isEqualTo 6) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_weaponClasses;
-		_magazineClass = selectRandom (getArray (configFile >> "CfgWeapons" >> _selectedItemClass >> "magazines"));
-		_holder addMagazineCargoGlobal [_magazineClass,round random [1,2,3]];
+		_magazineClass = [_selectedItemClass] call _fn_findAMagazine;
+		// if weapon has mags capable of spawning
+		if (_magazineClass != "") then {
+			_holder addMagazineCargoGlobal [_magazineClass,round random [1,2,3]];
+		};
 		
 		_magazineClass 
 	};
@@ -221,7 +249,6 @@ private _fn_addLoot = {
 
 _sortedPositions apply {
 	// in order to spawn stuff like weapons on the ground, we create holders
-	// CIPHER COMMENT: See if this is needed
 
 	private _holder = createVehicle ["GroundWeaponHolder_scripted", _x, [], 0, "CAN_COLLIDE"];
 	private _primaryLootClass = [_holder] call _fn_addLoot;

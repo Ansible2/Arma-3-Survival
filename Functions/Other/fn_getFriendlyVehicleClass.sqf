@@ -3,13 +3,13 @@ params ["_typeId",["_randomIndex",true]];
 /*
 	#define DEFAULT_VEHICLE_CLASSES \
 		[\
-			["B_LSV_01_armed_F"],\ 					0 // light car 
-			["B_MRAP_01_hmg_F"],\ 					1 // heavy car
+			["B_LSV_01_armed_F"],\ 						0 // light car 
+			["B_MRAP_01_hmg_F"],\ 						1 // heavy car
 			["B_APC_Wheeled_01_cannon_F"],\ 			2 // light armour
 			["B_MBT_01_cannon_F"],\ 					3 // heavy armour
 			["B_Heli_Transport_01_F"],\ 				4 // transport aircraft
 			["B_T_VTOL_01_vehicle_F"],\ 				5 // cargo aircraft
-			["B_Plane_CAS_01_dynamicLoadout_F"],\ 	6 // CAS plane 
+			["B_Plane_CAS_01_dynamicLoadout_F"],\ 		6 // CAS plane 
 			["B_Heli_Attack_01_dynamicLoadout_F"],\ 	7 // attack helicopter
 			["B_T_VTOL_01_armed_F"]\ 					8 // gunship (ac130 type aircraft)
 		]

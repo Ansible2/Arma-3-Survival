@@ -270,6 +270,13 @@ class BLWK_loot_roomDistribution
 	texts[] = {"Every location", "Every second location", "Every third location", "Every fourth location"};
 	GET_DEFAULT_PARAM(BLWK_loot_roomDistribution,2)
 };
+class BLWK_loot_whiteListMode
+{
+	title = "Loot Whitelist Mode";
+	values[] = {0,1,2};
+	texts[] = {"OFF","Only Whitelist Items will spawn as loot","Whitelist items get added to existing loot (increases the chance of loot spawning)"};
+	GET_DEFAULT_PARAM(BLWK_loot_whiteListMode,0)
+};
 class BLWK_buildingsNearTheCrateAreIndestructable_radius
 {
 	title = "The radius of indestructable buildings around The Crate";
