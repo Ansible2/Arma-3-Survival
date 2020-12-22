@@ -176,7 +176,8 @@
 	174,\
 	175,\
 	176,\
-	177
+	177,\
+	178
 
 
 #define FACTION_STRINGS \
@@ -357,4 +358,5 @@
 	"Zombies & Demons - Medium Zombies", \
 	"Zombies & Demons - Slow Zombies", \
 	"Zombies & Demons - Spider Zombies", \
-	"Zombies & Demons - Walkers"
+	"Zombies & Demons - Walkers", \
+	"JTFS Armory - United Rebel Front
