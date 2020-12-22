@@ -42,5 +42,6 @@ class factionBase
 #include "PROJECT OPFOR Unit Table.hpp"
 #include "Zombies And Demons Unit Table.hpp"
 #include "CUP Unit Table.hpp"
+#include "JTFS URF Unit Table.hpp"
 
 };
