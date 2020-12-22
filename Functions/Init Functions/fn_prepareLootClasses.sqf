@@ -36,7 +36,18 @@ Author(s):
 if (!isServer AND {hasInterface}) exitWith {false};
 
 // get white and black lists for loot
-BLWK_lootBlacklist = [missionConfigFile >> "BLWK_lootLists" >> "lootBlacklist"] call BIS_fnc_getCfgDataArray;
+
+// in order to make use of the "in" command, using toLower to avoid case sensetive issues
+BLWK_lootBlacklist = [];
+private _blackList = [missionConfigFile >> "BLWK_lootLists" >> "lootBlacklist"] call BIS_fnc_getCfgDataArray;
+if !(_blackList isEqualTo []) then {
+	private _tempClass = "";
+	_blackList apply {
+		_tempClass = toLower _x;
+		BLWK_lootBlacklist pushBack _tempClass;
+	};
+};
+
 private _whitelist_primaries = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_primaries"] call BIS_fnc_getCfgDataArray;
 private _whitelist_handguns = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_handguns"] call BIS_fnc_getCfgDataArray;
 private _whitelist_launchers = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_launchers"] call BIS_fnc_getCfgDataArray;	
