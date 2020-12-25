@@ -33,11 +33,12 @@ params ["_mainCrate"];
 
 if (!hasInterface) exitWith {BLWK_mainCrate = _mainCrate};
 
-//CIPHER COMMENT: maybe make these into hold actions
+private _healString = ["<t color='#ff0000'>-- Heal Yourself ",(15 * BLWK_pointsForKill),"p --</t>"] joinString "";
+/*
 _mainCrate addAction [ 
 	"<t color='#ff0000'>-- Heal Yourself 500p --</t>",  
 	{
-		null = [_this select 1] spawn BLWK_fnc_healPlayer;
+		[_this select 1] call BLWK_fnc_healPlayer;
 	}, 
 	nil, 
 	1,  
@@ -47,6 +48,28 @@ _mainCrate addAction [
 	"", 
 	2.5 
 ];
+*/
+[	
+	_mainCrate,
+	_healString, 
+	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_revive_ca.paa", 
+	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_revive_ca.paa", 
+	"true", 
+	"true", 
+	{}, 
+	{}, 
+	{
+		[_this select 1] call BLWK_fnc_healPlayer;
+	}, 
+	{}, 
+	[], 
+	1, 
+	2.5, 
+	false, 
+	false, 
+	false
+] call BIS_fnc_holdActionAdd;
+
 _mainCrate addAction [ 
 	"<t color='#00ff00'>-- Open Shop --</t>",  
 	{
