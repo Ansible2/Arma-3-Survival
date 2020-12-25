@@ -7,6 +7,7 @@ if (isNil TO_STRING(BLWK_PUB_CURRENT_PLAYLIST)) then {
 	missionNamespace setVariable [TO_STRING(BLWK_PUB_CURRENT_PLAYLIST),[]];
 };
 
+// CIPHER COMMENT: Why not use localNamespace?
 uiNamespace setVariable ["BLWK_fnc_musicManager_getMusicName",{
 	params ["_configClass"];
 	private _configPath = [["cfgMusic",_configClass]] call KISKA_fnc_findConfigAny;
@@ -54,7 +55,7 @@ null = _this spawn {
 				if !(_comparedIndex == _x) then {
 					_control lbSetText [_forEachIndex,[_x] call (uiNamespace getVariable "BLWK_fnc_musicManager_getMusicName")];
 				};
-			} else { ///////ERROR POSITION _name is undefined for some reason
+			} else {
 				_control lbAdd ([_x] call (uiNamespace getVariable "BLWK_fnc_musicManager_getMusicName"));
 			};
 		} forEach _globalArray;
