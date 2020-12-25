@@ -37,13 +37,13 @@ if (!isServer AND {hasInterface}) exitWith {false};
 
 // get white and black lists for loot
 
-// in order to make use of the "in" command, using toLower to avoid case sensetive issues
+// in order to make use of the "in" command, using toLowerANSI to avoid case sensetive issues
 BLWK_lootBlacklist = [];
 private _blackList = [missionConfigFile >> "BLWK_lootLists" >> "lootBlacklist"] call BIS_fnc_getCfgDataArray;
 if !(_blackList isEqualTo []) then {
 	private _class = "";
 	_blackList apply {
-		_class = toLower _x;
+		_class = toLowerANSI _x;
 		BLWK_lootBlacklist pushBack _class;
 	};
 };
