@@ -41,7 +41,7 @@ These come in various categories: <t underline='true'>magazines, explosives, wea
 There are also a few unique items:
 <br/>
 <br/>
-<t color='#FF008200'>Money Pile:</t> The money pile contains 5000 points.
+<t color='#FF008200'>Money Pile:</t> The money pile contains 25 times the points for a kill.
 <br/>
 <t color='#FF00599E'>Support Dish:</t> Unlocks supports inside the shop on The Crate. Once found, it will not spawn again.
 <br/>
