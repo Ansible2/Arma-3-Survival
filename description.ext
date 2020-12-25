@@ -33,7 +33,7 @@ minPlayerDistance = 50;
 
 class Header
 {
-	gameType =  Defend;
+	gameType =  Survive;
 	minPlayers =  	 1;
 	maxPlayers = 	 26;
 };
