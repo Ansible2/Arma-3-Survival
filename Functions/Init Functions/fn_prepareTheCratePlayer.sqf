@@ -33,7 +33,7 @@ params ["_mainCrate"];
 
 if (!hasInterface) exitWith {BLWK_mainCrate = _mainCrate};
 
-private _healString = ["<t color='#ff0000'>-- Heal Yourself ",(15 * BLWK_pointsForKill),"p --</t>"] joinString "";
+private _healString = ["<t color='#ff0000'>-- Heal Yourself ",BLWK_pointsForHeal,"p --</t>"] joinString "";
 /*
 _mainCrate addAction [ 
 	"<t color='#ff0000'>-- Heal Yourself 500p --</t>",  
