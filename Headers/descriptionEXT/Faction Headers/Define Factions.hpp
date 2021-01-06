@@ -177,7 +177,8 @@
 	175,\
 	176,\
 	177,\
-	178
+	178,\
+	179
 
 
 #define FACTION_STRINGS \
@@ -321,6 +322,7 @@
 	"PROJECT OPFOR - Ulseter Volunteer Force",\
 	"PROJECT OPFOR - Ultranationalists",\
 	"PROJECT OPFOR - United Nations",\
+	"RHS ALL",\
 	"RHS AFRF - Russia MSV (EMR)", \
 	"RHS AFRF - Russia MSV (Flora)", \
 	"RHS AFRF - Russia VDV (EMR)", \
