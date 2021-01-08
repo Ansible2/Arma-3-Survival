@@ -6,7 +6,7 @@ class JTFS_URF_faction
 
 	//excluding JTFS_Crewman, JTFS_Pilot_01, JTFS_Pilot_02, JTFS_Officer_01, JTFS_Officer_02
 	infantry[]={
-		"JTFS_Rifleman_MA5A"
+		"JTFS_Rifleman_MA5A",
 		"JTFS_Grenadier",
 		"JTFS_Rifleman_AT",
 		"JTFS_Autorifleman",
