@@ -34,21 +34,6 @@ params ["_mainCrate"];
 if (!hasInterface) exitWith {BLWK_mainCrate = _mainCrate};
 
 private _healString = ["<t color='#ff0000'>-- Heal Yourself ",BLWK_pointsForHeal,"p --</t>"] joinString "";
-/*
-_mainCrate addAction [ 
-	"<t color='#ff0000'>-- Heal Yourself 500p --</t>",  
-	{
-		[_this select 1] call BLWK_fnc_healPlayer;
-	}, 
-	nil, 
-	1,  
-	true,  
-	false,  
-	"", 
-	"", 
-	2.5 
-];
-*/
 [	
 	_mainCrate,
 	_healString, 
