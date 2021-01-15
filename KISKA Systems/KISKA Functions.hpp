@@ -75,6 +75,8 @@ class KISKA
 		{};
 		class findConfigAny
 		{};
+		class findIfBool
+		{};
 		class getVariableTarget
 		{};
 		class getVariableTarget_sendBack
