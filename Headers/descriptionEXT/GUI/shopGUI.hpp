@@ -435,7 +435,7 @@ class theCrateShopDialogbaseClass_xSliderH
 	sliderPosition = 5;
 	sliderRange[] = {0,10};
 	sliderStep = 1;
-	onSliderPosChanged = "_this call BLWK_fnc_shopAdjustPartnerControl";
+	onSliderPosChanged = "_this call BLWK_fnc_shop_adjustPartnerControl";
 };
 /* -------------------------------------------------------------------------
 	Additional Base Classes
@@ -464,7 +464,7 @@ class theCrateShopDialog
 {
     idd = BLWK_SHOP_IDD;
     movingEnabled = false;
-	onLoad = "_this call BLWK_fnc_shopOnLoadEvent";
+	onLoad = "_this call BLWK_fnc_shop_onLoadEvent";
 	
 	class controlsBackground
 	{	
@@ -615,7 +615,7 @@ class theCrateShopDialog
 			w = 0.0703125 * safezoneW;
 			h = 0.0208333 * safezoneH;
 
-			onButtonClick = "_this call BLWK_fnc_purchaseForSelf";
+			onButtonClick = "_this call BLWK_fnc_shop_purchaseForSelf";
 		};
 		class theCrateShopDialogbuildableObjects_purchaseForPoolButton: theCrateShopDialogbaseClass_button
 		{
@@ -626,7 +626,7 @@ class theCrateShopDialog
 			w = 0.0703125 * safezoneW;
 			h = 0.0208333 * safezoneH;
 
-			onButtonClick = "_this call BLWK_fnc_purchaseForPool";
+			onButtonClick = "_this call BLWK_fnc_shop_purchaseForPool";
 		};
 		class theCrateShopDialogcommunityPool_withdrawButton: theCrateShopDialogbaseClass_button
 		{
@@ -637,7 +637,7 @@ class theCrateShopDialog
 			w = 0.0703125 * safezoneW;
 			h = 0.0208333 * safezoneH;
 
-			onButtonClick = "_this call BLWK_fnc_withdrawFromPoolButtonEvent";
+			onButtonClick = "_this call BLWK_fnc_shop_withdrawFromPoolButtonEvent";
 		};
 		class theCrateShopDialogcommunityPool_sellButton: theCrateShopDialogbaseClass_button
 		{
@@ -648,7 +648,7 @@ class theCrateShopDialog
 			w = 0.0703125 * safezoneW;
 			h = 0.0208333 * safezoneH;
 
-			onButtonClick = "_this call BLWK_fnc_sellFromPoolButtonEvent";
+			onButtonClick = "_this call BLWK_fnc_shop_sellFromPoolButtonEvent";
 		};
 		class theCrateShopDialogpoints_deposit_button: theCrateShopDialogbaseClass_button
 		{
@@ -659,7 +659,7 @@ class theCrateShopDialog
 			w = 0.169922 * safezoneW;
 			h = 0.0208333 * safezoneH;
 
-			onButtonClick = "_this call BLWK_fnc_depositPointsButtonPressedEvent";
+			onButtonClick = "_this call BLWK_fnc_shop_depositPointsButtonPressedEvent";
 		};
 		class theCrateShopDialogsupports_purchaseForPoolButton: theCrateShopDialogbaseClass_button
 		{
@@ -670,7 +670,7 @@ class theCrateShopDialog
 			w = 0.0703125 * safezoneW;
 			h = 0.0208333 * safezoneH;
 
-			onButtonClick = "_this call BLWK_fnc_purchaseForPool";
+			onButtonClick = "_this call BLWK_fnc_shop_purchaseForPool";
 		};
 		class theCrateShopDialogsupports_purchaseForSelfButton: theCrateShopDialogbaseClass_button
 		{
@@ -681,7 +681,7 @@ class theCrateShopDialog
 			w = 0.0703125 * safezoneW;
 			h = 0.0208333 * safezoneH;
 
-			onButtonClick = "_this call BLWK_fnc_purchaseForSelf";
+			onButtonClick = "_this call BLWK_fnc_shop_purchaseForSelf";
 		};
 		class theCrateShopDialogpoints_withdraw_button: theCrateShopDialogbaseClass_button
 		{
@@ -693,7 +693,7 @@ class theCrateShopDialog
 			w = 0.169922 * safezoneW;
 			h = 0.0208333 * safezoneH;
 
-			onButtonClick = "_this call BLWK_fnc_withdrawPointsButtonPressedEvent";
+			onButtonClick = "_this call BLWK_fnc_shop_withdrawPointsButtonPressedEvent";
 		};
 		class theCrateShopDialogclose_button: RscButtonMenu
 		{
@@ -760,7 +760,7 @@ class theCrateShopDialog
 			y = 0.78125 * safezoneH + safezoneY;
 			w = 0.0527344 * safezoneW;
 			h = 0.0208333 * safezoneH;
-			onKeyDown = "_this call BLWK_fnc_shopAdjustPartnerControl";
+			onKeyDown = "_this call BLWK_fnc_shop_adjustPartnerControl";
 		};
 		class theCrateShopDialogpoints_withdraw_edit: theCrateShopDialogbaseClass_editBox
 		{
@@ -770,7 +770,7 @@ class theCrateShopDialog
 			y = 0.78125 * safezoneH + safezoneY;
 			w = 0.0527344 * safezoneW;
 			h = 0.0208333 * safezoneH;
-			onKeyDown = "_this call BLWK_fnc_shopAdjustPartnerControl";
+			onKeyDown = "_this call BLWK_fnc_shop_adjustPartnerControl";
 		};
 
 		/* -------------------------------------------------------------------------
@@ -807,9 +807,9 @@ class theCrateShopDialog
 			y = 0.28125 * safezoneH + safezoneY;
 			w = 0.1875 * safezoneW;
 			h = 0.447917 * safezoneH;
-			onLoad = "_this call BLWK_fnc_populateBuildTree";
-			onTreeMouseMove = "_this call BLWK_fnc_mouseMoveTreeEvent";
-			onTreeMouseExit = "_this call BLWK_fnc_mouseExitTreeEvent";
+			onLoad = "_this call BLWK_fnc_shop_populateBuildTree";
+			onTreeMouseMove = "_this call BLWK_fnc_shop_mouseMoveTreeEvent";
+			onTreeMouseExit = "_this call BLWK_fnc_shop_mouseExitTreeEvent";
 			sizeEx = TEXT_SIZE_SMALL(0.229167,12);
 		};
 		class theCrateShopDialogsupports_treeView: theCrateShopDialogbaseClass_treeView
@@ -822,7 +822,7 @@ class theCrateShopDialog
 			w = 0.1875 * safezoneW;
 			h = 0.229167 * safezoneH;
 
-			onLoad = "_this call BLWK_fnc_populateSupportTree";
+			onLoad = "_this call BLWK_fnc_shop_populateSupportTree";
 			sizeEx = TEXT_SIZE_SMALL(0.229167,12);
 		};
 		class theCrateShopDialogcommunityPool_treeView: theCrateShopDialogbaseClass_treeView
@@ -834,8 +834,8 @@ class theCrateShopDialog
 			y = 0.28125 * safezoneH + safezoneY;
 			w = 0.1875 * safezoneW;
 			h = 0.447917 * safezoneH;
-			onTreeMouseMove = "_this call BLWK_fnc_mouseMoveTreeEvent";
-			onTreeMouseExit = "_this call BLWK_fnc_mouseExitTreeEvent";
+			onTreeMouseMove = "_this call BLWK_fnc_shop_mouseMoveTreeEvent";
+			onTreeMouseExit = "_this call BLWK_fnc_shop_mouseExitTreeEvent";
 
 			sizeEx = TEXT_SIZE_SMALL(0.229167,12);
 		};

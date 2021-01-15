@@ -1,6 +1,6 @@
 #include "..\..\Headers\descriptionEXT\GUI\shopGUICommonDefines.hpp"
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_shopAdjustPartnerControl
+Function: BLWK_fnc_shop_adjustPartnerControl
 
 Description:
 	Keeps the edit box and slider controls in sync with each other.
@@ -17,7 +17,7 @@ Returns:
 Examples:
     (begin example)
 
-		[myShopDisplay] call BLWK_fnc_shopAdjustPartnerControl;
+		[myShopDisplay] call BLWK_fnc_shop_adjustPartnerControl;
 
     (end)
 
@@ -35,7 +35,7 @@ if (_controlType isEqualTo CT_EDIT) exitWith {
 	private _number = ([_text] call BIS_fnc_parseNumberSafe) select 0;
 	
 	if !(_number isEqualTo 0) then {
-		private _partnerControl = [_control] call BLWK_fnc_shopGetPartnerControl;
+		private _partnerControl = [_control] call BLWK_fnc_shop_getPartnerControl;
 		
 		// check to see if entered number fits inside slider range
 		private _sliderRange = sliderRange _partnerControl;
@@ -45,6 +45,6 @@ if (_controlType isEqualTo CT_EDIT) exitWith {
 	};
 };
 if (_controlType isEqualTo CT_SLIDER OR {_controlType isEqualTo CT_XSLIDER}) exitWith {
-	private _partnerControl = [_control] call BLWK_fnc_shopGetPartnerControl;
+	private _partnerControl = [_control] call BLWK_fnc_shop_getPartnerControl;
 	_partnerControl ctrlSetText (str _value);
 };

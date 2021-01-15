@@ -40,7 +40,7 @@ class basicSupport_baseClass
 	price = 1000; // price in shop
 	category = OTHER_CATEGORY; // shop category
 
-    text = "I'm a support!"; // text in support menu and Shop (DO NOT INCLUDE PRICE HERE, IT IS ADDED IN BLWK_fnc_populateSupportTree)
+    text = "I'm a support!"; // text in support menu and Shop (DO NOT INCLUDE PRICE HERE, IT IS ADDED IN BLWK_fnc_shop_populateSupportTree)
     subMenu = "";
     expression = ""; // code to compile upon call of menu item
     icon = CALL_ICON; // icon in support menu

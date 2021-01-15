@@ -1,6 +1,6 @@
 #include "..\..\Headers\descriptionEXT\GUI\shopGUICommonDefines.hpp"
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_shopAdjustCommunityPoolLoop
+Function: BLWK_fnc_shop_adjustCommunityPoolLoop
 
 Description:
 	Starts the loop that keeps the community pool of objects and supports synced
@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [myShopDisplay] spawn BLWK_fnc_shopAdjustCommunityPoolLoop;
+		null = [myShopDisplay] spawn BLWK_fnc_shop_adjustCommunityPoolLoop;
 
     (end)
 
@@ -25,7 +25,7 @@ Author(s):
 params ["_shopDisplay"];
 
 if (!canSuspend) exitWith {
-	"BLWK_fnc_shopAdjustCommunityPoolLoop must be run in scheduled environment" call BIS_fnc_error;
+	"BLWK_fnc_shop_adjustCommunityPoolLoop must be run in scheduled environment" call BIS_fnc_error;
 };
 
 disableSerialization;

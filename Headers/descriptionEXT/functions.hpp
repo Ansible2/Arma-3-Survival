@@ -246,37 +246,37 @@ class BLWK
 	class ShopGUI
 	{
 		file = "Functions\Shop GUI";
-		class depositPointsButtonPressedEvent
-		{};
-		class mouseExitTreeEvent
-		{};
-		class mouseMoveTreeEvent
-		{};
 		class openShop
 		{};
-		class populateBuildTree
+		class shop_adjustCommunityPoolLoop
 		{};
-		class populateSupportTree
+		class shop_adjustPartnerControl
 		{};
-		class purchaseForPool
+		class shop_adjustPointsLoop
 		{};
-		class purchaseForSelf
+		class shop_depositPointsButtonPressedEvent
 		{};
-		class sellFromPoolButtonEvent
+		class shop_getPartnerControl
 		{};
-		class shopAdjustCommunityPoolLoop
+		class shop_mouseExitTreeEvent
 		{};
-		class shopAdjustPartnerControl
+		class shop_mouseMoveTreeEvent
 		{};
-		class shopAdjustPointsLoop
+		class shop_onLoadEvent
 		{};
-		class shopGetPartnerControl
+		class shop_populateBuildTree
 		{};
-		class shopOnLoadEvent
+		class shop_populateSupportTree
 		{};
-		class withdrawFromPoolButtonEvent
+		class shop_purchaseForPool
 		{};
-		class withdrawPointsButtonPressedEvent
+		class shop_purchaseForSelf
+		{};
+		class shop_sellFromPoolButtonEvent
+		{};			
+		class shop_withdrawFromPoolButtonEvent
+		{};
+		class shop_withdrawPointsButtonPressedEvent
 		{};
 	};
 

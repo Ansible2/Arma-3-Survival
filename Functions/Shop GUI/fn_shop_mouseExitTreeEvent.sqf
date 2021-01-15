@@ -1,9 +1,9 @@
 #include "..\..\Headers\descriptionEXT\GUI\shopGUICommonDefines.hpp"
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_mouseExitTreeEvent
+Function: BLWK_fnc_shop_mouseExitTreeEvent
 
 Description:
-	Used in conjunction with BLWK_fnc_mouseMoveTreeEvent.
+	Used in conjunction with BLWK_fnc_shop_mouseMoveTreeEvent.
 
 	Makes it so that should the mouse exit a tree the preview picture is not
 	 left blank. If the tree has an item selected, that item will be shown
@@ -19,7 +19,7 @@ Returns:
 Examples:
     (begin example)
 
-		[myTreeControl] call BLWK_fnc_mouseExitTreeEvent;
+		[myTreeControl] call BLWK_fnc_shop_mouseExitTreeEvent;
 
     (end)
 

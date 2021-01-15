@@ -1,6 +1,6 @@
 #include "..\..\Headers\descriptionEXT\GUI\shopGUICommonDefines.hpp"
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_depositPointsButtonPressedEvent
+Function: BLWK_fnc_shop_depositPointsButtonPressedEvent
 
 Description:
 	Activates when the deposit points button is pressed.
@@ -16,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		[myControl] call BLWK_fnc_depositPointsButtonPressedEvent;
+		[myControl] call BLWK_fnc_shop_depositPointsButtonPressedEvent;
 
     (end)
 

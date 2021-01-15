@@ -1,6 +1,6 @@
 #include "..\..\Headers\descriptionEXT\GUI\shopGUICommonDefines.hpp"
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_shopGetPartnerControl
+Function: BLWK_fnc_shop_getPartnerControl
 
 Description:
 	Finds a partnered control for keeping things like a slider and edit box
@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		[myControl] call BLWK_fnc_shopGetPartnerControl;
+		[myControl] call BLWK_fnc_shop_getPartnerControl;
 
     (end)
 

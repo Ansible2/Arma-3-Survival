@@ -1,6 +1,6 @@
 #include "..\..\Headers\descriptionEXT\GUI\shopGUICommonDefines.hpp"
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_sellFromPoolButtonEvent
+Function: BLWK_fnc_shop_sellFromPoolButtonEvent
 
 Description:
 	Takes the selected index and extracts it from the list.
@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		[myControl] call BLWK_fnc_sellFromPoolButtonEvent;
+		[myControl] call BLWK_fnc_shop_sellFromPoolButtonEvent;
 
     (end)
 

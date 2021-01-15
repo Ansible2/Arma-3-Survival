@@ -4,7 +4,7 @@ Function: BLWK_fnc_purchaseObject
 Description:
 	Creates the object purchased from the shop 
 
-	Executed from "BLWK_fnc_purchaseForSelf" under the 
+	Executed from "BLWK_fnc_shop_purchaseForSelf" under the 
 	 "theCrateShopDialogsupports_purchaseForSelfButton" class.
 	And from "theCrateShopDialogbuildableObjects_purchaseForSelfButton" class.
 

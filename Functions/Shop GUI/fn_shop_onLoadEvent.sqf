@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_shopOnLoadEvent
+Function: BLWK_fnc_shop_onLoadEvent
 
 Description:
 	Activates for the shop's load event.
@@ -16,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		[myDisplay] call BLWK_fnc_shopOnLoadEvent;
+		[myDisplay] call BLWK_fnc_shop_onLoadEvent;
 
     (end)
 
@@ -27,5 +27,5 @@ params ["_display"];
 
 disableSerialization;
 
-null = [_display] spawn BLWK_fnc_shopAdjustPointsLoop;
-null = [_display] spawn BLWK_fnc_shopAdjustCommunityPoolLoop;
+null = [_display] spawn BLWK_fnc_shop_adjustPointsLoop;
+null = [_display] spawn BLWK_fnc_shop_adjustCommunityPoolLoop;

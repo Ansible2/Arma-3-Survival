@@ -1,6 +1,6 @@
 #include "..\..\Headers\descriptionEXT\GUI\shopGUICommonDefines.hpp"
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_withdrawPointsButtonPressedEvent
+Function: BLWK_fnc_shop_withdrawPointsButtonPressedEvent
 
 Description:
 	Activates when the withdraw points button is pressed.
@@ -16,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		[myControl] call BLWK_fnc_withdrawPointsButtonPressedEvent;
+		[myControl] call BLWK_fnc_shop_withdrawPointsButtonPressedEvent;
 
     (end)
 

@@ -1,6 +1,6 @@
 #include "..\..\Headers\descriptionEXT\GUI\shopGUICommonDefines.hpp"
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_mouseMoveTreeEvent
+Function: BLWK_fnc_shop_mouseMoveTreeEvent
 
 Description:
 	The event for when mousing over a tree. 
@@ -18,7 +18,7 @@ Returns:
 Examples:
     (begin example)
 
-		[myTreeViewControl,[0,0]] call BLWK_fnc_mouseMoveTreeEvent;
+		[myTreeViewControl,[0,0]] call BLWK_fnc_shop_mouseMoveTreeEvent;
 
     (end)
 

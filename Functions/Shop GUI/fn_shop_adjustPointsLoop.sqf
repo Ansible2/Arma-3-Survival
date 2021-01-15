@@ -1,6 +1,6 @@
 #include "..\..\Headers\descriptionEXT\GUI\shopGUICommonDefines.hpp"
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_shopAdjustPointsLoop
+Function: BLWK_fnc_shop_adjustPointsLoop
 
 Description:
 	Starts the loop that keeps the community points synced between player.
@@ -17,7 +17,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [myShopDisplay] spawn BLWK_fnc_shopAdjustPointsLoop;
+		null = [myShopDisplay] spawn BLWK_fnc_shop_adjustPointsLoop;
 
     (end)
 
@@ -42,7 +42,7 @@ private _fn_adjustSliderRange = {
 
 	_sliderCtrl sliderSetPosition round (_sliderMax / 2); // always set it to the halfway mark
 	// this should auto trigger the linked event between the slider and its edit box so we shouldn't need
-	// to do a manual call of BLWK_fnc_shopAdjustPartnerControl if it has an event
+	// to do a manual call of BLWK_fnc_shop_adjustPartnerControl if it has an event
 
 	_sliderCtrl sliderSetRange [0,_sliderMax]; // always set max
 	if (_sliderMax <= 100) exitWith {
@@ -71,12 +71,12 @@ private _fn_adjustSliderRangeWorking = {
 	params ["_sliderCtrl","_sliderMax"];
 
 	if (_sliderMax isEqualTo 0) exitWith {
-		[_sliderCtrl,0] call BLWK_fnc_shopAdjustPartnerControl;
+		[_sliderCtrl,0] call BLWK_fnc_shop_adjustPartnerControl;
 		_sliderCtrl sliderSetRange [0,0];
 		_sliderCtrl sliderSetPosition 0;
 	};
 
-	[_sliderCtrl,_sliderMax] call BLWK_fnc_shopAdjustPartnerControl;
+	[_sliderCtrl,_sliderMax] call BLWK_fnc_shop_adjustPartnerControl;
 	_sliderCtrl sliderSetRange [0,_sliderMax];
 	_sliderCtrl sliderSetPosition _sliderMax;
 };
