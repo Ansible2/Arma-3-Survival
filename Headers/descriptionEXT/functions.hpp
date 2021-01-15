@@ -246,8 +246,6 @@ class BLWK
 	class ShopGUI
 	{
 		file = "Functions\Shop GUI";
-		class deleteAtGlobalArray
-		{};
 		class depositPointsButtonPressedEvent
 		{};
 		class mouseExitTreeEvent
@@ -263,8 +261,6 @@ class BLWK
 		class purchaseForPool
 		{};
 		class purchaseForSelf
-		{};
-		class pushbackToGlobalArray
 		{};
 		class sellFromPoolButtonEvent
 		{};
