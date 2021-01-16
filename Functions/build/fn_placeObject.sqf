@@ -2,7 +2,7 @@
 Function: BLWK_fnc_placeObject
 
 Description:
-	Either snaps object to surface or places it floating
+	Either snaps object to surface or places it floating.
 
 	Executed from "BLWK_fnc_addPickedUpObjectActions" and
 		"BLWK_fnc_pickUpObject" (in the event that the player is downed)
@@ -12,7 +12,7 @@ Parameters:
 	1: _snapToSurface : <BOOL> - Should the object snap to the nearest surface
 
 Returns:
-	BOOL
+	<BOOL> - true if object placed, false if error
 
 Examples:
     (begin example)
@@ -24,12 +24,18 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+#define SCRIPT_NAME "BLWK_fnc_placeObject"
+scriptName SCRIPT_NAME;
+
 params [
 	["_object",missionNamespace getVariable ["BLWK_heldObject",objNull],[objNull]],
 	["_snapToSurface",false,[true]]
 ];
 
-if (isNull _object) exitWith {false};
+if (isNull _object) exitWith {
+	[SCRIPT_NAME,"_object was found to be null, exiting...",false,true,true] call KISKA_fnc_log;
+	false
+};
 
 detach _object;
 
@@ -61,5 +67,6 @@ missionNamespace setVariable ["BLWK_heldObject",nil];
 
 // remove the actions tied to the player
 call BLWK_fnc_removePickedUpObjectActions;
+
 
 true
