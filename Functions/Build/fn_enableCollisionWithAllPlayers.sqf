@@ -48,7 +48,6 @@ private _objectDimensions_Z = _objectDimensions select 2;
 
 // make sure a player is not colliding with the object before enabling their collsiion
 _players apply {
-	// check if the player is colliding with the object
 	waitUntil {
 		if !(_x inArea [_object, _objectDimensions_X, _objectDimensions_Y, 0, true, _objectDimensions_Z]) exitWith {true};
 		sleep 0.5;
