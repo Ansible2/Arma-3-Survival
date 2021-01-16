@@ -45,11 +45,6 @@ params [
 	["_doDetectCollision",false]
 ];
 
-/*
-// Script was passed an invalid number
-if (_className isEqualTo "") exitWith {};
-*/
-
 // CIPHER COMMENT: Potentially need to add the object to curator
 
 private "_purchasedObject";
@@ -62,8 +57,6 @@ if (_hasAi) then {
 
 if (_indestructable) then {
 	_purchasedObject allowDamage false;
-	// allowDamage needs to be reset if the object changes owners
-	private _players = call CBAP_fnc_players;
 };
 
 
@@ -71,6 +64,7 @@ if !(_free) then {
 	[_price] call BLWK_fnc_subtractPoints;
 };
 
+// close the shop dialog
 closeDialog 0;
 
 if !(_keepInventory) then {
@@ -87,7 +81,7 @@ sleep 1;
 [_purchasedObject] call BLWK_fnc_addBuildableObjectActions; // give local player object actions
 
 if (_doDetectCollision) then {
-	// only the AI needs to know about it
+	// only the AI needs to know about the collision property
 	_purchasedObject setVariable ["BLWK_collisionObject",true,BLWK_theAIHandlerOwnerID];
 };
 
