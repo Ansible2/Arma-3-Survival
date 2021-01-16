@@ -22,15 +22,22 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+#define SCRIPT_NAME "BLWK_fnc_enableCollisionWithAllPlayers";
+scriptName SCRIPT_NAME;
+
+if (!canSuspend) exitWith {
+	[SCRIPT_NAME,"Executed in unscheduled environment, execing in scheduled",false,false,true] call KISKA_fnc_log;
+	null = _this spawn BLWK_fnc_enableCollisionWithAllPlayers;
+};
+
+
 params ["_object"];
 
 if (!local _object) exitWith {
+	[SCRIPT_NAME,["Found that object",_object,"was not local. RemoteExecing to owner"],true,false,true] call KISKA_fnc_log;
 	null = [_object] remoteExec ["BLWK_fnc_enableCollisionWithAllPlayers",_object];
 };
 
-if (!canSuspend) exitWith {
-	"Must be run in scheduled environment" call BIS_fnc_error;
-};
 
 private _players = call CBAP_fnc_players;
 
@@ -41,7 +48,7 @@ private _objectDimensions_Z = _objectDimensions select 2;
 
 // make sure a player is not colliding with the object before enabling their collsiion
 _players apply {
-	// check if the
+	// check if the player is colliding with the object
 	waitUntil {
 		if !(_x inArea [_object, _objectDimensions_X, _objectDimensions_Y, 0, true, _objectDimensions_Z]) exitWith {true};
 		sleep 0.5;
