@@ -2,7 +2,8 @@
 Function: BLWK_fnc_addDragKilledEh
 
 Description:
-	Adds and eventhandler to remove a units drag action from all machines if the unit is dead
+	Adds and eventhandler to remove a units drag action from all machines 
+	 if the unit is dead.
 
 	Executed from "BLWK_fnc_initDragSystem"
 
@@ -23,11 +24,20 @@ Author(s):
 	BangaBob (H8erMaker),
 	Modified By: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if (!hasInterface OR {BLWK_dontUseRevive}) exitWith {};
+#define SCRIPT_NAME "BLWK_fnc_addDragAction";
+scriptName SCRIPT_NAME;
+
+if (!hasInterface) exitWith {};
+
+if (!BLWK_dontUseRevive) exitWith {
+	[SCRIPT_NAME,"Vanilla revive is disabled, exiting...",false,false,true] call KISKA_fnc_log;
+};
 
 params ["_unit"];
 
-if (!local _unit) exitWith {};
+if (!local _unit) exitWith {
+	[SCRIPT_NAME,"_unit is not local, exiting...",false,true,true] call KISKA_fnc_log;
+};
 
 // CIPHER COMMENT: test the validity of a local event handler here, it may not work if killed by a remote unit
 _unit addEventHandler ["KILLED",{
