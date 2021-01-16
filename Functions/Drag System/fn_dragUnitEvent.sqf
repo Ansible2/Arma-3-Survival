@@ -3,7 +3,8 @@ Function: BLWK_fnc_dragUnitEvent
 
 Description:
 	Handles the actual dragging of a unit.
-	Attaches the dragged unit to the player and perfroms andimations
+	Attaches the dragged unit to the player and perfroms animations
+	
 	Adds the release action too.
 
 	Executed from "BLWK_fnc_addDragAction"
