@@ -10,7 +10,7 @@ Parameters:
 	0: _object : <OBJECT> - The object to sell
 
 Returns:
-	BOOL
+	<BOOL> - True if object sold
 
 Examples:
     (begin example)
