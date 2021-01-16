@@ -22,7 +22,9 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+#define SCRIPT_NAME "BLWK_fnc_addBuildableObjectActions"
 #define CONDITION "!(_originalTarget getVariable ['BLWK_objectPickedUp',false]) AND {isNil 'BLWK_heldObject'}"
+scriptName SCRIPT_NAME;
 
 if !(hasInterface) exitWith {false};
 
@@ -30,7 +32,10 @@ params [
 	["_object",objNull,[objNull]]
 ];
 
-if (isNull _object) exitWith {false};
+if (isNull _object) exitWith {
+	[SCRIPT_NAME,"Null object passed, will not add actions, exiting...",false,true,true] call KISKA_fnc_log;
+	false
+};
 
 private _objectType = typeOf _object;
 private _objectName = [configFile >> "cfgVehicles" >> _objectType] call BIS_fnc_displayName;
