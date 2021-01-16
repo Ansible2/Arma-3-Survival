@@ -3,7 +3,7 @@
 Function: BLWK_fnc_pickupObject
 
 Description:
-	Executes the action to pick up a player built object
+	Executes the action to pick up a player built object.
 
 	Executed from "BLWK_fnc_purchaseObject" & "BLWK_fnc_addBuildableObjectActions"
 
@@ -49,7 +49,6 @@ if (_justPurchased) then {
 } else {
 	WAIT_FOR_OWNERSHIP(_object)
 	[_object,_player,true] call BIS_fnc_attachToRelative;
-	//[_object,_player,true] remoteExecCall ["BIS_fnc_attachToRelative",_object];
 };
 
 // special handle for BLWK_randomWeaponBox being found
@@ -65,7 +64,7 @@ null = [_object] remoteExec ["BLWK_fnc_disableCollisionWithAllPlayers",_object];
 // marks the client as holding an object for other functions such as trying to access the shop
 missionNamespace setVariable ["BLWK_heldObject",_object];
 
-// add every action to the player for or them to manipulate the object while it is being held
+// add every action to the player for them to manipulate the object while it is being held
 [_object,_player] call BLWK_fnc_addPickedUpObjectActions;
 
 
