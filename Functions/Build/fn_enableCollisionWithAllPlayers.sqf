@@ -22,14 +22,16 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+if (!canSuspend) exitWith {
+	[SCRIPT_NAME,"Executed in unscheduled environment, execing in scheduled",false,false,true] call KISKA_fnc_log;
+	null = _this spawn
+};
+
 params ["_object"];
 
 if (!local _object) exitWith {
-	null = [_object] remoteExec ["BLWK_fnc_enableCollisionWithAllPlayers",_object];
-};
-
-if (!canSuspend) exitWith {
-	"Must be run in scheduled environment" call BIS_fnc_error;
+	[SCRIPT_NAME,["Found that object",_object,"was not local. RemoteExecing to owner"],true,false,true] call KISKA_fnc_log;
+	null = _this remoteExec ["BLWK_fnc_enableCollisionWithAllPlayers",_object];
 };
 
 private _players = call CBAP_fnc_players;
