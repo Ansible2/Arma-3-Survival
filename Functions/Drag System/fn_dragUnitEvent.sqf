@@ -55,18 +55,22 @@ null = [_unitToDrag] spawn {
 	params ["_draggedUnit"];
 
 	private _conditionCheck = {
-		!(missionNamespace getVariable ["BLWK_draggingUnit",false]) OR 
+		// if not dragging someone
+		!(missionNamespace getVariable ["BLWK_draggingUnit",false]) OR
+		// if player died 
 		{!alive player} OR 
+		// if player was incapacitated
 		{!(incapacitatedState player isEqualTo "")} OR 
+		// if the dragged unit died
 		{!alive _draggedUnit} OR
-		// check to see if unit was revived 
+		// if the dragged unit was revived
 		{incapacitatedState _draggedUnit isEqualTo ""}
 	};
 
 	waitUntil {
 		if (call _conditionCheck) exitWith {
 			
-			// check to see if the dragged unit was released
+			// release dragged unit if condition is met in _conditionCheck and they were not already dropped
 			if (!isNil "BLWK_releaseDragActionId") then {
 				[_draggedUnit] call BLWK_fnc_releaseDragEvent;
 			};
