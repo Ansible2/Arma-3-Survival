@@ -25,6 +25,7 @@ Author(s):
 ---------------------------------------------------------------------------- */
 if (!hasInterface OR {BLWK_handleReviveLoopRunning}) exitWith {};
 
+// stop loop from running multiple times if dragged by different people
 BLWK_handleReviveLoopRunning = true;
 
 params [
