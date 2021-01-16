@@ -2,7 +2,7 @@
 Function: BLWK_fnc_removePickedUpObjectActions
 
 Description:
-	Removes all the actions from the player that are used for manipulating objects in hand
+	Removes all the actions from the player that are used for manipulating objects in hand.
 
 	Executed from "BLWK_fnc_sellObject"
 
