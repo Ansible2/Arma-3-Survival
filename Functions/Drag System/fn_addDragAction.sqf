@@ -2,7 +2,7 @@
 Function: BLWK_fnc_addDragAction
 
 Description:
-	Adds an action to drag a unit if they are downed
+	Adds an action to drag a unit if they are downed.
 
 	Executed from "BLWK_fnc_initDragSystem" & "BLWK_fnc_addReviveEhs"
 
@@ -23,15 +23,36 @@ Author(s):
 	BangaBob (H8erMaker),
 	Modified By: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-waitUntil {!isNil "BLWK_dontUseRevive"};
+#define SCRIPT_NAME "BLWK_fnc_addDragAction";
+scriptName SCRIPT_NAME;
 
-if (!hasInterface OR {!canSuspend} OR {BLWK_dontUseRevive}) exitWith {};
+if (!hasInterface) exitWith {};
+
+if (!canSuspend) exitWith {
+	[SCRIPT_NAME,"Needs to executed in scheduled, wasn't, executing now in scheduled...",false,false,true] call KISKA_fnc_log;
+	null = _this spawn BLWK_fnc_addDragAction;
+};
+
+waitUntil {
+	sleep 0.1;
+	!isNil "BLWK_dontUseRevive"
+};
+
+if (!BLWK_dontUseRevive) exitWith {
+	[SCRIPT_NAME,"Vanilla revive is disabled, exiting...",false,false,true] call KISKA_fnc_log;
+};
 
 params ["_unit"];
 
-waitUntil {player isEqualTo player};
+waitUntil {
+	sleep 0.1;
+	player isEqualTo player
+};
+
 // make sure a player can't drag themself
-if (_unit isEqualTo player) exitWith {};
+if (_unit isEqualTo player) exitWith {
+	[SCRIPT_NAME,"Can't add drag action to self player, exiting...",false,false,true] call KISKA_fnc_log;
+};
 
 sleep 1;
 
@@ -49,5 +70,5 @@ private _actionId = _unit addAction [
 	3 
 ];
 
-// for removing action upon unit death
+// store actionid for removing action upon unit death of _unit
 _unit setVariable ["BLWK_dragActionId",_actionId];
