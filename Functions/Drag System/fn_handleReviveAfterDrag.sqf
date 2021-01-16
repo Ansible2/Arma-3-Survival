@@ -44,4 +44,4 @@ waitUntil {
 	false
 };
 
-BLWK_fnc_handleReviveAfterDrag = false;
+BLWK_handleReviveLoopRunning = false;
