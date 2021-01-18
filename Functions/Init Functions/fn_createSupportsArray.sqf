@@ -50,8 +50,12 @@ private [
 ];
 _configs apply {
 	_patch_temp = [_x >> "patch"] call BIS_fnc_getCfgData;
+	
+	// check if the appropriate patch is loaded for the support
 	if ((_patch_temp isEqualTo "") OR {[_patch_temp] call KISKA_fnc_isPatchLoaded}) then {
 		_class_temp = configName _x;
+
+		// if a support is tagged as a basclass, do not add it
 		if !("_baseClass" in _class_temp) then {
 			_price_temp = [_x >> "price"] call BIS_fnc_getCfgData;
 			_category_temp = [_x >> "category"] call BIS_fnc_getCfgData;
