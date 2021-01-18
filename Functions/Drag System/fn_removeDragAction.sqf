@@ -3,7 +3,8 @@ Function: BLWK_fnc_removeDragAction
 
 Description:
 	Removes the drag action from a unit.
-	Also removes the unit's KILLED eventhandler
+	
+	Also removes the unit's KILLED eventhandler.
 
 	Executed from "BLWK_fnc_addDragKilledEh"
 

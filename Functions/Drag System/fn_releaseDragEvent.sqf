@@ -3,7 +3,8 @@ Function: BLWK_fnc_releaseDragEvent
 
 Description:
 	The actual action of releasing a dragged unit.
-	Resets animations and global variables involved
+	
+	Resets animations and global variables involved.
 
 	Executed from "BLWK_fnc_addReleaseDragAction" & "BLWK_fnc_dragUnitEvent"
 
