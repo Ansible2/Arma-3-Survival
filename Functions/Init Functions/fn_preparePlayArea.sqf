@@ -24,10 +24,18 @@ Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if (!isServer OR {!canSuspend}) exitWith {};
-
 #define NUMBER_OF_INFANTRY_SPAWN_POSITIONS 15
 #define NUMBER_OF_VEHICLE_SPAWN_POSITIONS 5
+
+#define SCRIPT_NAME "BLWK_fnc_preparePlayArea";
+scriptName SCRIPT_NAME;
+
+if (!isServer) exitWith {};
+
+if (!canSuspend) exitWith {
+	[SCRIPT_NAME,"Needs to executed in scheduled, now running in scheduled...",false,true,true] call KISKA_fnc_log;
+	null = [] spawn BLWK_fnc_preparePlayArea;
+};
 
 
 // find the location the mission will take place
@@ -38,8 +46,10 @@ waitUntil {scriptDone _playAreaSelectionScript};
 // create map marker for play radius
 private _marker = createMarker ["Mission Area", BLWK_playAreaCenter];
 missionNamespace setVariable ["BLWK_playAreaMarker",_marker,true];
-BLWK_playAreaMarker setMarkerShape "ELLIPSE";
-BLWK_playAreaMarker setMarkerSize [BLWK_playAreaRadius, BLWK_playAreaRadius];
+// every marker command will send a global update of all marker properties
+// use the local versions first and lastly use a global command to send all changes across the network
+BLWK_playAreaMarker setMarkerShapeLocal "ELLIPSE";
+BLWK_playAreaMarker setMarkerSizeLocal [BLWK_playAreaRadius, BLWK_playAreaRadius];
 BLWK_playAreaMarker setMarkerColor "ColorWhite";
 
 
