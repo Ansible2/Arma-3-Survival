@@ -46,6 +46,7 @@ if (isServer) then {
         false 
     };
     BLWK_theAIHandlerOwnerID = owner BLWK_theAIHandlerEntity;
+    // having an owner id for the AI handler makes using setVariable remotely possible
     publicVariable "BLWK_theAIHandlerOwnerID";
 
     /* Whitelist Loot Modes */
@@ -138,9 +139,12 @@ if (isServer OR {!hasInterface}) then {
     BLWK_loot_itemClasses = _lootClasses select 7;
     BLWK_loot_explosiveClasses = _lootClasses select 8;
 
-    BLWK_enemiesPerWaveMultiplier = ("BLWK_enemiesPerWaveMultiplier" call BIS_fnc_getParamValue) / 10;  // How many hostiles per wave (waveCount x BLWK_enemiesPerWaveMultiplier)
-    BLWK_enemiesPerPlayerMultiplier = ("BLWK_enemiesPerPlayerMultiplier" call BIS_fnc_getParamValue) / 10;   // How many extra units are added per player
-    BLWK_maxPistolOnlyWaves = ("BLWK_maxPistolOnlyWaves" call BIS_fnc_getParamValue);  //What wave enemies stop only using pistols
+    // How many hostiles per wave (waveCount x BLWK_enemiesPerWaveMultiplier)
+    BLWK_enemiesPerWaveMultiplier = ("BLWK_enemiesPerWaveMultiplier" call BIS_fnc_getParamValue) / 10; 
+    // How many extra units are added per player 
+    BLWK_enemiesPerPlayerMultiplier = ("BLWK_enemiesPerPlayerMultiplier" call BIS_fnc_getParamValue) / 10; 
+    // What wave enemies stop only using pistols  
+    BLWK_maxPistolOnlyWaves = ("BLWK_maxPistolOnlyWaves" call BIS_fnc_getParamValue);  
     BLWK_randomizeEnemyWeapons = [false,true] select ("BLWK_randomizeEnemyWeapons" call BIS_fnc_getParamValue);
 
     BLWK_vehicleStartWave = ("BLWK_vehicleStartWave" call BIS_fnc_getParamValue);
@@ -200,8 +204,6 @@ if (hasInterface) then {
 
 
 // AI unit classes
-
-// some of these are public to be used with BLWK_fnc_getPointsForKill or for friendlies to call support
 private _unitTypeInfo = call BLWK_fnc_prepareUnitClasses;
 
 // friendly
@@ -242,12 +244,13 @@ if (isNil "BLWK_faksToMakeMedkit") then {
 };
 
 /* Points */
-BLWK_pointsForKill = "BLWK_pointsForKill" call BIS_fnc_getParamValue;                 // Base Points for a kill
+BLWK_pointsForKill = "BLWK_pointsForKill" call BIS_fnc_getParamValue;         
 BLWK_pointsForHeal = 15 * BLWK_pointsForKill; // points to heal player at bulwark
 BLWK_pointsForHit = "BLWK_pointsForHit" call BIS_fnc_getParamValue;                   // Every Bullet hit
 BLWK_pointsMultiForDamage = "BLWK_pointsMultiForDamage" call BIS_fnc_getParamValue;   // Extra points awarded for damage. 100% = BLWK_pointsMultiForDamage. 50% = BLWK_pointsMultiForDamage/2
 BLWK_maxPointsForDamage = BLWK_pointsForHit * 2; // There are certain weapons that cause extreme amounts of damage that will give an immense amount of points, so this caps it
 
+// check if vanilla revive is on
 BLWK_dontUseRevive = (("ReviveMode" call BIS_fnc_getParamValue) isEqualTo 0);
 
 BLWK_ACELoaded = ["ace_common"] call KISKA_fnc_ispatchLoaded;
