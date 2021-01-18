@@ -46,7 +46,7 @@ BLWK_animStateChangedEh_ID = _player addEventHandler ["AnimStateChanged",{
 				
 				hint "Reived from your medkit";
 
-				// make the player invincible for 15 seconds to avoid BS
+				// make the player invincible for 30 seconds to avoid BS
 				null = [_unit] spawn {
 					params ["_unit"];
 					_unit allowDamage false;
@@ -70,9 +70,14 @@ BLWK_handleDamageEh_ID = _player addEventHandler ["HandleDamage", {
 		// check if it is friendly fire or the player is already downed
 		// in which case, the damage will be 0
 		if (
-			(!BLWK_friendlyFireOn AND {(side _unit) isEqualTo (side _instigator)}) OR // if friendly fire
-			{!((incapacitatedState _unit) isEqualTo "")} OR // if player is unconcious
-			{!BLWK_fallDamageOn AND {_unit isEqualTo _source AND {_projectile == ""}}} // fall damage, sometimes fires on a players own explosives, 
+			// if it was friendly fire, and it is not allowed
+			(!BLWK_friendlyFireOn AND {(side _unit) isEqualTo (side _instigator)}) OR 
+			
+			// if player is unconcious
+			{!((incapacitatedState _unit) isEqualTo "")} OR 
+
+			// fall damage, sometimes fires on a players own explosives, 
+			{!BLWK_fallDamageOn AND {_unit isEqualTo _source AND {_projectile == ""}}} 
 			// ...but not often enough to be considered game breaking
 		) then {0};
 	};
