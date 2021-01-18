@@ -31,6 +31,7 @@ if (!canSuspend) exitWith {};
 
 params ["_mainCrate"];
 
+// headless and dedicated servers just need the global set
 if (!hasInterface) exitWith {BLWK_mainCrate = _mainCrate};
 
 private _healString = ["<t color='#ff0000'>-- Heal Yourself ",BLWK_pointsForHeal,"p --</t>"] joinString "";
@@ -74,12 +75,12 @@ _mainCrate addAction [
 
 _mainCrate addEventHandler ["ContainerOpened",{
 	params ["_mainCrate"];
-	if !(BLWK_dontUseRevive) then {
+	//if !(BLWK_dontUseRevive) then {
 		
 		hint (format ["You can place %1 First Aid Kits in the The Crate to make automatically make a Medkit",BLWK_faksToMakeMedkit]);
 		// only show once
 		_mainCrate removeEventHandler ["ContainerOpened",_thisEventHandler];
-	};
+	//};
 }];
 // start and end medkit check loop on server when openned and closed
 _mainCrate addEventHandler ["ContainerOpened",{
