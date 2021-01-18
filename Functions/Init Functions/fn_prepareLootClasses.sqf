@@ -3,7 +3,6 @@ Function: BLWK_fnc_prepareLootClasses
 
 Description:
 	Gets all the loot classes for spawning it during the mission and caches them.
-	Also handles the exclusion of items for DLC.
 	
 	It is executed from the "BLWK_fnc_prepareGlobals".
 	
@@ -37,12 +36,12 @@ if (!isServer AND {hasInterface}) exitWith {false};
 
 // get white and black lists for loot
 
-// in order to make use of the "in" command, using toLowerANSI to avoid case sensetive issues
 BLWK_lootBlacklist = [];
 private _blackList = [missionConfigFile >> "BLWK_lootLists" >> "lootBlacklist"] call BIS_fnc_getCfgDataArray;
 if !(_blackList isEqualTo []) then {
 	private _class = "";
 	_blackList apply {
+		// "in" command is case sensetive so we use toLowerANSI
 		_class = toLowerANSI _x;
 		BLWK_lootBlacklist pushBack _class;
 	};
@@ -146,7 +145,7 @@ private _fn_sortType = {
 	_tempClass = configName (_this select 0);
 	if (_tempClass in BLWK_lootBlacklist) exitWith {};
 
-	// CIPHER COMMENT: DLC check is awaiting 2.0 release for getAssetDLCInfo command
+	// CIPHER COMMENT: DLC checks, still need a better method of finding what an asset belongs to
 	/*
 		_configHierarchyTemp = _this select 1;
 		_dlcAllowedTemp = [_tempClass,_configHierarchyTemp] call BLWK_fnc_checkDLC;
