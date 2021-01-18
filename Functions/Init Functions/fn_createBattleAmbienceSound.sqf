@@ -4,6 +4,8 @@ Function: BLWK_fnc_createBattleAmbienceSound
 Description:
 	Creates the ambient battlefield sounds that surround the play area.
 
+	Executed from "initServer.sqf"
+
 Parameters:
 	NONE
 
@@ -20,10 +22,12 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+if (!isServer) exitWith {};
+
 private _logicGroup = createGroup BLWK_logicCenter;
-private "_logic";
 private _distanceFromCenter = BLWK_playAreaRadius + 75;
-private "_logicPosition";
+
+private ["_logicPosition","_logic"];
 for "_i" from 1 to 3 do {
 	_logic = _logicGroup createUnit ["Logic", [0,0,0], [], 0, "NONE"];
 	
