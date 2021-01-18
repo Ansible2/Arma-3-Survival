@@ -3,6 +3,9 @@ Function: BLWK_fnc_createBuildObjectsArray
 
 Description:
 	Creates an array in the format of BLWK_buildableObjects_array from a config.
+	Used for faster look up times.
+
+	Executed from "BLWK_fnc_prepareGlobals"
 
 Parameters:
 	0: _configToSearch : <CONFIG> - The config path you wish to search for build item data
@@ -20,22 +23,25 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+#define SCRIPT_NAME "BLWK_fnc_createBuildObjectsArray";
+scriptName SCRIPT_NAME;
+
 params [
 	["_configToSearch",configNull,[configNull]]
 ];
 
 if (isNull _configToSearch) exitWith {
-	"BLWK_fnc_createBuildObjectsArray: _configToSearch isNull" call BIS_fnc_error;
+	[SCRIPT_NAME,"_configToSearch is null",false,true,true] call KISKA_fnc_log;
 };
 
 if !(isClass _configToSearch) exitWith {
-	["BLWK_fnc_createBuildObjectsArray: _configToSearch %1 is not a class",_configToSearch] call BIS_fnc_error;
+	[SCRIPT_NAME,["The _configToSearch",_configToSearch,"does not exist"],true,true,true] call KISKA_fnc_log;
 };
 
 private _configs = "true" configClasses _configToSearch;
 
 if (_configs isEqualTo []) exitWith {
-	["BLWK_fnc_createBuildObjectsArray: No classes found in _configToSearch %1",_configToSearch] call BIS_fnc_error;
+	[SCRIPT_NAME,["The _configToSearch",_configToSearch,"does not have any classes"],true,true,true] call KISKA_fnc_log;
 };
 
 private _returnArray = [];
@@ -80,5 +86,6 @@ _configs apply {
 		];
 	};
 };
+
 
 _returnArray
