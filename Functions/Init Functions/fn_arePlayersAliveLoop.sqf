@@ -23,20 +23,31 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if (!isServer OR {!canSuspend}) exitWith {};
+#define SCRIPT_NAME "BLWK_fnc_arePlayersAliveLoop"
+scriptName SCRIPT_NAME;
 
-private ["_players","_return"];
+if (!isServer) exitWith {};
+
+if (!canSuspend) exitWith {
+	[SCRIPT_NAME,"Needs to run in scheduled, running in scheduled...",false,false,true] call KISKA_fnc_log;
+	null = [] spawn BLWK_fnc_arePlayersAliveLoop;
+};
+
 // wait till the first round has started
 waitUntil {
 	if !(missionNamespace getVariable ["BLWK_inBetweenWaves",false]) exitWith {true};
 	sleep 1;
 	false
 };
+
+private ["_players","_return"];
 private _condition = {
 	_players = call CBAP_fnc_players;
+	
 	_return = _players findIf {
 		((incapacitatedState _x) isEqualTo "") OR {BLWK_numRespawnTickets > 0}
 	};
+
 	if (_return isEqualTo -1) then {
 		true
 	} else {
@@ -47,6 +58,7 @@ private _condition = {
 
 waitUntil {
 	if (call _condition) exitWith {
+		[SCRIPT_NAME,"All players are dead with no respawns. Ending mission...",false,false,true] call KISKA_fnc_log;
 		"End1" call BIS_fnc_endMissionServer;
 		true
 	};
