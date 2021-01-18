@@ -20,22 +20,25 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+#define SCRIPT_NAME "BLWK_fnc_createBuildObjectsArray";
+scriptName SCRIPT_NAME;
+
 params [
 	["_configToSearch",configNull,[configNull]]
 ];
 
 if (isNull _configToSearch) exitWith {
-	"_configToSearch isNull" call BIS_fnc_error;
+	[SCRIPT_NAME,"_configToSearch is null",false,true,true] call KISKA_fnc_log;
 };
 
 if !(isClass _configToSearch) exitWith {
-	["_configToSearch %1 is not a class",_configToSearch] call BIS_fnc_error;
+	[SCRIPT_NAME,["The _configToSearch",_configToSearch,"does not exist"],true,true,true] call KISKA_fnc_log;
 };
 
 private _configs = "true" configClasses _configToSearch;
 
 if (_configs isEqualTo []) exitWith {
-	["No classes found in _configToSearch %1",_configToSearch] call BIS_fnc_error;
+	[SCRIPT_NAME,["The _configToSearch",_configToSearch,"does not have any classes"],true,true,true] call KISKA_fnc_log;
 };
 
 private _returnArray = [];
