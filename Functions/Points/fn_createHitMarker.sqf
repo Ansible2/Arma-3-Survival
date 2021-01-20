@@ -39,7 +39,7 @@ params [
 private _handleNumber = addMissionEventHandler ["EachFrame", { 
 
 	private _globalVarString = "BLWK_hitPointHandleInfo_" + (str _thisEventHandler);  
-	if (!isNil _globalVarString) exitWith { 
+	if (!isNil _globalVarString) then { 
 
 		private _iconInfo = missionNamespace getVariable _globalVarString; 
 		_iconInfo params [ 
@@ -52,7 +52,9 @@ private _handleNumber = addMissionEventHandler ["EachFrame", {
 		]; 
 
 		// kill event handler if it's been 110 frames
-		if (_frameNo isEqualTo 111) exitWith { 
+		if (_frameNo isEqualTo 111) exitWith {
+			// clear global
+			missionNamespace setVariable [_globalVarString,nil]; 
 			removeMissionEventHandler ["EachFrame",_thisEventHandler]; 
 		}; 
 		_frameNo = _frameNo + 1; 
