@@ -3,7 +3,7 @@ Function: BLWK_fnc_prepareTheCrateServer
 
 Description:
 	Creates and sets up The Crate, syncs the box global to all machines.
-	Also adds the desired number of medkits
+	Also adds the desired number of medkits.
 
 	Executed from "BLWK_fnc_preparePlayArea"
 
@@ -11,7 +11,7 @@ Parameters:
 	NONE
 
 Returns:
-	OBJECT - the main crate object
+	<OBJECT> - the main crate object
 
 Examples:
     (begin example)
