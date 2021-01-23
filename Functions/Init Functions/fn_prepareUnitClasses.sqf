@@ -39,6 +39,9 @@ Author(s):
 	Ansible2 // Cipher,
 	Hilltop(Willtop) & omNomios
 ---------------------------------------------------------------------------- */
+#define SCRIPT_NAME "BLWK_fnc_prepareUnitClasses"
+scriptName SCRIPT_NAME;
+
 // to save on allocation time for memory, we are going to use temp values
 private _factionClasses = "true" configClasses (missionConfigFile >> "BLWK_factions");
 
@@ -90,7 +93,7 @@ private _fn_sortFactionClasses = {
 	[_infantryClasses,false] call _fn_sortArray;
 	// exit if no infantry
 	if (_infantryClasses isEqualTo []) exitWith {
-		["Found no infantry classes in %1 config",_configToCheck] call BIS_fnc_error;
+		[SCRIPT_NAME,["Found no infantry classes in %1 config",_configToCheck],true,true,true] call KISKA_fnc_log;
 		[]
 	};
 		
@@ -144,11 +147,11 @@ private _fn_getSelectedClasses = {
 	if (_factionIndex != -1) then {
 		_factionArray = [_factionClasses select _factionIndex] call _fn_sortFactionClasses;
 		if (_factionArray isEqualTo []) then {
-			["BLWK_fnc_prepareUnitClasses",["Faction",_factionString,"returned empty array, going to faction",_defaultFactionString]] call KISKA_fnc_log;
+			[SCRIPT_NAME,["Faction",_factionString,"returned empty array, going to faction",_defaultFactionString]] call KISKA_fnc_log;
 			_goToDefaultFaction = true
 		};
 	} else {
-		["BLWK_fnc_prepareUnitClasses",["Faction",_factionString,"was not found, going to default faction",_defaultFactionString]] call KISKA_fnc_log;
+		[SCRIPT_NAME,["Faction",_factionString,"was not found, going to default faction",_defaultFactionString]] call KISKA_fnc_log;
 		_goToDefaultFaction = true
 	};
 	
@@ -205,6 +208,7 @@ private _level4Classes = [_selectedClassString_level_4,"VANILLA - CSAT URBAN"] c
 _index_temp = "BLWK_level5Faction" call BIS_fnc_getParamValue;
 private _selectedClassString_level_5 = [_index_temp] call _fn_getFactionString;
 private _level5Classes = [_selectedClassString_level_5,"APEX - VIPER"] call _fn_getSelectedClasses;
+
 
 // return for global var definition
 [
