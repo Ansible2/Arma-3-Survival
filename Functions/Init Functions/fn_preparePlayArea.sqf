@@ -27,7 +27,7 @@ Author(s):
 #define NUMBER_OF_INFANTRY_SPAWN_POSITIONS 15
 #define NUMBER_OF_VEHICLE_SPAWN_POSITIONS 5
 
-#define SCRIPT_NAME "BLWK_fnc_preparePlayArea";
+#define SCRIPT_NAME "BLWK_fnc_preparePlayArea"
 scriptName SCRIPT_NAME;
 
 if (!isServer) exitWith {};

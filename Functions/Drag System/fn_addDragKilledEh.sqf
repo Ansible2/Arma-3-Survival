@@ -24,7 +24,7 @@ Author(s):
 	BangaBob (H8erMaker),
 	Modified By: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "BLWK_fnc_addDragAction";
+#define SCRIPT_NAME "BLWK_fnc_addDragKilledEh"
 scriptName SCRIPT_NAME;
 
 if (!hasInterface) exitWith {};

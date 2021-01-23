@@ -20,7 +20,7 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "BLWK_fnc_createSupportsArray";
+#define SCRIPT_NAME "BLWK_fnc_createSupportsArray"
 scriptName SCRIPT_NAME;
 
 params [

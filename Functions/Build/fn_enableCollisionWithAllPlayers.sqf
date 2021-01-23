@@ -22,7 +22,7 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "BLWK_fnc_enableCollisionWithAllPlayers";
+#define SCRIPT_NAME "BLWK_fnc_enableCollisionWithAllPlayers"
 scriptName SCRIPT_NAME;
 
 if (!canSuspend) exitWith {

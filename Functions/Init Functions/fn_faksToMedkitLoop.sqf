@@ -25,7 +25,7 @@ Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "BLWK_fnc_faksToMedkitLoop";
+#define SCRIPT_NAME "BLWK_fnc_faksToMedkitLoop"
 scriptName SCRIPT_NAME;
 
 if (!isServer) exitWith {};

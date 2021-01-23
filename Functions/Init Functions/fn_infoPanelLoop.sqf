@@ -25,7 +25,7 @@ Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "BLWK_fnc_infoPanelLoop";
+#define SCRIPT_NAME "BLWK_fnc_infoPanelLoop"
 scriptName SCRIPT_NAME;
 
 if (!hasInterface) exitWith {};
