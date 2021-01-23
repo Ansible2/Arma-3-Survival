@@ -1,13 +1,44 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_prepareUnitClasses
+
+Description:
+	Gets the user selected unit class tables to use for each level
+	 and returns them in several arrays within a master.
+	Also handles DLC exclusion.
+
+	Executed from "BLWK_fnc_prepareGlobals"
+
+Parameters:
+	NONE
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+
+		_classes = call BLWK_fnc_prepareUnitClasses;
+
+    (end)
+
+Author(s):
+	Ansible2 // Cipher,
+	Hilltop(Willtop) & omNomios
+---------------------------------------------------------------------------- */
+#define M_KEY_CODE 50
+#define REQ_NUMBER_OF_LOOT_POSITIONS 6
+
 disableSerialization;
 
 openMap true;
 
 hint "Just click on the map to select a custom area. Press ctrl+M to initiate the mission with an area selected.";
 
-waituntil {!isNull (findDisplay 46)};
+private _display = findDisplay 46;
+waituntil {!isNull _display};
     
-#define M_KEY_CODE 50
-BLWK_customAreaDisplayEH = (findDisplay 46) displayAddEventHandler ["KeyDown",{
+
+BLWK_customAreaDisplayEH = _display displayAddEventHandler ["KeyDown",{
 	// if the pressed keys are ctrl+M
 	private _keysPressed = ((_this select 1) isEqualTo M_KEY_CODE) AND {_this select 3};
 	if (_keysPressed AND {call BLWK_fnc_checkLocation}) then {
@@ -15,8 +46,10 @@ BLWK_customAreaDisplayEH = (findDisplay 46) displayAddEventHandler ["KeyDown",{
 		
 		// display 46 is not always active and therefore need to wait for it to be in a scheduled environment
 		null = [] spawn {
-			waituntil {!isNull (findDisplay 46)};
-			(findDisplay 46) displayRemoveEventHandler ["KeyDown",BLWK_customAreaDisplayEH];
+			private _display = findDisplay 46;
+
+			waituntil {!isNull _display};
+			_display displayRemoveEventHandler ["KeyDown",BLWK_customAreaDisplayEH];
 			missionNamespace setVariable ["BLWK_customAreaDisplayEH",nil];
 		};
 		removeMissionEventHandler ["MapSingleClick",BLWK_customPlayAreaMapEH];
@@ -54,7 +87,7 @@ BLWK_fnc_checkLocation = {
 		false
 	};
 	// some of the mandatory items like the weapon box, loot revealer and satellite dish require unique positions
-	if (_numLootPositions < 6) exitWith {
+	if (_numLootPositions < REQ_NUMBER_OF_LOOT_POSITIONS) exitWith {
 		hint parseText "<t color='#ff0000'>You need at least SIX positions to spawn loot</t>"; 
 		false
 	};
@@ -93,8 +126,8 @@ BLWK_customPlayAreaMapEH = addMissionEventHandler ["MapSingleClick", {
 	if (isNil "BLWK_centerMarker_temp") then {
 		BLWK_centerMarker_temp = createMarker ["centerMarker_temp",_pos];
 		
-		BLWK_centerMarker_temp setMarkerText "Center";
-		BLWK_centerMarker_temp setMarkerType "hd_dot";
+		BLWK_centerMarker_temp setMarkerTextLocal "Center";
+		BLWK_centerMarker_temp setMarkerTypeLocal "hd_dot";
 		BLWK_centerMarker_temp setMarkerColor "ColorRed";
 		//BLWK_centerMarker_temp setMarkerSize 0.5;
 	} else {
@@ -105,9 +138,9 @@ BLWK_customPlayAreaMapEH = addMissionEventHandler ["MapSingleClick", {
 	if (isNil "BLWK_areaMarker_temp") then {
 		BLWK_areaMarker_temp = createMarker ["areaMarker_temp",_pos];
 
-		BLWK_areaMarker_temp setMarkerShape "ELLIPSE";
-		BLWK_areaMarker_temp setMarkerSize [BLWK_playAreaRadius, BLWK_playAreaRadius];
-		BLWK_areaMarker_temp setMarkerColor "ColorWhite";
+		BLWK_areaMarker_temp setMarkerShapeLocal "ELLIPSE";
+		BLWK_areaMarker_temp setMarkerSizeLocal [BLWK_playAreaRadius, BLWK_playAreaRadius];
+		BLWK_areaMarker_temp setMarkerColorLocal "ColorWhite";
 		BLWK_areaMarker_temp setMarkerAlpha 0.5;
 	} else {
 		BLWK_areaMarker_temp setMarkerPos _pos;
@@ -118,9 +151,9 @@ BLWK_customPlayAreaMapEH = addMissionEventHandler ["MapSingleClick", {
 	if (isNil "BLWK_numBuildingsInfoMarker_temp") then {	
 		BLWK_numBuildingsInfoMarker_temp = createMarker ["numBuildingsInfoMarker_temp",_markerPosition_1];
 
-		BLWK_numBuildingsInfoMarker_temp setMarkerType "hd_dot";
-		BLWK_numBuildingsInfoMarker_temp setMarkerSize [0.5,0.5];
-		BLWK_numBuildingsInfoMarker_temp setMarkerColor "ColorBLUFOR";
+		BLWK_numBuildingsInfoMarker_temp setMarkerTypeLocal "hd_dot";
+		BLWK_numBuildingsInfoMarker_temp setMarkerSizeLocal [0.5,0.5];
+		BLWK_numBuildingsInfoMarker_temp setMarkerColorLocal "ColorBLUFOR";
 		BLWK_numBuildingsInfoMarker_temp setMarkerAlpha 1;
 	} else {
 		BLWK_numBuildingsInfoMarker_temp setMarkerPos _markerPosition_1;
@@ -131,9 +164,9 @@ BLWK_customPlayAreaMapEH = addMissionEventHandler ["MapSingleClick", {
 	if (isNil "BLWK_numBuildingPositionsInfoMarker_temp") then {
 		BLWK_numBuildingPositionsInfoMarker_temp = createMarker ["numBuildingPositionsInfoMarker_temp",_markerPosition_2];
 
-		BLWK_numBuildingPositionsInfoMarker_temp setMarkerType "hd_dot";
-		BLWK_numBuildingPositionsInfoMarker_temp setMarkerSize [0.5,0.5];
-		BLWK_numBuildingPositionsInfoMarker_temp setMarkerColor "ColorBLUFOR";
+		BLWK_numBuildingPositionsInfoMarker_temp setMarkerTypeLocal "hd_dot";
+		BLWK_numBuildingPositionsInfoMarker_temp setMarkerSizeLocal [0.5,0.5];
+		BLWK_numBuildingPositionsInfoMarker_temp setMarkerColorLocal "ColorBLUFOR";
 		BLWK_numBuildingPositionsInfoMarker_temp setMarkerAlpha 1;
 	} else {
 		BLWK_numBuildingPositionsInfoMarker_temp setMarkerPos _markerPosition_2;
