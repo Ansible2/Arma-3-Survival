@@ -38,7 +38,7 @@ waitUntil {
 	!isNil "BLWK_dontUseRevive"
 };
 
-if (!BLWK_dontUseRevive) exitWith {
+if (BLWK_dontUseRevive) exitWith {
 	[SCRIPT_NAME,"Vanilla revive is disabled, exiting...",false,false,true] call KISKA_fnc_log;
 };
 
