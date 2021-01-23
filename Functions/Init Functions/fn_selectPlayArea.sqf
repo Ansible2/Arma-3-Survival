@@ -32,6 +32,7 @@ if (BLWK_customPlayLocation) then {
 	private ["_players","_adminIndex","_admin","_clientId_temp"];
 	waitUntil {
 		_players = call CBAP_fnc_players;
+		// find a player that is an admin or the server to select the area
 		_adminIndex = _players findIf {
 			_clientId_temp = owner _x;
 			_clientId_temp isEqualTo 2
