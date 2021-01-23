@@ -36,17 +36,21 @@ Author(s):
 #define BOMB_UGB_ID 6
 #define BOMB_CLUSTER_ID 7
 
-#define CANON_TYPE "CANON"
+#define CANNON_TYPE "CANNON"
 #define AGM_TYPE "AGM"
 #define ROCKETS_AP_TYPE "ROCKETS_AP"
 #define ROCKETS_HE_TYPE "ROCKETS_HE"
 #define BOMB_UGB_TYPE "BOMB UGB"
 #define BOMB_CLUSTER_TYPE "BOMB CLUSTER"
 
+#define DEFAULT_CANNON_CLASS "Twin_Cannon_20mm"
+#define DEFAULT_CANNON_MAG_CLASS "PylonWeapon_300Rnd_20mm_shells"
+
 #define PLANE_SPEED 75// m/s
 #define PLANE_VELOCITY(THE_SPEED) [0,THE_SPEED,0]
 
-scriptName "BLWK_fnc_CAS";
+#define SCRIPT_NAME "BLWK_fnc_CAS"
+scriptName SCRIPT_NAME;
 
 params [
 	["_attackPosition",objNull,[[],objNull]],
@@ -59,12 +63,12 @@ params [
 ];
 
 if (_attackPosition isEqualType objNull AND {isNull _attackPosition} OR {_attackPosition isEqualTo []}) exitWith {
-	["%1 is invalid target",_attackPosition] call BIS_fnc_error;
+	[SCRIPT_NAME,[_attackPosition,"is an invalid target"],true,true,true] call KISKA_fnc_log;
 };
 
 private _planeCfg = configfile >> "cfgvehicles" >> _planeClass;
 if !(isclass _planeCfg) exitwith {
-	["Vehicle class '%1' not found, moving to default aircraft",_planeClass] call BIS_fnc_error;
+	[SCRIPT_NAME,[_planeClass,"Vehicle class not found, moving to default aircraft..."],true,true,true] call KISKA_fnc_log;
 	_this set [3,"B_Plane_CAS_01_dynamicLoadout_F"];
 	null = _this spawn BLWK_fnc_CAS; 
 };
@@ -77,13 +81,13 @@ if !(isclass _planeCfg) exitwith {
 ---------------------------------------------------------------------------- */
 private _attackMagazines = switch _attackTypeID do {
 	case GUN_RUN_ID: {
-		[CANON_TYPE]
+		[CANNON_TYPE]
 	};
 	case GUNS_AND_ROCKETS_ARMOR_PIERCING_ID: {
-		[CANON_TYPE,[ROCKETS_AP_TYPE,"PylonRack_7Rnd_Rocket_04_AP_F"]]
+		[CANNON_TYPE,[ROCKETS_AP_TYPE,"PylonRack_7Rnd_Rocket_04_AP_F"]]
 	};
 	case GUNS_AND_ROCKETS_HE_ID: {
-		[CANON_TYPE,[ROCKETS_HE_TYPE,"PylonRack_7Rnd_Rocket_04_HE_F"]]
+		[CANNON_TYPE,[ROCKETS_HE_TYPE,"PylonRack_7Rnd_Rocket_04_HE_F"]]
 	};
 	case ROCKETS_ARMOR_PIERCING_ID: {
 		[[ROCKETS_AP_TYPE,"PylonRack_7Rnd_Rocket_04_AP_F"]]
@@ -104,7 +108,9 @@ private _attackMagazines = switch _attackTypeID do {
 
 
 private _exitToDefault = false;
-// Verify the plane has the right weapons for what is asked of it and adjust if it doesn't
+
+
+////// Verify the plane has the right weapons for what is asked of it and adjust if it doesn't //////
 private _weaponsToUse = [];
 private _planeClassWeapons = _planeClass call BIS_fnc_weaponsEntityType;
 private _pylonConfig = _planeCfg >> "Components" >> "TransportPylonsComponent" >> "pylons";
@@ -114,41 +120,50 @@ if (isClass _pylonConfig) then {
 	
 	private _allVehiclePylons =  ("true" configClasses _pylonConfig) apply {configName _x};	
 
-	// some planes (Buzzard) have their canon as a pylon, don't want to replace it if needed
-	if (CANON_TYPE in _attackMagazines) then {
-		// find the canon weapon in the planes default loadout
-		private _canonIndex = _planeClassWeapons findIf {
+	// some planes (Buzzard) have their cannon as a pylon, don't want to replace it if needed
+	if (CANNON_TYPE in _attackMagazines) then {
+		
+		// find the cannon weapon in the planes default loadout
+		private _cannonIndex = _planeClassWeapons findIf {
 			[
 				(configFile >> "cfgWeapons" >> _x),
-				(configFile >> "cfgWeapons" >> "canonCore")
+				(configFile >> "cfgWeapons" >> "cannonCore")
 			] call CBAP_fnc_inheritsFrom;
 		};
 
-		private _canonClass = "";
-		// if a canon is found
-		if (_canonIndex != -1) then {
-			_canonClass = _planeClassWeapons select _canonIndex;
-			// we need the magazines for the weapon for plyon checks
-			private _magazinesForCanon = [configFile >> "cfgWeapons" >> _canonClass >> "magazines"] call BIS_fnc_getCfgDataArray;
-			_weaponsToUse pushBack [CANON_TYPE,_canonClass];
-			// remove canon so we don't need to check it later
-			_attackMagazines deleteAt (_attackMagazines findIf {_x == CANON_TYPE});
-		};
-		
-		if (_canonClass != "") then {
-			// if the canon is on a pylon delete the pylon from the list so it's not changed
-			private _canonPylonIndex = _allVehiclePylons findIf {
-				getText(_pylonConfig >> _x >> "attachment") == _canonClass;
+		private _cannonClass = "";
+		// if a cannon is found, use it, else add one
+		private _canonPylonData = [];
+		if (_cannonIndex != -1) then {
+
+			_cannonClass = _planeClassWeapons select _cannonIndex;
+
+			// if the cannon is on a pylon delete the pylon from the list so it's not changed
+			private _cannonPylonIndex = _allVehiclePylons findIf {
+				getText(_pylonConfig >> _x >> "attachment") == _cannonClass;
 			};
-			if (_canonPylonIndex != -1) then {
-				_allVehiclePylons deleteAt _canonPylonIndex;
+			if (_cannonPylonIndex != -1) then {
+				_allVehiclePylons deleteAt _cannonPylonIndex;
 			};
+
+		} else {
+
+			_cannonClass = DEFAULT_CANNON_CLASS;
+			_canonPylonData pushBack DEFAULT_CANNON_MAG_CLASS;
+			private _pylonToUse = _allVehiclePylons deleteAt 0; // set the first pylon as the cannon
+			_canonPylonData pushBack _pylonToUse;
 		};
+			
+		_weaponsToUse pushBack [CANNON_TYPE,_cannonClass,_canonPylonData];
+		// remove cannon so we don't need to check it later
+		_attackMagazines deleteAt (_attackMagazines findIf {_x == CANNON_TYPE});
+
 	};
 
 	if !(_attackMagazines isEqualTo []) then {
 		private ["_attackTypeString","_attackMagazineClass","_attackWeaponClass"];
 		{	
+			[SCRIPT_NAME,["attackMag is:",_x],true] call KISKA_fnc_log;
 			_attackMagazineClass = _x select 1;
 			_attackWeaponClass = [configFile >> "cfgMagazines" >> _attackMagazineClass >> "pylonWeapon"] call BIS_fnc_getCfgData;
 
@@ -163,7 +178,7 @@ if (isClass _pylonConfig) then {
 
 
 if (_exitToDefault) exitwith {
-	["Weapon types of %2 not entrirely found on '%1', moving to default Aircraft",_planeClass,_attackMagazines] call BIS_fnc_error;
+	[SCRIPT_NAME,["Weapon types of",_attackMagazines,"for plane class:",_planeClass,"not entirely found, moving to default Aircraft..."],true,true,true] call KISKA_fnc_log;
 	// exit to default aircraft type 
 	_this set [3,"B_Plane_CAS_01_dynamicLoadout_F"];
 	null = _this spawn BLWK_fnc_CAS;
@@ -189,7 +204,7 @@ BLWK_fnc_casAttack = {
 	private _fn_fireGun = {
 		params ["_numRounds"];
 		// set _weapon_temp to gun
-		[CANON_TYPE] call _fn_setWeaponTemp;		
+		[CANNON_TYPE] call _fn_setWeaponTemp;
 		for "_i" from 1 to _numRounds do {
 			if ((_plane distance _attackPosition) < _breakOffDistance) exitWith {};
 			_pilot fireAtTarget [_dummyTarget,_weapon_temp];
@@ -257,15 +272,19 @@ private _planeSide = (getnumber (_planeCfg >> "side")) call BIS_fnc_sideType;
 private _planeArray = [_planeSpawnPosition,_attackDirection,_planeClass,_planeSide] call BIS_fnc_spawnVehicle;
 private _plane = _planeArray select 0;
 
+
+
 // update the planes pylons
 _weaponsToUse apply {
-	// filter out the canon as it should not need to be put on the vehicle
-	if ((_x select 0) != CANON_TYPE) then {
-		// get pylon array set up earlier
+	private _pylonData = _x select 2;
+	// the cannon may not have any pylon data and therefore _pylonData will be []
+	if !(_pylonData isEqualTo []) then {
 		(_x select 2) params ["_magClass","_pylon"];
 		_plane setPylonLoadout [_pylon,_magClass,true];
 	};
 };
+
+
 
 _plane setPosASL _planeSpawnPosition;
 _plane setDir _attackDirection;
