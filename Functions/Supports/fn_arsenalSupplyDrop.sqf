@@ -41,6 +41,10 @@ private _relativeDirection = _spawnPosition getDir _dropPosition;
 // spawn vehicle
 private _vehicleArray = [_spawnPosition,_relativeDirection,_vehicleClass,BLUFOR] call BIS_fnc_spawnVehicle;
 private _aircraft = _vehicleArray select 0;
+// BIS_fnc_spawnVehicle does not always set the velocity on aircraft if they are configured incorrectly
+// this is used to guarantee it
+_aircraft setVelocityModelSpace [0,100,0];
+
 private _aircraftCrew = _vehicleArray select 1;
 
 _aircraftCrew apply {
