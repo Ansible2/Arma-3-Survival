@@ -1,3 +1,27 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_musicManagerOnLoad_availableMusicList
+
+Description:
+	Populates the ListNBox that shows all available tracks when the Music Manager
+	 is openned.
+
+Parameters:
+	0: _control : <CONTROL> - The control for the ListNBox with available music
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+		[_control] call BLWK_fnc_musicManagerOnLoad_availableMusicList;
+    (end)
+
+Author(s):
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
+#define SCRIPT_NAME "BLWK_fnc_musicManagerOnLoad_availableMusicList"
+scriptName SCRIPT_NAME;
+
 params ["_control"];
 
 // reset music pause state when selection is changed
@@ -83,7 +107,7 @@ private _durationColumn = _control lnbAddColumn 1;
 _control lnbSetColumnsPos [0,0.82];
 {
 	_row = _control lnbAddRow [_musicNames select _forEachIndex,str (_musicDurations select _forEachIndex)];
-	_control lnbSetData [[_row,0],configName _x]; // set data to class name
+	_control lnbSetData [[_row,0],configName _x]; // set data to the track class name
 } forEach _musicClasses;
 
 _control lnbSort [0,false];

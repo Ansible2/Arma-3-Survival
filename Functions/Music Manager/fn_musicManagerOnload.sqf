@@ -1,4 +1,30 @@
 #include "..\..\Headers\descriptionEXT\GUI\musicManagerCommonDefines.hpp"
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_musicManagerOnLoad
+
+Description:
+	This is the entry point for the Music Manager. It initializes its variables
+	 and sets up relevant information to display when openned.
+
+	It is executed from the (configed) onLoad event.
+
+Parameters:
+	0: _display : <DISPLAY> - The display of the Music Manager
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+		call BLWK_fnc_musicManagerOnLoad;
+    (end)
+
+Author(s):
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
+#define SCRIPT_NAME "BLWK_fnc_musicManagerOnLoad"
+scriptName SCRIPT_NAME;
+
 disableSerialization;
 
 params ["_display"];

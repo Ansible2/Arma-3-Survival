@@ -1,4 +1,26 @@
 #include "..\..\Headers\descriptionEXT\GUI\musicManagerCommonDefines.hpp"
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_musicManagerOnLoad_loadCombo
+
+Description:
+	Adds functionality to the loadable playlist dropdown in the Music Manager.
+
+Parameters:
+	0: _loadComboControl : <CONTROL> - The control for the combo box
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+		[_control] call BLWK_fnc_musicManagerOnLoad_loadCombo;
+    (end)
+
+Author(s):
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
+#define SCRIPT_NAME "BLWK_fnc_musicManagerOnLoad_loadCombo"
+scriptName SCRIPT_NAME;
 
 params ["_loadComboControl"];
 
@@ -37,5 +59,5 @@ _loadComboControl ctrlAddEventHandler ["LBSelChanged",{
 	};
 }];
 
-// fill in list with available ones
+// the initial filling of the combo with loadable playlists
 null = [] spawn BLWK_fnc_musicManager_updateLoadCombo;

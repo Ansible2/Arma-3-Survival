@@ -1,13 +1,39 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_musicManagerOnLoad_timelineSlider
+
+Description:
+	Adds (seeking) functionality to the timeline slider in the Music Manager.
+
+Parameters:
+	0: _control : <CONTROL> - The control for the timeline slidier
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+		[_control] call BLWK_fnc_musicManagerOnLoad_timelineSlider;
+    (end)
+
+Author(s):
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
+#define SCRIPT_NAME "BLWK_fnc_musicManagerOnLoad_timelineSlider"
+scriptName SCRIPT_NAME;
+
 params ["_control"];
 
-
 _control ctrlAddEventHandler ["MouseButtonDown",{
+	
 	// if music was playing
 	if (uiNamespace getVariable ["BLWK_musicManager_doPlay",false]) then {
 		playMusic ""; // stop music while adjusting
 		call KISKA_fnc_musicStopEvent;
-		uiNamespace setVariable ["BLWK_musicManager_doResume",true]; // tell music player in the mouse up event to resume
-		uiNamespace setVariable ["BLWK_musicManager_doPlay",false]; // stop music player
+		
+		// tell music player in the mouse up event to resume
+		uiNamespace setVariable ["BLWK_musicManager_doResume",true];
+		// stop music player 
+		uiNamespace setVariable ["BLWK_musicManager_doPlay",false]; 
 	};
 }];
 
