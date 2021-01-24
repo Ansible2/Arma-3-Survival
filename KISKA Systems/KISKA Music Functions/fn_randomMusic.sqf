@@ -40,15 +40,15 @@ Examples:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 #define SLEEP_BUFFER 3
-
-scriptName "KISKA_fnc_randomMusic";
+#define SCRIPT_NAME "KISKA_fnc_randomMusic"
+scriptName SCRIPT_NAME;
 
 if !(isServer) exitWith {
-	"KISKA_fnc_randomMusic Must be run on server" call BIS_fnc_error;
+	[SCRIPT_NAME,"Was not executed on server, exiting...",false,true,true] call KISKA_fnc_log;
 };
 
 if (!canSuspend) exitWith {
-	"KISKA_fnc_randomMusic must be run in scheduled" call BIS_fnc_error;
+	[SCRIPT_NAME,"Was not executed in a scheduled environment, exiting...",false,true,true] call KISKA_fnc_log;
 };
 
 params [
@@ -60,12 +60,12 @@ params [
 ];
 
 if (_musicTracks isEqualTo [] AND {_usedMusicTracks isEqualTo []}) exitWith {
-	"No music tracks were passed" call BIS_fnc_error;
+	[SCRIPT_NAME,"No music tracks were passed! Can't start.",false,true,true] call KISKA_fnc_log;
 };
 
 // check if _timeBetween is an array AND if it is the correct formats OR if it is just a single number
 if ((_timeBetween isEqualType []) AND {!((count _timeBetween) isEqualTo 1) AND {!((count _timeBetween) isEqualTo 3) OR !(_timeBetween isEqualTypeParams [1,2,3])}}) exitWith {
-	"_timeBetween array is incorrect format or types" call BIS_fnc_error;
+	[SCRIPT_NAME,[_timeBetween,"is not the correct format for _timeBetween"],true,true,true] call KISKA_fnc_log;
 };
 
 if (_musicTracks isEqualTo []) then {
@@ -135,9 +135,19 @@ if (_randomWaitTime < SLEEP_BUFFER) then {
 
 private _waitTime = _durationOfTrack + _randomWaitTime;
 
-diag_log format ["random wait time is: %1",_randomWaitTime];
-diag_log format ["duration of track is: %1",_durationOfTrack];
-diag_log format ["wait time is: %1",_waitTime];
+[
+	SCRIPT_NAME,
+	[
+		"Random wait time is:",
+		_randomWaitTime,
+		"--- Duration of tack is:",
+		_durationOfTrack,
+		"--- Wait time is:",
+		_waitTime
+	],
+	true
+] call KISKA_fnc_log;
+
 // dont play this music if the system is stopped or another random music system was started
 if (missionNamespace getVariable ["KISKA_musicSystemIsRunning",true]) then {
 /*	
@@ -155,10 +165,8 @@ if (missionNamespace getVariable ["KISKA_musicSystemIsRunning",true]) then {
 	};
 
 	if (_startTime isEqualTo KISKA_randomMusicStartTIme) then {
-		diag_log "Sleep done";
+		[SCRIPT_NAME,"Sleep has finished, executing new randomMusic"] call KISKA_fnc_log
 		// the globals in params are not passed to allow for changes while music is playing
 		null = [true,_selectedTrack] spawn KISKA_fnc_randomMusic; 
-
-		diag_log "execing next song";
 	};
 };

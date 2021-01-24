@@ -20,12 +20,13 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-scriptName "KISKA_fnc_stopMusic";
+#define SCRIPT_NAME "KISKA_fnc_stopMusic"
+scriptName SCRIPT_NAME;
 
 if (!hasInterface) exitWith {};
 
 if (!canSuspend) exitWith {
-	"KISKA_fnc_stopMusic should be run in a scheduled environment" call BIS_fnc_error;
+	[SCRIPT_NAME,"Was not run in scheduled environment, executing in scheduled...",false,true,true] call KISKA_fnc_log;
 	null = _this spawn KISKA_fnc_stopMusic;
 };
 

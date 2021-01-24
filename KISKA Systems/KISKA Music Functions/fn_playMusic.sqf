@@ -24,12 +24,13 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-scriptName "KISKA_fnc_playMusic";
+#define SCRIPT_NAME "KISKA_fnc_playMusic"
+scriptName SCRIPT_NAME;
 
 if !(hasInterface) exitWith {};
 
 if !(canSuspend) exitWith {
-	"KISKA_fnc_playMusic does not entirely work in unscheduled environment" call BIS_fnc_error;
+	[SCRIPT_NAME,"Wasn't run in scheduled environment, executing in scheduled",false,true,true] call KISKA_fnc_log;
 	_this spawn KISKA_fnc_playMusic;
 };
 
@@ -43,7 +44,7 @@ params [
 
 private _trackConfig = [["cfgMusic",_track]] call KISKA_fnc_findConfigAny;
 if (isNull _trackConfig) exitWith {
-	"_track is undefined in music config" call BIS_fnc_error;
+	[SCRIPT_NAME,[_track,"is not a defined track in any CfgMusic"],true,true,true] call KISKA_fnc_log;
 };
 
 private _musicPlaying = call KISKA_fnc_isMusicPlaying;
