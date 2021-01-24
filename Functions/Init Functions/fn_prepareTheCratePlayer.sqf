@@ -40,6 +40,11 @@ params ["_mainCrate"];
 // headless and dedicated servers just need the global set
 if (!hasInterface) exitWith {BLWK_mainCrate = _mainCrate};
 
+
+waitUntil {
+	sleep 0.1;
+	!isNil "BLWK_pointsForHeal"
+};
 private _healString = ["<t color='#ff0000'>-- Heal Yourself ",BLWK_pointsForHeal,"p --</t>"] joinString "";
 [	
 	_mainCrate,
