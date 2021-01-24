@@ -1,4 +1,28 @@
 #include "..\..\Headers\descriptionEXT\GUI\musicManagerCommonDefines.hpp"
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_musicManagerOnLoad_currentPlaylistLoop
+
+Description:
+	Keeps the current playlist listBox up to date between the multiple people that
+	 can be simaltaneously updating it.
+
+Parameters:
+	0: _control : <CONTROL> - The control for the list box to update
+	1: _display : <DISPLAY> - The display for the Music Manager
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+		[_control] call BLWK_fnc_musicManagerOnLoad_currentPlaylistLoop;
+    (end)
+
+Author(s):
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
+#define SCRIPT_NAME "BLWK_fnc_musicManagerOnLoad_currentPlaylistLoop"
+scriptName SCRIPT_NAME;
 
 params ["_control","_display"];
 
@@ -52,7 +76,7 @@ null = _this spawn {
 			if (_indexesOfDisplayed >= _forEachIndex) then {
 				_comparedIndex = _displayedArray select _forEachIndex;
 				// if the index is not already the same
-				if !(_comparedIndex == _x) then {
+				if (_comparedIndex != _x) then {
 					_control lbSetText [_forEachIndex,[_x] call (uiNamespace getVariable "BLWK_fnc_musicManager_getMusicName")];
 				};
 			} else {
