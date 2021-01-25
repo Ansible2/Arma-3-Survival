@@ -35,7 +35,7 @@ if !(hasInterface) exitWith {};
 params ["_hitUnit","_damage"];
 
 if (isNull _hitUnit) exitWith {
-	[SCRIPT_NAME,"_hitUnit is null, exiting...",false,true,true] call KISKA_fnc_log;
+	["_hitUnit is null, exiting...",true] call KISKA_fnc_log;
 };
 
 // aircraft gunners get limited points

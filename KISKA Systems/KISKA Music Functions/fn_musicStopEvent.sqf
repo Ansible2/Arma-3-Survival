@@ -23,7 +23,7 @@ scriptName SCRIPT_NAME;
 
 if (!hasInterface) exitWith {};
 
-[SCRIPT_NAME,"Music stopped"] call KISKA_fnc_log;
+["Music stopped",false] call KISKA_fnc_log;
 
 missionNamespace setVariable ["KISKA_musicPlaying",false];
 missionNamespace setVariable ["KISKA_currentTrack",""];

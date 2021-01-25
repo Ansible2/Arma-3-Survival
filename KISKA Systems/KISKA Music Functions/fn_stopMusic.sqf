@@ -26,7 +26,7 @@ scriptName SCRIPT_NAME;
 if (!hasInterface) exitWith {};
 
 if (!canSuspend) exitWith {
-	[SCRIPT_NAME,"Was not run in scheduled environment, executing in scheduled...",false,true,true] call KISKA_fnc_log;
+	["Was not run in scheduled environment, executing in scheduled...",true] call KISKA_fnc_log;
 	null = _this spawn KISKA_fnc_stopMusic;
 };
 

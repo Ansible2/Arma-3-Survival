@@ -28,17 +28,17 @@ params [
 ];
 
 if (isNull _configToSearch) exitWith {
-	[SCRIPT_NAME,"_configToSearch is null",false,true,true] call KISKA_fnc_log;
+	["_configToSearch is null",true] call KISKA_fnc_log;
 };
 
 if !(isClass _configToSearch) exitWith {
-	[SCRIPT_NAME,["The _configToSearch",_configToSearch,"does not exist"],true,true,true] call KISKA_fnc_log;
+	[["The _configToSearch ",_configToSearch," does not exist"],true] call KISKA_fnc_log;
 };
 
 private _configs = "true" configClasses _configToSearch;
 
 if (_configs isEqualTo []) exitWith {
-	[SCRIPT_NAME,["The _configToSearch",_configToSearch,"does not have any classes"],true,true,true] call KISKA_fnc_log;
+	[["The _configToSearch ",_configToSearch," does not have any classes"],true] call KISKA_fnc_log;
 };
 
 private _returnArray = [];

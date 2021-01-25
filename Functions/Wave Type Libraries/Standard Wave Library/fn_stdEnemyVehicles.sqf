@@ -25,6 +25,8 @@ Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "BLWK_fnc_stdEnemyVehicles";
+
 if !(BLWK_currentWaveNumber >= BLWK_vehicleStartWave) exitWith {[]};
 
 //#define BASE_VEHICLE_SPAWN_LIKELIHOOD 0.30
@@ -52,7 +54,7 @@ if (_howLikelyIsAVehicleToSpawn > 1) then {
 	_howLikelyIsAVehicleToSpawn = 1;
 };
 
-["BLWK_fnc_stdEnemyVehicles",["Vehicle spawn likelihood is",_howLikelyIsAVehicleToSpawn]] call KISKA_fnc_log;
+[["Vehicle spawn likelihood is ",_howLikelyIsAVehicleToSpawn],false] call KISKA_fnc_log;
 private _howLikelyIsAVehicleNOTToSpawn = 1 - _howLikelyIsAVehicleToSpawn;
 
 private _vehicleWillSpawn = selectRandomWeighted [true,_howLikelyIsAVehicleToSpawn,false,_howLikelyIsAVehicleNOTToSpawn];

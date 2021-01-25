@@ -38,7 +38,7 @@ params [
 ];
 
 if (isNull _killedUnit) exitWith {
-	[SCRIPT_NAME,"_killedUnit is null, exiting...",false,true,true] call KISKA_fnc_log;
+	["_killedUnit is null, exiting...",true] call KISKA_fnc_log;
 };
 
 private _points = [_killedUnit] call BLWK_fnc_getPointsForKill;

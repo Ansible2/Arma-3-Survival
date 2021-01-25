@@ -28,7 +28,7 @@ params [
 ];
 
 if (_track isEqualTo "") exitWith {
-	[SCRIPT_NAME,"_track is empty string",false,true,true] call KISKA_fnc_log
+	["_track is empty string",true] call KISKA_fnc_log;
 };
 
 private _duration = 0;
@@ -40,7 +40,7 @@ if (_track isEqualType configNull) then {
 };
 
 if (isNull _config) exitWith {
-	[SCRIPT_NAME,["_track",_track,"is not defined in any CfgMusic class"],false,true,true] call KISKA_fnc_log
+	[["_track ",_track," is not defined in any CfgMusic class"],true] call KISKA_fnc_log;
 	_duration
 };
 

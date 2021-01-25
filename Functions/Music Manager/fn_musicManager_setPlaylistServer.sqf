@@ -24,7 +24,7 @@ Author(s):
 scriptName SCRIPT_NAME;
 
 if (!isServer) exitWith {
-	[SCRIPT_NAME,"Needs to be run on the server! This is not the server!",false,true,true] call KISKA_fnc_log;
+	["Needs to be run on the server! This is not the server!",true] call KISKA_fnc_log;
 };
 
 // copying playlist by value not reference, otherwise they will be deleted out of the current playlist box

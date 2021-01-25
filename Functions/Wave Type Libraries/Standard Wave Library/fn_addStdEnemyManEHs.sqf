@@ -28,7 +28,7 @@ scriptName SCRIPT_NAME;
 params ["_unit"];
 
 if !(local _unit) exitWith {
-	[SCRIPT_NAME,["Tried to add events to",_unit,"but they are not local. Exiting..."],true,true,true] call KISKA_fnc_log;
+	[["Tried to add events to ",_unit," but they are not local. Exiting..."],true] call KISKA_fnc_log;
 	false
 };
 

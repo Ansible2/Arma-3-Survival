@@ -24,6 +24,8 @@ Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "BLWK_fnc_startWave";
+
 if (!isServer OR {!canSuspend}) exitWith {};
 
 params [
@@ -83,7 +85,7 @@ waitUntil {
 };
 
 // log wave
-["BLWK_fnc_startWave",["Start Wave:",BLWK_currentWaveNumber]] call KISKA_fnc_log;
+[["Start Wave: ",BLWK_currentWaveNumber],false] call KISKA_fnc_log;
 
 // loop to check wave end
 waitUntil {

@@ -24,7 +24,7 @@ Author(s):
 scriptName SCRIPT_NAME;
 
 if (!isServer) exitWith {
-	[SCRIPT_NAME,"Needs to only be run on server, exiting...",false,true,true] call KISKA_fnc_log;
+	["Needs to only be run on server, exiting...",true] call KISKA_fnc_log;
 	false
 };
 

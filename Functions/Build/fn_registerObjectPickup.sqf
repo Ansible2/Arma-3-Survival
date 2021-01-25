@@ -37,7 +37,7 @@ params [
 ];
 
 if (isNull _object) exitWith {
-	[SCRIPT_NAME,["Null object asked for:",_object,"from remoteExecutedOwner",remoteExecutedOwner]] call KISKA_fnc_log;
+	[["Null object asked for: ",_object," from remoteExecutedOwner ",remoteExecutedOwner]] call KISKA_fnc_log;
 };
 
 _object setVariable ["BLWK_objectPickedUp",_pickedUp];

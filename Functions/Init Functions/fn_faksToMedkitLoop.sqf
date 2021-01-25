@@ -32,13 +32,13 @@ if (!isServer) exitWith {};
 
 /*
 if (BLWK_dontUseRevive) exitWith {
-	[SCRIPT_NAME,"Revive is disabled, exiting..."] call KISKA_fnc_log;
+	["Revive is disabled, exiting..."] call KISKA_fnc_log;
 };
 */
 
 // check if the loop was already started
 if (missionNamespace getVariable ["BLWK_faksToMedkitLooprunning",false]) exitWith {
-	[SCRIPT_NAME,"Loop was already started (queried) by another player"] call KISKA_fnc_log;
+	["Loop was already started (queried) by another player"] call KISKA_fnc_log;
 };
 
 // set to true so that loop does not start again

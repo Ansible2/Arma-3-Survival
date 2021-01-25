@@ -33,7 +33,7 @@ params [
 ];
 
 if (isNull _object) exitWith {
-	[SCRIPT_NAME,"Null object passed, will not add actions, exiting...",false,true,true] call KISKA_fnc_log;
+	["Null object passed, will not add actions, exiting...",true] call KISKA_fnc_log;
 	false
 };
 

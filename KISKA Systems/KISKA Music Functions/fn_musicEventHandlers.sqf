@@ -26,7 +26,7 @@ scriptName SCRIPT_NAME;
 
 if (!hasInterface) exitWith {};
 
-[SCRIPT_NAME,"Added KISKA music event handlers"] call KISKA_fnc_log;
+["Added KISKA music event handlers",false] call KISKA_fnc_log;
 
 addMusicEventHandler ["MusicStart", {
 	_this call KISKA_fnc_musicStartEvent;

@@ -30,7 +30,7 @@ scriptName SCRIPT_NAME;
 if !(hasInterface) exitWith {};
 
 if !(canSuspend) exitWith {
-	[SCRIPT_NAME,"Wasn't run in scheduled environment, executing in scheduled",false,true,true] call KISKA_fnc_log;
+	["Wasn't run in scheduled environment, executing in scheduled",true] call KISKA_fnc_log;
 	_this spawn KISKA_fnc_playMusic;
 };
 
@@ -44,7 +44,7 @@ params [
 
 private _trackConfig = [["cfgMusic",_track]] call KISKA_fnc_findConfigAny;
 if (isNull _trackConfig) exitWith {
-	[SCRIPT_NAME,[_track,"is not a defined track in any CfgMusic"],true,true,true] call KISKA_fnc_log;
+	[[_track," is not a defined track in any CfgMusic"],true] call KISKA_fnc_log;
 };
 
 private _musicPlaying = call KISKA_fnc_isMusicPlaying;

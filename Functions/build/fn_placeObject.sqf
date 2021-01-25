@@ -33,7 +33,7 @@ params [
 ];
 
 if (isNull _object) exitWith {
-	[SCRIPT_NAME,"_object was found to be null, exiting...",false,true,true] call KISKA_fnc_log;
+	["_object was found to be null, exiting...",false] call KISKA_fnc_log;
 	false
 };
 

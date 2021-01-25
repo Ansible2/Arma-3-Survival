@@ -9,11 +9,11 @@ Description:
 	 a log is printed.
 
 Parameters:
-	0: _scriptName <STRING> - The name of the script from where this message is being called
-	1: _message <ANY> - The message to send. If array and _joinString is true, will be used with the joinString command
-	2: _joinString <BOOL> - Should this message joined into a string if an array
-	3: _logWithError <BOOL> - Show error message on screen (BIS_fnc_error)
-	4: _forceLog <BOOL> - Print log regardless of KISKA_logScripts content
+	0: _message <ANY> - The message to send. If array and _joinString is true, will be used with the joinString command
+	1: _logWithError <BOOL> - Show error message on screen (BIS_fnc_error)
+	2: _forceLog <BOOL> - Print log regardless of KISKA_logScripts content
+	3: _joinString <BOOL> - Should this message joined into a string if an array
+	4: _scriptName <STRING> - The name of the script from where this message is being called
 
 Returns:
 	<ANY> - The message sent
@@ -21,10 +21,11 @@ Returns:
 Examples:
     (begin example)
 		missionNamespace setVariable ["KISKA_doLog",true];
+		scriptName "My Script";
 		private _myvar = 1;
-		["myScript",["Hello Number",_myvar],true,false,true] call KISKA_fnc_log;
+		[["Hello Number",_myvar]] call KISKA_fnc_log;
 
-		- prints "Hello Number 1" to console
+		- prints ["My Script"] "Hello Number 1" to console
     (end)
 
 Author:
@@ -33,12 +34,16 @@ Author:
 if !(missionNamespace getVariable ["KISKA_doLog",true]) exitWith {};
 
 params [
-	["_scriptName","",[""]],
 	["_message","",[]],
-	["_joinString",true,[true]],
 	["_logWithError",missionNamespace getVariable ["KISKA_logWithError",false],[true]],
-	["_forceLog",false,[true]]
+	["_forceLog",true,[true]],
+	["_joinString",true,[true]],
+	["_scriptName","",[""]]
 ];
+
+if (_scriptName == "" AND {!isNil "_fnc_scriptNameParent"}) then {
+	_scriptName = _fnc_scriptNameParent;
+};
 
 if !(_forceLog) then {
 	// set _forceLog to true if the scripts name is in the log array KISKA_logScripts
@@ -61,10 +66,10 @@ if (_currentLoggedScript != _scriptName) then {
 };
 
 if (_message isEqualType [] AND {_joinString}) then {
-	_message = _message joinString " ";
+	_message = _message joinString "";
 };
 
-diag_log _message;
+diag_log ("[" + _scriptName + "] " + _message);
 
 if (_logWithError) then {
 	(_scriptName + " : " + _message) call BIS_fnc_error;

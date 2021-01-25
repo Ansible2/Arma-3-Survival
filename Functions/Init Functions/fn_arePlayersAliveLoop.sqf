@@ -29,7 +29,7 @@ scriptName SCRIPT_NAME;
 if (!isServer) exitWith {};
 
 if (!canSuspend) exitWith {
-	[SCRIPT_NAME,"Needs to run in scheduled, running in scheduled...",false,false,true] call KISKA_fnc_log;
+	["Needs to run in scheduled, running in scheduled...",true] call KISKA_fnc_log;
 	null = [] spawn BLWK_fnc_arePlayersAliveLoop;
 };
 
@@ -58,7 +58,7 @@ private _condition = {
 
 waitUntil {
 	if (call _condition) exitWith {
-		[SCRIPT_NAME,"All players are dead with no respawns. Ending mission...",false,false,true] call KISKA_fnc_log;
+		["All players are dead with no respawns. Ending mission...",false] call KISKA_fnc_log;
 		"End1" call BIS_fnc_endMissionServer;
 		true
 	};

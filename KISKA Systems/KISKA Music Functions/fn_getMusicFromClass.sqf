@@ -26,7 +26,7 @@ params [
 ];
 
 if (_musicClass isEqualTo "") exitWith {
-	[SCRIPT_NAME,"_musicClass is empty. Exiting...",false,true,true] call KISKA_fnc_log;
+	["_musicClass is empty. Exiting...",true] call KISKA_fnc_log;
 };
 
 private _configCondition = ["getText (_x >> 'musicClass') == ",str _musicClass] joinString "";

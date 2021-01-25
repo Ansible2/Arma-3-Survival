@@ -30,13 +30,13 @@ scriptName SCRIPT_NAME;
 if (!hasInterface) exitWith {};
 
 if (BLWK_dontUseRevive) exitWith {
-	[SCRIPT_NAME,"Vanilla revive is disabled, exiting...",false,false,true] call KISKA_fnc_log;
+	["Vanilla revive is disabled, exiting...",false] call KISKA_fnc_log;
 };
 
 params ["_unit"];
 
 if (!local _unit) exitWith {
-	[SCRIPT_NAME,"_unit is not local, exiting...",false,true,true] call KISKA_fnc_log;
+	[[_unit," is not local, exiting..."]] call KISKA_fnc_log;
 };
 
 // CIPHER COMMENT: test the validity of a local event handler here, it may not work if killed by a remote unit

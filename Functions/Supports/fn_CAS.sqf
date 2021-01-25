@@ -63,12 +63,12 @@ params [
 ];
 
 if (_attackPosition isEqualType objNull AND {isNull _attackPosition} OR {_attackPosition isEqualTo []}) exitWith {
-	[SCRIPT_NAME,[_attackPosition,"is an invalid target"],true,true,true] call KISKA_fnc_log;
+	[[_attackPosition," is an invalid target"],true] call KISKA_fnc_log;
 };
 
 private _planeCfg = configfile >> "cfgvehicles" >> _planeClass;
 if !(isclass _planeCfg) exitwith {
-	[SCRIPT_NAME,[_planeClass,"Vehicle class not found, moving to default aircraft..."],true,true,true] call KISKA_fnc_log;
+	[[_planeClass," Vehicle class not found, moving to default aircraft..."],true] call KISKA_fnc_log;
 	_this set [3,"B_Plane_CAS_01_dynamicLoadout_F"];
 	null = _this spawn BLWK_fnc_CAS; 
 };
@@ -163,7 +163,7 @@ if (isClass _pylonConfig) then {
 	if !(_attackMagazines isEqualTo []) then {
 		private ["_attackTypeString","_attackMagazineClass","_attackWeaponClass"];
 		{	
-			[SCRIPT_NAME,["attackMag is:",_x],true] call KISKA_fnc_log;
+			[["attackMag is: ",_x],true] call KISKA_fnc_log;
 			_attackMagazineClass = _x select 1;
 			_attackWeaponClass = [configFile >> "cfgMagazines" >> _attackMagazineClass >> "pylonWeapon"] call BIS_fnc_getCfgData;
 
@@ -178,7 +178,7 @@ if (isClass _pylonConfig) then {
 
 
 if (_exitToDefault) exitwith {
-	[SCRIPT_NAME,["Weapon types of",_attackMagazines,"for plane class:",_planeClass,"not entirely found, moving to default Aircraft..."],true,true,true] call KISKA_fnc_log;
+	[["Weapon types of ",_attackMagazines," for plane class: ",_planeClass," not entirely found, moving to default Aircraft..."],true] call KISKA_fnc_log;
 	// exit to default aircraft type 
 	_this set [3,"B_Plane_CAS_01_dynamicLoadout_F"];
 	null = _this spawn BLWK_fnc_CAS;

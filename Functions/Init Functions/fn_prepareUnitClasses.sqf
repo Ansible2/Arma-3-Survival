@@ -93,7 +93,7 @@ private _fn_sortFactionClasses = {
 	[_infantryClasses,false] call _fn_sortArray;
 	// exit if no infantry
 	if (_infantryClasses isEqualTo []) exitWith {
-		[SCRIPT_NAME,["Found no infantry classes in %1 config",_configToCheck],true,true,true] call KISKA_fnc_log;
+		[["Found no infantry classes in config ",_configToCheck],true] call KISKA_fnc_log;
 		[]
 	};
 		
@@ -147,11 +147,11 @@ private _fn_getSelectedClasses = {
 	if (_factionIndex != -1) then {
 		_factionArray = [_factionClasses select _factionIndex] call _fn_sortFactionClasses;
 		if (_factionArray isEqualTo []) then {
-			[SCRIPT_NAME,["Faction",_factionString,"returned empty array, going to faction",_defaultFactionString]] call KISKA_fnc_log;
+			[["Faction ",_factionString," returned empty array, going to faction ",_defaultFactionString],true] call KISKA_fnc_log;
 			_goToDefaultFaction = true
 		};
 	} else {
-		[SCRIPT_NAME,["Faction",_factionString,"was not found, going to default faction",_defaultFactionString]] call KISKA_fnc_log;
+		[["Faction ",_factionString," was not found, going to default faction ",_defaultFactionString],true] call KISKA_fnc_log;
 		_goToDefaultFaction = true
 	};
 	

@@ -25,7 +25,7 @@ params ["_control"];
 
 // KISKA_fnc_getVariableTarget needs a scheduled environment
 if (!canSuspend) exitWith {
-	[SCRIPT_NAME,"Needs to be run in scheduled, now running in scheduled",false,true,true] call KISKA_fnc_log;
+	["Needs to be run in scheduled, now running in scheduled",true] call KISKA_fnc_log;
 	null = _this spawn BLWK_fnc_musicManagerOnLoad_systemOnOffCombo;
 };
 

@@ -31,7 +31,7 @@ Author(s):
 scriptName SCRIPT_NAME;
 
 if (!canSuspend) exitWith {
-	[SCRIPT_NAME,"Needs to executed in scheduled, now running in scheduled...",false,true,true] call KISKA_fnc_log;
+	["Needs to executed in scheduled, now running in scheduled...",true] call KISKA_fnc_log;
 	null = [] spawn BLWK_fnc_prepareTheCratePlayer;
 };
 
