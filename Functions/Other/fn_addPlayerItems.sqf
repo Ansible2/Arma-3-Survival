@@ -23,6 +23,8 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "BLWK_fnc_addPlayerItems";
+
 params [
 	["_player",player,[objNull]]
 ];

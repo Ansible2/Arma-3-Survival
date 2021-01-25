@@ -23,10 +23,14 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if (!BLWK_doDetectCollision) exitWith {};
+scriptName "BLWK_fnc_aiCollisionLoop";
+
+if (!BLWK_doDetectCollision) exitWith {
+	["BLWK_doDetectCollision is set to be false, exiting...",false] call KISKA_fnc_log;
+};
 
 if (!canSuspend) exitWith {
-	"BLWK_fnc_aiCollisionLoop: should be run in scheduled environment" call BIS_fnc_error;
+	["Needs to be run in scheduled, exting to run in scheduled",true] call KISKA_fnc_log;
 	null = _this spawn BLWK_fnc_aiCollisionLoop;
 };
 
@@ -49,7 +53,11 @@ while {BLWK_doDetectCollision AND {alive _unit}} do {
 		if !(_objects isEqualTo []) then {
 
 			// check if any encountered object is a built one
-			_index = _objects findIf {!(isNull _x) AND {_x getVariable ["BLWK_collisionObject",false]}};
+			_index = _objects findIf {
+				!(isNull _x) AND 
+				{_x getVariable ["BLWK_collisionObject",false]}
+			};
+			
 			if (_index != -1) then {
 				private _collisionObject = _objects select _index;
 				_moveToPosition = (_unit getRelPos [20,180]);

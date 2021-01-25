@@ -16,7 +16,7 @@ Parameters:
 	1: _timeBetweenChecks : <NUMBER> - How often to check the unit leader's velocity
 
 Returns:
-	BOOL
+	NOTHING
 
 Examples:
     (begin example)
@@ -32,7 +32,8 @@ Author(s):
 scriptName SCRIPT_NAME;
 
 if (!canSuspend) exitWith {
-	"BLWK_fnc_pathingLoop should be run in scheduled environment" call BIS_fnc_error;
+	["Should be run in scheduled environment, exiting to scheduled...",true] call KISKA_fnc_log;
+	null = _this spawn BLWK_fnc_pathingLoop;
 };
 
 params [
@@ -41,7 +42,8 @@ params [
 ];
 
 if (isNull _groupToCheck) exitWith {
-	"BLWK_fnc_pathingLoop: null _groupToCheck" call BIS_fnc_error;
+	["_groupToCheck is null. Exiting...",true] call KISKA_fnc_log;
+	nil
 };
 
 // follower units won't likely get stuck as their primary goal is to join the formation at all cost
@@ -51,7 +53,8 @@ if (_groupToCheck isEqualType objNull) then {
 
 private _groupLeader = leader _groupToCheck;
 if (!alive _groupLeader) exitWith {
-	["BLWK_fnc_pathingLoop: _groupLeader %1 is dead!",_groupLeader] call BIS_fnc_error;
+	[["_groupLeader ",_groupLeader," is null. Exiting..."],true] call KISKA_fnc_log;
+	nil
 };
 
 

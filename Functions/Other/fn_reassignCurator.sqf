@@ -24,6 +24,8 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "BLWK_fnc_reassignCurator";
+
 params [
 	["_isManual",false,[true]],
 	["_curatorObject","BLWK_zeus",[objNull,""]]
@@ -41,7 +43,7 @@ if (_curatorObject isEqualType "") then {
 };
 
 if (isNull _curatorObject) exitWith {
-	"_curatorObject isNull!" call BIS_fnc_error;
+	["_curatorObject isNull!",true] call KISKA_fnc_log;
 };
 
 private _unitWithCurator = getAssignedCuratorUnit _curatorObject;
