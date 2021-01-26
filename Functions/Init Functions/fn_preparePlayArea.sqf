@@ -58,6 +58,8 @@ private _AISpawnPositionsArray = [];
 private _positionToPushBack = [];
 private _minRadius = BLWK_playAreaRadius + 50;
 private _maxRadius = BLWK_playAreaRadius + 100;
+// used for AI inftantry in BLWK_fnc_pathing_checkUnitDistance
+BLWK_maxDistanceFromPlayArea = BLWK_playAreaRadius + 125;
 while {count _AISpawnPositionsArray < NUMBER_OF_INFANTRY_SPAWN_POSITIONS} do {
 	_positionToPushBack = [BLWK_playAreaCenter, _minRadius, _maxRadius, 0, 0] call BIS_fnc_findSafePos;
 	_AISpawnPositionsArray pushBackUnique _positionToPushBack;

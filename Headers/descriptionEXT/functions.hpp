@@ -1,5 +1,20 @@
 class BLWK
 {
+	class AiPathing
+	{
+		file = "functions\AI Pathing";
+		class pathing_checkGroupStatus
+		{};
+		class pathing_checkLeaderVelocity
+		{};
+		class pathing_collisionLoop
+		{};
+		class pathing_detailedStuckCheck
+		{};
+		class pathing_mainLoop 
+		{};
+	};
+
 	class Build
 	{
 		file = "functions\Build";
@@ -157,8 +172,6 @@ class BLWK
 		{};
 		class adjustPlayerTraits
 		{};
-		class aiCollisionLoop
-		{};
 	/*	
 		class checkDLC
 		{};
@@ -174,8 +187,6 @@ class BLWK
 		class hintDroppedDelete
 		{};
 		class optreMedicalToVanilla
-		{};
-		class pathingLoop
 		{};
 		class randomizeWeapons
 		{};

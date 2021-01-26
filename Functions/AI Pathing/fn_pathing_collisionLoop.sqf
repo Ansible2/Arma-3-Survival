@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_aiCollisionLoop
+Function: BLWK_fnc_pathing_collisionLoop
 
 Description:
 	Used to keep the AI from attempting to walk through a placed object.
@@ -16,14 +16,14 @@ Returns:
 Examples:
     (begin example)
 
-		null = [myUnit] spawn BLWK_fnc_aiCollisionLoop;
+		null = [myUnit] spawn BLWK_fnc_pathing_collisionLoop;
 
     (end)
 
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-scriptName "BLWK_fnc_aiCollisionLoop";
+scriptName "BLWK_fnc_pathing_collisionLoop";
 
 if (!BLWK_doDetectCollision) exitWith {
 	["BLWK_doDetectCollision is set to be false, exiting...",false] call KISKA_fnc_log;
@@ -31,7 +31,7 @@ if (!BLWK_doDetectCollision) exitWith {
 
 if (!canSuspend) exitWith {
 	["Needs to be run in scheduled, exting to run in scheduled",true] call KISKA_fnc_log;
-	null = _this spawn BLWK_fnc_aiCollisionLoop;
+	null = _this spawn BLWK_fnc_pathing_collisionLoop;
 };
 
 params ["_unit"];
