@@ -31,7 +31,7 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if !(missionNamespace getVariable ["KISKA_doLog",true]) exitWith {};
+if !(missionNamespace getVariable ["KISKA_doLog",false]) exitWith {};
 
 params [
 	["_message","",[]],
