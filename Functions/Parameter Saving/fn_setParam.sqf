@@ -1,3 +1,25 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_setParam
+
+Description:
+	Saves a mission parameter to the profileNamespace in "BLWK_savedMissionParameters".
+
+Parameters:
+	0: _missionParamName <STRING> - The name of the parameter to save
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+		["myParam"] call BLWK_fnc_setParam;
+    (end)
+
+Author(s):
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
+scriptName "BLWK_fnc_setParam";
+
 if !(isServer) exitWith {};
 
 params [
@@ -5,7 +27,7 @@ params [
 ];
 
 if (_missionParamName == "") exitWith {
-	"Mission param name is empty string" call BIS_fnc_error;
+	["Mission param name is empty string",true] call KISKA_fnc_log;
 };
 
 private _saveIndex = [_missionParamName] call BLWK_fnc_getSavedParamIndex;

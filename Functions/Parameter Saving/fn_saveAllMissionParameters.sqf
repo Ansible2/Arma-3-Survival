@@ -1,3 +1,23 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_saveAllMissionParameters
+
+Description:
+	Saves all mission parameters to the profileNamespace in "BLWK_savedMissionParameters"
+
+Parameters:
+	NONE
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+		remoteExecCall ["BLWK_fnc_saveAllMissionParameters",2];
+    (end)
+
+Author(s):
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if !(isServer) exitWith {};
 
 private _paramClasses = "true" configClasses (missionConfigFile >> "Params");

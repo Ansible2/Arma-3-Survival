@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: KISKA_fnc_addParameterDiaryEntries
+Function: BLWK_fnc_addParameterDiaryEntries
 
 Description:
 	Creates a diary entry to save or delete saved mission parameters
