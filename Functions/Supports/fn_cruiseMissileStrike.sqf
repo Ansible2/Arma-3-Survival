@@ -24,7 +24,7 @@ Authors:
 scriptName "BLWK_fnc_cruiseMissileStrike";
 
 if (!canSuspend) exitWith {
-	"Must be run in scheduled envrionment" call BIS_fnc_error
+	["Must be run in a scheduled environment. Exiting to scheduled...",true] call KISKA_fnc_log;
 };
 
 params [

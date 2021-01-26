@@ -30,12 +30,12 @@ params [
 ];
 
 if (isNull _stalkerGroup) exitWith {
-	"BLWK_fnc_stopStalking _stalkerGroup isNull" call BIS_fnc_error;
+	["_stalkerGroup is null",true] call KISKA_fnc_log;
 
 	false
 };
 if (isNil {_stalkerGroup getVariable DO_STALK_VAR}) exitWIth {
-	"BLWK_fnc_stopStalking _stalkerGroup was not stalking" call BIS_fnc_error;
+	["_stalkerGroup was not registered as a stalker",true] call KISKA_fnc_log;
 
 	false
 };

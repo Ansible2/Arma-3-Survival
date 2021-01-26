@@ -28,8 +28,11 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "BLWK_fnc_startStalkingPlayers";
+
 if (!canSuspend) exitWith {
-	"BLWK_fnc_startStalkingPlayers must be run in a scheduled environment" call BIS_fnc_error;
+	["Must be run in a scheduled environment. Exiting to scheduled...",true] call KISKA_fnc_log;
+	null = _this spawn BLWK_fnc_startStalkingPlayers;
 };
 
 params [
@@ -42,7 +45,7 @@ params [
 
 // verify params
 if (isNull _stalkerGroup) exitWith {
-	"BLWK_fnc_stalkPlayer _stalkerGroup isNull" call BIS_fnc_error;
+	["_stalkerGroup is null",true] call KISKA_fnc_log;
 };
 if (_stalkerGroup isEqualType objNull) then {
 	_stalkerGroup = group _stalkerGroup;

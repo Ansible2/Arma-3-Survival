@@ -1,3 +1,4 @@
+#include "..\..\Headers\descriptionEXT\supportDefines.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_supportRadioGlobal
 
@@ -20,8 +21,6 @@ Examples:
 Authors:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#include "..\..\Headers\descriptionEXT\supportDefines.hpp"
-
 params [
 	"_messageType",
 	["_caller",player,[objNull]]

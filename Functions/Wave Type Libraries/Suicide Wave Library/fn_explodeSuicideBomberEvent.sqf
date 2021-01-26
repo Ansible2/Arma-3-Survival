@@ -26,7 +26,11 @@ params ["_bomber"];
 
 if (isNull _bomber) exitWith {};
 
-private _explosiveType = selectRandom ["DemoCharge_Remote_Ammo_Scripted","SatchelCharge_Remote_Ammo_Scripted","ClaymoreDirectionalMine_Remote_Ammo_Scripted"];
+private _explosiveType = selectRandom [
+	"DemoCharge_Remote_Ammo_Scripted",
+	"SatchelCharge_Remote_Ammo_Scripted",
+	"ClaymoreDirectionalMine_Remote_Ammo_Scripted"
+];
 
 private _explosive = _explosiveType createVehicle (getPosATLVisual _bomber);
 

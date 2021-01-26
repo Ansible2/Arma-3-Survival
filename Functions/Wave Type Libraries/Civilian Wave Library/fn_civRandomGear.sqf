@@ -1,3 +1,4 @@
+#include "..\..\..\Headers\civilianGearTables.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_civRandomGear
 
@@ -20,15 +21,21 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#include "..\..\..\Headers\civilianGearTables.hpp"
+scriptName "BLWK_fnc_civRandomGear";
 
 params [
 	["_unit",objNull,[objNull]]
 ];
 
-if (isNull _unit) exitWith {false};
+if (isNull _unit) exitWith {
+	["_unit is a null object, exiting...",true] call KISKA_fnc_log;
+	false
+};
 
-if (!local _unit) exitWith {false};
+if (!local _unit) exitWith {
+	[[_unit," is not local to your machine, exiting..."],true] call KISKA_fnc_log;
+	false
+};
 
 // remove all existing stuff
 removeAllWeapons _unit;

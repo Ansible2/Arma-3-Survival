@@ -5,7 +5,7 @@ Function: BLWK_fnc_shop_mouseExitTreeEvent
 Description:
 	Used in conjunction with BLWK_fnc_shop_mouseMoveTreeEvent.
 
-	Makes it so that should the mouse exit a tree the preview picture is not
+	Makes it so that should the mouse exit a tree, the preview picture is not
 	 left blank. If the tree has an item selected, that item will be shown
 	 in the preview. If an invalid item is slected or nothing is, the preview
 	 mission picture will be shown.
@@ -41,7 +41,8 @@ if (_path isEqualTo []) then {
 	call _fn_setImagePathDefault; // go to default image if nothing selected
 } else {
 	private _class = _tv tvToolTip _path;
-	if (_class isEqualTo "" OR {!isClass (configFile >> "CfgVehicles" >> _class)}) then { // in the event that the selected item is a category
+	// in the event that the selected item is a category
+	if (_class isEqualTo "" OR {!isClass (configFile >> "CfgVehicles" >> _class)}) then {
 		call _fn_setImagePathDefault;
 	} else {
 		_imagePath = getText (configFile >> "CfgVehicles" >> _class >> "editorPreview");

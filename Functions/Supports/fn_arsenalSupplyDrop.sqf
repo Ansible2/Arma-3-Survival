@@ -25,6 +25,7 @@ Author(s):
 #define DROP_ALT 200
 #define FLY_RADIUS 2000
 #define ARSENAL_LIFETIME 300
+
 params [
 	"_dropPosition",
 	["_vehicleClass","B_T_VTOL_01_vehicle_F",[""]]
