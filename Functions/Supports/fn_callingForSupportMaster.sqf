@@ -40,7 +40,7 @@ if (_targetPosition isEqualTo []) exitWith { \
 	CHECK_POSITION \
 	_targetPosition = AGLToASL(_targetPosition);\
 	private _friendlyAttackAircraftClass = [6] call BLWK_fnc_getFriendlyVehicleClass;\
-	null = [_targetPosition,CAS_TYPE,getDir _caller,_friendlyAttackAircraftClass] spawn BLWK_fnc_CAS;\
+	null = [_targetPosition,CAS_TYPE,getDir _caller,_friendlyAttackAircraftClass] spawn KISKA_fnc_CAS;\
 	CAS_RADIO
 
 #define TURRET_EXPRESSION(AIRCRAFT_TYPE,HEIGHT,RADIUS,DEFAULT_AIRCRAFT_TYPE,GUNNER_TYPE) \

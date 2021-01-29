@@ -71,6 +71,8 @@ class KISKA
 		file = "KISKA Systems\KISKA Utility Functions";
 		class addArsenal
 		{};
+		class CAS
+		{};
 		class deleteAtArray
 		{};
 		class findConfigAny

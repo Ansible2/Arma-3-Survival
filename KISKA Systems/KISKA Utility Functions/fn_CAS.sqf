@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_CAS
+Function: KISKA_fnc_CAS
 
 Description:
 	Completes either a gun run, bomb run, rockets, or rocket and gun strike.
@@ -20,7 +20,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [myTarget] spawn BLWK_fnc_CAS;
+		null = [myTarget] spawn KISKA_fnc_CAS;
 
     (end)
 
@@ -50,7 +50,7 @@ Author(s):
 #define PLANE_SPEED 75// m/s
 #define PLANE_VELOCITY(THE_SPEED) [0,THE_SPEED,0]
 
-#define SCRIPT_NAME "BLWK_fnc_CAS"
+#define SCRIPT_NAME "KISKA_fnc_CAS"
 scriptName SCRIPT_NAME;
 
 params [
@@ -72,7 +72,7 @@ private _planeCfg = configfile >> "cfgvehicles" >> _planeClass;
 if !(isclass _planeCfg) exitwith {
 	[[_planeClass," Vehicle class not found, moving to default aircraft..."],true] call KISKA_fnc_log;
 	_this set [3,"B_Plane_CAS_01_dynamicLoadout_F"];
-	null = _this spawn BLWK_fnc_CAS; 
+	null = _this spawn KISKA_fnc_CAS; 
 };
 
 
@@ -130,7 +130,7 @@ if (isClass _pylonConfig) then {
 			[
 				(configFile >> "cfgWeapons" >> _x),
 				(configFile >> "cfgWeapons" >> "cannonCore")
-			] call CBAP_fnc_inheritsFrom;
+			] call CBA_fnc_inheritsFrom;
 		};
 
 		private _cannonClass = "";
@@ -165,7 +165,7 @@ if (isClass _pylonConfig) then {
 	if !(_attackMagazines isEqualTo []) then {
 		private ["_attackTypeString","_attackMagazineClass","_attackWeaponClass"];
 		{	
-			[["attackMag is: ",_x],true] call KISKA_fnc_log;
+			[["attackMag is: ",_x],false] call KISKA_fnc_log;
 			_attackMagazineClass = _x select 1;
 			_attackWeaponClass = [configFile >> "cfgMagazines" >> _attackMagazineClass >> "pylonWeapon"] call BIS_fnc_getCfgData;
 
@@ -183,7 +183,7 @@ if (_exitToDefault) exitwith {
 	[["Weapon types of ",_attackMagazines," for plane class: ",_planeClass," not entirely found, moving to default Aircraft..."],true] call KISKA_fnc_log;
 	// exit to default aircraft type 
 	_this set [3,"B_Plane_CAS_01_dynamicLoadout_F"];
-	null = _this spawn BLWK_fnc_CAS;
+	null = _this spawn KISKA_fnc_CAS;
 };
 
 
@@ -192,7 +192,7 @@ if (_exitToDefault) exitwith {
 	Define attack function
 
 ---------------------------------------------------------------------------- */
-BLWK_fnc_casAttack = {
+KISKA_fnc_casAttack = {
 	params ["_plane","_dummyTarget","_weaponsToUse","_attackTypeID","_attackPosition","_breakOffDistance"];
 	
 	private ["_weapon_temp","_weaponArray_temp"];
@@ -259,7 +259,7 @@ BLWK_fnc_casAttack = {
 		};
 	};
 
-	_plane setVariable ["BLWK_completedFiring",true];
+	_plane setVariable ["KISKA_completedFiring",true];
 };
 
 
@@ -281,7 +281,6 @@ if !(_allowDamage) then {
 		_x allowDamage false;
 	};
 };
-
 
 
 // update the planes pylons
@@ -337,7 +336,7 @@ private _timeAfterFlight = time + _flightTime;
 private _planeVectorUp = vectorUpVisual _plane;
 
 private ["_interval","_planeVectorDirTo","_planeVectorDirFrom"];
-while {!(isNull _plane) AND {!(_plane getVariable ["BLWK_completedFiring",false])} AND {(_plane distance _attackPosition) > _breakOffDistance}} do {
+while {!(isNull _plane) AND {!(_plane getVariable ["KISKA_completedFiring",false])} AND {(_plane distance _attackPosition) > _breakOffDistance}} do {
 	//--- Set the plane approach vector
 	_interval = linearConversion [_startTime,_timeAfterFlight,time,0,1];
 	_planeVectorDirTo = _planePositionASL vectorFromTo _attackPosition;
@@ -360,24 +359,24 @@ while {!(isNull _plane) AND {!(_plane getVariable ["BLWK_completedFiring",false]
 		
 		
 		//private "_dummyTarget";
-		if (!(isNull _plane) AND {!(_plane getVariable ["BLWK_startedFiring",false])}) then {
-			_plane setVariable ["BLWK_startedFiring",true];
+		if (!(isNull _plane) AND {!(_plane getVariable ["KISKA_startedFiring",false])}) then {
+			_plane setVariable ["KISKA_startedFiring",true];
 			// create a target to shoot at
 			private _dummyTargetClass = ["LaserTargetE","LaserTargetW"] select (_planeSide getfriend west > 0.6);
 			private _dummyTarget = createvehicle [_dummyTargetClass,[0,0,0],[],0,"NONE"];
-			_plane setVariable ["BLWK_casDummyTarget",_dummyTarget];
+			_plane setVariable ["KISKA_casDummyTarget",_dummyTarget];
 			_dummyTarget setPosASL _attackPosition;	
 			_plane reveal laserTarget _dummyTarget;
 			_plane dowatch laserTarget _dummyTarget;
 			_plane dotarget laserTarget _dummyTarget;
 
-			null = [_plane,_dummyTarget,_weaponsToUse,_attackTypeID,_attackPosition,_breakOffDistance] spawn BLWK_fnc_casAttack;
+			null = [_plane,_dummyTarget,_weaponsToUse,_attackTypeID,_attackPosition,_breakOffDistance] spawn KISKA_fnc_casAttack;
 		} else {
 			// ensures strafing effect with the above setVelocityTransformation
 			/// for some reason, private variables outside the main if here do not work
 			/// had to use this method of storing the target instead
 			if !(isNull _plane) then {
-				private _dummyTarget = _plane getVariable "BLWK_casDummyTarget";
+				private _dummyTarget = _plane getVariable "KISKA_casDummyTarget";
 				_attackPosition = AGLToASL(_dummyTarget getPos [0.1,(getDirVisual _plane)]);
 				_dummyTarget setPosASL _attackPosition;
 			};
