@@ -184,6 +184,8 @@ class BLWK
 		{};
 		class handleEnemyWeapons
 		{};
+		class handleWaitingForReviveEvent
+		{};
 		class hintDroppedDelete
 		{};
 		class optreMedicalToVanilla

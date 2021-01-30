@@ -32,31 +32,18 @@ params [
 
 BLWK_animStateChangedEh_ID = _player addEventHandler ["AnimStateChanged",{
 	params ["_unit", "_anim"];
-	
-	if (_anim == "unconsciousrevivedefault" AND {alive _unit}) then {
-		// if in incapacitatedState
-		if !(incapacitatedState _unit isEqualTo "") then {
-			
-			private _unitItems = items _unit;
-			if ("Medikit" in _unitItems) then {
-				_unit removeItem "Medikit";				
-				
-				// revives player for BIS revive system
-				["BLWK_reviveOnStateVar",1,_unit] call BIS_fnc_reviveOnState;
-				
-				hint "Reived from your medkit";
 
-				// make the player invincible for 30 seconds to avoid BS
-				null = [_unit] spawn {
-					params ["_unit"];
-					_unit allowDamage false;
-					sleep 30;
-					_unit allowDamage true;
-				};
-			};
-		};
+	if (_anim == "unconsciousrevivedefault" AND 
+		{alive _unit} AND 
+		// if in some incapacitated state
+		{!(incapacitatedState _unit isEqualTo "")}
+	) then {
+		null = [_unit] spawn BLWK_fnc_handleWaitingForReviveEvent;
 	};
 }];
+
+
+
 
 // handle damage events fire even on dead bodies, we will remove it in the onPlayerKilled.sqf
 // while it can be persisant on player object, the persistence is somewhat unreliable
