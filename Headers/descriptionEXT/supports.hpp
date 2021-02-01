@@ -65,6 +65,16 @@ class CRUISE_MISSILE_CLASS : basicSupport_baseClass
     icon = CAS_ICON;
 };
 
+class DAISY_CUTTER_CLASS : basicSupport_baseClass
+{
+	price = 4000;
+	category = OTHER_CATEGORY;
+
+	text = DAISY_CUTTER_TEXT;
+	expression = CALL_SUPPORT_MASTER(DAISY_CUTTER_CLASS);
+	icon = SUPPLY_DROP_ICON;
+};
+
 // heavy arty
 class ARTILLERY_STRIKE_155MM_HE_CLASS : basicSupport_baseClass
 {

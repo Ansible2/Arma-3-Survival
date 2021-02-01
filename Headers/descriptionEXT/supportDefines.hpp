@@ -49,6 +49,9 @@
 // Arsenal drop
 #define SUPPLY_ARSENAL_DROP_CLASS supplyDropArsenal_commMenu
 #define SUPPLY_ARSENAL_DROP_TEXT "Arsenal Box Drop (5 Min Before Self Destruct)"
+// Daisy Cutter
+#define DAISY_CUTTER_CLASS daisyCutter_commMenu
+#define DAISY_CUTTER_TEXT "Daisy Cutter (40m)"
 
 
 // CAS Gun Run

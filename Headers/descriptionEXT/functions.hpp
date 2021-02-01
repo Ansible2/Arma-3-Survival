@@ -186,6 +186,8 @@ class BLWK
 		{};
 		class handleWaitingForReviveEvent
 		{};
+		class hideFoliage
+		{};
 		class hintDroppedDelete
 		{};
 		class optreMedicalToVanilla
@@ -309,6 +311,8 @@ class BLWK
 		class createLootMarkers
 		{};
 		class cruiseMissileStrike
+		{};
+		class daisyCutter
 		{};
 		class healPlayer
 		{};

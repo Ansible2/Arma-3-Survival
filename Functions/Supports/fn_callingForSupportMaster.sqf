@@ -63,6 +63,13 @@ if (CHECK_SUPPORT_CLASS(CRUISE_MISSILE_CLASS)) exitWith {
 	[TYPE_STRIKE] call BLWK_fnc_supportRadioGlobal;
 };
 
+if (CHECK_SUPPORT_CLASS(DAISY_CUTTER_CLASS)) exitWith {
+	CHECK_POSITION
+	private _friendlyDropAircraftClass = [5] call BLWK_fnc_getFriendlyVehicleClass;
+	null = [_targetPosition,40,_friendlyDropAircraftClass] spawn BLWK_fnc_daisyCutter;
+	[TYPE_STRIKE] call BLWK_fnc_supportRadioGlobal;
+};
+
 /* ----------------------------------------------------------------------------
 	155 Artillery
 ---------------------------------------------------------------------------- */
