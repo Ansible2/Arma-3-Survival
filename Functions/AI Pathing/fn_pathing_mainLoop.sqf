@@ -86,7 +86,7 @@ while {sleep _timeBetweenChecks; true} do {
 		if !([_groupLeader] call BLWK_fnc_pathing_checkLeaderVelocity) then {
 			//["%1 failed velocity test",_groupToCheck] call BIS_fnc_error;
 			
-			if ([_groupLeader] call BLWK_fnc_pathing_detailedStuckCheck;) then {
+			if ([_groupLeader] call BLWK_fnc_pathing_detailedStuckCheck) then {
 				//[["Reset leader of group",_groupToCheck]] call KISKA_fnc_log;
 				RESET_POSITION
 			};

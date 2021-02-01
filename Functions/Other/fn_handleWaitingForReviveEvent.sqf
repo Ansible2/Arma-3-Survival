@@ -71,7 +71,6 @@ private _fn_addReviveAction = {
 
 
 // while still in incapacitatedState
-private _unitItemsCached
 while {sleep 0.5; !(incapacitatedState _unit isEqualTo "") AND {alive _unit}} do {
 	
 	if ("Medikit" in (items _unit)) then {
