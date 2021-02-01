@@ -454,8 +454,6 @@ class BLWK
 		{};
 		class isWaveCleared
 		{};
-		class setCrew
-		{};
 		class setSkill
 		{};
 		class spawnLoot

@@ -91,6 +91,8 @@ class KISKA
 		{};
 		class removeArsenal
 		{};
+		class setCrew
+		{};
 		class staticLine
 		{};
 		class supplyDrop
