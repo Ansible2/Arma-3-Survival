@@ -439,6 +439,13 @@ class BLWK
 		{};
 	};
 
+	class TwelveHourWaveLibrary
+	{
+		file = "Functions\Wave Type Libraries\Twelve Hour Wave Library";
+		class handleTwelveHourWave
+		{};
+	};
+
 	class Waves
 	{
 		file = "Functions\Waves";
