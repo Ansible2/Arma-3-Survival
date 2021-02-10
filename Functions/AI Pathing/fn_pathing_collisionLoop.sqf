@@ -68,7 +68,7 @@ while {BLWK_doDetectCollision AND {alive _unit}} do {
 				_unitGroup setBehaviour "SAFE";
 				_unit disableAI "TARGET";
 				_unit disableAI "AUTOTARGET";
-				_unit disableAI "AUTOCOMBAT";
+				//_unit disableAI "AUTOCOMBAT";
 				
 				[group _unit] call CBAP_fnc_clearWaypoints;
 			/*	
@@ -95,7 +95,7 @@ while {BLWK_doDetectCollision AND {alive _unit}} do {
 					_unitGroup setBehaviour "AWARE";	
 					_unit enableAI "TARGET";
 					_unit enableAI "AUTOTARGET";
-					_unit enableAI "AUTOCOMBAT";
+					//_unit enableAI "AUTOCOMBAT";
 				};
 			};
 		};

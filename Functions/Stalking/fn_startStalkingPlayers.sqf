@@ -58,7 +58,7 @@ if (_conditionToEndStalking isEqualTo {}) then {
 // register stalkers
 private _playerToStalk = call BLWK_fnc_getAPlayerToStalk;
 if (isNull _playerToStalk) exitWith {
-	[_stalkerGroup, _defaultPosition, 10, "MOVE", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
+	[_stalkerGroup, _defaultPosition, 10, "SAD", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
 };
 [_playerToStalk,_stalkerGroup] call BLWK_fnc_registerStalkers;
 _stalkerGroup setVariable [DO_STALK_VAR,true];
