@@ -91,7 +91,5 @@ while {sleep _timeBetweenChecks; true} do {
 				RESET_POSITION
 			};
 		};
-	};
-
-	
+	};	
 };

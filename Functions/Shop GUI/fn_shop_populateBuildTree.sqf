@@ -14,9 +14,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		[myTreeControl] call BLWK_fnc_shop_populateBuildTree;
-
     (end)
 
 Author(s):
