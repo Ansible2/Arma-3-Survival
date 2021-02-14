@@ -375,6 +375,7 @@ class BLWK_buildableItems
 		category = STORAGE_CATEGORY;
 		attachmentY = 2;
 		keepInventory = 1;
+		invincible = 1;
 		detectCollsion = 0;
 	};
 	class ACE_medicalSupplyCrate : BLWK_genericBuildItemBase
@@ -383,6 +384,7 @@ class BLWK_buildableItems
 		category = STORAGE_CATEGORY;
 		attachmentY = 2;
 		keepInventory = 1;
+		invincible = 1;
 		detectCollsion = 0;
 	};
 	#include "OPTRE Build Items.hpp"

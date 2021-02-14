@@ -57,6 +57,7 @@ if (_hasAi) then {
 
 if (_indestructable) then {
 	_purchasedObject allowDamage false;
+	_purchasedObject setVariable ["ace_cookoff_enable", false, true];
 };
 
 

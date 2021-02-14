@@ -95,15 +95,15 @@ _mainCrate addEventHandler ["ContainerOpened",{
 }];
 // start and end medkit check loop on server when openned and closed
 _mainCrate addEventHandler ["ContainerOpened",{
-	if !(BLWK_dontUseRevive) then {
+	//if !(BLWK_dontUseRevive) then {
 		player setVariable ["BLWK_lookingInTheCrate",true,2];
 		remoteExec ["BLWK_fnc_faksToMedkitLoop",2];
-	};
+	//};
 }];
 _mainCrate addEventHandler ["ContainerClosed",{
-	if !(BLWK_dontUseRevive) then {
+	//if !(BLWK_dontUseRevive) then {
 		player setVariable ["BLWK_lookingInTheCrate",false,2];
-	};
+	//};
 }];
 
 
@@ -115,3 +115,9 @@ if (isNil "BLWK_mainCrate") then {
 addMissionEventHandler ["Draw3D",{
 	drawIcon3D ["", [1,1,1,0.70], (getPosATLVisual BLWK_mainCrate) vectorAdd [0, 0, 1.5], 1, 1, 0, "The Crate", 0, 0.04, "RobotoCondensed", "center", true];
 }];
+
+_mainCrate setVariable ["ace_cookoff_enable", false];
+
+if (isDamageAllowed _mainCrate) then {
+	_mainCrate allowDamage false;
+};

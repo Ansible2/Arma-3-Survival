@@ -34,6 +34,7 @@ clearWeaponCargoGlobal _mainCrate;
 clearMagazineCargoGlobal _mainCrate;
 clearBackpackCargoGlobal _mainCrate;
 _mainCrate allowDamage false;
+_mainCrate setVariable ["ace_cookoff_enable", false];
 
 private _theCrateLaptop = createVehicle ["Land_Laptop_device_F", [0,0,0], [], 0, "NONE"];
 _theCrateLaptop allowDamage false;
