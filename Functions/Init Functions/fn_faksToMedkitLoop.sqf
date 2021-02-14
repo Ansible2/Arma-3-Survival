@@ -38,7 +38,7 @@ if (BLWK_dontUseRevive) exitWith {
 
 // check if the loop was already started
 if (missionNamespace getVariable ["BLWK_faksToMedkitLooprunning",false]) exitWith {
-	["Loop was already started (queried) by another player"] call KISKA_fnc_log;
+	["Loop was already started (queried) by another player",false] call KISKA_fnc_log;
 };
 
 // set to true so that loop does not start again
