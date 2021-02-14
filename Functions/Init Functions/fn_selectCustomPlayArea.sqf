@@ -1,12 +1,11 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_prepareUnitClasses
+Function: BLWK_fnc_selectCustomPlayArea
 
 Description:
-	Gets the user selected unit class tables to use for each level
-	 and returns them in several arrays within a master.
-	Also handles DLC exclusion.
+	Adds the eventhandlers that allow a host or admin to select a cutom spot on
+	 the map to play in.
 
-	Executed from "BLWK_fnc_prepareGlobals"
+	Executed from "BLWK_fnc_selectPlayArea"
 
 Parameters:
 	NONE
@@ -16,9 +15,7 @@ Returns:
 
 Examples:
     (begin example)
-
-		_classes = call BLWK_fnc_prepareUnitClasses;
-
+		null = [] spawn BLWK_fnc_selectCustomPlayArea;
     (end)
 
 Author(s):
