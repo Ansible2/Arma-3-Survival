@@ -31,11 +31,10 @@ openMap true;
 
 hint "Just click on the map to select a custom area. Press ctrl+M to initiate the mission with an area selected.";
 
-private _display = findDisplay 46;
-waituntil {!isNull _display};
+waituntil {!isNull (findDisplay 46))};
     
 
-BLWK_customAreaDisplayEH = _display displayAddEventHandler ["KeyDown",{
+BLWK_customAreaDisplayEH = (findDisplay 46) displayAddEventHandler ["KeyDown",{
 	// if the pressed keys are ctrl+M
 	private _keysPressed = ((_this select 1) isEqualTo M_KEY_CODE) AND {_this select 3};
 	if (_keysPressed AND {call BLWK_fnc_checkLocation}) then {
@@ -43,9 +42,8 @@ BLWK_customAreaDisplayEH = _display displayAddEventHandler ["KeyDown",{
 		
 		// display 46 is not always active and therefore need to wait for it to be in a scheduled environment
 		null = [] spawn {
-			private _display = findDisplay 46;
-
-			waituntil {!isNull _display};
+			waituntil {!isNull (findDisplay 46)};
+			
 			_display displayRemoveEventHandler ["KeyDown",BLWK_customAreaDisplayEH];
 			missionNamespace setVariable ["BLWK_customAreaDisplayEH",nil];
 		};
