@@ -17,9 +17,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		null = [] spawn BLWK_fnc_selectPlayArea;
-
     (end)
 
 Author(s):

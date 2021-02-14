@@ -13,9 +13,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		_isStalkable = [aUnit] call BLWK_fnc_canUnitBeStalked;
-
     (end)
 
 Author(s):
