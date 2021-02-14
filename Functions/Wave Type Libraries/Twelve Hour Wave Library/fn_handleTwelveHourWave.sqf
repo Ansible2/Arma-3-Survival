@@ -30,6 +30,7 @@ skipTime 12;
 waitUntil {
 	if (_currentWave != BLWK_currentWaveNumber) exitWith {true};
 	sleep 2;
+	false
 };
 
 [_dateBeforeChange] remoteExecCall ["setDate",0];
