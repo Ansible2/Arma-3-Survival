@@ -24,6 +24,7 @@ Author(s):
 ---------------------------------------------------------------------------- */
 #define M_KEY_CODE 50
 #define REQ_NUMBER_OF_LOOT_POSITIONS 6
+#define MAIN_DISPLAY (findDisplay 46)
 
 disableSerialization;
 
@@ -31,10 +32,10 @@ openMap true;
 
 hint "Just click on the map to select a custom area. Press ctrl+M to initiate the mission with an area selected.";
 
-waituntil {!isNull (findDisplay 46))};
+waituntil {!isNull MAIN_DISPLAY};
     
 
-BLWK_customAreaDisplayEH = (findDisplay 46) displayAddEventHandler ["KeyDown",{
+BLWK_customAreaDisplayEH = MAIN_DISPLAY displayAddEventHandler ["KeyDown",{
 	// if the pressed keys are ctrl+M
 	private _keysPressed = ((_this select 1) isEqualTo M_KEY_CODE) AND {_this select 3};
 	if (_keysPressed AND {call BLWK_fnc_checkLocation}) then {
@@ -42,9 +43,9 @@ BLWK_customAreaDisplayEH = (findDisplay 46) displayAddEventHandler ["KeyDown",{
 		
 		// display 46 is not always active and therefore need to wait for it to be in a scheduled environment
 		null = [] spawn {
-			waituntil {!isNull (findDisplay 46)};
+			waituntil {!isNull MAIN_DISPLAY};
 			
-			_display displayRemoveEventHandler ["KeyDown",BLWK_customAreaDisplayEH];
+			MAIN_DISPLAY displayRemoveEventHandler ["KeyDown",BLWK_customAreaDisplayEH];
 			missionNamespace setVariable ["BLWK_customAreaDisplayEH",nil];
 		};
 		removeMissionEventHandler ["MapSingleClick",BLWK_customPlayAreaMapEH];
