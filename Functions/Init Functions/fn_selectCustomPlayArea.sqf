@@ -28,12 +28,11 @@ Author(s):
 
 disableSerialization;
 
+waituntil {!isNull MAIN_DISPLAY};
+
 openMap true;
 
 hint "Just click on the map to select a custom area. Press ctrl+M to initiate the mission with an area selected.";
-
-waituntil {!isNull MAIN_DISPLAY};
-    
 
 BLWK_customAreaDisplayEH = MAIN_DISPLAY displayAddEventHandler ["KeyDown",{
 	// if the pressed keys are ctrl+M
