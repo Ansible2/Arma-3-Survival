@@ -24,8 +24,7 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "KISKA_fnc_getVariableTarget_sendBack"
-scriptName SCRIPT_NAME;
+scriptName "KISKA_fnc_getVariableTarget_sendBack";
 
 params ["_namespace","_variableName","_saveVariable","_defaultValue","_sendBackTarget"];
 private _getVariableValue = _namespace getVariable [_variableName,_defaultValue];
@@ -35,7 +34,6 @@ if (_sendBackTarget isEqualTo 0) then {
 		missionNamespace setVariable [_saveVariable,_getVariableValue];
 		
 		[
-			SCRIPT_NAME,
 			[
 				"Did not send back _saveVariable: ",
 				_saveVariable,
@@ -49,7 +47,6 @@ if (_sendBackTarget isEqualTo 0) then {
 		missionNamespace setVariable [_saveVariable,_getVariableValue,remoteExecutedOwner];
 		
 		[
-			SCRIPT_NAME,
 			[
 				"Sent back _saveVariable: ",
 				_saveVariable,
@@ -69,7 +66,6 @@ if (_sendBackTarget isEqualTo 0) then {
 	missionNamespace setVariable [_saveVariable,_getVariableValue,_sendBackTarget];
 	
 	[
-		SCRIPT_NAME,
 		[
 			"Sent back _saveVariable: ",
 			_saveVariable,
