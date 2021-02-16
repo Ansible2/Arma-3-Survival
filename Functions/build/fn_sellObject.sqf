@@ -25,6 +25,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 params ["_object"];
 
+[_object] call BLWK_fnc_buildEvent_onSold;
+
 // check if someone is carrying the object
 private _attachedToObject = attachedTo _object;
 if !(isNull _attachedToObject) then {

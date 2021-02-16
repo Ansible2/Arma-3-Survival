@@ -38,10 +38,15 @@ params [
 private _className = BLWK_buidlableObjects_classes select _selectedIndex;
 private _propertiesArray = BLWK_buidlableObjects_properties select _selectedIndex;
 
-// CIPHER COMMENT: Potentially need to add the object to curator
+
+// prefix event
+private _prefixFunction = [_className,true] call BLWK_fnc_getBuildEvent_onPurchasedPrefix;
+if (_prefixFunction isEqualTo {}) then {
+	[_className,_propertiesArray] call _prefixFunction;
+};
+
 
 private "_purchasedObject";
-
 if (_propertiesArray select HAS_AI) then {
 	_purchasedObject = ([[0,0,300], 0, _className, west] call BIS_fnc_spawnVehicle) select 0;
 } else {
@@ -79,6 +84,11 @@ if (_propertiesArray select DETECT_COLLISION) then {
 	_purchasedObject setVariable ["BLWK_collisionObject",true,BLWK_theAIHandlerOwnerID];
 };
 
+
+// postfix event
+[_purchasedObject] call BLWK_fnc_buildEvent_onPurchasedPostfix;
+
+
 /*
 	Due to network issues with setOwner
 	 objects that are too quickly manipulated by other players after being set down
@@ -97,3 +107,7 @@ sleep 10;
 
 // give remote players the ability to manipulate the object
 [_purchasedObject] remoteExecCall ["BLWK_fnc_addBuildableObjectActions",-clientOwner,true];
+
+
+// postnetwork event
+[_purchasedObject] call BLWK_fnc_buildEvent_onPurchasedPostNetwork;

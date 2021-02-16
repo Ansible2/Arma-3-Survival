@@ -12,6 +12,18 @@ class BLWK_genericBuildItemBase
 	invincible = 0; // 0 false, 1 true
 	keepInventory = 0; // don't clear inventory
 	detectCollsion = 1; // registers with ai collision script
+	addBuildActions = 1; // should the object be given the manipulation actions after it is purchased
+
+	/*
+		Events
+		See relevant functions in functions\Build folder for passed params
+	*/
+	onPurchasedPreFix = ""; 
+	onPurchasedPostFix = "";
+	onPurchasedPostNewtork = "";
+	onPickedUp = "";
+	onPlaced = "";
+	onSold = "";
 };
 class BLWK_genericTurretBase: BLWK_genericBuildItemBase
 {

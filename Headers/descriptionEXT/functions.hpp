@@ -22,9 +22,21 @@ class BLWK
 		{};
 		class addPickedUpObjectActions 
 		{};
+		class buildEvent_onPickedUp
+		{};
+		class buildEvent_onPlaced
+		{};
+		class buildEvent_onPurchasedPostfix
+		{};
+		class buildEvent_onPurchasedPostNetwork
+		{};
+		class buildEvent_onSold
+		{};
 		class disableCollisionWithAllPlayers
 		{};
 		class enableCollisionWithAllPlayers
+		{};
+		class getBuildEvent_onPurchasedPrefix
 		{};
 		class moveUpOrDown
 		{};

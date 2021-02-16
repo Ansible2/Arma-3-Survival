@@ -69,6 +69,8 @@ missionNamespace setVariable ["BLWK_heldObject",_object];
 [_object,_player] call BLWK_fnc_addPickedUpObjectActions;
 
 
+[_object] call BLWK_fnc_buildEvent_onPickedUp;
+
 
 // this loop is checking to see if the player is unconcious or dead
 /// if they are, they drop the object

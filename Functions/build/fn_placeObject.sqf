@@ -37,6 +37,7 @@ if (isNull _object) exitWith {
 	false
 };
 
+
 detach _object;
 
 if (_snapToSurface) then {
@@ -67,6 +68,9 @@ missionNamespace setVariable ["BLWK_heldObject",nil];
 
 // remove the actions tied to the player
 call BLWK_fnc_removePickedUpObjectActions;
+
+
+[_object,_snapToSurface] call BLWK_fnc_buildEvent_onPlaced;
 
 
 true
