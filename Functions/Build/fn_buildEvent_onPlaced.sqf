@@ -27,7 +27,7 @@ scriptName "BLWK_fnc_buildEvent_onPlaced";
 
 params [
 	["_object",objNull,[objNull]],
-	["_wasSnapped",objNull,[objNull]]
+	["_wasSnapped",false,[true]]
 ];
 
 if (isNull _object) exitWith {
