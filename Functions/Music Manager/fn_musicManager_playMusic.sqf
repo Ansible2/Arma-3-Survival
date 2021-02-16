@@ -44,6 +44,10 @@ if (_startTime isEqualTo 0) then {
 };
 
 uiNamespace setVariable ["BLWK_musicManager_doPlay",true];
+// set paused to false if it was true
+if (uiNamespace getVariable ["BLWK_musicManager_paused",false]) then {
+	uiNamespace setVariable ["BLWK_musicManager_paused",false];
+};
 
 while {
 	(!isNull (uiNamespace getVariable "BLWK_musicManager_display")) AND 

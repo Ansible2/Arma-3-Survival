@@ -19,27 +19,18 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "BLWK_fnc_musicManagerOnLoad_availableMusicList"
-scriptName SCRIPT_NAME;
+scriptName "BLWK_fnc_musicManagerOnLoad_availableMusicList";
 
 params ["_control"];
 
 // reset music pause state when selection is changed
 _control ctrlAddEventHandler ["LBSelChanged",{
 	params ["_control","_selectedIndex"];
-
-	// changing list index stops current song
-	if (uiNamespace getVariable ["BLWK_musicManager_doPlay",false]) then {
-		uiNamespace setVariable ["BLWK_musicManager_doPlay",false];
-		uiNamespace setVariable ["BLWK_musicManager_paused",false];
-		playMusic "";
-		call KISKA_fnc_musicStopEvent;
-	};
-
+	
 	private _display = ctrlParent _control;
 	private _musicClass = _control lnbData [_selectedIndex,0];
 	uiNamespace setVariable ["BLWK_musicManager_selectedTrack",_musicClass];
-	uiNamespace setVariable ["BLWK_musicManager_paused",false];
+	//uiNamespace setVariable ["BLWK_musicManager_paused",false];
 
 	// reset timeline slider to 0
 	private _timeLineSlider = uiNamespace getVariable "BLWK_musicManager_control_timelineSlider";
@@ -50,6 +41,12 @@ _control ctrlAddEventHandler ["LBSelChanged",{
 	// adjust slider range to song duration
 	private _musicDuration = [_control lnbText [_selectedIndex,1]] call BIS_fnc_parseNumber;
 	_timeLineSlider sliderSetRange [0,_musicDuration];
+
+
+	// play new track unless music is paused
+	if !(uiNamespace getVariable ["BLWK_musicManager_paused",false]) then {
+		null = [_musicClass,0] spawn BLWK_fnc_musicManager_playMusic;
+	};
 
 }];
 
