@@ -110,8 +110,8 @@ addMissionEventHandler ["Draw3D",{
 	drawIcon3D ["", [1,1,1,0.70], (getPosATLVisual BLWK_mainCrate) vectorAdd [0, 0, 1.5], 1, 1, 0, "The Crate", 0, 0.04, "RobotoCondensed", "center", true];
 }];
 
-_mainCrate setVariable ["ace_cookoff_enable", false];
+BLWK_mainCrate setVariable ["ace_cookoff_enable", false];
 
-if (isDamageAllowed _mainCrate) then {
-	_mainCrate allowDamage false;
+if (isDamageAllowed BLWK_mainCrate) then {
+	BLWK_mainCrate allowDamage false;
 };
