@@ -1,3 +1,4 @@
+#include "..\..\Headers\Build Objects Properties Defines.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_purchaseObject
 
@@ -11,7 +12,7 @@ Description:
 	Both classes are located in headers\descriptionEXT\GUI\shopGUI.hpp
 
 Parameters:
-	0: _selectedIndex : <NUMBER> - The index of the item in BLWK_buildableObjects_array
+	0: _selectedIndex : <NUMBER> - The index of the item in BLWK_buidlableObjects_classes
 	1: _free : <BOOL> - Is this item free or not?
 
 Returns:
@@ -34,41 +35,33 @@ params [
 	["_free",false]
 ];
 
-(BLWK_buildableObjects_array select _selectedIndex) params [
-	"_price",
-	"_className",
-	"", // don't need shop category
-	"", // don't need attachment info
-	"_hasAi",
-	["_indestructable",false],
-	["_keepInventory",false],
-	["_doDetectCollision",false]
-];
+private _className = BLWK_buidlableObjects_classes select _selectedIndex;
+private _propertiesArray = BLWK_buidlableObjects_properties select _selectedIndex;
 
 // CIPHER COMMENT: Potentially need to add the object to curator
 
 private "_purchasedObject";
 
-if (_hasAi) then {
+if (_propertiesArray select HAS_AI) then {
 	_purchasedObject = ([[0,0,300], 0, _className, west] call BIS_fnc_spawnVehicle) select 0;
 } else {
 	_purchasedObject = _className createVehicle [0,0,0];
 };
 
-if (_indestructable) then {
+if (_propertiesArray select INDESTRUCTABLE) then {
 	_purchasedObject allowDamage false;
 	_purchasedObject setVariable ["ace_cookoff_enable", false, true];
 };
 
 
 if !(_free) then {
-	[_price] call BLWK_fnc_subtractPoints;
+	[_propertiesArray select PRICE] call BLWK_fnc_subtractPoints;
 };
 
 // close the shop dialog
 closeDialog 0;
 
-if !(_keepInventory) then {
+if !(_propertiesArray select KEEP_INVENTORY) then {
 	clearItemCargoGlobal _purchasedObject;
 	clearWeaponCargoGlobal _purchasedObject;
 	clearMagazineCargoGlobal _purchasedObject;
@@ -81,15 +74,16 @@ null = [_purchasedObject,player,true] spawn BLWK_fnc_pickupObject;
 sleep 1;
 [_purchasedObject] call BLWK_fnc_addBuildableObjectActions; // give local player object actions
 
-if (_doDetectCollision) then {
+if (_propertiesArray select DETECT_COLLISION) then {
 	// only the AI needs to know about the collision property
 	_purchasedObject setVariable ["BLWK_collisionObject",true,BLWK_theAIHandlerOwnerID];
 };
 
 /*
 	Due to network issues with setOwner
-	objects that are too quickly manipulated by other players after being set down
-	by the intial purchaser will vanish/teleport to [0,0,0]
+	 objects that are too quickly manipulated by other players after being set down
+	 by the intial purchaser will vanish/teleport to [0,0,0]
+	
 	Have to wait about 10 seconds after being set down for things to "sync up"
 */
 waitUntil {

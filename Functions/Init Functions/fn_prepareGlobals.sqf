@@ -281,7 +281,10 @@ BLWK_supports_array = [missionConfigFile >> "CfgCommunicationMenu"] call BLWK_fn
 BLWK_supports_array sort true; // will sort by the price
 
 BLWK_buildableObjects_array = [missionConfigFile >> "BLWK_buildableItems"] call BLWK_fnc_createBuildObjectsArray;
-BLWK_buildableObjects_array sort true;
+BLWK_buidlableObjects_classes = BLWK_buildableObjects_array select 0;
+BLWK_buidlableObjects_properties = BLWK_buildableObjects_array select 1;
+//BLWK_buildableObjects_array sort true; // will sort by the price
+
 
 
 if (isServer) then {

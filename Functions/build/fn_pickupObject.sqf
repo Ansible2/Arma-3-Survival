@@ -1,4 +1,5 @@
 #include "..\..\Headers\Wait For Transfer Inline.hpp"
+#include "..\..\Headers\Build Objects Properties Defines.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_pickupObject
 
@@ -42,10 +43,10 @@ params [
 private _objectType = typeOf _object;
 
 if (_justPurchased) then {
-	private _index = BLWK_buildableObjects_array findIf {(_x select 1) == _objectType};
-	private _attachmentInfo = (BLWK_buildableObjects_array select _index) select 3;
-	_object attachTo [_player,_attachmentInfo select 1];
-	_object setDir (_attachmentInfo select 0);
+	private _index = BLWK_buidlableObjects_classes find (toLowerANSI _objectType);
+	private _attachmentInfo = (BLWK_buidlableObjects_properties select _index) select ATTACHMENT_INFO;
+	_object attachTo [_player,_attachmentInfo select ATTACH_ARRAY];
+	_object setDir (_attachmentInfo select ROTATION);
 } else {
 	WAIT_FOR_OWNERSHIP(_object)
 	[_object,_player,true] call BIS_fnc_attachToRelative;

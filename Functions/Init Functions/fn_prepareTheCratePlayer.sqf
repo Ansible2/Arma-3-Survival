@@ -86,24 +86,18 @@ _mainCrate addAction [
 
 _mainCrate addEventHandler ["ContainerOpened",{
 	params ["_mainCrate"];
-	//if !(BLWK_dontUseRevive) then {
 		
-		hint (format ["You can place %1 First Aid Kits in the The Crate to make automatically make a Medkit",BLWK_faksToMakeMedkit]);
-		// only show once
-		_mainCrate removeEventHandler ["ContainerOpened",_thisEventHandler];
-	//};
+	hint (format ["You can place %1 First Aid Kits in the The Crate to make automatically make a Medkit",BLWK_faksToMakeMedkit]);
+	// only show once
+	_mainCrate removeEventHandler ["ContainerOpened",_thisEventHandler];
 }];
 // start and end medkit check loop on server when openned and closed
 _mainCrate addEventHandler ["ContainerOpened",{
-	//if !(BLWK_dontUseRevive) then {
-		player setVariable ["BLWK_lookingInTheCrate",true,2];
-		remoteExec ["BLWK_fnc_faksToMedkitLoop",2];
-	//};
+	player setVariable ["BLWK_lookingInTheCrate",true,2];
+	remoteExec ["BLWK_fnc_faksToMedkitLoop",2];
 }];
 _mainCrate addEventHandler ["ContainerClosed",{
-	//if !(BLWK_dontUseRevive) then {
-		player setVariable ["BLWK_lookingInTheCrate",false,2];
-	//};
+	player setVariable ["BLWK_lookingInTheCrate",false,2];
 }];
 
 

@@ -54,7 +54,7 @@ if (_cost > _currentPlayerPoints) exitWith {
 	hint "You do not have enough for this item";
 };
 
-// this is the array index in either BLWK_buildableObjects_array or BLWK_supports_array
+// this is the array index in either BLWK_buidlableObjects_classes or BLWK_supports_array
 private _data = _tvCtrl tvData _tvSelectedPath;
 // it is used when buying the item in BLWK_fnc_purchaseObject or BLWK_fnc_purchaseSupport
 

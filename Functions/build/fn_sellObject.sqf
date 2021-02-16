@@ -1,3 +1,4 @@
+#include "..\..\Headers\Build Objects Properties Defines.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_sellObject;
 
@@ -36,10 +37,10 @@ if !(isNull _attachedToObject) then {
 };
 
 private _objectType = typeOf _object;
-private _indexOfType = BLWK_buildableObjects_array findIf {(_x select 1) == _objectType};
+private _indexOfType = BLWK_buidlableObjects_classes find (toLowerANSI _objectType);
 
 // add the cost back to player's total
-private _price = (BLWK_buildableObjects_array select _indexOfType) select 0;
+private _price = (BLWK_buidlableObjects_properties select _indexOfType) select PRICE;
 
 [_price] call BLWK_fnc_addPoints;
 

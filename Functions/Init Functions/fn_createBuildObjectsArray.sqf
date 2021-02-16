@@ -44,7 +44,9 @@ if (_configs isEqualTo []) exitWith {
 	[["The _configToSearch ",_configToSearch," does not have any classes. Exiting..."],true] call KISKA_fnc_log;
 };
 
-private _returnArray = [];
+private _propertiesArray = [];
+private _classesArray = [];
+
 private [
 	"_class_temp",
 	"_price_temp",
@@ -73,10 +75,9 @@ _configs apply {
 		_keepInventory_temp = [_x >> "keepInventory"] call BIS_fnc_getCfgDataBool;
 		_detectCollision_temp = [_x >> "detectCollsion"] call BIS_fnc_getCfgDataBool;
 
-
-		_returnArray pushBack [
+		_classesArray pushBack (toLowerANSI _class_temp);
+		_propertiesArray pushBack [
 			_price_temp,
-			_class_temp,
 			_category_temp,
 			[_rotation_temp,[_attachmentX_temp,_attachmentY_temp,_attachmentZ_temp]],
 			_hasAI_temp,
@@ -88,4 +89,4 @@ _configs apply {
 };
 
 
-_returnArray
+[_classesArray,_propertiesArray]
