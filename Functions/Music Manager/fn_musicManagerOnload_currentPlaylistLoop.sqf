@@ -79,12 +79,12 @@ null = _this spawn {
 				if (_comparedIndex != _x) then {
 					_musicName = [_x] call (uiNamespace getVariable "BLWK_fnc_musicManager_getMusicName");
 					_control lbSetText [_forEachIndex,_musicName];
-					_control lbSetTooltip _musicName;
+					_control lbSetTooltip [_forEachIndex,_musicName];
 				};
 			} else {
 				_musicName = [_x] call (uiNamespace getVariable "BLWK_fnc_musicManager_getMusicName");
 				_control lbAdd _musicName;
-				_control lbSetTooltip _musicName;
+				_control lbSetTooltip [_forEachIndex,_musicName];
 			};
 		} forEach _globalArray;
 
