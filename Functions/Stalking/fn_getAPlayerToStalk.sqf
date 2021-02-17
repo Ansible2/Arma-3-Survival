@@ -36,7 +36,7 @@ private ["_lowestStalkerCount","_playerWithLowestStalkers","_numberOfStalkers"];
 		_lowestStalkerCount = _numberOfStalkers;
 		_playerWithLowestStalkers = _x;
 	} else {
-		if (_numberOfStalkers < _lowestStalkerCount) {
+		if (_numberOfStalkers < _lowestStalkerCount) then {
 			_lowestStalkerCount = _numberOfStalkers;
 			_playerWithLowestStalkers = _x;
 		};
