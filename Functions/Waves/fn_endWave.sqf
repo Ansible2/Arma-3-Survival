@@ -54,9 +54,14 @@ private _players = call CBAP_fnc_players;
 null = [TASK_COMPLETE_TEMPLATE,["",COMPLETED_WAVE_NOTIFICATION(str BLWK_currentWaveNumber)]] remoteExec ["BIS_fnc_showNotification",_players];
 
 
+// revive the dead players
 private "_playerTemp";
 _players apply {
 	_playerTemp = _x;
+
+	// clear all stalkers counts
+	_playerTemp setVariable [STALKER_COUNT_VAR,0,BLWK_theAIHandlerOwnerID];
+
 
 	if (!alive _playerTemp) then {
 		// add a single respawn ticket for each dead unit
@@ -78,6 +83,7 @@ _players apply {
 };
 
 
+// clear any dropped items if required
 private _clearDroppedItems = false;
 if (((BLWK_currentWaveNumber + 1) mod BLWK_deleteDroppedItemsEvery) isEqualTo 0) then {
 	_clearDroppedItems = true;
