@@ -79,15 +79,16 @@ while {sleep _timeBetweenChecks; true} do {
 	_groupLeader = leader _groupToCheck;
 
 	// checks for units that walk aways from play area
-	if (isNull (objectParent _groupLeader) AND {BLWK_maxDistanceFromPlayArea >= (_groupLeader distance2D BLWK_playAreaCenter)}) then {
+	if (isNull (objectParent _groupLeader) AND {(_groupLeader distance2D BLWK_playAreaCenter) >= BLWK_maxDistanceFromPlayArea}) then {
+		[["_groupLeader ",_groupLeader," appears to have walked too far from the play area and will be reset"],true] call KISKA_fnc_log;
 		RESET_POSITION	
 	} else {
 
 		if !([_groupLeader] call BLWK_fnc_pathing_checkLeaderVelocity) then {
-			//["%1 failed velocity test",_groupToCheck] call BIS_fnc_error;
+			[["_groupLeader ",_groupLeader," failed velocity check at point 1"],false] call KISKA_fnc_log;
 			
 			if ([_groupLeader] call BLWK_fnc_pathing_detailedStuckCheck) then {
-				//[["Reset leader of group",_groupToCheck]] call KISKA_fnc_log;
+				[["_groupLeader ",_groupLeader," failed detailted stuck check at point 1"],false] call KISKA_fnc_log;
 				RESET_POSITION
 			};
 		};
