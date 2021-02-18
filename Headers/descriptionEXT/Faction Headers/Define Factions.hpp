@@ -177,7 +177,17 @@
 	175,\
 	176,\
 	177,\
-	178
+	178,\
+	179,\
+	180,\
+	181,\
+	182,\
+	183,\
+	184,\
+	185,\
+	186,\
+	187,\
+	188
 
 
 #define FACTION_STRINGS \
@@ -195,6 +205,16 @@
 	"CONTACT - NATO WOODLAND", \
 	"CONTACT - LDF", \
 	"CONTACT - Spetznas", \
+	"CSAT Modification Project - Iran Arid", \
+	"CSAT Modification Project - Iran Arid (CBRN)", \
+	"CSAT Modification Project - Iran Semiarid", \
+	"CSAT Modification Project - Iran Special Forces (Arid)", \
+	"CSAT Modification Project - Iran Special Forces (Woodland)", \
+	"CSAT Modification Project - Iran Urban", \
+	"CSAT Modification Project - Iran Viper (Arid)", \
+	"CSAT Modification Project - Iran Viper (Woodland)", \
+	"CSAT Modification Project - Iran Woodland", \
+	"CSAT Modification Project - Iran Woodland (CBRN)", \
 	"CUP - Armed Forces of the Russian Federation (MSV - Modern - EMR)", \
 	"CUP - Armed Forces of the Russian Federation (VDV - Modern - EMR)", \
 	"CUP - Armed Forces of the Russian Federation (MSV - EMR)", \

@@ -1,38 +1,3 @@
-/*
-class TEC_Iran_Arid_faction
-{
-	displayName = "CSAT Modification Project - Iran Arid"
-	
-	lightCars[] = {
-
-	};
-	heavyCars[] = {
-
-	};
-	lightArmor[] = {
-
-	};
-	heavyArmor[] = {
-
-	};
-	transportHelicopters[] = {
-
-	};
-	cargoAircraft[] = {
-
-	};
-	casAircraft[] = {
-
-	};
-	attackHelicopters[] = {
-
-	};
-	infantry[] = {
-
-	};
-};
-*/
-
 class TEC_Iran_Arid_faction
 {
 	displayName = "CSAT Modification Project - Iran Arid";
@@ -94,7 +59,6 @@ class TEC_Iran_Arid_faction
 		"TEC_O_Soldier_SMG_F",
 		"TEC_O_Soldier_SS_F",
 		"TEC_O_Soldier_SL_F",
-		"TEC_O_Recon_EXP_F",
 		"TEC_O_Soldier_Mine_F",
 		"TEC_O_Soldier_RTO_F",
 		"TEC_O_Soldier_Repair_F",
@@ -103,14 +67,6 @@ class TEC_Iran_Arid_faction
 		"TEC_O_Soldier_HAT_F",
 		"TEC_O_Soldier_TL_F",
 		"TEC_O_Soldier_Patrol_F",
-		"TEC_O_Recon_Engineer_F",
-		"TEC_O_Recon_JTAC_F",
-		"TEC_O_Recon_Medic_F",
-		"TEC_O_Recon_PT_F",
-		"TEC_O_Recon_F",
-		"TEC_O_Recon_LAT_F",
-		"TEC_O_Recon_SMG_F",
-		"TEC_O_Recon_TL_F",
 		"TEC_O_Soldier_AAR_F",
 		"TEC_O_Support_Asst_F",
 		"TEC_O_Support_Mortar_Asst_F",
@@ -262,7 +218,16 @@ class TEC_Iran_SF_Arid_faction : TEC_Iran_Arid_faction
 		"TEC_O_Sniper_Arid_F",
 		"TEC_O_Sniper_Scout_F",
 		"TEC_O_Spotter_F",
-		"TEC_O_Spotter_Scout_F"
+		"TEC_O_Spotter_Scout_F",
+		"TEC_O_Recon_EXP_F",
+		"TEC_O_Recon_Engineer_F",
+		"TEC_O_Recon_JTAC_F",
+		"TEC_O_Recon_Medic_F",
+		"TEC_O_Recon_PT_F",
+		"TEC_O_Recon_F",
+		"TEC_O_Recon_LAT_F",
+		"TEC_O_Recon_SMG_F",
+		"TEC_O_Recon_TL_F"
 	};
 };
 
@@ -280,5 +245,176 @@ class TEC_Iran_Viper_Arid_faction : TEC_Iran_Arid_faction
 		"TEC_O_Viper_TL_F",
 		"TEC_O_Viper_Spotter_F",
 		"TEC_O_Viper_Sniper_F"
+	};
+};
+
+
+class TEC_Iran_WDL_faction
+{
+	displayName = "CSAT Modification Project - Iran Woodland";
+
+	lightCars[] = {
+		"TEC_VH_WD_LSV_Qilin_Armed",
+		"TEC_VH_WD_Truck_Zamak_HMG",
+		"TEC_VH_WD_Truck_Zamak_GMG",
+		"TEC_VH_WD_Truck_Zamak_Covered_HMG",
+		"TEC_VH_WD_Truck_Zamak_Covered_GMG"
+	};
+	heavyCars[] = {
+		"TEC_VH_WD_MRAP_Abda_GMG",
+		"TEC_VH_WD_MRAP_Abda_HMG",
+		"TEC_VH_WD_MRAP_Shir_GMG",
+		"TEC_VH_WD_MRAP_Shir_HMG"
+	};
+	lightArmor[] = {
+		"TEC_VH_WD_APC_Kamysh",
+		"TEC_VH_WD_APC_Marid"
+	};
+	heavyArmor[] = {
+		"TEC_VH_WD_Tank_Varsuk",
+		"TEC_VH_WD_Tank_Angara",
+		"TEC_VH_WD_Tank_Angara_Command"
+	};
+	transportHelicopters[] = {
+		"TEC_VH_WD_Helicopter_Taru_Transport",
+		"TEC_VH_WD_Helicopter_Orca"
+	};
+	cargoAircraft[] = {
+		"TEC_VH_WD_Plane_Ruk",
+		"TEC_VH_WD_VTOL_Xian_Infantry"
+	};
+	casAircraft[] = {
+		"TEC_VH_WD_Jet_Neophron",
+		"TEC_VH_WD_Jet_Shikra",
+		"TEC_VH_WD_Plane_Shahan"
+	};
+	attackHelicopters[] = {
+		"TEC_VH_WD_Helicopter_Kajman",
+		"TEC_VH_WD_VTOL_Xian_Infantry"
+	};
+	infantry[] = {
+		"TEC_O_Soldier_Woodland_A_F",
+		"TEC_O_Soldier_Woodland_AR_F",
+		"TEC_O_Soldier_Woodland_CS_F",
+		"TEC_O_Medic_Woodland_F",
+		"TEC_O_Engineer_Woodland_F",
+		"TEC_O_Soldier_Woodland_EW_F",
+		"TEC_O_Soldier_Woodland_EXP_F",
+		"TEC_O_Soldier_Woodland_GL_F",
+		"TEC_O_Soldier_Woodland_HG_F",
+		"TEC_O_Soldier_Woodland_M_F",
+		"TEC_O_Soldier_Woodland_Mine_F",
+		"TEC_O_Soldier_Woodland_AA_F",
+		"TEC_O_Soldier_Woodland_AT_F",
+		"TEC_O_Officer_Woodland_F",
+		"TEC_O_Officer_Woodland_C_F",
+		"TEC_O_Soldier_Woodland_RTO_F",
+		"TEC_O_Soldier_Woodland_Repair_F",
+		"TEC_O_Soldier_Woodland_F",
+		"TEC_O_Soldier_Woodland_LAT_F",
+		"TEC_O_Soldier_Woodland_Light_F",
+		"TEC_O_Soldier_Woodland_Patrol_F",
+		"TEC_O_Soldier_Woodland_SMG_F",
+		"TEC_O_Soldier_Woodland_SS_F",
+		"TEC_O_Soldier_Woodland_SL_F",
+		"TEC_O_Soldier_Woodland_TL_F",
+		"TEC_O_Soldier_Woodland_AAR_F",
+		"TEC_O_Support_Asst_Woodland_F",
+		"TEC_O_Support_Mortar_Asst_Woodland_F",
+		"TEC_O_Soldier_AHAT_Woodland_F",
+		"TEC_O_Soldier_Woodland_AAA_F",
+		"TEC_O_Soldier_Woodland_AAT_F",
+		"TEC_O_Support_SV_Woodland_F",
+		"TEC_O_Support_HMG_Woodland_F",
+		"TEC_O_Support_AHMG_Woodland_F",
+		"TEC_O_Support_GMG_Woodland_F",
+		"TEC_O_Support_AGMG_Woodland_F",
+		"TEC_O_Support_Mortar_Woodland_F",
+		"TEC_O_Support_SAA_Woodland_F",
+		"TEC_O_Support_SAT_Woodland_F"
+	};
+};
+
+class TEC_Iran_WDL_CBRN_faction : TEC_Iran_WDL_faction
+{
+	displayName = "CSAT Modification Project - Iran Woodland (CBRN)";
+
+	infantry[] = {
+		"TEC_O_Soldier_CBRN_Woodland_A_F",
+		"TEC_O_Soldier_CBRN_Woodland_AR_F",
+		"TEC_O_Soldier_CBRN_Woodland_CS_F",
+		"TEC_O_Medic_CBRN_Woodland_F",
+		"TEC_O_Engineer_CBRN_Woodland_F",
+		"TEC_O_Soldier_CBRN_Woodland_EW_F",
+		"TEC_O_Soldier_CBRN_Woodland_EXP_F",
+		"TEC_O_Soldier_CBRN_Woodland_GL_F",
+		"TEC_O_Soldier_CBRN_Woodland_HG_F",
+		"TEC_O_Soldier_CBRN_Woodland_M_F",
+		"TEC_O_Soldier_CBRN_Woodland_Mine_F",
+		"TEC_O_Soldier_CBRN_Woodland_AA_F",
+		"TEC_O_Soldier_CBRN_Woodland_AT_F",
+		"TEC_O_Officer_CBRN_Woodland_F",
+		"TEC_O_Officer_CBRN_Woodland_C_F",
+		"TEC_O_Soldier_CBRN_Woodland_RTO_F",
+		"TEC_O_Soldier_CBRN_Woodland_Repair_F",
+		"TEC_O_Soldier_CBRN_Woodland_F",
+		"TEC_O_Soldier_CBRN_Woodland_LAT_F",
+		"TEC_O_Soldier_CBRN_Woodland_HAT_F",
+		"TEC_O_Soldier_CBRN_Woodland_Light_F",
+		"TEC_O_Soldier_CBRN_Woodland_Patrol_F",
+		"TEC_O_Soldier_CBRN_Woodland_SMG_F",
+		"TEC_O_Soldier_CBRN_Woodland_SS_F",
+		"TEC_O_Soldier_CBRN_Woodland_TL_F",
+		"TEC_O_Soldier_CBRN_Woodland_SL_F"
+	};
+};
+
+class TEC_Iran_SF_WDL_faction : TEC_Iran_WDL_faction
+{
+	displayName = "CSAT Modification Project - Iran Special Forces (Woodland)";
+
+	infantry[] = {
+		"TEC_O_SOF_Medic_Woodland_F",
+		"TEC_O_SOF_EXP_Woodland_F",
+		"TEC_O_SOF_Engineer_Woodland_F",
+		"TEC_O_SOF_HG_Woodland_F",
+		"TEC_O_SOF_M_Woodland_F",
+		"TEC_O_SOF_Woodland_F",
+		"TEC_O_SOF_LAT_Woodland_F",
+		"TEC_O_SOF_SMG_Woodland_F",
+		"TEC_O_SOF_AR_Woodland_F",
+		"TEC_O_SOF_SS_Woodland_F",
+		"TEC_O_SOF_TL_Woodland_F",
+		"TEC_O_Sniper_Woodland_F",
+		"TEC_O_Spotter_Woodland_F",
+		"TEC_O_Spotter_Woodland_Scout_F",
+		"TEC_O_Soldier_Woodland_HAT_F",
+		"TEC_O_Recon_Engineer_Woodland_F",
+		"TEC_O_Recon_JTAC_Woodland_F",
+		"TEC_O_Recon_M_Woodland_F",
+		"TEC_O_Recon_Medic_Woodland_F",
+		"TEC_O_Recon_PT_Woodland_F",
+		"TEC_O_Recon_Woodland_F",
+		"TEC_O_Recon_LAT_Woodland_F",
+		"TEC_O_Recon_TL_Woodland_F",
+		"TEC_O_Recon_EXP_Woodland_F",
+		"TEC_O_Recon_SMG_Woodland_F"
+	};
+};
+
+class TEC_Iran_Viper_WDL_faction : TEC_Iran_WDL_faction
+{
+	displayName = "CSAT Modification Project - Iran Viper (Woodland)";
+
+	infantry[] = {
+		"TEC_O_Viper_Sniper_Woodland_F",
+		"TEC_O_Viper_Spotter_Woodland_F",
+		"TEC_O_Viper_EXP_Woodland_F",
+		"TEC_O_Viper_JTAC_Woodland_F",
+		"TEC_O_Viper_M_Woodland_F",
+		"TEC_O_Viper_Woodland_F",
+		"TEC_O_Viper_LAT_Woodland_F",
+		"TEC_O_Viper_Medic_Woodland_F",
+		"TEC_O_Viper_TL_Woodland_F"
 	};
 };
