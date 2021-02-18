@@ -43,5 +43,6 @@ class factionBase
 #include "Zombies And Demons Unit Table.hpp"
 #include "CUP Unit Table.hpp"
 #include "JTFS URF Unit Table.hpp"
+#include "CSAT Modification Unit Table.hpp";
 
 };
