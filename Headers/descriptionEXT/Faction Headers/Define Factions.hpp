@@ -187,8 +187,14 @@
 	185,\
 	186,\
 	187,\
-	188
-
+	188,\
+	189,\
+	190,\
+	191,\
+	192,\
+	193,\
+	194,\
+	195
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -372,6 +378,13 @@
 	"RHS USAF - USMC Infantry (Woodland)", \
 	"RHS USAF - USMC RECON (Desert)", \
 	"RHS USAF - USMC RECON (Woodland)", \
+	"Russia 2035 - Desert", \
+	"Russia 2035 - Desert SF", \
+	"Russia 2035 - Urban", \
+	"Russia 2035 - Winter", \
+	"Russia 2035 - Winter SF", \
+	"Russia 2035 - Woodland", \
+	"Russia 2035 - Woodland SF", \
 	"Zombies & Demons - Brittle Crawlers", \
 	"Zombies & Demons - Demons", \
 	"Zombies & Demons - Fast Zombies", \
