@@ -165,7 +165,7 @@ class TEC_Iran_urban_faction : TEC_Iran_Arid_faction
 		"TEC_VH_Helicopter_Kajman_SOF_F",
 		"TEC_VH_Navy_VTOL_Xian_Infantry"
 	};
-	cargoAircraft = {
+	cargoAircraft[] = {
 		"TEC_VH_Plane_Ruk_F",
 		"TEC_VH_Navy_VTOL_Xian_Infantry"
 	};
