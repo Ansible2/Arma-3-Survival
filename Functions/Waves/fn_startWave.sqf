@@ -32,6 +32,7 @@ params [
 	["_clearDroppedItems",false]
 ];
 
+
 // wait for array to be cleared
 /*
 	it's rare, but if enemies die too quickly, 
@@ -86,6 +87,9 @@ waitUntil {
 
 // log wave
 [["Start Wave: ",BLWK_currentWaveNumber],false] call KISKA_fnc_log;
+
+// invoke wave start event
+[missionNamespace,"BLWK_onWaveStart"] remoteExecCall ["BIS_fnc_callScriptedEventHandler",0];
 
 // loop to check wave end
 waitUntil {

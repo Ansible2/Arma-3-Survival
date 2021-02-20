@@ -1,4 +1,5 @@
 #include "..\..\Headers\String Constants.hpp"
+#include "..\..\Headers\Stalker Global Strings.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_endWave
 
@@ -94,6 +95,8 @@ if (((BLWK_currentWaveNumber + 1) mod BLWK_deleteDroppedItemsEvery) isEqualTo 0)
 	};
 };
 
+// invoke wave end event
+[missionNamespace,"BLWK_onWaveEnd"] remoteExecCall ["BIS_fnc_callScriptedEventHandler",0];
 
 // count down to next wave
 if (BLWK_timeBetweenRounds > 0) then {
