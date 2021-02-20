@@ -309,3 +309,24 @@ class RECON_UAV_CLASS : basicSupport_baseClass
     expression = CALL_SUPPORT_MASTER(RECON_UAV_CLASS);
     icon = CALL_ICON;
 };
+
+
+// passive helicopter CAS
+class PASS_ATTACK_GUNNER_CLASS : basicSupport_baseClass
+{
+	price = 3000;
+	category = CAS_CATEGORY;
+
+	text = PASS_ATTACK_GUNNER_TEXT;
+	expression = CALL_SUPPORT_MASTER(PASS_ATTACK_GUNNER_CLASS);
+	icon = CAS_ICON;
+};
+class PASS_DOOR_GUNNER_CLASS : basicSupport_baseClass
+{
+	price = 2000;
+	category = CAS_CATEGORY;
+
+	text = PASS_DOOR_GUNNER_TEXT;
+	expression = CALL_SUPPORT_MASTER(PASS_DOOR_GUNNER_CLASS);
+	icon = CAS_ICON;
+};

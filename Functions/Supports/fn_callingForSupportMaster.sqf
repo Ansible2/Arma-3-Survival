@@ -49,6 +49,10 @@ if (_targetPosition isEqualTo []) exitWith { \
 
 #define NUMBER_OF_PARATROOPERS 5
 
+#define HELI_CAS_EXPRESSION(VEHICLE_TYPE,TIME_ON_STATION,FLYIN_ALT,DEFAULT_TYPE,GLOBAL_VAR) \
+	private _vehicleClass = [VEHICLE_TYPE] call BLWK_fnc_getFriendlyVehicleClass; \
+	[BLWK_playAreaCenter,BLWK_playAreaRadius,_vehicleClass,TIME_ON_STATION,20,FLYIN_ALT,-1,DEFAULT_TYPE,GLOBAL_VAR] call BLWK_fnc_passiveHelicopterGunner; \
+	CAS_RADIO
 
 
 params ["_caller","_targetPosition","_supportClass"];
@@ -69,6 +73,7 @@ if (CHECK_SUPPORT_CLASS(DAISY_CUTTER_CLASS)) exitWith {
 	null = [_targetPosition,40,_friendlyDropAircraftClass] spawn BLWK_fnc_daisyCutter;
 	[TYPE_STRIKE] call BLWK_fnc_supportRadioGlobal;
 };
+
 
 /* ----------------------------------------------------------------------------
 	155 Artillery
@@ -180,6 +185,26 @@ if (CHECK_SUPPORT_CLASS(CAS_BOMB_CLUSTER_CLASS)) exitWith {
 	CAS_EXPRESSSION(7)
 };
 
+
+/* ----------------------------------------------------------------------------
+	Helicopter CAS
+---------------------------------------------------------------------------- */
+if (CHECK_SUPPORT_CLASS(PASS_ATTACK_GUNNER_CLASS)) exitWith {
+	if !(missionNamespace getVariable ["BLWK_heliGunnerInUse",false]) then {
+		HELI_CAS_EXPRESSION(7,180,125,"B_Heli_Attack_01_dynamicLoadout_F","BLWK_heliGunnerInUse")
+	} else {
+		hint "Only one helicopter gunner support may be active at a time.";
+		ADD_SUPPORT_BACK
+	};
+};
+if (CHECK_SUPPORT_CLASS(PASS_DOOR_GUNNER_CLASS)) exitWith {	
+	if !(missionNamespace getVariable ["BLWK_doorGunnerInUse",false]) then {
+		HELI_CAS_EXPRESSION(4,180,50,"B_Heli_Transport_01_F","BLWK_doorGunnerInUse")
+	} else {
+		hint "Only one door gunner support may be active at a time.";
+		ADD_SUPPORT_BACK
+	};
+};
 
 
 /* ----------------------------------------------------------------------------

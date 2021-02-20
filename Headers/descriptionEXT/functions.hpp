@@ -328,6 +328,8 @@ class BLWK
 		{};
 		class healPlayer
 		{};
+		class passiveHelicopterGunner
+		{};
 		class purchaseSupport
 		{};
 		class reconUAV

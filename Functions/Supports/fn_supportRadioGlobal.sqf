@@ -93,6 +93,28 @@ switch _messageType do {
 		];
 	};
 
+	case TYPE_CAS_ABORT: {
+		_messageArray = [
+			"mp_groundsupport_05_casaborted_BHQ_0",
+			"mp_groundsupport_05_casaborted_BHQ_1",
+			"mp_groundsupport_05_casaborted_BHQ_2",
+			"mp_groundsupport_05_casaborted_IHQ_0",
+			"mp_groundsupport_05_casaborted_IHQ_1",
+			"mp_groundsupport_05_casaborted_IHQ_2"
+		];
+	};
+
+	case TYPE_HELO_DOWN: {
+		_messageArray = [
+			"mp_groundsupport_65_chopperdown_BHQ_0",
+			"mp_groundsupport_65_chopperdown_BHQ_1",
+			"mp_groundsupport_65_chopperdown_BHQ_2",
+			"mp_groundsupport_65_chopperdown_IHQ_0",
+			"mp_groundsupport_65_chopperdown_IHQ_1",
+			"mp_groundsupport_65_chopperdown_IHQ_2"
+		];
+	};
+
 	case TYPE_UAV_REQUEST: {
 		_messageArray = [
 			"mp_groundsupport_60_uav_BHQ_0",

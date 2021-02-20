@@ -104,6 +104,14 @@
 #define TURRET_GUNSHIP_TEXT "Heavy CAS Gunship"
 
 
+// passive attack helicopter
+#define PASS_ATTACK_GUNNER_CLASS passiveAttackHeliGunner_commMenu
+#define PASS_ATTACK_GUNNER_TEXT "Attack Helicopter (AI - 3 min)"
+// passive door gunner
+#define PASS_DOOR_GUNNER_CLASS passiveDoorGunner_commMenu
+#define PASS_DOOR_GUNNER_TEXT "Helicopter Door Gunner (AI - 3 min)"
+
+
 // paratroopers
 #define REINFORCE_PARATROOPERS_CLASS reinforceParatroopers_commMenu
 #define REINFORCE_PARATROOPERS_TEXT "Paratroopers (5)"
@@ -122,3 +130,5 @@
 #define TYPE_CAS_REQUEST "cas request"
 #define TYPE_UAV_REQUEST "uav request"
 #define TYPE_TRANSPORT_REQUEST "transport request"
+#define TYPE_CAS_ABORT "cas abort"
+#define TYPE_HELO_DOWN "helo down"
