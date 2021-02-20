@@ -58,6 +58,7 @@ _allVehicleTurrets apply {
 		};
 	};
 };
+// go to default aircraft type if no suitable turrets are found
 if (_turretsWithWeapons isEqualTo []) exitWith {
 	private _newParams = _this;
 	_newParams set [0,_defaultVehicleType];
