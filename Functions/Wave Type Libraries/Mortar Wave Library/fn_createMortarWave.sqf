@@ -31,6 +31,7 @@ params ["_mortarMan"];
 
 private _spawnPosition = [BLWK_playAreaCenter, BLWK_playAreaRadius - 15, BLWK_playAreaRadius - 5, 3, 0, 10] call BIS_fnc_findSafePos;
 private _mortarTube = MORTAR_CLASS createVehicle _spawnPosition;
+
 _mortarMan moveInGunner _mortarTube;
 null = [BLWK_zeus,[[_mortarTube],true]] remoteExecCall ["addCuratorEditableObjects",2];
 
