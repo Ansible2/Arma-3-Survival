@@ -20,8 +20,7 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "BLWK_fnc_musicManager_updateLoadCombo"
-scriptName SCRIPT_NAME;
+scriptName "BLWK_fnc_musicManager_updateLoadCombo";
 
 if (!canSuspend) exitWith {
 	["Needs to be run in scheduled, now running in scheduled",true] call KISKA_fnc_log;
@@ -38,8 +37,6 @@ private _playlistArray = profileNamespace getVariable ["BLWK_musicManagerPlaylis
 // if we are deleteing, the profile array may be empty, but we still need the list empty regardless
 lbClear _control;
 
-// adding a blank spot so there is always a constant position to reference
-_control lbAdd "DEFAULT";
 if !(_playlistArray isEqualTo []) then {
 	private _playlistNames = [];
 	_playlistArray apply {

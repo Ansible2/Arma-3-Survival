@@ -1,37 +1,46 @@
 #include "..\..\Headers\descriptionEXT\GUI\musicManagerCommonDefines.hpp"
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_musicManagerOnLoad_loadCombo
+Function: BLWK_fnc_musicManagerOnLoad_loadControls
 
 Description:
-	Adds functionality to the loadable playlist dropdown in the Music Manager.
+	Adds functionality to the loadable playlist dropdown and button in the Music Manager.
 
 Parameters:
 	0: _loadComboControl : <CONTROL> - The control for the combo box
+	1: _loadButtonControl : <CONTROL> - The control for "Load Playlist" button
 
 Returns:
 	NOTHING
 
 Examples:
     (begin example)
-		[_control] call BLWK_fnc_musicManagerOnLoad_loadCombo;
+		[_loadComboControl,_loadButtonControl] call BLWK_fnc_musicManagerOnLoad_loadControls;
     (end)
 
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "BLWK_fnc_musicManagerOnLoad_loadCombo"
-scriptName SCRIPT_NAME;
+scriptName "BLWK_fnc_musicManagerOnLoad_loadControls";
 
-params ["_loadComboControl"];
+params ["_loadComboControl","_loadButtonControl"];
 
 _loadComboControl ctrlAddEventHandler ["LBSelChanged",{
-	params ["_control","_selectedIndex"];
+	// don't need _control
+	params ["","_selectedIndex"];
 
+	uiNamespace setVariable ["BLWK_musicManager_loadCombo_currentSelection",_selectedIndex];
+}];
+
+_loadButtonControl ctrlAddEventHandler ["ButtonClick",{
+
+	// get all the playlists the player has saved
 	private _playlistArray = profileNamespace getVariable ["BLWK_musicManagerPlaylists",[]];
-	// 0 is a blank spot used for having no entry
-	if (!(_selectedIndex isEqualTo 0) AND {!(_playlistArray isEqualTo [])}) then {
-		// _selectedIndex is offset from the profile array because of the DEFAULT entry in the combo box
-		private _chosenPlaylist = _playlistArray select (_selectedIndex - 1);
+
+	private _selectedIndex = uiNamespace getVariable ["BLWK_musicManager_loadCombo_currentSelection",0];
+
+	if !(_playlistArray isEqualTo []) then {
+		
+		private _chosenPlaylist = _playlistArray select _selectedIndex;
 		private _musicClassesInList = _chosenPlaylist select 1;
 		
 		// clear global array before adding to it
@@ -57,6 +66,7 @@ _loadComboControl ctrlAddEventHandler ["LBSelChanged",{
 			};
 		};
 	};
+
 }];
 
 // the initial filling of the combo with loadable playlists

@@ -321,7 +321,6 @@ class musicManagerDialog
 			w = 0.0527344 * safezoneW;
 			h = 0.0208333 * safezoneH;
 			toolTip = "Save over the current list selected in the drop down";
-			//colorBackground[] = {-1,-1,-1,1};
 		};
 		class musicManagerDialogButton_saveAsPlaylist: musicManagerDialogButton
 		{
@@ -333,7 +332,6 @@ class musicManagerDialog
 			w = 0.0527344 * safezoneW;
 			h = 0.0208333 * safezoneH;
 			toolTip = "Save a new playlist based upon the edit box";
-			//colorBackground[] = {-1,-1,-1,1};
 		};
 		class musicManagerDialogButton_deletePlaylist: musicManagerDialogButton
 		{
@@ -345,17 +343,17 @@ class musicManagerDialog
 			w = 0.0292969 * safezoneW;
 			h = 0.0208333 * safezoneH;
 			toolTip = "Delete the currently selected list in the drop down";
-			//colorBackground[] = {-1,-1,-1,1};
 		};
-		class musicManagerDialogHeaderText_loadPlaylist: RscText
+		class musicManagerDialogHeaderText_loadPlaylist: musicManagerDialogButton
 		{
-			idc = -1;
+			idc = BLWK_MUSIC_MANAGER_LOAD_PLAYLIST_BUTTON_IDC;
 			text = "Load Playlist"; //--- ToDo: Localize;
 			x = 0.423828 * safezoneW + safezoneX;
 			y = 0.270833 * safezoneH + safezoneY;
 			w = 0.0761719 * safezoneW;
 			h = 0.0208333 * safezoneH;
-			colorBackground[] = PROFILE_BACKGROUND_COLOR(1);
+			
+			toolTip = "Load selected item into Current Playlist";
 		};
 		
 		class musicManagerDialogButton_addToCurrentPlaylist: musicManagerDialogButton

@@ -85,10 +85,12 @@ uiNamespace setVariable ["BLWK_musicManager_control_pauseButton",_pauseButtonCon
 [_playButtonControl,_pauseButtonControl] call BLWK_fnc_musicManagerOnLoad_pauseAndPlayButtons;
 
 
-// load playlist combo
+// load playlist controls
 private _loadComboControl = _display displayCtrl BLWK_MUSIC_MANAGER_LOAD_COMBO_IDC;
 uiNamespace setVariable ["BLWK_musicManager_control_loadCombo",_loadComboControl];
-[_loadComboControl] call BLWK_fnc_musicManagerOnLoad_loadCombo;
+private _loadButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_LOAD_PLAYLIST_BUTTON_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_loadPlaylistButton",_loadButtonControl];
+[_loadComboControl,_loadButtonControl] call BLWK_fnc_musicManagerOnLoad_loadControls;
 
 
 // saves
@@ -133,6 +135,7 @@ _display displayAddEventHandler ["unload",{
 	// get rid of any hints
 	hintSilent "";
 
+	// clear memory
 	uiNamespace setVariable ["BLWK_musicManager_display",nil];
 	uiNamespace setVariable ["BLWK_musicManager_control_currentPlaylist",nil];
 	uiNamespace setVariable ["BLWK_musicManager_control_songsList",nil];
@@ -156,4 +159,6 @@ _display displayAddEventHandler ["unload",{
 	uiNamespace setVariable ["BLWK_musicManager_selectedTrack",nil];
 	uiNamespace setVariable ["BLWK_musicManager_doPlay",nil];
 	uiNamespace setVariable ["BLWK_fnc_musicManager_getMusicName",nil];
+	uiNamespace setVariable ["BLWK_musicManager_control_loadPlaylistButton",nil];
+	uiNamespace setVariable ["BLWK_musicManager_loadCombo_currentSelection",nil];
 }];
