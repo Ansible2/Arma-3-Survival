@@ -43,17 +43,19 @@ Author(s):
 
 
 Issues:
-	- The helicopter smoeyimes stops short of the support zone and never gets inside which results in an infinite loop
-	- The helicopter very rarely faces the correct direction to engage units
-	- Support zones with a radius of <150m are basically useless, should probably just go towards having 250 minimum
+	- The helicopter sometimes stops short of the support zone and never gets inside which results in an infinite loop
+	- Gunners in seperate groups DO NOT want to engage targets at will
+	
 	- Larger helicopters sometimes get into a very difficult to control rotation that they can't get out of
 	- Sometimes, the helicopter will not RTB, it will just circle the area and eventually leave
 	- Needs to use event handlers for the destruction of the helicopter to say over the radio that the support is dead instead of a loop	
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_passiveHelicopterGunner";
 
-#define DISTANCE_SPAWN_FROM_ZONE 2000
+#define SPAWN_DISTANCE 2000
 #define DETECT_ENEMY_RADIUS 700
+#define MIN_RADIUS 200
+#define STAR_BEARINGS [0,144,288,72,216]
 
 params [
 	"_centerPosition",
@@ -112,20 +114,51 @@ if (_globalLimiter != "") then {
 if (_approachBearing < 0) then {
 	_approachBearing = round (random 360);
 };
-private _spawnPosition = _centerPosition getPos [DISTANCE_SPAWN_FROM_ZONE,_approachBearing + 180];
+private _spawnPosition = _centerPosition getPos [SPAWN_DISTANCE,_approachBearing + 180];
 _spawnPosition set [2,_flyInHeight];
 
 private _vehicleArray = [_spawnPosition,0,_aircraftType,_side] call BIS_fnc_spawnVehicle;
-private _vehicleGroup = _vehicleArray select 2;
 
+
+private _vehicle = _vehicleArray select 0;
 _vehicle flyInHeight _flyInHeight;
-_vehicleGroup setBehaviour "CARELESS";
-_vehicleGroup setCombatMode "RED";
+BLWK_zeus addCuratorEditableObjects [[_vehicle],true];
 
-// make crew invincible
-(_vehicleArray select 1) apply {
+
+
+
+// make crew somewhat more effective by changing their behaviour
+private _turretGroups = [];
+private _vehicleCrew = _vehicleArray select 1;
+_vehicleCrew apply {
 	_x allowDamage false;
+	_x disableAI "SUPPRESSION";	
+	_x disableAI "RADIOPROTOCOL";
+	_x setSkill 1;
+
+	// give turrets their own groups so that they can engage targets at will
+	if ((_vehicle unitTurret _x) in _turretsWithWeapons) then {
+		private _group = createGroup _side;
+		[_x] joinSilent _group;
+		_group setBehaviour "CARELESS";
+		_group setCombatMode "RED";
+		_turretGroups pushBack _group;
+	} else { // disable targeting for the other crew
+		_x disableAI "AUTOCOMBAT";
+		_x disableAI "TARGET";
+		_x disableAI "AUTOTARGET";
+		_x disableAI "FSM";
+	};
 };
+
+
+
+// keep the pilots from freaking out under fire
+private _pilotsGroup = _vehicleArray select 2;
+_pilotsGroup setBehaviour "CARELESS";
+_pilotsGroup setCombatMode "BLUE";
+
+
 
 
 /* ----------------------------------------------------------------------------
@@ -138,9 +171,12 @@ private _params = [
 	_supportSpeedLimit,
 	_approachBearing,
 	_globalLimiter,
-	_side
+	_side,
+	_vehicle,
+	_pilotsGroup,
+	_vehicleCrew,
+	_turretGroups
 ];
-_params append _vehicleArray;
 
 null = _params spawn {
 	params [
@@ -152,20 +188,16 @@ null = _params spawn {
 		"_globalLimiter",
 		"_side",
 		"_vehicle",
+		"_pilotsGroup",
 		"_vehicleCrew",
-		"_vehicleGroup"
+		"_turretGroups"
 	];
 
-	BLWK_zeus addCuratorEditableObjects [[_vehicle],true];
-
-	// to minimze crew getting scared
-	
-	_vehicleCrew apply {
-		_x disableAI "SUPPRESSION";
-		_x disableAI "AUTOCOMBAT";
-		_x disableAI "FSM";
-		_x disableAI "RADIOPROTOCOL";
-		_x setSkill 1;
+	// once you go below a certain radius, it becomes rather unnecessary
+	if (_radius < MIN_RADIUS) then {
+		hint str _radius;
+		_radius = MIN_RADIUS;
+		systemChat str _radius;
 	};
 
 	// move to support zone
@@ -203,8 +235,8 @@ null = _params spawn {
 	/* ----------------------------------------------------------------------------
 		Do support
 	---------------------------------------------------------------------------- */
-	_vehicleGroup setBehaviour "CARELESS";
-
+	hint "engage";
+	
 	// to keep helicopters from just wildly flying around
 	_vehicle limitSpeed _supportSpeedLimit;
 
@@ -215,18 +247,34 @@ null = _params spawn {
 		};
 	};
 	private _targetsInArea = [];
-
-	private "_movePosition";
-	private _timeOffStation = time + _timeOnStation;
-	hint "engage";
-	while {alive _vehicle AND {time <= _timeOffStation}} do {
+	
+	private _sleepTime = _timeOnStation / 5;
+	private "_currentTarget";
+	for "_i" from 0 to 4 do {
 		
-		hint ("move " + (str time));
+		if (!alive _vehicle) exitWith {};
 
 		_targetsInArea = call _fn_getTargets;
 		if !(_targetsInArea isEqualTo []) then {
+			_targetsInArea apply {
+				_currentTarget = _x;					
+				_turretGroups apply {
+					_x reveal [_currentTarget,4];
+				};	
+			};
+		};
+
+		_vehicle doMove (_centerPosition getPos [_radius,STAR_BEARINGS select _i]);
+
+		sleep _sleepTime;		
+	};
+/*
+	while {alive _vehicle AND {time <= _timeOffStation}} do {
+		
+		_targetsInArea = call _fn_getTargets;
+		if !(_targetsInArea isEqualTo []) then {
 			_targetsInArea apply {			
-				_vehicleGroup reveal [_x,4];
+				_pilotsGroup reveal [_x,4];
 			};
 
 			_movePosition = (selectRandom _targetsInArea) getPos [random 10,random 360];
@@ -238,7 +286,7 @@ null = _params spawn {
 
 		sleep 10;
 	};
-
+*/
 
 	/* ----------------------------------------------------------------------------
 		After support is done
@@ -258,26 +306,21 @@ null = _params spawn {
 	// remove speed limit
 	_vehicle limitSpeed 9999;
 	
-	[_vehicleGroup] call CBAP_fnc_clearWaypoints;
-
-	//_vehicleGroup setBehaviour "CARELESS";
-	_vehicleCrew apply {
-		_x disableAI "TARGET";
-		_x disableAI "AUTOCOMBAT";
-		_x disableAI "AUTOTARGET";
-		_x disableAI "PATH";
-	};
+	[_pilotsGroup] call CBAP_fnc_clearWaypoints;
 	
-	(currentPilot _vehicle) enableAI "Path";
-	private _deletePosition = _centerPosition getPos [DISTANCE_SPAWN_FROM_ZONE,_approachBearing + 180];
+	private _deletePosition = _centerPosition getPos [SPAWN_DISTANCE,_approachBearing + 180];
 	waitUntil {
+		
 		if (!alive _vehicle OR {(_vehicle distance2D _deletePosition) <= 200}) exitWith {true};
+		
 		// if vehicle is disabled and makes a landing, just blow it up
 		if ((getPosATL _vehicle select 2) < 2) exitWith {
 			_vehicle setDamage 1;
 			true
 		};
+		
 		_vehicle move _deletePosition;
+		
 		sleep 2;
 		false
 	};
