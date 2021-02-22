@@ -51,3 +51,7 @@ removeAllAssignedItems _unit;
 
 _unit disableAI "AUTOCOMBAT";
 _unit disableAI "SUPPRESSION";
+
+if !(BLWK_doDetectMines) then {
+	_unit disableAI "MINEDETECTION";
+};

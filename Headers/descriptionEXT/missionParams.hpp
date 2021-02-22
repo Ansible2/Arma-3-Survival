@@ -462,6 +462,13 @@ class BLWK_doDetectCollision
 	texts[] = NO_OR_YES;
 	GET_DEFAULT_PARAM(BLWK_doDetectCollision,1)
 };
+class BLWK_doDetectMines
+{
+	title = "Enemy AI Mine Detection";
+	values[] = ZERO_OR_ONE;
+	texts[] = OFF_OR_ON;
+	GET_DEFAULT_PARAM(BLWK_doDetectMines,1)
+};
 class BLWK_multipleLootReveals
 {
 	title = "Show all loot with reveal?";

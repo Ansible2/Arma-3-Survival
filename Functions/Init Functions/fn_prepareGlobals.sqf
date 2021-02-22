@@ -167,6 +167,8 @@ if (isServer OR {!hasInterface}) then {
     BLWK_isOptreLoaded = ["OPTRE_core"] call KISKA_fnc_ispatchLoaded;
 
     BLWK_doDetectCollision = [false,true] select ("BLWK_doDetectCollision" call BIS_fnc_getParamValue);
+
+    BLWK_doDetectMines = [false,true] select ("BLWK_doDetectMines" call BIS_fnc_getParamValue);
 };
 if (hasInterface) then {
     /* Starting Items */
