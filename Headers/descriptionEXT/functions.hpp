@@ -318,8 +318,6 @@ class BLWK
 		{};
 		class callingForSupportMaster
 		{};
-		class cas
-		{};
 		class createLootMarkers
 		{};
 		class cruiseMissileStrike
