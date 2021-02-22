@@ -128,21 +128,23 @@ BLWK_zeus addCuratorEditableObjects [[_vehicle],true];
 
 
 // make crew somewhat more effective by changing their behaviour
-private _turretGroups = [];
+private _turretUnits = [];
 private _vehicleCrew = _vehicleArray select 1;
 _vehicleCrew apply {
 	_x allowDamage false;
 	_x disableAI "SUPPRESSION";	
 	_x disableAI "RADIOPROTOCOL";
 	_x setSkill 1;
+	//_x setSkill ["spotDistance",1];
+	//_x setSkill ["spotTime",1];
 
 	// give turrets their own groups so that they can engage targets at will
 	if ((_vehicle unitTurret _x) in _turretsWithWeapons) then {
 		private _group = createGroup _side;
 		[_x] joinSilent _group;
-		_group setBehaviour "CARELESS";
+		_group setBehaviour "COMBAT";
 		_group setCombatMode "RED";
-		_turretGroups pushBack _group;
+		_turretUnits pushBack _x;
 	} else { // disable targeting for the other crew
 		_x disableAI "AUTOCOMBAT";
 		_x disableAI "TARGET";
@@ -152,11 +154,10 @@ _vehicleCrew apply {
 };
 
 
-
 // keep the pilots from freaking out under fire
 private _pilotsGroup = _vehicleArray select 2;
-_pilotsGroup setBehaviour "CARELESS";
-_pilotsGroup setCombatMode "BLUE";
+_pilotsGroup setBehaviour "SAFE";
+_pilotsGroup setCombatMode "YELLOW";
 
 
 
@@ -175,7 +176,7 @@ private _params = [
 	_vehicle,
 	_pilotsGroup,
 	_vehicleCrew,
-	_turretGroups
+	_turretUnits
 ];
 
 null = _params spawn {
@@ -190,14 +191,12 @@ null = _params spawn {
 		"_vehicle",
 		"_pilotsGroup",
 		"_vehicleCrew",
-		"_turretGroups"
+		"_turretUnits"
 	];
 
 	// once you go below a certain radius, it becomes rather unnecessary
 	if (_radius < MIN_RADIUS) then {
-		hint str _radius;
 		_radius = MIN_RADIUS;
-		systemChat str _radius;
 	};
 
 	// move to support zone
@@ -258,10 +257,15 @@ null = _params spawn {
 		if !(_targetsInArea isEqualTo []) then {
 			_targetsInArea apply {
 				_currentTarget = _x;					
-				_turretGroups apply {
-					_x reveal [_currentTarget,4];
+				_turretUnits apply {
+					(group _x) reveal [_currentTarget,4];
 				};	
 			};
+
+			{
+				_x commandTarget (_targetsInArea select _forEachIndex);
+				_x commandFire (_targetsInArea select _forEachIndex);
+			} forEach _turretUnits;
 		};
 
 		_vehicle doMove (_centerPosition getPos [_radius,STAR_BEARINGS select _i]);

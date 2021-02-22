@@ -50,8 +50,7 @@ if (_targetPosition isEqualTo []) exitWith { \
 #define NUMBER_OF_PARATROOPERS 5
 
 #define HELI_CAS_EXPRESSION(VEHICLE_TYPE,TIME_ON_STATION,FLYIN_ALT,DEFAULT_TYPE,GLOBAL_VAR) \
-	private _vehicleClass = [VEHICLE_TYPE] call BLWK_fnc_getFriendlyVehicleClass; \
-	[BLWK_playAreaCenter,BLWK_playAreaRadius,_vehicleClass,TIME_ON_STATION,20,FLYIN_ALT,-1,DEFAULT_TYPE,GLOBAL_VAR] call BLWK_fnc_passiveHelicopterGunner; \
+	[BLWK_playAreaCenter,BLWK_playAreaRadius,VEHICLE_TYPE,TIME_ON_STATION,10,FLYIN_ALT,-1,DEFAULT_TYPE,GLOBAL_VAR] call BLWK_fnc_passiveHelicopterGunner; \
 	CAS_RADIO
 
 
@@ -191,7 +190,8 @@ if (CHECK_SUPPORT_CLASS(CAS_BOMB_CLUSTER_CLASS)) exitWith {
 ---------------------------------------------------------------------------- */
 if (CHECK_SUPPORT_CLASS(PASS_ATTACK_GUNNER_CLASS)) exitWith {
 	if !(missionNamespace getVariable ["BLWK_heliGunnerInUse",false]) then {
-		HELI_CAS_EXPRESSION(7,180,125,"B_Heli_Attack_01_dynamicLoadout_F","BLWK_heliGunnerInUse")
+		private _vehicleClass = [7] call BLWK_fnc_getFriendlyVehicleClass;
+		HELI_CAS_EXPRESSION(_vehicleClass,180,125,"B_Heli_Attack_01_dynamicLoadout_F","BLWK_heliGunnerInUse")
 	} else {
 		hint "Only one helicopter gunner support may be active at a time.";
 		ADD_SUPPORT_BACK
@@ -199,7 +199,8 @@ if (CHECK_SUPPORT_CLASS(PASS_ATTACK_GUNNER_CLASS)) exitWith {
 };
 if (CHECK_SUPPORT_CLASS(PASS_DOOR_GUNNER_CLASS)) exitWith {	
 	if !(missionNamespace getVariable ["BLWK_doorGunnerInUse",false]) then {
-		HELI_CAS_EXPRESSION(4,180,50,"B_Heli_Transport_01_F","BLWK_doorGunnerInUse")
+		private _vehicleClass = [4,true] call BLWK_fnc_getFriendlyVehicleClass;
+		HELI_CAS_EXPRESSION(_vehicleClass,180,50,"B_Heli_Transport_01_F","BLWK_doorGunnerInUse")
 	} else {
 		hint "Only one door gunner support may be active at a time.";
 		ADD_SUPPORT_BACK
