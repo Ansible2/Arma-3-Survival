@@ -98,7 +98,7 @@ if !(missionNamespace getVariable ["KISKA_musicSystemIsRunning",false]) then {
 };
 
 // clear array of selected Track
-_musicTracks deleteAt (_musicTracks findIf {_x isEqualTo _selectedTrack});
+_musicTracks deleteAt (_musicTracks find _selectedTrack);
 KISKA_randomMusic_tracks = _musicTracks;
 // store track as used
 _usedMusicTracks pushBackUnique _selectedTrack;
