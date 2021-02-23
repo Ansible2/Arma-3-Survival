@@ -12,7 +12,7 @@ Description:
 	Both classes are located in headers\descriptionEXT\GUI\shopGUI.hpp
 
 Parameters:
-	0: _selectedIndex : <NUMBER> - The index of the item in BLWK_buidlableObjects_classes
+	0: _selectedIndex : <NUMBER> - The index of the item in BLWK_buildableObjects_classes
 	1: _free : <BOOL> - Is this item free or not?
 
 Returns:
@@ -35,8 +35,8 @@ params [
 	["_free",false]
 ];
 
-private _className = BLWK_buidlableObjects_classes select _selectedIndex;
-private _propertiesArray = BLWK_buidlableObjects_properties select _selectedIndex;
+private _className = BLWK_buildableObjects_classes select _selectedIndex;
+private _propertiesArray = BLWK_buildableObjects_properties select _selectedIndex;
 
 
 // prefix event

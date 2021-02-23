@@ -39,10 +39,10 @@ if !(isNull _attachedToObject) then {
 };
 
 private _objectType = typeOf _object;
-private _indexOfType = BLWK_buidlableObjects_classes find (toLowerANSI _objectType);
+private _indexOfType = BLWK_buildableObjects_classes find (toLowerANSI _objectType);
 
 // add the cost back to player's total
-private _price = (BLWK_buidlableObjects_properties select _indexOfType) select PRICE;
+private _price = (BLWK_buildableObjects_properties select _indexOfType) select PRICE;
 
 [_price] call BLWK_fnc_addPoints;
 

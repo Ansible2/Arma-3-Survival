@@ -43,8 +43,8 @@ params [
 private _objectType = typeOf _object;
 
 if (_justPurchased) then {
-	private _index = BLWK_buidlableObjects_classes find (toLowerANSI _objectType);
-	private _attachmentInfo = (BLWK_buidlableObjects_properties select _index) select ATTACHMENT_INFO;
+	private _index = BLWK_buildableObjects_classes find (toLowerANSI _objectType);
+	private _attachmentInfo = (BLWK_buildableObjects_properties select _index) select ATTACHMENT_INFO;
 	_object attachTo [_player,_attachmentInfo select ATTACH_ARRAY];
 	_object setDir (_attachmentInfo select ROTATION);
 } else {

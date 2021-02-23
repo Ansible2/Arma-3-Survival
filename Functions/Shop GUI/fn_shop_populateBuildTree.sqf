@@ -40,7 +40,7 @@ private [
 
 private _propertiesArray = [];
 {
-	_propertiesArray = BLWK_buidlableObjects_properties select _forEachIndex;
+	_propertiesArray = BLWK_buildableObjects_properties select _forEachIndex;
 
 	_category_temp = _propertiesArray select CATEGORY;
 	_categoryIndex_temp = _categoriesList find _x;
@@ -67,7 +67,7 @@ private _propertiesArray = [];
 	_tv tvSetData [_itemPath_temp,_data]; 
 	_tv tvSetTooltip [_itemPath_temp,_x];
 		
-} forEach BLWK_buidlableObjects_classes;
+} forEach BLWK_buildableObjects_classes;
 
 // sort tv
 for "_i" from 1 to (_tv tvCount []) do {
