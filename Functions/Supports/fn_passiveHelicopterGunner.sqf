@@ -44,7 +44,6 @@ Author(s):
 
 Issues:
 	- The helicopter sometimes stops short of the support zone and never gets inside which results in an infinite loop
-	- Gunners in seperate groups DO NOT want to engage targets at will
 	- Larger helicopters sometimes get into a very difficult to control rotation that they can't get out of
 	- Sometimes, the helicopter will not RTB, it will just circle the area and eventually leave
 	- Needs to use event handlers for the destruction of the helicopter to say over the radio that the support is dead instead of a loop	
@@ -134,11 +133,15 @@ _vehicleCrew apply {
 	_x disableAI "SUPPRESSION";	
 	_x disableAI "RADIOPROTOCOL";
 	_x setSkill 1;
-	//_x setSkill ["spotDistance",1];
-	//_x setSkill ["spotTime",1];
 
 	// give turrets their own groups so that they can engage targets at will
 	if ((_vehicle unitTurret _x) in _turretsWithWeapons) then {
+	/*		
+		About seperating one turret...
+		My testing has revealed that in order to have both turrets on a helicopter (if it has two)
+		 engaging targets simultaneously, one needs to be in a seperate group from the pilot, and one
+		 needs to be grouped with the pilot.
+	*/
 		if !(_turretSeperated) then {
 			_turretSeperated = true;
 			private _group = createGroup _side;
@@ -159,6 +162,7 @@ _vehicleCrew apply {
 // keep the pilots from freaking out under fire
 private _pilotsGroup = _vehicleArray select 2;
 _pilotsGroup setBehaviour "SAFE";
+// the pilot group's combat mode MUST be a fire-at-will version as it adjusts it for the entire vehicle
 _pilotsGroup setCombatMode "RED";
 
 
@@ -269,25 +273,7 @@ null = _params spawn {
 
 		sleep _sleepTime;		
 	};
-/*
-	while {alive _vehicle AND {time <= _timeOffStation}} do {
-		
-		_targetsInArea = call _fn_getTargets;
-		if !(_targetsInArea isEqualTo []) then {
-			_targetsInArea apply {			
-				_pilotsGroup reveal [_x,4];
-			};
 
-			_movePosition = (selectRandom _targetsInArea) getPos [random 10,random 360];
-			_vehicle move _movePosition;
-		} else {
-			_movePosition = [_centerPosition, _radius/2] call CBAP_fnc_randPos;
-			_vehicle move _movePosition;
-		};
-
-		sleep 10;
-	};
-*/
 
 	/* ----------------------------------------------------------------------------
 		After support is done
