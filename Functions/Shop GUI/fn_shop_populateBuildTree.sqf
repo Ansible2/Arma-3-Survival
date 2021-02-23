@@ -43,7 +43,7 @@ private _propertiesArray = [];
 	_propertiesArray = BLWK_buildableObjects_properties select _forEachIndex;
 
 	_category_temp = _propertiesArray select CATEGORY;
-	_categoryIndex_temp = _categoriesList find _x;
+	_categoryIndex_temp = _categoriesList find _category_temp;
 	if (_categoryIndex_temp isEqualTo -1) then {
 		_categoryIndex_temp = _tv tvAdd [[],_category_temp];
 		_categoriesList pushBack _category_temp;
