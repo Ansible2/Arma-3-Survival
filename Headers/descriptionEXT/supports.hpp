@@ -314,7 +314,7 @@ class RECON_UAV_CLASS : basicSupport_baseClass
 // passive helicopter CAS
 class PASS_ATTACK_GUNNER_CLASS : basicSupport_baseClass
 {
-	price = 3000;
+	price = 5000;
 	category = CAS_CATEGORY;
 
 	text = PASS_ATTACK_GUNNER_TEXT;
