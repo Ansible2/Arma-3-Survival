@@ -8,7 +8,8 @@ Description:
 
 Parameters:
 	0: _caller <OBJECT> - The player calling for support
-	1: _targetPosition <ARRAY> - The position at which the call it being made
+	1: _targetPosition <ARRAY> - The position (AGLS) at which the call is being made 
+		(where the player is looking or if in the map, the position where their cursor is)
 	2: _supportClass <STRING> - The class as defined in the CfgCommunicationMenu
 
 Returns:
