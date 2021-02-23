@@ -199,7 +199,7 @@ if (CHECK_SUPPORT_CLASS(PASS_ATTACK_GUNNER_CLASS)) exitWith {
 };
 if (CHECK_SUPPORT_CLASS(PASS_DOOR_GUNNER_CLASS)) exitWith {	
 	if !(missionNamespace getVariable ["BLWK_doorGunnerInUse",false]) then {
-		private _vehicleClass = [4,true] call BLWK_fnc_getFriendlyVehicleClass;
+		private _vehicleClass = [4,false] call BLWK_fnc_getFriendlyVehicleClass;
 		HELI_CAS_EXPRESSION(_vehicleClass,180,50,"B_Heli_Transport_01_F","BLWK_doorGunnerInUse")
 	} else {
 		hint "Only one door gunner support may be active at a time.";
