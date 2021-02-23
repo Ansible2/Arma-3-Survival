@@ -43,13 +43,18 @@ private _propertiesArray = [];
 	_propertiesArray = BLWK_buidlableObjects_properties select _forEachIndex;
 
 	_category_temp = _propertiesArray select CATEGORY;
-	_categoryIndex_temp = _categoriesList findIf {_x == _category_temp};
+	_categoryIndex_temp = _categoriesList find _x;
 	if (_categoryIndex_temp isEqualTo -1) then {
 		_categoryIndex_temp = _tv tvAdd [[],_category_temp];
 		_categoriesList pushBack _category_temp;
 	};
 
-	_displayName_temp = [configFile >> "cfgVehicles" >> _x] call BIS_fnc_displayName;
+	// get custom names
+	_displayName_temp = getText (missionConfigfile >> "BLWK_buildableItems" >> "displayName");
+	if (_displayName_temp isEqualTo "") then {
+		_displayName_temp = [configFile >> "cfgVehicles" >> _x] call BIS_fnc_displayName;
+	};
+	
 	// add item to list
 	_value_temp = _propertiesArray select PRICE;
 	_itemText_temp = format ["%1 - %2",_value_temp,_displayName_temp];
