@@ -59,7 +59,7 @@ private _placeActionID = _player addAction [
 ];
 
 private _sellActionID = -1;
-if (!(_object isEqualTo BLWK_mainCrate) AND {!(_object isEqualTo BLWK_randomWeaponBox)}) then {
+if ((_object isNotEqualTo BLWK_mainCrate) AND {_object isNotEqualTo BLWK_randomWeaponBox}) then {
 	// sell object
 	_sellActionID = _player addAction [ 
 		"<t color='#ff0000'>-- Sell (In Hand) " + _objectName + " Back --</t>",  

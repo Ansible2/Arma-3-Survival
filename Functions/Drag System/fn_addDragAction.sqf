@@ -66,7 +66,7 @@ private _actionId = _unit addAction [
 	true,  
 	false,  
 	"true", 
-	"(!(_originalTarget getVariable ['BLWK_beingDragged',false])) AND {!(incapacitatedState _target isEqualTo '')}", 
+	"(!(_originalTarget getVariable ['BLWK_beingDragged',false])) AND {(incapacitatedState _target) isNotEqualTo ''}", 
 	3 
 ];
 

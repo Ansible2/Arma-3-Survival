@@ -41,7 +41,7 @@ private _players = call CBAP_fnc_players;
 
 _players apply {
 	// don't execute onto whoever is holding the object
-	if !(_x isEqualTo (attachedTo _object)) then {
+	if (_x isNotEqualTo (attachedTo _object)) then {
 		sleep 0.1;
 		null = [_object,_x] remoteExecCall ["disableCollisionWith",_x];
 		_object disableCollisionWith _x;

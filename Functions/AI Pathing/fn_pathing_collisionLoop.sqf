@@ -50,7 +50,7 @@ while {BLWK_doDetectCollision AND {alive _unit}} do {
 		_position = getposASL _unit;
 		_objects = lineIntersectsObjs [_position,AGLToASL (_unit getRelPos [1,0]), objNull, _unit, false, 4];
 		
-		if !(_objects isEqualTo []) then {
+		if (_objects isNotEqualTo []) then {
 
 			// check if any encountered object is a built one
 			_index = _objects findIf {

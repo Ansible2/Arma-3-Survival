@@ -60,7 +60,7 @@ null = [_unitToDrag] spawn {
 		// if player died 
 		{!alive player} OR 
 		// if player was incapacitated
-		{!(incapacitatedState player isEqualTo "")} OR 
+		{(incapacitatedState player) isNotEqualTo ""} OR 
 		// if the dragged unit died
 		{!alive _draggedUnit} OR
 		// if the dragged unit was revived
