@@ -45,7 +45,6 @@ Author(s):
 Issues:
 	- The helicopter sometimes stops short of the support zone and never gets inside which results in an infinite loop
 	- Gunners in seperate groups DO NOT want to engage targets at will
-	
 	- Larger helicopters sometimes get into a very difficult to control rotation that they can't get out of
 	- Sometimes, the helicopter will not RTB, it will just circle the area and eventually leave
 	- Needs to use event handlers for the destruction of the helicopter to say over the radio that the support is dead instead of a loop	
@@ -126,10 +125,10 @@ BLWK_zeus addCuratorEditableObjects [[_vehicle],true];
 
 
 
-
 // make crew somewhat more effective by changing their behaviour
 private _turretUnits = [];
 private _vehicleCrew = _vehicleArray select 1;
+private _turretSeperated = false;
 _vehicleCrew apply {
 	_x allowDamage false;
 	_x disableAI "SUPPRESSION";	
@@ -140,15 +139,18 @@ _vehicleCrew apply {
 
 	// give turrets their own groups so that they can engage targets at will
 	if ((_vehicle unitTurret _x) in _turretsWithWeapons) then {
-		private _group = createGroup _side;
-		[_x] joinSilent _group;
-		_group setBehaviour "COMBAT";
-		_group setCombatMode "RED";
+		if !(_turretSeperated) then {
+			_turretSeperated = true;
+			private _group = createGroup _side;
+			[_x] joinSilent _group;
+			_group setBehaviour "COMBAT";
+			_group setCombatMode "RED";
+		};
 		_turretUnits pushBack _x;
 	} else { // disable targeting for the other crew
 		_x disableAI "AUTOCOMBAT";
 		_x disableAI "TARGET";
-		_x disableAI "AUTOTARGET";
+		//_x disableAI "AUTOTARGET";
 		_x disableAI "FSM";
 	};
 };
@@ -157,7 +159,7 @@ _vehicleCrew apply {
 // keep the pilots from freaking out under fire
 private _pilotsGroup = _vehicleArray select 2;
 _pilotsGroup setBehaviour "SAFE";
-_pilotsGroup setCombatMode "YELLOW";
+_pilotsGroup setCombatMode "RED";
 
 
 
@@ -258,14 +260,9 @@ null = _params spawn {
 			_targetsInArea apply {
 				_currentTarget = _x;					
 				_turretUnits apply {
-					(group _x) reveal [_currentTarget,4];
+					_x reveal [_currentTarget,4];
 				};	
 			};
-
-			{
-				_x commandTarget (_targetsInArea select _forEachIndex);
-				_x commandFire (_targetsInArea select _forEachIndex);
-			} forEach _turretUnits;
 		};
 
 		_vehicle doMove (_centerPosition getPos [_radius,STAR_BEARINGS select _i]);
