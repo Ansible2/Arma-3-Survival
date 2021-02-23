@@ -38,12 +38,7 @@ if !(isNull _attachedToObject) then {
 	call BLWK_fnc_removePickedUpObjectActions;
 };
 
-private _objectType = typeOf _object;
-private _indexOfType = BLWK_buildableObjects_classes find (toLowerANSI _objectType);
-
-// add the cost back to player's total
-private _price = (BLWK_buildableObjects_properties select _indexOfType) select PRICE;
-
+private _price = (BLWK_buildableObjectsHash get (toLowerANSI (typeOf _object))) select PRICE;
 [_price] call BLWK_fnc_addPoints;
 
 deleteVehicle _object;

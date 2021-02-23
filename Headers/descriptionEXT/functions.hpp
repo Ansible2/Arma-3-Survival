@@ -94,6 +94,8 @@ class BLWK
 		{};
 		class createBuildObjectsArray
 		{};
+		class createBuildObjectsHash
+		{};
 		class createSupportsArray
 		{};
 		class faksToMedkitLoop

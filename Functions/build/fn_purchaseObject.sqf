@@ -12,7 +12,7 @@ Description:
 	Both classes are located in headers\descriptionEXT\GUI\shopGUI.hpp
 
 Parameters:
-	0: _selectedIndex : <NUMBER> - The index of the item in BLWK_buildableObjects_classes
+	0: _className : <STRING> - The className of the object so that it can be referenced in BLWK_buildableObjectsHash
 	1: _free : <BOOL> - Is this item free or not?
 
 Returns:
@@ -31,13 +31,11 @@ Author(s):
 if (!hasInterface OR {!canSuspend}) exitWith {};
 
 params [
-	"_selectedIndex",
+	"_className",
 	["_free",false]
 ];
 
-private _className = BLWK_buildableObjects_classes select _selectedIndex;
-private _propertiesArray = BLWK_buildableObjects_properties select _selectedIndex;
-
+private _propertiesArray = BLWK_buildableObjectsHash get (toLowerANSI _className);
 
 // prefix event
 private _prefixFunction = [_className,true] call BLWK_fnc_getBuildEvent_onPurchasedPrefix;
@@ -48,14 +46,16 @@ if (_prefixFunction isEqualTo {}) then {
 
 private "_purchasedObject";
 if (_propertiesArray select HAS_AI) then {
-	_purchasedObject = ([[0,0,300], 0, _className, west] call BIS_fnc_spawnVehicle) select 0;
+	_purchasedObject = ([[0,0,300], 0, _className, BLUFOR] call BIS_fnc_spawnVehicle) select 0;
 } else {
 	_purchasedObject = _className createVehicle [0,0,0];
 };
 
 if (_propertiesArray select INDESTRUCTABLE) then {
 	_purchasedObject allowDamage false;
-	_purchasedObject setVariable ["ace_cookoff_enable", false, true];
+	if (BLWK_ACELoaded) then {
+		_purchasedObject setVariable ["ace_cookoff_enable", false, true];
+	};
 };
 
 
@@ -109,5 +109,5 @@ sleep 10;
 [_purchasedObject] remoteExecCall ["BLWK_fnc_addBuildableObjectActions",-clientOwner,true];
 
 
-// postnetwork event
+// postNetwork event
 [_purchasedObject] call BLWK_fnc_buildEvent_onPurchasedPostNetwork;

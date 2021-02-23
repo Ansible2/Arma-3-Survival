@@ -39,7 +39,6 @@ if (count _selectedTreePath < 2) exitWith {
 };
 
 // get which global pool to change
-private _indexInPurchaseArray = ([_poolTreeCtrl tvData _selectedTreePath] call BIS_fnc_parseNumberSafe) select 0;
 private _indexInTree = _selectedTreePath select 1;
 
 private _treeCategory = _selectedTreePath select 0;
@@ -54,8 +53,8 @@ switch (_treeCategory) do {
 		[TO_STRING(BLWK_SHOP_BUILD_POOL_GVAR),_indexInTree] remoteExecCall ["KISKA_fnc_deleteAtArray",BLWK_allClientsTargetId,true];
 		
 		closeDialog 2;
-		
-		null = [_indexInPurchaseArray,true] spawn BLWK_fnc_purchaseObject;
+		private _itemClass = _poolTreeCtrl tvData _selectedTreePath;
+		null = [_itemClass,true] spawn BLWK_fnc_purchaseObject;
 	};
 	
 	case SUPPORT_TREE: {
@@ -66,6 +65,7 @@ switch (_treeCategory) do {
 
 		[TO_STRING(BLWK_SHOP_SUPP_POOL_GVAR),_indexInTree] remoteExecCall ["KISKA_fnc_deleteAtArray",BLWK_allClientsTargetId,true];
 		
+		private _indexInPurchaseArray = ([_poolTreeCtrl tvData _selectedTreePath] call BIS_fnc_parseNumberSafe) select 0;
 		[_indexInPurchaseArray,true] call BLWK_fnc_purchaseSupport;
 	};
 

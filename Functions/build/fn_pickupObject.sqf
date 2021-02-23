@@ -39,12 +39,10 @@ params [
 	["_justPurchased",false,[true]]
 ];
 
-// get attachment info from global build objects array
-private _objectType = typeOf _object;
 
 if (_justPurchased) then {
-	private _index = BLWK_buildableObjects_classes find (toLowerANSI _objectType);
-	private _attachmentInfo = (BLWK_buildableObjects_properties select _index) select ATTACHMENT_INFO;
+	private _propertiesArray = BLWK_buildableObjectsHash get (toLowerANSI (typeOf _object));
+	private _attachmentInfo = _propertiesArray select ATTACHMENT_INFO;
 	_object attachTo [_player,_attachmentInfo select ATTACH_ARRAY];
 	_object setDir (_attachmentInfo select ROTATION);
 } else {
