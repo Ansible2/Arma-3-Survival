@@ -24,8 +24,9 @@
 
 #include "Faction Headers\Define Factions.hpp"
 
-__EXEC(_savedParams = profileNamespace getVariable ["BLWK_savedMissionParameters",[]]);
 
+/* // prior to 0.8 parameter getting
+__EXEC(_savedParams = profileNamespace getVariable ["BLWK_savedMissionParameters",[]]);
 #define FIND_CODE(PARAM) __EXEC(_findParamCode = compile "_x select 0 == "#PARAM"");
 #define GET_PARAM_INDEX __EXEC(_paramIndex = _savedParams findIf _findParamCode);
 #define FOUND_COMPILE call compile (["(_savedParams select _paramIndex) select 1","-1"] select (_savedParams isEqualTo []))
@@ -35,6 +36,16 @@ __EXEC(_savedParams = profileNamespace getVariable ["BLWK_savedMissionParameters
 	FIND_CODE(NAME)\
 	GET_PARAM_INDEX\
 	default = GET_PARAM_VALUE(DEFAULT_VALUE)\
+*/
+
+
+// prior to 0.9, used arrays instead of hashes. Since params are auto loaded, in order to avoid erros on previous parameter saves, 
+/// this will create an empty hash if an array is present in BLWK_savedMissionParameters or if nothing has been saved yet.
+/// ultimately allowing the use of the getOrDefault command for hashes
+__EXEC(_savedParams = [profileNamespace getVariable "BLWK_savedMissionParameters",createHashMap] select call compile "profileNamespace getVariable ['BLWK_savedMissionParameters',[]] isEqualType []");
+#define GET_DEFAULT_PARAM(NAME,DEFAULT_VALUE) default = __EVAL(_savedParams getOrDefault [#NAME,DEFAULT_VALUE]);
+	
+
 
 
 // waves

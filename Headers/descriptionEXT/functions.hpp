@@ -236,16 +236,20 @@ class BLWK
 		};
 		class deleteSavedMissionParameters
 		{};
+	/*	
 		class getSavedParamIndex
 		{};
 		class getSavedParamValue
 		{};
+	*/
 		class paramsQuery
 		{};
 		class saveAllMissionParameters
 		{};
+	/*
 		class setParam
 		{};
+	*/
 	};
 	
 	class Points
