@@ -328,5 +328,5 @@ class PASS_DOOR_GUNNER_CLASS : basicSupport_baseClass
 
 	text = PASS_DOOR_GUNNER_TEXT;
 	expression = CALL_SUPPORT_MASTER(PASS_DOOR_GUNNER_CLASS);
-	icon = TRANSPORT_ICON;
+	icon = CAS_HELI_ICON;
 };
