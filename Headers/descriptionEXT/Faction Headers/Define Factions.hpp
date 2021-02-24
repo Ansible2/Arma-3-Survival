@@ -206,7 +206,14 @@
 	204,\
 	205,\
 	206,\
-	207
+	207,\
+	208,\
+	209,\
+	210,\
+	211,\
+	212,\
+	213,\
+	214
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -235,6 +242,13 @@
 	"Aegis - Russia (Arid)", \
 	"Aegis Marines - Desert", \
 	"Aegis Marines - Woodland", \
+	"Aegis Atlas - Belarus", \
+	"Aegis Atlas - Bundeswehr", \
+	"Aegis Atlas - French Foreign Legion", \
+	"Aegis Atlas - HIMF", \
+	"Aegis Atlas - Israeli Defense Force", \
+	"Aegis Atlas - Taskistani Army", \
+	"Aegis Atlas - Viper (Woodland)", \
 	"CSAT Modification Project - Iran Arid", \
 	"CSAT Modification Project - Iran Arid (CBRN)", \
 	"CSAT Modification Project - Iran Semiarid", \
