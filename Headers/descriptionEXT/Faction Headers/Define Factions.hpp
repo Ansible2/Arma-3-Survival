@@ -194,7 +194,17 @@
 	192,\
 	193,\
 	194,\
-	195
+	195,\
+	196,\
+	197,\
+	198,\
+	199,\
+	200,\
+	201,\
+	202,\
+	203,\
+	204,\
+	205
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -211,6 +221,18 @@
 	"CONTACT - NATO WOODLAND", \
 	"CONTACT - LDF", \
 	"CONTACT - Spetznas", \
+
+	"Aegis - AAF", \
+	"Aegis - British Armed Forces", \
+	"Aegis - British Armed Forces (Pacific)", \
+	"Aegis - British Armed Forces (Woodland)", \
+	"Aegis - China (CSAT Pacific)", \
+	"Aegis - CSAT Argana (Desert)", \
+	"Aegis - CTRG (Mediterranean)", \
+	"Aegis - Iranian Armed Forces (CSAT Arid)", \
+	"AEGIS - Russia", \
+	"Aegis - Russia (Arid)", \
+
 	"CSAT Modification Project - Iran Arid", \
 	"CSAT Modification Project - Iran Arid (CBRN)", \
 	"CSAT Modification Project - Iran Semiarid", \

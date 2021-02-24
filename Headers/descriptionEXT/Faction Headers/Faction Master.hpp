@@ -45,5 +45,6 @@ class factionBase
 #include "JTFS URF Unit Table.hpp"
 #include "CSAT Modification Unit Table.hpp"
 #include "Russia 2035 Unit Table.hpp"
+#include "Aegis Unit Table.hpp"
 
 };
