@@ -204,7 +204,9 @@
 	202,\
 	203,\
 	204,\
-	205
+	205,\
+	206,\
+	207
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -231,6 +233,8 @@
 	"Aegis - Iranian Armed Forces (CSAT Arid)", \
 	"AEGIS - Russia", \
 	"Aegis - Russia (Arid)", \
+	"Aegis Marines - Desert", \
+	"Aegis Marines - Woodland", \
 	"CSAT Modification Project - Iran Arid", \
 	"CSAT Modification Project - Iran Arid (CBRN)", \
 	"CSAT Modification Project - Iran Semiarid", \

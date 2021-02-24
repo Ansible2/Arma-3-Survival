@@ -46,5 +46,6 @@ class factionBase
 #include "CSAT Modification Unit Table.hpp"
 #include "Russia 2035 Unit Table.hpp"
 #include "Aegis Unit Table.hpp"
+#include "Aegis Marines Unit Table.hpp"
 
 };
