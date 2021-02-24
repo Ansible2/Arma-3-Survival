@@ -16,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn BLWK_fnc_spinRandomWeaponBox;
+		[] spawn BLWK_fnc_spinRandomWeaponBox;
 
     (end)
 

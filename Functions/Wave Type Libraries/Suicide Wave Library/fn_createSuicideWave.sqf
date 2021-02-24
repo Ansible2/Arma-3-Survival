@@ -40,5 +40,5 @@ _bombersArray apply {
 		[_this select 0] call BLWK_fnc_explodeSuicideBomberEvent;
 	}];
 
-	null = [_x] spawn BLWK_fnc_suicideBomberLoop;
+	[_x] spawn BLWK_fnc_suicideBomberLoop;
 };

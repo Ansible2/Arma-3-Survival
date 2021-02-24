@@ -17,7 +17,7 @@ Returns:
 
 Examples:
     (begin example)
-		null = [] spawn BLWK_fnc_selectPlayArea;
+		[] spawn BLWK_fnc_selectPlayArea;
     (end)
 
 Author(s):
@@ -38,8 +38,8 @@ if (BLWK_customPlayLocation) then {
 		};
 		// if we find an admin or host
 		if (_adminIndex != -1) exitWith {
-			null = ["A location to play at is being selected by the admin"] remoteExecCall ["hint",_players];
-			null = remoteExec ["BLWK_fnc_selectCustomPlayArea",_players select _adminIndex];
+			["A location to play at is being selected by the admin"] remoteExecCall ["hint",_players];
+			remoteExec ["BLWK_fnc_selectCustomPlayArea",_players select _adminIndex];
 
 			true
 		};

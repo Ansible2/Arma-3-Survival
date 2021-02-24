@@ -63,7 +63,7 @@ if (_ctrlIDC isEqualTo BLWK_SHOP_BUILD_PURCHASE_SELF_BUTT_IDC) exitWith {
 	if !(isNil "BLWK_heldObject") then { // make sure they don't already have something in hand
 		hint "Make sure you are not carrying an object before purchasing another one";
 	} else {
-		null = [_indexInArray] spawn BLWK_fnc_purchaseObject;
+		[_indexInArray] spawn BLWK_fnc_purchaseObject;
 	};
 };
 

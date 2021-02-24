@@ -40,13 +40,13 @@ _playButtonControl ctrlAddEventHandler ["ButtonClick",{
 			// if music is paused, start from slider position
 			if (uiNamespace getVariable ["BLWK_musicManager_paused",false]) then {
 				private _sliderPosition = sliderPosition (uiNamespace getVariable "BLWK_musicManager_control_timelineSlider");
-				null = [_musicClass,_sliderPosition] spawn BLWK_fnc_musicManager_playMusic;
+				[_musicClass,_sliderPosition] spawn BLWK_fnc_musicManager_playMusic;
 			} else {
-				null = [_musicClass] spawn BLWK_fnc_musicManager_playMusic;
+				[_musicClass] spawn BLWK_fnc_musicManager_playMusic;
 			};
 
 			uiNamespace setVariable ["BLWK_musicManager_doPlay",true];
-			null = [] spawn BLWK_fnc_musicManager_moveTimeline;
+			[] spawn BLWK_fnc_musicManager_moveTimeline;
 		};
 	};
 

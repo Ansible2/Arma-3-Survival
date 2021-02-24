@@ -17,7 +17,7 @@ Returns:
 
 Examples:
     (begin example)
-		null = [] spawn {
+		[] spawn {
 			// need to call for direct return
 			_serversSomeVariable = ["someVariable",missionNamespace,"",2] call KISKA_fnc_getVariableTarget;
 		};

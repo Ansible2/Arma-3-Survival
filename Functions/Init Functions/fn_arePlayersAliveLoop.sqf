@@ -16,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn BLWK_fnc_arePlayersAliveLoop;
+		[] spawn BLWK_fnc_arePlayersAliveLoop;
 
     (end)
 
@@ -30,7 +30,7 @@ if (!isServer) exitWith {};
 
 if (!canSuspend) exitWith {
 	["Needs to run in scheduled, running in scheduled...",true] call KISKA_fnc_log;
-	null = [] spawn BLWK_fnc_arePlayersAliveLoop;
+	[] spawn BLWK_fnc_arePlayersAliveLoop;
 };
 
 // wait till the first round has started

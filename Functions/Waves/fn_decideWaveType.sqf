@@ -71,49 +71,49 @@ private _fn_getWaveType = {
 private _selectedWaveType = call _fn_getWaveType;
 private _fn_execWave = {
 	if (_selectedWaveType == STANDARD_WAVE) exitWith {
-		null = remoteExecCall ["BLWK_fnc_handleStandardWave",BLWK_theAIHandlerEntity];
+		remoteExecCall ["BLWK_fnc_handleStandardWave",BLWK_theAIHandlerEntity];
 
 		[TASK_ASSIGNED_TEMPLATE, ["",INCOMING_WAVE_NOTIFICATION(str BLWK_currentWaveNumber)]]
 	};
 	if (_selectedWaveType == SUICIDE_WAVE) exitWith {
-		null = remoteExecCall ["BLWK_fnc_handleSuicideWave",BLWK_theAIHandlerEntity];
+		remoteExecCall ["BLWK_fnc_handleSuicideWave",BLWK_theAIHandlerEntity];
 
 		[SPECIAL_WARNING_TEMPLATE, [SUICIDE_WAVE_NOTIFICATION]]
 	};
 	if (_selectedWaveType == CIVILIAN_WAVE) exitWith {
-		null = remoteExecCall ["BLWK_fnc_createStdWaveInfantry",BLWK_theAIHandlerEntity];
+		remoteExecCall ["BLWK_fnc_createStdWaveInfantry",BLWK_theAIHandlerEntity];
 		call BLWK_fnc_civiliansWave;
 
 		[SPECIAL_WARNING_TEMPLATE, [CIVILIAN_WAVE_NOTIFICATION]]
 	};
 	if (_selectedWaveType == DRONE_WAVE) exitWith {
-		null = remoteExecCall ["BLWK_fnc_handleDroneWave",BLWK_theAIHandlerEntity];
+		remoteExecCall ["BLWK_fnc_handleDroneWave",BLWK_theAIHandlerEntity];
 
 		[SPECIAL_WARNING_TEMPLATE, [DRONE_WAVE_NOTIFICATION]]
 	};
 	if (_selectedWaveType == MORTAR_WAVE) exitWith {
-		null = remoteExecCall ["BLWK_fnc_handleMortarWave",BLWK_theAIHandlerEntity];
+		remoteExecCall ["BLWK_fnc_handleMortarWave",BLWK_theAIHandlerEntity];
 
 		[SPECIAL_WARNING_TEMPLATE, [MORTAR_WAVE_NOTIFICATION]]
 	};
 	if (_selectedWaveType == DEFECTOR_WAVE) exitWith {
-		null = remoteExecCall ["BLWK_fnc_handleDefectorWave",BLWK_theAIHandlerEntity];
+		remoteExecCall ["BLWK_fnc_handleDefectorWave",BLWK_theAIHandlerEntity];
 
 		[SPECIAL_WARNING_TEMPLATE, [DEFECTORS_WAVE_NOTIFICATION]]
 	};
 	if (_selectedWaveType == OVERRUN_WAVE) exitWith {
-		null = remoteExecCall ["BLWK_fnc_handleOverrunWave",BLWK_theAIHandlerEntity];
+		remoteExecCall ["BLWK_fnc_handleOverrunWave",BLWK_theAIHandlerEntity];
 
 		[SPECIAL_WARNING_TEMPLATE, [OVERRUN_WAVE_NOTIFICATION]]
 	};
 	if (_selectedWaveType == PARATROOPER_WAVE) exitWith {
-		null = remoteExecCall ["BLWK_fnc_handleParatrooperWave",BLWK_theAIHandlerEntity];
+		remoteExecCall ["BLWK_fnc_handleParatrooperWave",BLWK_theAIHandlerEntity];
 
 		[SPECIAL_WARNING_TEMPLATE, [PARATROOPER_WAVE_NOTIFICATION]]
 	};
 	if (_selectedWaveType == TWELVE_HOUR_WAVE) exitWith {
-		null = remoteExecCall ["BLWK_fnc_handleStandardWave",BLWK_theAIHandlerEntity];
-		null = [] spawn BLWK_fnc_handleTwelveHourWave;
+		remoteExecCall ["BLWK_fnc_handleStandardWave",BLWK_theAIHandlerEntity];
+		[] spawn BLWK_fnc_handleTwelveHourWave;
 
 		[SPECIAL_WARNING_TEMPLATE, [TWELVE_HOUR_WAVE_NOTIFICATION]]
 	};

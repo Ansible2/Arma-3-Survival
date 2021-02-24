@@ -16,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [myBomber] spawn BLWK_fnc_suicideBomberLoop;
+		[myBomber] spawn BLWK_fnc_suicideBomberLoop;
 
     (end)
 

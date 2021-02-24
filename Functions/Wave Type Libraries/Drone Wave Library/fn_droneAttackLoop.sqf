@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [_droneGroup] spawn BLWK_fnc_droneAttackLoop;
+		[_droneGroup] spawn BLWK_fnc_droneAttackLoop;
 
     (end)
 

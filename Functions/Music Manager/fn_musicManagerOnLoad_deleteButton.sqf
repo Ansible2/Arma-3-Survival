@@ -42,7 +42,7 @@ _control ctrlAddEventHandler ["ButtonClick",{
 		saveProfileNamespace;
 
 		// update displayed list
-		null = [] spawn BLWK_fnc_musicManager_updateLoadCombo;
+		[] spawn BLWK_fnc_musicManager_updateLoadCombo;
 	} else {
 		hint "You need a valid selection to delete";
 	};

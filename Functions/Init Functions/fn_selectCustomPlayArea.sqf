@@ -15,7 +15,7 @@ Returns:
 
 Examples:
     (begin example)
-		null = [] spawn BLWK_fnc_selectCustomPlayArea;
+		[] spawn BLWK_fnc_selectCustomPlayArea;
     (end)
 
 Author(s):
@@ -41,7 +41,7 @@ BLWK_customAreaDisplayEH = MAIN_DISPLAY displayAddEventHandler ["KeyDown",{
 		openMap false;
 		
 		// display 46 is not always active and therefore need to wait for it to be in a scheduled environment
-		null = [] spawn {
+		[] spawn {
 			waituntil {!isNull MAIN_DISPLAY};
 			
 			MAIN_DISPLAY displayRemoveEventHandler ["KeyDown",BLWK_customAreaDisplayEH];

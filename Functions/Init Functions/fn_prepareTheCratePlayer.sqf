@@ -17,7 +17,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn BLWK_fnc_prepareTheCratePlayer;
+		[] spawn BLWK_fnc_prepareTheCratePlayer;
 
     (end)
 
@@ -32,7 +32,7 @@ scriptName SCRIPT_NAME;
 
 if (!canSuspend) exitWith {
 	["Needs to executed in scheduled, now running in scheduled...",true] call KISKA_fnc_log;
-	null = [] spawn BLWK_fnc_prepareTheCratePlayer;
+	[] spawn BLWK_fnc_prepareTheCratePlayer;
 };
 
 params ["_mainCrate"];

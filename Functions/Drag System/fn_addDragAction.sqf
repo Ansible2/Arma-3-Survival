@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [player] spawn BLWK_fnc_addDragAction;
+		[player] spawn BLWK_fnc_addDragAction;
 
     (end)
 
@@ -30,7 +30,7 @@ if (!hasInterface) exitWith {};
 
 if (!canSuspend) exitWith {
 	["Needs to executed in scheduled, wasn't, executing now in scheduled...",false] call KISKA_fnc_log;
-	null = _this spawn BLWK_fnc_addDragAction;
+	_this spawn BLWK_fnc_addDragAction;
 };
 
 waitUntil {

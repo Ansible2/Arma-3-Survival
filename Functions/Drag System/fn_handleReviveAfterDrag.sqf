@@ -16,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn BLWK_fnc_handleReviveAfterDrag;
+		[] spawn BLWK_fnc_handleReviveAfterDrag;
 
     (end)
 

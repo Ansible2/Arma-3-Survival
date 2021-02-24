@@ -19,7 +19,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [myObject,player] spawn BLWK_fnc_pickupObject;
+		[myObject,player] spawn BLWK_fnc_pickupObject;
 
     (end)
 

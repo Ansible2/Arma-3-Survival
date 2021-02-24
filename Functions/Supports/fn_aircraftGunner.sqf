@@ -127,7 +127,7 @@ player moveInTurret [_vehicle,_turretsWithWeapons select 0];
 // store volume for reset
 localNamespace setVariable ["BLWK_soundVolume",soundVolume];
 // turrets are stupid loud
-null = [] spawn {3 fadeSound 0.25}; 
+[] spawn {3 fadeSound 0.25}; 
 
 // keep player from ejecting or switching seats with vanilla actions
 _vehicle lock true; 
@@ -219,7 +219,7 @@ localNamespace setVariable ["BLWK_fnc_exitFromAircraft",{
 	// allow other users to access the support type again
 	missionNamespace setVariable [_arguments select 3,false,true];
 	
-	null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
+	[] spawn BLWK_fnc_playAreaEnforcementLoop;
 
 	sleep 10;
 

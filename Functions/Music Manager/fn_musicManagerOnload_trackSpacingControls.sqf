@@ -16,7 +16,7 @@ Returns:
 
 Examples:
     (begin example)
-		null = [
+		[
 			_comboControl,
 			_editBoxControl,
 			_buttonControl
@@ -34,7 +34,7 @@ params ["_comboControl","_editBoxControl","_buttonControl"];
 // KISKA_fnc_getVariableTarget needs a scheduled environment
 if (!canSuspend) exitWith {
 	["Needs to be run in scheduled, now running in scheduled",true] call KISKA_fnc_log;
-	null = _this spawn BLWK_fnc_musicManagerOnLoad_trackSpacingControls;
+	_this spawn BLWK_fnc_musicManagerOnLoad_trackSpacingControls;
 };
 
 _comboControl ctrlSetFont "PuristaLight";

@@ -23,7 +23,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn BLWK_fnc_paratroopers;
+		[] spawn BLWK_fnc_paratroopers;
 
     (end)
 

@@ -17,7 +17,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn BLWK_fnc_infoPanelLoop;
+		[] spawn BLWK_fnc_infoPanelLoop;
 
     (end)
 
@@ -32,7 +32,7 @@ if (!hasInterface) exitWith {};
 
 if (!canSuspend) exitWith {
 	["Needs to executed in scheduled, now running in scheduled...",true] call KISKA_fnc_log;
-	null = [] spawn BLWK_fnc_infoPanelLoop;
+	[] spawn BLWK_fnc_infoPanelLoop;
 };
 
 disableSerialization;

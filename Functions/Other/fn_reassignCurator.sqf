@@ -48,7 +48,7 @@ if (isNull _curatorObject) exitWith {
 
 private _unitWithCurator = getAssignedCuratorUnit _curatorObject;
 if (isNull _unitWithCurator) then {
-	null = [player,_curatorObject] remoteExecCall ["assignCurator",2];
+	[player,_curatorObject] remoteExecCall ["assignCurator",2];
 } else {
 	if (alive _unitWithCurator) then {
 		// no sense in alerting player if they are the curator still
@@ -58,21 +58,21 @@ if (isNull _unitWithCurator) then {
 			hint "You are already the curator";
 		};
 	} else {
-		null = [_unitWithCurator,_isManual,_curatorObject] spawn {
+		[_unitWithCurator,_isManual,_curatorObject] spawn {
 			params ["_unitWithCurator","_isManual","_curatorObject"];
-			null = [_curatorObject] remoteExec ["unAssignCurator",2];
+			[_curatorObject] remoteExec ["unAssignCurator",2];
 			
 			// wait till curator doesn't have a unit to give it the player
 			waitUntil {
 				if !(isNull (getAssignedCuratorUnit _curatorObject)) exitWith {
-					null = [player,_curatorObject] remoteExecCall ["assignCurator",2];
+					[player,_curatorObject] remoteExecCall ["assignCurator",2];
 					if (_isManual) then {
 						hint "You are now the curator";
 					};
 					true
 				};
 				
-				null = [_curatorObject] remoteExec ["unAssignCurator",2];
+				[_curatorObject] remoteExec ["unAssignCurator",2];
 				
 				sleep 2;
 				false

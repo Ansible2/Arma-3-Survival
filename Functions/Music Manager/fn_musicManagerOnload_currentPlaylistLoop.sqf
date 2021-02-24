@@ -52,7 +52,7 @@ if !(GET_PUBLIC_ARRAY_DEFAULT isEqualTo []) then {
 	};
 };
 
-null = _this spawn {
+_this spawn {
 	params ["_control","_display"];
 
 	private _fn_adjustList = {

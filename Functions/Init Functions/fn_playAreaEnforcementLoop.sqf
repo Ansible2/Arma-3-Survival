@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
+		[] spawn BLWK_fnc_playAreaEnforcementLoop;
 
     (end)
 Author(s):

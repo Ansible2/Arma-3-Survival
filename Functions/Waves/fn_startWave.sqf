@@ -16,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [true] spawn BLWK_fnc_startWave;
+		[true] spawn BLWK_fnc_startWave;
 
     (end)
 
@@ -94,7 +94,7 @@ waitUntil {
 // loop to check wave end
 waitUntil {
 	if (call BLWK_fnc_isWaveCleared) exitWith {
-		null = [] spawn BLWK_fnc_endWave;
+		[] spawn BLWK_fnc_endWave;
 		true
 	};
 

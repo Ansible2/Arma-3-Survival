@@ -16,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn BLWK_fnc_preparePlayArea;
+		[] spawn BLWK_fnc_preparePlayArea;
 
     (end)
 
@@ -34,7 +34,7 @@ if (!isServer) exitWith {};
 
 if (!canSuspend) exitWith {
 	["Needs to executed in scheduled, now running in scheduled...",true] call KISKA_fnc_log;
-	null = [] spawn BLWK_fnc_preparePlayArea;
+	[] spawn BLWK_fnc_preparePlayArea;
 };
 
 
@@ -87,4 +87,4 @@ waitUntil {
 };
 
 // push player relavent actions and the loop to show The Crate icon
-null = [BLWK_mainCrate] remoteExec ["BLWK_fnc_prepareTheCratePlayer",BLWK_allClientsTargetID,true];
+[BLWK_mainCrate] remoteExec ["BLWK_fnc_prepareTheCratePlayer",BLWK_allClientsTargetID,true];

@@ -54,7 +54,7 @@ switch (_treeCategory) do {
 		
 		closeDialog 2;
 		private _itemClass = _poolTreeCtrl tvData _selectedTreePath;
-		null = [_itemClass,true] spawn BLWK_fnc_purchaseObject;
+		[_itemClass,true] spawn BLWK_fnc_purchaseObject;
 	};
 	
 	case SUPPORT_TREE: {

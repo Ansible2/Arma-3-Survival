@@ -14,7 +14,7 @@ Returns:
 
 Examples:
     (begin example)
-		null = [] spawn BLWK_fnc_theCrateBuildingsLoop;
+		[] spawn BLWK_fnc_theCrateBuildingsLoop;
     (end)
 
 Author(s):

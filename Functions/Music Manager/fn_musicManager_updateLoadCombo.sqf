@@ -14,7 +14,7 @@ Returns:
 
 Examples:
     (begin example)
-		null = [] spawn BLWK_fnc_musicManager_updateLoadCombo;
+		[] spawn BLWK_fnc_musicManager_updateLoadCombo;
     (end)
 
 Author(s):
@@ -24,7 +24,7 @@ scriptName "BLWK_fnc_musicManager_updateLoadCombo";
 
 if (!canSuspend) exitWith {
 	["Needs to be run in scheduled, now running in scheduled",true] call KISKA_fnc_log;
-	null = _this spawn BLWK_fnc_musicManager_updateLoadCombo;
+	_this spawn BLWK_fnc_musicManager_updateLoadCombo;
 };
 
 params [

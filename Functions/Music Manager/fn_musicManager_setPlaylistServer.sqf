@@ -36,5 +36,5 @@ missionNamespace setVariable ["KISKA_randomMusic_usedTracks",[]];
 
 // if random music system was already running, start a new instance
 if (missionNamespace getVariable ["KISKA_musicSystemIsRunning",false]) then {
-	null = [] spawn KISKA_fnc_randomMusic; 
+	[] spawn KISKA_fnc_randomMusic; 
 };

@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn BLWK_fnc_createDroneWave;
+		[] spawn BLWK_fnc_createDroneWave;
 
     (end)
 
@@ -56,7 +56,7 @@ for "_i" from 1 to DRONE_NUMBER do {
 	_drone_temp setSkill 1;
 
 	// attack The Crate
-	null = [_drone_temp,_droneGroup_temp,_spawnPosition_temp] spawn {
+	[_drone_temp,_droneGroup_temp,_spawnPosition_temp] spawn {
 		params [
 			"_drone",
 			"_droneGroup",
@@ -111,8 +111,8 @@ for "_i" from 1 to DRONE_NUMBER do {
 		deleteVehicle _unit;
 	}];
 
-	null = [_drone_temp] remoteExec ["BLWK_fnc_addToMustKillArray",2];
-	null = [BLWK_zeus,[[_drone_temp], true]] remoteExecCall ["addCuratorEditableObjects",2]; 	
+	[_drone_temp] remoteExec ["BLWK_fnc_addToMustKillArray",2];
+	[BLWK_zeus,[[_drone_temp], true]] remoteExecCall ["addCuratorEditableObjects",2]; 	
 	
 	// space out spawns so that you don't get spammed
 	sleep 10;

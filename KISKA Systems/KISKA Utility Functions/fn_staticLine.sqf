@@ -129,7 +129,7 @@ localNamespace setVariable ["KISKA_fnc_staticline_doEJect",{
 
 // execute eject
 {
-	null = [_x,_chuteType,_forEachIndex,_invincibleOnDrop] spawn (localNamespace getVariable "KISKA_fnc_staticLine_doEject");
+	[_x,_chuteType,_forEachIndex,_invincibleOnDrop] spawn (localNamespace getVariable "KISKA_fnc_staticLine_doEject");
 } forEach ([_dropArrayFiltered,_dropArray] select (_dropArrayFiltered isEqualTo []));
 
 

@@ -45,7 +45,7 @@ _control ctrlAddEventHandler ["LBSelChanged",{
 
 	// play new track unless music is paused
 	if !(uiNamespace getVariable ["BLWK_musicManager_paused",false]) then {
-		null = [_musicClass,0] spawn BLWK_fnc_musicManager_playMusic;
+		[_musicClass,0] spawn BLWK_fnc_musicManager_playMusic;
 	};
 
 }];

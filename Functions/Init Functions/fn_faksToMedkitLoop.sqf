@@ -17,7 +17,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn BLWK_fnc_faksToMedkitLoop;
+		[] spawn BLWK_fnc_faksToMedkitLoop;
 
     (end)
 

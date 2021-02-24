@@ -44,6 +44,6 @@ _control ctrlAddEventHandler ["MouseButtonUp",{
 	if (uiNamespace getVariable ["BLWK_musicManager_doResume",false]) then {
 		uiNamespace setVariable ["BLWK_musicManager_doResume",nil];
 		private _musicClass = uiNamespace getVariable ["BLWK_musicManager_selectedTrack",""];
-		null = [_musicClass,sliderPosition _control] spawn BLWK_fnc_musicManager_playMusic;
+		[_musicClass,sliderPosition _control] spawn BLWK_fnc_musicManager_playMusic;
 	};
 }];

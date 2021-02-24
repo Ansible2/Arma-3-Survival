@@ -20,7 +20,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [myTarget] spawn KISKA_fnc_CAS;
+		[myTarget] spawn KISKA_fnc_CAS;
 
     (end)
 
@@ -72,7 +72,7 @@ private _planeCfg = configfile >> "cfgvehicles" >> _planeClass;
 if !(isclass _planeCfg) exitwith {
 	[[_planeClass," Vehicle class not found, moving to default aircraft..."],true] call KISKA_fnc_log;
 	_this set [3,"B_Plane_CAS_01_dynamicLoadout_F"];
-	null = _this spawn KISKA_fnc_CAS; 
+	_this spawn KISKA_fnc_CAS; 
 };
 
 
@@ -183,7 +183,7 @@ if (_exitToDefault) exitwith {
 	[["Weapon types of ",_attackMagazines," for plane class: ",_planeClass," not entirely found, moving to default Aircraft..."],true] call KISKA_fnc_log;
 	// exit to default aircraft type 
 	_this set [3,"B_Plane_CAS_01_dynamicLoadout_F"];
-	null = _this spawn KISKA_fnc_CAS;
+	_this spawn KISKA_fnc_CAS;
 };
 
 
@@ -370,7 +370,7 @@ while {!(isNull _plane) AND {!(_plane getVariable ["KISKA_completedFiring",false
 			_plane dowatch laserTarget _dummyTarget;
 			_plane dotarget laserTarget _dummyTarget;
 
-			null = [_plane,_dummyTarget,_weaponsToUse,_attackTypeID,_attackPosition,_breakOffDistance] spawn KISKA_fnc_casAttack;
+			[_plane,_dummyTarget,_weaponsToUse,_attackTypeID,_attackPosition,_breakOffDistance] spawn KISKA_fnc_casAttack;
 		} else {
 			// ensures strafing effect with the above setVelocityTransformation
 			/// for some reason, private variables outside the main if here do not work

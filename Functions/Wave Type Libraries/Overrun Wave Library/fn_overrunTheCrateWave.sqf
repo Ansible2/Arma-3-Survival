@@ -26,7 +26,7 @@ Author(s):
 params ["_startingEnemyUnits"];
 
 // make sure nobody is carrying anything when they teleport
-null = remoteExecCall ["BLWK_fnc_placeObject",BLWK_allClientsTargetID];
+remoteExecCall ["BLWK_fnc_placeObject",BLWK_allClientsTargetID];
 
 private "_playerPosition";
 private _players = call CBAP_fnc_players;

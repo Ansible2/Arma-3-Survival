@@ -31,7 +31,7 @@ if ((call KISKA_fnc_getMusicPlaying) == (call KISKA_fnc_getCurrentRandomMusicTra
 		 from KISKA_fnc_randomMusic. As it stands, if a manual song is playing that is ALSO in the list
 		 and was played from random music, then it will still stop it
 	*/
-	null = [] spawn KISKA_fnc_stopMusic;
+	[] spawn KISKA_fnc_stopMusic;
 	
 	true
 } else {

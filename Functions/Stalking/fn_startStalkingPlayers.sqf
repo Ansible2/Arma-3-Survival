@@ -21,7 +21,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [aStalkerGroup,BLWK_mainCrate,20,{false}] spawn BLWK_fnc_startStalkingPlayers;
+		[aStalkerGroup,BLWK_mainCrate,20,{false}] spawn BLWK_fnc_startStalkingPlayers;
 
     (end)
 
@@ -32,7 +32,7 @@ scriptName "BLWK_fnc_startStalkingPlayers";
 
 if (!canSuspend) exitWith {
 	["Must be run in a scheduled environment. Exiting to scheduled...",true] call KISKA_fnc_log;
-	null = _this spawn BLWK_fnc_startStalkingPlayers;
+	_this spawn BLWK_fnc_startStalkingPlayers;
 };
 
 params [

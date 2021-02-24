@@ -46,8 +46,8 @@ scriptName SCRIPT_NAME;
 private _factionClasses = "true" configClasses (missionConfigFile >> "BLWK_factions");
 
 private _fn_exitForUndefinedDefault = {
-	null = [] spawn {
-		null = ["A default faction appears to be empty, the mission will now end to reconfigure parameters"] remoteExecCall ["BIS_fnc_error",0];
+	[] spawn {
+		["A default faction appears to be empty, the mission will now end to reconfigure parameters"] remoteExecCall ["BIS_fnc_error",0];
 		sleep 20;
 		call BIS_fnc_endMissionServer;
 	};

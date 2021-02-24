@@ -62,7 +62,7 @@ uiNamespace setVariable ["BLWK_musicManager_control_removeFromButton",_removeFro
 // system on off combo
 private _onOffComboControl = _display displayCtrl BLWK_MUSIC_MANAGER_ONOFF_COMBO_IDC;
 uiNamespace setVariable ["BLWK_musicManager_control_onOffCombo",_onOffComboControl];
-null = [_onOffComboControl,_display] spawn BLWK_fnc_musicManagerOnLoad_systemOnOffCombo;
+[_onOffComboControl,_display] spawn BLWK_fnc_musicManagerOnLoad_systemOnOffCombo;
 
 
 // volume slider
@@ -110,7 +110,7 @@ private _spacingButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_SPACING_
 uiNamespace setVariable ["BLWK_musicManager_control_spacingButton",_spacingButtonControl];
 private _spacingComboControl = _display displayCtrl BLWK_MUSIC_MANAGER_SPACING_COMBO_IDC;
 uiNamespace setVariable ["BLWK_musicManager_control_spacingCombo",_spacingComboControl];
-null = [_spacingComboControl,_spacingEditControl,_spacingButtonControl] spawn BLWK_fnc_musicManagerOnLoad_trackSpacingControls;
+[_spacingComboControl,_spacingEditControl,_spacingButtonControl] spawn BLWK_fnc_musicManagerOnLoad_trackSpacingControls;
 
 
 // delete button

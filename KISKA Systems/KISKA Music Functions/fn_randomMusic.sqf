@@ -25,14 +25,14 @@ Examples:
     (begin example)
 		
 		// space tracks by 20 seconds exactly each
-		null = [false,"",arrayOfTracks,20] spawn KISKA_fnc_randomMusic;
+		[false,"",arrayOfTracks,20] spawn KISKA_fnc_randomMusic;
 
    	(end)
 
 	(begin example)
 		
 		// space tracks by UP TO 20 seconds each
-		null = [false,"",arrayOfTracks,[20]] spawn KISKA_fnc_randomMusic; 
+		[false,"",arrayOfTracks,[20]] spawn KISKA_fnc_randomMusic; 
 
    	(end)
 
@@ -90,8 +90,8 @@ if !(isDedicated) then {
 // play song
 private _targetId = [0,-2] select isDedicated;
 // volume is at 0.5 because ambient tracks should be a bit less pronounced
-null = [_selectedTrack,0,_doInterrupt,0.5] remoteExec ["KISKA_fnc_playMusic",_targetId];
-null = [_selectedTrack] remoteExecCall ["KISKA_fnc_setCurrentRandomMusicTrack",_targetId];
+[_selectedTrack,0,_doInterrupt,0.5] remoteExec ["KISKA_fnc_playMusic",_targetId];
+[_selectedTrack] remoteExecCall ["KISKA_fnc_setCurrentRandomMusicTrack",_targetId];
 
 if !(missionNamespace getVariable ["KISKA_musicSystemIsRunning",false]) then {
 	missionNamespace setVariable ["KISKA_musicSystemIsRunning",true];
@@ -167,6 +167,6 @@ if (missionNamespace getVariable ["KISKA_musicSystemIsRunning",true]) then {
 	if (_startTime isEqualTo KISKA_randomMusicStartTIme) then {
 		["Sleep has finished, executing new randomMusic",false] call KISKA_fnc_log;
 		// the globals in params are not passed to allow for changes while music is playing
-		null = [true,_selectedTrack] spawn KISKA_fnc_randomMusic; 
+		[true,_selectedTrack] spawn KISKA_fnc_randomMusic; 
 	};
 };

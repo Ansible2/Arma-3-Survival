@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [myShopDisplay] spawn BLWK_fnc_shop_adjustCommunityPoolLoop;
+		[myShopDisplay] spawn BLWK_fnc_shop_adjustCommunityPoolLoop;
 
     (end)
 

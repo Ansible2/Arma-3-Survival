@@ -104,7 +104,7 @@ BLWK_lootRevealerBox = createVehicle ["Box_C_UAV_06_Swifd_F", (call _fn_getASpaw
 publicVariable "BLWK_lootRevealerBox";
 _addToZeusArray pushBack BLWK_lootRevealerBox;
 
-null = [BLWK_lootRevealerBox] remoteExec ["BLWK_fnc_addRevealLootAction",BLWK_allClientsTargetID,true];
+[BLWK_lootRevealerBox] remoteExec ["BLWK_fnc_addRevealLootAction",BLWK_allClientsTargetID,true];
 // add to list to for cleanup
 BLWK_spawnedLoot pushBack BLWK_lootRevealerBox;
 

@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn BLWK_fnc_reconUAV;
+		[] spawn BLWK_fnc_reconUAV;
 
     (end)
 
@@ -32,7 +32,7 @@ if !(isServer) exitWith {};
 
 if !(canSuspend) exitWith {
 	["Must be run in a scheduled environment. Exiting to scheduled...",true] call KISKA_fnc_log;
-	null = [] spawn BLWK_fnc_reconUAV;
+	[] spawn BLWK_fnc_reconUAV;
 };
 
 // make it so we can have 2 UAVs active at once

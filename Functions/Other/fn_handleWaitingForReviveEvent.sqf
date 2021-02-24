@@ -16,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [player] spawn BLWK_fnc_handleWaitingForReviveEvent;
+		[player] spawn BLWK_fnc_handleWaitingForReviveEvent;
 
     (end)
 
@@ -53,7 +53,7 @@ private _fn_addReviveAction = {
 			hint "Reived from your medkit";
 
 			// make the player invincible for 30 seconds to avoid BS
-			null = [_caller] spawn {
+			[_caller] spawn {
 				params ["_caller"];
 				_caller allowDamage false;
 				sleep 30;

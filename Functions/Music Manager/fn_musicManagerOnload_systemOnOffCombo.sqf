@@ -12,7 +12,7 @@ Returns:
 
 Examples:
     (begin example)
-		null = [_control] spawn BLWK_fnc_musicManagerOnLoad_systemOnOffCombo;
+		[_control] spawn BLWK_fnc_musicManagerOnLoad_systemOnOffCombo;
     (end)
 
 Author(s):
@@ -26,7 +26,7 @@ params ["_control"];
 // KISKA_fnc_getVariableTarget needs a scheduled environment
 if (!canSuspend) exitWith {
 	["Needs to be run in scheduled, now running in scheduled",true] call KISKA_fnc_log;
-	null = _this spawn BLWK_fnc_musicManagerOnLoad_systemOnOffCombo;
+	_this spawn BLWK_fnc_musicManagerOnLoad_systemOnOffCombo;
 };
 
 // get current state of system from the server
@@ -67,11 +67,11 @@ _control ctrlAddEventHandler ["LBSelChanged",{
 				uiNamespace setVariable ["BLWK_musicManager_paused",true];
 			};
 			// start system on server
-			null = remoteExec ["KISKA_fnc_randomMusic",2];
+			remoteExec ["KISKA_fnc_randomMusic",2];
 		};
 
 		case 2:{ // system reset
-			null = [false] remoteExecCall ["KISKA_fnc_stopRandomMusicServer",2];
+			[false] remoteExecCall ["KISKA_fnc_stopRandomMusicServer",2];
 			missionNamespace setVariable ["BLWK_musicManager_reset",true];
 			_control lbSetCurSel 0; // set to appear off
 		};

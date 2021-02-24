@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [target_1,"Sh_155mm_AMOS"] spawn BLWK_fnc_callForArtillery;
+		[target_1,"Sh_155mm_AMOS"] spawn BLWK_fnc_callForArtillery;
 
     (end)
 
@@ -61,7 +61,7 @@ private _smoke = createvehicle ["G_40mm_SmokeRed_infinite",_fireAtPosition,[],0,
 
 sleep 5;
 
-null = [_fireAtPosition,_ammoType,25,3,5,{},nil,1300] spawn BIS_fnc_fireSupportVirtual;
+[_fireAtPosition,_ammoType,25,3,5,{},nil,1300] spawn BIS_fnc_fireSupportVirtual;
 
 sleep 20;
 deleteVehicle _chemlight;

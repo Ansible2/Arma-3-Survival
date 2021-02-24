@@ -65,7 +65,7 @@ _saveAsButtonControl ctrlAddEventHandler ["ButtonClick",{
 		profileNamespace setVariable ["BLWK_musicManagerPlaylists",_savedPlaylistArray];
 		saveProfileNamespace;
 
-		null = [] spawn BLWK_fnc_musicManager_updateLoadCombo;
+		[] spawn BLWK_fnc_musicManager_updateLoadCombo;
 
 	} else {
 		hint "Playlists require at least one character for a name";

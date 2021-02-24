@@ -38,7 +38,7 @@ BLWK_animStateChangedEh_ID = _player addEventHandler ["AnimStateChanged",{
 		// if in some incapacitated state
 		{(incapacitatedState _unit) isNotEqualTo ""}
 	) then {
-		null = [_unit] spawn BLWK_fnc_handleWaitingForReviveEvent;
+		[_unit] spawn BLWK_fnc_handleWaitingForReviveEvent;
 	};
 }];
 

@@ -31,16 +31,16 @@ if (isNil "_group") then {
 	_group = group _unit
 };
 
-null = [_group] spawn BLWK_fnc_pathing_mainLoop;
+[_group] spawn BLWK_fnc_pathing_mainLoop;
 
-null = [_unit] spawn BLWK_fnc_pathing_collisionLoop;
+[_unit] spawn BLWK_fnc_pathing_collisionLoop;
 
-null = [_group] spawn BLWK_fnc_startStalkingPlayers;
+[_group] spawn BLWK_fnc_startStalkingPlayers;
 
 
 // add to server's list of units that must be dead before the round can end
-null = [_unit] remoteExecCall ["BLWK_fnc_addToMustKillArray",2];
-null = [BLWK_zeus, [[_unit],false]] remoteExecCall ["addCuratorEditableObjects",2];
+[_unit] remoteExecCall ["BLWK_fnc_addToMustKillArray",2];
+[BLWK_zeus, [[_unit],false]] remoteExecCall ["addCuratorEditableObjects",2];
 
 
 // keep items (maps, nvgs, binoculars, etc.) so that they can just be loot drops

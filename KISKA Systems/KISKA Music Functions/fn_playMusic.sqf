@@ -17,7 +17,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = ["track", 0, true, 1, 3] spawn KISKA_fnc_playMusic;
+		["track", 0, true, 1, 3] spawn KISKA_fnc_playMusic;
 
     (end)
 

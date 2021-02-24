@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [aUnit] spawn BLWK_fnc_createMortarWave;
+		[aUnit] spawn BLWK_fnc_createMortarWave;
 
     (end)
 
@@ -33,7 +33,7 @@ private _spawnPosition = [BLWK_playAreaCenter, BLWK_playAreaRadius - 15, BLWK_pl
 private _mortarTube = MORTAR_CLASS createVehicle _spawnPosition;
 
 _mortarMan moveInGunner _mortarTube;
-null = [BLWK_zeus,[[_mortarTube],true]] remoteExecCall ["addCuratorEditableObjects",2];
+[BLWK_zeus,[[_mortarTube],true]] remoteExecCall ["addCuratorEditableObjects",2];
 
 // give players a bit of time before starting
 sleep 20;

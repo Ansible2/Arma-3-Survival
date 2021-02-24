@@ -14,7 +14,7 @@ Returns:
 
 Examples:
     (begin example)
-		null = [] spawn BLWK_fnc_handleTwelveHourWave;
+		[] spawn BLWK_fnc_handleTwelveHourWave;
     (end)
 
 Author(s):

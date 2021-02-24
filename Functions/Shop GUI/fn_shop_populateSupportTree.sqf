@@ -32,7 +32,7 @@ disableSerialization;
 if !(BLWK_supportDishFound) exitWith {
 	_tv tvAdd [[],"Find the support dish to unlock"];
 
-	null = [_tv] spawn {
+	[_tv] spawn {
 		params ["_tv"];
 		private _display = ctrlParent _tv;
 

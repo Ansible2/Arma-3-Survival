@@ -13,7 +13,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [target_1] spawn BLWK_fnc_cruiseMissileStrike;
+		[target_1] spawn BLWK_fnc_cruiseMissileStrike;
 
     (end)
 

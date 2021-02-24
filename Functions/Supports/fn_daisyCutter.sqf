@@ -16,7 +16,7 @@ Returns:
 
 Examples:
     (begin example)
-		null = [] spawn BLWK_fnc_daisyCutter;
+		[] spawn BLWK_fnc_daisyCutter;
     (end)
 
 Author(s):
@@ -29,7 +29,7 @@ scriptName "BLWK_fnc_daisyCutter";
 
 if (!canSuspend) exitWith {
 	["Must be run in scheduled. Exiting to scheduled...",true] call KISKA_fnc_log;
-	null = _this spawn BLWK_fnc_daisyCutter;
+	_this spawn BLWK_fnc_daisyCutter;
 };
 
 params [

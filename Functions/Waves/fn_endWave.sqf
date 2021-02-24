@@ -18,7 +18,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn BLWK_fnc_endWave;
+		[] spawn BLWK_fnc_endWave;
 
     (end)
 
@@ -52,7 +52,7 @@ if !((missionNamespace getVariable ["BLWK_civiliansFromWave",[]]) isEqualTo []) 
 
 missionNamespace setVariable ["BLWK_inBetweenWaves",true,true];
 private _players = call CBAP_fnc_players;
-null = [TASK_COMPLETE_TEMPLATE,["",COMPLETED_WAVE_NOTIFICATION(str BLWK_currentWaveNumber)]] remoteExec ["BIS_fnc_showNotification",_players];
+[TASK_COMPLETE_TEMPLATE,["",COMPLETED_WAVE_NOTIFICATION(str BLWK_currentWaveNumber)]] remoteExec ["BIS_fnc_showNotification",_players];
 
 
 // revive the dead players
@@ -91,7 +91,7 @@ if (((BLWK_currentWaveNumber + 1) mod BLWK_deleteDroppedItemsEvery) isEqualTo 0)
 
 	// don't send the notification every wave if items are cleared every time. Would be annoying.
 	if (BLWK_deleteDroppedItemsEvery > 1) then {
-		null = remoteExecCall ["BLWK_fnc_hintDroppedDelete",BLWK_allClientsTargetID];
+		remoteExecCall ["BLWK_fnc_hintDroppedDelete",BLWK_allClientsTargetID];
 	};
 };
 
@@ -101,8 +101,8 @@ if (((BLWK_currentWaveNumber + 1) mod BLWK_deleteDroppedItemsEvery) isEqualTo 0)
 // count down to next wave
 if (BLWK_timeBetweenRounds > 0) then {
 	sleep (BLWK_timeBetweenRounds - 15);
-	null = remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
+	remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
 	sleep 15;
 };
 
-null = [_clearDroppedItems] spawn BLWK_fnc_startWave;
+[_clearDroppedItems] spawn BLWK_fnc_startWave;

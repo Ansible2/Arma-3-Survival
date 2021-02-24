@@ -59,7 +59,7 @@ _airCraft move _dropPosition;
 // give it a waypoint and delete it after it gets there
 private _flyToPosition = _dropPosition getPos [FLY_RADIUS,_relativeDirection];
 
-null = [_aircraft,_dropPosition,_aircraftGroup,_flyToPosition] spawn {
+[_aircraft,_dropPosition,_aircraftGroup,_flyToPosition] spawn {
 	params ["_aircraft","_dropPosition","_aircraftGroup","_flyToPosition"];
 	waitUntil {
 		if (_aircraft distance2D _dropPosition < 40) exitWith {true};
@@ -109,7 +109,7 @@ null = [_aircraft,_dropPosition,_aircraftGroup,_flyToPosition] spawn {
 
 	// notify players of arsenal status
 	_arsenalBox addEventHandler ["Deleted", {
-		null = ["Arsenal is deleted"] remoteExec ["hint",BLWK_allClientsTargetID];
+		["Arsenal is deleted"] remoteExec ["hint",BLWK_allClientsTargetID];
 		missionNamespace setVariable ["BLWK_arsenalOut",false,true];
 	}];
 	
@@ -127,7 +127,7 @@ null = [_aircraft,_dropPosition,_aircraftGroup,_flyToPosition] spawn {
 		_timeLeft = str (round (_timeBetweenMessages * _increment));
 		_message = "Arsenal Will Self Destruct In: " + _timeLeft + " Seconds";
 		
-		null = [_message] remoteExec ["hint",BLWK_allClientsTargetID];
+		[_message] remoteExec ["hint",BLWK_allClientsTargetID];
 		
 		sleep _timeBetweenMessages;
 	};

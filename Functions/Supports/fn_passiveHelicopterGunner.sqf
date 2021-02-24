@@ -185,7 +185,7 @@ private _params = [
 	_turretUnits
 ];
 
-null = _params spawn {
+_params spawn {
 	params [
 		"_centerPosition",
 		"_radius",

@@ -27,5 +27,5 @@ params ["_display"];
 
 disableSerialization;
 
-null = [_display] spawn BLWK_fnc_shop_adjustPointsLoop;
-null = [_display] spawn BLWK_fnc_shop_adjustCommunityPoolLoop;
+[_display] spawn BLWK_fnc_shop_adjustPointsLoop;
+[_display] spawn BLWK_fnc_shop_adjustCommunityPoolLoop;

@@ -27,7 +27,7 @@ if (!hasInterface) exitWith {};
 
 if (!canSuspend) exitWith {
 	["Was not run in scheduled environment, executing in scheduled...",true] call KISKA_fnc_log;
-	null = _this spawn KISKA_fnc_stopMusic;
+	_this spawn KISKA_fnc_stopMusic;
 };
 
 params [
