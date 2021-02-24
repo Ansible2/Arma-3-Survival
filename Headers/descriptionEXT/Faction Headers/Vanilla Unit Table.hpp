@@ -520,6 +520,10 @@ class LDF_faction
 		"I_C_Offroad_02_LMG_F",
 		"B_G_Offroad_01_armed_F"
 	};
+	heavyCars[] = {
+		"I_E_MRAP_03_gmg_F",
+		"I_E_MRAP_03_hmg_F"
+	};
 	lightArmor[] = {
 		"I_E_APC_tracked_03_cannon_F"
 	};
@@ -528,6 +532,9 @@ class LDF_faction
 	};
 	transportHelicopters[] = {
 		"I_E_Heli_light_03_unarmed_F"
+	};
+	casAircraft[] = {
+		"I_E_Plane_Fighter_04_F"
 	};
 	infantry[] = {
 		"I_E_Soldier_A_F",
@@ -556,7 +563,9 @@ class LDF_faction
 		"I_E_Soldier_LAT2_F",
 		"I_E_Soldier_lite_F",
 		"I_E_Soldier_SL_F",
-		"I_E_Soldier_TL_F"
+		"I_E_Soldier_TL_F",
+		"I_E_ghillie_wdl_F",
+		"I_E_ghillie_spotter_wdl_F"
 	};
 };
 
