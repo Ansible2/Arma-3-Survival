@@ -105,7 +105,7 @@ _object addAction [
 	"<t color='#ffffff'><t underline='true'><t font='RobotoCondensedBold'>-- Pickup " + _objectName + " --</t></t></t>", 
 	{
 		params ["_object","_caller"];
-		null = [_object,_caller] spawn BLWK_fnc_pickupObject;
+		[_object,_caller] spawn BLWK_fnc_pickupObject;
 	}, 
 	nil, 
 	100,  

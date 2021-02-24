@@ -16,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [myUnit] spawn BLWK_fnc_pathing_collisionLoop;
+		[myUnit] spawn BLWK_fnc_pathing_collisionLoop;
 
     (end)
 
@@ -31,7 +31,7 @@ if (!BLWK_doDetectCollision) exitWith {
 
 if (!canSuspend) exitWith {
 	["Needs to be run in scheduled, exting to run in scheduled",true] call KISKA_fnc_log;
-	null = _this spawn BLWK_fnc_pathing_collisionLoop;
+	_this spawn BLWK_fnc_pathing_collisionLoop;
 };
 
 params ["_unit"];

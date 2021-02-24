@@ -21,7 +21,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [myGroup,25] spawn BLWK_fnc_pathing_mainLoop;
+		[myGroup,25] spawn BLWK_fnc_pathing_mainLoop;
 
     (end)
 
@@ -40,7 +40,7 @@ scriptName SCRIPT_NAME;
 
 if (!canSuspend) exitWith {
 	["Should be run in scheduled environment, exiting to scheduled...",true] call KISKA_fnc_log;
-	null = _this spawn BLWK_fnc_pathing_mainLoop;
+	_this spawn BLWK_fnc_pathing_mainLoop;
 };
 
 params [

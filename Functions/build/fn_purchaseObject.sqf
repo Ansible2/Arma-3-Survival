@@ -21,7 +21,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [0] spawn BLWK_fnc_purchaseObject;
+		[0] spawn BLWK_fnc_purchaseObject;
 
     (end)
 
@@ -74,7 +74,7 @@ if !(_propertiesArray select KEEP_INVENTORY) then {
 };
 
 // attach object to player
-null = [_purchasedObject,player,true] spawn BLWK_fnc_pickupObject;
+[_purchasedObject,player,true] spawn BLWK_fnc_pickupObject;
 
 sleep 1;
 [_purchasedObject] call BLWK_fnc_addBuildableObjectActions; // give local player object actions
@@ -108,7 +108,6 @@ sleep 10;
 if (!isNull _purchasedObject) then {
 	// give remote players the ability to manipulate the object
 	[_purchasedObject] remoteExecCall ["BLWK_fnc_addBuildableObjectActions",-clientOwner,true];
-
 
 	// postNetwork event
 	[_purchasedObject] call BLWK_fnc_buildEvent_onPurchasedPostNetwork;

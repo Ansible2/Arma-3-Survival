@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [myObject] remoteExec ["BLWK_fnc_enableCollisionWithAllPlayers",myObject];
+		[myObject] remoteExec ["BLWK_fnc_enableCollisionWithAllPlayers",myObject];
 
     (end)
 
@@ -27,7 +27,7 @@ scriptName SCRIPT_NAME;
 
 if (!canSuspend) exitWith {
 	["Executed in unscheduled environment, execing in scheduled",true] call KISKA_fnc_log;
-	null = _this spawn BLWK_fnc_enableCollisionWithAllPlayers;
+	_this spawn BLWK_fnc_enableCollisionWithAllPlayers;
 };
 
 
@@ -35,7 +35,7 @@ params ["_object"];
 
 if (!local _object) exitWith {
 	[["Found that object ",_object," was not local. RemoteExecing to owner"],false] call KISKA_fnc_log;
-	null = [_object] remoteExec ["BLWK_fnc_enableCollisionWithAllPlayers",_object];
+	[_object] remoteExec ["BLWK_fnc_enableCollisionWithAllPlayers",_object];
 };
 
 
@@ -54,6 +54,6 @@ _players apply {
 		false
 	};
 
-	null = [_object,_x] remoteExecCall ["enableCollisionWith",_x];
+	[_object,_x] remoteExecCall ["enableCollisionWith",_x];
 	_object enableCollisionWith _x;
 };

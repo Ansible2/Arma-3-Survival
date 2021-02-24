@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [myObject] remoteExec ["BLWK_fnc_disableCollisionWithAllPlayers",myObject];
+		[myObject] remoteExec ["BLWK_fnc_disableCollisionWithAllPlayers",myObject];
 
     (end)
 
@@ -34,7 +34,7 @@ params ["_object"];
 
 if !(local _object) exitWith {
 	[["Found that object ",_object," was not local. RemoteExecing to owner"],false] call KISKA_fnc_log;
-	null = [_object] remoteExec ["BLWK_fnc_disableCollisionWithAllPlayers",_object];
+	[_object] remoteExec ["BLWK_fnc_disableCollisionWithAllPlayers",_object];
 };
 
 private _players = call CBAP_fnc_players;
@@ -43,7 +43,7 @@ _players apply {
 	// don't execute onto whoever is holding the object
 	if (_x isNotEqualTo (attachedTo _object)) then {
 		sleep 0.1;
-		null = [_object,_x] remoteExecCall ["disableCollisionWith",_x];
+		[_object,_x] remoteExecCall ["disableCollisionWith",_x];
 		_object disableCollisionWith _x;
 	};
 };
