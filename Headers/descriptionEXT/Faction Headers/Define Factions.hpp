@@ -221,7 +221,6 @@
 	"CONTACT - NATO WOODLAND", \
 	"CONTACT - LDF", \
 	"CONTACT - Spetznas", \
-
 	"Aegis - AAF", \
 	"Aegis - British Armed Forces", \
 	"Aegis - British Armed Forces (Pacific)", \
@@ -232,7 +231,6 @@
 	"Aegis - Iranian Armed Forces (CSAT Arid)", \
 	"AEGIS - Russia", \
 	"Aegis - Russia (Arid)", \
-
 	"CSAT Modification Project - Iran Arid", \
 	"CSAT Modification Project - Iran Arid (CBRN)", \
 	"CSAT Modification Project - Iran Semiarid", \
