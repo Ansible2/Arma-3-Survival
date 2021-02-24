@@ -158,7 +158,7 @@ if (isClass _pylonConfig) then {
 			
 		_weaponsToUse pushBack [CANNON_TYPE,_cannonClass,_canonPylonData];
 		// remove cannon so we don't need to check it later
-		_attackMagazines deleteAt (_attackMagazines findIf {_x == CANNON_TYPE});
+		_attackMagazines deleteAt (_attackMagazines find CANNON_TYPE);
 
 	};
 
