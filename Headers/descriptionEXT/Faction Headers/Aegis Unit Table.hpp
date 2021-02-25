@@ -250,7 +250,7 @@ class AEGIS_Iran_faction : CSAT_faction
 
 class AEGIS_Russia_faction
 {
-	displayName = "AEGIS - Russia";
+	displayName = "Aegis - Russia";
 
 	lightCars[] = {
 		"O_R_LSV_02_armed_F"
