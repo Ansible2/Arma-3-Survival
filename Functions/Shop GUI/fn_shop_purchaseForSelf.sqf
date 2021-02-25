@@ -56,14 +56,13 @@ if (_cost > _currentPlayerPoints) exitWith {
 };
 
 private _data = _tvCtrl tvData _tvSelectedPath;
-private _indexInArray = ([_data] call BIS_fnc_parseNumberSafe) select 0;
 
 // decide on purchase method
 if (_ctrlIDC isEqualTo BLWK_SHOP_BUILD_PURCHASE_SELF_BUTT_IDC) exitWith {
 	if !(isNil "BLWK_heldObject") then { // make sure they don't already have something in hand
 		hint "Make sure you are not carrying an object before purchasing another one";
 	} else {
-		[_indexInArray] spawn BLWK_fnc_purchaseObject;
+		[_data] spawn BLWK_fnc_purchaseObject;
 	};
 };
 
@@ -72,6 +71,7 @@ if (_ctrlIDC isEqualTo BLWK_SHOP_SUPP_PURCHASE_SELF_BUTT_IDC) exitWith {
 	if (count (player getVariable ["BIS_fnc_addCommMenuItem_menu",[]]) isEqualTo 10) then {
 		hint "You already have the max supports possible";
 	} else {
+		private _indexInArray = ([_data] call BIS_fnc_parseNumberSafe) select 0;
 		[_indexInArray] call BLWK_fnc_purchaseSupport;
 	};
 };

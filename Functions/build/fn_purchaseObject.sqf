@@ -21,7 +21,7 @@ Returns:
 Examples:
     (begin example)
 
-		[0] spawn BLWK_fnc_purchaseObject;
+		["someClass"] spawn BLWK_fnc_purchaseObject;
 
     (end)
 
