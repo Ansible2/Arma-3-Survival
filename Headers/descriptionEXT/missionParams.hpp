@@ -39,7 +39,7 @@ __EXEC(_savedParams = profileNamespace getVariable ["BLWK_savedMissionParameters
 */
 
 
-// prior to 0.9, used arrays instead of hashes. Since params are auto loaded, in order to avoid erros on previous parameter saves, 
+// prior to 0.9, used arrays instead of hashes. Since params are auto loaded, in order to avoid errors on previous parameter saves, 
 /// this will create an empty hash if an array is present in BLWK_savedMissionParameters or if nothing has been saved yet.
 /// ultimately allowing the use of the getOrDefault command for hashes
 __EXEC(_savedParams = [profileNamespace getVariable "BLWK_savedMissionParameters",createHashMap] select call compile "profileNamespace getVariable ['BLWK_savedMissionParameters',[]] isEqualType []");
@@ -459,16 +459,17 @@ class BLWK_heavyArmorLikelihood
 	title = "Enemy Heavy Armor Likelihood";
 	values[] = ZERO_TO_TEN;
 	texts[] = ZERO_TO_TEN_STRINGS;
-	GET_DEFAULT_PARAM(BLWK_lightArmorLikelihood,1)
+	GET_DEFAULT_PARAM(BLWK_heavyArmorLikelihood,1)
 };
 
-// Other
-A_SPACE(Other);
-A_SECTION_HEADER(Other);
+
+// AI
+A_SPACE(AI);
+A_SECTION_HEADER(AI);
 
 class BLWK_doDetectCollision
 {
-	title = "Run Enemy AI Collision Script? (If you plan to be in a mostly rural environment, turn off)";
+	title = "Run Enemy AI Collision Script? (If you plan to be in a mostly rural environment, possibly turn off)";
 	values[] = ZERO_OR_ONE;
 	texts[] = NO_OR_YES;
 	GET_DEFAULT_PARAM(BLWK_doDetectCollision,1)
@@ -480,6 +481,26 @@ class BLWK_doDetectMines
 	texts[] = OFF_OR_ON;
 	GET_DEFAULT_PARAM(BLWK_doDetectMines,1)
 };
+class BLWK_suppressionEnabled
+{
+	title = "Enemy AI Suppression (OFF for more aggressive/less cautious AI)";
+	values[] = ZERO_OR_ONE;
+	texts[] = OFF_OR_ON;
+	GET_DEFAULT_PARAM(BLWK_suppressionEnabled,0)
+};
+class BLWK_autocombatEnabled
+{
+	title = "Enemy AI AutoCombat (OFF for more aggressive/less cautious AI)";
+	values[] = ZERO_OR_ONE;
+	texts[] = OFF_OR_ON;
+	GET_DEFAULT_PARAM(BLWK_autocombatEnabled,0)
+};
+
+
+// Other
+A_SPACE(Other);
+A_SECTION_HEADER(Other);
+
 class BLWK_multipleLootReveals
 {
 	title = "Show all loot with reveal?";

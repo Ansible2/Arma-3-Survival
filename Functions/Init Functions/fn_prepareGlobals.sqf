@@ -166,9 +166,11 @@ if (isServer OR {!hasInterface}) then {
     // used for chaning medical items of OPTRE units (biofoam to FAKs)
     BLWK_isOptreLoaded = ["OPTRE_core"] call KISKA_fnc_ispatchLoaded;
 
+    // Enemy AI
     BLWK_doDetectCollision = [false,true] select ("BLWK_doDetectCollision" call BIS_fnc_getParamValue);
-
     BLWK_doDetectMines = [false,true] select ("BLWK_doDetectMines" call BIS_fnc_getParamValue);
+    BLWK_suppressionEnabled = [false,true] select ("BLWK_suppressionEnabled" call BIS_fnc_getParamValue);
+    BLWK_autocombatEnabled = [false,true] select ("BLWK_autocombatEnabled" call BIS_fnc_getParamValue);
 };
 if (hasInterface) then {
     /* Starting Items */

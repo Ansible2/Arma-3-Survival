@@ -49,9 +49,12 @@ removeAllAssignedItems _unit;
 // for pistol only waves and randomized weapons
 [_unit] call BLWK_fnc_handleEnemyWeapons;
 
-_unit disableAI "AUTOCOMBAT";
-_unit disableAI "SUPPRESSION";
-
+if !(BLWK_autocombatEnabled) then {
+	_unit disableAI "AUTOCOMBAT";
+};
+if !(BLWK_suppressionEnabled) then {
+	_unit disableAI "SUPPRESSION";
+};
 if !(BLWK_doDetectMines) then {
 	_unit disableAI "MINEDETECTION";
 };
