@@ -52,7 +52,7 @@ if (_propertiesArray select HAS_AI) then {
 };
 
 if (_propertiesArray select INDESTRUCTABLE) then {
-	_purchasedObject allowDamage false;
+	[_purchasedObject] call BLWK_fnc_addAllowDamageEH;
 	if (BLWK_ACELoaded) then {
 		_purchasedObject setVariable ["ace_cookoff_enable", false, true];
 	};

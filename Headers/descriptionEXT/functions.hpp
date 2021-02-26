@@ -18,6 +18,8 @@ class BLWK
 	class Build
 	{
 		file = "functions\Build";
+		class addAllowDamageEH
+		{};
 		class addBuildableObjectActions 
 		{};
 		class addPickedUpObjectActions 
@@ -220,6 +222,8 @@ class BLWK
 	{
 		file = "Functions\Other Actions";
 		class addMoneyPileAction
+		{};
+		class addOpenShopAction
 		{};
 		class addRevealLootAction
 		{};

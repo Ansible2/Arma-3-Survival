@@ -67,19 +67,7 @@ private _healString = ["<t color='#ff0000'>-- Heal Yourself ",BLWK_pointsForHeal
 	false
 ] call BIS_fnc_holdActionAdd;
 
-_mainCrate addAction [ 
-	"<t color='#00ff00'>-- Open Shop --</t>",  
-	{
-		call BLWK_fnc_openShop;
-	}, 
-	nil, 
-	1000,  
-	true,  
-	false,  
-	"", 
-	"", 
-	2.5 
-];
+[_mainCrate] call BLWK_fnc_addOpenShopAction;
 
 [_mainCrate] call BLWK_fnc_addBuildableObjectActions;
 
@@ -112,6 +100,5 @@ addMissionEventHandler ["Draw3D",{
 
 BLWK_mainCrate setVariable ["ace_cookoff_enable", false];
 
-if (isDamageAllowed BLWK_mainCrate) then {
-	BLWK_mainCrate allowDamage false;
-};
+
+[BLWK_mainCrate] call BLWK_fnc_addAllowDamageEH;
