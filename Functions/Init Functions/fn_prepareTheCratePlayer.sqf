@@ -51,8 +51,8 @@ private _healString = ["<t color='#ff0000'>-- Heal Yourself ",BLWK_pointsForHeal
 	_healString, 
 	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_revive_ca.paa", 
 	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_revive_ca.paa", 
-	"true", 
-	"true", 
+	"_this distance _target < 2", 
+	"_caller distance _target < 2", 
 	{}, 
 	{}, 
 	{
