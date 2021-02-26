@@ -399,9 +399,10 @@ class BLWK_buildableItems
 		invincible = 1;
 		detectCollsion = 0;
 	};
+/*	
 	class C_IDAP_supplyCrate_F : BLWK_genericBuildItemBase
 	{
-		displayName = "Sattelite Shop";
+		displayName = "Satellite Shop";
 		price = 100;
 		category = UNIQUE_CATEGORY;
 		attachmentY = 2;
@@ -410,10 +411,11 @@ class BLWK_buildableItems
 		keepInventory = 0;
 		detectCollsion = 0;
 	};
+*/
 	class Land_GarbageContainer_open_F : BLWK_genericBuildItemBase
 	{
 		displayName = "Item Reclaimer";
-		price = 100;
+		price = 900;
 		category = UNIQUE_CATEGORY;
 		attachmentY = 2;
 		attachmentZ = 0.8;

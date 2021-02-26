@@ -28,10 +28,9 @@ if (!hasInterface) exitWith {};
 params ["_reclaimerObject"];
 
 if (isNull _reclaimerObject) exitWith {
-	["_object was null, exiting...",true] call KISKA_fnc_log;
+	["_reclaimerObject was null, exiting...",true] call KISKA_fnc_log;
 	nil
 };
-
 
 _reclaimerObject addAction [
 	"Open Item Reclaimer Inventory",	// title
@@ -47,26 +46,27 @@ _reclaimerObject addAction [
 	true,		// hideOnUse
 	"",			// shortcut
 	"true", 	// condition
-	2			// radius
+	3			// radius
 ];
 
 
 [
 	_reclaimerObject,											
 	"Reclaim Items",										
-	"\a3\ui_f\data\IGUI\Cfg\holdactions\refuel_ca.paa",	
-	"\a3\ui_f\data\IGUI\Cfg\holdactions\refuel_ca.paa",	
-	"_this distance _target < 2",						
-	"_caller distance _target < 2",						
+	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\refuel_ca.paa",	
+	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\refuel_ca.paa",	
+	"_this distance _target < 3",						
+	"_caller distance _target < 3",						
 	{},													
 	{},													
 	{
 		[_this select 0] call BLWK_fnc_itemReclaimer_reclaim;
+		hint "Items Reclaimed";
 	},				
 	{},													
 	[],													
 	1,													
-	100,												
+	200,												
 	false,												
 	false											
 ] call BIS_fnc_holdActionAdd;

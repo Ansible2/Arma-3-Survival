@@ -25,7 +25,7 @@ scriptName "BLWK_fnc_itemReclaimer_init";
 params ["_reclaimerObject"];
 
 if (isNull _reclaimerObject) exitWith {
-	["_object was null, exiting...",true] call KISKA_fnc_log;
+	["_reclaimerObject was null, exiting...",true] call KISKA_fnc_log;
 	nil
 };
 
@@ -40,4 +40,4 @@ _storageBox attachTo [_reclaimerObject,[0,0,0]];
 
 _reclaimerObject setVariable ["BLWK_reclaimBox",_storageBox,true];
 
-[_reclaimerObject] remoteExecCall ["BLWK_itemReclaimer_addActions",BLWK_allClientsTargetId,true];
+[_reclaimerObject] remoteExecCall ["BLWK_fnc_itemReclaimer_addActions",BLWK_allClientsTargetId,true];

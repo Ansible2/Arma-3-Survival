@@ -20,10 +20,10 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define POINTS_FOR_MAGAZINES 1
-#define POINTS_FOR_WEAPONS 1
-#define POINTS_FOR_ITEMS 1
-#define POINTS_FOR_BACKPACKS 1
+#define POINTS_FOR_MAGAZINES 2
+#define POINTS_FOR_WEAPONS 20
+#define POINTS_FOR_ITEMS 15
+#define POINTS_FOR_BACKPACKS 30
 
 #define ADD_TO(COUNT_VAR,NUM) COUNT_VAR = COUNT_VAR + NUM;
 
@@ -32,7 +32,7 @@ scriptName "BLWK_fnc_itemReclaimer_reclaim";
 params ["_reclaimerObject"];
 
 if (isNull _reclaimerObject) exitWith {
-	["_object was null, exiting...",true] call KISKA_fnc_log;
+	["_reclaimerObject was null, exiting...",true] call KISKA_fnc_log;
 	nil
 };
 
@@ -86,6 +86,11 @@ ADD_TO(_itemCount,count (itemCargo _reclaimerBox))
 ADD_TO(_magazineCount,count (magazineCargo _reclaimerBox))
 ADD_TO(_backpackCount,count (backpackCargo _reclaimerBox))
 
+// delete all inventory
+clearItemCargoGlobal _reclaimerBox;
+clearBackpackCargoGlobal _reclaimerBox;
+clearWeaponCargoGlobal _reclaimerBox;
+clearMagazineCargoGlobal _reclaimerBox;
 
 private _totalPoints = 0;
 ADD_TO(_totalPoints,_weaponCount * POINTS_FOR_WEAPONS)
