@@ -31,6 +31,11 @@ if (isNull _reclaimerObject) exitWith {
 
 // create a storage box for the dumbster and then hide it
 private _storageBox = "Box_NATO_Ammo_F" createVehicle (position player);
+// delete all inventory
+clearItemCargoGlobal _storageBox;
+clearBackpackCargoGlobal _storageBox;
+clearWeaponCargoGlobal _storageBox;
+clearMagazineCargoGlobal _storageBox;
 [_storageBox] remoteExecCall ["hideObjectGlobal",2];
 _storageBox allowDamage false;
 [_storageBox] call BLWK_fnc_addAllowDamageEH;
