@@ -20,10 +20,10 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define POINTS_FOR_MAGAZINES 2
-#define POINTS_FOR_WEAPONS 20
-#define POINTS_FOR_ITEMS 15
-#define POINTS_FOR_BACKPACKS 30
+#define POINTS_FOR_MAGAZINES 15
+#define POINTS_FOR_WEAPONS 50
+#define POINTS_FOR_ITEMS 35
+#define POINTS_FOR_BACKPACKS 100
 
 #define ADD_TO(COUNT_VAR,NUM) COUNT_VAR = COUNT_VAR + NUM;
 
