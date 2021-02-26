@@ -30,7 +30,7 @@ params [
 	["_player",player,[objNull]]
 ];
 
-private _objectName = [configFile >> "cfgVehicles" >> (typeOf _object)] call BIS_fnc_displayName;
+private _objectName = (BLWK_buildableObjectsHash get _objectType) select DISPLAY_NAME;
 
 // place object snap to
 private _snaptoActionID = _player addAction [

@@ -1,3 +1,4 @@
+#include "..\..\Headers\Build Objects Properties Defines.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_addBuildableObjectActions
 
@@ -37,7 +38,7 @@ if (isNull _object) exitWith {
 };
 
 private _objectType = typeOf _object;
-private _objectName = [configFile >> "cfgVehicles" >> _objectType] call BIS_fnc_displayName;
+private _objectName = (BLWK_buildableObjectsHash get _objectType) select DISPLAY_NAME;
 
 private _actionDistance = ((_object call BIS_fnc_boundingBoxDimensions) select 1) + 2;
 if (_actionDistance < 5) then {
