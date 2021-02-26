@@ -40,7 +40,6 @@ switch (true) do {
 	};
 	default {
 		_objectName = (BLWK_buildableObjectsHash get _objectType) select DISPLAY_NAME;
-		hint _objectName;
 	};
 };
 
