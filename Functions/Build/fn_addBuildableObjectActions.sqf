@@ -42,9 +42,8 @@ if (_actionDistance < 5) then {
 	_actionDistance = 5;
 };
 
-private _objectType = typeOf _object;
+private _objectType = toLowerANSI (typeOf _object);
 private _objectName = "";
-
 private _addSellAction = true;
 switch (true) do {
 	case (_object isEqualTo BLWK_randomWeaponBox):{

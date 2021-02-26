@@ -76,12 +76,14 @@ _configs apply {
 		// shop category
 		_category_temp = [_x >> "category"] call BIS_fnc_getCfgData;
 		_propertiesArray pushBack _category_temp;
-		// pickup attachment info
+		// pickup default rotation
 		_rotation_temp = [_x >> "rotation"] call BIS_fnc_getCfgData;
+		_propertiesArray pushBack _rotation_temp;
+		// pickup default attachment coordinates
 		_attachmentX_temp = [_x >> "attachmentX"] call BIS_fnc_getCfgData;
 		_attachmentY_temp = [_x >> "attachmentY"] call BIS_fnc_getCfgData;
 		_attachmentZ_temp = [_x >> "attachmentZ"] call BIS_fnc_getCfgData;
-		_propertiesArray pushBack [_rotation_temp,[_attachmentX_temp,_attachmentY_temp,_attachmentZ_temp]];
+		_propertiesArray pushBack [_attachmentX_temp,_attachmentY_temp,_attachmentZ_temp];
 		// has AI
 		_hasAI_temp = [_x >> "hasAI"] call BIS_fnc_getCfgDataBool;
 		_propertiesArray pushBack _hasAI_temp;

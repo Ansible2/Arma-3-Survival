@@ -1,3 +1,4 @@
+#include "..\..\Headers\Build Objects Properties Defines.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_addPickedUpObjectActions
 
@@ -28,7 +29,21 @@ params [
 	["_player",player,[objNull]]
 ];
 
-private _objectName = (BLWK_buildableObjectsHash get _objectType) select DISPLAY_NAME;
+private _objectType = toLowerANSI (typeOf _object);
+private _objectName = "";
+switch (true) do {
+	case (_object isEqualTo BLWK_randomWeaponBox):{
+		_objectName = "Random Weapon Box";
+	};
+	case (_object isEqualTo BLWK_mainCrate):{
+		_objectName = "The Main Crate";
+	};
+	default {
+		_objectName = (BLWK_buildableObjectsHash get _objectType) select DISPLAY_NAME;
+		hint _objectName;
+	};
+};
+
 
 // place object snap to
 private _snaptoActionID = _player addAction [

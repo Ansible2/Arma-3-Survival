@@ -42,9 +42,8 @@ params [
 
 if (_justPurchased) then {
 	private _propertiesArray = BLWK_buildableObjectsHash get (toLowerANSI (typeOf _object));
-	private _attachmentInfo = _propertiesArray select ATTACHMENT_INFO;
-	_object attachTo [_player,_attachmentInfo select ATTACH_ARRAY];
-	_object setDir (_attachmentInfo select ROTATION);
+	_object attachTo [_player,_propertiesArray select ATTACHMENT_COORDS];
+	_object setDir (_propertiesArray select ROTATION);
 } else {
 	WAIT_FOR_OWNERSHIP(_object)
 	[_object,_player,true] call BIS_fnc_attachToRelative;
