@@ -17,9 +17,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		[myObject,player] call BLWK_fnc_addPickedUpObjectActions;
-
     (end)
 
 Author(s):
