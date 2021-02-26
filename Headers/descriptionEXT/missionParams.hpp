@@ -122,6 +122,13 @@ class BLWK_roundsBeforeBodyDeletion
 	texts[] = {"0 (until next round begins)", "1", "2"};
 	GET_DEFAULT_PARAM(BLWK_roundsBeforeBodyDeletion,1)
 };
+class BLWK_minRoundsSinceVehicleSpawned
+{
+	title = "The minimum number of waves between vehicle spawns";
+	values[] = {0, 1, 2};
+	texts[] = {"0", "1", "2"};
+	GET_DEFAULT_PARAM(BLWK_minRoundsSinceVehicleSpawned,0)
+};
 
 
 // Players

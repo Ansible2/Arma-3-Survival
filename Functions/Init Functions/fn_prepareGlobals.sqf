@@ -171,6 +171,9 @@ if (isServer OR {!hasInterface}) then {
     BLWK_doDetectMines = [false,true] select ("BLWK_doDetectMines" call BIS_fnc_getParamValue);
     BLWK_suppressionEnabled = [false,true] select ("BLWK_suppressionEnabled" call BIS_fnc_getParamValue);
     BLWK_autocombatEnabled = [false,true] select ("BLWK_autocombatEnabled" call BIS_fnc_getParamValue);
+
+    // Minimum amount of waves between vehicles
+    BLWK_minRoundsSinceVehicleSpawned = "BLWK_minRoundsSinceVehicleSpawned" call BIS_fnc_getParamValue;
 };
 if (hasInterface) then {
     /* Starting Items */

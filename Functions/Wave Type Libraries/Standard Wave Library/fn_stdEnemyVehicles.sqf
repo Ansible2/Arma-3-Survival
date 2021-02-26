@@ -40,9 +40,9 @@ params [
 if (!local BLWK_theAIHandlerEntity) exitWith {[]};
 
 // special waves will not contribute to this count
-private _roundsSinceVehicleSpawned = missionNamespace getVariable ["BLWK_roundsSinceVehicleSpawned",1];
+private _roundsSinceVehicleSpawned = missionNamespace getVariable ["BLWK_roundsSinceVehicleSpawned",0];
 // wait until it has been at least one round since a vehicle spawn to get another one
-if (_roundsSinceVehicleSpawned < 1) exitWith {
+if (_roundsSinceVehicleSpawned < BLWK_minRoundsSinceVehicleSpawned) exitWith {
 	BLWK_roundsSinceVehicleSpawned = _roundsSinceVehicleSpawned + 1;
 	[]
 };
