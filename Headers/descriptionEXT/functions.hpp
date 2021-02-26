@@ -60,6 +60,19 @@ class BLWK
 		{};
 	};
 
+	class ItemReclaimer
+	{
+		file = "Functions\Unique Build Item Libraries\Item Reclaimer";
+		class itemReclaimer_init
+		{};
+		class itemReclaimer_onSold
+		{};
+		class itemReclaimer_addActions
+		{};
+		class itemReclaimer_reclaim
+		{};
+	};
+
 	class DragSystem
 	{
 		file = "Functions\Drag system";
@@ -365,7 +378,7 @@ class BLWK
 		{};
 	};
 
-	// Wave Type Librariers
+	// Wave Type Libraries
 	class CivilianWaveLibrary
 	{
 		file = "Functions\Wave Type Libraries\Civilian Wave Library";

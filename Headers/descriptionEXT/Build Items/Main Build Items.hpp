@@ -2,6 +2,7 @@
 
 class BLWK_genericBuildItemBase
 {
+	displayName = ""; // only needed for custom names
 	price = 0;
 	category = OTHER_CATEGORY;
 	hasAI = false;
@@ -12,7 +13,6 @@ class BLWK_genericBuildItemBase
 	invincible = 0; // 0 false, 1 true
 	keepInventory = 0; // don't clear inventory
 	detectCollsion = 1; // registers with ai collision script
-	addBuildActions = 1; // should the object be given the manipulation actions after it is purchased
 
 	/*
 		Events
@@ -398,6 +398,30 @@ class BLWK_buildableItems
 		keepInventory = 1;
 		invincible = 1;
 		detectCollsion = 0;
+	};
+	class C_IDAP_supplyCrate_F : BLWK_genericBuildItemBase
+	{
+		displayName = "Sattelite Shop";
+		price = 100;
+		category = UNIQUE_CATEGORY;
+		attachmentY = 2;
+		attachmentZ = 1;
+		invincible = 1;
+		keepInventory = 0;
+		detectCollsion = 0;
+	};
+	class Land_GarbageContainer_open_F : BLWK_genericBuildItemBase
+	{
+		displayName = "Item Reclaimer";
+		price = 100;
+		category = UNIQUE_CATEGORY;
+		attachmentY = 2;
+		attachmentZ = 0.8;
+		invincible = 1;
+		detectCollsion = 0;
+
+		onPurchasedPostFix = "_this call BLWK_fnc_itemReclaimer_init";
+		onSold = "_this call BLWK_fnc_itemReclaimer_onSold";
 	};
 	#include "OPTRE Build Items.hpp"
 	#include "RHS Build Items.hpp"
