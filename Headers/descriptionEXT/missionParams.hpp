@@ -46,7 +46,8 @@ __EXEC(_savedParams = [profileNamespace getVariable "BLWK_savedMissionParameters
 #define GET_DEFAULT_PARAM(NAME,DEFAULT_VALUE) default = __EVAL(_savedParams getOrDefault [#NAME,DEFAULT_VALUE]);
 	
 
-
+#define WAVE_STEPS_VALUES values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 25, 9999};
+#define WAVE_STEPS_TEXTS texts[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "20", "25", "Never"};
 
 // waves
 A_SECTION_HEADER(WAVE);
@@ -68,16 +69,16 @@ class BLWK_timeBetweenRounds
 class BLWK_vehicleStartWave
 {
 	title = "Vehicles can spawn after wave";
-	values[] = {5, 10, 15, 20, 25, 9999};
-	texts[] = {"5", "10", "15", "20", "25", "Never"};
-	GET_DEFAULT_PARAM(BLWK_vehicleStartWave,5)
+	WAVE_STEPS_VALUES
+	WAVE_STEPS_TEXTS
+	GET_DEFAULT_PARAM(BLWK_vehicleStartWave,4)
 };
 class BLWK_specialWavesStartAt
 {
 	title = "Special Wave Possibility Starts At Wave";
-	values[] = {5, 10, 15, 20, 25, 9999};
-	texts[] = {"5", "10", "15", "20", "25", "Never"};
-	GET_DEFAULT_PARAM(BLWK_specialWavesStartAt,10)
+	WAVE_STEPS_VALUES
+	WAVE_STEPS_TEXTS
+	GET_DEFAULT_PARAM(BLWK_specialWavesStartAt,7)
 };
 class BLWK_maxEnemyInfantryAtOnce
 {
