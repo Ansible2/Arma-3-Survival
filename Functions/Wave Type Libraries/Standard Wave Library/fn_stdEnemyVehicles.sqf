@@ -132,8 +132,9 @@ private _fn_spawnAVehicle = {
 		_vehicle = _vehicleArray select 0;
 		// loop through crew
 		(_vehicleArray select 1) apply {
-			[_unit] remoteExecCall ["BLWK_fnc_addToMustKillArray",2];
-			[_unit] call BLWK_fnc_addStdEnemyManEHs;
+			[_x] remoteExecCall ["BLWK_fnc_addToMustKillArray",2];
+			[_x] call BLWK_fnc_addStdEnemyManEHs;
+			_x allowDamage true;
 		};
 	} else {
 		private _spawnPosition = selectRandom BLWK_vehicleSpawnPositions;
