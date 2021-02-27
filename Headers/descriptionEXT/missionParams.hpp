@@ -453,21 +453,35 @@ class BLWK_heavyCarLikelihood
 	title = "Enemy Heavy Car Likelihood";
 	values[] = ZERO_TO_TEN;
 	texts[] = ZERO_TO_TEN_STRINGS;
-	GET_DEFAULT_PARAM(BLWK_heavyCarLikelihood,3)
+	GET_DEFAULT_PARAM(BLWK_heavyCarLikelihood,6)
 };
 class BLWK_lightArmorLikelihood
 {
 	title = "Enemy Light Armor Likelihood";
 	values[] = ZERO_TO_TEN;
 	texts[] = ZERO_TO_TEN_STRINGS;
-	GET_DEFAULT_PARAM(BLWK_lightArmorLikelihood,2)
+	GET_DEFAULT_PARAM(BLWK_lightArmorLikelihood,5)
 };
 class BLWK_heavyArmorLikelihood
 {
 	title = "Enemy Heavy Armor Likelihood";
 	values[] = ZERO_TO_TEN;
 	texts[] = ZERO_TO_TEN_STRINGS;
-	GET_DEFAULT_PARAM(BLWK_heavyArmorLikelihood,1)
+	GET_DEFAULT_PARAM(BLWK_heavyArmorLikelihood,4)
+};
+class BLWK_transportHeliLikelihood
+{
+	title = "Enemy Door Gunner Likelihood";
+	values[] = ZERO_TO_TEN;
+	texts[] = ZERO_TO_TEN_STRINGS;
+	GET_DEFAULT_PARAM(BLWK_transportHeliLikelihood,5)
+};
+class BLWK_attackHeliLikelihood
+{
+	title = "Enemy Attack Helicopter Likelihood";
+	values[] = ZERO_TO_TEN;
+	texts[] = ZERO_TO_TEN_STRINGS;
+	GET_DEFAULT_PARAM(BLWK_attackHeliLikelihood,6)
 };
 
 

@@ -1,3 +1,4 @@
+#include "..\..\..\Headers\Vehicle Class Indexes.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_stdEnemyVehicles
 
@@ -25,11 +26,13 @@ Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+#define VEHICLE_TYPES [LIGHT_CAR,HEAVY_CAR,LIGHT_ARMOR,HEAVY_ARMOR,TRANSPORT_HELI,ATTACK_HELI]
+#define VEHICLE_LIKELIHOODS [BLWK_lightCarLikelihood,BLWK_heavyCarLikelihood,BLWK_lightArmorLikelihood,BLWK_heavyArmorLikelihood,BLWK_transportHeliLikelihood,BLWK_attackHeliLikelihood]
+
 scriptName "BLWK_fnc_stdEnemyVehicles";
 
 if !(BLWK_currentWaveNumber >= BLWK_vehicleStartWave) exitWith {[]};
 
-//#define BASE_VEHICLE_SPAWN_LIKELIHOOD 0.30
 #define VEHICLE_SPAWN_INCREMENT 0.05 // how much to increase likelihood by each round
 
 params [
@@ -40,7 +43,7 @@ params [
 if (!local BLWK_theAIHandlerEntity) exitWith {[]};
 
 // special waves will not contribute to this count
-private _roundsSinceVehicleSpawned = missionNamespace getVariable ["BLWK_roundsSinceVehicleSpawned",0];
+private _roundsSinceVehicleSpawned = missionNamespace getVariable ["BLWK_roundsSinceVehicleSpawned",1];
 // wait until it has been at least one round since a vehicle spawn to get another one
 if (_roundsSinceVehicleSpawned < BLWK_minRoundsSinceVehicleSpawned) exitWith {
 	BLWK_roundsSinceVehicleSpawned = _roundsSinceVehicleSpawned + 1;
@@ -49,7 +52,7 @@ if (_roundsSinceVehicleSpawned < BLWK_minRoundsSinceVehicleSpawned) exitWith {
 
 
 // each round increases the likelihood of a vehicle spawn by 5%
-private _howLikelyIsAVehicleToSpawn = (_roundsSinceVehicleSpawned * VEHICLE_SPAWN_INCREMENT) + (BLWK_baseVehicleSpawnLikelihood / 100);
+private _howLikelyIsAVehicleToSpawn = (_roundsSinceVehicleSpawned * VEHICLE_SPAWN_INCREMENT) + (BLWK_baseVehicleSpawnLikelihood / 10);
 if (_howLikelyIsAVehicleToSpawn > 1) then {
 	_howLikelyIsAVehicleToSpawn = 1;
 };
@@ -63,129 +66,108 @@ if !(_vehicleWillSpawn) exitWith {
 	[]
 };
 
-
-
 missionNamespace setVariable ["BLWK_roundsSinceVehicleSpawned",0];
-private _lightCarsArray = [];
-private _heavyCarsArray = [];
-private _lightArmourArray = [];
-private _heavyArmourArray = [];
-private _fn_checkLevelsClasses = {
-	params ["_levelsVehicleArray"];
 
-	private _fn_handleVehicleArray = {
-		params ["_array"];
 
-		private _return = "";
-		if !(_array isEqualTo []) then {
-			_return = selectRandom _array;
-		};
-
-		_return
+// decide what type of vehicles can spawn
+private _vehicleTypeHash = createHashMap;
+private _likelihoodWeights = [];
+private _vehicleTypeValues = [];
+{	
+	private _vehicleClasses = [];
+	if (_isDefectorWave) then {
+		_vehicleClasses = BLWK_friendly_vehicleClasses select _x;
+	} else {
+		_vehicleClasses = [_x,false] call BLWK_fnc_getEnemyVehicleClasses;
 	};
 
-	private ["_class","_vehicleTypeArray"];
-	{
-		_vehicleTypeArray = _x;
-		_class = [_vehicleTypeArray] call _fn_handleVehicleArray; 
-
-		if !(_class isEqualTo "") then {
-			// if the vehicle type is not empty
-			switch (_forEachIndex) do {
-				case 0:{
-					_lightCarsArray pushBack _class
-				};
-				case 1:{
-					_heavyCarsArray pushBack _class
-				};
-				case 2:{
-					_lightArmourArray pushBack _class
-				};
-				case 3:{
-					_heavyArmourArray pushBack _class
-				};
-				default {};
-			};
-		};
-	} forEach _levelsVehicleArray;
-};
-
-// get all available vehicle types depending on round
-if !(_isDefectorWave) then {
-	[BLWK_level1_vehicleClasses] call _fn_checkLevelsClasses;
-	if (BLWK_currentWaveNumber > 5) then {
-		[BLWK_level2_vehicleClasses] call _fn_checkLevelsClasses;
+	if (_vehicleClasses isNotEqualTo []) then {
+		_vehicleTypeHash set [_x,_vehicleClasses];
+		_likelihoodWeights pushBack (VEHICLE_LIKELIHOODS select _forEachIndex);
+		_vehicleTypeValues pushBack _x;
 	};
-	if (BLWK_currentWaveNumber > 10) then {
-		[BLWK_level3_vehicleClasses] call _fn_checkLevelsClasses;
-	};
-	if (BLWK_currentWaveNumber > 15) then {
-		[BLWK_level4_vehicleClasses] call _fn_checkLevelsClasses;
-	};
-	if (BLWK_currentWaveNumber > 20) then {
-		[BLWK_level5_vehicleClasses] call _fn_checkLevelsClasses;
-	};
-} else {
-	[BLWK_friendly_vehicleClasses] call _fn_checkLevelsClasses;
-};
+} forEach VEHICLE_TYPES;
 
-
-// get all available classes for each vehicle type
-private _vehicleTypeSelection = [];
-if !(_lightCarsArray isEqualTo []) then {
-	_vehicleTypeSelection append [_lightCarsArray,BLWK_lightCarLikelihood];
-};
-if !(_heavyCarsArray isEqualTo []) then {
-	_vehicleTypeSelection append [_heavyCarsArray,BLWK_heavyCarLikelihood];
-};
-if !(_lightArmourArray isEqualTo []) then {
-	_vehicleTypeSelection append [_lightArmourArray,BLWK_lightArmorLikelihood];
-};
-if !(_heavyArmourArray isEqualTo []) then {
-	_vehicleTypeSelection append [_heavyArmourArray,BLWK_heavyArmorLikelihood];
-};
-
-if (_vehicleTypeSelection isEqualTo []) exitWith {
-	diag_log "No vehicles to spawn for enemy factions, exiting";
+if (_likelihoodArray isEqualTo []) exitWith {
+	["No vehicles to spawn for enemy factions, exiting",false] call KISKA_fnc_log;
 	[]
 };
 
+
 private _returnedVehicles = [];
 private _fn_spawnAVehicle = {
-	private _selectedTypeArray = selectRandomWeighted _vehicleTypeSelection;
-	private _selectedVehicleClass = selectRandom _selectedTypeArray;
-	private _spawnPosition = selectRandom BLWK_vehicleSpawnPositions;
-	private _createdVehicle = _selectedVehicleClass createVehicle _spawnPosition;
+	[str _likelihoodWeights,false,true,false] call KISKA_fnc_log;
+	[str _vehicleTypeValues,false,true,false] call KISKA_fnc_log;
+	private _vehicleType = _vehicleTypeValues selectRandomWeighted _likelihoodWeights;
+	[["Selected vehicle type: ",_vehicleType],false] call KISKA_fnc_log;
 
-	_createdVehicle addEventHandler ["KILLED",{
+	// don't want doubling of two types of helicopters
+	// so delete index from _likelihoodWeights
+	private _isHelicopter = false;
+	private "_vehicleClass";
+	if (_vehicleType isEqualTo TRANSPORT_HELI OR {_vehicleType isEqualTo ATTACK_HELI}) then {
+		["Selected vehicle type is helicopter",false] call KISKA_fnc_log;
+		_isHelicopter = true;
+		_vehicleClass = (_vehicleTypeHash get _vehicleType) select 0;
+	} else {
+		_vehicleClass = selectRandom (_vehicleTypeHash get _vehicleType);
+	};
+
+	private "_vehicle";
+	if (_isHelicopter) then {
+		_defaultAircraft = ["O_Heli_Attack_02_dynamicLoadout_F","B_Heli_Transport_01_F"] select (_vehicleType isEqualTo TRANSPORT_HELI);
+		private _vehicleArray = [
+			BLWK_playAreaCenter,
+			BLWK_playAreaRadius,
+			_vehicleClass,
+			99999,
+			10,
+			random [40,50,60],
+			-1,
+			_defaultAircraft,
+			"",
+			OPFOR
+		] call BLWK_fnc_passiveHelicopterGunner;
+
+		_vehicle = _vehicleArray select 0;
+		// loop through crew
+		(_vehicleArray select 1) apply {
+			[_unit] remoteExecCall ["BLWK_fnc_addToMustKillArray",2];
+			[_unit] call BLWK_fnc_addStdEnemyManEHs;
+		};
+	} else {
+		private _spawnPosition = selectRandom BLWK_vehicleSpawnPositions;
+		_vehicle = _vehicleClass createVehicle _spawnPosition;
+
+		private _crew = _availableInfantry select [0,3];
+		_availableInfantry deleteRange [0,3];
+
+		private _group = createGroup (side (_crew select 0));
+		_group deleteGroupWhenEmpty true;
+		_group allowFleeing 0;
+
+		// CIPHER COMMENT: May need to clear the crews previous waypoints
+		_crew joinSilent _group;
+		[_group,_vehicle] call KISKA_fnc_setCrew;
+		[_group, BLWK_mainCrate, 20, "SAD", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
+
+		[BLWK_zeus, [[_vehicle],false]] remoteExecCall ["addCuratorEditableObjects",2];	
+	};
+
+	_returnedVehicles pushBack _vehicle;
+	_vehicle addEventHandler ["KILLED",{
 		_this call BLWK_fnc_stdVehicleKilledEvent;
 	}];
-
-	private _crew = _availableInfantry select [0,3];
-	_availableInfantry deleteRange [0,3];
-
-	private _group = createGroup (side (_crew select 0));
-	_group deleteGroupWhenEmpty true;
-	_group allowFleeing 0;
-
-	// CIPHER COMMENT: May need to clear the crews previous waypoints
-	_crew joinSilent _group;
-	[_group,_createdVehicle] call KISKA_fnc_setCrew;
-	[_group, BLWK_mainCrate, 20, "SAD", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
-
-	[BLWK_zeus, [[_createdVehicle],false]] remoteExecCall ["addCuratorEditableObjects",2];
-
-	_returnedVehicles pushBack _createdVehicle
 };
+
 
 
 call _fn_spawnAVehicle;
 // do a role for a second vehicle
-private _howLikelyIsASecondVehicleToSpawn = _howLikelyIsAVehicleToSpawn / 2;
-diag_log "second vehicle likelihood";
-diag_log _howLikelyIsASecondVehicleToSpawn;
-private _secondVehcileWillSpawn = selectRandomWeighted [true,_howLikelyIsASecondVehicleToSpawn,false,1 - _howLikelyIsASecondVehicleToSpawn];
-if (_secondVehcileWillSpawn) then {
+private _howLikelyIsASecondVehicleToSpawn = _howLikelyIsAVehicleToSpawn / 1.5;
+
+private _secondVehicleWillSpawn = selectRandomWeighted [true,_howLikelyIsASecondVehicleToSpawn,false,1 - _howLikelyIsASecondVehicleToSpawn];
+if (_secondVehicleWillSpawn) then {
 	call _fn_spawnAVehicle;
 };
 
