@@ -74,16 +74,18 @@ private _fn_sortFactionClasses = {
 	private _fn_sortArray = {
 		params ["_arrayToPushTo",["_pushToVehicle",true]];
 
-		if !(_sortArray isEqualTo []) then {
+		if (_sortArray isNotEqualTo []) then {
 			_sortArray apply {
 				if (isClass (configFile >> "cfgVehicles" >> _x)) then {
 					_arrayToPushTo pushBack _x;
 				};
 			};
 
-			if (_pushToVehicle) then {
-				_vehicleTypes pushBack _arrayToPushTo;
-			};
+			
+		};
+
+		if (_pushToVehicle) then {
+			_vehicleTypes pushBack _arrayToPushTo;
 		};
 	};
 
