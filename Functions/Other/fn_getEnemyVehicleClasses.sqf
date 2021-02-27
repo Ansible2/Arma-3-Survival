@@ -64,9 +64,9 @@ private _fn_pushVehicleForLevel = {
 	params ["_classes"];
 	private _classesOfType = _classes select _typeId;
 
-	if ((_classesOfType isEqualTo [])) then {
+	if (_classesOfType isEqualTo []) then {
 		if (_supplementEmpty) then {
-			_availableClasses pushBackUnique _defaultVehicleClass;
+			_availableClasses pushBack _defaultVehicleClass;
 		};
 	} else {
 		_classesOfType apply {
@@ -89,11 +89,6 @@ if (BLWK_currentWaveNumber > 20) then {
 	[BLWK_level5_vehicleClasses] call _fn_pushVehicleForLevel;
 };
 
-
-// check if we only got empty strings in order to provide a default class if needed
-if (_availableClasses isEqualTo []) then {
-	_availableClasses = [_defaultVehicleClass];
-};
 
 // shuffle
 if ((count _availableClasses > 1) AND {_shuffle}) then {
