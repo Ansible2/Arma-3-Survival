@@ -60,11 +60,11 @@ params [
 	"_radius",
 	"_aircraftType",
 	"_timeOnStation",
-	"_supportSpeedLimit",
-	"_flyInHeight",	
-	"_approachBearing",
-	"_defaultVehicleType",
-	"_globalLimiter",
+	["_supportSpeedLimit",10,[123]],
+	["_flyInHeight",30,[123]],	
+	["_approachBearing",-1],
+	["_defaultVehicleType",""],
+	["_globalLimiter",""],
 	["_side",BLUFOR]
 ];
 
@@ -95,9 +95,15 @@ _allVehicleTurrets apply {
 };
 // go to default aircraft type if no suitable turrets are found
 if (_turretsWithWeapons isEqualTo []) exitWith {
-	private _newParams = _this;
-	_newParams set [2,_defaultVehicleType];
-	_newParams call BLWK_fnc_passiveHelicopterSupport;
+	if (_aircraftType != _defaultVehicleType AND {_defaultVehicleType != ""}) then {
+		[[_aircraftType," does not meet standards for function, falling back to: ",_defaultVehicleType],false] call KISKA_fnc_log;
+		private _newParams = _this;
+		_newParams set [2,_defaultVehicleType];
+		_newParams call BLWK_fnc_passiveHelicopterGunner;
+	} else {
+		[[_aircraftType," does not meet standards for function and there is no default to fall back on"],true] call KISKA_fnc_log;
+		[]
+	};
 };
 
 
@@ -240,8 +246,6 @@ _params spawn {
 	/* ----------------------------------------------------------------------------
 		Do support
 	---------------------------------------------------------------------------- */
-	hint "engage";
-	
 	// to keep helicopters from just wildly flying around
 	_vehicle limitSpeed _supportSpeedLimit;
 
