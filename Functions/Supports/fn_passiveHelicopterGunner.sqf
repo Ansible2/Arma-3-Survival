@@ -10,8 +10,8 @@ Parameters:
 	1: _radius : <NUMBER> - The size of the radius to patrol around
 	2: _aircraftType : <STRING> - The class of the helicopter to spawn
 	3: _timeOnStation : <NUMBER> - How long will the aircraft be supporting
-	4: _flyinHeight : <NUMBER> - The altittude the aircraft flys at
-	5: _supportSpeedLimit : <NUMBER> - The max speed the aircraft can fly while in the support radius
+	4: _supportSpeedLimit : <NUMBER> - The max speed the aircraft can fly while in the support radius
+	5: _flyinHeight : <NUMBER> - The altittude the aircraft flys at
 	6: _approachBearing : <NUMBER> - The bearing from which the aircraft will approach from (if below 0, it will be random)
 	7: _globalLimiter <STRING> - The global used to limit having too many of a certain support active at any time
 	8: _side : <SIDE> - The side of the created helicopter
@@ -60,8 +60,8 @@ params [
 	"_radius",
 	"_aircraftType",
 	"_timeOnStation",
-	"_flyInHeight",
 	"_supportSpeedLimit",
+	"_flyInHeight",	
 	"_approachBearing",
 	"_defaultVehicleType",
 	"_globalLimiter",

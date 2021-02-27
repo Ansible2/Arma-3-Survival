@@ -192,7 +192,7 @@ if (CHECK_SUPPORT_CLASS(CAS_BOMB_CLUSTER_CLASS)) exitWith {
 if (CHECK_SUPPORT_CLASS(PASS_ATTACK_GUNNER_CLASS)) exitWith {
 	if !(missionNamespace getVariable ["BLWK_heliGunnerInUse",false]) then {
 		private _vehicleClass = [7] call BLWK_fnc_getFriendlyVehicleClass;
-		HELI_CAS_EXPRESSION(_vehicleClass,180,125,"B_Heli_Attack_01_dynamicLoadout_F","BLWK_heliGunnerInUse")
+		HELI_CAS_EXPRESSION(_vehicleClass,180,100,"B_Heli_Attack_01_dynamicLoadout_F","BLWK_heliGunnerInUse")
 	} else {
 		hint "Only one helicopter gunner support may be active at a time.";
 		ADD_SUPPORT_BACK
