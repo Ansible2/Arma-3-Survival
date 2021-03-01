@@ -14,9 +14,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		[] spawn BLWK_fnc_createDroneWave;
-
     (end)
 
 Author(s):
@@ -28,7 +26,8 @@ Author(s):
 #define FLY_HEIGHT 10
 
 if (!canSuspend) exitWith {
-	"Must be run in scheduled environment" call BIS_fnc_error;
+	["Must be run in scheduled environment, exiting to scheduled",true] call KISKA_fnc_log;
+	[] spawn BLWK_fnc_createDroneWave;
 };
 
 missionNamespace setVariable ["BLWK_allDronesCreated",false,[0,2] select isMultiplayer];
@@ -64,14 +63,18 @@ for "_i" from 1 to DRONE_NUMBER do {
 		];
 
 		private _distanceToFire = FLY_HEIGHT + 37;
-
 		while {alive _drone} do {
 			_drone move (position BLWK_mainCrate);
 
 			// wait to be in position to fire
 			waitUntil {
 				if !(alive _drone) exitWith {true};
-				if ((_drone distance BLWK_mainCrate) <= _distanceToFire) exitWith {true};
+				if (
+					(_drone distance BLWK_mainCrate) <= _distanceToFire OR 
+					// sometimes units can just slightly out of the ideal 3d range
+					{(_drone distance2D BLWK_mainCrate) <= 10} 
+				) exitWith {true};
+
 				sleep 2;
 				false
 			};
@@ -80,6 +83,7 @@ for "_i" from 1 to DRONE_NUMBER do {
 			waitUntil {
 				if !(alive _drone) exitWith {true};
 				if (_drone fireAtTarget [BLWK_mainCrate]) exitWith {true};
+				
 				sleep 2;
 				false
 			};
@@ -89,6 +93,7 @@ for "_i" from 1 to DRONE_NUMBER do {
 			waitUntil {
 				if !(alive _drone) exitWith {true};
 				if ((_drone distance2d _spawnPosition) <= 10) exitWith {true};
+				
 				sleep 2;
 				false
 			};
