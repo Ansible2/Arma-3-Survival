@@ -1,6 +1,6 @@
 #include "..\..\Headers\String Constants.hpp"
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_healPlayer
+Function: BLWK_fnc_startWave
 
 Description:
 	Heals the player when they select the action on The Crate
