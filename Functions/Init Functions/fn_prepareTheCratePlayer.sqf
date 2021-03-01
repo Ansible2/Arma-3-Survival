@@ -17,7 +17,7 @@ Returns:
 Examples:
     (begin example)
 
-		[] spawn BLWK_fnc_prepareTheCratePlayer;
+		[_crate] spawn BLWK_fnc_prepareTheCratePlayer;
 
     (end)
 
@@ -32,7 +32,7 @@ scriptName SCRIPT_NAME;
 
 if (!canSuspend) exitWith {
 	["Needs to executed in scheduled, now running in scheduled...",true] call KISKA_fnc_log;
-	[] spawn BLWK_fnc_prepareTheCratePlayer;
+	_this spawn BLWK_fnc_prepareTheCratePlayer;
 };
 
 params ["_mainCrate"];
@@ -45,6 +45,12 @@ waitUntil {
 	sleep 0.1;
 	!isNil "BLWK_pointsForHeal"
 };
+
+// hosted server will already have it defined
+if (isNil "BLWK_mainCrate") then {
+	BLWK_mainCrate = _mainCrate;
+};
+
 private _healString = ["<t color='#ff0000'>-- Heal Yourself ",BLWK_pointsForHeal,"p --</t>"] joinString "";
 [	
 	_mainCrate,
@@ -88,11 +94,6 @@ _mainCrate addEventHandler ["ContainerClosed",{
 	player setVariable ["BLWK_lookingInTheCrate",false,2];
 }];
 
-
-// hosted server will already have it defined
-if (isNil "BLWK_mainCrate") then {
-	BLWK_mainCrate = _mainCrate;
-};
 
 addMissionEventHandler ["Draw3D",{
 	drawIcon3D ["", [1,1,1,0.70], (getPosATLVisual BLWK_mainCrate) vectorAdd [0, 0, 1.5], 1, 1, 0, "The Crate", 0, 0.04, "RobotoCondensed", "center", true];
