@@ -439,21 +439,21 @@ class BLWK_baseVehicleSpawnLikelihood
 	title = "Base Vehicle Spawn Likelihood";
 	values[] = ZERO_TO_TEN;
 	texts[] = ZERO_TO_TEN_STRINGS;
-	GET_DEFAULT_PARAM(BLWK_baseVehicleSpawnLikelihood,6)
+	GET_DEFAULT_PARAM(BLWK_baseVehicleSpawnLikelihood,5)
 };
 class BLWK_lightCarLikelihood
 {
 	title = "Enemy Light Car Likelihood";
 	values[] = ZERO_TO_TEN;
 	texts[] = ZERO_TO_TEN_STRINGS;
-	GET_DEFAULT_PARAM(BLWK_lightCarLikelihood,5)
+	GET_DEFAULT_PARAM(BLWK_lightCarLikelihood,4)
 };
 class BLWK_heavyCarLikelihood
 {
 	title = "Enemy Heavy Car Likelihood";
 	values[] = ZERO_TO_TEN;
 	texts[] = ZERO_TO_TEN_STRINGS;
-	GET_DEFAULT_PARAM(BLWK_heavyCarLikelihood,6)
+	GET_DEFAULT_PARAM(BLWK_heavyCarLikelihood,5)
 };
 class BLWK_lightArmorLikelihood
 {
@@ -481,7 +481,7 @@ class BLWK_attackHeliLikelihood
 	title = "Enemy Attack Helicopter Likelihood";
 	values[] = ZERO_TO_TEN;
 	texts[] = ZERO_TO_TEN_STRINGS;
-	GET_DEFAULT_PARAM(BLWK_attackHeliLikelihood,6)
+	GET_DEFAULT_PARAM(BLWK_attackHeliLikelihood,4)
 };
 
 
