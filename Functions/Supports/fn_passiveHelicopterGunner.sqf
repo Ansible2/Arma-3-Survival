@@ -297,11 +297,12 @@ _params spawn {
 	// remove speed limit
 	_vehicle limitSpeed 9999;
 	
-	[_pilotsGroup] call CBAP_fnc_clearWaypoints;
-	
+	_pilotsGroup setBehaviour "CARELESS";
+	_vehicle move _deletePosition;
+
+
 	private _deletePosition = _centerPosition getPos [SPAWN_DISTANCE,_approachBearing + 180];
-	waitUntil {
-		
+	waitUntil {	
 		if (!alive _vehicle OR {(_vehicle distance2D _deletePosition) <= 200}) exitWith {true};
 		
 		// if vehicle is disabled and makes a landing, just blow it up
@@ -310,7 +311,7 @@ _params spawn {
 			true
 		};
 		
-		_vehicle move _deletePosition;
+		//_vehicle move _deletePosition;
 		
 		sleep 2;
 		false
