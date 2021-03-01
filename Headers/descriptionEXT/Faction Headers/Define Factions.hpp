@@ -238,7 +238,7 @@
 	"Aegis - CSAT Argana (Desert)", \
 	"Aegis - CTRG (Mediterranean)", \
 	"Aegis - Iranian Armed Forces (CSAT Arid)", \
-	"AEGIS - Russia", \
+	"Aegis - Russia", \
 	"Aegis - Russia (Arid)", \
 	"Aegis Marines - Desert", \
 	"Aegis Marines - Woodland", \
