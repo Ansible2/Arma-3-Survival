@@ -17,9 +17,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		_vehiclesArray = [myUnits,false] call BLWK_fnc_stdEnemyVehicles;
-
     (end)
 
 Author(s):
@@ -28,6 +26,7 @@ Author(s):
 ---------------------------------------------------------------------------- */
 #define VEHICLE_TYPES [LIGHT_CAR,HEAVY_CAR,LIGHT_ARMOR,HEAVY_ARMOR,TRANSPORT_HELI,ATTACK_HELI]
 #define VEHICLE_LIKELIHOODS [BLWK_lightCarLikelihood,BLWK_heavyCarLikelihood,BLWK_lightArmorLikelihood,BLWK_heavyArmorLikelihood,BLWK_transportHeliLikelihood,BLWK_attackHeliLikelihood]
+#define SECOND_VEHICLE_DIVIDER 1.35
 
 scriptName "BLWK_fnc_stdEnemyVehicles";
 
@@ -40,7 +39,12 @@ params [
 	["_isDefectorWave",false,[true]]
 ];
 
-if (!local BLWK_theAIHandlerEntity) exitWith {[]};
+if !(local BLWK_theAIHandlerEntity) exitWith {[]};
+
+if (count _availableInfantry < 2) exitWith {
+	["There is less than 2 infantry available to crew a vehicle"] call KISKA_fnc_log;
+	[]
+};
 
 // special waves will not contribute to this count
 private _roundsSinceVehicleSpawned = missionNamespace getVariable ["BLWK_roundsSinceVehicleSpawned",1];
@@ -60,7 +64,7 @@ if (_howLikelyIsAVehicleToSpawn > 1) then {
 [["Vehicle spawn likelihood is ",_howLikelyIsAVehicleToSpawn],false] call KISKA_fnc_log;
 private _howLikelyIsAVehicleNOTToSpawn = 1 - _howLikelyIsAVehicleToSpawn;
 
-private _vehicleWillSpawn = selectRandomWeighted [true,_howLikelyIsAVehicleToSpawn,false,_howLikelyIsAVehicleNOTToSpawn];
+private _vehicleWillSpawn = [true,false] selectRandomWeighted [_howLikelyIsAVehicleToSpawn,_howLikelyIsAVehicleNOTToSpawn];
 if !(_vehicleWillSpawn) exitWith {
 	BLWK_roundsSinceVehicleSpawned = _roundsSinceVehicleSpawned + 1;
 	[]
@@ -93,16 +97,21 @@ if (_likelihoodArray isEqualTo []) exitWith {
 	[]
 };
 
-
 private _returnedVehicles = [];
 private _fn_spawnAVehicle = {
 	[str _likelihoodWeights,false,true,false] call KISKA_fnc_log;
 	[str _vehicleTypeValues,false,true,false] call KISKA_fnc_log;
 	private _vehicleType = _vehicleTypeValues selectRandomWeighted _likelihoodWeights;
+	
+	// Don't duplicate vehicles if possible for the sake of variety
+	if (count _vehicleTypeValues > 1) then {
+		private _index = _vehicleTypeValues find _vehicleType;
+		_vehicleTypeValues deleteAt _index;
+		_likelihoodWeights deleteAt _index;
+	};
+
 	[["Selected vehicle type: ",_vehicleType],false] call KISKA_fnc_log;
 
-	// don't want doubling of two types of helicopters
-	// so delete index from _likelihoodWeights
 	private _isHelicopter = false;
 	private "_vehicleClass";
 	if (_vehicleType isEqualTo TRANSPORT_HELI OR {_vehicleType isEqualTo ATTACK_HELI}) then {
@@ -115,6 +124,8 @@ private _fn_spawnAVehicle = {
 
 	private "_vehicle";
 	if (_isHelicopter) then {
+		// these aircraft are vanilla and meet the requirements for attack/transport heli support
+		// if a custom faction has helicopters, but they are not configed properly, these will be used instead
 		_defaultAircraft = ["O_Heli_Attack_02_dynamicLoadout_F","B_Heli_Transport_01_F"] select (_vehicleType isEqualTo TRANSPORT_HELI);
 		private _vehicleArray = [
 			BLWK_playAreaCenter,
@@ -164,12 +175,15 @@ private _fn_spawnAVehicle = {
 
 
 call _fn_spawnAVehicle;
-// do a role for a second vehicle
-private _howLikelyIsASecondVehicleToSpawn = _howLikelyIsAVehicleToSpawn / 1.5;
 
-private _secondVehicleWillSpawn = selectRandomWeighted [true,_howLikelyIsASecondVehicleToSpawn,false,1 - _howLikelyIsASecondVehicleToSpawn];
-if (_secondVehicleWillSpawn) then {
-	call _fn_spawnAVehicle;
+// do a role for a second vehicle
+// make sure there are enough AI to even crew a ground vehicle
+if (count _availableInfantry > 1) then {
+	private _howLikelyIsASecondVehicleToSpawn = _howLikelyIsAVehicleToSpawn / SECOND_VEHICLE_DIVIDER;
+	private _secondVehicleWillSpawn = [true,false] selectRandomWeighted [_howLikelyIsASecondVehicleToSpawn,1 - _howLikelyIsASecondVehicleToSpawn];
+	if (_secondVehicleWillSpawn) then {
+		call _fn_spawnAVehicle;
+	};
 };
 
 
