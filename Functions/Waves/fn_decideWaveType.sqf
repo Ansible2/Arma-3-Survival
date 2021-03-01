@@ -26,19 +26,20 @@ Author(s):
 ---------------------------------------------------------------------------- */
 #define SPECIAL_WAVE_LIKELIHOOD 0.4
 #define STANDARD_WAVE_LIKELIHOOD 1.25
+#define SPECIAL_WAVES \
+[ \
+	[SUICIDE_WAVE, SPECIAL_WAVE_LIKELIHOOD], \
+	[CIVILIAN_WAVE, SPECIAL_WAVE_LIKELIHOOD], \
+	[DRONE_WAVE, SPECIAL_WAVE_LIKELIHOOD], \
+	[MORTAR_WAVE, SPECIAL_WAVE_LIKELIHOOD], \
+	[DEFECTOR_WAVE, SPECIAL_WAVE_LIKELIHOOD], \
+	[OVERRUN_WAVE, 0.1], \
+	[PARATROOPER_WAVE, SPECIAL_WAVE_LIKELIHOOD], \
+	[TWELVE_HOUR_WAVE, SPECIAL_WAVE_LIKELIHOOD] \
+]
+
 
 if (!isServer) exitWith {false};
-
-private _specialWaves = [
-	[SUICIDE_WAVE, SPECIAL_WAVE_LIKELIHOOD],
-	[CIVILIAN_WAVE, SPECIAL_WAVE_LIKELIHOOD],
-	[DRONE_WAVE, SPECIAL_WAVE_LIKELIHOOD],
-	[MORTAR_WAVE, SPECIAL_WAVE_LIKELIHOOD],
-	[DEFECTOR_WAVE, SPECIAL_WAVE_LIKELIHOOD],
-	[OVERRUN_WAVE, SPECIAL_WAVE_LIKELIHOOD],
-	[PARATROOPER_WAVE, SPECIAL_WAVE_LIKELIHOOD],
-	[TWELVE_HOUR_WAVE, SPECIAL_WAVE_LIKELIHOOD]
-];
 
 private _usedSpecialWaves = missionNamespace getVariable ["BLWK_usedSpecialWaves",[]];
 
@@ -47,7 +48,7 @@ private _fn_getWaveType = {
 
 	// these aren't cache'd for the desire to have this be a potential toggle option mid-session in the future
 	if (BLWK_currentWaveNumber >= BLWK_specialWavesStartAt) then {
-		_specialWaves apply {
+		SPECIAL_WAVES apply {
 			if !((_x select 0) in _usedSpecialWaves) then {
 				_decideArray append _x;
 			};
