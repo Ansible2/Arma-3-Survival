@@ -35,7 +35,8 @@ private [
 	"_categoryIndex_temp",
 	"_itemIndex_temp",
 	"_itemPath_temp",
-	"_itemText_temp"
+	"_itemText_temp",
+	"_customTooltip_temp"
 ];
 
 
@@ -57,8 +58,14 @@ private [
 	
 	_tv tvSetValue [_itemPath_temp,_value_temp];
 
-	_tv tvSetData [_itemPath_temp,_x]; 
-	_tv tvSetTooltip [_itemPath_temp,_x];
+	_tv tvSetData [_itemPath_temp,_x];
+
+	_customTooltip_temp = getText(CONFIG_PATH >> _x >> "tooltip");
+	if (_customTooltip_temp isEqualTo "") then {
+		_tv tvSetTooltip [_itemPath_temp,_x];
+	} else {
+		_tv tvSetTooltip [_itemPath_temp,_customTooltip_temp];
+	};
 		
 } forEach BLWK_buildableObjectsHash;
 

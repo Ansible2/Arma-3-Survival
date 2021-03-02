@@ -14,6 +14,9 @@ class BLWK_genericBuildItemBase
 	keepInventory = 0; // don't clear inventory
 	detectCollsion = 1; // registers with ai collision script
 
+	// text that shows when hovering over the item in the shop
+	tooltip = "";
+
 	/*
 		Events
 		See relevant functions in functions\Build folder for passed params
