@@ -47,13 +47,10 @@ if (_scriptName == "" AND {!isNil "_fnc_scriptNameParent"}) then {
 
 if !(_forceLog) then {
 	// set _forceLog to true if the scripts name is in the log array KISKA_logScripts
-	_forceLog = [
-		missionNamespace getVariable ["KISKA_logScripts",["all"]],
-		{
-			_x == "all" OR {_x == (_thisArgs select 0)}
-		},
-		[_scriptName]
-	] call KISKA_fnc_findIfBool;
+	private _scripts = missionNamespace getVariable ["KISKA_logScripts",["all"]];
+	if ("all" in _scripts OR {(toLowerANSI _scriptName) in _scripts}) then {
+		_forceLog = true;
+	};
 };
 
 if !(_forceLog) exitWith {};
