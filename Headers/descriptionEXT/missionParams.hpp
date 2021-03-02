@@ -55,9 +55,9 @@ A_SECTION_HEADER(WAVE);
 class BLWK_maxNumWaves
 {
 	title = "How Many Waves";
-	values[] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 125, 150, 999999};
-	texts[] = {"10", "20", "30", "40","50","60","70","80","90","100", "125", "150", "Infinite"};
-	GET_DEFAULT_PARAM(BLWK_maxNumWaves,30)
+	values[] = {10, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100, 125, 150, 999999};
+	texts[] = {"10", "20", "25", "30", "40","50","60","70","80","90","100", "125", "150", "Infinite"};
+	GET_DEFAULT_PARAM(BLWK_maxNumWaves,25)
 };
 class BLWK_timeBetweenRounds
 {
@@ -71,7 +71,7 @@ class BLWK_vehicleStartWave
 	title = "Vehicles can spawn after wave";
 	WAVE_STEPS_VALUES
 	WAVE_STEPS_TEXTS
-	GET_DEFAULT_PARAM(BLWK_vehicleStartWave,4)
+	GET_DEFAULT_PARAM(BLWK_vehicleStartWave,5)
 };
 class BLWK_specialWavesStartAt
 {
@@ -334,16 +334,16 @@ class BLWK_showHitPoints
 class BLWK_pointsForKill
 {
 	title = "Base Points For Kill";
-	values[] = {10, 50, 100, 150, 200, 300};
-	texts[] = {"10","50","100","150","200","300"};
-	GET_DEFAULT_PARAM(BLWK_pointsForKill,100)
+	values[] = {10, 50, 100, 125, 150, 200, 300};
+	texts[] = {"10","50","100","125","150","200","300"};
+	GET_DEFAULT_PARAM(BLWK_pointsForKill,125)
 };
 class BLWK_pointsForHit
 {
 	title = "Base Points per Hit";
-	values[] = {0, 10, 20, 50, 100};
-	texts[] = {"0","10","20","50","100"};
-	GET_DEFAULT_PARAM(BLWK_pointsForHit,20)
+	values[] = {0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+	texts[] = {"0","10","20","30","40","50","60","70","80","90","100"};
+	GET_DEFAULT_PARAM(BLWK_pointsForHit,30)
 };
 class BLWK_pointsMultiForDamage
 {
@@ -439,7 +439,7 @@ class BLWK_baseVehicleSpawnLikelihood
 	title = "Base Vehicle Spawn Likelihood";
 	values[] = ZERO_TO_TEN;
 	texts[] = ZERO_TO_TEN_STRINGS;
-	GET_DEFAULT_PARAM(BLWK_baseVehicleSpawnLikelihood,5)
+	GET_DEFAULT_PARAM(BLWK_baseVehicleSpawnLikelihood,6)
 };
 class BLWK_lightCarLikelihood
 {
