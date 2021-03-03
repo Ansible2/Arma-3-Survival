@@ -47,7 +47,7 @@ private _factionClasses = "true" configClasses (missionConfigFile >> "BLWK_facti
 
 private _fn_exitForUndefinedDefault = {
 	[] spawn {
-		["A default faction appears to be empty, the mission will now end to reconfigure parameters"] remoteExecCall ["BIS_fnc_error",0];
+		["A default faction appears to be empty, the mission will now end to reconfigure parameters",true] remoteExecCall ["KISKA_fnc_log",0];
 		sleep 20;
 		call BIS_fnc_endMissionServer;
 	};
