@@ -19,7 +19,7 @@ Examples:
     (begin example)
 
 		// make sure nobody else can manipulate the object through actions
-		[_object,true] remoteExecCall ["BLWK_fnc_registerObjectPickup",BLWK_allClientsTargetId,true];
+		[_object,true] remoteExecCall ["BLWK_fnc_registerObjectPickup",BLWK_allClientsTargetId,_object];
 
     (end)
 
