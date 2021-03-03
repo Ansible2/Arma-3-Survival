@@ -210,6 +210,8 @@ if (hasInterface) then {
     };
 };
 
+// keep track of a satellite shop being out or not
+BLWK_satShopOut = false;
 
 
 // AI unit classes

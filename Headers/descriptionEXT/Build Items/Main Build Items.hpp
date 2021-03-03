@@ -21,8 +21,8 @@ class BLWK_genericBuildItemBase
 		Events
 		See relevant functions in functions\Build folder for passed params
 	*/
-	onPurchasedPreFix = ""; 
-	onPurchasedPostFix = "";
+	onPurchasedPrefix = ""; 
+	onPurchasedPostfix = "";
 	onPurchasedPostNewtork = "";
 	onPickedUp = "";
 	onPlaced = "";
@@ -402,7 +402,7 @@ class BLWK_buildableItems
 		invincible = 1;
 		detectCollsion = 0;
 	};
-/*	
+	
 	class C_IDAP_supplyCrate_F : BLWK_genericBuildItemBase
 	{
 		displayName = "Satellite Shop";
@@ -413,8 +413,16 @@ class BLWK_buildableItems
 		invincible = 1;
 		keepInventory = 0;
 		detectCollsion = 0;
+
+		onSold = "hint 'Shops cannot be sold'; false";
+		onPurchasedPrefix = "	
+			if (BLWK_satShopOut) then {
+				hint 'There is already a satellite shop present';
+				_doExit = true;
+			};
+		";
 	};
-*/
+
 	class Land_GarbageContainer_open_F : BLWK_genericBuildItemBase
 	{
 		displayName = "Item Reclaimer";
@@ -425,7 +433,9 @@ class BLWK_buildableItems
 		invincible = 1;
 		detectCollsion = 0;
 
-		onPurchasedPostFix = "_this call BLWK_fnc_itemReclaimer_init";
+		tooltip = "Place items inside, reclaim, and get points put into the community pool";
+
+		onPurchasedPostfix = "_this call BLWK_fnc_itemReclaimer_init";
 		onSold = "_this call BLWK_fnc_itemReclaimer_onSold";
 	};
 	#include "OPTRE Build Items.hpp"

@@ -293,6 +293,17 @@ class BLWK
 		{};
 	};
 
+	class SatelliteShop
+	{
+		file = "Functions\Unique Build Item Libraries\Satellite Shop";
+		class satelliteShop_addDeleteEvent
+		{};
+		class satelliteShop_init
+		{};
+		class satelliteShop_preparePlayer
+		{};
+	};
+
 	class ShopGUI
 	{
 		file = "Functions\Shop GUI";
