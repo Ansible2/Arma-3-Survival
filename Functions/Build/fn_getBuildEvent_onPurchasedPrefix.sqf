@@ -29,6 +29,12 @@ params [
 
 if (_objectClass isEqualTo "") exitWith {
 	["_objectClass is an empty string!",true] call KISKA_fnc_log;
+	
+	if (_compile) then {
+		{}
+	} else {
+		""
+	};
 };
 
 private	_return = getText(CONFIG_PATH >> _objectClass >> "onPurchasedPrefix");
