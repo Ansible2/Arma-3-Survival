@@ -33,6 +33,12 @@ if (!canSuspend) exitWith {
 	_this spawn BLWK_fnc_addDragAction;
 };
 
+params ["_unit"];
+
+if (isNull _unit) exitWith {
+	["Null unit passed. Exiting..."] call KISKA_fnc_log;
+};
+
 waitUntil {
 	sleep 0.1;
 	!isNil "BLWK_dontUseRevive"
@@ -41,8 +47,6 @@ waitUntil {
 if (BLWK_dontUseRevive) exitWith {
 	["Vanilla revive is disabled, exiting...",false] call KISKA_fnc_log;
 };
-
-params ["_unit"];
 
 waitUntil {
 	sleep 0.1;

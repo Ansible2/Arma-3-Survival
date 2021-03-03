@@ -41,6 +41,7 @@ if (!local _unit) exitWith {
 
 // CIPHER COMMENT: test the validity of a local event handler here, it may not work if killed by a remote unit
 _unit addEventHandler ["KILLED",{
+	params ["_body"];
 	// tell all players to remove the actions on the dead body
-	[_this select 0,_thisEventHandler] remoteExecCall ["BLWK_fnc_removeDragAction",BLWK_allClientsTargetID,true];
+	[_body,_thisEventHandler] remoteExecCall ["BLWK_fnc_removeDragAction",BLWK_allClientsTargetID,_body];
 }];

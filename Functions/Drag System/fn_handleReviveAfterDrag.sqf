@@ -36,7 +36,7 @@ waitUntil {
 	if (incapacitatedState _draggedUnit isEqualTo "") exitWith {
 		// reset animation if revived
 		// this does need to be JIP and on all machines due to some animation bugs
-		[_draggedUnit,""] remoteExecCall ["switchMove",0,true];
+		[_draggedUnit,""] remoteExecCall ["switchMove",0,_draggedUnit];
 		true
 	};
 	if (!alive _draggedUnit) exitWith {true};

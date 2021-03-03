@@ -17,9 +17,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		[_unitToDrag] call BLWK_fnc_dragUnitEvent;
-
     (end)
 
 Author(s):
@@ -31,7 +29,7 @@ if (!hasInterface) exitWith {};
 params ["_unitToDrag"];
 
 // set dragged units animations
-[_unitToDrag,"AinjPpneMrunSnonWnonDb_grab"] remoteExecCall ["switchMove",0,true];
+[_unitToDrag,"AinjPpneMrunSnonWnonDb_grab"] remoteExecCall ["switchMove",0,_unitToDrag];
 _unitToDrag attachTo [player,[0,1.2,0]];
 [_unitToDrag,180] remoteExecCall ["setDir",_unitToDrag];
 
