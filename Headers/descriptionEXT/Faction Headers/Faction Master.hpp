@@ -36,6 +36,7 @@ class factionBase
 #include "OPTRE Unit Table.hpp"
 #include "OPTRE FC Unit Table.hpp"
 #include "OPCAN Unit Table.hpp"
+#include "RHS ALL.hpp"
 #include "RHS USAF Unit Table.hpp"
 #include "RHS AFRF Unit Table.hpp"
 #include "RHS GREF Unit Table.hpp"

@@ -213,7 +213,8 @@
 	211,\
 	212,\
 	213,\
-	214
+	214,\
+  215
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -385,6 +386,7 @@
 	"PROJECT OPFOR - Ulseter Volunteer Force",\
 	"PROJECT OPFOR - Ultranationalists",\
 	"PROJECT OPFOR - United Nations",\
+	"RHS ALL",\
 	"RHS AFRF - Russia MSV (EMR)", \
 	"RHS AFRF - Russia MSV (Flora)", \
 	"RHS AFRF - Russia VDV (EMR)", \
