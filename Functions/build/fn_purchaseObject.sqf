@@ -39,7 +39,7 @@ private _propertiesArray = BLWK_buildableObjectsHash get (toLowerANSI _className
 private _doExit = false;
 private _refund = true;
 private _prefixFunction = [_className,true] call BLWK_fnc_getBuildEvent_onPurchasedPrefix;
-if (_prefixFunction isEqualTo {}) then {
+if !(_prefixFunction isEqualTo {}) then {
 	[_className,_propertiesArray] call _prefixFunction;
 };
 
