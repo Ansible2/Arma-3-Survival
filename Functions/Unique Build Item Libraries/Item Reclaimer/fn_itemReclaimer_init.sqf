@@ -45,4 +45,4 @@ _storageBox attachTo [_reclaimerObject,[0,0,0]];
 
 _reclaimerObject setVariable ["BLWK_reclaimBox",_storageBox,true];
 
-[_reclaimerObject] remoteExecCall ["BLWK_fnc_itemReclaimer_addActions",BLWK_allClientsTargetId,true];
+[_reclaimerObject] remoteExecCall ["BLWK_fnc_itemReclaimer_addActions",BLWK_allClientsTargetId,_reclaimerObject];
