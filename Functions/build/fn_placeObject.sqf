@@ -64,7 +64,7 @@ if (_snapToSurface) then {
 
 // make sure people can manipulate up the object now
 missionNamespace setVariable ["BLWK_heldObject",nil];
-[_object,false] remoteExecCall ["BLWK_fnc_registerObjectPickup",BLWK_allClientsTargetId,true];
+[_object,false] remoteExecCall ["BLWK_fnc_registerObjectPickup",BLWK_allClientsTargetId,_object];
 
 // remove the actions tied to the player
 call BLWK_fnc_removePickedUpObjectActions;

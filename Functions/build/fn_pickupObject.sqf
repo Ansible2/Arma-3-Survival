@@ -57,7 +57,7 @@ if (_object isEqualTo BLWK_randomWeaponBox AND {!(missionNamespace getVariable [
 [_object] remoteExec ["BLWK_fnc_disableCollisionWithAllPlayers",_object];
 
 // make sure nobody else can manipulate the object through actions
-[_object,true] remoteExecCall ["BLWK_fnc_registerObjectPickup",BLWK_allClientsTargetId,true];
+[_object,true] remoteExecCall ["BLWK_fnc_registerObjectPickup",BLWK_allClientsTargetId,_object];
 
 // marks the client as holding an object for other functions such as trying to access the shop
 missionNamespace setVariable ["BLWK_heldObject",_object];
