@@ -14,9 +14,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		call BLWK_fnc_spawnLoot;
-
     (end)
 
 Author(s):
@@ -104,7 +102,7 @@ BLWK_lootRevealerBox = createVehicle ["Box_C_UAV_06_Swifd_F", (call _fn_getASpaw
 publicVariable "BLWK_lootRevealerBox";
 _addToZeusArray pushBack BLWK_lootRevealerBox;
 
-[BLWK_lootRevealerBox] remoteExec ["BLWK_fnc_addRevealLootAction",BLWK_allClientsTargetID,true];
+[BLWK_lootRevealerBox] remoteExecCall ["BLWK_fnc_addRevealLootAction",BLWK_allClientsTargetID,BLWK_lootRevealerBox];
 // add to list to for cleanup
 BLWK_spawnedLoot pushBack BLWK_lootRevealerBox;
 
@@ -116,7 +114,7 @@ if (!BLWK_supportDishFound) then {
 	BLWK_supportDish allowDamage false;
 	_addToZeusArray pushBack BLWK_supportDish;
 
-	[BLWK_supportDish] remoteExec ["BLWK_fnc_addUnlockSupportAction",BLWK_allClientsTargetID,true];
+	[BLWK_supportDish] remoteExecCall ["BLWK_fnc_addUnlockSupportAction",BLWK_allClientsTargetID,BLWK_supportDish];
 	BLWK_spawnedLoot pushBack BLWK_supportDish;
 };
 
@@ -127,8 +125,8 @@ if (!_randomWeaponBoxFound) then {
 	BLWK_randomWeaponBox allowDamage false;
 	_addToZeusArray pushBack BLWK_randomWeaponBox;
 
-	[BLWK_randomWeaponBox] remoteExec ["BLWK_fnc_addBuildableObjectActions",BLWK_allClientsTargetID,true];
-	[BLWK_randomWeaponBox] remoteExec ["BLWK_fnc_addWeaponBoxSpinAction",BLWK_allClientsTargetID,true];
+	[BLWK_randomWeaponBox] remoteExecCall ["BLWK_fnc_addBuildableObjectActions",BLWK_allClientsTargetID,true];
+	[BLWK_randomWeaponBox] remoteExecCall ["BLWK_fnc_addWeaponBoxSpinAction",BLWK_allClientsTargetID,true];
 	BLWK_spawnedLoot pushBack BLWK_randomWeaponBox;
 };
 
@@ -138,7 +136,7 @@ publicVariable "BLWK_moneyPile";
 BLWK_moneyPile allowDamage false;
 _addToZeusArray pushBack BLWK_moneyPile;
 
-[BLWK_moneyPile] remoteExec ["BLWK_fnc_addMoneyPileAction",BLWK_allClientsTargetID,true];
+[BLWK_moneyPile] remoteExecCall ["BLWK_fnc_addMoneyPileAction",BLWK_allClientsTargetID,BLWK_moneyPile];
 BLWK_spawnedLoot pushBack BLWK_moneyPile;
 
 // CIPHER COMMENT:
