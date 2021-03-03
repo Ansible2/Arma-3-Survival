@@ -15,9 +15,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		[myObject] call BLWK_fnc_sellObject;
-
     (end)
 
 Author(s):
@@ -25,7 +23,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 params ["_object"];
 
-[_object] call BLWK_fnc_buildEvent_onSold;
+private _canSell = [_object] call BLWK_fnc_buildEvent_onSold;
+if !(_canSell) exitWith {};
 
 // check if someone is carrying the object
 private _attachedToObject = attachedTo _object;
