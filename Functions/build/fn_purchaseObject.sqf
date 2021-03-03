@@ -20,9 +20,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		["someClass"] spawn BLWK_fnc_purchaseObject;
-
     (end)
 
 Author(s):
@@ -38,11 +36,19 @@ params [
 private _propertiesArray = BLWK_buildableObjectsHash get (toLowerANSI _className);
 
 // prefix event
+private _doExit = false;
+private _refund = true;
 private _prefixFunction = [_className,true] call BLWK_fnc_getBuildEvent_onPurchasedPrefix;
 if (_prefixFunction isEqualTo {}) then {
 	[_className,_propertiesArray] call _prefixFunction;
 };
 
+// if the prefix function want's the object to not be purchased for example
+if (_doExit) exitWith {
+	if (_refund) then {
+		[_propertiesArray select PRICE] call BLWK_fnc_addPoints;
+	};
+};
 
 private "_purchasedObject";
 if (_propertiesArray select HAS_AI) then {
