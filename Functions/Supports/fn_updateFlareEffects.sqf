@@ -14,7 +14,7 @@ Returns:
 
 Examples:
     (begin example)
-		[_light,_flare] remoteExecCall ["BLWK_fnc_updateFlareEffects",BLWK_allClientsTargetId,true];
+		[_light,_flare] remoteExecCall ["BLWK_fnc_updateFlareEffects",BLWK_allClientsTargetId,_flare];
     (end)
 
 Authors:
