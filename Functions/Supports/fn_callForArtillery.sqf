@@ -43,7 +43,7 @@ if (_ammoType == "F_20mm_white") exitWith {
 	_light attachTo [_flare, [0, 0, 0]];
 	
 	// light characteristic adjustments must be done locally for each player
-	[_light,_flare] remoteExecCall ["BLWK_fnc_updateFlareEffects",BLWK_allClientsTargetId,true];
+	[_light,_flare] remoteExecCall ["BLWK_fnc_updateFlareEffects",BLWK_allClientsTargetId,_flare];
 
 	waitUntil {
 		sleep 0.5;
