@@ -267,6 +267,7 @@ class RHSALL_faction
 		"rhsusf_m1a1hc_wd"
 	};
 	transportHelicopters[] = {
+		"RHS_UH60M",
 		"RHS_Mi8mt_vvsc",
 		"RHS_Mi8mt_vdv",
 		"rhsgref_cdf_b_reg_Mi17Sh",
@@ -276,15 +277,14 @@ class RHSALL_faction
 		"RHS_CH_47F_light",
 		"RHS_UH60M_d",
 		"RHS_CH_47F",
-		"RHS_UH60M",
 		"RHS_UH1Y",
 		"rhsusf_CH53E_USMC_D",
 		"RHS_UH1Y_d",
 		"RHS_MELB_MH6M"
 	};
 	cargoAircraft[] = {
-		"RHS_Mi8mt_vvsc",
 		"RHS_C130J",
+		"RHS_Mi8mt_vvsc",
 		"RHS_AN2_B"
 	};
 	casAircraft[] = {
@@ -301,11 +301,11 @@ class RHSALL_faction
 		"RHS_A10"
 	};
 	attackHelicopters[] = {
+		"RHS_AH64D",
 		"O_Heli_Attack_02_dynamicLoadout_black_F",
 		"rhs_mi28n_vvs",
 		"rhs_mi28n_vvsc",
 		"RHS_AH64D_wd",
-		"RHS_AH64D",
 		"RHS_AH64DGrey"
 	};
 	infantry[] = {
