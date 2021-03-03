@@ -37,7 +37,7 @@ if (missionNamespace getVariable ["BLWK_isAircraftGunner",false]) then {
 
 // make players briefly invincible
 _player allowDamage false;
-null = [] spawn {
+[] spawn {
     sleep 15;
     player allowDamage true;
 };

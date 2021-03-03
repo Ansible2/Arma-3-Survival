@@ -178,8 +178,43 @@
 	176,\
 	177,\
 	178,\
-	179
-
+	179,\
+	180,\
+	181,\
+	182,\
+	183,\
+	184,\
+	185,\
+	186,\
+	187,\
+	188,\
+	189,\
+	190,\
+	191,\
+	192,\
+	193,\
+	194,\
+	195,\
+	196,\
+	197,\
+	198,\
+	199,\
+	200,\
+	201,\
+	202,\
+	203,\
+	204,\
+	205,\
+	206,\
+	207,\
+	208,\
+	209,\
+	210,\
+	211,\
+	212,\
+	213,\
+	214,\
+  215
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -196,6 +231,35 @@
 	"CONTACT - NATO WOODLAND", \
 	"CONTACT - LDF", \
 	"CONTACT - Spetznas", \
+	"Aegis - AAF", \
+	"Aegis - British Armed Forces", \
+	"Aegis - British Armed Forces (Pacific)", \
+	"Aegis - British Armed Forces (Woodland)", \
+	"Aegis - China (CSAT Pacific)", \
+	"Aegis - CSAT Argana (Desert)", \
+	"Aegis - CTRG (Mediterranean)", \
+	"Aegis - Iranian Armed Forces (CSAT Arid)", \
+	"Aegis - Russia", \
+	"Aegis - Russia (Arid)", \
+	"Aegis Marines - Desert", \
+	"Aegis Marines - Woodland", \
+	"Aegis Atlas - Belarus", \
+	"Aegis Atlas - Bundeswehr", \
+	"Aegis Atlas - French Foreign Legion", \
+	"Aegis Atlas - HIMF", \
+	"Aegis Atlas - Israeli Defense Force", \
+	"Aegis Atlas - Taskistani Army", \
+	"Aegis Atlas - Viper (Woodland)", \
+	"CSAT Modification Project - Iran Arid", \
+	"CSAT Modification Project - Iran Arid (CBRN)", \
+	"CSAT Modification Project - Iran Semiarid", \
+	"CSAT Modification Project - Iran Special Forces (Arid)", \
+	"CSAT Modification Project - Iran Special Forces (Woodland)", \
+	"CSAT Modification Project - Iran Urban", \
+	"CSAT Modification Project - Iran Viper (Arid)", \
+	"CSAT Modification Project - Iran Viper (Woodland)", \
+	"CSAT Modification Project - Iran Woodland", \
+	"CSAT Modification Project - Iran Woodland (CBRN)", \
 	"CUP - Armed Forces of the Russian Federation (MSV - Modern - EMR)", \
 	"CUP - Armed Forces of the Russian Federation (VDV - Modern - EMR)", \
 	"CUP - Armed Forces of the Russian Federation (MSV - EMR)", \
@@ -354,6 +418,13 @@
 	"RHS USAF - USMC Infantry (Woodland)", \
 	"RHS USAF - USMC RECON (Desert)", \
 	"RHS USAF - USMC RECON (Woodland)", \
+	"Russia 2035 - Desert", \
+	"Russia 2035 - Desert SF", \
+	"Russia 2035 - Urban", \
+	"Russia 2035 - Winter", \
+	"Russia 2035 - Winter SF", \
+	"Russia 2035 - Woodland", \
+	"Russia 2035 - Woodland SF", \
 	"Zombies & Demons - Brittle Crawlers", \
 	"Zombies & Demons - Demons", \
 	"Zombies & Demons - Fast Zombies", \

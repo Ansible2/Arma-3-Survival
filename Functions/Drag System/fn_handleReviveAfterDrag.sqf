@@ -16,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn BLWK_fnc_handleReviveAfterDrag;
+		[] spawn BLWK_fnc_handleReviveAfterDrag;
 
     (end)
 
@@ -25,6 +25,7 @@ Author(s):
 ---------------------------------------------------------------------------- */
 if (!hasInterface OR {BLWK_handleReviveLoopRunning}) exitWith {};
 
+// stop loop from running multiple times if dragged by different people
 BLWK_handleReviveLoopRunning = true;
 
 params [
@@ -34,7 +35,8 @@ params [
 waitUntil {
 	if (incapacitatedState _draggedUnit isEqualTo "") exitWith {
 		// reset animation if revived
-		[_draggedUnit,""] remoteExecCall ["switchMove",0,true];
+		// this does need to be JIP and on all machines due to some animation bugs
+		[_draggedUnit,""] remoteExecCall ["switchMove",0,_draggedUnit];
 		true
 	};
 	if (!alive _draggedUnit) exitWith {true};
@@ -44,4 +46,4 @@ waitUntil {
 	false
 };
 
-BLWK_fnc_handleReviveAfterDrag = false;
+BLWK_handleReviveLoopRunning = false;

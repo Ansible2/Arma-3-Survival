@@ -16,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn BLWK_fnc_preparePlayArea;
+		[] spawn BLWK_fnc_preparePlayArea;
 
     (end)
 
@@ -24,10 +24,18 @@ Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if (!isServer OR {!canSuspend}) exitWith {};
-
 #define NUMBER_OF_INFANTRY_SPAWN_POSITIONS 15
 #define NUMBER_OF_VEHICLE_SPAWN_POSITIONS 5
+
+#define SCRIPT_NAME "BLWK_fnc_preparePlayArea"
+scriptName SCRIPT_NAME;
+
+if (!isServer) exitWith {};
+
+if (!canSuspend) exitWith {
+	["Needs to executed in scheduled, now running in scheduled...",true] call KISKA_fnc_log;
+	[] spawn BLWK_fnc_preparePlayArea;
+};
 
 
 // find the location the mission will take place
@@ -38,8 +46,10 @@ waitUntil {scriptDone _playAreaSelectionScript};
 // create map marker for play radius
 private _marker = createMarker ["Mission Area", BLWK_playAreaCenter];
 missionNamespace setVariable ["BLWK_playAreaMarker",_marker,true];
-BLWK_playAreaMarker setMarkerShape "ELLIPSE";
-BLWK_playAreaMarker setMarkerSize [BLWK_playAreaRadius, BLWK_playAreaRadius];
+// every marker command will send a global update of all marker properties
+// use the local versions first and lastly use a global command to send all changes across the network
+BLWK_playAreaMarker setMarkerShapeLocal "ELLIPSE";
+BLWK_playAreaMarker setMarkerSizeLocal [BLWK_playAreaRadius, BLWK_playAreaRadius];
 BLWK_playAreaMarker setMarkerColor "ColorWhite";
 
 
@@ -48,6 +58,8 @@ private _AISpawnPositionsArray = [];
 private _positionToPushBack = [];
 private _minRadius = BLWK_playAreaRadius + 50;
 private _maxRadius = BLWK_playAreaRadius + 100;
+// used for AI inftantry in BLWK_fnc_pathing_checkUnitDistance
+BLWK_maxDistanceFromPlayArea = BLWK_playAreaRadius + 125;
 while {count _AISpawnPositionsArray < NUMBER_OF_INFANTRY_SPAWN_POSITIONS} do {
 	_positionToPushBack = [BLWK_playAreaCenter, _minRadius, _maxRadius, 0, 0] call BIS_fnc_findSafePos;
 	_AISpawnPositionsArray pushBackUnique _positionToPushBack;
@@ -75,4 +87,4 @@ waitUntil {
 };
 
 // push player relavent actions and the loop to show The Crate icon
-null = [BLWK_mainCrate] remoteExec ["BLWK_fnc_prepareTheCratePlayer",BLWK_allClientsTargetID,true];
+[BLWK_mainCrate] remoteExec ["BLWK_fnc_prepareTheCratePlayer",BLWK_allClientsTargetID,true];

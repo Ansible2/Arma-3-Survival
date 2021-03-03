@@ -20,10 +20,11 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-scriptName "KISKA_fnc_stopRandomMusicServer";
+#define SCRIPT_NAME "KISKA_fnc_stopRandomMusicServer"
+scriptName SCRIPT_NAME;
 
 if (!isServer) exitWith {
-	"Random music system needs to be stopped on the server" call BIS_fnc_error;
+	["Needs to only be run on server, exiting...",true] call KISKA_fnc_log;
 	false
 };
 
@@ -33,7 +34,7 @@ params [
 
 missionNamespace setVariable ["KISKA_musicSystemIsRunning",false];
 if (!_playLastSong) then {
-	null = remoteExec ["KISKA_fnc_stopRandomMusicClient",[0,-2] select isDedicated];
+	remoteExecCall ["KISKA_fnc_stopRandomMusicClient",[0,-2] select isDedicated];
 };
 
 true

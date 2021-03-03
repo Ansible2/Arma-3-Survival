@@ -1,3 +1,4 @@
+#include "..\..\Headers\Build Objects Properties Defines.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_addBuildableObjectActions
 
@@ -23,6 +24,7 @@ Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 #define CONDITION "!(_originalTarget getVariable ['BLWK_objectPickedUp',false]) AND {isNil 'BLWK_heldObject'}"
+scriptName "BLWK_fnc_addBuildableObjectActions";
 
 if !(hasInterface) exitWith {false};
 
@@ -30,20 +32,36 @@ params [
 	["_object",objNull,[objNull]]
 ];
 
-if (isNull _object) exitWith {false};
-
-private _objectType = typeOf _object;
-private _objectName = [configFile >> "cfgVehicles" >> _objectType] call BIS_fnc_displayName;
+if (isNull _object) exitWith {
+	["Null object passed, will not add actions, exiting...",true] call KISKA_fnc_log;
+	false
+};
 
 private _actionDistance = ((_object call BIS_fnc_boundingBoxDimensions) select 1) + 2;
 if (_actionDistance < 5) then {
 	_actionDistance = 5;
 };
 
+private _objectType = toLowerANSI (typeOf _object);
+private _objectName = "";
+private _addSellAction = true;
+switch (true) do {
+	case (_object isEqualTo BLWK_randomWeaponBox):{
+		_objectName = "Random Weapon Box";
+		_addSellAction = false;
+	};
+	case (_object isEqualTo BLWK_mainCrate):{
+		_objectName = "The Main Crate";
+		_addSellAction = false;
+	};
+	default {
+		_objectName = (BLWK_buildableObjectsHash get _objectType) select DISPLAY_NAME;
+	};
+};
 
 // CIPHER COMMENT: maybe make sell into a hold action?
 // sell object
-if (!(_object isEqualTo BLWK_mainCrate) AND {!(_object isEqualTo BLWK_randomWeaponBox)}) then {
+if (_addSellAction) then {
 	_object addAction [
 		"<t color='#ff0000'><t underline='true'><t font='RobotoCondensedBold'>-- Sell " + _objectName + " Back --</t></t></t>",
 		{
@@ -101,7 +119,7 @@ _object addAction [
 	"<t color='#ffffff'><t underline='true'><t font='RobotoCondensedBold'>-- Pickup " + _objectName + " --</t></t></t>", 
 	{
 		params ["_object","_caller"];
-		null = [_object,_caller] spawn BLWK_fnc_pickupObject;
+		[_object,_caller] spawn BLWK_fnc_pickupObject;
 	}, 
 	nil, 
 	100,  

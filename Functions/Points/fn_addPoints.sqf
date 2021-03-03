@@ -91,7 +91,7 @@ if (_pointsToAdd isEqualTo 0) exitWith {false};
 
 //
 BLWK_killPointsQue pushBack _pointsToAdd;
-null = [] spawn {
+[] spawn {
 
 	private "_firstInQue";
 	while {!(BLWK_killPointsQue isEqualTo [])} do {

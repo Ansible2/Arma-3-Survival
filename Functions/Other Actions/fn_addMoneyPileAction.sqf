@@ -36,8 +36,8 @@ _moneyPile addAction [
 	"<t color='#00ff00'>-- Collect Points --</t>",  
 	{
 		missionNamespace setVariable ["BLWK_moneyPile",nil,true];
-		null = ["pointsLootSound"] remoteExec ["playSound",(call CBAP_fnc_players)];
-		[25 * BLWK_pointsForKill] call BLWK_fnc_addPoints;
+		["pointsLootSound"] remoteExecCall ["playSound",(call CBAP_fnc_players)];
+		[30 * BLWK_pointsForKill] call BLWK_fnc_addPoints;
 
 		deleteVehicle (_this select 0);
 	}, 

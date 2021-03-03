@@ -1,4 +1,28 @@
 #include "..\..\Headers\descriptionEXT\GUI\musicManagerCommonDefines.hpp"
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_musicManagerOnLoad_currentPlaylistLoop
+
+Description:
+	Keeps the current playlist listBox up to date between the multiple people that
+	 can be simaltaneously updating it.
+
+Parameters:
+	0: _control : <CONTROL> - The control for the list box to update
+	1: _display : <DISPLAY> - The display for the Music Manager
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+		[_control] call BLWK_fnc_musicManagerOnLoad_currentPlaylistLoop;
+    (end)
+
+Author(s):
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
+#define SCRIPT_NAME "BLWK_fnc_musicManagerOnLoad_currentPlaylistLoop"
+scriptName SCRIPT_NAME;
 
 params ["_control","_display"];
 
@@ -28,7 +52,7 @@ if !(GET_PUBLIC_ARRAY_DEFAULT isEqualTo []) then {
 	};
 };
 
-null = _this spawn {
+_this spawn {
 	params ["_control","_display"];
 
 	private _fn_adjustList = {
@@ -45,18 +69,22 @@ null = _this spawn {
 		// get index numbers of array (start from 0)
 		private _indexesOfDisplayed = count _displayedArray - 1; 
 		private _indexesOfCurrent = count _globalArray - 1;
-		private "_comparedIndex";
+		private ["_comparedIndex","_musicName"];
 		{
 			// check to see if we are out of bounds on the display array
 			// e.g. stop changing entries and start adding them
 			if (_indexesOfDisplayed >= _forEachIndex) then {
 				_comparedIndex = _displayedArray select _forEachIndex;
 				// if the index is not already the same
-				if !(_comparedIndex == _x) then {
-					_control lbSetText [_forEachIndex,[_x] call (uiNamespace getVariable "BLWK_fnc_musicManager_getMusicName")];
+				if (_comparedIndex != _x) then {
+					_musicName = [_x] call (uiNamespace getVariable "BLWK_fnc_musicManager_getMusicName");
+					_control lbSetText [_forEachIndex,_musicName];
+					_control lbSetTooltip [_forEachIndex,_musicName];
 				};
 			} else {
-				_control lbAdd ([_x] call (uiNamespace getVariable "BLWK_fnc_musicManager_getMusicName"));
+				_musicName = [_x] call (uiNamespace getVariable "BLWK_fnc_musicManager_getMusicName");
+				_control lbAdd _musicName;
+				_control lbSetTooltip [_forEachIndex,_musicName];
 			};
 		} forEach _globalArray;
 

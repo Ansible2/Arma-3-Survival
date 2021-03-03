@@ -1,4 +1,33 @@
-params ["_typeId",["_randomIndex",true]];
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_getFriendlyVehicleClass
+
+Description:
+	Gets a vehicle classes based on a typeId. If no classes are available 
+	 for a type, a default class if provided.
+
+Parameters:
+	0: _typeId : <NUMBER> - The type of vehicle requested (see below for numbers)
+	1: _randomIndex : <BOOL> - Select a random entry in the vehicle class list (0 index is default) 
+
+Returns:
+	<STRING> -  A class for the requested type
+
+Examples:
+    (begin example)
+
+		_lightCarClass = [0] call BLWK_fnc_getFriendlyVehicleClass;
+
+    (end)
+
+Author(s):
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
+scriptName "BLWK_fnc_getFriendlyVehicleClasses";
+
+params [
+	"_typeId",
+	["_randomIndex",true]
+];
 
 /*
 	#define DEFAULT_VEHICLE_CLASSES \
@@ -47,5 +76,6 @@ if (_numFriendlyClasses - 1 >= _typeId) then {
 if (_returnVehicleClass isEqualTo "") then {
 	_returnVehicleClass = (DEFAULT_VEHICLE_CLASSES select _typeId) select 0;
 };
+
 
 _returnVehicleClass

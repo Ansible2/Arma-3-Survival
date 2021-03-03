@@ -8,7 +8,8 @@ Description:
 
 Parameters:
 	0: _caller <OBJECT> - The player calling for support
-	1: _targetPosition <ARRAY> - The position at which the call it being made
+	1: _targetPosition <ARRAY> - The position (AGLS) at which the call is being made 
+		(where the player is looking or if in the map, the position where their cursor is)
 	2: _supportClass <STRING> - The class as defined in the CfgCommunicationMenu
 
 Returns:
@@ -32,7 +33,7 @@ if (_targetPosition isEqualTo []) exitWith { \
 
 #define CHECK_SUPPORT_CLASS(SUPPORT_CLASS_COMPARE) _supportClass == TO_STRING(SUPPORT_CLASS_COMPARE)
 
-#define ARTY_EXPRESSION(AMMO_TYPE) CHECK_POSITION null = [_targetPosition,AMMO_TYPE] spawn BLWK_fnc_callForArtillery
+#define ARTY_EXPRESSION(AMMO_TYPE) CHECK_POSITION [_targetPosition,AMMO_TYPE] spawn BLWK_fnc_callForArtillery
 
 #define CAS_RADIO [TYPE_CAS_REQUEST] call BLWK_fnc_supportRadioGlobal;
 
@@ -40,7 +41,7 @@ if (_targetPosition isEqualTo []) exitWith { \
 	CHECK_POSITION \
 	_targetPosition = AGLToASL(_targetPosition);\
 	private _friendlyAttackAircraftClass = [6] call BLWK_fnc_getFriendlyVehicleClass;\
-	null = [_targetPosition,CAS_TYPE,getDir _caller,_friendlyAttackAircraftClass] spawn BLWK_fnc_CAS;\
+	[_targetPosition,CAS_TYPE,getDir _caller,_friendlyAttackAircraftClass] spawn KISKA_fnc_CAS;\
 	CAS_RADIO
 
 #define TURRET_EXPRESSION(AIRCRAFT_TYPE,HEIGHT,RADIUS,DEFAULT_AIRCRAFT_TYPE,GUNNER_TYPE) \
@@ -49,6 +50,9 @@ if (_targetPosition isEqualTo []) exitWith { \
 
 #define NUMBER_OF_PARATROOPERS 5
 
+#define HELI_CAS_EXPRESSION(VEHICLE_TYPE,TIME_ON_STATION,FLYIN_ALT,DEFAULT_TYPE,GLOBAL_VAR) \
+	[BLWK_playAreaCenter,BLWK_playAreaRadius,VEHICLE_TYPE,TIME_ON_STATION,10,FLYIN_ALT,-1,DEFAULT_TYPE,GLOBAL_VAR] call BLWK_fnc_passiveHelicopterGunner; \
+	CAS_RADIO
 
 
 params ["_caller","_targetPosition","_supportClass"];
@@ -59,9 +63,17 @@ params ["_caller","_targetPosition","_supportClass"];
 // cruise missile
 if (CHECK_SUPPORT_CLASS(CRUISE_MISSILE_CLASS)) exitWith {
 	CHECK_POSITION
-	null = [_targetPosition] spawn BLWK_fnc_cruiseMissileStrike;
+	[_targetPosition] spawn BLWK_fnc_cruiseMissileStrike;
 	[TYPE_STRIKE] call BLWK_fnc_supportRadioGlobal;
 };
+
+if (CHECK_SUPPORT_CLASS(DAISY_CUTTER_CLASS)) exitWith {
+	CHECK_POSITION
+	private _friendlyDropAircraftClass = [5] call BLWK_fnc_getFriendlyVehicleClass;
+	[_targetPosition,40,_friendlyDropAircraftClass] spawn BLWK_fnc_daisyCutter;
+	[TYPE_STRIKE] call BLWK_fnc_supportRadioGlobal;
+};
+
 
 /* ----------------------------------------------------------------------------
 	155 Artillery
@@ -174,6 +186,28 @@ if (CHECK_SUPPORT_CLASS(CAS_BOMB_CLUSTER_CLASS)) exitWith {
 };
 
 
+/* ----------------------------------------------------------------------------
+	Helicopter CAS
+---------------------------------------------------------------------------- */
+if (CHECK_SUPPORT_CLASS(PASS_ATTACK_GUNNER_CLASS)) exitWith {
+	if !(missionNamespace getVariable ["BLWK_heliGunnerInUse",false]) then {
+		private _vehicleClass = [7] call BLWK_fnc_getFriendlyVehicleClass;
+		HELI_CAS_EXPRESSION(_vehicleClass,180,100,"B_Heli_Attack_01_dynamicLoadout_F","BLWK_heliGunnerInUse")
+	} else {
+		hint "Only one helicopter gunner support may be active at a time.";
+		ADD_SUPPORT_BACK
+	};
+};
+if (CHECK_SUPPORT_CLASS(PASS_DOOR_GUNNER_CLASS)) exitWith {	
+	if !(missionNamespace getVariable ["BLWK_doorGunnerInUse",false]) then {
+		private _vehicleClass = [4,false] call BLWK_fnc_getFriendlyVehicleClass;
+		HELI_CAS_EXPRESSION(_vehicleClass,180,50,"B_Heli_Transport_01_F","BLWK_doorGunnerInUse")
+	} else {
+		hint "Only one door gunner support may be active at a time.";
+		ADD_SUPPORT_BACK
+	};
+};
+
 
 /* ----------------------------------------------------------------------------
 	Aircraft Gunner
@@ -233,7 +267,7 @@ if (CHECK_SUPPORT_CLASS(REINFORCE_PARATROOPERS_CLASS)) exitWith {
 	};
 	
 	[BLWK_zeus, [_unitsToDrop,false]] remoteExecCall ["addCuratorEditableObjects",2];
-	null = [_targetPosition,_unitsToDrop,"B_T_VTOL_01_infantry_F"] spawn BLWK_fnc_paratroopers;	
+	[_targetPosition,_unitsToDrop,"B_T_VTOL_01_infantry_F"] spawn BLWK_fnc_paratroopers;	
 };
 
 
@@ -242,7 +276,7 @@ if (CHECK_SUPPORT_CLASS(REINFORCE_PARATROOPERS_CLASS)) exitWith {
 ---------------------------------------------------------------------------- */
 if (CHECK_SUPPORT_CLASS(RECON_UAV_CLASS)) exitWith {
 	if !(missionNamespace getVariable ["BLWK_reconUavActive",false]) then {
-		null = remoteExec ["BLWK_fnc_reconUAV",2];
+		remoteExec ["BLWK_fnc_reconUAV",2];
 		[TYPE_UAV_REQUEST] call BLWK_fnc_supportRadioGlobal;
 	} else {
 		ADD_SUPPORT_BACK

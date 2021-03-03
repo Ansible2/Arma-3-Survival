@@ -40,7 +40,7 @@ class basicSupport_baseClass
 	price = 1000; // price in shop
 	category = OTHER_CATEGORY; // shop category
 
-    text = "I'm a support!"; // text in support menu and Shop (DO NOT INCLUDE PRICE HERE, IT IS ADDED IN BLWK_fnc_populateSupportTree)
+    text = "I'm a support!"; // text in support menu and Shop (DO NOT INCLUDE PRICE HERE, IT IS ADDED IN BLWK_fnc_shop_populateSupportTree)
     subMenu = "";
     expression = ""; // code to compile upon call of menu item
     icon = CALL_ICON; // icon in support menu
@@ -63,6 +63,16 @@ class CRUISE_MISSILE_CLASS : basicSupport_baseClass
 	text = CRUISE_MISSILE_TEXT;
     expression = CALL_SUPPORT_MASTER(CRUISE_MISSILE_CLASS);
     icon = CAS_ICON;
+};
+
+class DAISY_CUTTER_CLASS : basicSupport_baseClass
+{
+	price = 4000;
+	category = OTHER_CATEGORY;
+
+	text = DAISY_CUTTER_TEXT;
+	expression = CALL_SUPPORT_MASTER(DAISY_CUTTER_CLASS);
+	icon = SUPPLY_DROP_ICON;
 };
 
 // heavy arty
@@ -298,4 +308,25 @@ class RECON_UAV_CLASS : basicSupport_baseClass
 	text = RECON_UAV_TEXT;
     expression = CALL_SUPPORT_MASTER(RECON_UAV_CLASS);
     icon = CALL_ICON;
+};
+
+
+// passive helicopter CAS
+class PASS_ATTACK_GUNNER_CLASS : basicSupport_baseClass
+{
+	price = 4000;
+	category = CAS_CATEGORY;
+
+	text = PASS_ATTACK_GUNNER_TEXT;
+	expression = CALL_SUPPORT_MASTER(PASS_ATTACK_GUNNER_CLASS);
+	icon = CAS_HELI_ICON;
+};
+class PASS_DOOR_GUNNER_CLASS : basicSupport_baseClass
+{
+	price = 2000;
+	category = CAS_CATEGORY;
+
+	text = PASS_DOOR_GUNNER_TEXT;
+	expression = CALL_SUPPORT_MASTER(PASS_DOOR_GUNNER_CLASS);
+	icon = CAS_HELI_ICON;
 };

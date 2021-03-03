@@ -2,7 +2,7 @@
 Function: BLWK_fnc_keepPlayerInGroup
 
 Description:
-	Tries to keep player's in the group they had just before death after respawns
+	Tries to keep player's in the group they had just before death after respawns.
 
 Parameters:
 	NONE

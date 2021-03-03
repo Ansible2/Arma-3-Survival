@@ -53,7 +53,7 @@ _classNames apply {
     _container_temp attachTo [_chute_temp,[0,0,0]];
 
     // speed up the drop
-	null = [_chute_temp,_container_temp] spawn {
+	[_chute_temp,_container_temp] spawn {
 		params ["_chute","_container"];
 
 		// give chute time to deploy
@@ -118,7 +118,7 @@ KISKA_fnc_SD_markDropPosition = {
 // give the containers arsenals
 [_containersArray] call KISKA_fnc_addArsenal;
 
-null = [_containersArray select 0] spawn KISKA_fnc_SD_markDropPosition;
+[_containersArray select 0] spawn KISKA_fnc_SD_markDropPosition;
 
 
 _containersArray

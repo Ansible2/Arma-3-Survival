@@ -16,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn BLWK_fnc_spinRandomWeaponBox;
+		[] spawn BLWK_fnc_spinRandomWeaponBox;
 
     (end)
 
@@ -27,14 +27,13 @@ Author(s):
 // CIPHER COMMENT: might be worth just passing the box as an arguement instead
 //  of using the global var synced over the network. It would already be available in the
 //  action 
+#define SLEEP_TIME 0.1
+#define NUMBER_OF_FRAMES 25
 
 if (!canSuspend) exitWith {};
 
 // so that others can't use the box
 missionNamespace setVariable ["BLWK_randomWeaponBoxInUse",true,true];
-
-#define SLEEP_TIME 0.1
-#define NUMBER_OF_FRAMES 25
 
 // create weapon holder
 private _boxPosition = getPosATL BLWK_randomWeaponBox;

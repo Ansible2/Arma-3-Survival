@@ -20,7 +20,8 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-scriptName "KISKA_fnc_musicStartEvent";
+#define SCRIPT_NAME "KISKA_fnc_musicStartEvent"
+scriptName SCRIPT_NAME;
 
 if (!hasInterface) exitWith {};
 
@@ -28,7 +29,7 @@ params [
 	["_trackClassname","",[""]]
 ];
 
-diag_log "music start";
+["Music Started",false] call KISKA_fnc_log;
 
 missionNamespace setVariable ["KISKA_musicPlaying",true];
 missionNamespace setVariable ["KISKA_currentTrack",_trackClassName];

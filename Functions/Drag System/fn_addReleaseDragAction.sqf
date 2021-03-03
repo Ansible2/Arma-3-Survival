@@ -2,7 +2,7 @@
 Function: BLWK_fnc_addReleaseDragAction
 
 Description:
-	Adds an action to the player to release the unit they are dragging
+	Adds an action to the player to release the unit they are dragging.
 
 	Executed from "BLWK_fnc_dragUnitEvent"
 
@@ -11,7 +11,7 @@ Parameters:
 	1: _draggedUnit : <OBJECT> - The unit to add the eventhandler to
 
 Returns:
-	NUMBER - action Id
+	<NUMBER> - the release action Id
 
 Examples:
     (begin example)

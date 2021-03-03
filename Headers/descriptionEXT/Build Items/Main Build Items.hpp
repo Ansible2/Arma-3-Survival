@@ -2,6 +2,7 @@
 
 class BLWK_genericBuildItemBase
 {
+	displayName = ""; // only needed for custom names
 	price = 0;
 	category = OTHER_CATEGORY;
 	hasAI = false;
@@ -12,6 +13,20 @@ class BLWK_genericBuildItemBase
 	invincible = 0; // 0 false, 1 true
 	keepInventory = 0; // don't clear inventory
 	detectCollsion = 1; // registers with ai collision script
+
+	// text that shows when hovering over the item in the shop
+	tooltip = "";
+
+	/*
+		Events
+		See relevant functions in functions\Build folder for passed params
+	*/
+	onPurchasedPrefix = ""; 
+	onPurchasedPostfix = "";
+	onPurchasedPostNewtork = "";
+	onPickedUp = "";
+	onPlaced = "";
+	onSold = "";
 };
 class BLWK_genericTurretBase: BLWK_genericBuildItemBase
 {
@@ -375,6 +390,7 @@ class BLWK_buildableItems
 		category = STORAGE_CATEGORY;
 		attachmentY = 2;
 		keepInventory = 1;
+		invincible = 1;
 		detectCollsion = 0;
 	};
 	class ACE_medicalSupplyCrate : BLWK_genericBuildItemBase
@@ -383,7 +399,40 @@ class BLWK_buildableItems
 		category = STORAGE_CATEGORY;
 		attachmentY = 2;
 		keepInventory = 1;
+		invincible = 1;
 		detectCollsion = 0;
+	};
+	
+	class C_IDAP_supplyCrate_F : BLWK_genericBuildItemBase
+	{
+		displayName = "Satellite Shop";
+		price = 100;
+		category = UNIQUE_CATEGORY;
+		attachmentY = 2;
+		attachmentZ = 1;
+		invincible = 1;
+		keepInventory = 0;
+		detectCollsion = 0;
+
+		onSold = "hint 'Shops cannot be sold'; false";
+		onPurchasedPrefix = "if (BLWK_satShopOut) then {hint 'There is already a satellite shop present'; _doExit = true; _refund = false;};";
+		onPurchasedPostfix = "[_object] call BLWK_fnc_satelliteShop_init";
+	};
+
+	class Land_GarbageContainer_open_F : BLWK_genericBuildItemBase
+	{
+		displayName = "Item Reclaimer";
+		price = 900;
+		category = UNIQUE_CATEGORY;
+		attachmentY = 2;
+		attachmentZ = 0.8;
+		invincible = 1;
+		detectCollsion = 0;
+
+		tooltip = "Place items inside, reclaim, and get points put into the community pool";
+
+		onPurchasedPostfix = "_this call BLWK_fnc_itemReclaimer_init";
+		onSold = "_this call BLWK_fnc_itemReclaimer_onSold";
 	};
 	#include "OPTRE Build Items.hpp"
 	#include "RHS Build Items.hpp"

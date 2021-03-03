@@ -16,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [player,20,10] spawn KISKA_fnc_battleSound;
+		[player,20,10] spawn KISKA_fnc_battleSound;
 
     (end)
 

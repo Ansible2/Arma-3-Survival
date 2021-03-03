@@ -46,6 +46,7 @@ if (isServer) then {
         false 
     };
     BLWK_theAIHandlerOwnerID = owner BLWK_theAIHandlerEntity;
+    // having an owner id for the AI handler makes using setVariable remotely possible
     publicVariable "BLWK_theAIHandlerOwnerID";
 
     /* Whitelist Loot Modes */
@@ -138,9 +139,12 @@ if (isServer OR {!hasInterface}) then {
     BLWK_loot_itemClasses = _lootClasses select 7;
     BLWK_loot_explosiveClasses = _lootClasses select 8;
 
-    BLWK_enemiesPerWaveMultiplier = ("BLWK_enemiesPerWaveMultiplier" call BIS_fnc_getParamValue) / 10;  // How many hostiles per wave (waveCount x BLWK_enemiesPerWaveMultiplier)
-    BLWK_enemiesPerPlayerMultiplier = ("BLWK_enemiesPerPlayerMultiplier" call BIS_fnc_getParamValue) / 10;   // How many extra units are added per player
-    BLWK_maxPistolOnlyWaves = ("BLWK_maxPistolOnlyWaves" call BIS_fnc_getParamValue);  //What wave enemies stop only using pistols
+    // How many hostiles per wave (waveCount x BLWK_enemiesPerWaveMultiplier)
+    BLWK_enemiesPerWaveMultiplier = ("BLWK_enemiesPerWaveMultiplier" call BIS_fnc_getParamValue) / 10; 
+    // How many extra units are added per player 
+    BLWK_enemiesPerPlayerMultiplier = ("BLWK_enemiesPerPlayerMultiplier" call BIS_fnc_getParamValue) / 10; 
+    // What wave enemies stop only using pistols  
+    BLWK_maxPistolOnlyWaves = ("BLWK_maxPistolOnlyWaves" call BIS_fnc_getParamValue);  
     BLWK_randomizeEnemyWeapons = [false,true] select ("BLWK_randomizeEnemyWeapons" call BIS_fnc_getParamValue);
 
     BLWK_vehicleStartWave = ("BLWK_vehicleStartWave" call BIS_fnc_getParamValue);
@@ -151,6 +155,8 @@ if (isServer OR {!hasInterface}) then {
     BLWK_heavyCarLikelihood = ("BLWK_heavyCarLikelihood" call BIS_fnc_getParamValue);
     BLWK_lightArmorLikelihood = ("BLWK_lightArmorLikelihood" call BIS_fnc_getParamValue);
     BLWK_heavyArmorLikelihood = ("BLWK_heavyArmorLikelihood" call BIS_fnc_getParamValue);
+    BLWK_transportHeliLikelihood = ("BLWK_transportHeliLikelihood" call BIS_fnc_getParamValue);
+    BLWK_attackHeliLikelihood = ("BLWK_attackHeliLikelihood" call BIS_fnc_getParamValue);
     BLWK_baseVehicleSpawnLikelihood = ("BLWK_baseVehicleSpawnLikelihood" call BIS_fnc_getParamValue);
 
     BLWK_infantrySpawnPositions = [];
@@ -162,7 +168,14 @@ if (isServer OR {!hasInterface}) then {
     // used for chaning medical items of OPTRE units (biofoam to FAKs)
     BLWK_isOptreLoaded = ["OPTRE_core"] call KISKA_fnc_ispatchLoaded;
 
+    // Enemy AI
     BLWK_doDetectCollision = [false,true] select ("BLWK_doDetectCollision" call BIS_fnc_getParamValue);
+    BLWK_doDetectMines = [false,true] select ("BLWK_doDetectMines" call BIS_fnc_getParamValue);
+    BLWK_suppressionEnabled = [false,true] select ("BLWK_suppressionEnabled" call BIS_fnc_getParamValue);
+    BLWK_autocombatEnabled = [false,true] select ("BLWK_autocombatEnabled" call BIS_fnc_getParamValue);
+
+    // Minimum amount of waves between vehicles
+    BLWK_minRoundsSinceVehicleSpawned = "BLWK_minRoundsSinceVehicleSpawned" call BIS_fnc_getParamValue;
 };
 if (hasInterface) then {
     /* Starting Items */
@@ -197,11 +210,11 @@ if (hasInterface) then {
     };
 };
 
+// keep track of a satellite shop being out or not
+BLWK_satShopOut = false;
 
 
 // AI unit classes
-
-// some of these are public to be used with BLWK_fnc_getPointsForKill or for friendlies to call support
 private _unitTypeInfo = call BLWK_fnc_prepareUnitClasses;
 
 // friendly
@@ -242,12 +255,13 @@ if (isNil "BLWK_faksToMakeMedkit") then {
 };
 
 /* Points */
-BLWK_pointsForKill = "BLWK_pointsForKill" call BIS_fnc_getParamValue;                 // Base Points for a kill
+BLWK_pointsForKill = "BLWK_pointsForKill" call BIS_fnc_getParamValue;         
 BLWK_pointsForHeal = 15 * BLWK_pointsForKill; // points to heal player at bulwark
 BLWK_pointsForHit = "BLWK_pointsForHit" call BIS_fnc_getParamValue;                   // Every Bullet hit
 BLWK_pointsMultiForDamage = "BLWK_pointsMultiForDamage" call BIS_fnc_getParamValue;   // Extra points awarded for damage. 100% = BLWK_pointsMultiForDamage. 50% = BLWK_pointsMultiForDamage/2
 BLWK_maxPointsForDamage = BLWK_pointsForHit * 2; // There are certain weapons that cause extreme amounts of damage that will give an immense amount of points, so this caps it
 
+// check if vanilla revive is on
 BLWK_dontUseRevive = (("ReviveMode" call BIS_fnc_getParamValue) isEqualTo 0);
 
 BLWK_ACELoaded = ["ace_common"] call KISKA_fnc_ispatchLoaded;
@@ -268,8 +282,8 @@ BLWK_pointsMulti_man_level2 = 1;
 BLWK_pointsMulti_man_level3 = 1.25;
 BLWK_pointsMulti_man_level4 = 1.50;
 BLWK_pointsMulti_man_level5 = 1.50;
-BLWK_pointsMulti_car = 2;
-BLWK_pointsMulti_armour = 4;
+BLWK_pointsMulti_car = 5;
+BLWK_pointsMulti_armour = 10;
 
 
 
@@ -277,8 +291,8 @@ BLWK_pointsMulti_armour = 4;
 BLWK_supports_array = [missionConfigFile >> "CfgCommunicationMenu"] call BLWK_fnc_createSupportsArray;
 BLWK_supports_array sort true; // will sort by the price
 
-BLWK_buildableObjects_array = [missionConfigFile >> "BLWK_buildableItems"] call BLWK_fnc_createBuildObjectsArray;
-BLWK_buildableObjects_array sort true;
+BLWK_buildableObjectsHash = [missionConfigFile >> "BLWK_buildableItems"] call BLWK_fnc_createBuildObjectsHash;
+
 
 
 if (isServer) then {

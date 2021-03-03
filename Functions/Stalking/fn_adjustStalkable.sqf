@@ -1,3 +1,4 @@
+#include "..\..\Headers\Stalker Global Strings.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_adjustStalkable
 
@@ -21,8 +22,6 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#include "..\..\Headers\Stalker Global Strings.hpp"
-
 params [
 	"_unit",
 	["_state",false,[true]]

@@ -1,4 +1,27 @@
 #include "..\..\Headers\descriptionEXT\GUI\musicManagerCommonDefines.hpp"
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_musicManagerOnLoad_addAndRemoveButtons
+
+Description:
+	Adds button pressed events to the add and remove from current playlist buttons.
+
+Parameters:
+	0: _addButtonControl : <CONTROL> - The control for the add to playlist button
+	1: _removeButtonControl : <CONTROL> - The control for the remove from playlist button
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+		[_addToButtonControl,_removeFromButtonControl] call BLWK_fnc_musicManagerOnLoad_addAndRemoveButtons;
+    (end)
+
+Author(s):
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
+#define SCRIPT_NAME "BLWK_fnc_musicManagerOnLoad_addAndRemoveButtons"
+scriptName SCRIPT_NAME;
 
 params ["_addButtonControl","_removeButtonControl"];
 

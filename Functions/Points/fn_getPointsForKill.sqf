@@ -9,7 +9,7 @@ Parameters:
 	0: _unit : <OBJECT> - The vehicle or unit killed
 
 Returns:
-	NUMBER - The amount the unit kill is worth
+	<NUMBER> - The amount the unit kill is worth
 
 Examples:
     (begin example)
@@ -23,11 +23,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 params ["_unit"];
 
-// CIPHER COMMENT: it might be better to just cache the unit's multiplier in their namespace
-
 private _unitInfo = [_unit] call BIS_fnc_objectType;
 private _category = _unitInfo select 0;
-private _type = _unitInfo select 1;
 
 if (_category == "soldier") exitWith {
 	private _unitClass =  typeOf _unit;
@@ -50,6 +47,9 @@ if (_category == "soldier") exitWith {
 		round (BLWK_pointsForKill * BLWK_pointsMulti_man_level5)
 	};
 };
+
+
+private _type = _unitInfo select 1;
 
 if (_type == "car") exitWith {
 	round (BLWK_pointsForKill * BLWK_pointsMulti_car)

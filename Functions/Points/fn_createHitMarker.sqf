@@ -24,10 +24,13 @@ Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if (!BLWK_showHitPoints) exitWith {};
-
 //#define PLAYER_FOV_SCALE (getObjectFOV player / (getResolution select 6))
 #define TEXT_SIZE_CONSTANT 0.0025
+// this is used to try and get numbers to not crowd together so much
+#define RANOM_NUMBER_SPACING_BASE random [-1.35,0,1.35]
+#define DISTANCE_MULTIPLIER 0.025
+
+if (!BLWK_showHitPoints) exitWith {};
 
 params [ 
 	["_hitUnit",objNull,[objNull]], 
@@ -39,7 +42,7 @@ params [
 private _handleNumber = addMissionEventHandler ["EachFrame", { 
 
 	private _globalVarString = "BLWK_hitPointHandleInfo_" + (str _thisEventHandler);  
-	if (!isNil _globalVarString) exitWith { 
+	if (!isNil _globalVarString) then { 
 
 		private _iconInfo = missionNamespace getVariable _globalVarString; 
 		_iconInfo params [ 
@@ -52,7 +55,9 @@ private _handleNumber = addMissionEventHandler ["EachFrame", {
 		]; 
 
 		// kill event handler if it's been 110 frames
-		if (_frameNo isEqualTo 111) exitWith { 
+		if (_frameNo isEqualTo 111) exitWith {
+			// clear global
+			missionNamespace setVariable [_globalVarString,nil]; 
 			removeMissionEventHandler ["EachFrame",_thisEventHandler]; 
 		}; 
 		_frameNo = _frameNo + 1; 
@@ -84,10 +89,6 @@ private _handleNumber = addMissionEventHandler ["EachFrame", {
 
 // setup a unique global variable so we can pass params to the eventhandler 
 private _globalVarString = "BLWK_hitPointHandleInfo_" + (str _handleNumber);
-
-// this is used to try and get numbers to not crowd together so much
-#define RANOM_NUMBER_SPACING_BASE random [-1.35,0,1.35]
-#define DISTANCE_MULTIPLIER 0.025
 
 private _distanceToShooter = _hitUnit distance player;
 private _randomStartPosition = RANOM_NUMBER_SPACING_BASE;

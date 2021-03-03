@@ -1,3 +1,40 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_aircraftGunner
+
+Description:
+	Spawns in an aircraft that circles the play area.
+	Users are allowed access to all turrets on the aircraft.
+
+Parameters:
+  	0: _vehicleClass : <STRING> - The class of the vehicle to be a gunner on
+	1: _loiterHeight : <NUMBER> - At what height does the aircraft fly
+	2: _loiterRadius : <NUMBER> - The radius of the circle around which the 	
+		aircraft will loiter
+
+	3: _defaultVehicleType : <STRING> - A fall through vehicle class in case 
+		_vehicleClass is found not to be compatible
+
+	4: _globalUseVarString : <STRING> - A global string that is used to not allow
+		other players access to the same support type simaltaneously
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+		private _friendlyAttackHeliClass = [7] call BLWK_fnc_getFriendlyVehicleClass;
+		[
+			_friendlyAttackHeliClass,
+			400,
+			500,
+			"B_Heli_Attack_01_dynamicLoadout_F",
+			"BLWK_heliGunnerInUse"
+		] call BLWK_fnc_aircraftGunner;
+    (end)
+
+Author(s):
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 params ["_vehicleClass","_loiterHeight","_loiterRadius","_defaultVehicleType","_globalUseVarString"];
 
 // verify vehicle has turrets that are not fire from vehicle and not copilot positions
@@ -21,6 +58,7 @@ _allVehicleTurrets apply {
 		};
 	};
 };
+// go to default aircraft type if no suitable turrets are found
 if (_turretsWithWeapons isEqualTo []) exitWith {
 	private _newParams = _this;
 	_newParams set [0,_defaultVehicleType];
@@ -86,19 +124,26 @@ BLWK_enforceArea = false;
 player allowDamage false;
 player moveInTurret [_vehicle,_turretsWithWeapons select 0];
 
-localNamespace setVariable ["BLWK_soundVolume",soundVolume]; // store volume for reset
-null = [] spawn {3 fadeSound 0.25}; // turrets are stupid loud
+// store volume for reset
+localNamespace setVariable ["BLWK_soundVolume",soundVolume];
+// turrets are stupid loud
+[] spawn {3 fadeSound 0.25}; 
 
-_vehicle lock true; // keep player from ejecting or switching seats with vanilla actions
-_vehicle enableCoPilot false; // disable the ability to take control of the aircraft
+// keep player from ejecting or switching seats with vanilla actions
+_vehicle lock true; 
+// disable the ability to take control of the aircraft
+_vehicle enableCoPilot false; 
 
 // set variable to limit player points while using the support
 missionNamespace setVariable ["BLWK_isAircraftGunner",true];
-missionNamespace setVariable [_globalUseVarString,true,true]; // set this type of gunner as active so multiple people can't spam it
+// set this type of gunner as active so multiple people can't spam it
+missionNamespace setVariable [_globalUseVarString,true,true]; 
 
 
 
-// create actions to switch turrets
+/* ----------------------------------------------------------------------------
+	Create actions to switch turrets
+---------------------------------------------------------------------------- */
 private _turretSwitchActions = [];
 private ["_turretAction_temp","_turretMagazines_temp","_turretPath_temp"];	
 {
@@ -137,6 +182,9 @@ private ["_turretAction_temp","_turretMagazines_temp","_turretPath_temp"];
 } forEach _turretsWithWeapons;
 
 
+/* ----------------------------------------------------------------------------
+	Store exit function
+---------------------------------------------------------------------------- */
 localNamespace setVariable ["BLWK_fnc_exitFromAircraft",{
 	params ["_caller","_actionId","_arguments"];
 
@@ -171,14 +219,17 @@ localNamespace setVariable ["BLWK_fnc_exitFromAircraft",{
 	// allow other users to access the support type again
 	missionNamespace setVariable [_arguments select 3,false,true];
 	
-	null = [] spawn BLWK_fnc_playAreaEnforcementLoop;
+	[] spawn BLWK_fnc_playAreaEnforcementLoop;
 
 	sleep 10;
 
 	_caller allowDamage true;
 }];
 
-// create action to exit the support and return to The Crate
+
+/* ----------------------------------------------------------------------------
+	Create action to exit the support and return to The Crate
+---------------------------------------------------------------------------- */
 private _exitAction = [	
 	player,
 	"<t color='#c91306'>Return To The Crate</t>", 
@@ -201,7 +252,10 @@ private _exitAction = [
 ] call BIS_fnc_holdActionAdd;
 
 
-// limited time for air support
+
+/* ----------------------------------------------------------------------------
+	While in use loop
+---------------------------------------------------------------------------- */
 [[_turretSwitchActions,_vehicle,_vehicleGroup,_globalUseVarString],_exitAction] spawn {
 	params ["_actionArgs","_exitAction"];
 	

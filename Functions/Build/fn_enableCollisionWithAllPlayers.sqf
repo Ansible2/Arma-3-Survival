@@ -15,22 +15,29 @@ Returns:
 Examples:
     (begin example)
 
-		null = [myObject] remoteExec ["BLWK_fnc_enableCollisionWithAllPlayers",myObject];
+		[myObject] remoteExec ["BLWK_fnc_enableCollisionWithAllPlayers",myObject];
 
     (end)
 
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+#define SCRIPT_NAME "BLWK_fnc_enableCollisionWithAllPlayers"
+scriptName SCRIPT_NAME;
+
+if (!canSuspend) exitWith {
+	["Executed in unscheduled environment, execing in scheduled",true] call KISKA_fnc_log;
+	_this spawn BLWK_fnc_enableCollisionWithAllPlayers;
+};
+
+
 params ["_object"];
 
 if (!local _object) exitWith {
-	null = [_object] remoteExec ["BLWK_fnc_enableCollisionWithAllPlayers",_object];
+	[["Found that object ",_object," was not local. RemoteExecing to owner"],false] call KISKA_fnc_log;
+	[_object] remoteExec ["BLWK_fnc_enableCollisionWithAllPlayers",_object];
 };
 
-if (!canSuspend) exitWith {
-	"Must be run in scheduled environment" call BIS_fnc_error;
-};
 
 private _players = call CBAP_fnc_players;
 
@@ -41,13 +48,12 @@ private _objectDimensions_Z = _objectDimensions select 2;
 
 // make sure a player is not colliding with the object before enabling their collsiion
 _players apply {
-	// check if the
 	waitUntil {
 		if !(_x inArea [_object, _objectDimensions_X, _objectDimensions_Y, 0, true, _objectDimensions_Z]) exitWith {true};
 		sleep 0.5;
 		false
 	};
 
-	null = [_object,_x] remoteExecCall ["enableCollisionWith",_x];
+	[_object,_x] remoteExecCall ["enableCollisionWith",_x];
 	_object enableCollisionWith _x;
 };

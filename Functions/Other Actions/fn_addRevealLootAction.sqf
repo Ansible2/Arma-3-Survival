@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [myBox] spawn BLWK_fnc_addRevealLootAction;
+		[myBox] spawn BLWK_fnc_addRevealLootAction;
 
     (end)
 

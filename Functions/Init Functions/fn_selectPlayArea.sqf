@@ -17,9 +17,7 @@ Returns:
 
 Examples:
     (begin example)
-
-		null = [] spawn BLWK_fnc_selectPlayArea;
-
+		[] spawn BLWK_fnc_selectPlayArea;
     (end)
 
 Author(s):
@@ -32,6 +30,7 @@ if (BLWK_customPlayLocation) then {
 	private ["_players","_adminIndex","_admin","_clientId_temp"];
 	waitUntil {
 		_players = call CBAP_fnc_players;
+		// find a player that is an admin or the server to select the area
 		_adminIndex = _players findIf {
 			_clientId_temp = owner _x;
 			_clientId_temp isEqualTo 2
@@ -39,8 +38,8 @@ if (BLWK_customPlayLocation) then {
 		};
 		// if we find an admin or host
 		if (_adminIndex != -1) exitWith {
-			null = ["A location to play at is being selected by the admin"] remoteExecCall ["hint",_players];
-			null = remoteExec ["BLWK_fnc_selectCustomPlayArea",_players select _adminIndex];
+			["A location to play at is being selected by the admin"] remoteExecCall ["hint",_players];
+			remoteExec ["BLWK_fnc_selectCustomPlayArea",_players select _adminIndex];
 
 			true
 		};

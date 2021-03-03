@@ -24,8 +24,9 @@
 
 #include "Faction Headers\Define Factions.hpp"
 
-__EXEC(_savedParams = profileNamespace getVariable ["BLWK_savedMissionParameters",[]]);
 
+/* // prior to 0.8 parameter getting
+__EXEC(_savedParams = profileNamespace getVariable ["BLWK_savedMissionParameters",[]]);
 #define FIND_CODE(PARAM) __EXEC(_findParamCode = compile "_x select 0 == "#PARAM"");
 #define GET_PARAM_INDEX __EXEC(_paramIndex = _savedParams findIf _findParamCode);
 #define FOUND_COMPILE call compile (["(_savedParams select _paramIndex) select 1","-1"] select (_savedParams isEqualTo []))
@@ -35,7 +36,18 @@ __EXEC(_savedParams = profileNamespace getVariable ["BLWK_savedMissionParameters
 	FIND_CODE(NAME)\
 	GET_PARAM_INDEX\
 	default = GET_PARAM_VALUE(DEFAULT_VALUE)\
+*/
 
+
+// prior to 0.9, used arrays instead of hashes. Since params are auto loaded, in order to avoid errors on previous parameter saves, 
+/// this will create an empty hash if an array is present in BLWK_savedMissionParameters or if nothing has been saved yet.
+/// ultimately allowing the use of the getOrDefault command for hashes
+__EXEC(_savedParams = [profileNamespace getVariable "BLWK_savedMissionParameters",createHashMap] select call compile "profileNamespace getVariable ['BLWK_savedMissionParameters',[]] isEqualType []");
+#define GET_DEFAULT_PARAM(NAME,DEFAULT_VALUE) default = __EVAL(_savedParams getOrDefault [#NAME,DEFAULT_VALUE]);
+	
+
+#define WAVE_STEPS_VALUES values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 25, 9999};
+#define WAVE_STEPS_TEXTS texts[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "20", "25", "Never"};
 
 // waves
 A_SECTION_HEADER(WAVE);
@@ -43,9 +55,9 @@ A_SECTION_HEADER(WAVE);
 class BLWK_maxNumWaves
 {
 	title = "How Many Waves";
-	values[] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 125, 150, 999999};
-	texts[] = {"10", "20", "30", "40","50","60","70","80","90","100", "125", "150", "Infinite"};
-	GET_DEFAULT_PARAM(BLWK_maxNumWaves,30)
+	values[] = {10, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100, 125, 150, 999999};
+	texts[] = {"10", "20", "25", "30", "40","50","60","70","80","90","100", "125", "150", "Infinite"};
+	GET_DEFAULT_PARAM(BLWK_maxNumWaves,25)
 };
 class BLWK_timeBetweenRounds
 {
@@ -57,16 +69,16 @@ class BLWK_timeBetweenRounds
 class BLWK_vehicleStartWave
 {
 	title = "Vehicles can spawn after wave";
-	values[] = {5, 10, 15, 20, 25, 9999};
-	texts[] = {"5", "10", "15", "20", "25", "Never"};
+	WAVE_STEPS_VALUES
+	WAVE_STEPS_TEXTS
 	GET_DEFAULT_PARAM(BLWK_vehicleStartWave,5)
 };
 class BLWK_specialWavesStartAt
 {
 	title = "Special Wave Possibility Starts At Wave";
-	values[] = {5, 10, 15, 20, 25, 9999};
-	texts[] = {"5", "10", "15", "20", "25", "Never"};
-	GET_DEFAULT_PARAM(BLWK_specialWavesStartAt,10)
+	WAVE_STEPS_VALUES
+	WAVE_STEPS_TEXTS
+	GET_DEFAULT_PARAM(BLWK_specialWavesStartAt,7)
 };
 class BLWK_maxEnemyInfantryAtOnce
 {
@@ -110,6 +122,13 @@ class BLWK_roundsBeforeBodyDeletion
 	values[] = {0, 1, 2};
 	texts[] = {"0 (until next round begins)", "1", "2"};
 	GET_DEFAULT_PARAM(BLWK_roundsBeforeBodyDeletion,1)
+};
+class BLWK_minRoundsSinceVehicleSpawned
+{
+	title = "The minimum number of waves between vehicle spawns";
+	values[] = {0, 1, 2};
+	texts[] = {"0", "1", "2"};
+	GET_DEFAULT_PARAM(BLWK_minRoundsSinceVehicleSpawned,0)
 };
 
 
@@ -315,16 +334,16 @@ class BLWK_showHitPoints
 class BLWK_pointsForKill
 {
 	title = "Base Points For Kill";
-	values[] = {10, 50, 100, 150, 200, 300};
-	texts[] = {"10","50","100","150","200","300"};
-	GET_DEFAULT_PARAM(BLWK_pointsForKill,100)
+	values[] = {10, 50, 100, 125, 150, 200, 300};
+	texts[] = {"10","50","100","125","150","200","300"};
+	GET_DEFAULT_PARAM(BLWK_pointsForKill,125)
 };
 class BLWK_pointsForHit
 {
 	title = "Base Points per Hit";
-	values[] = {0, 10, 20, 50, 100};
-	texts[] = {"0","10","20","50","100"};
-	GET_DEFAULT_PARAM(BLWK_pointsForHit,20)
+	values[] = {0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+	texts[] = {"0","10","20","30","40","50","60","70","80","90","100"};
+	GET_DEFAULT_PARAM(BLWK_pointsForHit,30)
 };
 class BLWK_pointsMultiForDamage
 {
@@ -427,41 +446,83 @@ class BLWK_lightCarLikelihood
 	title = "Enemy Light Car Likelihood";
 	values[] = ZERO_TO_TEN;
 	texts[] = ZERO_TO_TEN_STRINGS;
-	GET_DEFAULT_PARAM(BLWK_lightCarLikelihood,5)
+	GET_DEFAULT_PARAM(BLWK_lightCarLikelihood,4)
 };
 class BLWK_heavyCarLikelihood
 {
 	title = "Enemy Heavy Car Likelihood";
 	values[] = ZERO_TO_TEN;
 	texts[] = ZERO_TO_TEN_STRINGS;
-	GET_DEFAULT_PARAM(BLWK_heavyCarLikelihood,3)
+	GET_DEFAULT_PARAM(BLWK_heavyCarLikelihood,5)
 };
 class BLWK_lightArmorLikelihood
 {
 	title = "Enemy Light Armor Likelihood";
 	values[] = ZERO_TO_TEN;
 	texts[] = ZERO_TO_TEN_STRINGS;
-	GET_DEFAULT_PARAM(BLWK_lightArmorLikelihood,2)
+	GET_DEFAULT_PARAM(BLWK_lightArmorLikelihood,5)
 };
 class BLWK_heavyArmorLikelihood
 {
 	title = "Enemy Heavy Armor Likelihood";
 	values[] = ZERO_TO_TEN;
 	texts[] = ZERO_TO_TEN_STRINGS;
-	GET_DEFAULT_PARAM(BLWK_lightArmorLikelihood,1)
+	GET_DEFAULT_PARAM(BLWK_heavyArmorLikelihood,4)
 };
+class BLWK_transportHeliLikelihood
+{
+	title = "Enemy Door Gunner Likelihood";
+	values[] = ZERO_TO_TEN;
+	texts[] = ZERO_TO_TEN_STRINGS;
+	GET_DEFAULT_PARAM(BLWK_transportHeliLikelihood,5)
+};
+class BLWK_attackHeliLikelihood
+{
+	title = "Enemy Attack Helicopter Likelihood";
+	values[] = ZERO_TO_TEN;
+	texts[] = ZERO_TO_TEN_STRINGS;
+	GET_DEFAULT_PARAM(BLWK_attackHeliLikelihood,4)
+};
+
+
+// AI
+A_SPACE(AI);
+A_SECTION_HEADER(AI);
+
+class BLWK_doDetectCollision
+{
+	title = "Run Enemy AI Collision Script? (If you plan to be in a mostly rural environment, possibly turn off)";
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
+	GET_DEFAULT_PARAM(BLWK_doDetectCollision,1)
+};
+class BLWK_doDetectMines
+{
+	title = "Enemy AI Mine Detection";
+	values[] = ZERO_OR_ONE;
+	texts[] = OFF_OR_ON;
+	GET_DEFAULT_PARAM(BLWK_doDetectMines,1)
+};
+class BLWK_suppressionEnabled
+{
+	title = "Enemy AI Suppression (OFF for more aggressive/less cautious AI)";
+	values[] = ZERO_OR_ONE;
+	texts[] = OFF_OR_ON;
+	GET_DEFAULT_PARAM(BLWK_suppressionEnabled,0)
+};
+class BLWK_autocombatEnabled
+{
+	title = "Enemy AI AutoCombat (OFF for more aggressive/less cautious AI)";
+	values[] = ZERO_OR_ONE;
+	texts[] = OFF_OR_ON;
+	GET_DEFAULT_PARAM(BLWK_autocombatEnabled,0)
+};
+
 
 // Other
 A_SPACE(Other);
 A_SECTION_HEADER(Other);
 
-class BLWK_doDetectCollision
-{
-	title = "Run Enemy AI Collision Script? (If you plan to be in a mostly rural environment, turn off)";
-	values[] = ZERO_OR_ONE;
-	texts[] = NO_OR_YES;
-	GET_DEFAULT_PARAM(BLWK_doDetectCollision,1)
-};
 class BLWK_multipleLootReveals
 {
 	title = "Show all loot with reveal?";

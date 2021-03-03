@@ -1,3 +1,26 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_getSavedParamIndex
+
+Description:
+	Gets the array index in the "BLWK_savedMissionParameters" array inside
+	 of the profileNamespace.
+
+Parameters:
+	0: _missionParamName <STRING> - The name of the saved parameter
+
+Returns:
+	<NUMBER> - The index inside BLWK_savedMissionParameters, -1 if does not exist
+
+Examples:
+    (begin example)
+
+		_indexInArray = ["myParameterName"] call BLWK_fnc_getSavedParamIndex;
+
+    (end)
+
+Author(s):
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 params [
 	["_missionParamName",""]
 ];

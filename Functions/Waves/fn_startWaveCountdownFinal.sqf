@@ -33,7 +33,7 @@ while {_countDown >= 0} do {
 		playSound "beep_target";
 	};
 
-	null = [str _countDown, 0, 0, 1, 0] spawn BIS_fnc_dynamicText;
+	[str _countDown, 0, 0, 1, 0] spawn BIS_fnc_dynamicText;
 	
 	sleep 1;
 	_countDown = _countDown - 1;

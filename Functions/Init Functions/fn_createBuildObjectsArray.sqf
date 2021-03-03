@@ -3,6 +3,9 @@ Function: BLWK_fnc_createBuildObjectsArray
 
 Description:
 	Creates an array in the format of BLWK_buildableObjects_array from a config.
+	Used for faster look up times.
+
+	Executed from "BLWK_fnc_prepareGlobals"
 
 Parameters:
 	0: _configToSearch : <CONFIG> - The config path you wish to search for build item data
@@ -20,25 +23,30 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+#define SCRIPT_NAME "BLWK_fnc_createBuildObjectsArray"
+scriptName SCRIPT_NAME;
+
 params [
 	["_configToSearch",configNull,[configNull]]
 ];
 
 if (isNull _configToSearch) exitWith {
-	"BLWK_fnc_createBuildObjectsArray: _configToSearch isNull" call BIS_fnc_error;
+	["_configToSearch is null",true] call KISKA_fnc_log;
 };
 
 if !(isClass _configToSearch) exitWith {
-	["BLWK_fnc_createBuildObjectsArray: _configToSearch %1 is not a class",_configToSearch] call BIS_fnc_error;
+	[["The _configToSearch ",_configToSearch," does not exist. Exiting..."],true] call KISKA_fnc_log;
 };
 
 private _configs = "true" configClasses _configToSearch;
 
 if (_configs isEqualTo []) exitWith {
-	["BLWK_fnc_createBuildObjectsArray: No classes found in _configToSearch %1",_configToSearch] call BIS_fnc_error;
+	[["The _configToSearch ",_configToSearch," does not have any classes. Exiting..."],true] call KISKA_fnc_log;
 };
 
-private _returnArray = [];
+private _propertiesArray = [];
+private _classesArray = [];
+
 private [
 	"_class_temp",
 	"_price_temp",
@@ -67,10 +75,9 @@ _configs apply {
 		_keepInventory_temp = [_x >> "keepInventory"] call BIS_fnc_getCfgDataBool;
 		_detectCollision_temp = [_x >> "detectCollsion"] call BIS_fnc_getCfgDataBool;
 
-
-		_returnArray pushBack [
+		_classesArray pushBack (toLowerANSI _class_temp);
+		_propertiesArray pushBack [
 			_price_temp,
-			_class_temp,
 			_category_temp,
 			[_rotation_temp,[_attachmentX_temp,_attachmentY_temp,_attachmentZ_temp]],
 			_hasAI_temp,
@@ -81,4 +88,5 @@ _configs apply {
 	};
 };
 
-_returnArray
+
+[_classesArray,_propertiesArray]

@@ -1,15 +1,44 @@
 class BLWK
 {
+	class AiPathing
+	{
+		file = "functions\AI Pathing";
+		class pathing_checkGroupStatus
+		{};
+		class pathing_checkLeaderVelocity
+		{};
+		class pathing_collisionLoop
+		{};
+		class pathing_detailedStuckCheck
+		{};
+		class pathing_mainLoop 
+		{};
+	};
+
 	class Build
 	{
 		file = "functions\Build";
+		class addAllowDamageEH
+		{};
 		class addBuildableObjectActions 
 		{};
 		class addPickedUpObjectActions 
 		{};
+		class buildEvent_onPickedUp
+		{};
+		class buildEvent_onPlaced
+		{};
+		class buildEvent_onPurchasedPostfix
+		{};
+		class buildEvent_onPurchasedPostNetwork
+		{};
+		class buildEvent_onSold
+		{};
 		class disableCollisionWithAllPlayers
 		{};
 		class enableCollisionWithAllPlayers
+		{};
+		class getBuildEvent_onPurchasedPrefix
 		{};
 		class moveUpOrDown
 		{};
@@ -28,6 +57,19 @@ class BLWK
 		class rotateObject 
 		{};
 		class sellObject 
+		{};
+	};
+
+	class ItemReclaimer
+	{
+		file = "Functions\Unique Build Item Libraries\Item Reclaimer";
+		class itemReclaimer_init
+		{};
+		class itemReclaimer_onSold
+		{};
+		class itemReclaimer_addActions
+		{};
+		class itemReclaimer_reclaim
 		{};
 	};
 
@@ -66,6 +108,8 @@ class BLWK
 		class createBattleAmbienceSound
 		{};
 		class createBuildObjectsArray
+		{};
+		class createBuildObjectsHash
 		{};
 		class createSupportsArray
 		{};
@@ -130,7 +174,7 @@ class BLWK
 		{};
 		class musicManagerOnLoad_deleteButton
 		{};
-		class musicManagerOnLoad_loadCombo
+		class musicManagerOnLoad_loadControls
 		{};
 		class musicManagerOnLoad_pauseAndPlayButtons
 		{};
@@ -157,8 +201,6 @@ class BLWK
 		{};
 		class adjustPlayerTraits
 		{};
-		class aiCollisionLoop
-		{};
 	/*	
 		class checkDLC
 		{};
@@ -171,11 +213,13 @@ class BLWK
 		{};
 		class handleEnemyWeapons
 		{};
+		class handleWaitingForReviveEvent
+		{};
+		class hideFoliage
+		{};
 		class hintDroppedDelete
 		{};
 		class optreMedicalToVanilla
-		{};
-		class pathingLoop
 		{};
 		class randomizeWeapons
 		{};
@@ -191,6 +235,8 @@ class BLWK
 	{
 		file = "Functions\Other Actions";
 		class addMoneyPileAction
+		{};
+		class addOpenShopAction
 		{};
 		class addRevealLootAction
 		{};
@@ -209,16 +255,20 @@ class BLWK
 		};
 		class deleteSavedMissionParameters
 		{};
+	/*	
 		class getSavedParamIndex
 		{};
 		class getSavedParamValue
 		{};
+	*/
 		class paramsQuery
 		{};
 		class saveAllMissionParameters
 		{};
+	/*
 		class setParam
 		{};
+	*/
 	};
 	
 	class Points
@@ -243,44 +293,51 @@ class BLWK
 		{};
 	};
 
+	class SatelliteShop
+	{
+		file = "Functions\Unique Build Item Libraries\Satellite Shop";
+		class satelliteShop_addDeleteEvent
+		{};
+		class satelliteShop_init
+		{};
+		class satelliteShop_preparePlayer
+		{};
+	};
+
 	class ShopGUI
 	{
 		file = "Functions\Shop GUI";
-		class deleteAtGlobalArray
-		{};
-		class depositPointsButtonPressedEvent
-		{};
-		class mouseExitTreeEvent
-		{};
-		class mouseMoveTreeEvent
-		{};
 		class openShop
 		{};
-		class populateBuildTree
+		class shop_adjustCommunityPoolLoop
 		{};
-		class populateSupportTree
+		class shop_adjustPartnerControl
 		{};
-		class purchaseForPool
+		class shop_adjustPointsLoop
 		{};
-		class purchaseForSelf
+		class shop_depositPointsButtonPressedEvent
 		{};
-		class pushbackToGlobalArray
+		class shop_getPartnerControl
 		{};
-		class sellFromPoolButtonEvent
+		class shop_mouseExitTreeEvent
 		{};
-		class shopAdjustCommunityPoolLoop
+		class shop_mouseMoveTreeEvent
 		{};
-		class shopAdjustPartnerControl
+		class shop_onLoadEvent
 		{};
-		class shopAdjustPointsLoop
+		class shop_populateBuildTree
 		{};
-		class shopGetPartnerControl
+		class shop_populateSupportTree
 		{};
-		class shopOnLoadEvent
+		class shop_purchaseForPool
 		{};
-		class withdrawFromPoolButtonEvent
+		class shop_purchaseForSelf
 		{};
-		class withdrawPointsButtonPressedEvent
+		class shop_sellFromPoolButtonEvent
+		{};			
+		class shop_withdrawFromPoolButtonEvent
+		{};
+		class shop_withdrawPointsButtonPressedEvent
 		{};
 	};
 
@@ -295,13 +352,15 @@ class BLWK
 		{};
 		class callingForSupportMaster
 		{};
-		class cas
-		{};
 		class createLootMarkers
 		{};
 		class cruiseMissileStrike
 		{};
+		class daisyCutter
+		{};
 		class healPlayer
+		{};
+		class passiveHelicopterGunner
 		{};
 		class purchaseSupport
 		{};
@@ -330,7 +389,7 @@ class BLWK
 		{};
 	};
 
-	// Wave Type Librariers
+	// Wave Type Libraries
 	class CivilianWaveLibrary
 	{
 		file = "Functions\Wave Type Libraries\Civilian Wave Library";
@@ -426,6 +485,13 @@ class BLWK
 		{};
 	};
 
+	class TwelveHourWaveLibrary
+	{
+		file = "Functions\Wave Type Libraries\Twelve Hour Wave Library";
+		class handleTwelveHourWave
+		{};
+	};
+
 	class Waves
 	{
 		file = "Functions\Waves";
@@ -440,8 +506,6 @@ class BLWK
 		class endWave
 		{};
 		class isWaveCleared
-		{};
-		class setCrew
 		{};
 		class setSkill
 		{};

@@ -3,7 +3,8 @@ Function: BLWK_fnc_dragUnitEvent
 
 Description:
 	Handles the actual dragging of a unit.
-	Attaches the dragged unit to the player and perfroms andimations
+	Attaches the dragged unit to the player and perfroms animations
+	
 	Adds the release action too.
 
 	Executed from "BLWK_fnc_addDragAction"
@@ -16,9 +17,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		[_unitToDrag] call BLWK_fnc_dragUnitEvent;
-
     (end)
 
 Author(s):
@@ -30,11 +29,11 @@ if (!hasInterface) exitWith {};
 params ["_unitToDrag"];
 
 // set dragged units animations
-null = [_unitToDrag,"AinjPpneMrunSnonWnonDb_grab"] remoteExecCall ["switchMove",0,true];
+[_unitToDrag,"AinjPpneMrunSnonWnonDb_grab"] remoteExecCall ["switchMove",0,_unitToDrag];
 _unitToDrag attachTo [player,[0,1.2,0]];
-null = [_unitToDrag,180] remoteExecCall ["setDir",_unitToDrag];
+[_unitToDrag,180] remoteExecCall ["setDir",_unitToDrag];
 
-null = [_unitToDrag] remoteExec ["BLWK_fnc_handleReviveAfterDrag",_unitToDrag];
+[_unitToDrag] remoteExec ["BLWK_fnc_handleReviveAfterDrag",_unitToDrag];
 
 // set players animations
 player playAction "grabDrag";
@@ -50,22 +49,26 @@ missionNamespace setVariable ["BLWK_releaseDragActionId",_releaseActionId];
 
 
 // loop for certain conditions to auto drop the person being dragged
-null = [_unitToDrag] spawn {
+[_unitToDrag] spawn {
 	params ["_draggedUnit"];
 
 	private _conditionCheck = {
-		!(missionNamespace getVariable ["BLWK_draggingUnit",false]) OR 
+		// if not dragging someone
+		!(missionNamespace getVariable ["BLWK_draggingUnit",false]) OR
+		// if player died 
 		{!alive player} OR 
-		{!(incapacitatedState player isEqualTo "")} OR 
+		// if player was incapacitated
+		{(incapacitatedState player) isNotEqualTo ""} OR 
+		// if the dragged unit died
 		{!alive _draggedUnit} OR
-		// check to see if unit was revived 
+		// if the dragged unit was revived
 		{incapacitatedState _draggedUnit isEqualTo ""}
 	};
 
 	waitUntil {
 		if (call _conditionCheck) exitWith {
 			
-			// check to see if the dragged unit was released
+			// release dragged unit if condition is met in _conditionCheck and they were not already dropped
 			if (!isNil "BLWK_releaseDragActionId") then {
 				[_draggedUnit] call BLWK_fnc_releaseDragEvent;
 			};

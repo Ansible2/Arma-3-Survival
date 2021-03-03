@@ -2,7 +2,7 @@
 Function: BLWK_fnc_theCrateBuildingsLoop
 
 Description:
-	Makes (terrain) buildings within the selected radius of the Crate indestructable
+	Makes (terrain) buildings within the selected radius of the Crate indestructable.
 
 	Executed from "initServer.sqf"
 
@@ -14,9 +14,7 @@ Returns:
 
 Examples:
     (begin example)
-
-		null = [] spawn BLWK_fnc_theCrateBuildingsLoop;
-
+		[] spawn BLWK_fnc_theCrateBuildingsLoop;
     (end)
 
 Author(s):
@@ -37,13 +35,13 @@ while {BLWK_buildingsNearTheCrateAreIndestructable_radius > 0} do {
 		_buildingsToMakeVulnerable = _invincibleBuildings select {!(_x in _buildingsCurrentlyNear)};
 		_buildingsToMakeVulnerable apply {
 			sleep 0.5;
-			[_x,true] remoteExecCall ["allowDamage",0,true];
+			[_x,true] remoteExecCall ["allowDamage",0,_x];
 			//_x allowDamage true;
 		};
 		_buildingsCurrentlyNear apply {
 			if (isDamageAllowed _x) then {
 				// terrain objects are local to everyone and need to be set as allowed false on every machine
-				[_x,false] remoteExecCall ["allowDamage",0,true];
+				[_x,false] remoteExecCall ["allowDamage",0,_x];
 				//_x allowDamage false;
 			};
 		};

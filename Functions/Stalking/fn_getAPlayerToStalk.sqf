@@ -13,9 +13,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		_bestStalkablePlayer = call BLWK_fnc_getAPlayerToStalk;
-
     (end)
 
 Author(s):
@@ -30,13 +28,24 @@ if (_players isEqualTo []) exitWith {
 
 // get the player with the least amount of stalkers
 private _playerStalkerCounts = [];
-_players apply {
-	if !(isNull _x) then {
-		_playerStalkerCounts pushBack (_x getVariable [STALKER_COUNT_VAR,0]);
+private ["_lowestStalkerCount","_playerWithLowestStalkers","_numberOfStalkers"];
+{
+	_numberOfStalkers = _x getVariable [STALKER_COUNT_VAR,0];
+	_playerStalkerCounts pushBack _numberOfStalkers;
+	if (_forEachIndex isEqualTo 0) then {
+		_lowestStalkerCount = _numberOfStalkers;
+		_playerWithLowestStalkers = _x;
+	} else {
+		if (_numberOfStalkers < _lowestStalkerCount) then {
+			_lowestStalkerCount = _numberOfStalkers;
+			_playerWithLowestStalkers = _x;
+		};
 	};
-};
-private _lowestStalkerCount = selectMin _playerStalkerCounts;
-private _playerWithLowestStalkers = _players select (_playerStalkerCounts findIf {_x isEqualTo _lowestStalkerCount});
+} forEach _players;
+
+//private _lowestStalkerCount = selectMin _playerStalkerCounts;
+//private _playerWithLowestStalkers = _players select (_playerStalkerCounts findIf {_x isEqualTo _lowestStalkerCount});
 
 
+[["Returning player: ",_playerWithLowestStalkers," with a stalker count of: ",_lowestStalkerCount],false] call KISKA_fnc_log;
 _playerWithLowestStalkers

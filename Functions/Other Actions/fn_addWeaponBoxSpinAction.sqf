@@ -37,7 +37,7 @@ _randomWeaponBox addAction [
 		};
 
 		[BLWK_costToSpinRandomBox] call BLWK_fnc_subtractPoints;
-		null = remoteExec ["BLWK_fnc_spinRandomWeaponBox",2]; 
+		remoteExec ["BLWK_fnc_spinRandomWeaponBox",2]; 
 	}, 
 	nil, 
 	100,  

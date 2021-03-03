@@ -13,21 +13,22 @@ Returns:
 Examples:
     (begin example)
 
-		["LeadTrack01_F_Curator"] call KISKA_fnc_getMusicDuration;
+		_duration = ["LeadTrack01_F_Curator"] call KISKA_fnc_getMusicDuration;
 
     (end)
 
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-scriptName "KISKA_fnc_getMusicDuration";
+#define SCRIPT_NAME "KISKA_fnc_getMusicDuration"
+scriptName SCRIPT_NAME;
 
 params [
 	["_track","",["",configNull]]
 ];
 
 if (_track isEqualTo "") exitWith {
-	"No class string passed" call BIS_fnc_error;
+	["_track is empty string",true] call KISKA_fnc_log;
 };
 
 private _duration = 0;
@@ -39,7 +40,7 @@ if (_track isEqualType configNull) then {
 };
 
 if (isNull _config) exitWith {
-	["_track %1 is not defined in any cfgMusic class",_track] call BIS_fnc_error;
+	[["_track ",_track," is not defined in any CfgMusic class"],true] call KISKA_fnc_log;
 	_duration
 };
 
