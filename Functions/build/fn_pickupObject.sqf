@@ -75,7 +75,12 @@ missionNamespace setVariable ["BLWK_heldObject",_object];
 	params ["_object","_player"];
 
 	waitUntil {
-		if (isNil "BLWK_heldObject" OR {!(alive _player)} OR {incapacitatedState _player isNotEqualTo ""} OR {_player getVariable ["ace_isUnconscious",false]}) exitWith {
+		if (
+			isNil "BLWK_heldObject" OR 
+			{!(alive _player)} OR 
+			{incapacitatedState _player isNotEqualTo ""} OR 
+			{_player getVariable ["ace_isUnconscious",false]}
+		) exitWith {
 			
 			// check to see if object was already dropped (if the fnc was already called, BLWK_heldObjectActionIDs will have been set to nil)
 			if (!isNil "BLWK_heldObjectActionIDs") then {
