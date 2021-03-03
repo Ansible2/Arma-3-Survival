@@ -30,6 +30,7 @@ if (isNull _satelliteObject) exitWith {
 
 missionNamespace setVariable ["BLWK_satShopOut",true];
 _satelliteObject lockInventory true;
-[_satelliteObject] call BLWK_addOpenShopAction;
+[_satelliteObject] call BLWK_fnc_addOpenShopAction;
+
 
 nil

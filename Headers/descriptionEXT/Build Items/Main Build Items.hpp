@@ -415,12 +415,8 @@ class BLWK_buildableItems
 		detectCollsion = 0;
 
 		onSold = "hint 'Shops cannot be sold'; false";
-		onPurchasedPrefix = "	
-			if (BLWK_satShopOut) then {
-				hint 'There is already a satellite shop present';
-				_doExit = true;
-			};
-		";
+		onPurchasedPrefix = "if (BLWK_satShopOut) then {hint 'There is already a satellite shop present'; _doExit = true; _refund = false;};";
+		onPurchasedPostfix = "[_object] call BLWK_fnc_satelliteShop_init";
 	};
 
 	class Land_GarbageContainer_open_F : BLWK_genericBuildItemBase
