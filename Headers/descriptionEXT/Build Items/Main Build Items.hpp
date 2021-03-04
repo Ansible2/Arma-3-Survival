@@ -406,13 +406,15 @@ class BLWK_buildableItems
 	class C_IDAP_supplyCrate_F : BLWK_genericBuildItemBase
 	{
 		displayName = "Satellite Shop";
-		price = 100;
+		price = 1000;
 		category = UNIQUE_CATEGORY;
 		attachmentY = 2;
 		attachmentZ = 1;
 		invincible = 1;
 		keepInventory = 0;
 		detectCollsion = 0;
+
+		tooltip = "Get a secondary shop that lasts 2 full waves";
 
 		onSold = "hint 'Shops cannot be sold'; false";
 		onPurchasedPrefix = "if (BLWK_satShopOut) then {hint 'There is already a satellite shop present'; _doExit = true; _refund = false;};";
