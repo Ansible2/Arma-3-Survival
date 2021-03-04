@@ -214,7 +214,13 @@
 	212,\
 	213,\
 	214,\
-  215
+  	215,\
+	216,\
+	217,\
+	218,\
+	219,\
+	220,\
+	221
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -231,6 +237,12 @@
 	"CONTACT - NATO WOODLAND", \
 	"CONTACT - LDF", \
 	"CONTACT - Spetznas", \
+	"3CB-BAF - Army Artic", \
+	"3CB-BAF - Army Desert", \
+	"3CB-BAF - Army Multicam (MTP)", \
+	"3CB-BAF - Army Temperate", \
+	"3CB-BAF - Army Tropical", \
+	"3CB-BAF - Army Woodland", \
 	"Aegis - AAF", \
 	"Aegis - British Armed Forces", \
 	"Aegis - British Armed Forces (Pacific)", \
