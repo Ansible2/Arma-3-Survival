@@ -22,14 +22,16 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-params ["_shopDisplay"];
+scriptName "BLWK_fnc_shop_adjustCommunityPoolLoop";
 
 if (!canSuspend) exitWith {
-	"BLWK_fnc_shop_adjustCommunityPoolLoop must be run in scheduled environment" call BIS_fnc_error;
+	["Must be run in scheduled environment! Exiting to scheduled..."] call KISKA_fnc_log;
+	_this spawn BLWK_fnc_shop_adjustCommunityPoolLoop
 };
 
 disableSerialization;
 
+params ["_shopDisplay"];
 
 // initialize global vars if not done
 if (isNil TO_STRING(BLWK_SHOP_BUILD_POOL_GVAR)) then {
@@ -98,7 +100,7 @@ private _fn_adjustTree = {
 		};
 	};
 
-	private _countOfDisplayed = count _displayedArray - 1; // want index numbers -1
+	private _countOfDisplayed = count _displayedArray - 1; // want index numbers - 1
 	private _countOfCurrent = count _globalArray - 1; // 0
 
 	{	
@@ -124,6 +126,7 @@ private _fn_adjustTree = {
 
 	} forEach _globalArray;
 
+	// delete overflow indexes that are no longer accurate
 	if (_countOfDisplayed > _countOfCurrent) then {
 		private _indexToDelete = _countOfCurrent + 1;
 		for "_i" from _countOfCurrent to _countOfDisplayed do {
