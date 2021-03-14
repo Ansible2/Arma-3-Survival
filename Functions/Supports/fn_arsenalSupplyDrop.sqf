@@ -6,7 +6,7 @@ Description:
 
 Parameters:
 	0: _dropPosition : <ARRAY> - The position (area) to drop the arsenal
-  	1: _vehicleClass : <STRING> - The class of the vehicle to drop the
+  	1: _vehicleClass : <STRING> - The class of the vehicle to drop the arsenal
 
 Returns:
 	NOTHING
