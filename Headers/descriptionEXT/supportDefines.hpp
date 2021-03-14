@@ -73,8 +73,8 @@
 #define CAS_ROCKETS_AP_TEXT "CAS - Rockets (Armor Piercing)"
 
 // CAS UGB Bomb
-#define CAS_BOMB_UGB_CLASS casUGB_commMenu
-#define CAS_BOMB_UGB_TEXT "CAS - Unguided Bomb Drop"
+#define CAS_BOMB_LGB_CLASS casLGB_commMenu
+#define CAS_BOMB_LGB_TEXT "CAS - Laser Guided Bomb Drop"
 // CAS Cluster Bomb
 #define CAS_BOMB_CLUSTER_CLASS casClusterBomb_commMenu
 #define CAS_BOMB_CLUSTER_TEXT "CAS - Cluster Bomb Drop"

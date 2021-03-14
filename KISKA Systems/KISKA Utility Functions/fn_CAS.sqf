@@ -41,7 +41,7 @@ Author(s):
 #define AGM_TYPE "AGM"
 #define ROCKETS_AP_TYPE "ROCKETS_AP"
 #define ROCKETS_HE_TYPE "ROCKETS_HE"
-#define BOMB_UGB_TYPE "BOMB UGB"
+#define BOMB_LGB_TYPE "BOMB LGB"
 #define BOMB_CLUSTER_TYPE "BOMB CLUSTER"
 
 #define DEFAULT_CANNON_CLASS "Twin_Cannon_20mm"
@@ -101,7 +101,7 @@ private _attackMagazines = switch _attackTypeID do {
 		[[AGM_TYPE,"PylonRack_1Rnd_Missile_AGM_02_F"]]
 	};
 	case BOMB_UGB_ID: {
-		[[BOMB_UGB_TYPE,"PylonMissile_1Rnd_Bomb_04_F"]]
+		[[BOMB_LGB_TYPE,"PylonMissile_1Rnd_Bomb_04_F"]]
 	};
 	case BOMB_CLUSTER_ID: {
 		[[BOMB_CLUSTER_TYPE,"PylonMissile_1Rnd_BombCluster_01_F"]]
@@ -252,7 +252,7 @@ KISKA_fnc_casAttack = {
 			[AGM_TYPE] call _fn_fireSimple;
 		};
 		case BOMB_UGB_ID: {
-			[BOMB_UGB_TYPE] call _fn_fireSimple;
+			[BOMB_LGB_TYPE] call _fn_fireSimple;
 		};
 		case BOMB_CLUSTER_ID: {
 			[BOMB_CLUSTER_TYPE] call _fn_fireSimple;

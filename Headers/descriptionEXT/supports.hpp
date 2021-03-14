@@ -33,7 +33,7 @@
 
 /*
 	if a class is to be solely a base one, you need to include _baseClass (EXACTLY AS IT IS CASE SENSITIVE)
-	 somewhere in the class name so that it can be excluded from ebing added to the shop
+	 somewhere in the class name so that it can be excluded from being added to the shop
 */
 class basicSupport_baseClass
 {
@@ -238,11 +238,11 @@ class CAS_ROCKETS_AP_CLASS : CAS_GUN_RUN_CLASS
     expression = CALL_SUPPORT_MASTER(CAS_ROCKETS_AP_CLASS);
 };
 // bombs
-class CAS_BOMB_UGB_CLASS : CAS_GUN_RUN_CLASS
+class CAS_BOMB_LGB_CLASS : CAS_GUN_RUN_CLASS
 {
 	price = 400;
-	text = CAS_BOMB_UGB_TEXT;
-    expression = CALL_SUPPORT_MASTER(CAS_BOMB_UGB_CLASS);
+	text = CAS_BOMB_LGB_TEXT;
+    expression = CALL_SUPPORT_MASTER(CAS_BOMB_LGB_CLASS);
 };
 class CAS_BOMB_CLUSTER_CLASS : CAS_GUN_RUN_CLASS
 {
