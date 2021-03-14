@@ -22,9 +22,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		[] spawn BLWK_fnc_paratroopers;
-
     (end)
 
 Author(s):

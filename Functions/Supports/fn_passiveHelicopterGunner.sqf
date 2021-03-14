@@ -43,9 +43,6 @@ Author(s):
 
 
 Issues:
-	- The helicopter sometimes stops short of the support zone and never gets inside which results in an infinite loop
-	- Larger helicopters sometimes get into a very difficult to control rotation that they can't get out of
-	- Sometimes, the helicopter will not RTB, it will just circle the area and eventually leave
 	- Needs to use event handlers for the destruction of the helicopter to say over the radio that the support is dead instead of a loop	
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_passiveHelicopterGunner";
