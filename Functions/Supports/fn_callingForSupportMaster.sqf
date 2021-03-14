@@ -17,7 +17,7 @@ Returns:
 
 Examples:
     (begin example)
-		[_caller,_targetPosition] call BLWK_fnc_callingForSupportMaster;
+		[_caller,_targetPosition,"someClass"] call BLWK_fnc_callingForSupportMaster;
     (end)
 
 Authors:
@@ -178,7 +178,7 @@ if (CHECK_SUPPORT_CLASS(CAS_ROCKETS_HE_CLASS)) exitWith {
 if (CHECK_SUPPORT_CLASS(CAS_AGM_CLASS)) exitWith {
 	CAS_EXPRESSSION(5)
 };
-if (CHECK_SUPPORT_CLASS(CAS_BOMB_UGB_CLASS)) exitWith {
+if (CHECK_SUPPORT_CLASS(CAS_BOMB_LGB_CLASS)) exitWith {
 	CAS_EXPRESSSION(6)
 };
 if (CHECK_SUPPORT_CLASS(CAS_BOMB_CLUSTER_CLASS)) exitWith {
