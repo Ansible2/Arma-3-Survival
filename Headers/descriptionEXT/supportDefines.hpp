@@ -74,7 +74,7 @@
 
 // CAS UGB Bomb
 #define CAS_BOMB_LGB_CLASS casLGB_commMenu
-#define CAS_BOMB_LGB_TEXT "CAS - Laser Guided Bomb Drop"
+#define CAS_BOMB_LGB_TEXT "CAS - Laserguided Bomb Drop"
 // CAS Cluster Bomb
 #define CAS_BOMB_CLUSTER_CLASS casClusterBomb_commMenu
 #define CAS_BOMB_CLUSTER_TEXT "CAS - Cluster Bomb Drop"
