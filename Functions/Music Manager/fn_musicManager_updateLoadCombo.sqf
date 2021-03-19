@@ -20,6 +20,7 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+disableSerialization;
 scriptName "BLWK_fnc_musicManager_updateLoadCombo";
 
 if (!canSuspend) exitWith {

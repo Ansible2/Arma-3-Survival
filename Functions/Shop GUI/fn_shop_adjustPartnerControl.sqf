@@ -24,9 +24,9 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-params ["_control","_value"];
-
 disableSerialization;
+
+params ["_control","_value"];
 
 private _controlType = ctrlType _control;
 

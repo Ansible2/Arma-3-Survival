@@ -19,6 +19,7 @@ Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 #define SCRIPT_NAME "BLWK_fnc_musicManagerOnLoad_closeButton"
+disableSerialization;
 scriptName SCRIPT_NAME;
 
 params ["_control"];

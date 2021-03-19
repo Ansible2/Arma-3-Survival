@@ -19,6 +19,7 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+disableSerialization;
 scriptName "BLWK_fnc_musicManagerOnLoad_availableMusicList";
 
 params ["_control"];

@@ -22,14 +22,13 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+disableSerialization;
 scriptName "BLWK_fnc_shop_adjustCommunityPoolLoop";
 
 if (!canSuspend) exitWith {
 	["Must be run in scheduled environment! Exiting to scheduled..."] call KISKA_fnc_log;
 	_this spawn BLWK_fnc_shop_adjustCommunityPoolLoop
 };
-
-disableSerialization;
 
 params ["_shopDisplay"];
 

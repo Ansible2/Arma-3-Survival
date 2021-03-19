@@ -26,9 +26,9 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-params ["_tv"];
-
 disableSerialization;
+
+params ["_tv"];
 
 private "_imagePath";
 // find out if something is currently selected

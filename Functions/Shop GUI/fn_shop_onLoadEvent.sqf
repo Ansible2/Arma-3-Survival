@@ -23,9 +23,9 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-params ["_display"];
-
 disableSerialization;
+
+params ["_display"];
 
 [_display] spawn BLWK_fnc_shop_adjustPointsLoop;
 [_display] spawn BLWK_fnc_shop_adjustCommunityPoolLoop;

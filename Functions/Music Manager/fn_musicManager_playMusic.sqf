@@ -22,6 +22,7 @@ Author(s):
 ---------------------------------------------------------------------------- */
 #define INTERVAL 0.01
 #define SCRIPT_NAME "BLWK_fnc_musicManager_playMusic"
+disableSerialization;
 scriptName SCRIPT_NAME;
 
 if (!canSuspend) exitWith {

@@ -24,9 +24,9 @@ Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 // CIPHER COMMENT: alot of this should be cached in the future for optimization
-params ["_tv"];
-
 disableSerialization;
+
+params ["_tv"];
 
 // if support dish was not found show message
 if !(BLWK_supportDishFound) exitWith {

@@ -19,9 +19,8 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if (!hasInterface) exitWith {};
-
 disableSerialization;
+if (!hasInterface) exitWith {};
 
 params ["_control"];
 private _partnerControls = [_control] call KISKA_fnc_findVDLPartnerControl;

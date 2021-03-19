@@ -22,9 +22,9 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-params ["_control"];
-
 disableSerialization;
+
+params ["_control"];
 
 private _ctrlIDC = ctrlIDC _control;
 private _controlInfo = switch (_ctrlIDC) do {

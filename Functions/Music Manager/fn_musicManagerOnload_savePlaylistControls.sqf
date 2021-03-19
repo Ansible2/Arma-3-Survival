@@ -21,6 +21,7 @@ Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 #define SCRIPT_NAME "BLWK_fnc_musicManagerOnLoad_savePlaylistControls"
+disableSerialization;
 scriptName SCRIPT_NAME;
 
 params ["_saveButtonControl","_saveAsButtonControl"];

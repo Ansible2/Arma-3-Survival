@@ -20,6 +20,7 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+disableSerialization;
 scriptName "BLWK_fnc_musicManagerOnLoad_loadControls";
 
 params ["_loadComboControl","_loadButtonControl"];

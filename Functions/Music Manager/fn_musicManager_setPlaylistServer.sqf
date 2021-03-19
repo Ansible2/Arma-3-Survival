@@ -21,6 +21,7 @@ Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 #define SCRIPT_NAME "BLWK_fnc_musicManager_setPlaylistServer"
+disableSerialization;
 scriptName SCRIPT_NAME;
 
 if (!isServer) exitWith {

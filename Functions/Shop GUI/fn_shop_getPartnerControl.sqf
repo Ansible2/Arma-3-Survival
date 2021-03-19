@@ -24,6 +24,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 #define CONTROL(IDC) (findDisplay BLWK_SHOP_IDD) displayCtrl IDC
 
+disableSerialization;
+
 params [
 	["_controlIDC",controlNull,[controlNull,123]]
 ];
@@ -40,6 +42,6 @@ if (_controlIDC isEqualTo BLWK_SHOP_POINTS_WITHDRAW_SLIDER_IDC) exitWith {CONTRO
 if (_controlIDC isEqualTo BLWK_SHOP_POINTS_DEPOSIT_SLIDER_IDC) exitWith {CONTROL(BLWK_SHOP_POINTS_DEPOSIT_EDIT_IDC)};
 if (_controlIDC isEqualTo BLWK_SHOP_POINTS_DEPOSIT_EDIT_IDC) exitWith {CONTROL(BLWK_SHOP_POINTS_DEPOSIT_SLIDER_IDC)};
 
-["%1 no partner IDC found",_controlIDC] call BIS_fnc_error;
+[["No partner for IDC:",_controlIDC," found"],true] call KISKA_fnc_log;
 
 controlNull

@@ -25,9 +25,9 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-params ["_tv","_path"];
-
 disableSerialization;
+
+params ["_tv","_path"];
 
 private _fn_setImagePathDefault = {
 	_imagePath =  getMissionPath "\preview.paa";

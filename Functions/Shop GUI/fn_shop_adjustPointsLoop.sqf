@@ -24,9 +24,8 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-params ["_shopDisplay"];
-
 disableSerialization;
+params ["_shopDisplay"];
 
 // sliderSetSpeed command is currently broken, awaiting fix
 // https://feedback.bistudio.com/T154871

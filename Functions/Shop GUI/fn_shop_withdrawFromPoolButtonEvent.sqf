@@ -24,10 +24,9 @@ Author(s):
 ---------------------------------------------------------------------------- */
 #define BUILD_TREE 0
 #define SUPPORT_TREE 1
+disableSerialization;
 
 params ["_control"];
-
-disableSerialization;
 
 // get currently selected
 private _display = ctrlParent _control;

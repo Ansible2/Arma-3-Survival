@@ -18,9 +18,8 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if (!hasInterface) exitWith {false};
-
 disableSerialization;
+if (!hasInterface) exitWith {false};
 
 #include "..\ViewDistanceLimiterCommonDefines.hpp"
 

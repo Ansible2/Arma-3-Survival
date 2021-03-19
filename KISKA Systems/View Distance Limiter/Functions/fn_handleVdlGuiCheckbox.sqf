@@ -22,9 +22,8 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if (!hasInterface) exitWith {};
-
 disableSerialization;
+if (!hasInterface) exitWith {};
 
 params ["_control","_checked"];
 

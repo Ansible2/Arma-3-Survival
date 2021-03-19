@@ -23,9 +23,9 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-params ["_control"];
-
 disableSerialization;
+
+params ["_control"];
 
 private _display = ctrlParent _control;
 private _sliderControl = _display displayCtrl BLWK_SHOP_POINTS_WITHDRAW_SLIDER_IDC;
