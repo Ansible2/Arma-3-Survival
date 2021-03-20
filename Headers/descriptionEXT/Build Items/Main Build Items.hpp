@@ -103,7 +103,7 @@ class BLWK_buildableItems
 	class Land_DomeDebris_01_hex_green_F: BLWK_genericBuildItemBase
 	{
 		price = 85;
-		category = OBSTACLES_CATEGORY;
+		category = PLATFORMS_CATEGORY;
 		rotation = 180;
 		attachmentZ = 0.75;
 	};
