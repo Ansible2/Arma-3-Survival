@@ -164,7 +164,7 @@ _vehicleCrew apply {
 
 // keep the pilots from freaking out under fire
 private _pilotsGroup = _vehicleArray select 2;
-_pilotsGroup setBehaviour "SAFE";
+_pilotsGroup setBehaviour "CARELESS"; // Only careless group will follow speed limit
 // the pilot group's combat mode MUST be a fire-at-will version as it adjusts it for the entire vehicle
 _pilotsGroup setCombatMode "RED";
 
