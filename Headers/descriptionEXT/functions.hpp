@@ -117,16 +117,6 @@ class BLWK
 		{};
 		class infoPanelLoop
 		{};
-		class initClientAlias
-		{};
-		class initServerAlias
-		{};
-	/*
-		class keepPlayerInGroup
-		{
-			//postInit = 1;
-		};
-	*/
 		class keepPlayerLoadout
 		{
 			postInit = 1;
@@ -255,20 +245,10 @@ class BLWK
 		};
 		class deleteSavedMissionParameters
 		{};
-	/*	
-		class getSavedParamIndex
-		{};
-		class getSavedParamValue
-		{};
-	*/
 		class paramsQuery
 		{};
 		class saveAllMissionParameters
 		{};
-	/*
-		class setParam
-		{};
-	*/
 	};
 	
 	class Points
