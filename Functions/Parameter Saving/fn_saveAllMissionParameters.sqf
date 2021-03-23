@@ -31,7 +31,6 @@ _paramClasses apply {
 	if (!("SPACE" in _configName) AND {!("LABEL" in _configName)}) then {
 		_paramValue = _configName call BIS_fnc_getParamValue;
 		_paramHash set [_configName,_paramValue];
-		//[_configName] call BLWK_fnc_setParam;
 	};
 };
 
