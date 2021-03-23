@@ -24,7 +24,7 @@ Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define SPECIAL_WAVE_LIKELIHOOD 0.4
+#define SPECIAL_WAVE_LIKELIHOOD 0.3
 #define STANDARD_WAVE_LIKELIHOOD 1.25
 #define SPECIAL_WAVES \
 [ \
