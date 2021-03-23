@@ -7,10 +7,10 @@ Description:
 	Executed from "BLWK_fnc_handleOverrunWave"
 
 Parameters:
-	<BOOL> - Does play area meet the standards to have an overrun wave
+	NONE
 
 Returns:
-	NOTHING
+	<BOOL> - Does play area meet the standards to have an overrun wave
 
 Examples:
     (begin example)
