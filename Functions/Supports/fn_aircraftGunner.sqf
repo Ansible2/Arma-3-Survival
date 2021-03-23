@@ -219,7 +219,7 @@ localNamespace setVariable ["BLWK_fnc_exitFromAircraft",{
 	// allow other users to access the support type again
 	missionNamespace setVariable [_arguments select 3,false,true];
 	
-	[] spawn BLWK_fnc_playAreaEnforcementLoop;
+	[false] call BLWK_fnc_playAreaEnforcementLoop;
 
 	sleep 10;
 
