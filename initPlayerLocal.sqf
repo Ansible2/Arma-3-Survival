@@ -65,7 +65,7 @@ _player switchMove ""; // set player standing
 
 [_player] call BLWK_fnc_initDragSystem;
 
-[] spawn BLWK_fnc_playAreaEnforcementLoop;
+[false] call BLWK_fnc_playAreaEnforcementLoop;
 
 waitUntil {
     sleep 0.1;

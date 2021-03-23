@@ -202,12 +202,6 @@ if (hasInterface) then {
     if (isNil "BLWK_communityKillPoints") then {
        BLWK_communityKillPoints = "BLWK_startingCommunityKillPoints" call BIS_fnc_getParamValue;
     };
-
-    // this is to have potential supports that put the player outside the immediate radius
-    // it is false until the play area is established
-    if (isNil "BLWK_enforceArea") then {
-        BLWK_enforceArea = false;
-    };
 };
 
 // keep track of a satellite shop being out or not
