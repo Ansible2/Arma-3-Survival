@@ -63,7 +63,7 @@ private _fn_addReviveAction = {
 		{},
 		[],
 		1,
-		100,
+		10000,
 		false,
 		true
 	] call BIS_fnc_holdActionAdd;
