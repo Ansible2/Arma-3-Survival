@@ -65,7 +65,8 @@ if (isServer) then {
 
     /* Time of Day*/
     BLWK_timeOfDay = ("BLWK_timeOfDay" call BIS_fnc_getParamValue);
-
+	BLWK_daySpeedMultiplier = ("BLWK_daySpeedMultiplier" call BIS_fnc_getParamValue);
+	
     /* Starter MediKits */
     BLWK_numMedKits = ("BLWK_numMedKits" call BIS_fnc_getParamValue);
 

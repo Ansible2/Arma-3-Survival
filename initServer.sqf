@@ -12,6 +12,7 @@ call BLWK_fnc_prepareGlobals;
 call BLWK_fnc_preparePlayArea;
 
 setDate [2020, 7, 1, BLWK_timeOfDay, 0];
+setTimeMultiplier BLWK_daySpeedMultiplier;
 
 waitUntil {count (call CBAP_fnc_players) > 0};
 
