@@ -94,6 +94,13 @@ class BLWK_randomizeEnemyWeapons
 	texts[] = NO_OR_YES;
 	GET_DEFAULT_PARAM(BLWK_randomizeEnemyWeapons,0)
 };
+class BLWK_randomizeEnemyDirection
+{
+	title = "Enemy Spawn Direction";
+	values[] = ZERO_OR_ONE;
+	texts[] = {"Single Random Location Each Round","Many Random Locations Each Round"};
+	GET_DEFAULT_PARAM(BLWK_randomizeEnemyDirection,1)
+};
 class BLWK_maxPistolOnlyWaves
 {
 	title = "Hostiles only use pistols until wave";

@@ -146,7 +146,8 @@ if (isServer OR {!hasInterface}) then {
     // What wave enemies stop only using pistols  
     BLWK_maxPistolOnlyWaves = ("BLWK_maxPistolOnlyWaves" call BIS_fnc_getParamValue);  
     BLWK_randomizeEnemyWeapons = [false,true] select ("BLWK_randomizeEnemyWeapons" call BIS_fnc_getParamValue);
-
+	BLWK_randomizeEnemyDirection = [false,true] select ("BLWK_randomizeEnemyDirection" call BIS_fnc_getParamValue);
+	
     BLWK_vehicleStartWave = ("BLWK_vehicleStartWave" call BIS_fnc_getParamValue);
     BLWK_specialWavesStartAt = ("BLWK_specialWavesStartAt" call BIS_fnc_getParamValue);
 
