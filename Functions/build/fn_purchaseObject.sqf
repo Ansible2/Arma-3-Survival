@@ -3,9 +3,9 @@
 Function: BLWK_fnc_purchaseObject
 
 Description:
-	Creates the object purchased from the shop 
+	Creates the object purchased from the shop
 
-	Executed from "BLWK_fnc_shop_purchaseForSelf" under the 
+	Executed from "BLWK_fnc_shop_purchaseForSelf" under the
 	 "theCrateShopDialogsupports_purchaseForSelfButton" class.
 	And from "theCrateShopDialogbuildableObjects_purchaseForSelfButton" class.
 
@@ -58,7 +58,9 @@ if (_propertiesArray select HAS_AI) then {
 };
 
 if (_propertiesArray select INDESTRUCTABLE) then {
-	[_purchasedObject] call BLWK_fnc_addAllowDamageEH;
+	_purchasedObject allowDamage false;
+	[_purchasedObject] remoteExecCall ["BLWK_fnc_addAllowDamageEH",call CBAP_fnc_players,true];
+
 	if (BLWK_ACELoaded) then {
 		_purchasedObject setVariable ["ace_cookoff_enable", false, true];
 	};
@@ -99,7 +101,7 @@ if (_propertiesArray select DETECT_COLLISION) then {
 	Due to network issues with setOwner
 	 objects that are too quickly manipulated by other players after being set down
 	 by the intial purchaser will vanish/teleport to [0,0,0]
-	
+
 	Have to wait about 10 seconds after being set down for things to "sync up"
 */
 waitUntil {
