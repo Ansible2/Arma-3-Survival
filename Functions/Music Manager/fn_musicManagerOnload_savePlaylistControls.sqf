@@ -40,7 +40,9 @@ _saveButtonControl ctrlAddEventHandler ["ButtonClick",{
 		if !(GET_PUBLIC_ARRAY_DEFAULT isEqualTo []) then {
 			private _savedPlaylistArray = profileNamespace getVariable ["BLWK_musicManagerPlaylists",[]];
 			private _playlistName = _loadComboControl lbText _loadComboSelectedIndex;
-			_savedPlaylistArray set [_loadComboSelectedIndex,[_playlistName,BLWK_PUB_CURRENT_PLAYLIST]];
+			// creating a copy of BLWK_PUB_CURRENT_PLAYLIST as otherwise, any changes to BLWK_PUB_CURRENT_PLAYLIST after would
+			// directly go to the profileNamespace saved array
+			_savedPlaylistArray set [_loadComboSelectedIndex,[_playlistName,+BLWK_PUB_CURRENT_PLAYLIST]];
 			profileNamespace setVariable ["BLWK_musicManagerPlaylists",_savedPlaylistArray];
 			saveProfileNamespace;
 		} else {
