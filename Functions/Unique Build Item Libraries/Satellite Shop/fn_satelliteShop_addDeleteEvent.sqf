@@ -2,10 +2,10 @@
 Function: BLWK_fnc_satelliteShop_addDeleteEvent
 
 Description:
-	Adds a 
+	Adds a wave start eventhandler that will delete the satellite shop object.
 
 Parameters:
-	0: _satellitObject : <OBJECT> - The satellite shop object
+	0: _satelliteObject : <OBJECT> - The satellite shop object
 
 Returns:
 	NOTHING
@@ -25,25 +25,28 @@ if (!isServer) exitWith {
 };
 
 params [
-	"_satellitObject",
+	"_satelliteObject",
 	"_waveToDeleteOn"
 ];
 
-if (isNull _satellitObject) exitWith {
-	["_satellitObject was null, exiting...",true] call KISKA_fnc_log;
+if (isNull _satelliteObject) exitWith {
+	["_satelliteObject was null, exiting...",true] call KISKA_fnc_log;
 	nil
 };
 
-missionNamespace setVariable ["BLWK_satelliteShopObject",_satellitObject];
+missionNamespace setVariable ["BLWK_satelliteShopObject",_satelliteObject];
 missionNamespace setVariable ["BLWK_deleteSatShopOnWave",_waveToDeleteOn];
 
 [missionNamespace,"BLWK_onWaveStart",{
 	private _waveToDeleteOn = missionNamespace getVariable "BLWK_deleteSatShopOnWave";
-	if (BWLK_currentWaveNumber isEqualTo _waveToDeleteOn) then {
-		private _satellitObject = missionNamespace getVariable "BLWK_satelliteShopObject";
-		deleteVehicle _satellitObject;
-		
+	if (BLWK_currentWaveNumber isEqualTo _waveToDeleteOn) then {
+		private _satelliteObject = missionNamespace getVariable "BLWK_satelliteShopObject";
+		deleteVehicle _satelliteObject;
+
 		missionNamespace setVariable ["BLWK_satShopOut",false,true];
 		[missionNamespace,"BLWK_onWaveStart",_thisScriptedEventHandler] call BIS_fnc_removeScriptedEventHandler;
 	};
 }] call BIS_fnc_addScriptedEventHandler;
+
+
+nil
