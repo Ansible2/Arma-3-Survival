@@ -160,6 +160,7 @@ _display displayAddEventHandler ["unload",{
 	uiNamespace setVariable ["BLWK_musicManager_control_loadPlaylistButton",nil];
 	uiNamespace setVariable ["BLWK_musicManager_loadCombo_currentSelection",nil];
 	uiNamespace setVariable ["BLWK_musicManager_coloredClasses",nil];
+	uiNamespace getVariable ["BLWK_musicManager_timelineLooping",nil];
 }];
 
 
