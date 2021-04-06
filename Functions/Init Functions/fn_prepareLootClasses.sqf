@@ -3,9 +3,9 @@ Function: BLWK_fnc_prepareLootClasses
 
 Description:
 	Gets all the loot classes for spawning it during the mission and caches them.
-	
+
 	It is executed from the "BLWK_fnc_prepareGlobals".
-	
+
 Parameters:
 	NONE
 
@@ -14,11 +14,11 @@ Returns:
 		primary weapons,
 		secondary weapons,
 		launchers,
-		backpacks, 
-		vests, 
-		uniforms, 
-		headgear, 
-		items, 
+		backpacks,
+		vests,
+		uniforms,
+		headgear,
+		items,
 		explosives
 	]
 
@@ -49,7 +49,7 @@ if !(_blackList isEqualTo []) then {
 
 private _whitelist_primaries = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_primaries"] call BIS_fnc_getCfgDataArray;
 private _whitelist_handguns = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_handguns"] call BIS_fnc_getCfgDataArray;
-private _whitelist_launchers = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_launchers"] call BIS_fnc_getCfgDataArray;	
+private _whitelist_launchers = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_launchers"] call BIS_fnc_getCfgDataArray;
 private _whitelist_backpacks = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_backpacks"] call BIS_fnc_getCfgDataArray;
 private _whitelist_vests = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_vests"] call BIS_fnc_getCfgDataArray;
 private _whitelist_uniforms = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_uniforms"] call BIS_fnc_getCfgDataArray;
@@ -109,12 +109,12 @@ private _fn_sortWeapons = {
 	if ((getArray (configFile >> "CfgWeapons" >> _tempClass >> "magazines")) isEqualTo []) exitWith {};
 	if (_tempItemType == "MissileLauncher" OR {_tempItemType == "Launcher"} OR {_tempItemType == "RocketLauncher"}) exitWith {_launcherClasses pushBack _tempClass};
 	if (_tempItemType == "Handgun") exitWith {_handgunWeaponClasses pushBack _tempClass};
-	
-	if (_tempItemType == "AssaultRifle" OR 
-		{_tempItemType == "MachineGun"} OR 
-		{_tempItemType == "Shotgun"} OR 
-		{_tempItemType == "Rifle"} OR 
-		{_tempItemType == "SubmachineGun"} OR 
+
+	if (_tempItemType == "AssaultRifle" OR
+		{_tempItemType == "MachineGun"} OR
+		{_tempItemType == "Shotgun"} OR
+		{_tempItemType == "Rifle"} OR
+		{_tempItemType == "SubmachineGun"} OR
 		{_tempItemType == "SniperRifle"}) exitWith {
 		_primaryWeaponClasses pushBack _tempClass
 	};
@@ -142,7 +142,7 @@ private _fn_sortMagazines = {
 
 private _fn_sortType = {
 	// get the class name of the item and check if it is in the blacklist
-	_tempClass = configName (_this select 0);
+	_tempClass = toLowerANSI (configName (_this select 0));
 	if (_tempClass in BLWK_lootBlacklist) exitWith {};
 
 	// CIPHER COMMENT: DLC checks, still need a better method of finding what an asset belongs to
@@ -179,12 +179,12 @@ _publicWeaponConfigs apply {
 // things such as vests and backpacks are located in CfgVehicles
 private _publicVehicleConfigs = "getNumber (_x >> 'scope') isEqualTo 2" configClasses (configFile >> "CfgVehicles");
 _publicVehicleConfigs apply {
-	[_x,"CfgVehicles"] call _fn_sortType;	
+	[_x,"CfgVehicles"] call _fn_sortType;
 };
 // for mags and throwable explosives
 private _publicMagazineConfigs = "getNumber (_x >> 'scope') isEqualTo 2" configClasses (configFile >> "CfgMagazines");
 _publicMagazineConfigs apply {
-	[_x,"CfgMagazines"] call _fn_sortType;	
+	[_x,"CfgMagazines"] call _fn_sortType;
 };
 
 

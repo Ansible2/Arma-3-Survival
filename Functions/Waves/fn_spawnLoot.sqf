@@ -3,9 +3,9 @@ Function: BLWK_fnc_spawnLoot
 
 Description:
 	Creates loot for a wave.
-	
+
 	It is executed from the "initServer.sqf".
-	
+
 Parameters:
 	NONE
 
@@ -68,7 +68,7 @@ private _sortedPositions = [];
 	// to distribute to every building, every other building, every 3rd, etc.
 	if ((_buildingIndex mod BLWK_loot_cityDistribution) isEqualTo 0) then {
 		private _buildingsPositions = _currentBuilding buildingPos -1;
-		
+
 		{
 			if (_forEachIndex isEqualTo 0 OR {(_forEachIndex mod BLWK_loot_roomDistribution) isEqualTo 0}) then {
 				_sortedPositions pushBack _x
@@ -159,7 +159,7 @@ private _fn_findAMagazine = {
 	_magArray = [_magArray] call CBAP_fnc_shuffle;
 
 	private _index = _magArray findIf {
-		!((toLower _x) in BLWK_lootBlacklist)
+		!((toLowerANSI _x) in BLWK_lootBlacklist)
 	};
 
 	// if a mag is found
@@ -172,9 +172,9 @@ private _fn_findAMagazine = {
 
 private _fn_addLoot = {
 	params ["_holder"];
-	
+
 	private _typeToSpawn = round random 9;
-	
+
 	private ["_selectedItemClass","_magazineClass"];
 	// backpack
 	if (_typeToSpawn isEqualTo 0) exitWith {
@@ -188,28 +188,28 @@ private _fn_addLoot = {
 		_selectedItemClass = selectRandom BLWK_loot_vestClasses;
 		_holder addItemCargoGlobal [_selectedItemClass,1];
 
-		_selectedItemClass 
+		_selectedItemClass
 	};
 	// uniforms
 	if (_typeToSpawn isEqualTo 2) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_uniformClasses;
 		_holder addItemCargoGlobal [_selectedItemClass,1];
 
-		_selectedItemClass 
+		_selectedItemClass
 	};
 	// items
 	if (_typeToSpawn isEqualTo 3) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_itemClasses;
 		_holder addItemCargoGlobal [_selectedItemClass,1];
 
-		_selectedItemClass 
+		_selectedItemClass
 	};
 	// explosives
 	if (_typeToSpawn isEqualTo 4) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_explosiveClasses;
 		_holder addMagazineCargoGlobal [_selectedItemClass,round random [1,2,3]];
 
-		_selectedItemClass 
+		_selectedItemClass
 	};
 	// weapons
 	if (_typeToSpawn isEqualTo 5 OR {_typeToSpawn isEqualTo 8} OR {_typeToSpawn isEqualTo 9}) exitWith { // there are three numbers here to encourage more weapon spawns
@@ -222,7 +222,7 @@ private _fn_addLoot = {
 			_holder addMagazineCargoGlobal [_magazineClass,round random [1,2,3]];
 		};
 
-		_selectedItemClass  
+		_selectedItemClass
 	};
 	// magazines
 	if (_typeToSpawn isEqualTo 6) exitWith {
@@ -232,15 +232,15 @@ private _fn_addLoot = {
 		if (_magazineClass != "") then {
 			_holder addMagazineCargoGlobal [_magazineClass,round random [1,2,3]];
 		};
-		
-		_magazineClass 
+
+		_magazineClass
 	};
 	// headgear
 	if (_typeToSpawn isEqualTo 7) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_headGearClasses;
 		_holder addItemCargoGlobal [_selectedItemClass,1];
-		
-		_selectedItemClass 
+
+		_selectedItemClass
 	};
 };
 
@@ -252,7 +252,7 @@ _sortedPositions apply {
 	private _primaryLootClass = [_holder] call _fn_addLoot;
 	// used for displaying loot markers in BLWK_fnc_createLootMarkers
 	_holder setVariable ["BLWK_primaryLootClass",_primaryLootClass];
-	
+
 	_addToZeusArray pushBack _holder;
 	BLWK_spawnedLoot pushBack _holder;
 };
