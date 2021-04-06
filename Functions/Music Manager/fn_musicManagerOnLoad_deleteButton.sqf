@@ -30,15 +30,14 @@ _control ctrlAddEventHandler ["ButtonClick",{
 	private _loadControl = uiNamespace getVariable "BLWK_musicManager_control_loadCombo";
 	// index in load combo
 	private _selectedIndex = lbCurSel _loadControl;
-	
+
 	// check if an entry in the loadCombo is selected and that it is not the DEFAULT entry in the load combo
 	if (!(_selectedIndex isEqualTo -1) AND {!(_selectedIndex isEqualTo 0)}) then {
 
 		private _savedPlaylistArray = profileNamespace getVariable ["BLWK_musicManagerPlaylists",[]];
-		// offset by -1 because of the DEFAULT in the combo box always being at point 0 and not actually in the 
 		/// BLWK_musicManagerPlaylists array
-		_savedPlaylistArray deleteAt (_selectedIndex - 1); 
-		
+		_savedPlaylistArray deleteAt _selectedIndex;
+
 		profileNamespace setVariable ["BLWK_musicManagerPlaylists",_savedPlaylistArray];
 		saveProfileNamespace;
 
