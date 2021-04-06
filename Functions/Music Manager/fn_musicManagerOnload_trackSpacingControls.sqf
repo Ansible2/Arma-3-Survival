@@ -26,9 +26,8 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "BLWK_fnc_musicManagerOnLoad_trackSpacingControls"
 disableSerialization;
-scriptName SCRIPT_NAME;
+scriptName "BLWK_fnc_musicManagerOnLoad_trackSpacingControls";
 
 params ["_comboControl","_editBoxControl","_buttonControl"];
 
@@ -97,10 +96,10 @@ _buttonControl ctrlAddEventHandler ["ButtonClick",{
 	private _editControl = (uiNamespace getVariable "BLWK_musicManager_control_spacingEdit");
 	private _editControlText = ctrlText _editControl;
 	private _textCompiled = call compile _editControlText;
-	
+
 	if (
-		(_textCompiled isEqualType []) AND 
-		{!((count _textCompiled) isEqualTo 1) AND 
+		(_textCompiled isEqualType []) AND
+		{!((count _textCompiled) isEqualTo 1) AND
 		{!((count _textCompiled) isEqualTo 3) OR !(_textCompiled isEqualTypeParams [1,2,3])}}
 	) then {
 		hint "Format not accepted for track spacing!"
@@ -110,3 +109,6 @@ _buttonControl ctrlAddEventHandler ["ButtonClick",{
 		hint ("Track spacing set to " + (str _textCompiled));
 	};
 }];
+
+
+nil

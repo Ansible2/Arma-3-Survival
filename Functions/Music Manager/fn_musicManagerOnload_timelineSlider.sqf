@@ -18,23 +18,22 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "BLWK_fnc_musicManagerOnLoad_timelineSlider"
 disableSerialization;
-scriptName SCRIPT_NAME;
+scriptName "BLWK_fnc_musicManagerOnLoad_timelineSlider";
 
 params ["_control"];
 
 _control ctrlAddEventHandler ["MouseButtonDown",{
-	
+
 	// if music was playing
 	if (uiNamespace getVariable ["BLWK_musicManager_doPlay",false]) then {
 		playMusic ""; // stop music while adjusting
 		call KISKA_fnc_musicStopEvent;
-		
+
 		// tell music player in the mouse up event to resume
 		uiNamespace setVariable ["BLWK_musicManager_doResume",true];
-		// stop music player 
-		uiNamespace setVariable ["BLWK_musicManager_doPlay",false]; 
+		// stop music player
+		uiNamespace setVariable ["BLWK_musicManager_doPlay",false];
 	};
 }];
 
@@ -48,3 +47,6 @@ _control ctrlAddEventHandler ["MouseButtonUp",{
 		[_musicClass,sliderPosition _control] spawn BLWK_fnc_musicManager_playMusic;
 	};
 }];
+
+
+nil
