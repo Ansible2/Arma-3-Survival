@@ -22,9 +22,8 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "BLWK_fnc_musicManagerOnLoad"
 disableSerialization;
-scriptName SCRIPT_NAME;
+scriptName "BLWK_fnc_musicManagerOnLoad";
 
 params ["_display"];
 
@@ -36,7 +35,7 @@ uiNamespace setVariable ["BLWK_musicManager_display",_display];
 private _closeButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_CLOSE_BUTTON_IDC;
 uiNamespace setVariable ["BLWK_musicManager_control_closeButton",_closeButtonControl];
 [_closeButtonControl] call BLWK_fnc_musicManagerOnLoad_closeButton;
-	
+
 
 // available tracks list
 private _songListControl = _display displayCtrl BLWK_MUSIC_MANAGER_SONGS_LIST_IDC;
@@ -160,4 +159,8 @@ _display displayAddEventHandler ["unload",{
 	uiNamespace setVariable ["BLWK_fnc_musicManager_getMusicName",nil];
 	uiNamespace setVariable ["BLWK_musicManager_control_loadPlaylistButton",nil];
 	uiNamespace setVariable ["BLWK_musicManager_loadCombo_currentSelection",nil];
+	uiNamespace setVariable ["BLWK_musicManager_coloredClasses",nil];
 }];
+
+
+nil

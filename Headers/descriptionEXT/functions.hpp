@@ -11,7 +11,7 @@ class BLWK
 		{};
 		class pathing_detailedStuckCheck
 		{};
-		class pathing_mainLoop 
+		class pathing_mainLoop
 		{};
 	};
 
@@ -20,9 +20,9 @@ class BLWK
 		file = "functions\Build";
 		class addAllowDamageEH
 		{};
-		class addBuildableObjectActions 
+		class addBuildableObjectActions
 		{};
-		class addPickedUpObjectActions 
+		class addPickedUpObjectActions
 		{};
 		class buildEvent_onPickedUp
 		{};
@@ -42,21 +42,21 @@ class BLWK
 		{};
 		class moveUpOrDown
 		{};
-		class pickupObject 
+		class pickupObject
 		{};
-		class placeObject 
+		class placeObject
 		{};
-		class purchaseObject 
+		class purchaseObject
 		{};
 		class registerObjectPickup
 		{};
-		class removePickedUpObjectActions 
+		class removePickedUpObjectActions
 		{};
-		class resetObjectRotation 
+		class resetObjectRotation
 		{};
-		class rotateObject 
+		class rotateObject
 		{};
-		class sellObject 
+		class sellObject
 		{};
 	};
 
@@ -144,6 +144,8 @@ class BLWK
 	class MusicManager
 	{
 		file = "Functions\Music Manager";
+		class musicManager_adjustNameColor
+		{};
 		class musicManager_playMusic
 		{};
 		class musicManager_setPlayListServer
@@ -191,7 +193,7 @@ class BLWK
 		{};
 		class adjustPlayerTraits
 		{};
-	/*	
+	/*
 		class checkDLC
 		{};
 	*/
@@ -250,17 +252,17 @@ class BLWK
 		class saveAllMissionParameters
 		{};
 	};
-	
+
 	class Points
 	{
 		file = "functions\Points";
-		class addPoints 
+		class addPoints
 		{};
 		class createHitmarker
 		{};
-		class getPointsForKill 
+		class getPointsForKill
 		{};
-		class subtractPoints 
+		class subtractPoints
 		{};
 	};
 
@@ -314,7 +316,7 @@ class BLWK
 		class shop_purchaseForSelf
 		{};
 		class shop_sellFromPoolButtonEvent
-		{};			
+		{};
 		class shop_withdrawFromPoolButtonEvent
 		{};
 		class shop_withdrawPointsButtonPressedEvent
@@ -478,7 +480,7 @@ class BLWK
 		class addToMustKillArray
 		{};
 		class cleanUpTheDead
-		{};		
+		{};
 		class clearMustKillArray
 		{};
 		class decideWaveType
@@ -498,7 +500,7 @@ class BLWK
 	};
 };
 
-class CBAP //ported CBA functions 
+class CBAP //ported CBA functions
 {
 	class ported
 	{
