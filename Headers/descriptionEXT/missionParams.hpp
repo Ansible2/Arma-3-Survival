@@ -314,8 +314,18 @@ class BLWK_timeOfDay
 	title = "The Time Of Day";
 	values[] = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22};
 	texts[] = {"0200","0400","0600","0800","1000","1200", "1400", "1600", "1800", "2000", "2200"};
-	GET_DEFAULT_PARAM(BLWK_timeOfDay,12)
+	GET_DEFAULT_PARAM(BLWK_timeOfDay,4)
 };
+
+class BLWK_daySpeedMultiplier
+{
+	title = "Day Speed Multiplier";
+	values[] = {1, 6, 12, 24, 48, 72};
+	texts[] = {"x1 (24h cycle)","x6 (4h cycle)","x12 (2h cycle)","x24 (1h cycle)","x48 (30m cycle)","x72 (20m cycle)"};
+	GET_DEFAULT_PARAM(BLWK_daySpeedMultiplier,48)
+};
+
+
 // weather
 #include "paramWeather.hpp"
 

@@ -8,7 +8,6 @@
 #define DEFECTOR_WAVE "defector wave"
 #define OVERRUN_WAVE "overrun wave"
 #define PARATROOPER_WAVE "paratrooper wave"
-#define TWELVE_HOUR_WAVE "+12 wave"
 
 // queue Strings
 #define STANDARD_ENEMY_INFANTRY_QUEUE "BLWK_standardEnemyInfantryqueue"
@@ -30,4 +29,3 @@
 #define MORTAR_WAVE_NOTIFICATION "Incoming Mortar Fire!"
 #define SUICIDE_WAVE_NOTIFICATION "Enemy Suicide Bombers Are Incoming!"
 #define PARATROOPER_WAVE_NOTIFICATION "Enemy Paratroopers Inbound!"
-#define TWELVE_HOUR_WAVE_NOTIFICATION "+12 Hours"
