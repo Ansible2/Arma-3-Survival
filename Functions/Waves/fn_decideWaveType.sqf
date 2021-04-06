@@ -34,8 +34,7 @@ Author(s):
 	[MORTAR_WAVE, SPECIAL_WAVE_LIKELIHOOD], \
 	[DEFECTOR_WAVE, SPECIAL_WAVE_LIKELIHOOD], \
 	[OVERRUN_WAVE, SPECIAL_WAVE_LIKELIHOOD], \
-	[PARATROOPER_WAVE, SPECIAL_WAVE_LIKELIHOOD], \
-	[TWELVE_HOUR_WAVE, SPECIAL_WAVE_LIKELIHOOD] \
+	[PARATROOPER_WAVE, SPECIAL_WAVE_LIKELIHOOD] \
 ]
 
 
@@ -53,7 +52,7 @@ private _fn_getWaveType = {
 				_decideArray append _x;
 			};
 		};
-		
+
 		// if we just got the standard wave (2 entries in _decideArray), assume we've used up all the special waves and need to reset the queue
 		if ((count _decideArray) isEqualTo 2) then {
 			missionNamespace setVariable ["BLWK_usedSpecialWaves",[]];
@@ -111,12 +110,6 @@ private _fn_execWave = {
 		remoteExecCall ["BLWK_fnc_handleParatrooperWave",BLWK_theAIHandlerEntity];
 
 		[SPECIAL_WARNING_TEMPLATE, [PARATROOPER_WAVE_NOTIFICATION]]
-	};
-	if (_selectedWaveType == TWELVE_HOUR_WAVE) exitWith {
-		remoteExecCall ["BLWK_fnc_handleStandardWave",BLWK_theAIHandlerEntity];
-		[] spawn BLWK_fnc_handleTwelveHourWave;
-
-		[SPECIAL_WARNING_TEMPLATE, [TWELVE_HOUR_WAVE_NOTIFICATION]]
 	};
 };
 
