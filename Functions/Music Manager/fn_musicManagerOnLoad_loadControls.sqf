@@ -84,3 +84,6 @@ _loadButtonControl ctrlAddEventHandler ["ButtonClick",{
 
 // the initial filling of the combo with loadable playlists
 [] spawn BLWK_fnc_musicManager_updateLoadCombo;
+
+
+nil

@@ -19,9 +19,8 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "BLWK_fnc_musicManagerOnLoad_deleteButton"
 disableSerialization;
-scriptName SCRIPT_NAME;
+scriptName "BLWK_fnc_musicManagerOnLoad_deleteButton";
 
 params ["_control"];
 
@@ -48,3 +47,6 @@ _control ctrlAddEventHandler ["ButtonClick",{
 	};
 
 }];
+
+
+nil

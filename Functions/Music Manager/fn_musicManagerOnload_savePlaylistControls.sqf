@@ -20,9 +20,8 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "BLWK_fnc_musicManagerOnLoad_savePlaylistControls"
 disableSerialization;
-scriptName SCRIPT_NAME;
+scriptName "BLWK_fnc_musicManagerOnLoad_savePlaylistControls";
 
 params ["_saveButtonControl","_saveAsButtonControl"];
 
@@ -75,3 +74,6 @@ _saveAsButtonControl ctrlAddEventHandler ["ButtonClick",{
 	};
 
 }];
+
+
+nil

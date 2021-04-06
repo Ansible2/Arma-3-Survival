@@ -18,9 +18,8 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "BLWK_fnc_musicManagerOnLoad_volumeSlider"
 disableSerialization;
-scriptName SCRIPT_NAME;
+scriptName "BLWK_fnc_musicManagerOnLoad_volumeSlider";
 
 params ["_control"];
 
@@ -32,3 +31,6 @@ _control ctrlAddEventHandler ["sliderPosChanged",{
 		0.1 fadeMusic _newValue;
 	};
 }];
+
+
+nil

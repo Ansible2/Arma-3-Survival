@@ -18,9 +18,8 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "BLWK_fnc_musicManagerOnLoad_systemOnOffCombo"
 disableSerialization;
-scriptName SCRIPT_NAME;
+scriptName "BLWK_fnc_musicManagerOnLoad_systemOnOffCombo";
 
 params ["_control"];
 
@@ -46,11 +45,11 @@ _control lbSetCurSel ([0,1] select _systemOn);
 
 _control ctrlAddEventHandler ["LBSelChanged",{
 	params ["_control", "_selectedIndex"];
-	
+
 	switch (_selectedIndex) do {
 		case 0:{ // system off
 			missionNamespace setVariable ["KISKA_musicSystemIsRunning",false,[0,2] select isMultiplayer];
-			
+
 			if (missionNamespace getVariable ["BLWK_musicManager_reset",false]) then {
 				//hint "System reseting...";
 				missionNamespace setVariable ["BLWK_musicManager_reset",false];
@@ -78,3 +77,6 @@ _control ctrlAddEventHandler ["LBSelChanged",{
 		};
 	};
 }];
+
+
+nil

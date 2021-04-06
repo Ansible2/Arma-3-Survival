@@ -21,9 +21,8 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "BLWK_fnc_musicManagerOnLoad_currentPlaylistLoop"
 disableSerialization;
-scriptName SCRIPT_NAME;
+scriptName "BLWK_fnc_musicManagerOnLoad_currentPlaylistLoop";
 
 params ["_control","_display"];
 
@@ -66,9 +65,9 @@ _this spawn {
 				lbClear _control;
 			};
 		};
-		
+
 		// get index numbers of array (start from 0)
-		private _indexesOfDisplayed = count _displayedArray - 1; 
+		private _indexesOfDisplayed = count _displayedArray - 1;
 		private _indexesOfCurrent = count _globalArray - 1;
 		private ["_comparedIndex","_musicName"];
 		{
@@ -97,7 +96,7 @@ _this spawn {
 				_control lbDelete _indexToDelete;
 			};
 		};
-		
+
 	};
 
 	private _playlist_displayed = +GET_PUBLIC_ARRAY_DEFAULT;
@@ -105,8 +104,11 @@ _this spawn {
 
 		// compare cached and public array
 		if !(_playlist_displayed isEqualTo GET_PUBLIC_ARRAY_DEFAULT) then {
-			[_playlist_displayed,BLWK_PUB_CURRENT_PLAYLIST] call _fn_adjustList;		
+			[_playlist_displayed,BLWK_PUB_CURRENT_PLAYLIST] call _fn_adjustList;
 			_playlist_displayed = +BLWK_PUB_CURRENT_PLAYLIST;
 		};
 	};
 };
+
+
+nil
