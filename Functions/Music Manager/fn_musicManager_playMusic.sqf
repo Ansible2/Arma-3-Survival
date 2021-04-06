@@ -50,13 +50,22 @@ if (uiNamespace getVariable ["BLWK_musicManager_paused",false]) then {
 	uiNamespace setVariable ["BLWK_musicManager_paused",false];
 };
 
-while {
-	(!isNull (uiNamespace getVariable "BLWK_musicManager_display")) AND
-	{uiNamespace getVariable ["BLWK_musicManager_doPlay",true]} AND
-	// check if end of song is reached
-	{sliderPosition _sliderControl < _sliderMax} }
-do {
-	sleep INTERVAL;
-	// update slider position to mimic timeline
- 	_sliderControl sliderSetPosition ((sliderPosition _sliderControl) + INTERVAL);
+// move timeline
+if !(uiNamespace getVariable ["BLWK_musicManager_timelineLooping",false]) then {
+	// in order to switch from one track to another and not stack loops
+	// we keep track of the timeline's moving state
+	uiNamespace setVariable ["BLWK_musicManager_timelineLooping",true];
+
+	while {
+		(!isNull (uiNamespace getVariable "BLWK_musicManager_display")) AND
+		{uiNamespace getVariable ["BLWK_musicManager_doPlay",true]} AND
+		// check if end of song is reached
+		{sliderPosition _sliderControl < _sliderMax} }
+	do {
+		sleep INTERVAL;
+		// update slider position to mimic timeline
+	 	_sliderControl sliderSetPosition ((sliderPosition _sliderControl) + INTERVAL);
+	};
+
+	uiNamespace setVariable ["BLWK_musicManager_timelineLooping",false];
 };
