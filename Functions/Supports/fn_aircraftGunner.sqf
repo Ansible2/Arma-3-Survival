@@ -8,10 +8,10 @@ Description:
 Parameters:
   	0: _vehicleClass : <STRING> - The class of the vehicle to be a gunner on
 	1: _loiterHeight : <NUMBER> - At what height does the aircraft fly
-	2: _loiterRadius : <NUMBER> - The radius of the circle around which the 	
+	2: _loiterRadius : <NUMBER> - The radius of the circle around which the
 		aircraft will loiter
 
-	3: _defaultVehicleType : <STRING> - A fall through vehicle class in case 
+	3: _defaultVehicleType : <STRING> - A fall through vehicle class in case
 		_vehicleClass is found not to be compatible
 
 	4: _globalUseVarString : <STRING> - A global string that is used to not allow
@@ -106,6 +106,14 @@ _loiterWaypoint setWaypointSpeed "LIMITED";
 
 
 // handle view distances so things aren't cloudy
+
+// turn off View Distance Limiter
+private _wasVDLRunning = false;
+if (KISKA_VDL_run) then {
+	KISKA_VDL_run = false;
+	_wasVDLRunning = true;
+};
+
 private _estimatedDistance = round (sqrt ((_loiterHeight^2) + (_loiterRadius^2)));
 private _overallViewDistance = round (_estimatedDistance * 2.5);
 private _objectViewDistance = round (_estimatedDistance * 1.5);
@@ -127,17 +135,17 @@ player moveInTurret [_vehicle,_turretsWithWeapons select 0];
 // store volume for reset
 localNamespace setVariable ["BLWK_soundVolume",soundVolume];
 // turrets are stupid loud
-[] spawn {3 fadeSound 0.25}; 
+[] spawn {3 fadeSound 0.25};
 
 // keep player from ejecting or switching seats with vanilla actions
-_vehicle lock true; 
+_vehicle lock true;
 // disable the ability to take control of the aircraft
-_vehicle enableCoPilot false; 
+_vehicle enableCoPilot false;
 
 // set variable to limit player points while using the support
 missionNamespace setVariable ["BLWK_isAircraftGunner",true];
 // set this type of gunner as active so multiple people can't spam it
-missionNamespace setVariable [_globalUseVarString,true,true]; 
+missionNamespace setVariable [_globalUseVarString,true,true];
 
 
 
@@ -145,30 +153,30 @@ missionNamespace setVariable [_globalUseVarString,true,true];
 	Create actions to switch turrets
 ---------------------------------------------------------------------------- */
 private _turretSwitchActions = [];
-private ["_turretAction_temp","_turretMagazines_temp","_turretPath_temp"];	
+private ["_turretAction_temp","_turretMagazines_temp","_turretPath_temp"];
 {
 	_turretPath_temp = _x;
 
-	_turretAction_temp = [	
+	_turretAction_temp = [
 		player,
-		format ["<t color='#3c77ba'>Switch To Turret %1</t>",_forEachIndex + 1], 
-		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
+		format ["<t color='#3c77ba'>Switch To Turret %1</t>",_forEachIndex + 1],
+		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
 		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
 		["!(((objectParent player) turretUnit ",str _turretPath_temp,") isEqualTo player)"] joinString "", // check if units current turret is the stored one, don't show if it is
-		"true", 
-		{}, 
-		{}, 
+		"true",
+		{},
+		{},
 		{
 			params ["_target", "_caller", "", "_arguments", "", ""];
 			moveOut _caller;
 			_caller moveInTurret [(_arguments select 0),_arguments select 1];
-		}, 
-		{}, 
-		[_vehicle,_turretPath_temp], 
-		0.5, 
-		1, 
-		false, 
-		false, 
+		},
+		{},
+		[_vehicle,_turretPath_temp],
+		0.5,
+		1,
+		false,
+		false,
 		false
 	] call BIS_fnc_holdActionAdd;
 
@@ -195,6 +203,11 @@ localNamespace setVariable ["BLWK_fnc_exitFromAircraft",{
 	setViewDistance -1;
 	setObjectViewDistance -1;
 
+	private _VDLWasRunning = _arguments select 4;
+	if (_VDLWasRunning) then {
+		[] spawn KISKA_fnc_viewDistanceLimiter;
+	};
+
 	moveOut _caller;
 	_caller setVehiclePosition [BLWK_mainCrate,[],5,"NONE"];
 	_caller setVelocity [0,0,0];
@@ -218,7 +231,7 @@ localNamespace setVariable ["BLWK_fnc_exitFromAircraft",{
 
 	// allow other users to access the support type again
 	missionNamespace setVariable [_arguments select 3,false,true];
-	
+
 	[false] call BLWK_fnc_playAreaEnforcementLoop;
 
 	sleep 10;
@@ -230,24 +243,24 @@ localNamespace setVariable ["BLWK_fnc_exitFromAircraft",{
 /* ----------------------------------------------------------------------------
 	Create action to exit the support and return to The Crate
 ---------------------------------------------------------------------------- */
-private _exitAction = [	
+private _exitAction = [
 	player,
-	"<t color='#c91306'>Return To The Crate</t>", 
-	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
+	"<t color='#c91306'>Return To The Crate</t>",
+	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
 	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
 	"true",
-	"true", 
-	{}, 
-	{}, 
+	"true",
+	{},
+	{},
 	{
 		[_this select 1,_this select 2,_this select 3] call (localNamespace getVariable "BLWK_fnc_exitFromAircraft");
-	}, 
-	{}, 
-	[_turretSwitchActions,_vehicle,_vehicleGroup,_globalUseVarString], 
-	1, 
-	1, 
-	false, 
-	false, 
+	},
+	{},
+	[_turretSwitchActions,_vehicle,_vehicleGroup,_globalUseVarString,_wasVDLRunning],
+	1,
+	1,
+	false,
+	false,
 	false
 ] call BIS_fnc_holdActionAdd;
 
@@ -256,9 +269,9 @@ private _exitAction = [
 /* ----------------------------------------------------------------------------
 	While in use loop
 ---------------------------------------------------------------------------- */
-[[_turretSwitchActions,_vehicle,_vehicleGroup,_globalUseVarString],_exitAction] spawn {
+[[_turretSwitchActions,_vehicle,_vehicleGroup,_globalUseVarString,_wasVDLRunning],_exitAction] spawn {
 	params ["_actionArgs","_exitAction"];
-	
+
 	private _vehicle = _actionArgs select 1;
 	// waitUntil we have started a wave to start counting them towards a lifetime
 	waitUntil {
