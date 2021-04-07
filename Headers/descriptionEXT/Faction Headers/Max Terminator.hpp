@@ -4,7 +4,10 @@ class Max_Terminator_Skynet_Army_faction
 
 	heavyArmor[] = {
 		"Max_HK_Tank",
-		"Max_HK_Tank"
+	};
+	
+	transportHelicopters[] = {
+		"max_HK_A"
 	};
 
 	attackHelicopters[] = {
@@ -16,10 +19,6 @@ class Max_Terminator_Skynet_Army_faction
 	};
 	
 	infantry[] = {
-		"Max_terminator_skeleton",
-		"Max_terminator_skeleton",
-		"Max_terminator_skeleton",
-		"Max_terminator_skeleton",
 		"Max_terminator_skeleton",
 		"Max_terminator_skeleton",
 		"Max_terminator_skeleton",
@@ -55,7 +54,6 @@ class Max_Terminator_Resistance_faction
 	displayName = "Max Terminator - Resistance";
 
 	lightCars[] = {
-		"Max_res_Offroad_Arm",
 		"Max_res_Offroad_Arm",
 	};
 	
