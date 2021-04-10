@@ -8,6 +8,7 @@
 #define DEFECTOR_WAVE "defector wave"
 #define OVERRUN_WAVE "overrun wave"
 #define PARATROOPER_WAVE "paratrooper wave"
+#define HELICOPTER_WAVE "helicopter wave"
 
 // queue Strings
 #define STANDARD_ENEMY_INFANTRY_QUEUE "BLWK_standardEnemyInfantryqueue"
@@ -29,3 +30,4 @@
 #define MORTAR_WAVE_NOTIFICATION "Incoming Mortar Fire!"
 #define SUICIDE_WAVE_NOTIFICATION "Enemy Suicide Bombers Are Incoming!"
 #define PARATROOPER_WAVE_NOTIFICATION "Enemy Paratroopers Inbound!"
+#define HELICOPTER_WAVE_NOTIFICATION "Enemy Helicopters Inbound!"

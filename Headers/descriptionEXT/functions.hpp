@@ -396,6 +396,13 @@ class BLWK
 		{};
 	};
 
+	class HelicoperWaveLibrary
+	{
+		file = "Functions\Wave Type Libraries\Helicopter Wave Library";
+		class handleHelicopterWave
+		{};
+	};
+
 	class MortarWaveLibrary
 	{
 		file = "Functions\Wave Type Libraries\Mortar Wave Library";
