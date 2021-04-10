@@ -37,27 +37,7 @@ Author(s):
 ---------------------------------------------------------------------------- */
 params ["_vehicleClass","_loiterHeight","_loiterRadius","_defaultVehicleType","_globalUseVarString"];
 
-// verify vehicle has turrets that are not fire from vehicle and not copilot positions
-// excludes fire from vehicle turrets
-private _allVehicleTurrets = [_vehicleClass, false] call BIS_fnc_allTurrets;
-// just turrets with weapons
-private _turretsWithWeapons =  [];
-private ["_turretWeapons_temp","_return_temp","_turretPath_temp"];
-_allVehicleTurrets apply {
-	_turretPath_temp = _x;
-	_turretWeapons_temp = getArray([_vehicleClass,_turretPath_temp] call BIS_fnc_turretConfig >> "weapons");
-	// if turrets are found
-	if !(_turretWeapons_temp isEqualTo []) then {
-		// some turrets are just optics, need to see they actually have ammo to shoot
-		_return_temp = _turretWeapons_temp findIf {
-			private _mags = [_x] call BIS_fnc_compatibleMagazines;
-			!(_mags isEqualTo []) AND {!((_mags select 0) == "laserbatteries")}
-		};
-		if !(_return_temp isEqualTo -1) then {
-			_turretsWithWeapons pushBack _turretPath_temp;
-		};
-	};
-};
+private _turretsWithWeapons = [_aircraftType] call KISKA_fnc_classTurretsWithGuns;
 // go to default aircraft type if no suitable turrets are found
 if (_turretsWithWeapons isEqualTo []) exitWith {
 	private _newParams = _this;

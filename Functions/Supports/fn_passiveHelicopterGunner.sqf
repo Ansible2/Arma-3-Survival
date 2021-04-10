@@ -21,6 +21,7 @@ Returns:
 		0: <OBJECT> - The vehicle created
 		1: <ARRAY> - The vehicle crew
 		2: <GROUP> - The group the crew is a part of
+		3: <ARRAY> - Turret units
 
 Examples:
     (begin example)
@@ -43,7 +44,7 @@ Author(s):
 
 
 Issues:
-	- Needs to use event handlers for the destruction of the helicopter to say over the radio that the support is dead instead of a loop	
+	- Needs to use event handlers for the destruction of the helicopter to say over the radio that the support is dead instead of a loop
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_passiveHelicopterGunner";
 
@@ -58,7 +59,7 @@ params [
 	"_aircraftType",
 	"_timeOnStation",
 	["_supportSpeedLimit",10,[123]],
-	["_flyInHeight",30,[123]],	
+	["_flyInHeight",30,[123]],
 	["_approachBearing",-1],
 	["_defaultVehicleType",""],
 	["_globalLimiter",""],
@@ -69,27 +70,8 @@ params [
 /* ----------------------------------------------------------------------------
 	verify vehicle has turrets that are not fire from vehicle and not copilot positions
 ---------------------------------------------------------------------------- */
-// excludes fire from vehicle turrets
-private _allVehicleTurrets = [_aircraftType, false] call BIS_fnc_allTurrets;
-// just turrets with weapons
-private _turretsWithWeapons =  [];
-private ["_turretWeapons_temp","_return_temp","_turretPath_temp"];
-_allVehicleTurrets apply {
-	_turretPath_temp = _x;
-	_turretWeapons_temp = getArray([_aircraftType,_turretPath_temp] call BIS_fnc_turretConfig >> "weapons");
-	// if turrets are found
-	if !(_turretWeapons_temp isEqualTo []) then {
-		// some turrets are just optics, need to see they actually have ammo to shoot
-		_return_temp = _turretWeapons_temp findIf {
-			private _mags = [_x] call BIS_fnc_compatibleMagazines;
-			!(_mags isEqualTo []) AND {!((_mags select 0) == "laserbatteries")}
-		};
+private _turretsWithWeapons = [_aircraftType] call KISKA_fnc_classTurretsWithGuns;
 
-		if !(_return_temp isEqualTo -1) then {
-			_turretsWithWeapons pushBack _turretPath_temp;
-		};
-	};
-};
 // go to default aircraft type if no suitable turrets are found
 if (_turretsWithWeapons isEqualTo []) exitWith {
 	if (_aircraftType != _defaultVehicleType AND {_defaultVehicleType != ""}) then {
@@ -133,13 +115,13 @@ private _vehicleCrew = _vehicleArray select 1;
 private _turretSeperated = false;
 _vehicleCrew apply {
 	_x allowDamage false;
-	_x disableAI "SUPPRESSION";	
+	_x disableAI "SUPPRESSION";
 	_x disableAI "RADIOPROTOCOL";
 	_x setSkill 1;
 
 	// give turrets their own groups so that they can engage targets at will
 	if ((_vehicle unitTurret _x) in _turretsWithWeapons) then {
-	/*		
+	/*
 		About seperating one turret...
 		My testing has revealed that in order to have both turrets on a helicopter (if it has two)
 		 engaging targets simultaneously, one needs to be in a seperate group from the pilot, and one
@@ -161,6 +143,7 @@ _vehicleCrew apply {
 	};
 };
 
+_vehicleArray pushBack _turretUnits;
 
 // keep the pilots from freaking out under fire
 private _pilotsGroup = _vehicleArray select 2;
@@ -219,7 +202,7 @@ _params spawn {
 	};
 
 	// delete crew if vehicle got blown up on the way
-	private _fn_exitForDeadVehicle = {	
+	private _fn_exitForDeadVehicle = {
 		if (_globalLimiter != "") then {
 			missionNamespace setVariable [_globalLimiter,false];
 		};
@@ -234,7 +217,7 @@ _params spawn {
 			};
 		};
 	};
-	
+
 	if (!alive _vehicle) exitWith {
 		call _fn_exitForDeadVehicle;
 	};
@@ -248,31 +231,31 @@ _params spawn {
 
 	private _fn_getTargets = {
 		(_vehicle nearEntities [["MAN","CAR","TANK"],DETECT_ENEMY_RADIUS]) select {
-			!(isAgent teamMember _x) AND 
+			!(isAgent teamMember _x) AND
 			{[side _x, _side] call BIS_fnc_sideIsEnemy}
 		};
 	};
 	private _targetsInArea = [];
-	
+
 	private _sleepTime = _timeOnStation / 5;
 	private "_currentTarget";
 	for "_i" from 0 to 4 do {
-		
+
 		if (!alive _vehicle) exitWith {};
 
 		_targetsInArea = call _fn_getTargets;
 		if !(_targetsInArea isEqualTo []) then {
 			_targetsInArea apply {
-				_currentTarget = _x;					
+				_currentTarget = _x;
 				_turretUnits apply {
 					_x reveal [_currentTarget,4];
-				};	
+				};
 			};
 		};
 
 		_vehicle doMove (_centerPosition getPos [_radius,STAR_BEARINGS select _i]);
 
-		sleep _sleepTime;		
+		sleep _sleepTime;
 	};
 
 
@@ -293,7 +276,7 @@ _params spawn {
 
 	// remove speed limit
 	_vehicle limitSpeed 9999;
-	
+
 	// get helicopter to disengage and rtb
 	(currentPilot _vehicle) disableAI "AUTOTARGET";
 	_pilotsGroup setCombatMode "BLUE";
@@ -301,17 +284,17 @@ _params spawn {
 
 
 	private _deletePosition = _centerPosition getPos [SPAWN_DISTANCE,_approachBearing + 180];
-	waitUntil {	
+	waitUntil {
 		if (!alive _vehicle OR {(_vehicle distance2D _deletePosition) <= 200}) exitWith {true};
-		
+
 		// if vehicle is disabled and makes a landing, just blow it up
 		if ((getPosATL _vehicle select 2) < 2) exitWith {
 			_vehicle setDamage 1;
 			true
 		};
-		
+
 		_vehicle move _deletePosition;
-		
+
 		sleep 2;
 		false
 	};

@@ -73,6 +73,8 @@ class KISKA
 		{};
 		class CAS
 		{};
+		class classTurretsWithGuns
+		{};
 		class deleteAtArray
 		{};
 		class findConfigAny
