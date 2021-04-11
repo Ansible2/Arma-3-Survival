@@ -2,7 +2,7 @@
 Function: BLWK_fnc_preparePlayArea
 
 Description:
-	Creates the marker for the play area on the map and 
+	Creates the marker for the play area on the map and
 	 sets the center starting point for the mission.
 
 	Executed from "initServer.sqf"
@@ -24,11 +24,12 @@ Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "BLWK_fnc_preparePlayArea";
+
 #define NUMBER_OF_INFANTRY_SPAWN_POSITIONS 15
 #define NUMBER_OF_VEHICLE_SPAWN_POSITIONS 5
+#define MIN_VEHICLE_SPAWN_AREA 20
 
-#define SCRIPT_NAME "BLWK_fnc_preparePlayArea"
-scriptName SCRIPT_NAME;
 
 if (!isServer) exitWith {};
 
@@ -73,7 +74,7 @@ private _vehicleSpawnPositions = [];
 _minRadius = BLWK_playAreaRadius + 100;
 _maxRadius = BLWK_playAreaRadius + 200;
 while {count _vehicleSpawnPositions < NUMBER_OF_VEHICLE_SPAWN_POSITIONS} do {
-	_positionToPushBack = [BLWK_playAreaCenter, _minRadius, _maxRadius, 10] call BIS_fnc_findSafePos;
+	_positionToPushBack = [BLWK_playAreaCenter, _minRadius, _maxRadius, MIN_VEHICLE_SPAWN_AREA] call BIS_fnc_findSafePos;
 	_vehicleSpawnPositions pushBackUnique _positionToPushBack;
 };
 missionNamespace setVariable ["BLWK_vehicleSpawnPositions",_vehicleSpawnPositions,BLWK_theAIHandlerOwnerID];
