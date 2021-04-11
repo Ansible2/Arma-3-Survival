@@ -108,7 +108,7 @@ private _fn_execWave = {
 		[SPECIAL_WARNING_TEMPLATE, [OVERRUN_WAVE_NOTIFICATION]]
 	};
 	if (_selectedWaveType == PARATROOPER_WAVE) exitWith {
-		remoteExecCall ["BLWK_fnc_handleParatrooperWave",BLWK_theAIHandlerEntity];
+		remoteExec ["BLWK_fnc_handleParatrooperWave",BLWK_theAIHandlerEntity];
 
 		[SPECIAL_WARNING_TEMPLATE, [PARATROOPER_WAVE_NOTIFICATION]]
 	};

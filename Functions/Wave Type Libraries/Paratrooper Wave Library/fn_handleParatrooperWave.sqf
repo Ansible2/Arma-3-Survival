@@ -26,6 +26,11 @@ Author(s):
 #define MAX_NUM_PARAS 14
 #define DROP_AREA_RADIUS 50
 
+if (!canSuspend) exitWith {
+	["Needs to be run in scheduled, exiting to scheduled...",true] call KISKA_fnc_log;
+	[] spawn BLWK_fnc_handleParatrooperWave;
+};
+
 private _startingWaveUnits = call BLWK_fnc_createStdWaveInfantry;
 
 private _unitCount = count _startingWaveUnits;
@@ -55,7 +60,7 @@ private "_dropZone_temp";
 while {!_parasAllocated} do {
 	// get units to put into vehicle
 	_unitsToDrop_temp = _startingWaveUnits select [_startCount,_vehicleCargoCapacity];
-	
+
 	// drop around The Crate
 	_dropZone_temp = [BLWK_mainCrate,DROP_AREA_RADIUS] call CBAP_fnc_randPos;
 	[_dropZone_temp,_unitsToDrop_temp,_dropVehicleClass,-1,-1,200,OPFOR] spawn BLWK_fnc_paratroopers;
