@@ -322,7 +322,7 @@ class BLWK_daySpeedMultiplier
 	title = "Day Speed Multiplier";
 	values[] = {1, 6, 12, 24, 48, 72};
 	texts[] = {"x1 (24h cycle)","x6 (4h cycle)","x12 (2h cycle)","x24 (1h cycle)","x48 (30m cycle)","x72 (20m cycle)"};
-	GET_DEFAULT_PARAM(BLWK_daySpeedMultiplier,48)
+	GET_DEFAULT_PARAM(BLWK_daySpeedMultiplier,12)
 };
 
 
