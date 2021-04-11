@@ -248,7 +248,7 @@ private _fn_addLoot = {
 _sortedPositions apply {
 	// in order to spawn stuff like weapons on the ground, we create holders
 
-	private _holder = createVehicle ["GroundWeaponHolder_scripted", _x, [], 0, "CAN_COLLIDE"];
+	private _holder = createVehicle ["WeaponHolderSimulated", _x, [], 0, "CAN_COLLIDE"];
 	private _primaryLootClass = [_holder] call _fn_addLoot;
 	// used for displaying loot markers in BLWK_fnc_createLootMarkers
 	_holder setVariable ["BLWK_primaryLootClass",_primaryLootClass];
