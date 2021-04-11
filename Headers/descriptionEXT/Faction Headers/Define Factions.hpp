@@ -220,7 +220,10 @@
 	218,\
 	219,\
 	220,\
-	221
+	221,\
+	222,\
+	223,\
+	224
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -340,6 +343,9 @@
 	"CUP - USMC Force Recon (Woodland)", \
 	"CUP - USMC FROG (Desert)", \
 	"CUP - USMC FROG (Woodland)", \
+	"Max Terminator - Skynet Army", \
+	"Max Terminator - Skynet Infiltration Units", \
+	"Max Terminator - Resistance", \
 	"OPCAN - Colonial Guard Corps", \
 	"OPCAN - Colonial Military Authority", \
 	"OPCAN - Colonial Police Force", \
