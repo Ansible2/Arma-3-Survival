@@ -9,10 +9,10 @@ Parameters:
 	0: _dropZone : <OBJECT or ARRAY> - Target of where to drop the units
 	1: _unitsThatCanDrop : <ARRAY> - An array of units that can be dropped
 	2: _dropVehicleClass : <STRING> - What vehicle class will drop the units
-	3: _numToDrop : <NUMBER> - The number of units out of the array to drop 
+	3: _numToDrop : <NUMBER> - The number of units out of the array to drop
 		(if -1, will resize to the amount of units in _unitsToDrop)
 	4: _flyDirection : <NUMBER> - The direction that the aircraft will fly towards _dropZone
-		(if -1, will be random direction) 
+		(if -1, will be random direction)
 	5: _flyInHeight : <NUMBER> - The flyInHeight of the aircraft
 	6: _side : <SIDE> - What side is the drop aircraft
 	7: _distanceFromDropZone : <NUMBER> - How far away should the aircraft spawn
@@ -93,7 +93,7 @@ _spawnPosition set [2,_flyInHeight];
 private _vehicleArray = [_spawnPosition,_flyDirection,_dropVehicleClass,_side] call BIS_fnc_spawnVehicle;
 private _aircraft = _vehicleArray select 0;
 allCurators apply {
-	[_x,[_aircraft],true] remoteExecCall ["addCuratorEditableObjects",2];
+	[_x,[[_aircraft],true]] remoteExecCall ["addCuratorEditableObjects",2];
 };
 _aircraft flyInHeight _flyInHeight;
 private _aircraftGroup = _vehicleArray select 2;
