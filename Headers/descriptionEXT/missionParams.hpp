@@ -301,7 +301,7 @@ class BLWK_buildingsNearTheCrateAreIndestructable_radius
 	title = "The radius of indestructable buildings around The Crate";
 	values[] = {0,5,10,15,20,25,30};
 	texts[] = {"OFF","5m","10m","15m","20m","25m","30m"};
-	GET_DEFAULT_PARAM(BLWK_buildingsNearTheCrateAreIndestructable_radius,15)
+	GET_DEFAULT_PARAM(BLWK_buildingsNearTheCrateAreIndestructable_radius,20)
 };
 
 
