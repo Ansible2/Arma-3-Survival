@@ -5,9 +5,9 @@ Function: BLWK_fnc_prepareGlobals
 
 Description:
 	Does exactly what it says. Most globals in the scenario are initialized here.
-	
+
 	It is executed from the "initPlayerLocal.sqf & initServer.sqf".
-	
+
 Parameters:
 	NONE
 
@@ -38,12 +38,12 @@ if (isServer) then {
         BLWK_theAIHandlerEntity = BLWK_headlessClient;
     };
     publicVariable "BLWK_theAIHandlerEntity";
-    
+
     // number should never be zero, but it can be for some time until the server has initialized
     waitUntil {
         if (owner BLWK_theAIHandlerEntity != 0) exitWith {true};
         sleep 1;
-        false 
+        false
     };
     BLWK_theAIHandlerOwnerID = owner BLWK_theAIHandlerEntity;
     // having an owner id for the AI handler makes using setVariable remotely possible
@@ -56,7 +56,7 @@ if (isServer) then {
     BLWK_loot_whiteListMode = ("BLWK_loot_whiteListMode" call BIS_fnc_getParamValue);
 
     /* LOCATION LIST OPTIONS */
-    BLWK_locations = nearestlocations [[0,0,0],["nameVillage","nameCity","nameCityCapital","nameMarine","Airport"],worldsize * sqrt 2]; 
+    BLWK_locations = nearestlocations [[0,0,0],["nameVillage","nameCity","nameCityCapital","nameMarine","Airport"],worldsize * sqrt 2];
     BLWK_minNumberOfHousesInArea = ("BLWK_minNumberOfHousesInArea" call BIS_fnc_getParamValue);
 
     /* Random Loot */
@@ -66,7 +66,7 @@ if (isServer) then {
     /* Time of Day*/
     BLWK_timeOfDay = ("BLWK_timeOfDay" call BIS_fnc_getParamValue);
 	BLWK_daySpeedMultiplier = ("BLWK_daySpeedMultiplier" call BIS_fnc_getParamValue);
-	
+
     /* Starter MediKits */
     BLWK_numMedKits = ("BLWK_numMedKits" call BIS_fnc_getParamValue);
 
@@ -92,7 +92,7 @@ if (isServer) then {
 
     // deletion for dropped items
     BLWK_deleteDroppedItemsEvery = "BLWK_deleteDroppedItemsEvery" call BIS_fnc_getParamValue;
-    
+
     // keeping players in the same group upon respawn
     createCenter BLUFOR;
     BLWK_playerGroup = createGroup [BLUFOR,false];
@@ -106,20 +106,20 @@ if (isServer OR {!hasInterface}) then {
     // need to get the DLC strigs returned by getAssetDLCInfo when 2.00 comes out
     BLWK_useableDLCs = [];
 
-    BLWK_canUseApexDLC = [false,true] select ("BLWK_canUseApexDLC" call BIS_fnc_getParamValue); 
+    BLWK_canUseApexDLC = [false,true] select ("BLWK_canUseApexDLC" call BIS_fnc_getParamValue);
     if (BLWK_canUseApexDLC) then {BLWK_useableDLCs pushBack ""};
 
     BLWK_canUseLOWDLC = [false,true] select ("BLWK_canUseLOWDLC" call BIS_fnc_getParamValue);
-    if (BLWK_canUseLOWDLC) then {BLWK_useableDLCs pushBack ""}; 
+    if (BLWK_canUseLOWDLC) then {BLWK_useableDLCs pushBack ""};
 
     BLWK_canUseMarksmanDLC = [false,true] select ("BLWK_canUseMarksmanDLC" call BIS_fnc_getParamValue);
-    if (BLWK_canUseMarksmanDLC) then {BLWK_useableDLCs pushBack ""}; 
+    if (BLWK_canUseMarksmanDLC) then {BLWK_useableDLCs pushBack ""};
 
     BLWK_canUseContactDLC = [false,true] select ("BLWK_canUseContactDLC" call BIS_fnc_getParamValue);
-    if (BLWK_canUseContactDLC) then {BLWK_useableDLCs pushBack ""}; 
+    if (BLWK_canUseContactDLC) then {BLWK_useableDLCs pushBack ""};
 
     BLWK_canUseTankstDLC = [false,true] select ("BLWK_canUseTankstDLC" call BIS_fnc_getParamValue);
-    if (BLWK_canUseTankstDLC) then {BLWK_useableDLCs pushBack ""}; 
+    if (BLWK_canUseTankstDLC) then {BLWK_useableDLCs pushBack ""};
 */
 
     // loot classes
@@ -141,11 +141,11 @@ if (isServer OR {!hasInterface}) then {
     BLWK_loot_explosiveClasses = _lootClasses select 8;
 
     // How many hostiles per wave (waveCount x BLWK_enemiesPerWaveMultiplier)
-    BLWK_enemiesPerWaveMultiplier = ("BLWK_enemiesPerWaveMultiplier" call BIS_fnc_getParamValue) / 10; 
-    // How many extra units are added per player 
-    BLWK_enemiesPerPlayerMultiplier = ("BLWK_enemiesPerPlayerMultiplier" call BIS_fnc_getParamValue) / 10; 
-    // What wave enemies stop only using pistols  
-    BLWK_maxPistolOnlyWaves = ("BLWK_maxPistolOnlyWaves" call BIS_fnc_getParamValue);  
+    BLWK_enemiesPerWaveMultiplier = ("BLWK_enemiesPerWaveMultiplier" call BIS_fnc_getParamValue) / 10;
+    // How many extra units are added per player
+    BLWK_enemiesPerPlayerMultiplier = ("BLWK_enemiesPerPlayerMultiplier" call BIS_fnc_getParamValue) / 10;
+    // What wave enemies stop only using pistols
+    BLWK_maxPistolOnlyWaves = ("BLWK_maxPistolOnlyWaves" call BIS_fnc_getParamValue);
     BLWK_randomizeEnemyWeapons = [false,true] select ("BLWK_randomizeEnemyWeapons" call BIS_fnc_getParamValue);
 
     BLWK_vehicleStartWave = ("BLWK_vehicleStartWave" call BIS_fnc_getParamValue);
@@ -156,8 +156,6 @@ if (isServer OR {!hasInterface}) then {
     BLWK_heavyCarLikelihood = ("BLWK_heavyCarLikelihood" call BIS_fnc_getParamValue);
     BLWK_lightArmorLikelihood = ("BLWK_lightArmorLikelihood" call BIS_fnc_getParamValue);
     BLWK_heavyArmorLikelihood = ("BLWK_heavyArmorLikelihood" call BIS_fnc_getParamValue);
-    BLWK_transportHeliLikelihood = ("BLWK_transportHeliLikelihood" call BIS_fnc_getParamValue);
-    BLWK_attackHeliLikelihood = ("BLWK_attackHeliLikelihood" call BIS_fnc_getParamValue);
     BLWK_baseVehicleSpawnLikelihood = ("BLWK_baseVehicleSpawnLikelihood" call BIS_fnc_getParamValue);
 
     BLWK_infantrySpawnPositions = [];
@@ -184,7 +182,7 @@ if (hasInterface) then {
     BLWK_playersStartWith_compass = [false,true] select ("BLWK_playersStartWith_compass" call BIS_fnc_getParamValue);
     BLWK_playersStartWith_mineDetector = [false,true] select ("BLWK_playersStartWith_mineDetector" call BIS_fnc_getParamValue);
     BLWK_playersStartWith_radio = [false,true] select ("BLWK_playersStartWith_radio" call BIS_fnc_getParamValue);
-    BLWK_playersStartWith_map = [false,true] select ("BLWK_playersStartWith_map" call BIS_fnc_getParamValue); 
+    BLWK_playersStartWith_map = [false,true] select ("BLWK_playersStartWith_map" call BIS_fnc_getParamValue);
     BLWK_playersStartWith_NVGs = [false,true] select ("BLWK_playersStartWith_NVGs" call BIS_fnc_getParamValue);
 
     BLWK_friendlyFireOn = [false,true] select ("BLWK_friendlyFireOn" call BIS_fnc_getParamValue);
@@ -252,7 +250,7 @@ if (isNil "BLWK_faksToMakeMedkit") then {
 };
 
 /* Points */
-BLWK_pointsForKill = "BLWK_pointsForKill" call BIS_fnc_getParamValue;         
+BLWK_pointsForKill = "BLWK_pointsForKill" call BIS_fnc_getParamValue;
 BLWK_pointsForHeal = 15 * BLWK_pointsForKill; // points to heal player at bulwark
 BLWK_pointsForHit = "BLWK_pointsForHit" call BIS_fnc_getParamValue;                   // Every Bullet hit
 BLWK_pointsMultiForDamage = "BLWK_pointsMultiForDamage" call BIS_fnc_getParamValue;   // Extra points awarded for damage. 100% = BLWK_pointsMultiForDamage. 50% = BLWK_pointsMultiForDamage/2
@@ -264,7 +262,7 @@ BLWK_dontUseRevive = (("ReviveMode" call BIS_fnc_getParamValue) isEqualTo 0);
 BLWK_ACELoaded = ["ace_common"] call KISKA_fnc_ispatchLoaded;
 
 
-BLWK_costToSpinRandomBox = 950; 
+BLWK_costToSpinRandomBox = 950;
 if (isNil "BLWK_supportDishFound") then {
     BLWK_supportDishFound = [false,true] select ("BLWK_supportDishFound" call BIS_fnc_getParamValue);
 };

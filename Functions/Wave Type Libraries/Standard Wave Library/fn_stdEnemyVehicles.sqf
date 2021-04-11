@@ -24,8 +24,8 @@ Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define VEHICLE_TYPES [LIGHT_CAR,HEAVY_CAR,LIGHT_ARMOR,HEAVY_ARMOR,TRANSPORT_HELI,ATTACK_HELI]
-#define VEHICLE_LIKELIHOODS [BLWK_lightCarLikelihood,BLWK_heavyCarLikelihood,BLWK_lightArmorLikelihood,BLWK_heavyArmorLikelihood,BLWK_transportHeliLikelihood,BLWK_attackHeliLikelihood]
+#define VEHICLE_TYPES [LIGHT_CAR,HEAVY_CAR,LIGHT_ARMOR,HEAVY_ARMOR]
+#define VEHICLE_LIKELIHOODS [BLWK_lightCarLikelihood,BLWK_heavyCarLikelihood,BLWK_lightArmorLikelihood,BLWK_heavyArmorLikelihood]
 #define SECOND_VEHICLE_DIVIDER 1.35
 
 scriptName "BLWK_fnc_stdEnemyVehicles";
@@ -77,7 +77,7 @@ missionNamespace setVariable ["BLWK_roundsSinceVehicleSpawned",0];
 private _vehicleTypeHash = createHashMap;
 private _likelihoodWeights = [];
 private _vehicleTypeValues = [];
-{	
+{
 	private _vehicleClasses = [];
 	if (_isDefectorWave) then {
 		_vehicleClasses = BLWK_friendly_vehicleClasses select _x;
@@ -102,7 +102,7 @@ private _fn_spawnAVehicle = {
 	[str _likelihoodWeights,false,true,false] call KISKA_fnc_log;
 	[str _vehicleTypeValues,false,true,false] call KISKA_fnc_log;
 	private _vehicleType = _vehicleTypeValues selectRandomWeighted _likelihoodWeights;
-	
+
 	// Don't duplicate vehicles if possible for the sake of variety
 	if (count _vehicleTypeValues > 1) then {
 		private _index = _vehicleTypeValues find _vehicleType;
@@ -112,59 +112,24 @@ private _fn_spawnAVehicle = {
 
 	[["Selected vehicle type: ",_vehicleType],false] call KISKA_fnc_log;
 
-	private _isHelicopter = false;
-	private "_vehicleClass";
-	if (_vehicleType isEqualTo TRANSPORT_HELI OR {_vehicleType isEqualTo ATTACK_HELI}) then {
-		["Selected vehicle type is helicopter",false] call KISKA_fnc_log;
-		_isHelicopter = true;
-		_vehicleClass = (_vehicleTypeHash get _vehicleType) select 0;
-	} else {
-		_vehicleClass = selectRandom (_vehicleTypeHash get _vehicleType);
-	};
+	private _vehicleClass = selectRandom (_vehicleTypeHash get _vehicleType);
+	private _spawnPosition = selectRandom BLWK_vehicleSpawnPositions;
+	private _vehicle = _vehicleClass createVehicle _spawnPosition;
 
-	private "_vehicle";
-	if (_isHelicopter) then {
-		// these aircraft are vanilla and meet the requirements for attack/transport heli support
-		// if a custom faction has helicopters, but they are not configed properly, these will be used instead
-		_defaultAircraft = ["O_Heli_Attack_02_dynamicLoadout_F","B_Heli_Transport_01_F"] select (_vehicleType isEqualTo TRANSPORT_HELI);
-		private _vehicleArray = [
-			BLWK_playAreaCenter,
-			BLWK_playAreaRadius,
-			_vehicleClass,
-			99999,
-			10,
-			random [40,50,60],
-			-1,
-			_defaultAircraft,
-			"",
-			OPFOR
-		] call BLWK_fnc_passiveHelicopterGunner;
+	private _crew = _availableInfantry select [0,3];
+	_availableInfantry deleteRange [0,3];
 
-		_vehicle = _vehicleArray select 0;
-		// loop through crew
-		(_vehicleArray select 1) apply {
-			[_x] remoteExecCall ["BLWK_fnc_addToMustKillArray",2];
-			[_x] call BLWK_fnc_addStdEnemyManEHs;
-			_x allowDamage true;
-		};
-	} else {
-		private _spawnPosition = selectRandom BLWK_vehicleSpawnPositions;
-		_vehicle = _vehicleClass createVehicle _spawnPosition;
+	private _group = createGroup (side (_crew select 0));
+	_group deleteGroupWhenEmpty true;
+	_group allowFleeing 0;
 
-		private _crew = _availableInfantry select [0,3];
-		_availableInfantry deleteRange [0,3];
+	// CIPHER COMMENT: May need to clear the crews previous waypoints
+	_crew joinSilent _group;
+	[_group,_vehicle] call KISKA_fnc_setCrew;
+	[_group, BLWK_mainCrate, 20, "SAD", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
 
-		private _group = createGroup (side (_crew select 0));
-		_group deleteGroupWhenEmpty true;
-		_group allowFleeing 0;
+	[BLWK_zeus, [[_vehicle],false]] remoteExecCall ["addCuratorEditableObjects",2];
 
-		// CIPHER COMMENT: May need to clear the crews previous waypoints
-		_crew joinSilent _group;
-		[_group,_vehicle] call KISKA_fnc_setCrew;
-		[_group, BLWK_mainCrate, 20, "SAD", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
-
-		[BLWK_zeus, [[_vehicle],false]] remoteExecCall ["addCuratorEditableObjects",2];	
-	};
 
 	_returnedVehicles pushBack _vehicle;
 	_vehicle addEventHandler ["KILLED",{

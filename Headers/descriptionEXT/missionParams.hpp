@@ -39,12 +39,12 @@ __EXEC(_savedParams = profileNamespace getVariable ["BLWK_savedMissionParameters
 */
 
 
-// prior to 0.9, used arrays instead of hashes. Since params are auto loaded, in order to avoid errors on previous parameter saves, 
+// prior to 0.9, used arrays instead of hashes. Since params are auto loaded, in order to avoid errors on previous parameter saves,
 /// this will create an empty hash if an array is present in BLWK_savedMissionParameters or if nothing has been saved yet.
 /// ultimately allowing the use of the getOrDefault command for hashes
 __EXEC(_savedParams = [profileNamespace getVariable "BLWK_savedMissionParameters",createHashMap] select call compile "profileNamespace getVariable ['BLWK_savedMissionParameters',[]] isEqualType []");
 #define GET_DEFAULT_PARAM(NAME,DEFAULT_VALUE) default = __EVAL(_savedParams getOrDefault [#NAME,DEFAULT_VALUE]);
-	
+
 
 #define WAVE_STEPS_VALUES values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 25, 9999};
 #define WAVE_STEPS_TEXTS texts[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "20", "25", "Never"};
@@ -438,7 +438,7 @@ class BLWK_level5Faction
 	title = "Level 5 Enemy Faction";
 	values[] = {FACTION_COUNT};
 	texts[] = {FACTION_STRINGS};
-	default = 13; // Contact Spetsnaz 
+	default = 13; // Contact Spetsnaz
 };
 
 
@@ -478,20 +478,6 @@ class BLWK_heavyArmorLikelihood
 	values[] = ZERO_TO_TEN;
 	texts[] = ZERO_TO_TEN_STRINGS;
 	GET_DEFAULT_PARAM(BLWK_heavyArmorLikelihood,4)
-};
-class BLWK_transportHeliLikelihood
-{
-	title = "Enemy Door Gunner Likelihood";
-	values[] = ZERO_TO_TEN;
-	texts[] = ZERO_TO_TEN_STRINGS;
-	GET_DEFAULT_PARAM(BLWK_transportHeliLikelihood,5)
-};
-class BLWK_attackHeliLikelihood
-{
-	title = "Enemy Attack Helicopter Likelihood";
-	values[] = ZERO_TO_TEN;
-	texts[] = ZERO_TO_TEN_STRINGS;
-	GET_DEFAULT_PARAM(BLWK_attackHeliLikelihood,4)
 };
 
 
