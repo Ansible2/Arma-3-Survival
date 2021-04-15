@@ -211,6 +211,8 @@ class BLWK
 		{};
 		class hintDroppedDelete
 		{};
+		class lootReveal
+		{};
 		class optreMedicalToVanilla
 		{};
 		class randomizeWeapons
