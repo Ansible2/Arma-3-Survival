@@ -426,8 +426,6 @@ class BLWK
 		file = "Functions\Wave Type Libraries\Paratrooper Wave Library";
 		class handleParatrooperWave
 		{};
-		class paraTroopers
-		{};
 	};
 
 	class StandardWaveLibrary

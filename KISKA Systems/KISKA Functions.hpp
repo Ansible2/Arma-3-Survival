@@ -89,11 +89,15 @@ class KISKA
 		{};
 		class log
 		{};
+		class paraTroopers
+		{};
 		class pushBackToArray
 		{};
 		class removeArsenal
 		{};
 		class setCrew
+		{};
+		class spawnVehicle
 		{};
 		class staticLine
 		{};

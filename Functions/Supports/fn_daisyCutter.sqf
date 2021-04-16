@@ -42,7 +42,7 @@ if (_dropPosition isEqualType objNull) then {
 	_dropPosition = getPosATL _dropPosition;
 };
 
-// get directions for vehicle to fly 
+// get directions for vehicle to fly
 private _flyDirection = round (random 360);
 private _flyFromDirection = [_flyDirection + 180] call CBAP_fnc_simplifyAngle;
 private _spawnPosition = _dropPosition getPos [FLY_RADIUS,_flyFromDirection];
@@ -51,20 +51,15 @@ _spawnPosition set [2,DROP_ALT];
 private _relativeDirection = _spawnPosition getDir _dropPosition;
 
 // spawn vehicle
-private _vehicleArray = [_spawnPosition,_relativeDirection,_vehicleClass,BLUFOR] call BIS_fnc_spawnVehicle;
-private _aircraft = _vehicleArray select 0;
-// BIS_fnc_spawnVehicle does not always set the velocity on aircraft if they are configured incorrectly
-// this is used to guarantee it
-_aircraft setVelocityModelSpace [0,100,0];
+private _vehicleArray = [_spawnPosition,_relativeDirection,_vehicleClass,BLUFOR] call KISKA_fnc_spawnVehicle;
 
 private _aircraftCrew = _vehicleArray select 1;
-
 _aircraftCrew apply {
 	_x setCaptive true;
 };
-private _aircraftGroup = _vehicleArray select 2;
-_aircraft flyInHeight DROP_ALT;
 
+private _aircraft = _vehicleArray select 0;
+_aircraft flyInHeight DROP_ALT;
 _airCraft move _dropPosition;
 
 // give it a waypoint and delete it after it gets there
@@ -76,6 +71,7 @@ waitUntil {
 	false
 };
 
+private _aircraftGroup = _vehicleArray select 2;
 // go to deletion point
 [
 	_aircraftGroup,
@@ -120,7 +116,7 @@ sleep 3;
 private "_chuteVelocity";
 private _chuteHeight = (getPosATLVisual _chute) select 2;
 while {sleep 0.03; _chuteHeight > 5} do {
-	
+
 	//_chuteVelocity = velocityModelSpace _chute;
 	_chute setVelocityModelSpace [0,0,-10];
 	_chuteHeight = (getPosATLVisual _chute) select 2;
