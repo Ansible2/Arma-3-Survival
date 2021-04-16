@@ -49,6 +49,7 @@ if !(GET_PUBLIC_ARRAY_DEFAULT isEqualTo []) then {
 	BLWK_PUB_CURRENT_PLAYLIST apply {
 		_displayName_temp = [_x] call (uiNamespace getVariable "BLWK_fnc_musicManager_getMusicName");
 		_control lbAdd _displayName_temp;
+		[_x,true] call BLWK_fnc_musicManager_adjustNameColor;
 	};
 };
 
