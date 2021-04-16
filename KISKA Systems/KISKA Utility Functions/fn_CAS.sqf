@@ -72,7 +72,7 @@ private _planeCfg = configfile >> "cfgvehicles" >> _planeClass;
 if !(isclass _planeCfg) exitwith {
 	[[_planeClass," Vehicle class not found, moving to default aircraft..."],true] call KISKA_fnc_log;
 	_this set [3,"B_Plane_CAS_01_dynamicLoadout_F"];
-	_this spawn KISKA_fnc_CAS; 
+	_this spawn KISKA_fnc_CAS;
 };
 
 
@@ -119,18 +119,18 @@ private _pylonConfig = _planeCfg >> "Components" >> "TransportPylonsComponent" >
 
 // if the plane has pylons
 if (isClass _pylonConfig) then {
-	
-	private _allVehiclePylons =  ("true" configClasses _pylonConfig) apply {configName _x};	
+
+	private _allVehiclePylons =  ("true" configClasses _pylonConfig) apply {configName _x};
 
 	// some planes (Buzzard) have their cannon as a pylon, don't want to replace it if needed
 	if (CANNON_TYPE in _attackMagazines) then {
-		
+
 		// find the cannon weapon in the planes default loadout
 		private _cannonIndex = _planeClassWeapons findIf {
 			[
 				(configFile >> "cfgWeapons" >> _x),
 				(configFile >> "cfgWeapons" >> "cannonCore")
-			] call CBA_fnc_inheritsFrom;
+			] call CBAP_fnc_inheritsFrom;
 		};
 
 		private _cannonClass = "";
@@ -155,7 +155,7 @@ if (isClass _pylonConfig) then {
 			private _pylonToUse = _allVehiclePylons deleteAt 0; // set the first pylon as the cannon
 			_canonPylonData pushBack _pylonToUse;
 		};
-			
+
 		_weaponsToUse pushBack [CANNON_TYPE,_cannonClass,_canonPylonData];
 		// remove cannon so we don't need to check it later
 		_attackMagazines deleteAt (_attackMagazines find CANNON_TYPE);
@@ -164,7 +164,7 @@ if (isClass _pylonConfig) then {
 
 	if !(_attackMagazines isEqualTo []) then {
 		private ["_attackTypeString","_attackMagazineClass","_attackWeaponClass"];
-		{	
+		{
 			[["attackMag is: ",_x],false] call KISKA_fnc_log;
 			_attackMagazineClass = _x select 1;
 			_attackWeaponClass = [configFile >> "cfgMagazines" >> _attackMagazineClass >> "pylonWeapon"] call BIS_fnc_getCfgData;
@@ -181,7 +181,7 @@ if (isClass _pylonConfig) then {
 
 if (_exitToDefault) exitwith {
 	[["Weapon types of ",_attackMagazines," for plane class: ",_planeClass," not entirely found, moving to default Aircraft..."],true] call KISKA_fnc_log;
-	// exit to default aircraft type 
+	// exit to default aircraft type
 	_this set [3,"B_Plane_CAS_01_dynamicLoadout_F"];
 	_this spawn KISKA_fnc_CAS;
 };
@@ -194,10 +194,10 @@ if (_exitToDefault) exitwith {
 ---------------------------------------------------------------------------- */
 KISKA_fnc_casAttack = {
 	params ["_plane","_dummyTarget","_weaponsToUse","_attackTypeID","_attackPosition","_breakOffDistance"];
-	
+
 	private ["_weapon_temp","_weaponArray_temp"];
 	private _pilot = currentPilot _plane;
-	
+
 	private _fn_setWeaponTemp = {
 		params ["_type"];
 		_weaponArray_temp = _weaponsToUse select (_weaponsToUse findIf {(_x select 0) == _type});
@@ -341,7 +341,7 @@ while {!(isNull _plane) AND {!(_plane getVariable ["KISKA_completedFiring",false
 	_interval = linearConversion [_startTime,_timeAfterFlight,time,0,1];
 	_planeVectorDirTo = _planePositionASL vectorFromTo _attackPosition;
 	_planeVectorDirFrom = vectorDirVisual _plane;
-	
+
 	_plane setVelocityTransformation [
 		_planeSpawnPosition, _attackPosition,
 		PLANE_VELOCITY(PLANE_SPEED), PLANE_VELOCITY(PLANE_SPEED),
@@ -356,8 +356,8 @@ while {!(isNull _plane) AND {!(_plane getVariable ["KISKA_completedFiring",false
 	// start firing
 	// check if plane is 1200m from target and hasn't already started shooting
 	if ((_planePositionASL vectorDistance _attackPosition) <= 1200) then {
-		
-		
+
+
 		//private "_dummyTarget";
 		if (!(isNull _plane) AND {!(_plane getVariable ["KISKA_startedFiring",false])}) then {
 			_plane setVariable ["KISKA_startedFiring",true];
@@ -365,7 +365,7 @@ while {!(isNull _plane) AND {!(_plane getVariable ["KISKA_completedFiring",false
 			private _dummyTargetClass = ["LaserTargetE","LaserTargetW"] select (_planeSide getfriend west > 0.6);
 			private _dummyTarget = createvehicle [_dummyTargetClass,[0,0,0],[],0,"NONE"];
 			_plane setVariable ["KISKA_casDummyTarget",_dummyTarget];
-			_dummyTarget setPosASL _attackPosition;	
+			_dummyTarget setPosASL _attackPosition;
 			_plane reveal laserTarget _dummyTarget;
 			_plane dowatch laserTarget _dummyTarget;
 			_plane dotarget laserTarget _dummyTarget;
