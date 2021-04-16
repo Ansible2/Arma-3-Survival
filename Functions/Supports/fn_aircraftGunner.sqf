@@ -37,12 +37,12 @@ Author(s):
 ---------------------------------------------------------------------------- */
 params ["_vehicleClass","_loiterHeight","_loiterRadius","_defaultVehicleType","_globalUseVarString"];
 
-private _turretsWithWeapons = [_aircraftType] call KISKA_fnc_classTurretsWithGuns;
+private _turretsWithWeapons = [_vehicleClass] call KISKA_fnc_classTurretsWithGuns;
 // go to default aircraft type if no suitable turrets are found
-if (_turretsWithWeapons isEqualTo []) exitWith {
-	private _newParams = _this;
-	_newParams set [0,_defaultVehicleType];
-	_newParams call BLWK_fnc_aircraftGunner;
+if (_turretsWithWeapons isEqualTo []) then {
+	[[_vehicleClass," : does not meet type standards to be used, moving to default type: ",_defaultVehicleType],true] call KISKA_fnc_log;
+	_vehicleClass = _defaultVehicleType;
+	_turretsWithWeapons = [_defaultVehicleType] call KISKA_fnc_classTurretsWithGuns;
 };
 
 
