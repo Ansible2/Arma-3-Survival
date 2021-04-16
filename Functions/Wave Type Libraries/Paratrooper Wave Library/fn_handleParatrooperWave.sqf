@@ -48,7 +48,7 @@ if (_startingUnitsCount < MAX_NUM_PARAS) then {
 // if everyone fits into one vehicle then just exit with one vehicle spawn
 if (_numberOfUnitsToDrop <= _vehicleCargoCapacity) exitWith {
 	private _dropZone = [BLWK_mainCrate,DROP_AREA_RADIUS] call CBAP_fnc_randPos;
-	[_dropZone,_startingWaveUnits,_dropVehicleClass,-1,-1,200,OPFOR] spawn BLWK_fnc_paratroopers;
+	[_dropZone,_startingWaveUnits,_dropVehicleClass,-1,-1,200,OPFOR] spawn KISKA_fnc_paratroopers;
 };
 
 
@@ -63,7 +63,7 @@ while {!_parasAllocated} do {
 
 	// drop around The Crate
 	_dropZone_temp = [BLWK_mainCrate,DROP_AREA_RADIUS] call CBAP_fnc_randPos;
-	[_dropZone_temp,_unitsToDrop_temp,_dropVehicleClass,-1,-1,200,OPFOR] spawn BLWK_fnc_paratroopers;
+	[_dropZone_temp,_unitsToDrop_temp,_dropVehicleClass,-1,-1,200,OPFOR] spawn KISKA_fnc_paratroopers;
 
 	// check if the amount to drop has been reached
 	_numUnitsAllocated = _numUnitsAllocated + _vehicleCargoCapacity;
