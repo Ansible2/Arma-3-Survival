@@ -33,7 +33,7 @@ if (_classToCheck isEqualTo "") exitWith {
 
 
 if !(isClass(configFile >> "CfgVehicles" >> _classToCheck)) exitWith {
-    ["_classToCheck is not defined withing CfgVehicles!",true] call KISKA_fnc_log;
+    ["_classToCheck is not defined within CfgVehicles!",true] call KISKA_fnc_log;
     []
 };
 
