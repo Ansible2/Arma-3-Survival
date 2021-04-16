@@ -26,14 +26,14 @@ scriptName "BLWK_fnc_musicManagerOnLoad_savePlaylistControls";
 params ["_saveButtonControl","_saveAsButtonControl"];
 
 _saveButtonControl ctrlAddEventHandler ["ButtonClick",{
-	params ["_control"];
+	//params ["_control"];
 
 	// make sure a selection is made in the load drop down
 	private _loadComboControl = uiNamespace getVariable "BLWK_musicManager_control_loadCombo";
 	private _loadComboSelectedIndex = lbCurSel _loadComboControl;
 
 	// if a selection has been made in the load playlist drop down AND it is not the DEFAULT entry
-	if (!(_loadComboSelectedIndex isEqualTo -1) AND {!(_loadComboSelectedIndex isEqualTo 0)}) then {
+	if !(_loadComboSelectedIndex isEqualTo -1) then {
 
 		// make sure there is anything to overwrite the list with
 		if !(GET_PUBLIC_ARRAY_DEFAULT isEqualTo []) then {
