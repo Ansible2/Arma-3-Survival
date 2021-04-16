@@ -8,7 +8,7 @@ Description:
 
 Parameters:
 	0: _caller <OBJECT> - The player calling for support
-	1: _targetPosition <ARRAY> - The position (AGLS) at which the call is being made 
+	1: _targetPosition <ARRAY> - The position (AGLS) at which the call is being made
 		(where the player is looking or if in the map, the position where their cursor is)
 	2: _supportClass <STRING> - The class as defined in the CfgCommunicationMenu
 
@@ -198,7 +198,7 @@ if (CHECK_SUPPORT_CLASS(PASS_ATTACK_GUNNER_CLASS)) exitWith {
 		ADD_SUPPORT_BACK
 	};
 };
-if (CHECK_SUPPORT_CLASS(PASS_DOOR_GUNNER_CLASS)) exitWith {	
+if (CHECK_SUPPORT_CLASS(PASS_DOOR_GUNNER_CLASS)) exitWith {
 	if !(missionNamespace getVariable ["BLWK_doorGunnerInUse",false]) then {
 		private _vehicleClass = [4,false] call BLWK_fnc_getFriendlyVehicleClass;
 		HELI_CAS_EXPRESSION(_vehicleClass,180,50,"B_Heli_Transport_01_F","BLWK_doorGunnerInUse")
@@ -228,7 +228,7 @@ if (CHECK_SUPPORT_CLASS(TURRET_DOOR_GUNNER_CLASS)) exitWith {
 if (CHECK_SUPPORT_CLASS(TURRET_ATTACK_HELI_GUNNER_CLASS)) exitWith {
 	if !(missionNamespace getVariable ["BLWK_heliGunnerInUse",false]) then {
 		private _friendlyAttackHeliClass = [7] call BLWK_fnc_getFriendlyVehicleClass;
-		TURRET_EXPRESSION(_friendlyAttackHeliClass,400,550,"B_Heli_Attack_01_dynamicLoadout_F","BLWK_heliGunnerInUse")	
+		TURRET_EXPRESSION(_friendlyAttackHeliClass,400,550,"B_Heli_Attack_01_dynamicLoadout_F","BLWK_heliGunnerInUse")
 	} else {
 		hint "Only one helicopter gunner support may be active at a time.";
 		ADD_SUPPORT_BACK
@@ -241,7 +241,7 @@ if (CHECK_SUPPORT_CLASS(TURRET_GUNSHIP_CLASS)) exitWith {
 	} else {
 		hint "Only one heavy gunship gunner support may be active at a time.";
 		ADD_SUPPORT_BACK
-	};	
+	};
 };
 
 
@@ -257,7 +257,7 @@ if (CHECK_SUPPORT_CLASS(REINFORCE_PARATROOPERS_CLASS)) exitWith {
 	if (isNull _playerGroup) then {
 		_playerGroup = BLWK_playerGroup;
 	};
-	
+
 	private "_unit_temp";
 	private _unitsToDrop = [];
 	for "_i" from 1 to NUMBER_OF_PARATROOPERS do {
@@ -265,9 +265,9 @@ if (CHECK_SUPPORT_CLASS(REINFORCE_PARATROOPERS_CLASS)) exitWith {
 		[_unit_temp] joinSilent _playerGroup;
 		_unitsToDrop pushBack _unit_temp;
 	};
-	
-	[BLWK_zeus, [_unitsToDrop,false]] remoteExecCall ["addCuratorEditableObjects",2];
-	[_targetPosition,_unitsToDrop,"B_T_VTOL_01_infantry_F"] spawn BLWK_fnc_paratroopers;	
+
+	//[BLWK_zeus, [_unitsToDrop,false]] remoteExecCall ["addCuratorEditableObjects",2];
+	[_targetPosition,_unitsToDrop,"B_T_VTOL_01_infantry_F"] spawn KISKA_fnc_paratroopers;
 };
 
 

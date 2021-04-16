@@ -271,7 +271,7 @@ KISKA_fnc_casAttack = {
 private _planeSpawnPosition = _attackPosition getPos [_spawnDistance,_attackDirection + 180];
 _planeSpawnPosition set [2,_attackHeight];
 private _planeSide = (getnumber (_planeCfg >> "side")) call BIS_fnc_sideType;
-private _planeArray = [_planeSpawnPosition,_attackDirection,_planeClass,_planeSide] call BIS_fnc_spawnVehicle;
+private _planeArray = [_planeSpawnPosition,_attackDirection,_planeClass,_planeSide] call KISKA_fnc_spawnVehicle;
 private _plane = _planeArray select 0;
 private _crew = _planeArray select 1;
 
