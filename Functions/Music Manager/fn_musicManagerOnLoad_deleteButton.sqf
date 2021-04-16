@@ -31,7 +31,7 @@ _control ctrlAddEventHandler ["ButtonClick",{
 	private _selectedIndex = lbCurSel _loadControl;
 
 	// check if an entry in the loadCombo is selected and that it is not the DEFAULT entry in the load combo
-	if (!(_selectedIndex isEqualTo -1) AND {!(_selectedIndex isEqualTo 0)}) then {
+	if !(_selectedIndex isEqualTo -1) then {
 
 		private _savedPlaylistArray = profileNamespace getVariable ["BLWK_musicManagerPlaylists",[]];
 		/// BLWK_musicManagerPlaylists array
