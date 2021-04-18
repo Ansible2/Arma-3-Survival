@@ -51,4 +51,8 @@ class factionBase
 #include "Aegis Atlas Unit Table.hpp"
 #include "3CB BAF Unit Table.hpp"
 #include "Max Terminator.hpp"
+#include "There is Only War AM Unit Table.hpp"
+#include "There is Only War Chaos Unit Table.hpp"
+#include "There is Only War SM Unit Table.hpp"
+#include "There is Only War Xenos Unit Table.hpp"
 };
