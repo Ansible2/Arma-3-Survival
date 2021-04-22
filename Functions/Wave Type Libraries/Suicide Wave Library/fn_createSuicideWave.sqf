@@ -35,6 +35,25 @@ _bombersArray apply {
 	[_unitGroupTemp, BLWK_mainCrate, 5, "MOVE", "CARELESS"] call CBAP_fnc_addWaypoint;
 
 	removeAllWeapons _x;
+	
+	// added suicide uniform by KillZoneKid
+	private ["_expl1","_expl2","_expl3"];
+
+	removeHeadgear _x;	
+	removeVest _x;	
+	_x addVest "V_HarnessOGL_brn";
+	_x addHeadgear "H_ShemagOpen_khk";	
+	
+	_expl1 = "DemoCharge_Remote_Ammo" createVehicle position _x;
+	_expl1 attachTo [_x, [-0.1, 0.1, 0.15], "Pelvis"];
+	_expl1 setVectorDirAndUp [ [0.5, 0.5, 0], [-0.5, 0.5, 0] ];
+	_expl2 = "DemoCharge_Remote_Ammo" createVehicle position _x;
+	_expl2 attachTo [_x, [0, 0.15, 0.15], "Pelvis"];
+	_expl2 setVectorDirAndUp [ [1, 0, 0], [0, 1, 0] ];
+	_expl3 = "DemoCharge_Remote_Ammo" createVehicle position _x;
+	_expl3 attachTo [_x, [0.1, 0.1, 0.15], "Pelvis"];
+	_expl3 setVectorDirAndUp [ [0.5, -0.5, 0], [0.5, 0.5, 0] ];
+// end suicide uniform
 
 	_x addEventHandler ["KILLED",{
 		[_this select 0] call BLWK_fnc_explodeSuicideBomberEvent;
