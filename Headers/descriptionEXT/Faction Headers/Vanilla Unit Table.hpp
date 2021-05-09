@@ -14,7 +14,7 @@ class AAF_faction
 		"I_LT_01_cannon_F"
 	};
 	heavyArmor[] = {
-		"I_MBT_03_cannon_F"			
+		"I_MBT_03_cannon_F"
 	};
 	transportHelicopters[] = {
 		"I_Heli_light_03_unarmed_F"
@@ -159,8 +159,7 @@ class CSAT_pacific_faction
 		"O_T_MBT_04_cannon_F"
 	};
 	transportHelicopters[] = {
-		"O_Heli_Light_02_unarmed_F",
-		"O_T_VTOL_02_infantry_dynamicLoadout_F"
+		"O_Heli_Light_02_unarmed_F"
 	};
 	cargoAircraft[] = {
 		"O_T_VTOL_02_infantry_dynamicLoadout_F"
@@ -168,14 +167,12 @@ class CSAT_pacific_faction
 	casAircraft[] = {
 		"O_Plane_CAS_02_dynamicLoadout_F",
 		"CUP_O_Su25_Dyn_CSAT_T",
-		"O_T_VTOL_02_infantry_dynamicLoadout_F",
 		"O_Plane_Fighter_02_F"
 	};
 	attackHelicopters[] = {
 		"O_Heli_Attack_02_dynamicLoadout_black_F",
 		"CUP_O_Mi24_Mk3_CSAT_T",
-		"CUP_O_Mi24_Mk4_CSAT_T",
-		"O_T_VTOL_02_infantry_dynamicLoadout_F"
+		"CUP_O_Mi24_Mk4_CSAT_T"
 	};
 	infantry[] = {
 		"O_T_Soldier_A_F",
