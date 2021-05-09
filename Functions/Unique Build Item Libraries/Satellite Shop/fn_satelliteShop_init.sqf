@@ -29,7 +29,7 @@ if (isNull _satelliteObject) exitWith {
 	nil
 };
 
-[_satelliteObject] remoteExecCall ["BLWK_fnc_satelliteShop_preparePlayer",call CBAP_fnc_players,_satelliteObject];
+[_satelliteObject] remoteExecCall ["BLWK_fnc_satelliteShop_preparePlayer",BLWK_allClientsTargetID,_satelliteObject];
 
 private _waveToDeleteOn = BLWK_currentWaveNumber + 2;
 if (BLWK_inBetweenWaves) then {

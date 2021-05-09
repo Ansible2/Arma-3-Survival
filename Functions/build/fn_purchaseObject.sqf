@@ -59,7 +59,7 @@ if (_propertiesArray select HAS_AI) then {
 
 if (_propertiesArray select INDESTRUCTABLE) then {
 	_purchasedObject allowDamage false;
-	[_purchasedObject] remoteExecCall ["BLWK_fnc_addAllowDamageEH",call CBAP_fnc_players,true];
+	[_purchasedObject] remoteExecCall ["BLWK_fnc_addAllowDamageEH",BLWK_allClientsTargetID,true];
 
 	if (BLWK_ACELoaded) then {
 		_purchasedObject setVariable ["ace_cookoff_enable", false, true];

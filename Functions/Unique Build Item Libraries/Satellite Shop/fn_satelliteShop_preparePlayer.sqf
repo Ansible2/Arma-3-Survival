@@ -21,6 +21,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_satelliteShop_preparePlayer";
 
+if (!hasInterface) exitWith {};
+
 params ["_satelliteObject"];
 
 if (isNull _satelliteObject) exitWith {
