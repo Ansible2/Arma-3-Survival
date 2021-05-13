@@ -6,7 +6,7 @@ Description:
 	Executes an object's configed script as entered in under its BLWK_buildableItems
 	 entry.
 
-	Executes from "BLWK_fnc_purchaseObject" after an object's actions are 
+	Executes from "BLWK_fnc_purchaseObject" after an object's actions are
 	 synced across the network.
 
 Parameters:
@@ -31,6 +31,7 @@ params [
 
 if (isNull _object) exitWith {
 	["_object is a null object, exiting...",true] call KISKA_fnc_log;
+	nil
 };
 
 
