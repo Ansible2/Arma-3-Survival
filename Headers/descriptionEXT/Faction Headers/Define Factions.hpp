@@ -223,7 +223,13 @@
 	221,\
 	222,\
 	223,\
-	224
+	224,\
+	225,\
+	226,\
+	227,\
+	228,\
+	229,\
+	230
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -240,6 +246,12 @@
 	"CONTACT - NATO WOODLAND", \
 	"CONTACT - LDF", \
 	"CONTACT - Spetznas", \
+	"S.O.G. PF - Camp Strike Force", \
+	"S.O.G. PF - Long Range Reconnaissance Patrol", \
+	"S.O.G. PF - MACV-SOG", \
+	"S.O.G. PF - Mike Force", \
+	"S.O.G. PF - US Army", \
+	"S.O.G. PF - USMC", \
 	"3CB-BAF - Army Artic", \
 	"3CB-BAF - Army Desert", \
 	"3CB-BAF - Army Multicam (MTP)", \

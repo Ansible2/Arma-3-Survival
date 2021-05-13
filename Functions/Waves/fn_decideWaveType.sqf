@@ -15,56 +15,77 @@ Returns:
 
 Examples:
     (begin example)
-
 		call BLWK_fnc_decideWaveType;
-
     (end)
 
 Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define SPECIAL_WAVE_LIKELIHOOD 0.3
-#define STANDARD_WAVE_LIKELIHOOD 1.25
+scriptName "BLWK_fnc_decideWaveType";
+
 #define SPECIAL_WAVES \
 [ \
-	[SUICIDE_WAVE, SPECIAL_WAVE_LIKELIHOOD], \
-	[CIVILIAN_WAVE, SPECIAL_WAVE_LIKELIHOOD], \
-	[DRONE_WAVE, SPECIAL_WAVE_LIKELIHOOD], \
-	[MORTAR_WAVE, SPECIAL_WAVE_LIKELIHOOD], \
-	[DEFECTOR_WAVE, SPECIAL_WAVE_LIKELIHOOD], \
-	[OVERRUN_WAVE, SPECIAL_WAVE_LIKELIHOOD], \
-	[PARATROOPER_WAVE, SPECIAL_WAVE_LIKELIHOOD], \
-	[HELICOPTER_WAVE, SPECIAL_WAVE_LIKELIHOOD] \
+	[SUICIDE_WAVE, 1], \
+	[CIVILIAN_WAVE, 1], \
+	[DRONE_WAVE, 1], \
+	[MORTAR_WAVE, 1], \
+	[DEFECTOR_WAVE, 1], \
+	[OVERRUN_WAVE, 1], \
+	[PARATROOPER_WAVE, 1], \
+	[HELICOPTER_WAVE, 1] \
 ]
-
+#define IS_SPECIAL 0
+#define IS_STANDARD 1
 
 if (!isServer) exitWith {false};
 
-private _usedSpecialWaves = missionNamespace getVariable ["BLWK_usedSpecialWaves",[]];
 
 private _fn_getWaveType = {
-	private _decideArray = [STANDARD_WAVE, STANDARD_WAVE_LIKELIHOOD];
+	private _usedWave = "";
 
 	// these aren't cache'd for the desire to have this be a potential toggle option mid-session in the future
 	if (BLWK_currentWaveNumber >= BLWK_specialWavesStartAt) then {
-		SPECIAL_WAVES apply {
-			if !((_x select 0) in _usedSpecialWaves) then {
-				_decideArray append _x;
+		["Special waves can be selected this wave",false] call KISKA_fnc_log;
+
+		private _standardWaveLikelihood = 1 - BLWK_specialWaveLikelihood;
+		private _waveType = selectRandomWeighted [IS_SPECIAL,BLWK_specialWaveLikelihood,IS_STANDARD,_standardWaveLikelihood];
+		//[[IS_SPECIAL," ",BLWK_specialWaveLikelihood," ",IS_STANDARD," ",_standardWaveLikelihood],false] call KISKA_fnc_log;
+
+		if (_waveType isEqualTo IS_SPECIAL) then {
+			["Selected a special wave instead of standard",false] call KISKA_fnc_log;
+
+			private _usedSpecialWaves = missionNamespace getVariable ["BLWK_usedSpecialWaves",[]];
+			private _decideArray = [];
+			private _allSpecialWaves = SPECIAL_WAVES;
+
+			// checking if all special waves have already been used
+			if ((count _usedSpecialWaves) isEqualTo (count _allSpecialWaves)) then {
+				missionNamespace setVariable ["BLWK_usedSpecialWaves",[]];
+				_usedSpecialWaves = [];
 			};
+
+			_allSpecialWaves apply {
+				if !((_x select 0) in _usedSpecialWaves) then {
+					_decideArray append _x;
+				};
+			};
+
+			_usedWave = selectRandomWeighted _decideArray;
+			_usedSpecialWaves pushBack _usedWave;
+			missionNamespace setVariable ["BLWK_usedSpecialWaves",_usedSpecialWaves];
+		} else {
+			["Selected a standard wave instead of a special one",false] call KISKA_fnc_log;
+			_usedWave = STANDARD_WAVE;
+
 		};
 
-		// if we just got the standard wave (2 entries in _decideArray), assume we've used up all the special waves and need to reset the queue
-		if ((count _decideArray) isEqualTo 2) then {
-			missionNamespace setVariable ["BLWK_usedSpecialWaves",[]];
-		};
+	} else {
+		["Special waves CANT be selected this wave as the wave is still has yet to reach the special wave starting wave threshold",false] call KISKA_fnc_log;
+		_usedWave = STANDARD_WAVE;
+
 	};
 
-	private _usedWave = selectRandomWeighted _decideArray;
-	if (_usedWave != STANDARD_WAVE) then {
-		_usedSpecialWaves pushBack _usedWave;
-		missionNamespace setVariable ["BLWK_usedSpecialWaves",_usedSpecialWaves];
-	};
 
 	_usedWave
 };

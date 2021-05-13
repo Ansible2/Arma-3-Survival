@@ -93,6 +93,8 @@ if (isServer) then {
     // deletion for dropped items
     BLWK_deleteDroppedItemsEvery = "BLWK_deleteDroppedItemsEvery" call BIS_fnc_getParamValue;
 
+    BLWK_specialWaveLikelihood = ("BLWK_specialWaveLikelihood" call BIS_fnc_getParamValue) / 10;
+
     // keeping players in the same group upon respawn
     createCenter BLUFOR;
     BLWK_playerGroup = createGroup [BLUFOR,false];
