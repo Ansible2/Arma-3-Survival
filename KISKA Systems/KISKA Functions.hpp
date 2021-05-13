@@ -77,6 +77,10 @@ class KISKA
 		{};
 		class deleteAtArray
 		{};
+		class detectControlKeys
+		{
+			preinit = 1;
+		};
 		class findConfigAny
 		{};
 		class findIfBool

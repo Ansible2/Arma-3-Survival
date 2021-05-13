@@ -1,8 +1,8 @@
-class BLWK_factions 
+class BLWK_factions
 {
 /*
 class factionBase
-{	
+{
 	displayName = "Faction Base";
 	lightCars[] = {
 	};
@@ -55,4 +55,6 @@ class factionBase
 #include "There is Only War Chaos Unit Table.hpp"
 #include "There is Only War SM Unit Table.hpp"
 #include "There is Only War Xenos Unit Table.hpp"
+#include "SOGPF Unit Table.hpp"
 };
+

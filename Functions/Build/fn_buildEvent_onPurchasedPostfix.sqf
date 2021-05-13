@@ -31,6 +31,7 @@ params [
 
 if (isNull _object) exitWith {
 	["_object is a null object, exiting...",true] call KISKA_fnc_log;
+	nil
 };
 
 

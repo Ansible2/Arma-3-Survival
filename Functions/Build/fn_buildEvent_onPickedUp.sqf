@@ -6,7 +6,7 @@ Description:
 	Executes an object's configed script as entered in under its BLWK_buildableItems
 	 entry.
 
-	Executes from "BLWK_fnc_pickupObject" after object is transfered to the player 
+	Executes from "BLWK_fnc_pickupObject" after object is transfered to the player
 	 and actions have been added.
 
 Parameters:
@@ -31,6 +31,7 @@ params [
 
 if (isNull _object) exitWith {
 	["_object is a null object, exiting...",true] call KISKA_fnc_log;
+	nil
 };
 
 
