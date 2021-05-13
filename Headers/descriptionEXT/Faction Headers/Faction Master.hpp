@@ -1,8 +1,8 @@
-class BLWK_factions 
+class BLWK_factions
 {
 /*
 class factionBase
-{	
+{
 	displayName = "Faction Base";
 	lightCars[] = {
 	};
@@ -51,4 +51,5 @@ class factionBase
 #include "Aegis Atlas Unit Table.hpp"
 #include "3CB BAF Unit Table.hpp"
 #include "Max Terminator.hpp"
+#include "SOGPF Unit Table.hpp"
 };
