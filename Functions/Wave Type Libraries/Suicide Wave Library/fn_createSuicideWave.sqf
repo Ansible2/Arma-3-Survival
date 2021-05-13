@@ -44,13 +44,14 @@ _bombersArray apply {
 	_x addVest "V_HarnessOGL_brn";
 	_x addHeadgear "H_ShemagOpen_khk";	
 	
-	private _expl1 = VEST_CHARGE createVehicle position _x;
+	private _unitPosition = position _x;
+	private _expl1 = VEST_CHARGE createVehicle _unitPosition;
 	_expl1 attachTo [_x, [-0.1, 0.1, 0.15], "Pelvis"];
 	_expl1 setVectorDirAndUp [ [0.5, 0.5, 0], [-0.5, 0.5, 0] ];
-	private _expl2 = VEST_CHARGE createVehicle position _x;
+	private _expl2 = VEST_CHARGE createVehicle _unitPosition;
 	_expl2 attachTo [_x, [0, 0.15, 0.15], "Pelvis"];
 	_expl2 setVectorDirAndUp [ [1, 0, 0], [0, 1, 0] ];
-	private _expl3 = VEST_CHARGE createVehicle position _x;
+	private _expl3 = VEST_CHARGE createVehicle _unitPosition;
 	_expl3 attachTo [_x, [0.1, 0.1, 0.15], "Pelvis"];
 	_expl3 setVectorDirAndUp [ [0.5, -0.5, 0], [0.5, 0.5, 0] ];
 // end suicide uniform
