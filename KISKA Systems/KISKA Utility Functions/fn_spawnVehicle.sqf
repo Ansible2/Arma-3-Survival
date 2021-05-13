@@ -78,8 +78,6 @@ switch (tolower _simulationType) do {
 		// make sure Z position has height for air vehicles
 		_spawnPosition set [2,(_spawnPosition select 2) max 50];
 		_createdVehicle = createVehicle [_vehicleClass,_spawnPosition,[],0,"FLY"];
-		_createdVehicle setFuel 1;
-	    	_createdVehicle engineOn true;
 	};
 	default {
 		_createdVehicle = createvehicle [_vehicleClass,_spawnPosition,[],0,"NONE"];
