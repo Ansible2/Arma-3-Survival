@@ -321,7 +321,7 @@ class BLWK_timeOfDay
 	title = "The Time Of Day";
 	values[] = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22};
 	texts[] = {"0200","0400","0600","0800","1000","1200", "1400", "1600", "1800", "2000", "2200"};
-	GET_DEFAULT_PARAM(BLWK_timeOfDay,4)
+	GET_DEFAULT_PARAM(BLWK_timeOfDay,6)
 };
 
 class BLWK_daySpeedMultiplier
