@@ -21,7 +21,7 @@ class BLWK_genericBuildItemBase
 		Events
 		See relevant functions in functions\Build folder for passed params
 	*/
-	onPurchasedPrefix = ""; 
+	onPurchasedPrefix = "";
 	onPurchasedPostfix = "";
 	onPurchasedPostNewtork = "";
 	onPickedUp = "";
@@ -327,7 +327,7 @@ class BLWK_buildableItems
 		category = OBSTACLES_CATEGORY;
 		invincible = 1;
 	};
-	
+
 	class Land_CncBarrier_F : BLWK_genericBuildItemBase
 	{
 		price = 100;
@@ -402,7 +402,7 @@ class BLWK_buildableItems
 		invincible = 1;
 		detectCollsion = 0;
 	};
-	
+
 	class C_IDAP_supplyCrate_F : BLWK_genericBuildItemBase
 	{
 		displayName = "Satellite Shop";
@@ -436,6 +436,8 @@ class BLWK_buildableItems
 		onPurchasedPostfix = "_this call BLWK_fnc_itemReclaimer_init";
 		onSold = "_this call BLWK_fnc_itemReclaimer_onSold";
 	};
+
 	#include "OPTRE Build Items.hpp"
 	#include "RHS Build Items.hpp"
+	#include "SOG PF Build Items.hpp"
 };

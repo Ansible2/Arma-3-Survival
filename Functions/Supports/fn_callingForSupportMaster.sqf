@@ -33,7 +33,12 @@ if (_targetPosition isEqualTo []) exitWith { \
 
 #define CHECK_SUPPORT_CLASS(SUPPORT_CLASS_COMPARE) _supportClass == TO_STRING(SUPPORT_CLASS_COMPARE)
 
-#define ARTY_EXPRESSION(AMMO_TYPE) CHECK_POSITION [_targetPosition,AMMO_TYPE] spawn BLWK_fnc_callForArtillery
+#define GET_AMMO_TYPE(CONFIG) getText(missionConfigFile >> "CfgCommunicationMenu" >> TO_STRING(CONFIG) >> ammoType)
+#define ARTY_EXPRESSION(CONFIG) CHECK_POSITION [_targetPosition,GET_AMMO_TYPE(CONFIG)] spawn BLWK_fnc_callForArtillery
+#define ARTY_EXPRESSION_FULL(CONFIG) \
+	if (CHECK_SUPPORT_CLASS(CONFIG)) exitWith { \
+		ARTY_EXPRESSION(CONFIG) \
+	};
 
 #define CAS_RADIO [TYPE_CAS_REQUEST] call BLWK_fnc_supportRadioGlobal;
 
@@ -87,64 +92,70 @@ if (CHECK_SUPPORT_CLASS(DAISY_CUTTER_CLASS)) exitWith {
 	155 Artillery
 ---------------------------------------------------------------------------- */
 // 155 HE
-if (CHECK_SUPPORT_CLASS(ARTILLERY_STRIKE_155MM_HE_CLASS)) exitWith {
-	ARTY_EXPRESSION("Sh_155mm_AMOS")
-};
+ARTY_EXPRESSION_FULL(ARTILLERY_STRIKE_155MM_HE_CLASS)
 // 155 Cluster
-if (CHECK_SUPPORT_CLASS(ARTILLERY_STRIKE_155MM_CLUSTER_CLASS)) exitWith {
-	ARTY_EXPRESSION("Cluster_155mm_AMOS")
-};
+ARTY_EXPRESSION_FULL(ARTILLERY_STRIKE_155MM_CLUSTER_CLASS)
 // 155 Mines
-if (CHECK_SUPPORT_CLASS(ARTILLERY_STRIKE_155MM_MINES_CLASS)) exitWith {
-	ARTY_EXPRESSION("Mine_155mm_AMOS_range")
-};
+ARTY_EXPRESSION_FULL(ARTILLERY_STRIKE_155MM_MINES_CLASS)
 // 155 AT Mines
-if (CHECK_SUPPORT_CLASS(ARTILLERY_STRIKE_155MM_AT_MINES_CLASS)) exitWith {
-	ARTY_EXPRESSION("AT_Mine_155mm_AMOS_range")
-};
+ARTY_EXPRESSION_FULL(ARTILLERY_STRIKE_155MM_AT_MINES_CLASS)
 
 
 /* ----------------------------------------------------------------------------
 	120 Artillery
 ---------------------------------------------------------------------------- */
 // 120 HE
-if (CHECK_SUPPORT_CLASS(CANNON_120MM_HE_CLASS)) exitWith {
-	ARTY_EXPRESSION("ammo_ShipCannon_120mm_HE")
-};
+ARTY_EXPRESSION_FULL(CANNON_120MM_HE_CLASS)
 // 120 Cluster
-if (CHECK_SUPPORT_CLASS(CANNON_120MM_CLUSTER_CLASS)) exitWith {
-	ARTY_EXPRESSION("ammo_ShipCannon_120mm_HE_cluster")
-};
-// 120 Mines
-if (CHECK_SUPPORT_CLASS(CANNON_120MM_AT_MINES_CLASS)) exitWith {
-	ARTY_EXPRESSION("ammo_ShipCannon_120mm_AT_mine")
-};
+ARTY_EXPRESSION_FULL(CANNON_120MM_CLUSTER_CLASS)
 // 120 AT Mines
-if (CHECK_SUPPORT_CLASS(CANNON_120MM_MINES_CLASS)) exitWith {
-	ARTY_EXPRESSION("ammo_ShipCannon_120mm_mine")
-};
+ARTY_EXPRESSION_FULL(CANNON_120MM_AT_MINES_CLASS)
+// 120 Mines
+ARTY_EXPRESSION_FULL(CANNON_120MM_MINES_CLASS)
 // 120 Smoke
-if (CHECK_SUPPORT_CLASS(CANNON_120MM_SMOKE_CLASS)) exitWith {
-	ARTY_EXPRESSION("ammo_ShipCannon_120mm_smoke")
-};
+ARTY_EXPRESSION_FULL(CANNON_120MM_SMOKE_CLASS)
 
 
 /* ----------------------------------------------------------------------------
 	82 Mortar
 ---------------------------------------------------------------------------- */
 // 82 HE
-if (CHECK_SUPPORT_CLASS(MORTAR_STRIKE_82MM_HE_CLASS)) exitWith {
-	ARTY_EXPRESSION("Sh_82mm_AMOS")
-};
+ARTY_EXPRESSION_FULL(MORTAR_STRIKE_82MM_HE_CLASS)
 // 82 Smoke
-if (CHECK_SUPPORT_CLASS(MORTAR_STRIKE_82MM_SMOKE_CLASS)) exitWith {
-	ARTY_EXPRESSION("Smoke_82mm_AMOS_White")
-};
+ARTY_EXPRESSION_FULL(MORTAR_STRIKE_82MM_SMOKE_CLASS)
 // 82 Flare
-if (CHECK_SUPPORT_CLASS(MORTAR_STRIKE_82MM_FLARE_CLASS)) exitWith {
-	ARTY_EXPRESSION("F_20mm_white")
-};
+ARTY_EXPRESSION_FULL(MORTAR_STRIKE_82MM_FLARE_CLASS)
 
+
+/* ----------------------------------------------------------------------------
+	SOG PF Arty
+---------------------------------------------------------------------------- */
+// 105 airburst
+ARTY_EXPRESSION_FULL(ARTILLERY_STRIKE_105MM_AB_CLASS)
+// 105 HE
+ARTY_EXPRESSION_FULL(ARTILLERY_STRIKE_105MM_HE_CLASS)
+// 105 Chem
+ARTY_EXPRESSION_FULL(ARTILLERY_STRIKE_105MM_CHEM_CLASS)
+// 105 Frag
+ARTY_EXPRESSION_FULL(ARTILLERY_STRIKE_105MM_FRAG_CLASS)
+// 105 White Phosphorus
+ARTY_EXPRESSION_FULL(ARTILLERY_STRIKE_105MM_WP_CLASS)
+// 85 HE
+ARTY_EXPRESSION_FULL(ARTILLERY_STRIKE_85MM_HE_CLASS)
+// 60 HE
+ARTY_EXPRESSION_FULL(MORTAR_STRIKE_60MM_HE_CLASS)
+// 60 White Phosphorus
+ARTY_EXPRESSION_FULL(MORTAR_STRIKE_60MM_WP_CLASS)
+// 81 HE
+ARTY_EXPRESSION_FULL(MORTAR_STRIKE_81MM_HE_CLASS)
+// 81 White Phosphorus
+ARTY_EXPRESSION_FULL(MORTAR_STRIKE_81MM_WP_CLASS)
+// 81 Smoke
+ARTY_EXPRESSION_FULL(MORTAR_STRIKE_81MM_SMOKE_CLASS)
+// 82 HE
+ARTY_EXPRESSION_FULL(MORTAR_STRIKE_82MM_HE_SOGPF_CLASS)
+// 82 White Phosphorus
+ARTY_EXPRESSION_FULL(MORTAR_STRIKE_82MM_WP_CLASS)
 
 /* ----------------------------------------------------------------------------
 	Supplies
@@ -191,6 +202,22 @@ if (CHECK_SUPPORT_CLASS(CAS_BOMB_LGB_CLASS)) exitWith {
 };
 if (CHECK_SUPPORT_CLASS(CAS_BOMB_CLUSTER_CLASS)) exitWith {
 	CAS_EXPRESSSION(7)
+};
+
+// napalm
+if (CHECK_SUPPORT_CLASS(CAS_BOMB_NAPALM_CLASS)) exitWith {
+	CHECK_POSITION
+	_targetPosition = AGLToASL(_targetPosition);
+	private _friendlyAttackAircraftClass = [6] call BLWK_fnc_getFriendlyVehicleClass;
+	[_targetPosition,[8,"vn_bomb_f4_in_500_blu1b_fb_mag_x1"],getDir _caller,_friendlyAttackAircraftClass] spawn KISKA_fnc_CAS;
+	CAS_RADIO
+};
+if (CHECK_SUPPORT_CLASS(CAS_BOMB_NAPALM_2_CLASS)) exitWith {
+	CHECK_POSITION
+	_targetPosition = AGLToASL(_targetPosition);
+	private _friendlyAttackAircraftClass = [6] call BLWK_fnc_getFriendlyVehicleClass;
+	[_targetPosition,[8,"vn_bomb_f4_in_500_blu1b_fb_mag_x2"],getDir _caller,_friendlyAttackAircraftClass] spawn KISKA_fnc_CAS;
+	CAS_RADIO
 };
 
 
