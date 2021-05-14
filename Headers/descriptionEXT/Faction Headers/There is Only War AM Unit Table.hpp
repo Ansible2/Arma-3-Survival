@@ -38,9 +38,9 @@ class There_is_Only_War_Astra_Militarum_Cad_Combined
 		"TIOW_Cad_LR_Executioner_836th_OP",
 		"TIOW_Cad_LR_Exterminator_836th_OP",
 		"TIOW_Cad_LR_Punisher_836th_OP",
-		"TIOW_Cad_LR_Vanquisher_836th_OP"		
+		"TIOW_Cad_LR_Vanquisher_836th_OP"
 	};
-	
+
 	infantry[] = {
 		"TIOW_Cad_GM_Flamer_667th_OP",
 		"TIOW_Cad_GM_GrenadeLauncher_667th_OP",
@@ -97,7 +97,7 @@ class There_is_Only_War_Astra_Militarum_Cad_Combined
 		"TIOW_Comissar_O",
 		"TIOW_Priest_O"
 	};
-	
+
 	lightArmor[] = {
 		"TIOW_CadianChimAuto_667_OP",
 		"TIOW_CadianHydra_667_OP",
@@ -134,7 +134,7 @@ class There_is_Only_War_Astra_Militarum_Cad_667th
 		"TIOW_Cad_LR_Punisher_667th_OP",
 		"TIOW_Cad_LR_Vanquisher_667th_OP"
 	};
-	
+
 	infantry[] = {
 		"TIOW_Cad_GM_Flamer_667th_OP",
 		"TIOW_Cad_GM_GrenadeLauncher_667th_OP",
@@ -147,12 +147,12 @@ class There_is_Only_War_Astra_Militarum_Cad_667th
 		"TIOW_Cad_SNIPER667th_OP",
 		"TIOW_Cad_Tnk667th_OP",
 		"TIOW_Cad_VET667th_OP",
-		"TIOW_Cad_GM_Vox_667th_OP"
+		"TIOW_Cad_GM_Vox_667th_OP",
 		"TIOW_IG_Captain_667_O",
 		"TIOW_Comissar_O",
 		"TIOW_Priest_O"
 	};
-	
+
 	lightArmor[] = {
 		"TIOW_CadianChimAuto_667_OP",
 		"TIOW_CadianHydra_667_OP",
@@ -176,7 +176,7 @@ class There_is_Only_War_Astra_Militarum_Cad_700th
 		"TIOW_Cad_LR_Punisher_700th_OP",
 		"TIOW_Cad_LR_Vanquisher_700th_OP"
 	};
-	
+
 	infantry[] = {
 		"TIOW_Cad_GM_Flamer_700th_OP",
 		"TIOW_Cad_GM_GrenadeLauncher_700th_OP",
@@ -194,7 +194,7 @@ class There_is_Only_War_Astra_Militarum_Cad_700th
 		"TIOW_Comissar_O",
 		"TIOW_Priest_O"
 	};
-	
+
 	lightArmor[] = {
 		"TIOW_CadianChimAuto_700_OP",
 		"TIOW_CadianChimAuto_Rat_OP",
@@ -219,7 +219,7 @@ class There_is_Only_War_Astra_Militarum_Cad_776th
 		"TIOW_Cad_LR_Punisher_776th_OP",
 		"TIOW_Cad_LR_Vanquisher_776th_OP"
 	};
-	
+
 	infantry[] = {
 		"TIOW_Cad_GM_Flamer_776th_OP",
 		"TIOW_Cad_GM_GrenadeLauncher_776th_OP",
@@ -237,7 +237,7 @@ class There_is_Only_War_Astra_Militarum_Cad_776th
 		"TIOW_Comissar_O",
 		"TIOW_Priest_O"
 	};
-	
+
 	lightArmor[] = {
 		"TIOW_CadianChimAuto_776_OP",
 		"TIOW_CadianHydra_776_OP",
@@ -248,7 +248,7 @@ class There_is_Only_War_Astra_Militarum_Cad_776th
 
 class There_is_Only_War_Astra_Militarum_Cad_836th
 {
-	displayName = "There is Only War - Astra Militarum: Cadian 836th",
+	displayName = "There is Only War - Astra Militarum: Cadian 836th";
 
 	heavyArmor[] = {
 		"TIOW_Cad_LR_Annihilator_836th_OP",
@@ -261,7 +261,7 @@ class There_is_Only_War_Astra_Militarum_Cad_836th
 		"TIOW_Cad_LR_Punisher_836th_OP",
 		"TIOW_Cad_LR_Vanquisher_836th_OP"
 	};
-	
+
 	infantry[] = {
 		"TIOW_Cad_GM_Flamer_836th_OP",
 		"TIOW_Cad_GM_GrenadeLauncher_836th_OP",
@@ -279,7 +279,7 @@ class There_is_Only_War_Astra_Militarum_Cad_836th
 		"TIOW_Comissar_O",
 		"TIOW_Priest_O"
 	};
-	
+
 	lightArmor[] = {
 		"TIOW_CadianChimAuto_836_OP",
 		"TIOW_CadianHydra_836_OP",
@@ -326,7 +326,7 @@ class There_is_Only_War_Astra_Militarum_DKoK_Combined
 		"TIOW_Krieg_LR_Punisher_82nd_OP",
 		"TIOW_Krieg_LR_Vanquisher_82nd_OP"
 	};
-	
+
 	heavyCars[] = {
 		"Sentinel_AC_1489th_1_O",
 		"Sentinel_CS_1489th_1_O",
@@ -350,7 +350,7 @@ class There_is_Only_War_Astra_Militarum_DKoK_Combined
 		"Sentinel_ML_1491th_1_O",
 		"Sentinel_PC_1491th_1_O"
 	};
-	
+
 	infantry[] = {
 		"DKoK_Gren_1489th_AT_OP",
 		"DKoK_GM_1489th_AT_OP",
@@ -399,7 +399,7 @@ class There_is_Only_War_Astra_Militarum_DKoK_Combined
 		"TIOW_Comissar_O",
 		"TIOW_Priest_O"
 	};
-	
+
 	lightArmor[] = {
 		"_1489thChimAuto_OP",
 		"TIOW_KriegHydra_1489th_OP",
@@ -434,7 +434,7 @@ class There_is_Only_War_Astra_Militarum_DKoK_1489th
 		"TIOW_Krieg_LR_Punisher_1489th_OP",
 		"TIOW_Krieg_LR_Vanquisher_1489th_OP"
 	};
-	
+
 	heavyCars[] = {
 		"Sentinel_AC_1489th_1_O",
 		"Sentinel_CS_1489th_1_O",
@@ -444,7 +444,7 @@ class There_is_Only_War_Astra_Militarum_DKoK_1489th
 		"Sentinel_ML_1489th_1_O",
 		"Sentinel_PC_1489th_1_O"
 	};
-	
+
 	infantry[] = {
 		"DKoK_Gren_1489th_AT_OP",
 		"DKoK_GM_1489th_AT_OP",
@@ -460,7 +460,7 @@ class There_is_Only_War_Astra_Militarum_DKoK_1489th
 		"TIOW_Comissar_O",
 		"TIOW_Priest_O"
 	};
-	
+
 	lightArmor[] = {
 		"_1489thChimAuto_OP",
 		"TIOW_KriegHydra_1489th_OP",
@@ -483,7 +483,7 @@ class There_is_Only_War_Astra_Militarum_DKoK_1490th
 		"TIOW_Krieg_LR_Punisher_1490th_OP",
 		"TIOW_Krieg_LR_Vanquisher_1490th_OP"
 	};
-	
+
 	heavyCars[] = {
 		"Sentinel_AC_1490th_1_O",
 		"Sentinel_CS_1490th_1_O",
@@ -493,7 +493,7 @@ class There_is_Only_War_Astra_Militarum_DKoK_1490th
 		"Sentinel_ML_1490th_1_O",
 		"Sentinel_PC_1490th_1_O"
 	};
-	
+
 	infantry[] = {
 		"DKoK_Gren_1490th_AT_OP",
 		"DKoK_GM_1490th_AT_OP",
@@ -509,7 +509,7 @@ class There_is_Only_War_Astra_Militarum_DKoK_1490th
 		"TIOW_Comissar_O",
 		"TIOW_Priest_O"
 	};
-	
+
 	lightArmor[] = {
 		"_1490thChimAuto_OP",
 		"TIOW_KriegHydra_1490th_OP",
@@ -532,7 +532,7 @@ class There_is_Only_War_Astra_Militarum_DKoK_1491th
 		"TIOW_Krieg_LR_Punisher_1491th_OP",
 		"TIOW_Krieg_LR_Vanquisher_1491th_OP"
 	};
-	
+
 	heavyCars[] = {
 		"Sentinel_AC_1491th_1_O",
 		"Sentinel_CS_1491th_1_O",
@@ -542,7 +542,7 @@ class There_is_Only_War_Astra_Militarum_DKoK_1491th
 		"Sentinel_ML_1491th_1_O",
 		"Sentinel_PC_1491th_1_O"
 	};
-	
+
 	infantry[] = {
 		"DKoK_Gren_1491th_AT_OP",
 		"DKoK_GM_1491th_AT_OP",
@@ -558,7 +558,7 @@ class There_is_Only_War_Astra_Militarum_DKoK_1491th
 		"TIOW_Comissar_O",
 		"TIOW_Priest_O"
 	};
-	
+
 	lightArmor[] = {
 		"_1491thChimAuto_OP",
 		"TIOW_KriegHydra_1491th_OP",
@@ -581,7 +581,7 @@ class There_is_Only_War_Astra_Militarum_DKoK_82nd
 		"TIOW_Krieg_LR_Punisher_82nd_OP",
 		"TIOW_Krieg_LR_Vanquisher_82nd_OP"
 	};
-	
+
 	infantry[] = {
 		"DKoK_Gren_82nd_AT_OP",
 		"DKoK_GM_82nd_AT_OP",
@@ -597,7 +597,7 @@ class There_is_Only_War_Astra_Militarum_DKoK_82nd
 		"TIOW_Comissar_O",
 		"TIOW_Priest_O"
 	};
-	
+
 	lightArmor[] = {
 		"_82ndChimAuto_OP",
 		"TIOW_KriegHydra_82nd_OP",
