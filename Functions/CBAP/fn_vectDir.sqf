@@ -1,4 +1,3 @@
-#include "script_component.hpp"
 /* ----------------------------------------------------------------------------
 Function: CBA_fnc_vectDir
 
@@ -13,7 +12,7 @@ Returns:
 
 Examples:
     (begin example)
-        
+
     (end)
 
 Author:
