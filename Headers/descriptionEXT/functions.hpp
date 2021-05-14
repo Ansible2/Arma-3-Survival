@@ -533,6 +533,8 @@ class CBAP //ported CBA functions
 		{};
 		class taskPatrol
 		{};
+		class vectDir
+		{};
 		class vectRotate3D
 		{};
 	};

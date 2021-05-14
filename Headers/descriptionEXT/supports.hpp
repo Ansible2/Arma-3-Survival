@@ -14,7 +14,7 @@
 #define TRANSPORT_ICON "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\transport_ca.paa"
 
 /*
-    This master function for supports is used as go between for error cases such as when 
+    This master function for supports is used as go between for error cases such as when
      a player provides an invalid position (looking at the sky). It will then refund the
      support back to the player.
 */
@@ -84,6 +84,7 @@ class ARTILLERY_STRIKE_155MM_HE_CLASS : basicSupport_baseClass
 	text = ARTILLERY_STRIKE_155MM_HE_TEXT;
     expression = CALL_SUPPORT_MASTER(ARTILLERY_STRIKE_155MM_HE_CLASS);
     icon = ARTILLERY_ICON;
+	ammoType = "Sh_155mm_AMOS";
 };
 class ARTILLERY_STRIKE_155MM_CLUSTER_CLASS : basicSupport_baseClass
 {
@@ -93,6 +94,7 @@ class ARTILLERY_STRIKE_155MM_CLUSTER_CLASS : basicSupport_baseClass
 	text = ARTILLERY_STRIKE_155MM_CLUSTER_TEXT;
     expression = CALL_SUPPORT_MASTER(ARTILLERY_STRIKE_155MM_CLUSTER_CLASS);
     icon = ARTILLERY_ICON;
+	ammoType = "Cluster_155mm_AMOS";
 };
 class ARTILLERY_STRIKE_155MM_MINES_CLASS : basicSupport_baseClass
 {
@@ -102,6 +104,7 @@ class ARTILLERY_STRIKE_155MM_MINES_CLASS : basicSupport_baseClass
 	text = ARTILLERY_STRIKE_155MM_MINES_TEXT;
     expression = CALL_SUPPORT_MASTER(ARTILLERY_STRIKE_155MM_MINES_CLASS);
     icon = ARTILLERY_ICON;
+	ammoType = "Mine_155mm_AMOS_range";
 };
 class ARTILLERY_STRIKE_155MM_AT_MINES_CLASS : basicSupport_baseClass
 {
@@ -111,6 +114,7 @@ class ARTILLERY_STRIKE_155MM_AT_MINES_CLASS : basicSupport_baseClass
 	text = ARTILLERY_STRIKE_155MM_AT_MINES_TEXT;
     expression = CALL_SUPPORT_MASTER(ARTILLERY_STRIKE_155MM_AT_MINES_CLASS);
     icon = ARTILLERY_ICON;
+	ammoType = "AT_Mine_155mm_AMOS_range";
 };
 
 // light mortar
@@ -122,6 +126,7 @@ class MORTAR_STRIKE_82MM_HE_CLASS : basicSupport_baseClass
 	text = MORTAR_STRIKE_82MM_HE_TEXT;
     expression = CALL_SUPPORT_MASTER(MORTAR_STRIKE_82MM_HE_CLASS);
     icon = MORTAR_ICON;
+	ammoType = "Sh_82mm_AMOS";
 };
 class MORTAR_STRIKE_82MM_SMOKE_CLASS : basicSupport_baseClass
 {
@@ -131,6 +136,7 @@ class MORTAR_STRIKE_82MM_SMOKE_CLASS : basicSupport_baseClass
 	text = MORTAR_STRIKE_82MM_SMOKE_TEXT;
     expression = CALL_SUPPORT_MASTER(MORTAR_STRIKE_82MM_SMOKE_CLASS);
     icon = MORTAR_ICON;
+	ammoType = "Smoke_82mm_AMOS_White";
 };
 class MORTAR_STRIKE_82MM_FLARE_CLASS : basicSupport_baseClass
 {
@@ -140,6 +146,7 @@ class MORTAR_STRIKE_82MM_FLARE_CLASS : basicSupport_baseClass
 	text = MORTAR_STRIKE_82MM_FLARE_TEXT;
     expression = CALL_SUPPORT_MASTER(MORTAR_STRIKE_82MM_FLARE_CLASS);
     icon = MORTAR_ICON;
+	ammoType = "F_20mm_white";
 };
 
 // ship cannon
@@ -151,6 +158,7 @@ class CANNON_120MM_HE_CLASS : basicSupport_baseClass
 	text = CANNON_120MM_HE_TEXT;
     expression = CALL_SUPPORT_MASTER(CANNON_120MM_HE_CLASS);
     icon = ARTILLERY_ICON;
+	ammoType = "ammo_ShipCannon_120mm_HE";
 };
 class CANNON_120MM_CLUSTER_CLASS : basicSupport_baseClass
 {
@@ -160,6 +168,7 @@ class CANNON_120MM_CLUSTER_CLASS : basicSupport_baseClass
 	text = CANNON_120MM_CLUSTER_TEXT;
     expression = CALL_SUPPORT_MASTER(CANNON_120MM_CLUSTER_CLASS);
     icon = ARTILLERY_ICON;
+	ammoType = "ammo_ShipCannon_120mm_HE_cluster";
 };
 class CANNON_120MM_AT_MINES_CLASS : basicSupport_baseClass
 {
@@ -169,6 +178,7 @@ class CANNON_120MM_AT_MINES_CLASS : basicSupport_baseClass
 	text = CANNON_120MM_AT_MINES_TEXT;
     expression = CALL_SUPPORT_MASTER(CANNON_120MM_AT_MINES_CLASS);
     icon = ARTILLERY_ICON;
+	ammoType = "ammo_ShipCannon_120mm_AT_mine";
 };
 class CANNON_120MM_MINES_CLASS : basicSupport_baseClass
 {
@@ -178,6 +188,7 @@ class CANNON_120MM_MINES_CLASS : basicSupport_baseClass
 	text = CANNON_120MM_MINES_TEXT;
     expression = CALL_SUPPORT_MASTER(CANNON_120MM_MINES_CLASS);
     icon = ARTILLERY_ICON;
+	ammoType = "ammo_ShipCannon_120mm_mine";
 };
 class CANNON_120MM_SMOKE_CLASS : basicSupport_baseClass
 {
@@ -187,6 +198,7 @@ class CANNON_120MM_SMOKE_CLASS : basicSupport_baseClass
 	text = CANNON_120MM_SMOKE_TEXT;
     expression = CALL_SUPPORT_MASTER(CANNON_120MM_SMOKE_CLASS);
     icon = ARTILLERY_ICON;
+	ammoType = "ammo_ShipCannon_120mm_smoke";
 };
 
 // supply
@@ -240,13 +252,13 @@ class CAS_ROCKETS_AP_CLASS : CAS_GUN_RUN_CLASS
 // bombs
 class CAS_BOMB_LGB_CLASS : CAS_GUN_RUN_CLASS
 {
-	price = 400;
+	price = 300;
 	text = CAS_BOMB_LGB_TEXT;
     expression = CALL_SUPPORT_MASTER(CAS_BOMB_LGB_CLASS);
 };
 class CAS_BOMB_CLUSTER_CLASS : CAS_GUN_RUN_CLASS
 {
-	price = 800;
+	price = 550;
 	text = CAS_BOMB_CLUSTER_TEXT;
     expression = CALL_SUPPORT_MASTER(CAS_BOMB_CLUSTER_CLASS);
 };
@@ -256,7 +268,6 @@ class CAS_AGM_CLASS : CAS_GUN_RUN_CLASS
 	text = CAS_AGM_TEXT;
     expression = CALL_SUPPORT_MASTER(CAS_AGM_CLASS);
 };
-
 
 // aircraft gunner
 class TURRET_GUNSHIP_CLASS : basicSupport_baseClass
@@ -329,4 +340,123 @@ class PASS_DOOR_GUNNER_CLASS : basicSupport_baseClass
 	text = PASS_DOOR_GUNNER_TEXT;
 	expression = CALL_SUPPORT_MASTER(PASS_DOOR_GUNNER_CLASS);
 	icon = CAS_HELI_ICON;
+};
+
+
+
+// SOG PF Supports
+class CAS_BOMB_NAPALM_CLASS : CAS_GUN_RUN_CLASS
+{
+	price = 400;
+	text = CAS_BOMB_NAPALM_TEXT;
+	expression = CALL_SUPPORT_MASTER(CAS_BOMB_NAPALM_CLASS);
+
+	patch = "data_f_vietnam";
+};
+class CAS_BOMB_NAPALM_2_CLASS : CAS_BOMB_NAPALM_CLASS
+{
+	price = 700;
+	text = CAS_BOMB_NAPALM_2_TEXT;
+	expression = CALL_SUPPORT_MASTER(CAS_BOMB_NAPALM_2_CLASS);
+};
+
+// 105 arty
+class ARTILLERY_STRIKE_105MM_AB_CLASS : ARTILLERY_STRIKE_155MM_HE_CLASS
+{
+	price = 700;
+	text = ARTILLERY_STRIKE_105MM_AB_TEXT;
+	expression = CALL_SUPPORT_MASTER(ARTILLERY_STRIKE_105MM_AB_CLASS);
+	ammoType = "vn_shell_105mm_m1_ab_ammo";
+	patch = "data_f_vietnam";
+};
+class ARTILLERY_STRIKE_105MM_HE_CLASS : ARTILLERY_STRIKE_105MM_AB_CLASS
+{
+	price = 600;
+	text = ARTILLERY_STRIKE_105MM_HE_TEXT;
+	expression = CALL_SUPPORT_MASTER(ARTILLERY_STRIKE_105MM_HE_CLASS);
+	ammoType = "vn_shell_105mm_m1_he_ammo";
+};
+class ARTILLERY_STRIKE_105MM_CHEM_CLASS : ARTILLERY_STRIKE_105MM_AB_CLASS
+{
+	price = 500;
+	text = ARTILLERY_STRIKE_105MM_CHEM_TEXT;
+	expression = CALL_SUPPORT_MASTER(ARTILLERY_STRIKE_105MM_CHEM_CLASS);
+	ammoType = "vn_shell_105mm_m60_chem_ammo";
+};
+class ARTILLERY_STRIKE_105MM_FRAG_CLASS : ARTILLERY_STRIKE_105MM_AB_CLASS
+{
+	price = 600;
+	text = ARTILLERY_STRIKE_105MM_FRAG_TEXT;
+	expression = CALL_SUPPORT_MASTER(ARTILLERY_STRIKE_105MM_FRAG_CLASS);
+	ammoType = "vn_shell_105mm_m546_frag_ammo";
+};
+class ARTILLERY_STRIKE_105MM_WP_CLASS : ARTILLERY_STRIKE_105MM_AB_CLASS
+{
+	price = 500;
+	text = ARTILLERY_STRIKE_105MM_WP_TEXT;
+	expression = CALL_SUPPORT_MASTER(ARTILLERY_STRIKE_105MM_WP_CLASS);
+	ammoType = "vn_shell_105mm_m60_wp_ammo";
+};
+class ARTILLERY_STRIKE_85MM_HE_CLASS : ARTILLERY_STRIKE_105MM_AB_CLASS
+{
+	price = 550;
+	text = ARTILLERY_STRIKE_85MM_HE_TEXT;
+	expression = CALL_SUPPORT_MASTER(ARTILLERY_STRIKE_85MM_HE_CLASS);
+	ammoType = "vn_shell_85mm_d44_he_ammo";
+};
+
+class MORTAR_STRIKE_60MM_HE_CLASS : MORTAR_STRIKE_82MM_HE_CLASS
+{
+	price = 350;
+	text = MORTAR_STRIKE_60MM_HE_TEXT;
+	expression = CALL_SUPPORT_MASTER(MORTAR_STRIKE_60MM_HE_CLASS);
+	ammoType = "vn_shell_60mm_m49a2_he_ammo";
+
+	patch = "data_f_vietnam";
+};
+class MORTAR_STRIKE_60MM_WP_CLASS : MORTAR_STRIKE_60MM_HE_CLASS
+{
+	price = 300;
+	text = MORTAR_STRIKE_60MM_WP_TEXT;
+	expression = CALL_SUPPORT_MASTER(MORTAR_STRIKE_60MM_WP_CLASS);
+	ammoType = "vn_shell_60mm_m302_wp_ammo";
+};
+
+
+class MORTAR_STRIKE_81MM_HE_CLASS : MORTAR_STRIKE_60MM_HE_CLASS
+{
+	price = 500;
+	text = MORTAR_STRIKE_81MM_HE_TEXT;
+	expression = CALL_SUPPORT_MASTER(MORTAR_STRIKE_81MM_HE_CLASS);
+	ammoType = "vn_shell_81mm_m374_he_ammo";
+};
+class MORTAR_STRIKE_81MM_WP_CLASS : MORTAR_STRIKE_60MM_HE_CLASS
+{
+	price = 400;
+	text = MORTAR_STRIKE_81MM_WP_TEXT;
+	expression = CALL_SUPPORT_MASTER(MORTAR_STRIKE_81MM_WP_CLASS);
+	ammoType = "vn_shell_81mm_m375_wp_ammo";
+};
+class MORTAR_STRIKE_81MM_SMOKE_CLASS : MORTAR_STRIKE_60MM_HE_CLASS
+{
+	price = 400;
+	text = MORTAR_STRIKE_81MM_SMOKE_TEXT;
+	expression = CALL_SUPPORT_MASTER(MORTAR_STRIKE_81MM_SMOKE_CLASS);
+	ammoType = "vn_shell_81mm_m57_fs_ammo";
+};
+
+
+class MORTAR_STRIKE_82MM_HE_SOGPF_CLASS : MORTAR_STRIKE_60MM_HE_CLASS
+{
+	price = 500;
+	text = MORTAR_STRIKE_82MM_HE_SOGPF_TEXT;
+	expression = CALL_SUPPORT_MASTER(MORTAR_STRIKE_82MM_HE_SOGPF_CLASS);
+	ammoType = "vn_shell_82mm_o832d_he_ammo";
+};
+class MORTAR_STRIKE_82MM_WP_CLASS : MORTAR_STRIKE_60MM_HE_CLASS
+{
+	price = 400;
+	text = MORTAR_STRIKE_82MM_WP_TEXT;
+	expression = CALL_SUPPORT_MASTER(MORTAR_STRIKE_82MM_WP_CLASS);
+	ammoType = "vn_shell_82mm_d832_wp_ammo";
 };

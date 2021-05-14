@@ -214,7 +214,7 @@
 	212,\
 	213,\
 	214,\
-  	215,\
+  215,\
 	216,\
 	217,\
 	218,\
@@ -269,13 +269,27 @@
 	267,\
 	268,\
 	269,\
-  	270,\
-  	271,\
-  	272,\
+  270,\
+  271,\
+  272,\
  	273,\
-  	274,\
-  	275
-
+  274,\
+  275,\
+  276,\
+  277,\
+  278,\
+  279,\
+  280,\
+  281,\
+  282,\
+  283,\
+  284,\
+  285,\
+  286,\
+  287,\
+  288,\
+  289
+  
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -292,12 +306,26 @@
 	"CONTACT - NATO WOODLAND", \
 	"CONTACT - LDF", \
 	"CONTACT - Spetznas", \
+	"S.O.G. PF - ARVN", \
+	"S.O.G. PF - ARVN LLDB (Special Forces)", \
+	"S.O.G. PF - ARVN Rangers", \
 	"S.O.G. PF - Camp Strike Force", \
 	"S.O.G. PF - Long Range Reconnaissance Patrol", \
 	"S.O.G. PF - MACV-SOG", \
 	"S.O.G. PF - Mike Force", \
+	"S.O.G. PF - NVA Dac Cong", \
+	"S.O.G. PF - NVA", \
+	"S.O.G. PF - NVA (Field)", \
+	"S.O.G. PF - NVA 65", \
+	"S.O.G. PF - NVA 65 (Field)", \
+	"S.O.G. PF - Viet Cong (Local)", \
+	"S.O.G. PF - Viet Cong (Main Force)", \
+	"S.O.G. PF - Viet Cong (Regional)", \
 	"S.O.G. PF - US Army", \
 	"S.O.G. PF - USMC", \
+	"S.O.G. PF - US Navy", \
+	"S.O.G. PF - VPN Marines", \
+	"S.O.G. PF - VPN Navy", \
 	"3CB-BAF - Army Artic", \
 	"3CB-BAF - Army Desert", \
 	"3CB-BAF - Army Multicam (MTP)", \
