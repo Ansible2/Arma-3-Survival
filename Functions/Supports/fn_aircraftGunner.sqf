@@ -72,6 +72,23 @@ _vehicleCrew apply {
 };
 
 
+private _loiterDirection = "CIRCLE_L";
+
+// handle cases where helicopter has dominant turret on right side
+private _mainTurretWeaponsArray = getArray(configFile >> "CfgVehicles" >> _vehicleClass >> "Turrets" >> "MainTurret" >> "Weapons");
+if (count _mainTurretWeaponsArray > 0) then {
+
+	private _mainTurretWeapon = _mainTurretWeaponsArray select 0;
+	private _mainTurretDir = [_vehicle weaponDirection _mainTurretWeapon] call CBAP_fnc_vectDir;
+	private _mainTurretRelativeDir = abs((getDir _vehicle) - _mainTurretDir);
+
+	if (_mainTurretRelativeDir >= 0 AND {_mainTurretRelativeDir <= 180}) then {
+		[["Found that vehicle class ",_vehicleClass," met standards to have a loiter of clockwise"],false] call KISKA_fnc_log;
+		_loiterDirection = "CIRCLE";
+	};
+};
+
+
 // setup waypoints
 private _vehicleGroup = _vehicleArray select 2;
 _vehicleGroup setBehaviour "SAFE";
@@ -79,7 +96,7 @@ _vehicleGroup setCombatMode "BLUE";
 private _loiterWaypoint = _vehicleGroup addWaypoint [BLWK_playAreaCenter,0];
 _loiterWaypoint setWaypointType "LOITER";
 _loiterWaypoint setWaypointLoiterRadius _loiterRadius;
-_loiterWaypoint setWaypointLoiterType "CIRCLE_L";
+_loiterWaypoint setWaypointLoiterType _loiterDirection;
 _loiterWaypoint setWaypointLoiterAltitude _loiterHeight;
 _vehicle flyInHeight _loiterHeight;
 _loiterWaypoint setWaypointSpeed "LIMITED";
