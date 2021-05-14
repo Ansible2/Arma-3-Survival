@@ -1,6 +1,6 @@
 class There_is_Only_War_Adeptus_Astartes_Combined
 {
-	displayName = "There is Only War - Adeptus Astartes (Combined)",
+	displayName = "There is Only War - Adeptus Astartes (Combined)";
 
 	heavyArmor[] = {
 		"TIOW_SM_Vindicator_BT",
@@ -190,7 +190,7 @@ class There_is_Only_War_Adeptus_Astartes_Combined
 
 class There_is_Only_War_Adeptus_Astartes_BT
 {
-	displayName = "There is Only War - Adeptus Astartes: Black Templars",
+	displayName = "There is Only War - Adeptus Astartes: Black Templars";
 
 	heavyArmor[] = {
 		"TIOW_SM_Vindicator_BT",
@@ -220,7 +220,7 @@ class There_is_Only_War_Adeptus_Astartes_BT
 
 class There_is_Only_War_Adeptus_Astartes_Combined_BA
 {
-	displayName = "There is Only War - Adeptus Astartes: Blood Angels",
+	displayName = "There is Only War - Adeptus Astartes: Blood Angels";
 
 	heavyArmor[] = {
 		"TIOW_SM_Vindicator_BA",
@@ -249,7 +249,7 @@ class There_is_Only_War_Adeptus_Astartes_Combined_BA
 
 class There_is_Only_War_Adeptus_Astartes_BR
 {
-	displayName = "There is Only War - Adeptus Astartes: Blood Ravens",
+	displayName = "There is Only War - Adeptus Astartes: Blood Ravens";
 
 	heavyArmor[] = {
 		"TIOW_SM_Vindicator_BR",
@@ -278,7 +278,7 @@ class There_is_Only_War_Adeptus_Astartes_BR
 
 class There_is_Only_War_Adeptus_Astartes_DA
 {
-	displayName = "There is Only War - Adeptus Astartes: Dark Angels",
+	displayName = "There is Only War - Adeptus Astartes: Dark Angels";
 
 	heavyArmor[] = {
 		"TIOW_SM_Vindicator_DA",
@@ -318,7 +318,7 @@ class There_is_Only_War_Adeptus_Astartes_DA
 
 class There_is_Only_War_Adeptus_Astartes_IF
 {
-	displayName = "There is Only War - Adeptus Astartes: Imperial Fists",
+	displayName = "There is Only War - Adeptus Astartes: Imperial Fists";
 
 	heavyArmor[] = {
 		"TIOW_SM_Vindicator_IF",
@@ -347,7 +347,7 @@ class There_is_Only_War_Adeptus_Astartes_IF
 
 class There_is_Only_War_Adeptus_Astartes_IH
 {
-	displayName = "There is Only War - Adeptus Astartes: Iron Hands",
+	displayName = "There is Only War - Adeptus Astartes: Iron Hands";
 
 	heavyArmor[] = {
 		"TIOW_SM_Vindicator_IH",
@@ -376,7 +376,7 @@ class There_is_Only_War_Adeptus_Astartes_IH
 
 class There_is_Only_War_Adeptus_Astartes_RG
 {
-	displayName = "There is Only War - Adeptus Astartes: Raven Guard",
+	displayName = "There is Only War - Adeptus Astartes: Raven Guard";
 
 	heavyArmor[] = {
 		"TIOW_SM_Vindicator_RG"
@@ -404,7 +404,7 @@ class There_is_Only_War_Adeptus_Astartes_RG
 
 class There_is_Only_War_Adeptus_Astartes_SL
 {
-	displayName = "There is Only War - Adeptus Astartes: Salamanders",
+	displayName = "There is Only War - Adeptus Astartes: Salamanders";
 
 	heavyArmor[] = {
 		"TIOW_SM_Predator_SL",
@@ -433,7 +433,7 @@ class There_is_Only_War_Adeptus_Astartes_SL
 
 class There_is_Only_War_Adeptus_Astartes_SW
 {
-	displayName = "There is Only War - Adeptus Astartes: Space Wolves",
+	displayName = "There is Only War - Adeptus Astartes: Space Wolves";
 
 	heavyArmor[] = {
 		"TIOW_SM_Predator_SW",
@@ -462,7 +462,7 @@ class There_is_Only_War_Adeptus_Astartes_SW
 
 class There_is_Only_War_Adeptus_Astartes_UM
 {
-	displayName = "There is Only War - Adeptus Astartes: Ultramarines",
+	displayName = "There is Only War - Adeptus Astartes: Ultramarines";
 
 	heavyArmor[] = {
 		"TIOW_SM_Predator_UM",
@@ -491,7 +491,7 @@ class There_is_Only_War_Adeptus_Astartes_UM
 
 class There_is_Only_War_Adeptus_Astartes_WS
 {
-	displayName = "There is Only War - Adeptus Astartes: White Scars",
+	displayName = "There is Only War - Adeptus Astartes: White Scars";
 
 	heavyArmor[] = {
 		"TIOW_SM_Predator_WS",
