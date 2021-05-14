@@ -439,5 +439,5 @@ class BLWK_buildableItems
 
 	#include "OPTRE Build Items.hpp"
 	#include "RHS Build Items.hpp"
-	#include "SOG PF Build Items.hpp"
+	//#include "SOG PF Build Items.hpp"
 };
