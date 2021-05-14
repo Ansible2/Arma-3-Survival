@@ -1,6 +1,6 @@
 class There_is_Only_War_Astra_Militarum_Cad_Combined
 {
-	displayName = "There is Only War - Astra Militarum: Cadian (Combined)",
+	displayName = "There is Only War - Astra Militarum: Cadian (Combined)";
 
 	heavyArmor[] = {
 		"TIOW_Cad_LR_Annihilator_667th_OP",
@@ -121,7 +121,7 @@ class There_is_Only_War_Astra_Militarum_Cad_Combined
 
 class There_is_Only_War_Astra_Militarum_Cad_667th
 {
-	displayName = "There is Only War - Astra Militarum: Cadian 667th",
+	displayName = "There is Only War - Astra Militarum: Cadian 667th";
 
 	heavyArmor[] = {
 		"TIOW_Cad_LR_Annihilator_667th_OP",
@@ -163,7 +163,7 @@ class There_is_Only_War_Astra_Militarum_Cad_667th
 
 class There_is_Only_War_Astra_Militarum_Cad_700th
 {
-	displayName = "There is Only War - Astra Militarum: Cadian 700th",
+	displayName = "There is Only War - Astra Militarum: Cadian 700th";
 
 	heavyArmor[] = {
 		"TIOW_Cad_LR_Annihilator_700th_OP",
@@ -206,7 +206,7 @@ class There_is_Only_War_Astra_Militarum_Cad_700th
 
 class There_is_Only_War_Astra_Militarum_Cad_776th
 {
-	displayName = "There is Only War - Astra Militarum: Cadian 776th",
+	displayName = "There is Only War - Astra Militarum: Cadian 776th";
 
 	heavyArmor[] = {
 		"TIOW_Cad_LR_Annihilator_776th_OP",
@@ -288,9 +288,9 @@ class There_is_Only_War_Astra_Militarum_Cad_836th
 	};
 };
 
-class There_is_Only_War_Astra_Militarum_"DKoK_Combined
+class There_is_Only_War_Astra_Militarum_DKoK_Combined
 {
-	displayName = "There is Only War - Astra Militarum: Death Korps of Krieg (Combined)",
+	displayName = "There is Only War - Astra Militarum: Death Korps of Krieg (Combined)";
 
 	heavyArmor[] = {
 		"TIOW_Krieg_LR_Annihilator_1489th_OP",
@@ -422,7 +422,7 @@ class There_is_Only_War_Astra_Militarum_"DKoK_Combined
 
 class There_is_Only_War_Astra_Militarum_DKoK_1489th
 {
-	displayName = "There is Only War - Astra Militarum: Death Korps of Krieg 1489th",
+	displayName = "There is Only War - Astra Militarum: Death Korps of Krieg 1489th";
 
 	heavyArmor[] = {
 		"TIOW_Krieg_LR_Annihilator_1489th_OP",
@@ -471,7 +471,7 @@ class There_is_Only_War_Astra_Militarum_DKoK_1489th
 
 class There_is_Only_War_Astra_Militarum_DKoK_1490th
 {
-	displayName = "There is Only War - Astra Militarum: Death Korps of Krieg 1490th",
+	displayName = "There is Only War - Astra Militarum: Death Korps of Krieg 1490th";
 
 	heavyArmor[] = {
 		"TIOW_Krieg_LR_Annihilator_1490th_OP",
@@ -520,7 +520,7 @@ class There_is_Only_War_Astra_Militarum_DKoK_1490th
 
 class There_is_Only_War_Astra_Militarum_DKoK_1491th
 {
-	displayName = "There is Only War - Astra Militarum: Death Korps of Krieg 1491st",
+	displayName = "There is Only War - Astra Militarum: Death Korps of Krieg 1491st";
 
 	heavyArmor[] = {
 		"TIOW_Krieg_LR_Annihilator_1491th_OP",
@@ -569,7 +569,7 @@ class There_is_Only_War_Astra_Militarum_DKoK_1491th
 
 class There_is_Only_War_Astra_Militarum_DKoK_82nd
 {
-	displayName = "There is Only War - Astra Militarum: Death Korps of Krieg 82nd",
+	displayName = "There is Only War - Astra Militarum: Death Korps of Krieg 82nd";
 
 	heavyArmor[] = {
 		"TIOW_Krieg_LR_Annihilator_82nd_OP",
@@ -608,7 +608,7 @@ class There_is_Only_War_Astra_Militarum_DKoK_82nd
 
 class There_is_Only_War_Astra_Militarum_MIG_Combined
 {
-	displayName = "There is Only War - Astra Militarum: Mordian Iron Guard (Combined)",
+	displayName = "There is Only War - Astra Militarum: Mordian Iron Guard (Combined)";
 
 	infantry[] = {
 		"TIOW_Mordian_Stubber_2_OP",
@@ -630,9 +630,9 @@ class There_is_Only_War_Astra_Militarum_MIG_Combined
 	};
 };
 
-class There_is_Only_War_Astra_Militarum_MIG_Combined
+class There_is_Only_War_Astra_Militarum_MIG_Blue
 {
-	displayName = "There is Only War - Astra Militarum: Mordian Iron Guard (Blue)",
+	displayName = "There is Only War - Astra Militarum: Mordian Iron Guard (Blue)";
 
 	infantry[] = {
 		"TIOW_Mordian_Stubber_2_OP",
@@ -646,9 +646,9 @@ class There_is_Only_War_Astra_Militarum_MIG_Combined
 	};
 };
 
-class There_is_Only_War_Astra_Militarum_MIG_Combined
+class There_is_Only_War_Astra_Militarum_MIG_white
 {
-	displayName = "There is Only War - Astra Militarum: Mordian Iron Guard (White)",
+	displayName = "There is Only War - Astra Militarum: Mordian Iron Guard (White)";
 
 	infantry[] = {
 		"TIOW_Mordian_Stubber_2_white_OP",
@@ -664,7 +664,7 @@ class There_is_Only_War_Astra_Militarum_MIG_Combined
 
 class There_is_Only_War_Astra_Militarum_C_PDF
 {
-	displayName = "There is Only War - Cadminae PDF Forces",
+	displayName = "There is Only War - Cadminae PDF Forces";
 
 	infantry[] = {
 		"TIOW_OCC_PDF_AT_Missle_O",
