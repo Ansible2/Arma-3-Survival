@@ -1,6 +1,6 @@
 class There_is_Only_War_Xenos_Necrons
 {
-	displayName = "There is Only War - Necrons",
+	displayName = "There is Only War - Necrons";
 
 	infantry[] = {
 		"TIOW_NecronLord_Charnovokh",
@@ -57,23 +57,6 @@ class There_is_Only_War_Xenos_Orks
 		"Deffkopta_02_O",
 		"Deffkopta_01_O",
 		"MDK_O"
-   };
-};
-
-class There_is_Only_War_Xenos_Tau_Combined
-{
-   displayName = "There is Only War - Tau (Combined)";
-   
-   infantry[] = {
-
-   };
-   
-   heavyCars[] = {
-
-   };
-   
-   heavyArmor[] = {
-
    };
 };
 
