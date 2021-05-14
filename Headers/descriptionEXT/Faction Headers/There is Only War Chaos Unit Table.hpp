@@ -1,6 +1,6 @@
 class There_is_Only_War_Chaos_SM_CC
 {
-	displayName = "There is Only War - Chaos Cultists",
+	displayName = "There is Only War - Chaos Cultists";
 
 	infantry[] = {
 		"TIOW_Cultist6_O",
@@ -15,7 +15,7 @@ class There_is_Only_War_Chaos_SM_CC
 
 class There_is_Only_War_Chaos_SM_Combined
 {
-	displayName = "There is Only War - Chaos Space Marines (Combined)",
+	displayName = "There is Only War - Chaos Space Marines (Combined)";
 
 	heavyArmor[] = {
 		"TIOW_SM_Predator_AL",
@@ -164,7 +164,7 @@ class There_is_Only_War_Chaos_SM_Combined
 
 class There_is_Only_War_Chaos_SM_AL
 {
-	displayName = "There is Only War - Chaos Space Marines: Alpha Legion",
+	displayName = "There is Only War - Chaos Space Marines: Alpha Legion";
 
 	heavyArmor[] = {
 		"TIOW_SM_Vindicator_BT",
@@ -194,7 +194,7 @@ class There_is_Only_War_Chaos_SM_AL
 
 class There_is_Only_War_Chaos_SM_BL
 {
-	displayName = "There is Only War - Chaos Space Marines: Black Legion",
+	displayName = "There is Only War - Chaos Space Marines: Black Legion";
 
 	heavyArmor[] = {
 		"TIOW_SM_Predator_BL",
@@ -223,7 +223,7 @@ class There_is_Only_War_Chaos_SM_BL
 
 class There_is_Only_War_Chaos_SM_DG
 {
-	displayName = "There is Only War - Chaos Space Marines: Death Guard",
+	displayName = "There is Only War - Chaos Space Marines: Death Guard";
 
 	heavyArmor[] = {
 		"TIOW_SM_Predator_DG",
@@ -246,13 +246,13 @@ class There_is_Only_War_Chaos_SM_DG
 	};
 	
 	lightArmor[] = {
-		"TIOW_SM_Rhino_DG",
+		"TIOW_SM_Rhino_DG"
 	};
 };
 
 class There_is_Only_War_Chaos_SM_EC
 {
-	displayName = "There is Only War - Chaos Space Marines: Emperor's Children",
+	displayName = "There is Only War - Chaos Space Marines: Emperor's Children";
 
 	heavyArmor[] = {
 		"TIOW_SM_Predator_EC",
@@ -275,17 +275,17 @@ class There_is_Only_War_Chaos_SM_EC
 	};
 	
 	lightArmor[] = {
-		"TIOW_SM_Rhino_EC",
+		"TIOW_SM_Rhino_EC"
 	};
 };
 
 class There_is_Only_War_Chaos_SM_IW
 {
-	displayName = "There is Only War - Chaos Space Marines: Iron Warriors",
+	displayName = "There is Only War - Chaos Space Marines: Iron Warriors";
 
 	heavyArmor[] = {
 		"TIOW_SM_Predator_IW",
-		"TIOW_SM_Vindicator_IW",
+		"TIOW_SM_Vindicator_IW"
 	};
 	
 	infantry[] = {
@@ -304,17 +304,17 @@ class There_is_Only_War_Chaos_SM_IW
 	};
 	
 	lightArmor[] = {
-		"TIOW_SM_Rhino_IW",
+		"TIOW_SM_Rhino_IW"
 	};
 };
 
 class There_is_Only_War_Chaos_SM_NL
 {
-	displayName = "There is Only War - Chaos Space Marines: Night Lords",
+	displayName = "There is Only War - Chaos Space Marines: Night Lords";
 
 	heavyArmor[] = {
 		"TIOW_SM_Predator_NL",
-		"TIOW_SM_Vindicator_NL",
+		"TIOW_SM_Vindicator_NL"
 	};
 	
 	infantry[] = {
@@ -333,17 +333,17 @@ class There_is_Only_War_Chaos_SM_NL
 	};
 	
 	lightArmor[] = {
-		"TIOW_SM_Rhino_NL",
+		"TIOW_SM_Rhino_NL"
 	};
 };
 
 class There_is_Only_War_Chaos_SM_TS
 {
-	displayName = "There is Only War - Chaos Space Marines: Thousand Sons",
+	displayName = "There is Only War - Chaos Space Marines: Thousand Sons";
 
 	heavyArmor[] = {
 		"TIOW_SM_Predator_TS",
-		"TIOW_SM_Vindicator_TS",
+		"TIOW_SM_Vindicator_TS"
 	};
 	
 	infantry[] = {
@@ -362,17 +362,17 @@ class There_is_Only_War_Chaos_SM_TS
 	};
 	
 	lightArmor[] = {
-		"TIOW_SM_Rhino_TS",
+		"TIOW_SM_Rhino_TS"
 	};
 };
 
 class There_is_Only_War_Chaos_SM_WB
 {
-	displayName = "There is Only War - Chaos Space Marines: World Bearers",
+	displayName = "There is Only War - Chaos Space Marines: World Bearers";
 
 	heavyArmor[] = {
 		"TIOW_SM_Predator_WB",
-		"TIOW_SM_Vindicator_WB",
+		"TIOW_SM_Vindicator_WB"
 	};
 	
 	infantry[] = {
@@ -391,13 +391,13 @@ class There_is_Only_War_Chaos_SM_WB
 	};
 	
 	lightArmor[] = {
-		"TIOW_SM_Rhino_WB",
+		"TIOW_SM_Rhino_WB"
 	};
 };
 
 class There_is_Only_War_Chaos_SM_WE
 {
-	displayName = "There is Only War - Chaos Space Marines: World Eaters",
+	displayName = "There is Only War - Chaos Space Marines: World Eaters";
 
 	heavyArmor[] = {
 		"TIOW_SM_Predator_WE",
@@ -424,9 +424,9 @@ class There_is_Only_War_Chaos_SM_WE
 	};
 };
 
-class There_is_Only_War_Astra_Militarum_Chaos
+class There_is_Only_War_Astra_Militarum_Chaos_Renegades
 {
-	displayName = "There is Only War - Astra Militarum Renegades",
+	displayName = "There is Only War - Astra Militarum Renegades";
 
 	heavyArmor[] = {
 		"TIOW_Renegade_LR_Annihilator_Black_OP",
