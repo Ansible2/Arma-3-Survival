@@ -214,7 +214,7 @@
 	212,\
 	213,\
 	214,\
-  	215,\
+  215,\
 	216,\
 	217,\
 	218,\
@@ -243,7 +243,53 @@
 	241,\
 	242,\
 	243,\
-	244
+	244,\
+	245,\
+	246,\
+	247,\
+	248,\
+	249,\
+	250,\
+	251,\
+	252,\
+	253,\
+	254,\
+	255,\
+	256,\
+	257,\
+	258,\
+	259,\
+	260,\
+	261,\
+	262,\
+	263,\
+	264,\
+	265,\
+	266,\
+	267,\
+	268,\
+	269,\
+  270,\
+  271,\
+  272,\
+ 	273,\
+  274,\
+  275,\
+  276,\
+  277,\
+  278,\
+  279,\
+  280,\
+  281,\
+  282,\
+  283,\
+  284,\
+  285,\
+  286,\
+  287,\
+  288,\
+  289
+  
 
 #define FACTION_STRINGS \
 	"VANILLA - NATO", \
@@ -483,6 +529,51 @@
 	"Russia 2035 - Winter SF", \
 	"Russia 2035 - Woodland", \
 	"Russia 2035 - Woodland SF", \
+	"There is Only War - Adeptus Astartes (Combined)", \
+	"There is Only War - Adeptus Astartes: Black Templars", \
+	"There is Only War - Adeptus Astartes: Blood Angels", \
+	"There is Only War - Adeptus Astartes: Blood Ravens", \
+	"There is Only War - Adeptus Astartes: Dark Angels", \
+	"There is Only War - Adeptus Astartes: Imperial Fists", \
+	"There is Only War - Adeptus Astartes: Iron Hands", \
+	"There is Only War - Adeptus Astartes: Raven Guard", \
+	"There is Only War - Adeptus Astartes: Salamanders", \
+	"There is Only War - Adeptus Astartes: Space Wolves", \
+	"There is Only War - Adeptus Astartes: Ultramarines", \
+	"There is Only War - Adeptus Astartes: White Scars", \
+	"There is Only War - Astra Militarum: Cadian (Combined)", \
+	"There is Only War - Astra Militarum: Cadian 667th", \
+	"There is Only War - Astra Militarum: Cadian 700th", \
+	"There is Only War - Astra Militarum: Cadian 776th", \
+	"There is Only War - Astra Militarum: Cadian 836th", \
+	"There is Only War - Astra Militarum: Death Korps of Krieg (Combined)", \
+	"There is Only War - Astra Militarum: Death Korps of Krieg 1489th", \
+	"There is Only War - Astra Militarum: Death Korps of Krieg 1490th", \
+	"There is Only War - Astra Militarum: Death Korps of Krieg 1491st", \
+	"There is Only War - Astra Militarum: Death Korps of Krieg 82nd", \
+	"There is Only War - Astra Militarum: Mordian Iron Guard (Combined)", \
+	"There is Only War - Astra Militarum: Mordian Iron Guard (Blue)", \
+	"There is Only War - Astra Militarum: Mordian Iron Guard (White)", \
+	"There is Only War - Astra Militarum Renegades", \
+	"There is Only War - Cadminae PDF Forces", \
+	"There is Only War - Chaos Cultists", \
+	"There is Only War - Chaos Space Marines (Combined)", \
+	"There is Only War - Chaos Space Marines: Alpha Legion", \
+	"There is Only War - Chaos Space Marines: Black Legion", \
+	"There is Only War - Chaos Space Marines: Death Guard", \
+	"There is Only War - Chaos Space Marines: Emperor's Children", \
+	"There is Only War - Chaos Space Marines: Iron Warriors", \
+	"There is Only War - Chaos Space Marines: Night Lords", \
+	"There is Only War - Chaos Space Marines: Thousand Sons", \
+	"There is Only War - Chaos Space Marines: World Bearers", \
+	"There is Only War - Chaos Space Marines: World Eaters", \
+	"There is Only War - Necrons", \
+	"There is Only War - Orks", \
+	"There is Only War - Tau (Combined)", \
+	"There is Only War - Tau: Dal'Yth Sept", \
+	"There is Only War - Tau: Farsight Enclave", \
+	"There is Only War - Tau: Sa'Cea Sept", \
+	"There is Only War - Tau: Vior'La Sept", \
 	"Zombies & Demons - Brittle Crawlers", \
 	"Zombies & Demons - Demons", \
 	"Zombies & Demons - Fast Zombies", \
