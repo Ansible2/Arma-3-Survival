@@ -53,12 +53,19 @@ if ((missionNamespace getVariable ["BLWK_lootHolders",[]]) isNotEqualTo []) then
 /* ----------------------------------------------------------------------------
 	Prepare Spawn Positions
 ---------------------------------------------------------------------------- */
-// get ALL buildings in area
-private _buildingsInPlayArea = nearestTerrainObjects [BLWK_playAreaCenter,["House"], BLWK_playAreaRadius, false, true];
+// Add a bool variable to this in the future to check if the play area size changed
+if (isNil "BLWK_playAreaBuildings" /*OR {playAreaSizeWasChanged}*/) then {
+	// get ALL buildings in area
+	private _buildingsInPlayArea = nearestTerrainObjects [BLWK_playAreaCenter,["House"], BLWK_playAreaRadius, false, true];
 
-// make sure the building has configed positions to spawn stuff at
-BLWK_playAreaBuildings = _buildingsInPlayArea select {
-	((_x buildingPos -1) isNotEqualTo [])
+	// make sure the building has configed positions to spawn stuff at
+	BLWK_playAreaBuildings = _buildingsInPlayArea select {
+		((_x buildingPos -1) isNotEqualTo [])
+	};
+	//playAreaSizeWasChanged = false;
+} else {
+	// randomize buildings because the forEach loop below will be the same every time then
+	[BLWK_playAreaBuildings] call CBAP_fnc_shuffle;
 };
 
 // sort through all available buildings and positions
