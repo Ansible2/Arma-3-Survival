@@ -36,6 +36,8 @@ class BLWK_genericTurretBase: BLWK_genericBuildItemBase
 	attachmentZ = 1;
 	invincible = 1;
 	detectCollsion = 0;
+
+	onPurchasedPostfix = "_object enableWeaponDisassembly false;";
 };
 
 class BLWK_buildableItems
@@ -439,5 +441,5 @@ class BLWK_buildableItems
 
 	#include "OPTRE Build Items.hpp"
 	#include "RHS Build Items.hpp"
-	#include "SOG PF Build Items.hpp"
+	//#include "SOG PF Build Items.hpp"
 };

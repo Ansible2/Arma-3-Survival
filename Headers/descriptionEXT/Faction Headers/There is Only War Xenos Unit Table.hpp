@@ -25,7 +25,7 @@ class There_is_Only_War_Xenos_Necrons
 class There_is_Only_War_Xenos_Orks
 {
    displayName = "There is Only War - Orks";
-   
+
    infantry[] = {
 		"Naked1_OP",
 		"ArdBoy1_OP",
@@ -63,9 +63,9 @@ class There_is_Only_War_Xenos_Orks
 class There_is_Only_War_Xenos_Tau_DY
 {
    displayName = "There is Only War - Tau: Dal'Yth Sept";
-   
+
    infantry[] = {
-		"TIOW_Breacher_DY_O"
+		"TIOW_Breacher_DY_O",
 		"TIOW_Breacher_DY_Exp_O",
 		"TIOW_Breacher_DY_Lead_O",
 		"TIOW_Strike_DY_O",
@@ -78,7 +78,7 @@ class There_is_Only_War_Xenos_Tau_DY
 		"TIOW_Pathfinder_DY_Rail_O",
 		"TIOW_Pathfinder_DY_Lead_O"
    };
-   
+
    heavyCars[] = {
 		"TIOW_Tau_Gun_Drone2_DY_O",
 		"TIOW_Tau_Marker_Drone_DY_O",
@@ -87,7 +87,7 @@ class There_is_Only_War_Xenos_Tau_DY
 		"TIOW_Tau_SmartMissle_Drone_DY_O",
 		"TIOW_Tau_Vehicle_Drone_DY_O"
    };
-   
+
    heavyArmor[] = {
 		"TIOW_Tau_Devilfish_DY_O",
 		"TIOW_Tau_Hammerhead_DY_O",
@@ -99,9 +99,9 @@ class There_is_Only_War_Xenos_Tau_DY
 class There_is_Only_War_Xenos_Tau_FE
 {
    displayName = "There is Only War - Tau: Farsight Enclave";
-   
+
    infantry[] = {
-		"TIOW_Breacher_FE_O"
+		"TIOW_Breacher_FE_O",
 		"TIOW_Breacher_FE_Exp_O",
 		"TIOW_Breacher_FE_Lead_O",
 		"TIOW_Strike_FE_O",
@@ -114,7 +114,7 @@ class There_is_Only_War_Xenos_Tau_FE
 		"TIOW_Pathfinder_FE_Rail_O",
 		"TIOW_Pathfinder_FE_Lead_O"
    };
-   
+
    heavyCars[] = {
 		"TIOW_Tau_Gun_Drone2_FE_O",
 		"TIOW_Tau_Marker_Drone_FE_O",
@@ -123,7 +123,7 @@ class There_is_Only_War_Xenos_Tau_FE
 		"TIOW_Tau_SmartMissle_Drone_FE_O",
 		"TIOW_Tau_Vehicle_Drone_FE_O"
    };
-   
+
    heavyArmor[] = {
 		"TIOW_Tau_Devilfish_FE_O",
 		"TIOW_Tau_Hammerhead_FE_O",
@@ -135,9 +135,9 @@ class There_is_Only_War_Xenos_Tau_FE
 class There_is_Only_War_Xenos_Tau_SC
 {
    displayName = "There is Only War - Tau: Sa'Cea Sept";
-   
+
    infantry[] = {
-		"TIOW_Breacher_SC_O"
+		"TIOW_Breacher_SC_O",
 		"TIOW_Breacher_SC_Exp_O",
 		"TIOW_Breacher_SC_Lead_O",
 		"TIOW_Strike_SC_O",
@@ -150,7 +150,7 @@ class There_is_Only_War_Xenos_Tau_SC
 		"TIOW_Pathfinder_SC_Rail_O",
 		"TIOW_Pathfinder_SC_Lead_O"
    };
-   
+
    heavyCars[] = {
 		"TIOW_Tau_Gun_Drone2_SC_O",
 		"TIOW_Tau_Marker_Drone_SC_O",
@@ -159,7 +159,7 @@ class There_is_Only_War_Xenos_Tau_SC
 		"TIOW_Tau_SmartMissle_Drone_SC_O",
 		"TIOW_Tau_Vehicle_Drone_SC_O"
    };
-   
+
    heavyArmor[] = {
 		"TIOW_Tau_Devilfish_SC_O",
 		"TIOW_Tau_Hammerhead_SC_O",
@@ -171,9 +171,9 @@ class There_is_Only_War_Xenos_Tau_SC
 class There_is_Only_War_Xenos_Tau_VL
 {
    displayName = "There is Only War - Tau: Vior'La Sept";
-   
+
    infantry[] = {
-		"TIOW_Breacher_VL_O"
+		"TIOW_Breacher_VL_O",
 		"TIOW_Breacher_VL_Exp_O",
 		"TIOW_Breacher_VL_Lead_O",
 		"TIOW_Strike_VL_O",
@@ -186,7 +186,7 @@ class There_is_Only_War_Xenos_Tau_VL
 		"TIOW_Pathfinder_VL_Rail_O",
 		"TIOW_Pathfinder_VL_Lead_O"
    };
-   
+
    heavyCars[] = {
 		"TIOW_Tau_Gun_Drone2_VL_O",
 		"TIOW_Tau_Marker_Drone_VL_O",
@@ -195,7 +195,7 @@ class There_is_Only_War_Xenos_Tau_VL
 		"TIOW_Tau_SmartMissle_Drone_VL_O",
 		"TIOW_Tau_Vehicle_Drone_VL_O"
    };
-   
+
    heavyArmor[] = {
 		"TIOW_Tau_Devilfish_VL_O",
 		"TIOW_Tau_Hammerhead_VL_O",

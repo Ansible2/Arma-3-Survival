@@ -107,8 +107,6 @@ class BLWK
 		{};
 		class createBattleAmbienceSound
 		{};
-		class createBuildObjectsArray
-		{};
 		class createBuildObjectsHash
 		{};
 		class createSupportsArray
