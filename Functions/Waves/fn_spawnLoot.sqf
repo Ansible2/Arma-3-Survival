@@ -21,6 +21,12 @@ Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+#define RANDOM_WEAPON_BOX_CLASS "Land_WoodenBox_F"
+#define SUPPORT_SATT_CLASS "Land_SatelliteAntenna_01_F"
+#define MONEY_PILE_CLASS "Land_Money_F"
+#define LOOT_REVEAL_BOX_CLASS "Box_C_UAV_06_Swifd_F"
+#define LOOT_HOLDER_CLASS "WeaponHolderSimulated";
+
 if (!isServer) exitWith {false};
 
 
@@ -113,7 +119,7 @@ private _addToZeusArray = [];
 
 // LOOT REVEAL BOX
 // these are global for future endeavors
-BLWK_lootRevealerBox = createVehicle ["Box_C_UAV_06_Swifd_F", (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
+BLWK_lootRevealerBox = createVehicle [LOOT_REVEAL_BOX_CLASS, (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
 publicVariable "BLWK_lootRevealerBox";
 _addToZeusArray pushBack BLWK_lootRevealerBox;
 
@@ -124,7 +130,7 @@ BLWK_lootHolders pushBack BLWK_lootRevealerBox;
 
 // SUPPORT UNLOCK DISH
 if (!BLWK_supportDishFound) then {
-	BLWK_supportDish = createVehicle ["Land_SatelliteAntenna_01_F", (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
+	BLWK_supportDish = createVehicle [SUPPORT_SATT_CLASS, (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
 	publicVariable "BLWK_supportDish";
 	BLWK_supportDish allowDamage false;
 	_addToZeusArray pushBack BLWK_supportDish;
@@ -135,7 +141,7 @@ if (!BLWK_supportDishFound) then {
 
 // RANDOM WEAPON BOX
 if (!_randomWeaponBoxFound) then {
-	BLWK_randomWeaponBox = createVehicle ["Land_WoodenBox_F", (call _fn_getASpawnPosition), [], 4];
+	BLWK_randomWeaponBox = createVehicle [RANDOM_WEAPON_BOX_CLASS, (call _fn_getASpawnPosition), [], 4];
 	publicVariable "BLWK_randomWeaponBox";
 	BLWK_randomWeaponBox allowDamage false;
 	_addToZeusArray pushBack BLWK_randomWeaponBox;
@@ -146,7 +152,7 @@ if (!_randomWeaponBoxFound) then {
 };
 
 // MONEY PILE
-BLWK_moneyPile = createVehicle ["Land_Money_F", (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
+BLWK_moneyPile = createVehicle [MONEY_PILE_CLASS, (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
 publicVariable "BLWK_moneyPile";
 BLWK_moneyPile allowDamage false;
 _addToZeusArray pushBack BLWK_moneyPile;
@@ -263,7 +269,7 @@ private _fn_addLoot = {
 _sortedPositions apply {
 	// in order to spawn stuff like weapons on the ground, we create holders
 
-	private _holder = createVehicle ["WeaponHolderSimulated", _x, [], 0, "CAN_COLLIDE"];
+	private _holder = createVehicle [LOOT_HOLDER_CLASS, _x, [], 0, "CAN_COLLIDE"];
 	private _primaryLootClass = [_holder] call _fn_addLoot;
 	// used for displaying loot markers in BLWK_fnc_createLootMarkers
 	_holder setVariable ["BLWK_primaryLootClass",_primaryLootClass];
@@ -272,7 +278,7 @@ _sortedPositions apply {
 	BLWK_lootHolders pushBack _holder;
 };
 
-[BLWK_zeus, [_addToZeusArray,true]] remoteExecCall ["addCuratorEditableObjects",2];
+BLWK_zeus addCuratorEditableObjects [_addToZeusArray,true];
 
 
 true
