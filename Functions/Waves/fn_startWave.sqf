@@ -35,7 +35,7 @@ params [
 
 // wait for array to be cleared
 /*
-	it's rare, but if enemies die too quickly, 
+	it's rare, but if enemies die too quickly,
 	this can cause overlap in the next wave of enemies.
 	These are people that were just being added into the array when it is cleared
 */
@@ -47,14 +47,17 @@ waitUntil {
 };
 
 if (_clearDroppedItems) then {
+
 	private _weaponHolders = BLWK_playAreaCenter nearObjects ["weaponHolder",250];
-	_weaponHolders = _weaponHolders select {typeOf _x == "groundWeaponHolder" AND {!(_x in BLWK_spawnedLoot)}};
+	_weaponHolders = _weaponHolders select {typeOf _x == "groundWeaponHolder" AND {!(_x in BLWK_lootHolders)}};
+
 	if !(_weaponHolders isEqualTo []) then {
 		_weaponHolders apply {
 			deleteVehicle _x;
 		};
 		sleep 1;
 	};
+
 };
 
 // update wave number

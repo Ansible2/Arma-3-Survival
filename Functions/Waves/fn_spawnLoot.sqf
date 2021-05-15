@@ -23,10 +23,9 @@ Author(s):
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {false};
 
+
 /* ----------------------------------------------------------------------------
-
 	Delete Previous Loot
-
 ---------------------------------------------------------------------------- */
 if !((missionNamespace getVariable ["BLWK_lootMarkers",[]]) isEqualTo []) then {
 	BLWK_lootMarkers apply {
@@ -35,31 +34,33 @@ if !((missionNamespace getVariable ["BLWK_lootMarkers",[]]) isEqualTo []) then {
 };
 private _randomWeaponBoxFound = missionNamespace getVariable ["BLWK_randomWeaponBoxFound",false];
 // check if there is any loot to delete
-if !((missionNamespace getVariable ["BLWK_spawnedLoot",[]]) isEqualTo []) then {
+if ((missionNamespace getVariable ["BLWK_lootHolders",[]]) isNotEqualTo []) then {
+
 	if (_randomWeaponBoxFound) then {
-		if (BLWK_randomWeaponBox in BLWK_spawnedLoot) then {
-			BLWK_spawnedLoot deleteAt (BLWK_spawnedLoot findIf {_x isEqualTo BLWK_randomWeaponBox});
+		if (BLWK_randomWeaponBox in BLWK_lootHolders) then {
+			BLWK_lootHolders deleteAt (BLWK_lootHolders findIf {_x isEqualTo BLWK_randomWeaponBox});
 		};
 	};
-	BLWK_spawnedLoot apply {
+
+	BLWK_lootHolders apply {
 		_x setVariable ["BLWK_primaryLootClass",nil];
 		deleteVehicle _x;
 	};
+
 };
 
+
 /* ----------------------------------------------------------------------------
-
 	Prepare Spawn Positions
-
 ---------------------------------------------------------------------------- */
 // get ALL buildings in area
 private _buildingsInPlayArea = nearestTerrainObjects [BLWK_playAreaCenter,["House"], BLWK_playAreaRadius, false, true];
 
+// make sure the building has configed positions to spawn stuff at
 BLWK_playAreaBuildings = _buildingsInPlayArea select {
-	!((_x buildingPos -1) isEqualTo [])
+	((_x buildingPos -1) isNotEqualTo [])
 };
 
-private _buildings = BLWK_playAreaBuildings;
 // sort through all available buildings and positions
 private _sortedPositions = [];
 {
@@ -75,7 +76,7 @@ private _sortedPositions = [];
 			};
 		} forEach _buildingsPositions;
 	};
-} forEach _buildings;
+} forEach BLWK_playAreaBuildings;
 
 
 private _fn_getASpawnPosition = {
@@ -104,7 +105,7 @@ _addToZeusArray pushBack BLWK_lootRevealerBox;
 
 [BLWK_lootRevealerBox] remoteExec ["BLWK_fnc_addRevealLootAction",BLWK_allClientsTargetID,BLWK_lootRevealerBox];
 // add to list to for cleanup
-BLWK_spawnedLoot pushBack BLWK_lootRevealerBox;
+BLWK_lootHolders pushBack BLWK_lootRevealerBox;
 
 
 // SUPPORT UNLOCK DISH
@@ -115,7 +116,7 @@ if (!BLWK_supportDishFound) then {
 	_addToZeusArray pushBack BLWK_supportDish;
 
 	[BLWK_supportDish] remoteExecCall ["BLWK_fnc_addUnlockSupportAction",BLWK_allClientsTargetID,BLWK_supportDish];
-	BLWK_spawnedLoot pushBack BLWK_supportDish;
+	BLWK_lootHolders pushBack BLWK_supportDish;
 };
 
 // RANDOM WEAPON BOX
@@ -127,7 +128,7 @@ if (!_randomWeaponBoxFound) then {
 
 	[BLWK_randomWeaponBox] remoteExecCall ["BLWK_fnc_addBuildableObjectActions",BLWK_allClientsTargetID,true];
 	[BLWK_randomWeaponBox] remoteExecCall ["BLWK_fnc_addWeaponBoxSpinAction",BLWK_allClientsTargetID,true];
-	BLWK_spawnedLoot pushBack BLWK_randomWeaponBox;
+	BLWK_lootHolders pushBack BLWK_randomWeaponBox;
 };
 
 // MONEY PILE
@@ -137,7 +138,7 @@ BLWK_moneyPile allowDamage false;
 _addToZeusArray pushBack BLWK_moneyPile;
 
 [BLWK_moneyPile] remoteExecCall ["BLWK_fnc_addMoneyPileAction",BLWK_allClientsTargetID,BLWK_moneyPile];
-BLWK_spawnedLoot pushBack BLWK_moneyPile;
+BLWK_lootHolders pushBack BLWK_moneyPile;
 
 // CIPHER COMMENT:
 // items should probably never repeat themselves in a round
@@ -254,7 +255,7 @@ _sortedPositions apply {
 	_holder setVariable ["BLWK_primaryLootClass",_primaryLootClass];
 
 	_addToZeusArray pushBack _holder;
-	BLWK_spawnedLoot pushBack _holder;
+	BLWK_lootHolders pushBack _holder;
 };
 
 [BLWK_zeus, [_addToZeusArray,true]] remoteExecCall ["addCuratorEditableObjects",2];

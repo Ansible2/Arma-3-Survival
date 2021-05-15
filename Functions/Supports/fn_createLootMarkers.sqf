@@ -184,7 +184,7 @@ private "_isUniqueItem_temp";
 		_lootIndex_temp = _forEachIndex;
 		call _fn_createMarker;
 	};
-} forEach BLWK_spawnedLoot;
+} forEach BLWK_lootHolders;
 
 
 nil
@@ -277,6 +277,6 @@ private _fn_setUpMarker = {
 	private _marker = [_x,_forEachIndex] call _fn_setUpMarker;
 
 	BLWK_lootMarkers pushBack _marker;
-} forEach BLWK_spawnedLoot;
+} forEach BLWK_lootHolders;
 
 */

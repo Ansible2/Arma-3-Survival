@@ -77,7 +77,7 @@ if (isServer) then {
 
     // for revealing loot and deleteing it at the end of the round
     BLWK_lootMarkers = [];
-    BLWK_spawnedLoot = [];
+    BLWK_lootHolders = [];
 
     // the marker that denotes the play area on the map
     BLWK_playAreaMarker = "";
