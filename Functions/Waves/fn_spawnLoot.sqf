@@ -67,7 +67,7 @@ if (isNil "BLWK_playAreaBuildings" /*OR {playAreaSizeWasChanged}*/) then {
 	//playAreaSizeWasChanged = false;
 } else {
 	// randomize buildings because the forEach loop below will be the same every time then
-	[BLWK_playAreaBuildings] call CBAP_fnc_shuffle;
+	BLWK_playAreaBuildings = [BLWK_playAreaBuildings,true] call CBAP_fnc_shuffle;
 };
 
 // sort through all available buildings and positions
