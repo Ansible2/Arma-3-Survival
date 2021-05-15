@@ -338,9 +338,6 @@ private _planeArray = [_planeSpawnPosition,_attackDirection,_planeClass,_side] c
 private _plane = _planeArray select 0;
 private _crew = _planeArray select 1;
 
-[_planeArray select 2,false] call KISKA_fnc_ACEX_setHCTransfer;
-
-
 if !(_allowDamage) then {
 	_plane allowDamage false;
 	_crew apply {
