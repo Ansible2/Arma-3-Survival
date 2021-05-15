@@ -12,7 +12,7 @@ class BLWK_genericBuildItemBase
 	attachmentZ = 1; // height
 	invincible = 0; // 0 false, 1 true
 	keepInventory = 0; // don't clear inventory
-	detectCollsion = 1; // registers with ai collision script
+	detectCollision = 1; // registers with ai collision script
 
 	// text that shows when hovering over the item in the shop
 	tooltip = "";
@@ -35,7 +35,7 @@ class BLWK_genericTurretBase: BLWK_genericBuildItemBase
 	attachmentY = 2;
 	attachmentZ = 1;
 	invincible = 1;
-	detectCollsion = 0;
+	detectCollision = 0;
 
 	onPurchasedPostfix = "_object enableWeaponDisassembly false;";
 };
@@ -223,7 +223,7 @@ class BLWK_buildableItems
 		rotation = 90;
 		attachmentY = 2;
 		invincible = 1;
-		detectCollsion = 0;
+		detectCollision = 0;
 	};
 
 	class Land_GH_Stairs_F : BLWK_genericBuildItemBase
@@ -268,7 +268,7 @@ class BLWK_buildableItems
 		price = 1200;
 		category = STORAGE_CATEGORY;
 		invincible = 1;
-		detectCollsion = 0;
+		detectCollision = 0;
 	};
 
 	class B_HMG_01_high_F : BLWK_genericTurretBase
@@ -281,7 +281,7 @@ class BLWK_buildableItems
 
 	class Land_BagBunker_Small_F : BLWK_genericBuildItemBase
 	{
-		price = 3000;
+		price = 1000;
 		category = BUNKERS_CATEGORY;
 		rotation = 180;
 		attachmentY = 4;
@@ -297,13 +297,13 @@ class BLWK_buildableItems
 
 	class Land_Cargo_Patrol_V3_F : BLWK_genericBuildItemBase
 	{
-		price = 6000;
+		price = 4000;
 		category = TOWERS_CATEGORY;
 		rotation = 180;
 		attachmentY = 6;
 		attachmentZ = 5;
 		invincible = 1;
-		detectCollsion = 0;
+		detectCollision = 0;
 	};
 
 	class B_HMG_01_A_F : BLWK_genericTurretBase
@@ -393,7 +393,7 @@ class BLWK_buildableItems
 		attachmentY = 2;
 		keepInventory = 1;
 		invincible = 1;
-		detectCollsion = 0;
+		detectCollision = 0;
 	};
 	class ACE_medicalSupplyCrate : BLWK_genericBuildItemBase
 	{
@@ -402,7 +402,7 @@ class BLWK_buildableItems
 		attachmentY = 2;
 		keepInventory = 1;
 		invincible = 1;
-		detectCollsion = 0;
+		detectCollision = 0;
 	};
 
 	class C_IDAP_supplyCrate_F : BLWK_genericBuildItemBase
@@ -414,7 +414,7 @@ class BLWK_buildableItems
 		attachmentZ = 1;
 		invincible = 1;
 		keepInventory = 0;
-		detectCollsion = 0;
+		detectCollision = 0;
 
 		tooltip = "Get a secondary shop that lasts 2 full waves";
 
@@ -431,7 +431,7 @@ class BLWK_buildableItems
 		attachmentY = 2;
 		attachmentZ = 0.8;
 		invincible = 1;
-		detectCollsion = 0;
+		detectCollision = 0;
 
 		tooltip = "Place items inside, reclaim, and get points put into the community pool";
 
@@ -441,5 +441,5 @@ class BLWK_buildableItems
 
 	#include "OPTRE Build Items.hpp"
 	#include "RHS Build Items.hpp"
-	//#include "SOG PF Build Items.hpp"
+	#include "SOG PF Build Items.hpp"
 };

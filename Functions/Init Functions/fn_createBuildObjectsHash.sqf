@@ -94,7 +94,7 @@ _configs apply {
 		_keepInventory_temp = [_x >> "keepInventory"] call BIS_fnc_getCfgDataBool;
 		_propertiesArray pushBack _keepInventory_temp;
 		// detect collision
-		_detectCollision_temp = [_x >> "detectCollsion"] call BIS_fnc_getCfgDataBool;
+		_detectCollision_temp = [_x >> "detectCollision"] call BIS_fnc_getCfgDataBool;
 		_propertiesArray pushBack _detectCollision_temp;
 
 		// displaynames
