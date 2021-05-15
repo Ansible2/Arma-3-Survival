@@ -25,7 +25,7 @@ Author(s):
 #define SUPPORT_SATT_CLASS "Land_SatelliteAntenna_01_F"
 #define MONEY_PILE_CLASS "Land_Money_F"
 #define LOOT_REVEAL_BOX_CLASS "Box_C_UAV_06_Swifd_F"
-#define LOOT_HOLDER_CLASS "WeaponHolderSimulated";
+#define LOOT_HOLDER_CLASS "WeaponHolderSimulated"
 
 if (!isServer) exitWith {false};
 
@@ -42,10 +42,8 @@ private _randomWeaponBoxFound = missionNamespace getVariable ["BLWK_randomWeapon
 // check if there is any loot to delete
 if ((missionNamespace getVariable ["BLWK_lootHolders",[]]) isNotEqualTo []) then {
 
-	if (_randomWeaponBoxFound) then {
-		if (BLWK_randomWeaponBox in BLWK_lootHolders) then {
-			BLWK_lootHolders deleteAt (BLWK_lootHolders findIf {_x isEqualTo BLWK_randomWeaponBox});
-		};
+	if (_randomWeaponBoxFound AND {BLWK_randomWeaponBox in BLWK_lootHolders}) then {
+		BLWK_lootHolders deleteAt (BLWK_lootHolders findIf {_x isEqualTo BLWK_randomWeaponBox});
 	};
 
 	BLWK_lootHolders apply {
