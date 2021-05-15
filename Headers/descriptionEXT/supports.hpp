@@ -216,7 +216,7 @@ class SUPPLY_ARSENAL_DROP_CLASS : basicSupport_baseClass
 // CAS
 class CAS_GUN_RUN_CLASS : basicSupport_baseClass
 {
-	price = 400;
+	price = 200;
 
 	category = CAS_CATEGORY;
 	text = CAS_GUN_RUN_TEXT;
@@ -347,7 +347,7 @@ class PASS_DOOR_GUNNER_CLASS : basicSupport_baseClass
 // SOG PF Supports
 class CAS_BOMB_NAPALM_CLASS : CAS_GUN_RUN_CLASS
 {
-	price = 400;
+	price = 600;
 	text = CAS_BOMB_NAPALM_TEXT;
 	expression = CALL_SUPPORT_MASTER(CAS_BOMB_NAPALM_CLASS);
 
@@ -355,7 +355,7 @@ class CAS_BOMB_NAPALM_CLASS : CAS_GUN_RUN_CLASS
 };
 class CAS_BOMB_NAPALM_2_CLASS : CAS_BOMB_NAPALM_CLASS
 {
-	price = 800;
+	price = 1000;
 	text = CAS_BOMB_NAPALM_2_TEXT;
 	expression = CALL_SUPPORT_MASTER(CAS_BOMB_NAPALM_2_CLASS);
 };
