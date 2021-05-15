@@ -62,6 +62,8 @@ if (isNil "BLWK_playAreaBuildings" /*OR {playAreaSizeWasChanged}*/) then {
 	BLWK_playAreaBuildings = _buildingsInPlayArea select {
 		((_x buildingPos -1) isNotEqualTo [])
 	};
+
+	BLWK_playAreaBuildings = [BLWK_playAreaBuildings,true] call CBAP_fnc_shuffle;
 	//playAreaSizeWasChanged = false;
 } else {
 	// randomize buildings because the forEach loop below will be the same every time then
@@ -70,7 +72,10 @@ if (isNil "BLWK_playAreaBuildings" /*OR {playAreaSizeWasChanged}*/) then {
 
 // sort through all available buildings and positions
 private _sortedPositions = [];
+private _exit = false;
 {
+	if (_exit) then {break};
+
 	private _currentBuilding = _x;
 	private _buildingIndex = _forEachIndex;
 	// to distribute to every building, every other building, every 3rd, etc.
@@ -78,6 +83,8 @@ private _sortedPositions = [];
 		private _buildingsPositions = _currentBuilding buildingPos -1;
 
 		{
+			if (count _sortedPositions >= BLWK_maxLootSpawns) then {_exit = true; break};
+
 			if (_forEachIndex isEqualTo 0 OR {(_forEachIndex mod BLWK_loot_roomDistribution) isEqualTo 0}) then {
 				_sortedPositions pushBack _x
 			};
