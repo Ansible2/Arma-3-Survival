@@ -123,7 +123,7 @@ _addToZeusArray pushBack BLWK_lootRevealerBox;
 
 [BLWK_lootRevealerBox] remoteExec ["BLWK_fnc_addRevealLootAction",BLWK_allClientsTargetID,BLWK_lootRevealerBox];
 // add to list to for cleanup
-BLWK_lootHolders pushBack BLWK_lootRevealerBox;
+//BLWK_lootHolders pushBack BLWK_lootRevealerBox;
 
 
 // SUPPORT UNLOCK DISH
@@ -134,7 +134,7 @@ if (!BLWK_supportDishFound) then {
 	_addToZeusArray pushBack BLWK_supportDish;
 
 	[BLWK_supportDish] remoteExecCall ["BLWK_fnc_addUnlockSupportAction",BLWK_allClientsTargetID,BLWK_supportDish];
-	BLWK_lootHolders pushBack BLWK_supportDish;
+	//BLWK_lootHolders pushBack BLWK_supportDish;
 };
 
 // RANDOM WEAPON BOX
@@ -156,7 +156,7 @@ BLWK_moneyPile allowDamage false;
 _addToZeusArray pushBack BLWK_moneyPile;
 
 [BLWK_moneyPile] remoteExecCall ["BLWK_fnc_addMoneyPileAction",BLWK_allClientsTargetID,BLWK_moneyPile];
-BLWK_lootHolders pushBack BLWK_moneyPile;
+//BLWK_lootHolders pushBack BLWK_moneyPile;
 
 // CIPHER COMMENT:
 // items should probably never repeat themselves in a round
