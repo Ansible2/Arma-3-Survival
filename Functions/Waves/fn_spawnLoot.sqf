@@ -25,32 +25,18 @@ Author(s):
 #define SUPPORT_SATT_CLASS "Land_SatelliteAntenna_01_F"
 #define MONEY_PILE_CLASS "Land_Money_F"
 #define LOOT_REVEAL_BOX_CLASS "Box_C_UAV_06_Swifd_F"
-#define LOOT_HOLDER_CLASS "WeaponHolderSimulated"
+#define LOOT_HOLDER_CLASS "GroundWeaponHolder_Scripted"
 
 if (!isServer) exitWith {false};
 
 
 /* ----------------------------------------------------------------------------
-	Delete Previous Loot
+	Delete Previous Loot Markers
 ---------------------------------------------------------------------------- */
 if !((missionNamespace getVariable ["BLWK_lootMarkers",[]]) isEqualTo []) then {
 	BLWK_lootMarkers apply {
 		deleteMarker _x;
 	};
-};
-private _randomWeaponBoxFound = missionNamespace getVariable ["BLWK_randomWeaponBoxFound",false];
-// check if there is any loot to delete
-if ((missionNamespace getVariable ["BLWK_lootHolders",[]]) isNotEqualTo []) then {
-
-	if (_randomWeaponBoxFound AND {BLWK_randomWeaponBox in BLWK_lootHolders}) then {
-		BLWK_lootHolders deleteAt (BLWK_lootHolders findIf {_x isEqualTo BLWK_randomWeaponBox});
-	};
-
-	BLWK_lootHolders apply {
-		_x setVariable ["BLWK_primaryLootClass",nil];
-		deleteVehicle _x;
-	};
-
 };
 
 
@@ -74,7 +60,11 @@ if (isNil "BLWK_playAreaBuildings" /*OR {playAreaSizeWasChanged}*/) then {
 	BLWK_playAreaBuildings = [BLWK_playAreaBuildings,true] call CBAP_fnc_shuffle;
 };
 
-// sort through all available buildings and positions
+
+
+/* ----------------------------------------------------------------------------
+	Sort through all available buildings and positions
+---------------------------------------------------------------------------- */
 private _sortedPositions = [];
 private _exit = false;
 {
@@ -96,16 +86,61 @@ private _exit = false;
 	};
 } forEach BLWK_playAreaBuildings;
 
+// if there are less available positions in the area then the max allowed, just readjust
+private _positionsCount = count _sortedPositions;
+if (_positionsCount < BLWK_maxLootSpawns) then {
+	BLWK_maxLootSpawns = _positionsCount;
+};
+
+
+/* ----------------------------------------------------------------------------
+	Prepare BLWK_lootHolders (make sure the count is still proper)
+---------------------------------------------------------------------------- */
+if (isNil "BLWK_lootHolders") then {
+	BLWK_lootHolders = [];
+};
+// just in case a holder was deleted
+BLWK_lootHolders = BLWK_lootHolders select {
+	!(isNull _x)
+};
+
+private _addToZeusArray = [];
+
+private _lootHolderCount = count BLWK_lootHolders;
+if (_lootHolderCount isNotEqualTo BLWK_maxLootSpawns) then {
+
+	if (_lootHolderCount < BLWK_maxLootSpawns) then {
+		for "_i" from 1 to (BLWK_maxLootSpawns - _lootHolderCount) do {
+			private _holder = createVehicle [LOOT_HOLDER_CLASS, [0,0,1000], [], 0, "FLY"];
+			_holder allowDamage false;
+
+			BLWK_lootHolders pushBack _holder;
+			_addToZeusArray pushBack _holder;
+		};
+
+	} else {
+		for "_i" from 1 to (_lootHolderCount - BLWK_maxLootSpawns) do {
+			private _holder = BLWK_lootHolders deleteAt 0;
+			deleteVehicle _holder;
+		};
+
+	};
+
+};
+
+
 
 private _fn_getASpawnPosition = {
+
 	private _spawnPosition = selectRandom _sortedPositions;
-	_positionIndex = _sortedPositions findIf {_x isEqualTo _spawnPosition};
+	private _positionIndex = _sortedPositions find _spawnPosition;
 	// delete so we don't get repeat spawns
 	_sortedPositions deleteAt _positionIndex;
-	//_sortedPositions deleteRange [_positionIndex,_positionIndex + 1];
+
 
 	_spawnPosition
 };
+
 
 
 /* ----------------------------------------------------------------------------
@@ -113,56 +148,74 @@ private _fn_getASpawnPosition = {
 	Unique Items
 
 ---------------------------------------------------------------------------- */
-private _addToZeusArray = [];
 
-// LOOT REVEAL BOX
+/* ----------------------------------------------------------------------------
+	Loot Reveal Box
+---------------------------------------------------------------------------- */
 // these are global for future endeavors
-BLWK_lootRevealerBox = createVehicle [LOOT_REVEAL_BOX_CLASS, (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
+if (!(isNil "BLWK_lootRevealerBox") AND {!(isNull BLWK_lootRevealerBox)}) then {
+	deleteVehicle BLWK_lootRevealerBox;
+};
+BLWK_lootRevealerBox = createVehicle [LOOT_REVEAL_BOX_CLASS, selectRandom _sortedPositions, [], 0, "CAN_COLLIDE"];
+BLWK_lootRevealerBox allowDamage false;
+
 publicVariable "BLWK_lootRevealerBox";
 _addToZeusArray pushBack BLWK_lootRevealerBox;
 
 [BLWK_lootRevealerBox] remoteExec ["BLWK_fnc_addRevealLootAction",BLWK_allClientsTargetID,BLWK_lootRevealerBox];
-// add to list to for cleanup
-//BLWK_lootHolders pushBack BLWK_lootRevealerBox;
 
 
-// SUPPORT UNLOCK DISH
+/* ----------------------------------------------------------------------------
+	Support Unlock Dish
+---------------------------------------------------------------------------- */
 if (!BLWK_supportDishFound) then {
-	BLWK_supportDish = createVehicle [SUPPORT_SATT_CLASS, (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
+	if (!(isNil "BLWK_supportDish") AND {!(isNull BLWK_supportDish)}) then {
+		deleteVehicle BLWK_supportDish;
+	};
+
+	BLWK_supportDish = createVehicle [SUPPORT_SATT_CLASS, selectRandom _sortedPositions, [], 0, "CAN_COLLIDE"];
 	publicVariable "BLWK_supportDish";
 	BLWK_supportDish allowDamage false;
 	_addToZeusArray pushBack BLWK_supportDish;
 
 	[BLWK_supportDish] remoteExecCall ["BLWK_fnc_addUnlockSupportAction",BLWK_allClientsTargetID,BLWK_supportDish];
-	//BLWK_lootHolders pushBack BLWK_supportDish;
 };
 
-// RANDOM WEAPON BOX
-if (!_randomWeaponBoxFound) then {
-	BLWK_randomWeaponBox = createVehicle [RANDOM_WEAPON_BOX_CLASS, (call _fn_getASpawnPosition), [], 4];
-	publicVariable "BLWK_randomWeaponBox";
+
+/* ----------------------------------------------------------------------------
+	Random Weapon Box
+---------------------------------------------------------------------------- */
+if !(missionNamespace getVariable ["BLWK_randomWeaponBoxFound",false]) then {
+	if (!(isNil "BLWK_randomWeaponBox") AND {!(isNull BLWK_randomWeaponBox)}) then {
+		deleteVehicle BLWK_randomWeaponBox;
+	};
+
+	BLWK_randomWeaponBox = createVehicle [RANDOM_WEAPON_BOX_CLASS, selectRandom _sortedPositions, [], 4];
 	BLWK_randomWeaponBox allowDamage false;
+	publicVariable "BLWK_randomWeaponBox";
 	_addToZeusArray pushBack BLWK_randomWeaponBox;
 
 	[BLWK_randomWeaponBox] remoteExecCall ["BLWK_fnc_addBuildableObjectActions",BLWK_allClientsTargetID,true];
 	[BLWK_randomWeaponBox] remoteExecCall ["BLWK_fnc_addWeaponBoxSpinAction",BLWK_allClientsTargetID,true];
-	BLWK_lootHolders pushBack BLWK_randomWeaponBox;
 };
 
-// MONEY PILE
-BLWK_moneyPile = createVehicle [MONEY_PILE_CLASS, (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
+
+/* ----------------------------------------------------------------------------
+	Money Pile
+---------------------------------------------------------------------------- */
+if (!(isNil "BLWK_moneyPile") AND {!(isNull BLWK_moneyPile)}) then {
+	deleteVehicle BLWK_moneyPile;
+};
+
+BLWK_moneyPile = createVehicle [MONEY_PILE_CLASS, selectRandom _sortedPositions, [], 0, "CAN_COLLIDE"];
 publicVariable "BLWK_moneyPile";
 BLWK_moneyPile allowDamage false;
 _addToZeusArray pushBack BLWK_moneyPile;
 
 [BLWK_moneyPile] remoteExecCall ["BLWK_fnc_addMoneyPileAction",BLWK_allClientsTargetID,BLWK_moneyPile];
-//BLWK_lootHolders pushBack BLWK_moneyPile;
 
-// CIPHER COMMENT:
-// items should probably never repeat themselves in a round
-// things such as compasses and GPSs will be annoying to find often, but, given the amount of randomization
-// it may not be needed actually
-//// Also, it may be adventageous to do a weighted random to avoid spawning so much junk or vice-versa
+
+
 /* ----------------------------------------------------------------------------
 
 	Everything else
@@ -191,6 +244,11 @@ private _fn_findAMagazine = {
 
 private _fn_addLoot = {
 	params ["_holder"];
+
+	clearWeaponCargoGlobal _holder;
+	clearMagazineCargoGlobal _holder;
+	clearItemCargoGlobal _holder;
+	clearBackpackCargoGlobal _holder;
 
 	private _typeToSpawn = round random 9;
 
@@ -263,17 +321,14 @@ private _fn_addLoot = {
 	};
 };
 
+BLWK_lootHolders apply {
+	systemChat str (isNull _x);
+	_x setPos (call _fn_getASpawnPosition);
 
-_sortedPositions apply {
-	// in order to spawn stuff like weapons on the ground, we create holders
-
-	private _holder = createVehicle [LOOT_HOLDER_CLASS, _x, [], 0, "CAN_COLLIDE"];
-	private _primaryLootClass = [_holder] call _fn_addLoot;
+	private _primaryLootClass = [_x] call _fn_addLoot;
 	// used for displaying loot markers in BLWK_fnc_createLootMarkers
-	_holder setVariable ["BLWK_primaryLootClass",_primaryLootClass];
+	_x setVariable ["BLWK_primaryLootClass",_primaryLootClass];
 
-	_addToZeusArray pushBack _holder;
-	BLWK_lootHolders pushBack _holder;
 };
 
 BLWK_zeus addCuratorEditableObjects [_addToZeusArray,true];
