@@ -62,6 +62,7 @@ if (isServer) then {
     /* Random Loot */
     BLWK_loot_cityDistribution = ("BLWK_loot_cityDistribution" call BIS_fnc_getParamValue);  // decides how many buildings will be marked as having loot in a city
     BLWK_loot_roomDistribution = ("BLWK_loot_roomDistribution" call BIS_fnc_getParamValue);  // decides how much loot will be in a building if it has any at all
+    BLWK_maxLootSpawns = "BLWK_maxLootSpawns" call BIS_fnc_getParamValue;
 
     /* Time of Day*/
     BLWK_timeOfDay = ("BLWK_timeOfDay" call BIS_fnc_getParamValue);
@@ -77,7 +78,7 @@ if (isServer) then {
 
     // for revealing loot and deleteing it at the end of the round
     BLWK_lootMarkers = [];
-    BLWK_spawnedLoot = [];
+    BLWK_lootHolders = [];
 
     // the marker that denotes the play area on the map
     BLWK_playAreaMarker = "";

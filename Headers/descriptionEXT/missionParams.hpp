@@ -275,6 +275,13 @@ class BLWK_playAreaRadius
 	texts[] = {"(50m) Tiny", "(100m) Small", "(150m) Normal", "(200m) Large", "(250m) Huge"};
 	GET_DEFAULT_PARAM(BLWK_playAreaRadius,150)
 };
+class BLWK_maxLootSpawns
+{
+	title = "Max Number Of Loot Spawns";
+	values[] = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000};
+	texts[] = {"100","200","300","400","500","600","700","800","900","1000","1100","1200", "1300", "1400", "1500", "1600", "1700", "1800", "1900", "2000"};
+	GET_DEFAULT_PARAM(BLWK_maxLootSpawns,1000)
+};
 class BLWK_minNumberOfHousesInArea
 {
 	title = "Minimum number of buildings in the play area radius";
