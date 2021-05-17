@@ -130,3 +130,215 @@ class vn_b_army_static_m60_high : vn_b_army_static_m1919a4_low
 {
     price = 350;
 };
+
+
+class Land_vn_b_trench_firing_04 : BLWK_genericTrenchBase
+{
+    price = 0;
+    rotation = 270;
+    attachmentY = 7;
+};
+class Land_vn_b_trench_firing_05 : Land_vn_b_trench_firing_04
+{
+    price = 0;
+};
+class Land_vn_b_trench_firing_01 : Land_vn_b_trench_firing_04
+{
+    price = 0;
+    rotation = 270;
+
+    attachmentX = -1;
+    attachmentY = 13;
+    attachmentZ = 2;
+};
+class Land_vn_b_trench_firing_03 : Land_vn_b_trench_firing_04
+{
+    price = 0;
+    rotation = 90;
+};
+class Land_vn_b_trench_end_01 : Land_vn_b_trench_firing_03
+{
+    price = 0;
+};
+class Land_vn_b_trench_bunker_02_01 : Land_vn_b_trench_firing_04
+{
+    price = 0;
+
+    attachmentY = 15;
+    attachmentZ = 1;
+};
+class Land_vn_b_trench_bunker_03_01 : Land_vn_b_trench_bunker_02_01
+{
+    price = 0;
+};
+class Land_vn_b_trench_bunker_04_01 : Land_vn_b_trench_firing_04
+{
+    price = 0;
+
+    attachmentX = -2;
+    attachmentY = 12;
+    attachmentZ = 2;
+};
+class Land_vn_b_foxhole_01 : BLWK_genericTrenchBase
+{
+    price = 0;
+    rotation = 180;
+
+    attachmentX = 0;
+    attachmentY = 8;
+    attachmentZ = 0.5
+};
+
+
+class Land_vn_pillboxbunker_02_hex_f : BLWK_genericBuildItemBase
+{
+    price = 0;
+
+    category = BUNKERS_CATEGORY;
+    detectCollision = 1;
+    attachmentX = 0;
+    attachmentY = 6;
+    attachmentZ = 2.2;
+};
+class Land_vn_pillboxbunker_01_big_f : Land_vn_pillboxbunker_02_hex_f
+{
+    price = 0;
+
+    attachmentX = 1;
+    attachmentY = 10;
+    attachmentZ = 1;
+};
+
+
+class Land_vn_usaf_revetment_01 : BLWK_genericBuildItemBase
+{
+    price = 0;
+    category = REVETMENT_CATEGORY;
+    rotation = 90;
+    detectCollision = 1;
+    attachmentX = 0;
+    attachmentY = 5;
+    attachmentZ = 0;
+};
+class Land_vn_usaf_revetment_1 : Land_vn_usaf_revetment_01
+{
+    price = 0;
+    attachmentY = 7;
+};
+class Land_vn_usaf_revetment_low_2 : Land_vn_usaf_revetment_01
+{
+    price = 0;
+    rotation = 0;
+    attachmentY = 6;
+};
+class Land_vn_usaf_revetment_low_3 : Land_vn_usaf_revetment_low_2
+{
+    price = 0;
+    attachmentY = 8;
+};
+
+
+class Land_vn_b_tower_01 : BLWK_genericBuildItemBase
+{
+    price = 0;
+    category = TOWERS_CATEGORY;
+    rotation = 0;
+    detectCollision = 0;
+    invincible = 1;
+    attachmentX = 0;
+    attachmentY = 8;
+    attachmentZ = 2.5;
+};
+class Land_vn_b_trench_corner_01 : BLWK_genericTrenchBase
+{
+    price = 0;
+
+    detectCollision = 1
+    attachmentX = 0;
+    attachmentY = 5;
+    attachmentZ = 1;
+};
+class Land_vn_b_trench_stair_01 : Land_vn_b_trench_corner_01
+{
+    price = 0;
+    rotation = 180;
+};
+
+class Land_vn_b_trench_20_01 : BLWK_genericTrenchBase
+{
+    price = 0;
+    rotation = 90;
+
+    attachmentX = 0;
+    attachmentY = 14;
+    attachmentZ = -0.3;
+};
+class Land_vn_b_trench_20_02 : Land_vn_b_trench_20_01
+{
+    price = 0;
+    attachmentX = 3;
+};
+class Land_vn_b_trench_45_01 : BLWK_genericTrenchBase
+{
+    price = 0;
+    rotation = 270;
+
+    attachmentX = -1;
+    attachmentY = 10;
+    attachmentZ = -0.3;
+};
+class Land_vn_b_trench_45_02 : Land_vn_b_trench_45_01
+{
+    price = 0;
+};
+class Land_vn_b_trench_05_01 : Land_vn_b_trench_45_01
+{
+    price = 0;
+    attachmentX = 0;
+    attachmentY = 8;
+};
+class Land_vn_b_trench_05_03 : Land_vn_b_trench_05_01
+{
+    price = 0;
+};
+class Land_vn_b_trench_05_02 : Land_vn_b_trench_05_03
+{
+    price = 0;
+    attachmentX = -3;
+};
+class Land_vn_b_trench_90_01 : Land_vn_b_trench_45_01
+{
+    price = 0;
+    attachmentX = 3;
+    attachmentY = 10;
+    rotation = 180;
+};
+class Land_vn_b_trench_90_02 : Land_vn_b_trench_90_01
+{
+};
+class Land_vn_b_trench_cross_01 : Land_vn_b_trench_45_01
+{
+    price = 0
+    attachmentX = -1;
+    attachmentY = 10;
+};
+class Land_vn_b_trench_cross_02 : Land_vn_b_trench_cross_01
+{
+    price = 0;
+    attachmentX = 0.5;
+    attachmentY = 8;
+    rotation = 180;
+};
+class Land_vn_b_trench_tee_01 : Land_vn_b_trench_cross_02
+{
+    price = 0;
+    attachmentX = 0;
+    attachmentY = 11;
+};
+class Land_vn_b_trench_firing_02 : Land_vn_b_trench_cross_02
+{
+    price = 0;
+    attachmentX = -3;
+    attachmentY = 11;
+    rotation = 270;
+};

@@ -39,6 +39,19 @@ class BLWK_genericTurretBase: BLWK_genericBuildItemBase
 
 	onPurchasedPostfix = "_object enableWeaponDisassembly false;";
 };
+class BLWK_genericTrenchBase : BLWK_genericBuildItemBase
+{
+	price = 0;
+
+	category = TRENCH_CATEGORY;
+	detectCollision = 0;
+	rotation = 0;
+
+	attachmentX = 0;
+	attachmentY = 0;
+	attachmentZ = 0;
+};
+
 
 class BLWK_buildableItems
 {
