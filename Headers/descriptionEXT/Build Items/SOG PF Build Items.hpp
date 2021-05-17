@@ -214,7 +214,7 @@ class Land_vn_pillboxbunker_01_big_f : Land_vn_pillboxbunker_02_hex_f
 
 class Land_vn_usaf_revetment_01 : BLWK_genericBuildItemBase
 {
-    price = 0;
+    price = 375;
     category = REVETMENT_CATEGORY;
     rotation = 90;
     detectCollision = 1;
@@ -224,18 +224,18 @@ class Land_vn_usaf_revetment_01 : BLWK_genericBuildItemBase
 };
 class Land_vn_usaf_revetment_1 : Land_vn_usaf_revetment_01
 {
-    price = 0;
+    price = 650;
     attachmentY = 7;
 };
 class Land_vn_usaf_revetment_low_2 : Land_vn_usaf_revetment_01
 {
-    price = 0;
+    price = 750;
     rotation = 0;
     attachmentY = 6;
 };
 class Land_vn_usaf_revetment_low_3 : Land_vn_usaf_revetment_low_2
 {
-    price = 0;
+    price = 1125;
     attachmentY = 8;
 };
 
