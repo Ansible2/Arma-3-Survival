@@ -377,7 +377,7 @@ class BLWK_buildableItems
 
 	class B_Mortar_01_F : BLWK_genericTurretBase
 	{
-		price = 5000;
+		price = 3000;
 	};
 
 	class B_static_AT_F : BLWK_genericTurretBase
