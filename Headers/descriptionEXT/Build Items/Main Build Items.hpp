@@ -286,7 +286,7 @@ class BLWK_buildableItems
 
 	class B_HMG_01_high_F : BLWK_genericTurretBase
 	{
-		price = 3000;
+		price = 1500;
 		attachmentX = 0.25;
 		attachmentY = 2;
 		attachmentZ = 2;
@@ -321,7 +321,7 @@ class BLWK_buildableItems
 
 	class B_HMG_01_A_F : BLWK_genericTurretBase
 	{
-		price = 7500;
+		price = 3000;
 		hasAI = 1;
 		rotation = 180;
 	};
@@ -371,12 +371,13 @@ class BLWK_buildableItems
 
 	class B_GMG_01_high_F : BLWK_genericTurretBase
 	{
-		price = 4000;
+		price = 2000;
+		attachmentZ = 2;
 	};
 
 	class B_Mortar_01_F : BLWK_genericTurretBase
 	{
-		price = 8000;
+		price = 5000;
 	};
 
 	class B_static_AT_F : BLWK_genericTurretBase
@@ -391,12 +392,14 @@ class BLWK_buildableItems
 
 	class B_G_HMG_02_high_F : BLWK_genericTurretBase
 	{
-		price = 3000;
+		price = 900;
+		attachmentZ = 2;
 	};
 
 	class B_G_HMG_02_F : BLWK_genericTurretBase
 	{
-		price = 2000;
+		price = 600;
+		attachmentZ = 2;
 	};
 
 	class ACE_medicalSupplyCrate_advanced : BLWK_genericBuildItemBase

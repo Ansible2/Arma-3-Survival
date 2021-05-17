@@ -36,7 +36,7 @@ class vn_o_nva_65_static_mortar_type53 : B_Mortar_01_F
 {
     attachmentX = 0.75;
     attachmentY = 2;
-    attachmentZ = 1;
+    attachmentZ = 1.5;
 };
 
 class vn_o_nva_65_static_rpd_high : BLWK_genericTurretBase
@@ -50,7 +50,7 @@ class vn_o_nva_65_static_rpd_high : BLWK_genericTurretBase
 class vn_o_nva_65_static_pk_low : BLWK_genericTurretBase
 {
     price = 300;
-    attachmentX = 0.5;
+    attachmentX = 0.25;
     attachmentY = 2;
     attachmentZ = 2;
 };
@@ -61,9 +61,9 @@ class vn_o_nva_65_static_pk_high : vn_o_nva_65_static_rpd_high
 class vn_o_nva_65_static_dshkm_low_01 : BLWK_genericTurretBase
 {
     price = 600;
-    rotation = 335;
+    rotation = 0;
 
-    attachmentX = 0.65;
+    attachmentX = 0.5;
     attachmentY = 2;
     attachmentZ = 2;
 };
@@ -117,6 +117,7 @@ class vn_b_army_static_m60_low : vn_b_army_static_m1919a4_low
 };
 class vn_b_army_static_mortar_m29 : vn_o_nva_65_static_mortar_type53
 {
+    attachmentX = 0;
 };
 class vn_b_army_static_m1919a4_high : vn_b_army_static_m1919a4_low
 {
@@ -129,6 +130,7 @@ class vn_b_army_static_m2_high : vn_b_army_static_m1919a4_low
 class vn_b_army_static_m60_high : vn_b_army_static_m1919a4_low
 {
     price = 350;
+    attachmentX = 0.15;
 };
 
 
@@ -192,7 +194,7 @@ class Land_vn_b_foxhole_01 : BLWK_genericTrenchBase
 
 class Land_vn_pillboxbunker_02_hex_f : BLWK_genericBuildItemBase
 {
-    price = 0;
+    price = 5200;
     rotation = 90;
     category = BUNKERS_CATEGORY;
     detectCollision = 1;
@@ -202,7 +204,7 @@ class Land_vn_pillboxbunker_02_hex_f : BLWK_genericBuildItemBase
 };
 class Land_vn_pillboxbunker_01_big_f : Land_vn_pillboxbunker_02_hex_f
 {
-    price = 0;
+    price = 10000;
 
     attachmentX = 1;
     attachmentY = 10;
@@ -260,8 +262,9 @@ class Land_vn_b_trench_corner_01 : BLWK_genericTrenchBase
 };
 class Land_vn_b_trench_stair_01 : Land_vn_b_trench_corner_01
 {
-    price = 0;
+    price = 200;
     rotation = 180;
+    category = VERTICAL_CATEGORY;
 };
 
 class Land_vn_b_trench_20_01 : BLWK_genericTrenchBase
