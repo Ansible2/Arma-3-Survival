@@ -193,7 +193,7 @@ class Land_vn_b_foxhole_01 : BLWK_genericTrenchBase
 class Land_vn_pillboxbunker_02_hex_f : BLWK_genericBuildItemBase
 {
     price = 0;
-
+    rotation = 90;
     category = BUNKERS_CATEGORY;
     detectCollision = 1;
     attachmentX = 0;
