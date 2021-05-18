@@ -56,10 +56,15 @@ if (BLWK_playersStartWith_radio) then {
 	if (isClass (configfile >> "CfgVehicles" >> "ACRE_PRC343")) exitWith {
 		_player linkItem "ACRE_PRC343";
 	};
-	
+
 	_player linkItem "itemRadio";
 };
 
 if (BLWK_playersStartWith_mineDetector) then {
 	_player addItem "mineDetector";
+};
+
+if (BLWK_uniformClass isNotEqualTo "") then {
+	player forceAddUniform BLWK_uniformClass;
+	removeHeadgear _player;
 };

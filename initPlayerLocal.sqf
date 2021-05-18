@@ -31,6 +31,11 @@ private _startingKillPoints = ("BLWK_startingKillPoints" call BIS_fnc_getParamVa
 missionNamespace setVariable ["BLWK_playerKillPoints",_startingKillPoints];
 
 // adds starter items if selected (map, NVGs, pistol, etc.)
+waitUntil {
+	sleep 0.1;
+	!isNil "BLWK_uniformClass";
+};
+
 [_player] call BLWK_fnc_addPlayerItems;
 
 [_player] call BLWK_fnc_addDiaryEntries;
@@ -40,7 +45,7 @@ missionNamespace setVariable ["BLWK_playerKillPoints",_startingKillPoints];
 // vanilla mag repack
 if (BLWK_magRepackEnabled) then {
     waituntil {!isNull (findDisplay 46)};
-    
+
     (findDisplay 46) displayAddEventHandler ["KeyDown",{
 
         // passes the pressed key and whether or not a ctrl key is down. The proper combo is ctrl+R

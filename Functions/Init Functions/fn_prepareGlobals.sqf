@@ -219,6 +219,17 @@ private _unitTypeInfo = call BLWK_fnc_prepareUnitClasses;
 BLWK_friendly_menClasses = _unitTypeInfo select 0;
 BLWK_friendly_vehicleClasses = _unitTypeInfo select 1;
 
+
+private _uniformClass = "";
+BLWK_friendly_menClasses apply {
+    _uniformClass = getText(configfile >> "CfgVehicles" >> _x >> "uniformClass");
+    if (_uniformClass isNotEqualTo "") then {
+        break;
+    };
+};
+BLWK_uniformClass = _uniformClass;
+
+
 // level 1
 BLWK_level1_menClasses = _unitTypeInfo select 2;
 BLWK_level1_vehicleClasses = _unitTypeInfo select 3;
