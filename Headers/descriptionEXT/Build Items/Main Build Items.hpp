@@ -169,7 +169,7 @@ class BLWK_buildableItems
 
 	class Land_PortableLight_double_F : BLWK_genericLampBase
 	{
-		price = 260;
+		price = 250;
 		rotation = 180;
 		attachmentZ = 1.1;
 	};
@@ -254,7 +254,7 @@ class BLWK_buildableItems
 
 	class Land_LampHalogen_F : BLWK_genericLampBase
 	{
-		price = 1000;
+		price = 500;
 		rotation = 90;
 		attachmentX = 0.2;
 		attachmentY = 2;
