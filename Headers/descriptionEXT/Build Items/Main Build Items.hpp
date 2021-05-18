@@ -51,6 +51,12 @@ class BLWK_genericTrenchBase : BLWK_genericBuildItemBase
 	attachmentY = 0;
 	attachmentZ = 0;
 };
+class BLWK_genericLampBase : BLWK_genericBuildItemBase
+{
+	category = LAMPS_CATEGORY;
+	detectCollision = 0;
+	invincible = 1;
+};
 
 
 class BLWK_buildableItems
@@ -161,10 +167,9 @@ class BLWK_buildableItems
 		invincible = 1;
 	};
 
-	class Land_PortableLight_double_F : BLWK_genericBuildItemBase
+	class Land_PortableLight_double_F : BLWK_genericLampBase
 	{
 		price = 260;
-		category = LAMPS_CATEGORY;
 		rotation = 180;
 		attachmentZ = 1.1;
 	};
@@ -247,10 +252,9 @@ class BLWK_buildableItems
 		attachmentY = 5;
 	};
 
-	class Land_LampHalogen_F : BLWK_genericBuildItemBase
+	class Land_LampHalogen_F : BLWK_genericLampBase
 	{
 		price = 1000;
-		category = LAMPS_CATEGORY;
 		rotation = 90;
 		attachmentX = 0.2;
 		attachmentY = 2;
