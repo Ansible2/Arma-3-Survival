@@ -35,6 +35,8 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "BLWK_fnc_aircraftGunner";
+
 params ["_vehicleClass","_loiterHeight","_loiterRadius","_defaultVehicleType","_globalUseVarString"];
 
 private _turretsWithWeapons = [_vehicleClass] call KISKA_fnc_classTurretsWithGuns;
@@ -74,13 +76,13 @@ _vehicleCrew apply {
 
 private _loiterDirection = "CIRCLE_L";
 
-// handle cases where helicopter has dominant turret on right side
+// handle cases where helicopter has dominant turret on right side, helicopter needs to loiter in a clockwise fashion
 private _mainTurretWeaponsArray = getArray(configFile >> "CfgVehicles" >> _vehicleClass >> "Turrets" >> "MainTurret" >> "Weapons");
 if (count _mainTurretWeaponsArray > 0) then {
 
 	private _mainTurretWeapon = _mainTurretWeaponsArray select 0;
-	private _mainTurretDir = [_vehicle weaponDirection _mainTurretWeapon] call CBAP_fnc_vectDir;
-	private _mainTurretRelativeDir = abs((getDir _vehicle) - _mainTurretDir);
+	private _mainTurretDir = _vehicle weaponDirection _mainTurretWeapon;
+	private _mainTurretRelativeDir = (_vehicle vectorWorldToModel _mainTurretDir) call CBAP_fnc_vectDir;
 
 	if (_mainTurretRelativeDir >= 0 AND {_mainTurretRelativeDir <= 180}) then {
 		[["Found that vehicle class ",_vehicleClass," met standards to have a loiter of clockwise"],false] call KISKA_fnc_log;
@@ -89,7 +91,7 @@ if (count _mainTurretWeaponsArray > 0) then {
 };
 
 
-// setup waypoints
+
 private _vehicleGroup = _vehicleArray select 2;
 _vehicleGroup setBehaviour "SAFE";
 _vehicleGroup setCombatMode "BLUE";
@@ -103,7 +105,6 @@ _loiterWaypoint setWaypointSpeed "LIMITED";
 
 
 // handle view distances so things aren't cloudy
-
 // turn off View Distance Limiter
 private _wasVDLRunning = false;
 if (KISKA_VDL_run) then {
@@ -217,7 +218,7 @@ localNamespace setVariable ["BLWK_fnc_exitFromAircraft",{
 		[_caller,_x] call BIS_fnc_holdActionRemove;
 	};
 
-	// delete vehicle
+
 	private _vehicle = _arguments select 1;
 	private _vehicleGroup = _arguments select 2;
 	(units _vehicleGroup) apply {
