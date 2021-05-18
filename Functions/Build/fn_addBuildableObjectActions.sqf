@@ -46,11 +46,11 @@ private _objectType = toLowerANSI (typeOf _object);
 private _objectName = "";
 private _addSellAction = true;
 switch (true) do {
-	case (_object isEqualTo BLWK_randomWeaponBox):{
+	case (_object isEqualTo (missionNamespace getVariable ["BLWK_randomWeaponBox",objNull])):{
 		_objectName = "Random Weapon Box";
 		_addSellAction = false;
 	};
-	case (_object isEqualTo BLWK_mainCrate):{
+	case (_object isEqualTo (missionNamespace getVariable ["BLWK_mainCrate",objNull])):{
 		_objectName = "The Main Crate";
 		_addSellAction = false;
 	};
@@ -67,67 +67,67 @@ if (_addSellAction) then {
 		{
 			params ["_object","_caller"];
 
-			if (_object isEqualTo BLWK_mainCrate OR {(_object isEqualTo BLWK_randomWeaponBox)}) exitWith {
+			if (_object isEqualTo (missionNamespace getVariable ["BLWK_mainCrate",objNull]) OR {_object isEqualTo (missionNamespace getVariable ["BLWK_randomWeaponBox",objNull])}) exitWith {
 				hint parseText "<t color='#ff0000'>You can't sell this item</t>";
 			};
 
 			[_object,_caller] call BLWK_fnc_sellObject;
-		}, 
-		nil, 
-		90,  
-		false,  
-		false,  
-		"true", 
-		CONDITION, 
-		_actionDistance 
+		},
+		nil,
+		90,
+		false,
+		false,
+		"true",
+		CONDITION,
+		_actionDistance
 	];
 };
 
 // move up
 _object addAction [
-	"<t color='#00ffff'><t underline='true'><t font='RobotoCondensedBold'>-- Move " + _objectName + " Up --</t></t></t>", 
+	"<t color='#00ffff'><t underline='true'><t font='RobotoCondensedBold'>-- Move " + _objectName + " Up --</t></t></t>",
 	{
 		[_this select 0,true] call BLWK_fnc_moveUpOrDown;
-	}, 
-	nil, 
-	95,  
-	false,  
-	false,  
-	"true", 
-	CONDITION, 
-	_actionDistance 
+	},
+	nil,
+	95,
+	false,
+	false,
+	"true",
+	CONDITION,
+	_actionDistance
 ];
 
 
 // move down
 _object addAction [
-	"<t color='#00ff00'><t underline='true'><t font='RobotoCondensedBold'>-- Move " + _objectName + " Down --</t></t></t>", 
+	"<t color='#00ff00'><t underline='true'><t font='RobotoCondensedBold'>-- Move " + _objectName + " Down --</t></t></t>",
 	{
 		[_this select 0,false] call BLWK_fnc_moveUpOrDown;
-	}, 
-	nil, 
-	94,  
-	false,  
-	false,  
-	"true", 
-	CONDITION, 
-	_actionDistance 
+	},
+	nil,
+	94,
+	false,
+	false,
+	"true",
+	CONDITION,
+	_actionDistance
 ];
 
 // pick up
 _object addAction [
-	"<t color='#ffffff'><t underline='true'><t font='RobotoCondensedBold'>-- Pickup " + _objectName + " --</t></t></t>", 
+	"<t color='#ffffff'><t underline='true'><t font='RobotoCondensedBold'>-- Pickup " + _objectName + " --</t></t></t>",
 	{
 		params ["_object","_caller"];
 		[_object,_caller] spawn BLWK_fnc_pickupObject;
-	}, 
-	nil, 
-	100,  
-	false,  
-	false,  
-	"true", 
-	CONDITION, 
-	_actionDistance 
+	},
+	nil,
+	100,
+	false,
+	false,
+	"true",
+	CONDITION,
+	_actionDistance
 ];
 
 // rotate left
@@ -138,10 +138,10 @@ _object addAction [
 	},
 	_object,
 	92,
-	false,  
-	false,  
-	"true", 
-	CONDITION, 
+	false,
+	false,
+	"true",
+	CONDITION,
 	_actionDistance
 ];
 
@@ -153,25 +153,25 @@ _object addAction [
 	},
 	nil,
 	93,
-	false,  
-	false,  
-	"true", 
-	CONDITION, 
+	false,
+	false,
+	"true",
+	CONDITION,
 	_actionDistance
 ];
 
 // Reset Rotation
 _object addAction [
-	"<t color='#ff00bf'><t underline='true'><t font='RobotoCondensedBold'>-- Reset " + _objectName + " Rotation --</t></t></t>", 
+	"<t color='#ff00bf'><t underline='true'><t font='RobotoCondensedBold'>-- Reset " + _objectName + " Rotation --</t></t></t>",
 	{
 		[_this select 0] call BLWK_fnc_resetObjectRotation;
-	}, 
-	nil, 
-	91,  
-	false,  
-	false,  
-	"true", 
-	CONDITION, 
+	},
+	nil,
+	91,
+	false,
+	false,
+	"true",
+	CONDITION,
 	_actionDistance
 ];
 

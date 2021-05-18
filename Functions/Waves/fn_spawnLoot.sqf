@@ -190,7 +190,7 @@ if !(missionNamespace getVariable ["BLWK_randomWeaponBoxFound",false]) then {
 		deleteVehicle BLWK_randomWeaponBox;
 	};
 
-	BLWK_randomWeaponBox = createVehicle [RANDOM_WEAPON_BOX_CLASS, selectRandom _sortedPositions, [], 4];
+	BLWK_randomWeaponBox = createVehicle [RANDOM_WEAPON_BOX_CLASS, selectRandom _sortedPositions, [], 4, "NONE"];
 	BLWK_randomWeaponBox allowDamage false;
 	publicVariable "BLWK_randomWeaponBox";
 	_addToZeusArray pushBack BLWK_randomWeaponBox;
