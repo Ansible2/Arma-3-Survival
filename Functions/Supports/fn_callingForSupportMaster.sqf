@@ -33,7 +33,7 @@ if (_targetPosition isEqualTo []) exitWith { \
 
 #define CHECK_SUPPORT_CLASS(SUPPORT_CLASS_COMPARE) _supportClass == TO_STRING(SUPPORT_CLASS_COMPARE)
 
-#define GET_AMMO_TYPE(CONFIG) getText(missionConfigFile >> "CfgCommunicationMenu" >> TO_STRING(CONFIG) >> ammoType)
+#define GET_AMMO_TYPE(CONFIG) getText(missionConfigFile >> "CfgCommunicationMenu" >> TO_STRING(CONFIG) >> "ammoType")
 #define ARTY_EXPRESSION(CONFIG) CHECK_POSITION [_targetPosition,GET_AMMO_TYPE(CONFIG)] spawn BLWK_fnc_callForArtillery
 #define ARTY_EXPRESSION_FULL(CONFIG) \
 	if (CHECK_SUPPORT_CLASS(CONFIG)) exitWith { \
