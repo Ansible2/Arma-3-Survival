@@ -322,7 +322,6 @@ private _fn_addLoot = {
 };
 
 BLWK_lootHolders apply {
-	systemChat str (isNull _x);
 	_x setPos (call _fn_getASpawnPosition);
 
 	private _primaryLootClass = [_x] call _fn_addLoot;
