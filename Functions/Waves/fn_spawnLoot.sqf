@@ -26,6 +26,9 @@ Author(s):
 #define MONEY_PILE_CLASS "Land_Money_F"
 #define LOOT_REVEAL_BOX_CLASS "Box_C_UAV_06_Swifd_F"
 #define LOOT_HOLDER_CLASS "GroundWeaponHolder_Scripted"
+#define NUMBER_OF_IMPACTED_UNIQUES 2
+#define MAX_SPAWNS_PLUS_UNIQUES (BLWK_maxLootSpawns + NUMBER_OF_IMPACTED_UNIQUES)
+#define MAX_SPAWNS_MINUS_UNIQUES (BLWK_maxLootSpawns - NUMBER_OF_IMPACTED_UNIQUES)
 
 if (!isServer) exitWith {false};
 
@@ -77,7 +80,7 @@ private _exit = false;
 		private _buildingsPositions = _currentBuilding buildingPos -1;
 
 		{
-			if (count _sortedPositions >= BLWK_maxLootSpawns) then {_exit = true; break};
+			if (count _sortedPositions >= MAX_SPAWNS_PLUS_UNIQUES) then {_exit = true; break};
 
 			if (_forEachIndex isEqualTo 0 OR {(_forEachIndex mod BLWK_loot_roomDistribution) isEqualTo 0}) then {
 				_sortedPositions pushBack _x
@@ -88,7 +91,7 @@ private _exit = false;
 
 // if there are less available positions in the area then the max allowed, just readjust
 private _positionsCount = count _sortedPositions;
-if (_positionsCount < BLWK_maxLootSpawns) then {
+if (_positionsCount < MAX_SPAWNS_PLUS_UNIQUES) then {
 	BLWK_maxLootSpawns = _positionsCount;
 };
 
@@ -107,10 +110,11 @@ BLWK_lootHolders = BLWK_lootHolders select {
 private _addToZeusArray = [];
 
 private _lootHolderCount = count BLWK_lootHolders;
-if (_lootHolderCount isNotEqualTo BLWK_maxLootSpawns) then {
+if (_lootHolderCount isNotEqualTo MAX_SPAWNS_MINUS_UNIQUES) then {
 
-	if (_lootHolderCount < BLWK_maxLootSpawns) then {
-		for "_i" from 1 to (BLWK_maxLootSpawns - _lootHolderCount) do {
+	if (_lootHolderCount < MAX_SPAWNS_MINUS_UNIQUES) then {
+		for "_i" from 1 to (MAX_SPAWNS_MINUS_UNIQUES - _lootHolderCount) do {
+			["Found need for loot holder, adding...",false] call KISKA_fnc_log;
 			private _holder = createVehicle [LOOT_HOLDER_CLASS, [0,0,1000], [], 0, "FLY"];
 			_holder allowDamage false;
 
@@ -119,7 +123,8 @@ if (_lootHolderCount isNotEqualTo BLWK_maxLootSpawns) then {
 		};
 
 	} else {
-		for "_i" from 1 to (_lootHolderCount - BLWK_maxLootSpawns) do {
+		for "_i" from 1 to (_lootHolderCount - MAX_SPAWNS_MINUS_UNIQUES) do {
+			["Found excess loot holder, deleteing...",false] call KISKA_fnc_log;
 			private _holder = BLWK_lootHolders deleteAt 0;
 			deleteVehicle _holder;
 		};
@@ -156,7 +161,7 @@ private _fn_getASpawnPosition = {
 if (!(isNil "BLWK_lootRevealerBox") AND {!(isNull BLWK_lootRevealerBox)}) then {
 	deleteVehicle BLWK_lootRevealerBox;
 };
-BLWK_lootRevealerBox = createVehicle [LOOT_REVEAL_BOX_CLASS, selectRandom _sortedPositions, [], 0, "CAN_COLLIDE"];
+BLWK_lootRevealerBox = createVehicle [LOOT_REVEAL_BOX_CLASS, call _fn_getASpawnPosition, [], 0, "CAN_COLLIDE"];
 BLWK_lootRevealerBox allowDamage false;
 
 publicVariable "BLWK_lootRevealerBox";
@@ -207,7 +212,7 @@ if (!(isNil "BLWK_moneyPile") AND {!(isNull BLWK_moneyPile)}) then {
 	deleteVehicle BLWK_moneyPile;
 };
 
-BLWK_moneyPile = createVehicle [MONEY_PILE_CLASS, selectRandom _sortedPositions, [], 0, "CAN_COLLIDE"];
+BLWK_moneyPile = createVehicle [MONEY_PILE_CLASS, call _fn_getASpawnPosition, [], 0, "CAN_COLLIDE"];
 publicVariable "BLWK_moneyPile";
 BLWK_moneyPile allowDamage false;
 _addToZeusArray pushBack BLWK_moneyPile;
