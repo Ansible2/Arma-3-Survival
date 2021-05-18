@@ -13,7 +13,7 @@ Parameters:
 	1: _killer : <OBJECT> - Object that killed _killedUnit – contains unit itself in case of collisions (not used)
 	2: _instigator : <OBJECT> - Person who pulled the trigger
 	3: _useEffects : <BOOL> - same as useEffects in setDamage alt syntax (not used)
-		
+
 
 Returns:
 	NOTHING
@@ -37,7 +37,7 @@ if (!(isNull _instigator) AND {isPlayer _instigator}) then {
 };
 
 // spawn the next in queue
-if (local BLWK_theAIHandlerEntity) then {
+if (clientOwner isEqualTo BLWK_theAIHandlerOwnerID) then {
 	// if the spawn queue is not empty
 	if !((missionNamespace getVariable [STANDARD_ENEMY_INFANTRY_QUEUE,[]]) isEqualTo []) then {
 		[STANDARD_ENEMY_INFANTRY_QUEUE,"_this call BLWK_fnc_stdEnemyManCreateCode"] call BLWK_fnc_createFromQueue;

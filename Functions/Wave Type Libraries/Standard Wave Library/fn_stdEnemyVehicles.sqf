@@ -39,7 +39,7 @@ params [
 	["_isDefectorWave",false,[true]]
 ];
 
-if !(local BLWK_theAIHandlerEntity) exitWith {[]};
+if (clientOwner isNotEqualTo BLWK_theAIHandlerOwnerID) exitWith {[]};
 
 if (count _availableInfantry < 2) exitWith {
 	["There is less than 2 infantry available to crew a vehicle"] call KISKA_fnc_log;
