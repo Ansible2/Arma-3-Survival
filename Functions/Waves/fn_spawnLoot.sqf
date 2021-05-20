@@ -29,6 +29,7 @@ Author(s):
 #define NUMBER_OF_IMPACTED_UNIQUES 2
 #define MAX_SPAWNS_PLUS_UNIQUES (BLWK_maxLootSpawns + NUMBER_OF_IMPACTED_UNIQUES)
 #define MAX_SPAWNS_MINUS_UNIQUES (BLWK_maxLootSpawns - NUMBER_OF_IMPACTED_UNIQUES)
+#define LOOT_HOLDER_Z_BUFFER 0.1
 
 if (!isServer) exitWith {false};
 
@@ -83,7 +84,7 @@ private _exit = false;
 			if (count _sortedPositions >= MAX_SPAWNS_PLUS_UNIQUES) then {_exit = true; break};
 
 			if (_forEachIndex isEqualTo 0 OR {(_forEachIndex mod BLWK_loot_roomDistribution) isEqualTo 0}) then {
-				_sortedPositions pushBack _x
+				_sortedPositions pushBack (_x vectorAdd [0,0,LOOT_HOLDER_Z_BUFFER]);
 			};
 		} forEach _buildingsPositions;
 	};
