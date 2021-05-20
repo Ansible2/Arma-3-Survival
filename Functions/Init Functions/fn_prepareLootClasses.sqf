@@ -96,10 +96,24 @@ if (BLWK_loot_whiteListMode isNotEqualTo 0) then {
 		_customLootListConfig = _lootListConfigs select _index;
 		[[_customLootListConfig],false] call KISKA_fnc_log;
 
-		private _patch = getText(_customLootListConfig >> "patch");
-		if (_patch isNotEqualTo "" AND {!([_patch] call KISKA_fnc_ispatchLoaded)}) exitWith {};
+		private _useCustomList = true;
+		private _patches = getArray(_customLootListConfig >> "patches");
+		if (_patches isNotEqualTo []) then {
+			private _passArray = _patches apply {
+				[_x] call KISKA_fnc_isPatchLoaded
+			};
 
-		["Passed patch",false] call KISKA_fnc_log;
+			private _nonPassIndex = _passArray find false;
+			private _nonPassPatch = "";
+			if (_nonPassIndex isNotEqualTo -1) then {
+				_nonPassPatch = _patches select _nonPassIndex;
+				[["Found that patch ",_nonPassPatch," was not loaded for loot list. Default list will be used"],true] call KISKA_fnc_log;
+				_useCustomList = false;
+			};
+		};
+
+		if !(_useCustomList) exitWith {};
+
 
 		_checkForDuplicates = [_customLootListConfig >> "checkForDuplicates"] call BIS_fnc_getCfgDataBool;
 
