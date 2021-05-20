@@ -1,3 +1,5 @@
+// set up MACRO vars that can be used between files and make changes easier
+#include "..\..\Headers\descriptionEXT\Loot Lists\Define Loot Lists.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_prepareLootClasses
 
@@ -24,53 +26,111 @@ Returns:
 
 Examples:
     (begin example)
-
 		call BLWK_fnc_prepareLootClasses
-
     (end)
+
 Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "BLWK_fnc_prepareLootClasses";
+
+
 if (!isServer AND {hasInterface}) exitWith {false};
 
-// get white and black lists for loot
 
-BLWK_lootBlacklist = [];
-private _blackList = [missionConfigFile >> "BLWK_lootLists" >> "lootBlacklist"] call BIS_fnc_getCfgDataArray;
-if !(_blackList isEqualTo []) then {
-	private _class = "";
-	_blackList apply {
-		// "in" command is case sensetive so we use toLowerANSI
-		_class = toLowerANSI _x;
-		BLWK_lootBlacklist pushBack _class;
+/* ----------------------------------------------------------------------------
+
+	Parse Master & Custom Lists
+
+---------------------------------------------------------------------------- */
+private _mainListConfig = missionConfigFile >> "BLWK_lootLists";
+private _masterListConfig = _mainListConfig >> "masterList";
+
+private _fn_toLowerArray = {
+	params ["_array"];
+
+	_array apply {
+		toLowerANSI _x
 	};
 };
+/* ----------------------------------------------------------------------------
+	Master Blacklist
+---------------------------------------------------------------------------- */
+BLWK_lootBlacklist = [];
+private _masterBlacklist = getArray(_masterListConfig >> "lootBlackList");
+if (_masterBlacklist isNotEqualTo []) then {
+	BLWK_lootBlacklist = [_masterBlacklist] call _fn_toLowerArray;
+};
 
-private _whitelist_primaries = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_primaries"] call BIS_fnc_getCfgDataArray;
-private _whitelist_handguns = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_handguns"] call BIS_fnc_getCfgDataArray;
-private _whitelist_launchers = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_launchers"] call BIS_fnc_getCfgDataArray;
-private _whitelist_backpacks = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_backpacks"] call BIS_fnc_getCfgDataArray;
-private _whitelist_vests = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_vests"] call BIS_fnc_getCfgDataArray;
-private _whitelist_uniforms = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_uniforms"] call BIS_fnc_getCfgDataArray;
-private _whitelist_headgear = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_headgear"] call BIS_fnc_getCfgDataArray;
-private _whitelist_items = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_items"] call BIS_fnc_getCfgDataArray;
-private _whitelist_explosives = [missionConfigFile >> "BLWK_lootLists" >> "lootWhitelist_explosives"] call BIS_fnc_getCfgDataArray;
+/* ----------------------------------------------------------------------------
+	Master Whitelists
+---------------------------------------------------------------------------- */
+private _primaryWeaponClasses = getArray(_masterListConfig >> "lootWhitelist_primaries");
+private _handgunWeaponClasses = getArray(_masterListConfig >> "lootWhitelist_handguns");
+private _launcherClasses = getArray(_masterListConfig >> "lootWhitelist_launchers");
+private _backpackClasses = getArray(_masterListConfig >> "lootWhitelist_backpacks");
+private _vestClasses = getArray(_masterListConfig >> "lootWhitelist_vests");
+private _uniformClasses = getArray(_masterListConfig >> "lootWhitelist_uniforms");
+private _headgearClasses = getArray(_masterListConfig >> "lootWhitelist_headgear");
+private _itemClasses = getArray(_masterListConfig >> "lootWhitelist_items");
+private _explosiveClasses = getArray(_masterListConfig >> "lootWhitelist_explosives");
 
 
-// Check if we are in whitelisted items only mode
-if (BLWK_loot_whiteListMode isEqualTo 1) exitWith {
-	[
-		_whitelist_primaries,
-		_whitelist_handguns,
-		_whitelist_launchers,
-		_whitelist_backpacks,
-		_whitelist_vests,
-		_whitelist_uniforms,
-		_whitelist_headgear,
-		_whitelist_items,
-		_whitelist_explosives
-	]
+
+private _customLootListConfig = configNull;
+private _lootCondition_weapons = {true};
+private _lootCondition_clothes = {true};
+private _lootCondition_magazines = {true};
+private _checkForDuplicates = false;
+// if whitelist is Not set to off
+if (BLWK_loot_whiteListMode isNotEqualTo 0) then {
+	private _factionTitle = [LOOT_LIST_STRINGS] select BLWK_loot_whiteListMode;
+	private _lootListConfigs = "true" configClasses (_mainListConfig >> "CustomLootLists");
+
+	private _index = _lootListConfigs findIf {
+		getText(_x >> "title") == _factionTitle
+	};
+
+	if (_index isNotEqualTo -1) then {
+		_customLootListConfig = _lootListConfigs select _index;
+		[[_customLootListConfig],false] call KISKA_fnc_log;
+
+		private _patch = getText(_customLootListConfig >> "patch");
+		if (_patch isNotEqualTo "" AND {!([_patch] call KISKA_fnc_ispatchLoaded)}) exitWith {};
+
+		["Passed patch",false] call KISKA_fnc_log;
+
+		_checkForDuplicates = [_customLootListConfig >> "checkForDuplicates"] call BIS_fnc_getCfgDataBool;
+
+		_primaryWeaponClasses append (getArray(_customLootListConfig >> "lootWhitelist_primaries"));
+		_handgunWeaponClasses append (getArray(_customLootListConfig >> "lootWhitelist_handguns"));
+		_launcherClasses append (getArray(_customLootListConfig >> "lootWhitelist_launchers"));
+		_backpackClasses append (getArray(_customLootListConfig >> "lootWhitelist_backpacks"));
+		_vestClasses append (getArray(_customLootListConfig >> "lootWhitelist_vests"));
+		_uniformClasses append (getArray(_customLootListConfig >> "lootWhitelist_uniforms"));
+		_headgearClasses append (getArray(_customLootListConfig >> "lootWhitelist_headgear"));
+		_itemClasses append (getArray(_customLootListConfig >> "lootWhitelist_items"));
+		_explosiveClasses append (getArray(_customLootListConfig >> "lootWhitelist_explosives"));
+		BLWK_lootBlacklist append (getArray(_customLootListConfig >> "lootBlackList"));
+
+
+		private _conditionWeapons = getText(_customLootListConfig >> "conditionWeapons");
+		if (_conditionWeapons isNotEqualTo "") then {
+			[_conditionWeapons,false] call KISKA_fnc_log;
+			_lootCondition_weapons = compileFinal _conditionWeapons;
+		};
+
+		private _conditionClothes = getText(_customLootListConfig >> "conditionClothes");
+		if (_conditionClothes isNotEqualTo "") then {
+			_lootCondition_clothes = compileFinal _conditionClothes;
+		};
+
+		private _conditionMagazines = getText(_customLootListConfig >> "conditionMagazines");
+		if (_conditionMagazines isNotEqualTo "") then {
+			_lootCondition_magazines = compileFinal _conditionMagazines;
+		};
+	};
 };
 
 
@@ -80,55 +140,57 @@ if (BLWK_loot_whiteListMode isEqualTo 1) exitWith {
 	Functions
 
 ---------------------------------------------------------------------------- */
+private _fn_pushBackTempClass = {
+	if (_checkForDuplicates) then {
+		(_this select 0) pushBackUnique _tempClass;
+	} else {
+		(_this select 0) pushBack _tempClass;
+	};
+};
+
+
 // some of this is setup with the intention that things may be further broken down into more categories
 // this is why the functions are here that just pushBack something
 private _tempClass = "";
 private _tempItemInfo = [];
 private _tempItemCategory = "";
 private _tempItemType = "";
-private _dlcAllowedTemp = true;
-private _dlcString = "";
-private _configHierarchyTemp = "";
+
 
 // sort through clothes, vests, backpacks, headgear
-private _backpackClasses = [];
-private _vestClasses = [];
-private _uniformClasses = [];
-private _headgearClasses = [];
 private _fn_sortEquipment = {
-	if (_tempItemType == "headgear") exitWith {_headgearClasses pushBack _tempClass};
-	if (_tempItemType == "vest") exitWith {_vestClasses pushBack _tempClass};
-	if (_tempItemType == "Uniform") exitWith {_uniformClasses pushBack _tempClass};
-	if (_tempItemType == "Backpack") exitWith {_backpackClasses pushBack _tempClass};
+	if (_tempItemType == "headgear") exitWith {[_headgearClasses] call _fn_pushBackTempClass};
+	if (_tempItemType == "vest") exitWith {[_vestClasses] call _fn_pushBackTempClass};
+	if (_tempItemType == "Uniform") exitWith {[_uniformClasses] call _fn_pushBackTempClass};
+	if (_tempItemType == "Backpack") exitWith {[_backpackClasses] call _fn_pushBackTempClass};
 };
 
-private _handgunWeaponClasses = [];
-private _primaryWeaponClasses = [];
-private _launcherClasses = [];
+
 private _fn_sortWeapons = {
+	// if no mags are present in weapon config
 	if ((getArray (configFile >> "CfgWeapons" >> _tempClass >> "magazines")) isEqualTo []) exitWith {};
-	if (_tempItemType == "MissileLauncher" OR {_tempItemType == "Launcher"} OR {_tempItemType == "RocketLauncher"}) exitWith {_launcherClasses pushBack _tempClass};
-	if (_tempItemType == "Handgun") exitWith {_handgunWeaponClasses pushBack _tempClass};
+
+	if (_tempItemType == "Handgun") exitWith {
+		[_handgunWeaponClasses] call _fn_pushBackTempClass
+	};
+
+	if (
+		_tempItemType == "MissileLauncher" OR
+		{_tempItemType == "Launcher"} OR
+		{_tempItemType == "RocketLauncher"}
+	) exitWith {
+		[_launcherClasses] call _fn_pushBackTempClass
+	};
 
 	if (_tempItemType == "AssaultRifle" OR
 		{_tempItemType == "MachineGun"} OR
 		{_tempItemType == "Shotgun"} OR
 		{_tempItemType == "Rifle"} OR
 		{_tempItemType == "SubmachineGun"} OR
-		{_tempItemType == "SniperRifle"}) exitWith {
-		_primaryWeaponClasses pushBack _tempClass
+		{_tempItemType == "SniperRifle"}
+	) exitWith {
+		[_primaryWeaponClasses] call _fn_pushBackTempClass
 	};
-};
-
-// nvgs, gps, medkit, toolkit, compass, etc.
-private _itemClasses = [];
-private _fn_sortItems = {
-	_itemClasses pushBack _tempClass;
-};
-
-private _explosiveClasses = [];
-private _fn_sortExplosives = {
-	_explosiveClasses pushBack _tempClass;
 };
 
 private _fn_sortMagazines = {
@@ -137,34 +199,31 @@ private _fn_sortMagazines = {
 		This is because the magazines spawned in BLWK_fnc_spawnLoot are taken directly
 		 from the weapon classes available so that, for instance, no mags for a blacklisted gun spawn.
 	*/
-	if ((toLowerANSI _tempItemType) in ["grenade","flare"]) exitWith {call _fn_sortExplosives};
+	if ((toLowerANSI _tempItemType) in ["grenade","flare"]) exitWith {
+		[_explosiveClasses] call _fn_pushBackTempClass;
+	};
 };
+
 
 private _fn_sortType = {
 	// get the class name of the item and check if it is in the blacklist
-	_tempClass = toLowerANSI (configName (_this select 0));
 	if (_tempClass in BLWK_lootBlacklist) exitWith {};
 
-	// CIPHER COMMENT: DLC checks, still need a better method of finding what an asset belongs to
-	/*
-		_configHierarchyTemp = _this select 1;
-		_dlcAllowedTemp = [_tempClass,_configHierarchyTemp] call BLWK_fnc_checkDLC;
-		if !(_dlcAllowedTemp) exitWith {};
-	*/
-
 	_tempItemInfo = [_tempClass] call BIS_fnc_itemType;
-
 	_tempItemCategory = _tempItemInfo select 0;
 	_tempItemType = _tempItemInfo select 1;
 
-	// sort through item categories
 	if (_tempItemCategory == "weapon") exitWith {call _fn_sortWeapons};
-	if (_tempItemCategory == "item") exitWith {call _fn_sortItems};
-	if (_tempItemCategory == "equipment") exitWith {call _fn_sortEquipment};
-	if (_tempItemCategory == "mine") exitWith {call _fn_sortExplosives};
 	if (_tempItemCategory == "magazine") exitWith {call _fn_sortMagazines};
-};
+	if (_tempItemCategory == "equipment") exitWith {call _fn_sortEquipment};
+	if (_tempItemCategory == "item") exitWith {
+		[_itemClasses] call _fn_pushBackTempClass;
+	};
+	if (_tempItemCategory == "mine") exitWith {
+		[_explosiveClasses] call _fn_pushBackTempClass;
+	};
 
+};
 
 
 /* ----------------------------------------------------------------------------
@@ -172,36 +231,49 @@ private _fn_sortType = {
 	Execution
 
 ---------------------------------------------------------------------------- */
-private _publicWeaponConfigs = "getNumber (_x >> 'scope') isEqualTo 2" configClasses (configFile >> "CfgWeapons");
+_primaryWeaponClasses = [_primaryWeaponClasses] call _fn_toLowerArray;
+_handgunWeaponClasses = [_handgunWeaponClasses] call _fn_toLowerArray;
+_launcherClasses = [_launcherClasses] call _fn_toLowerArray;
+_backpackClasses = [_backpackClasses] call _fn_toLowerArray;
+_vestClasses = [_vestClasses] call _fn_toLowerArray;
+_uniformClasses = [_uniformClasses] call _fn_toLowerArray;
+_headgearClasses = [_headgearClasses] call _fn_toLowerArray;
+_itemClasses = [_itemClasses] call _fn_toLowerArray;
+_explosiveClasses = [_explosiveClasses] call _fn_toLowerArray;
+
+
+private _weaponConfig = configFile >> "CfgWeapons";
+private _publicWeaponConfigs = "getNumber (_x >> 'scope') isEqualTo 2" configClasses _weaponConfig;
 _publicWeaponConfigs apply {
-	[_x,"CfgWeapons"] call _fn_sortType; // first we sort the item type
+	_tempClass = configName _x;
+	if ([_tempClass,_weaponConfig] call _lootCondition_weapons) then {
+		call _fn_sortType;
+	};
 };
+
+
+private _vehicleConfig = configFile >> "CfgVehicles";
 // things such as vests and backpacks are located in CfgVehicles
-private _publicVehicleConfigs = "getNumber (_x >> 'scope') isEqualTo 2" configClasses (configFile >> "CfgVehicles");
+private _publicVehicleConfigs = "getNumber (_x >> 'scope') isEqualTo 2" configClasses _vehicleConfig;
 _publicVehicleConfigs apply {
-	[_x,"CfgVehicles"] call _fn_sortType;
+	_tempClass = configName _x;
+	if ([_tempClass,_vehicleConfig] call _lootCondition_clothes) then {
+		call _fn_sortType;
+	};
 };
+
+
+private _magazineConfig = configFile >> "CfgMagazines";
 // for mags and throwable explosives
-private _publicMagazineConfigs = "getNumber (_x >> 'scope') isEqualTo 2" configClasses (configFile >> "CfgMagazines");
+private _publicMagazineConfigs = "getNumber (_x >> 'scope') isEqualTo 2" configClasses _magazineConfig;
 _publicMagazineConfigs apply {
-	[_x,"CfgMagazines"] call _fn_sortType;
+	_tempClass = configName _x;
+	if ([_tempClass,_magazineConfig] call _lootCondition_magazines) then {
+		call _fn_sortType;
+	};
 };
 
 
-// check white list mode to see if we should add whitelisted items to arrays
-if (BLWK_loot_whiteListMode isEqualTo 2) then {
-    _backpackClasses append _whitelist_backpacks;
-    _explosiveClasses append _whitelist_explosives;
-    _itemClasses append _whitelist_items;
-    _uniformClasses append _whitelist_uniforms;
-    _vestClasses append _whitelist_vests;
-	_headgearClasses append _whitelist_headgear;
-	_primaryWeaponClasses append _whitelist_primaries;
-	_handgunWeaponClasses append _whitelist_handguns;
-	_launcherClasses append _whitelist_launchers;
-};
-
-// return
 [
 	_primaryWeaponClasses,
 	_handgunWeaponClasses,
