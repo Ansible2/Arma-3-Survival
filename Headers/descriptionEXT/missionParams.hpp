@@ -23,6 +23,7 @@
 	};
 
 #include "Faction Headers\Define Factions.hpp"
+#include "Loot Lists\Define Loot Lists.hpp"
 
 
 /* // prior to 0.8 parameter getting
@@ -299,8 +300,8 @@ class BLWK_loot_roomDistribution
 class BLWK_loot_whiteListMode
 {
 	title = "Loot Whitelist Mode";
-	values[] = {0,1,2};
-	texts[] = {"OFF","Only Whitelist Items will spawn as loot","Whitelist items get added to existing loot (increases the chance of loot spawning)"};
+	values[] = {LOOT_LIST_VALUES};
+	texts[] = {LOOT_LIST_STRINGS};
 	GET_DEFAULT_PARAM(BLWK_loot_whiteListMode,0)
 };
 class BLWK_buildingsNearTheCrateAreIndestructable_radius

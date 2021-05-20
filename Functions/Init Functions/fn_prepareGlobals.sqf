@@ -49,10 +49,7 @@ if (isServer) then {
     // having an owner id for the AI handler makes using setVariable remotely possible
     publicVariable "BLWK_theAIHandlerOwnerID";
 
-    /* Whitelist Loot Modes */
-    /* 0 = Off */
-    /* 1 = Only Whitelist Items will spawn as loot */
-    /* 2 = Whitelist items get added to existing loot (increases the chance of loot spawning) */
+
     BLWK_loot_whiteListMode = ("BLWK_loot_whiteListMode" call BIS_fnc_getParamValue);
 
     /* LOCATION LIST OPTIONS */
@@ -124,6 +121,9 @@ if (isServer OR {!hasInterface}) then {
     if (BLWK_canUseTankstDLC) then {BLWK_useableDLCs pushBack ""};
 */
 
+    if (isServer) then {
+        ["<t size = '.5'>Preparing Loot Class Vars...<br/>Please wait...</t>", 0, 0, 10, 0] remoteExec ["BIS_fnc_dynamicText", BLWK_allClientsTargetID];
+    };
     // loot classes
     private _lootClasses = call BLWK_fnc_prepareLootClasses;
     // the headless client needs this for weapon randomization
