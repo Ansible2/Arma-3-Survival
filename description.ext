@@ -82,6 +82,24 @@ class CfgDebriefing
 		picture = "b_inf";
 		pictureColor[] = {0.0,0.3,0.6,1};
 	};
+	class LootListErrorEnd
+	{
+		title = "[Error] Critical Loot List Empty"
+		subtitle = "Mission Aborted";
+		description = "A required loot list returned no items. This likely means it has been improperly configured";
+		pictureBackground = "";
+		picture = "preview.paa";
+		//pictureColor[] = {0.0,0.3,0.6,1};
+	};
+	class UnitClassesErrorEnd
+	{
+		title = "[Error] Default Factions Undefined"
+		subtitle = "Mission Aborted";
+		description = "A fallthrough case for custom factions failed. A custom faction was not present and therefore a default faction was used, however, this default was undefined";
+		pictureBackground = "";
+		picture = "preview.paa";
+		//pictureColor[] = {0.0,0.3,0.6,1};
+	};
 };
 
 

@@ -125,6 +125,15 @@ if (isServer OR {!hasInterface}) then {
     if (isServer) then {
         ["<t size = '.5'>Preparing Loot Class Vars...<br/>Please wait...</t>", 0, 0, 10, 0] remoteExec ["BIS_fnc_dynamicText", BLWK_allClientsTargetID];
     };
+
+    private _serverExit = {
+        params ["_message"];
+
+        [_message,true] remoteExecCall ["KISKA_fnc_log",0];
+		sleep 10;
+		["LootListErrorEnd"] call BIS_fnc_endMissionServer;
+    };
+
     // loot classes
     private _lootClasses = call BLWK_fnc_prepareLootClasses;
     // the headless client needs this for weapon randomization
@@ -142,6 +151,42 @@ if (isServer OR {!hasInterface}) then {
     BLWK_loot_headGearClasses = _lootClasses select 6;
     BLWK_loot_itemClasses = _lootClasses select 7;
     BLWK_loot_explosiveClasses = _lootClasses select 8;
+
+    if (isServer) then {
+        private _emptyIndex = [
+            BLWK_loot_weaponClasses,
+            BLWK_loot_backpackClasses,
+            BLWK_loot_vestClasses,
+            BLWK_loot_uniformClasses,
+            BLWK_loot_headGearClasses,
+            BLWK_loot_itemClasses,
+            BLWK_loot_explosiveClasses
+        ] find [];
+
+        switch (_emptyIndex) do {
+            case 0: {
+                ["There are no weapon classes loaded in the current list (handgun, primaries, and/or launchers), mission will be aborted"] spawn _serverExit;
+            };
+            case 1: {
+                ["There are no backpack classes loaded in the current list, mission will be aborted"] spawn _serverExit;
+            };
+            case 2: {
+                ["There are no vest classes loaded in the current list, mission will be aborted"] spawn _serverExit;
+            };
+            case 3: {
+                ["There are no uniform classes loaded in the current list, mission will be aborted"] spawn _serverExit;
+            };
+            case 4: {
+                ["There are no headgear classes loaded in the current list, mission will be aborted"] spawn _serverExit;
+            };
+            case 5: {
+                ["There are no item classes loaded in the current list, mission will be aborted"] spawn _serverExit;
+            };
+            case 6: {
+                ["There are no explosive classes loaded in the current list, mission will be aborted"] spawn _serverExit;
+            };
+        };
+    };
 
     // How many hostiles per wave (waveCount x BLWK_enemiesPerWaveMultiplier)
     BLWK_enemiesPerWaveMultiplier = ("BLWK_enemiesPerWaveMultiplier" call BIS_fnc_getParamValue) / 10;
