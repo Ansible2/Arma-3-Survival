@@ -67,6 +67,7 @@ private [
 	"_heavyGunshipClasses"
 ];
 // Sort a faction's units based upon what DLC is excluded and whether or not a unit class exists
+private _vehicleConfig = configFile >> "cfgVehicles";
 private _fn_sortFactionClasses = {
 	params ["_configToCheck"];
 
@@ -76,12 +77,10 @@ private _fn_sortFactionClasses = {
 
 		if (_sortArray isNotEqualTo []) then {
 			_sortArray apply {
-				if (isClass (configFile >> "cfgVehicles" >> _x)) then {
-					_arrayToPushTo pushBack _x;
+				if (isClass (_vehicleConfig >> _x)) then {
+					_arrayToPushTo pushBack (toLowerANSI _x);
 				};
 			};
-
-
 		};
 
 		if (_pushToVehicle) then {
