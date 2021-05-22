@@ -189,6 +189,8 @@ class BLWK
 		{};
 		class addPlayerItems
 		{};
+		class addSurvivalDiaryEntry
+		{};
 		class adjustPlayerTraits
 		{};
 	/*
