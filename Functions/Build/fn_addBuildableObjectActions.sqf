@@ -25,7 +25,7 @@ Author(s):
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_addBuildableObjectActions";
 
-#define CONDITION "!(_originalTarget getVariable ['BLWK_objectPickedUp',false]) AND {isNil 'BLWK_heldObject'}"
+#define CONDITION "!(_originalTarget getVariable ['BLWK_objectPickedUp',false]) AND {isNil 'BLWK_heldObject'} AND {isNull (objectParent player)}"
 
 if !(hasInterface) exitWith {false};
 
