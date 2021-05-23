@@ -19,7 +19,7 @@ respawnDialog = 0;
 // FAKs will be consumed on revive
 ReviveRequiredItemsFakConsumed = 1;
 
-
+enableDebugConsole = 2;
 
 corpseManagerMode = 1; // manage all units
 corpseLimit = 50;
