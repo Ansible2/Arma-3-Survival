@@ -24,6 +24,8 @@ class BLWK
 		{};
 		class addPickedUpObjectActions
 		{};
+		class addRemoveRemotePurchaseEvent
+		{};
 		class buildEvent_onPickedUp
 		{};
 		class buildEvent_onPlaced
@@ -33,6 +35,8 @@ class BLWK
 		class buildEvent_onPurchasedPostNetwork
 		{};
 		class buildEvent_onSold
+		{};
+		class buildItemPurchasedEvent_remote
 		{};
 		class disableCollisionWithAllPlayers
 		{};

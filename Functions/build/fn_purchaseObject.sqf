@@ -50,6 +50,7 @@ if (_doExit) exitWith {
 	};
 };
 
+
 private "_purchasedObject";
 if (_propertiesArray select HAS_AI) then {
 	_purchasedObject = ([[0,0,300], 0, _className, BLUFOR] call BIS_fnc_spawnVehicle) select 0;
@@ -57,12 +58,13 @@ if (_propertiesArray select HAS_AI) then {
 	_purchasedObject = _className createVehicle [0,0,0];
 };
 
+
 if (_propertiesArray select INDESTRUCTABLE) then {
 	_purchasedObject allowDamage false;
-	[_purchasedObject] remoteExecCall ["BLWK_fnc_addAllowDamageEH",BLWK_allClientsTargetID,true];
+	[_purchasedObject] call BLWK_fnc_addAllowDamageEH;
 
 	if (BLWK_ACELoaded) then {
-		_purchasedObject setVariable ["ace_cookoff_enable", false, true];
+		_purchasedObject setVariable ["ace_cookoff_enable", false];
 	};
 };
 
@@ -83,12 +85,11 @@ if !(_propertiesArray select KEEP_INVENTORY) then {
 
 // attach object to player
 [_purchasedObject,player,true] spawn BLWK_fnc_pickupObject;
-
 sleep 1;
 [_purchasedObject] call BLWK_fnc_addBuildableObjectActions; // give local player object actions
 
+
 if (_propertiesArray select DETECT_COLLISION) then {
-	// only the AI needs to know about the collision property
 	_purchasedObject setVariable ["BLWK_collisionObject",true,BLWK_theAIHandlerOwnerID];
 };
 
@@ -115,8 +116,12 @@ sleep 10;
 
 if (!isNull _purchasedObject) then {
 	// give remote players the ability to manipulate the object
-	[_purchasedObject] remoteExec ["BLWK_fnc_addBuildableObjectActions",-clientOwner,true];
+	[_purchasedObject] remoteExec ["BLWK_fnc_buildItemPurchasedEvent_remote",-clientOwner,(netId _purchasedObject) + "_purchasedEvent"];
+	[_purchasedObject] call BLWK_fnc_addRemoveRemotePurchaseEvent;
 
 	// postNetwork event
 	[_purchasedObject] call BLWK_fnc_buildEvent_onPurchasedPostNetwork;
 };
+
+
+nil

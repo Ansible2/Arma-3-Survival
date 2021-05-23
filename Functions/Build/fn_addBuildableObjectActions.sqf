@@ -23,8 +23,9 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define CONDITION "!(_originalTarget getVariable ['BLWK_objectPickedUp',false]) AND {isNil 'BLWK_heldObject'}"
 scriptName "BLWK_fnc_addBuildableObjectActions";
+
+#define CONDITION "!(_originalTarget getVariable ['BLWK_objectPickedUp',false]) AND {isNil 'BLWK_heldObject'}"
 
 if !(hasInterface) exitWith {false};
 
