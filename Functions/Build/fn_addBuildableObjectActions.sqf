@@ -55,7 +55,17 @@ switch (true) do {
 		_addSellAction = false;
 	};
 	default {
-		_objectName = (BLWK_buildableObjectsHash get _objectType) select DISPLAY_NAME;
+		// JIP players will not have BLWK_buildableObjectsHash defined right away
+		if (isNil "BLWK_buildableObjectsHash") then {
+			_objectName = getText(missionConfigFile >> "BLWK_buildableItems" >> _objectType >> "displayName");
+			if (_objectName isEqualTo "") then {
+				_objectName = [configFile >> "cfgVehicles" >> _objectType] call BIS_fnc_displayName;
+			};
+
+		} else {
+			_objectName = (BLWK_buildableObjectsHash get _objectType) select DISPLAY_NAME;
+
+		};
 	};
 };
 

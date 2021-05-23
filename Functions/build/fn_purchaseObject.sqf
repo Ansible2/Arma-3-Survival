@@ -115,7 +115,7 @@ sleep 10;
 
 if (!isNull _purchasedObject) then {
 	// give remote players the ability to manipulate the object
-	[_purchasedObject] remoteExecCall ["BLWK_fnc_addBuildableObjectActions",-clientOwner,true];
+	[_purchasedObject] remoteExec ["BLWK_fnc_addBuildableObjectActions",-clientOwner,true];
 
 	// postNetwork event
 	[_purchasedObject] call BLWK_fnc_buildEvent_onPurchasedPostNetwork;
