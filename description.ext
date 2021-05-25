@@ -31,7 +31,7 @@ wreckManagerMode = 1;		// manage all wrecks
 wreckLimit = 3;
 wreckRemovalMinTime = 240;
 wreckRemovalMaxTime = 600;
-minPlayerDistance = 50;
+minPlayerDistance = 25;
 
 class Header
 {
