@@ -1,6 +1,3 @@
-// dedicated server needs nothing here
-if (isDedicated) exitWith {};
-
 waitUntil {
 	if (missionNamespace getVariable ["BLWK_serverGlobalsInitialized",false]) exitWith {true};
     sleep 0.1;

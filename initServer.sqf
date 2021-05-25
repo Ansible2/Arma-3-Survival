@@ -1,5 +1,3 @@
-if (!isServer) exitWith {};
-
 ["<t size = '.5'>Preparing Global Vars.<br/>Please wait...</t>", 0, 0, 10, 0] remoteExec ["BIS_fnc_dynamicText", 0];
 
 call BLWK_fnc_prepareGlobals;
