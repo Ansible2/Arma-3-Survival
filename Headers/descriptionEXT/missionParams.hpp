@@ -86,7 +86,7 @@ class BLWK_specialWaveLikelihood
 	title = "Special Wave Likelihood (Ratio is against special waves: e.g. if 0.9, standard waves will have a likelihood of 0.1)";
 	values[] = {1,2,3,4,5,6,7,8,9,10};
 	texts[] = {"0.1","0.2","0.3","0.4","0.5","0.6","0.7","0.8","0.9","1"};
-	GET_DEFAULT_PARAM(BLWK_specialWaveLikelihood,3)
+	GET_DEFAULT_PARAM(BLWK_specialWaveLikelihood,4)
 };
 class BLWK_maxEnemyInfantryAtOnce
 {
