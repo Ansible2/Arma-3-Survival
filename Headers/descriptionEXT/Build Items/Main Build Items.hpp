@@ -5,7 +5,7 @@ class BLWK_genericBuildItemBase
 	displayName = ""; // only needed for custom names
 	price = 0;
 	category = OTHER_CATEGORY;
-	hasAI = false;
+	hasAI = 0;
 	rotation = 0;
 	attachmentX = 0; // side to side
 	attachmentY = 3; // how far out in front of you
