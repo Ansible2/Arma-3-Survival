@@ -50,7 +50,7 @@ private _infoPanelDisplay = uiNamespace getVariable INFO_PANEL_DISPLAYNAME;
 // player points
 private _playerPoints = BLWK_playerKillPoints;
 private _pointsCtrl = _infoPanelDisplay displayCtrl INFO_PANEL_PLAYER_POINTS_IDC;
-private _fn_updatePlayerPoints = {	
+private _fn_updatePlayerPoints = {
 	_pointsCtrl ctrlSetText (str BLWK_playerKillPoints);
 	_pointsCtrl ctrlCommit 0;
 	_playerPoints = BLWK_playerKillPoints;
@@ -95,16 +95,16 @@ call _fn_updateCurrentWave;
 call _fn_updateInBetweenWaves;
 
 while {sleep 2; true} do {
-	if (_playerPoints != BLWK_playerKillPoints) then {
+	if (_playerPoints isNotEqualTo BLWK_playerKillPoints) then {
 		call _fn_updatePlayerPoints
 	};
-	if (_numRespawnTickets != BLWK_numRespawnTickets) then {
+	if (_numRespawnTickets isNotEqualTo BLWK_numRespawnTickets) then {
 		call _fn_updateRespawnTickets
 	};
-	if (_currentWave != BLWK_currentWaveNumber) then {
+	if (_currentWave isNotEqualTo BLWK_currentWaveNumber) then {
 		call _fn_updateCurrentWave
 	};
-	if !(_inBetweenWaves isEqualTo BLWK_inBetweenWaves) then {
+	if (_inBetweenWaves isNotEqualTo BLWK_inBetweenWaves) then {
 		call _fn_updateInBetweenWaves
 	};
 };
