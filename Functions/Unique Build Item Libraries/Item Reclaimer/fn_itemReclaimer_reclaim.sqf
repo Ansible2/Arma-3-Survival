@@ -20,10 +20,10 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define POINTS_FOR_MAGAZINES 15
-#define POINTS_FOR_WEAPONS 50
-#define POINTS_FOR_ITEMS 35
-#define POINTS_FOR_BACKPACKS 100
+#define POINTS_FOR_MAGAZINES 20
+#define POINTS_FOR_WEAPONS 125
+#define POINTS_FOR_ITEMS 75
+#define POINTS_FOR_BACKPACKS 200
 
 #define ADD_TO(COUNT_VAR,NUM) COUNT_VAR = COUNT_VAR + NUM;
 
@@ -77,7 +77,7 @@ private _fn_countWeaponItems = {
 private _reclaimerBox = _reclaimerObject getVariable "BLWK_reclaimBox";
 // get items in containers within the box
 (everyContainer _reclaimerBox) apply {
-	[_x select 1] call _fn_countWeaponItems;	
+	[_x select 1] call _fn_countWeaponItems;
 };
 
 [_reclaimerBox] call _fn_countWeaponItems;
