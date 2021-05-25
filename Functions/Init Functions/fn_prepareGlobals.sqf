@@ -335,7 +335,7 @@ BLWK_pointsMulti_man_level1 = 0.75;
 BLWK_pointsMulti_man_level2 = 1;
 BLWK_pointsMulti_man_level3 = 1.25;
 BLWK_pointsMulti_man_level4 = 1.50;
-BLWK_pointsMulti_man_level5 = 1.50;
+BLWK_pointsMulti_man_level5 = 1.75;
 BLWK_pointsMulti_car = 5;
 BLWK_pointsMulti_armour = 10;
 
