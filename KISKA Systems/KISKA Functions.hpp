@@ -71,9 +71,19 @@ class KISKA
 		file = "KISKA Systems\KISKA Utility Functions";
 		class addArsenal
 		{};
+		class CAS
+		{};
+		class classTurretsWithGuns
+		{};
 		class deleteAtArray
 		{};
+		class detectControlKeys
+		{
+			preinit = 1;
+		};
 		class findConfigAny
+		{};
+		class findIfBool
 		{};
 		class getVariableTarget
 		{};
@@ -83,9 +93,15 @@ class KISKA
 		{};
 		class log
 		{};
+		class paraTroopers
+		{};
 		class pushBackToArray
 		{};
 		class removeArsenal
+		{};
+		class setCrew
+		{};
+		class spawnVehicle
 		{};
 		class staticLine
 		{};

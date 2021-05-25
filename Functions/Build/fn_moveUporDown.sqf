@@ -1,8 +1,9 @@
+#include "..\..\Headers\Wait For Transfer Inline.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_moveUpOrDown
 
 Description:
-	Moves and object up or down based on an increment
+	Moves and object up or down based on an increment.
 
 Parameters:
 	0: _object : <OBJECT> - The object to move
@@ -27,9 +28,9 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if (!hasInterface) exitWith {};
+#define MOVEMENT_INCREMENT 0.25
 
-#include "..\..\Headers\Wait For Transfer Inline.hpp"
+if (!hasInterface) exitWith {};
 
 params [
 	"_object",
@@ -38,9 +39,8 @@ params [
 	["_personCarrying",player,[objNull]]
 ];
 
+// wait until the object is local to execute movement commands
 WAIT_FOR_OWNERSHIP(_object)
-
-#define MOVEMENT_INCREMENT 0.25
 
 private _objectPosition = getPosWorld _object;
 private _increment = [-MOVEMENT_INCREMENT,MOVEMENT_INCREMENT] select _downOrUp;

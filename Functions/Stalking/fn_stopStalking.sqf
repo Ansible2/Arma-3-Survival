@@ -16,26 +16,27 @@ Returns:
 
 Examples:
     (begin example)
-
 		[aStalkerGroup,positionToGoTo] call BLWK_fnc_stopStalking;
-
     (end)
 
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "BLWK_fnc_stopStalking";
+
 params [
 	["_stalkerGroup",grpNull,[grpNull]],
-	["_defaultPosition",objNull,[objNull,grpNull,[]]]
+	["_defaultPosition",[],[objNull,grpNull,[]]]
 ];
 
+
 if (isNull _stalkerGroup) exitWith {
-	"BLWK_fnc_stopStalking _stalkerGroup isNull" call BIS_fnc_error;
+	["_stalkerGroup is null",true] call KISKA_fnc_log;
 
 	false
 };
 if (isNil {_stalkerGroup getVariable DO_STALK_VAR}) exitWIth {
-	"BLWK_fnc_stopStalking _stalkerGroup was not stalking" call BIS_fnc_error;
+	["_stalkerGroup was not registered as a stalker",true] call KISKA_fnc_log;
 
 	false
 };
@@ -53,7 +54,11 @@ private _stalkedUnit = _stalkerGroup getVariable STALKED_UNIT_VAR;
 if (!isNull _stalkedUnit) then {
 	private _numberOfStalkers = _stalkedUnit getVariable [STALKER_COUNT_VAR,0];
 	_stalkerGroup setVariable [STALKED_UNIT_VAR,nil];
-	_stalkedUnit setVariable [STALKER_COUNT_VAR,_numberOfStalkers - (count _stalkerGroupUnits)];
+	
+	private _stalkerNumber = _numberOfStalkers - (count _stalkerGroupUnits);
+	if (_stalkerNumber < 0) then {_stalkerNumber = 0};
+	
+	_stalkedUnit setVariable [STALKER_COUNT_VAR,_stalkerNumber];
 };
 
 // remove events
@@ -66,7 +71,7 @@ _stalkerGroupUnits apply {
 };
 
 // move units to default position if defined
-if (!isNull _defaultPosition) then {
+if (_defaultPosition isNotEqualTo []) then {
 	[_stalkerGroup, _defaultPosition, 100, 3, "MOVE", "AWARE"] call CBAP_fnc_taskPatrol;
 };
 

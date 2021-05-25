@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn BLWK_fnc_reconUAV;
+		[] spawn BLWK_fnc_reconUAV;
 
     (end)
 
@@ -26,10 +26,14 @@ Authors:
 #define MARKER_SIZE 0.5
 #define RECON_MARKER "BLWK_reconUavMarker"
 #define UPDATE_TIME 0.5
+scriptName "BLWK_fnc_reconUAV";
 
 if !(isServer) exitWith {};
 
-if !(canSuspend) exitWith {};
+if !(canSuspend) exitWith {
+	["Must be run in a scheduled environment. Exiting to scheduled...",true] call KISKA_fnc_log;
+	[] spawn BLWK_fnc_reconUAV;
+};
 
 // make it so we can have 2 UAVs active at once
 missionNamespace setVariable ["BLWK_reconUavActive",true,true];

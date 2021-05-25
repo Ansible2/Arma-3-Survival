@@ -12,9 +12,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		Postinit function
-
     (end)
 
 Author(s):
@@ -28,8 +26,12 @@ waitUntil {
     false
 };
 
-player createDiarySubject ["VDL_entry","View Distance Limiter",""];
+[
+    [
+        "View Distance Limiter",
+        "<execute expression='openMap false; call KISKA_fnc_openVdlDialog;'>OPEN VDL DIALOG</execute>"
+    ]
+] call BLWK_fnc_addSurvivalDiaryEntry;
 
-player createDiaryRecord ["VDL_entry", ["View Distance Limiter", 
-	"<execute expression='openMap false; call KISKA_fnc_openVdlDialog;'>OPEN VDL DIALOG</execute>"
-]];
+
+nil

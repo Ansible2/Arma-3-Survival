@@ -36,8 +36,6 @@ if (!hasInterface OR {!canSuspend}) exitWith {
 	"Must be run in scheduled environment." call BIS_fnc_error;
 };
 
-disableSerialization;
-
 #include "..\ViewDistanceLimiterCommonDefines.hpp"
 
 params [

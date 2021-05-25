@@ -20,7 +20,17 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if (!BLWK_isOptreLoaded AND {BLWK_dontUseRevive}) exitWith {};
+scriptName "BLWK_fnc_optreMedicalToVanilla";
+
+if (!BLWK_isOptreLoaded) exitWith {
+	["OPTRE is not loaded, exiting...",false] call KISKA_fnc_log;
+	nil
+};
+
+if (BLWK_dontUseRevive) exitWith {
+	["Revive is off, exiting...",false] call KISKA_fnc_log;
+	nil
+};
 
 params ["_unit"];
 

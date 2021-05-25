@@ -1,10 +1,45 @@
 #include "..\..\Headers\descriptionEXT\GUI\musicManagerCommonDefines.hpp"
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_musicManagerOnLoad_trackSpacingControls
+
+Description:
+	Adds functionality to the controls used for track spacing in the Music Manager's
+	 connection to the KISKA random music system.
+
+Parameters:
+	0: _comboControl : <CONTROL> - The control for the format combo box
+	1: _editBoxControl : <CONTROL> - The control for the edit box
+	2: _buttonControl : <CONTROL> - The control for button to commit the setting
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+		[
+			_comboControl,
+			_editBoxControl,
+			_buttonControl
+		] spawn BLWK_fnc_musicManagerOnLoad_trackSpacingControls;
+    (end)
+
+Author(s):
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
+disableSerialization;
+scriptName "BLWK_fnc_musicManagerOnLoad_trackSpacingControls";
 
 params ["_comboControl","_editBoxControl","_buttonControl"];
 
+// KISKA_fnc_getVariableTarget needs a scheduled environment
+if (!canSuspend) exitWith {
+	["Needs to be run in scheduled, now running in scheduled",true] call KISKA_fnc_log;
+	_this spawn BLWK_fnc_musicManagerOnLoad_trackSpacingControls;
+};
+
 _comboControl ctrlSetFont "PuristaLight";
 
-// combo box populate
+// add settings to combo box
 _comboControl lbAdd "Random Max";
 _comboControl lbSetTooltip [0,"You will get a random number between 0 and this number."];
 
@@ -61,9 +96,10 @@ _buttonControl ctrlAddEventHandler ["ButtonClick",{
 	private _editControl = (uiNamespace getVariable "BLWK_musicManager_control_spacingEdit");
 	private _editControlText = ctrlText _editControl;
 	private _textCompiled = call compile _editControlText;
+
 	if (
-		(_textCompiled isEqualType []) AND 
-		{!((count _textCompiled) isEqualTo 1) AND 
+		(_textCompiled isEqualType []) AND
+		{!((count _textCompiled) isEqualTo 1) AND
 		{!((count _textCompiled) isEqualTo 3) OR !(_textCompiled isEqualTypeParams [1,2,3])}}
 	) then {
 		hint "Format not accepted for track spacing!"
@@ -73,3 +109,6 @@ _buttonControl ctrlAddEventHandler ["ButtonClick",{
 		hint ("Track spacing set to " + (str _textCompiled));
 	};
 }];
+
+
+nil

@@ -18,11 +18,12 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-scriptName "KISKA_fnc_musicStopEvent";
+#define SCRIPT_NAME "KISKA_fnc_musicStopEvent"
+scriptName SCRIPT_NAME;
 
 if (!hasInterface) exitWith {};
 
-diag_log "music stop";
+["Music stopped",false] call KISKA_fnc_log;
 
-KISKA_musicPlaying = false;
-KISKA_currentTrack = "";
+missionNamespace setVariable ["KISKA_musicPlaying",false];
+missionNamespace setVariable ["KISKA_currentTrack",""];

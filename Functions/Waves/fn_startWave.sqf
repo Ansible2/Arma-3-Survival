@@ -1,6 +1,6 @@
 #include "..\..\Headers\String Constants.hpp"
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_healPlayer
+Function: BLWK_fnc_startWave
 
 Description:
 	Heals the player when they select the action on The Crate
@@ -16,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [true] spawn BLWK_fnc_startWave;
+		[true] spawn BLWK_fnc_startWave;
 
     (end)
 
@@ -24,15 +24,18 @@ Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "BLWK_fnc_startWave";
+
 if (!isServer OR {!canSuspend}) exitWith {};
 
 params [
 	["_clearDroppedItems",false]
 ];
 
+
 // wait for array to be cleared
 /*
-	it's rare, but if enemies die too quickly, 
+	it's rare, but if enemies die too quickly,
 	this can cause overlap in the next wave of enemies.
 	These are people that were just being added into the array when it is cleared
 */
@@ -44,14 +47,17 @@ waitUntil {
 };
 
 if (_clearDroppedItems) then {
+
 	private _weaponHolders = BLWK_playAreaCenter nearObjects ["weaponHolder",250];
-	_weaponHolders = _weaponHolders select {typeOf _x == "groundWeaponHolder" AND {!(_x in BLWK_spawnedLoot)}};
+	_weaponHolders = _weaponHolders select {typeOf _x == "groundWeaponHolder" AND {!(_x in BLWK_lootHolders)}};
+
 	if !(_weaponHolders isEqualTo []) then {
 		_weaponHolders apply {
 			deleteVehicle _x;
 		};
 		sleep 1;
 	};
+
 };
 
 // update wave number
@@ -83,12 +89,15 @@ waitUntil {
 };
 
 // log wave
-["BLWK_fnc_startWave",["Start Wave:",BLWK_currentWaveNumber]] call KISKA_fnc_log;
+[["Start Wave: ",BLWK_currentWaveNumber],false] call KISKA_fnc_log;
+
+// invoke wave start event
+[missionNamespace,"BLWK_onWaveStart"] remoteExecCall ["BIS_fnc_callScriptedEventHandler",0];
 
 // loop to check wave end
 waitUntil {
 	if (call BLWK_fnc_isWaveCleared) exitWith {
-		null = [] spawn BLWK_fnc_endWave;
+		[] spawn BLWK_fnc_endWave;
 		true
 	};
 

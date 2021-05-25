@@ -30,7 +30,7 @@ params [
 ];
 // add a drag action to every player to be able to drag you
 // the action will have a condition to keep it from always being shown
-null = [_player] remoteExec ["BLWK_fnc_addDragAction",BLWK_allClientsTargetID,true];
+[_player] remoteExec ["BLWK_fnc_addDragAction",BLWK_allClientsTargetID,true];
 
 // add an event handler to remove the action from all machines if you die
 [_player] call BLWK_fnc_addDragKilledEh;

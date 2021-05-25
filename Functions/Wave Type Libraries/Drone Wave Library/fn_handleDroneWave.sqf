@@ -24,4 +24,4 @@ Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 call BLWK_fnc_createStdWaveInfantry;
-null = [] spawn BLWK_fnc_createDroneWave;
+[] spawn BLWK_fnc_createDroneWave;

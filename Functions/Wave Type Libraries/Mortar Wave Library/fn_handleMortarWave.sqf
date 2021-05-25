@@ -24,4 +24,4 @@ Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 private _startingWaveUnits = call BLWK_fnc_createStdWaveInfantry;
-[_startingWaveUnits select 0] call BLWK_fnc_createMortarWave;
+[_startingWaveUnits select 0] spawn BLWK_fnc_createMortarWave;

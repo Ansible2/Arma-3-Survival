@@ -139,7 +139,7 @@ if !(_unitMagsSorted isEqualTo []) then {
 		// if the total bullets for the mag are not going to equal more than one mag
 		if (_totalBulletCountForClass <= _magCapacity) then {
 			if ([false] call _fn_magTypeInWeapon) then {
-				private _index = [_primaryWeaponMagClass,_handgunWeaponMagClass,_secondaryWeaponMagClass] findIf {_x == _magClassnameTemp};
+				private _index = [_primaryWeaponMagClass,_handgunWeaponMagClass,_secondaryWeaponMagClass] find _magClassnameTemp;
 				switch _index do {
 					case 0: {_unit setAmmo [primaryWeapon _unit,_totalBulletCountForClass]};
 					case 1: {_unit setAmmo [handgunWeapon _unit,_totalBulletCountForClass]};

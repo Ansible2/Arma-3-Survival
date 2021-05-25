@@ -1,3 +1,4 @@
+#include "..\..\Headers\Stalker Global Strings.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_canUnitBeStalked
 
@@ -12,16 +13,12 @@ Returns:
 
 Examples:
     (begin example)
-
 		_isStalkable = [aUnit] call BLWK_fnc_canUnitBeStalked;
-
     (end)
 
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#include "..\..\Headers\Stalker Global Strings.hpp"
-
 params [
 	["_unit",objNull,[objNull]]
 ];

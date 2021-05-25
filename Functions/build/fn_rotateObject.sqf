@@ -1,3 +1,4 @@
+#include "..\..\Headers\Wait For Transfer Inline.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_rotateObject
 
@@ -29,11 +30,9 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if (!hasInterface) exitWith {};
-
-#include "..\..\Headers\Wait For Transfer Inline.hpp"
-
 #define ROTATION_INCREMENT 15
+
+if (!hasInterface) exitWith {};
 
 params [
 	"_object",
@@ -43,7 +42,6 @@ params [
 ];
 
 WAIT_FOR_OWNERSHIP(_object)
-//[_object] call BLWK_fnc_locality;
 
 private _currVectDir = vectorDir _object;
 private _currVectUp = vectorUp _object;

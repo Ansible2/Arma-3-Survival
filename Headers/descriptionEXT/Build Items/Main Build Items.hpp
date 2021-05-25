@@ -2,16 +2,31 @@
 
 class BLWK_genericBuildItemBase
 {
+	displayName = ""; // only needed for custom names
 	price = 0;
 	category = OTHER_CATEGORY;
-	hasAI = false;
+	hasAI = 0;
 	rotation = 0;
 	attachmentX = 0; // side to side
 	attachmentY = 3; // how far out in front of you
 	attachmentZ = 1; // height
 	invincible = 0; // 0 false, 1 true
 	keepInventory = 0; // don't clear inventory
-	detectCollsion = 1; // registers with ai collision script
+	detectCollision = 1; // registers with ai collision script
+
+	// text that shows when hovering over the item in the shop
+	tooltip = "";
+
+	/*
+		Events
+		See relevant functions in functions\Build folder for passed params
+	*/
+	onPurchasedPrefix = "";
+	onPurchasedPostfix = "";
+	onPurchasedPostNewtork = "";
+	onPickedUp = "";
+	onPlaced = "";
+	onSold = "";
 };
 class BLWK_genericTurretBase: BLWK_genericBuildItemBase
 {
@@ -20,8 +35,29 @@ class BLWK_genericTurretBase: BLWK_genericBuildItemBase
 	attachmentY = 2;
 	attachmentZ = 1;
 	invincible = 1;
-	detectCollsion = 0;
+	detectCollision = 0;
+
+	onPurchasedPostfix = "_object enableWeaponDisassembly false;";
 };
+class BLWK_genericTrenchBase : BLWK_genericBuildItemBase
+{
+	price = 0;
+
+	category = TRENCH_CATEGORY;
+	detectCollision = 0;
+	rotation = 0;
+
+	attachmentX = 0;
+	attachmentY = 0;
+	attachmentZ = 0;
+};
+class BLWK_genericLampBase : BLWK_genericBuildItemBase
+{
+	category = LAMPS_CATEGORY;
+	detectCollision = 0;
+	invincible = 1;
+};
+
 
 class BLWK_buildableItems
 {
@@ -88,7 +124,7 @@ class BLWK_buildableItems
 	class Land_DomeDebris_01_hex_green_F: BLWK_genericBuildItemBase
 	{
 		price = 85;
-		category = OBSTACLES_CATEGORY;
+		category = PLATFORMS_CATEGORY;
 		rotation = 180;
 		attachmentZ = 0.75;
 	};
@@ -131,10 +167,9 @@ class BLWK_buildableItems
 		invincible = 1;
 	};
 
-	class Land_PortableLight_double_F : BLWK_genericBuildItemBase
+	class Land_PortableLight_double_F : BLWK_genericLampBase
 	{
-		price = 260;
-		category = LAMPS_CATEGORY;
+		price = 250;
 		rotation = 180;
 		attachmentZ = 1.1;
 	};
@@ -206,7 +241,7 @@ class BLWK_buildableItems
 		rotation = 90;
 		attachmentY = 2;
 		invincible = 1;
-		detectCollsion = 0;
+		detectCollision = 0;
 	};
 
 	class Land_GH_Stairs_F : BLWK_genericBuildItemBase
@@ -217,10 +252,9 @@ class BLWK_buildableItems
 		attachmentY = 5;
 	};
 
-	class Land_LampHalogen_F : BLWK_genericBuildItemBase
+	class Land_LampHalogen_F : BLWK_genericLampBase
 	{
-		price = 1000;
-		category = LAMPS_CATEGORY;
+		price = 500;
 		rotation = 90;
 		attachmentX = 0.2;
 		attachmentY = 2;
@@ -251,12 +285,12 @@ class BLWK_buildableItems
 		price = 1200;
 		category = STORAGE_CATEGORY;
 		invincible = 1;
-		detectCollsion = 0;
+		detectCollision = 0;
 	};
 
 	class B_HMG_01_high_F : BLWK_genericTurretBase
 	{
-		price = 3000;
+		price = 1500;
 		attachmentX = 0.25;
 		attachmentY = 2;
 		attachmentZ = 2;
@@ -264,7 +298,7 @@ class BLWK_buildableItems
 
 	class Land_BagBunker_Small_F : BLWK_genericBuildItemBase
 	{
-		price = 3000;
+		price = 1000;
 		category = BUNKERS_CATEGORY;
 		rotation = 180;
 		attachmentY = 4;
@@ -280,18 +314,18 @@ class BLWK_buildableItems
 
 	class Land_Cargo_Patrol_V3_F : BLWK_genericBuildItemBase
 	{
-		price = 6000;
+		price = 4000;
 		category = TOWERS_CATEGORY;
 		rotation = 180;
 		attachmentY = 6;
 		attachmentZ = 5;
 		invincible = 1;
-		detectCollsion = 0;
+		detectCollision = 0;
 	};
 
 	class B_HMG_01_A_F : BLWK_genericTurretBase
 	{
-		price = 7500;
+		price = 3000;
 		hasAI = 1;
 		rotation = 180;
 	};
@@ -312,7 +346,7 @@ class BLWK_buildableItems
 		category = OBSTACLES_CATEGORY;
 		invincible = 1;
 	};
-	
+
 	class Land_CncBarrier_F : BLWK_genericBuildItemBase
 	{
 		price = 100;
@@ -341,12 +375,13 @@ class BLWK_buildableItems
 
 	class B_GMG_01_high_F : BLWK_genericTurretBase
 	{
-		price = 4000;
+		price = 2000;
+		attachmentZ = 2;
 	};
 
 	class B_Mortar_01_F : BLWK_genericTurretBase
 	{
-		price = 8000;
+		price = 3000;
 	};
 
 	class B_static_AT_F : BLWK_genericTurretBase
@@ -361,12 +396,14 @@ class BLWK_buildableItems
 
 	class B_G_HMG_02_high_F : BLWK_genericTurretBase
 	{
-		price = 3000;
+		price = 900;
+		attachmentZ = 2;
 	};
 
 	class B_G_HMG_02_F : BLWK_genericTurretBase
 	{
-		price = 2000;
+		price = 600;
+		attachmentZ = 2;
 	};
 
 	class ACE_medicalSupplyCrate_advanced : BLWK_genericBuildItemBase
@@ -375,7 +412,8 @@ class BLWK_buildableItems
 		category = STORAGE_CATEGORY;
 		attachmentY = 2;
 		keepInventory = 1;
-		detectCollsion = 0;
+		invincible = 1;
+		detectCollision = 0;
 	};
 	class ACE_medicalSupplyCrate : BLWK_genericBuildItemBase
 	{
@@ -383,8 +421,45 @@ class BLWK_buildableItems
 		category = STORAGE_CATEGORY;
 		attachmentY = 2;
 		keepInventory = 1;
-		detectCollsion = 0;
+		invincible = 1;
+		detectCollision = 0;
 	};
+
+	class C_IDAP_supplyCrate_F : BLWK_genericBuildItemBase
+	{
+		displayName = "Satellite Shop";
+		price = 1000;
+		category = UNIQUE_CATEGORY;
+		attachmentY = 2;
+		attachmentZ = 1;
+		invincible = 1;
+		keepInventory = 0;
+		detectCollision = 0;
+
+		tooltip = "Get a secondary shop that lasts 2 full waves";
+
+		onSold = "hint 'Shops cannot be sold'; false";
+		onPurchasedPrefix = "if (BLWK_satShopOut) then {hint 'There is already a satellite shop present'; _doExit = true; _refund = false;};";
+		onPurchasedPostfix = "[_object] call BLWK_fnc_satelliteShop_init";
+	};
+
+	class Land_GarbageContainer_open_F : BLWK_genericBuildItemBase
+	{
+		displayName = "Item Reclaimer";
+		price = 900;
+		category = UNIQUE_CATEGORY;
+		attachmentY = 2;
+		attachmentZ = 0.8;
+		invincible = 1;
+		detectCollision = 0;
+
+		tooltip = "Place items inside, reclaim, and get points put into the community pool";
+
+		onPurchasedPostfix = "_this call BLWK_fnc_itemReclaimer_init";
+		onSold = "_this call BLWK_fnc_itemReclaimer_onSold";
+	};
+
 	#include "OPTRE Build Items.hpp"
 	#include "RHS Build Items.hpp"
+	#include "SOG PF Build Items.hpp"
 };

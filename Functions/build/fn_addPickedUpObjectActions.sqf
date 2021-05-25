@@ -1,3 +1,4 @@
+#include "..\..\Headers\Build Objects Properties Defines.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_addPickedUpObjectActions
 
@@ -17,9 +18,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		[myObject,player] call BLWK_fnc_addPickedUpObjectActions;
-
     (end)
 
 Author(s):
@@ -30,7 +29,20 @@ params [
 	["_player",player,[objNull]]
 ];
 
-private _objectName = [configFile >> "cfgVehicles" >> (typeOf _object)] call BIS_fnc_displayName;
+private _objectType = toLowerANSI (typeOf _object);
+private _objectName = "";
+switch (true) do {
+	case (_object isEqualTo BLWK_randomWeaponBox):{
+		_objectName = "Random Weapon Box";
+	};
+	case (_object isEqualTo BLWK_mainCrate):{
+		_objectName = "The Main Crate";
+	};
+	default {
+		_objectName = (BLWK_buildableObjectsHash get _objectType) select DISPLAY_NAME;
+	};
+};
+
 
 // place object snap to
 private _snaptoActionID = _player addAction [
@@ -59,7 +71,7 @@ private _placeActionID = _player addAction [
 ];
 
 private _sellActionID = -1;
-if (!(_object isEqualTo BLWK_mainCrate) AND {!(_object isEqualTo BLWK_randomWeaponBox)}) then {
+if ((_object isNotEqualTo BLWK_mainCrate) AND {_object isNotEqualTo BLWK_randomWeaponBox}) then {
 	// sell object
 	_sellActionID = _player addAction [ 
 		"<t color='#ff0000'>-- Sell (In Hand) " + _objectName + " Back --</t>",  

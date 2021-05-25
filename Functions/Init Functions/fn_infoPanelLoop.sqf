@@ -1,14 +1,15 @@
+#include "..\..\Headers\descriptionEXT\GUI\infoPanelCommonDefines.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_infoPanelLoop
 
 Description:
-	Runs a loop that constanly checks for changes in the the info
+	Runs a loop that constanly checks for changes to the info
 	 displayed on the users upper left info panel.
 
 	Executed from "initPlayerLocal.sqf"
 
 Parameters:
-	0: _player : <OBJECT> - For whom to update the panel (used to display the user's name)
+	NONE
 
 Returns:
 	NOTHING
@@ -16,7 +17,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [player] spawn BLWK_fnc_infoPanelLoop;
+		[] spawn BLWK_fnc_infoPanelLoop;
 
     (end)
 
@@ -24,14 +25,17 @@ Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-// This may be replaced in the future with an update function that simply acts as an event that must be called
-// I am curious to see if the performance of this loop is negligible enough though, 
-/// that it would be more effective to just have these update automatically
-if (!hasInterface OR {!canSuspend}) exitWith {};
+#define SCRIPT_NAME "BLWK_fnc_infoPanelLoop"
+scriptName SCRIPT_NAME;
+
+if (!hasInterface) exitWith {};
+
+if (!canSuspend) exitWith {
+	["Needs to executed in scheduled, now running in scheduled...",true] call KISKA_fnc_log;
+	[] spawn BLWK_fnc_infoPanelLoop;
+};
 
 disableSerialization;
-
-#include "..\..\Headers\descriptionEXT\GUI\infoPanelCommonDefines.hpp"
 
 waitUntil {
 	if ((!isNil "BLWK_playerKillPoints") AND {!isNil "BLWK_numRespawnTickets"} AND {!isNil "BLWK_currentWaveNumber"}) exitWith {true};
@@ -46,7 +50,7 @@ private _infoPanelDisplay = uiNamespace getVariable INFO_PANEL_DISPLAYNAME;
 // player points
 private _playerPoints = BLWK_playerKillPoints;
 private _pointsCtrl = _infoPanelDisplay displayCtrl INFO_PANEL_PLAYER_POINTS_IDC;
-private _fn_updatePlayerPoints = {	
+private _fn_updatePlayerPoints = {
 	_pointsCtrl ctrlSetText (str BLWK_playerKillPoints);
 	_pointsCtrl ctrlCommit 0;
 	_playerPoints = BLWK_playerKillPoints;
@@ -73,7 +77,7 @@ private _fn_updateCurrentWave = {
 // in between waves notice
 private _inBetweenWaves = BLWK_inBetweenWaves;
 private _inbetweenWavesCtrl = _infoPanelDisplay displayCtrl INFO_PANEL_WAVE_STATUS_IDC;
-private _fn_updateInbetweenWaves = {
+private _fn_updateInBetweenWaves = {
 	if (BLWK_inBetweenWaves) then {
 		_inbetweenWavesCtrl ctrlSetText "IN BETWEEN";
 		_inbetweenWavesCtrl ctrlSetTextColor [0,0.75,0.22,0.7];
@@ -88,19 +92,19 @@ private _fn_updateInbetweenWaves = {
 call _fn_updatePlayerPoints;
 call _fn_updateRespawnTickets;
 call _fn_updateCurrentWave;
-call _fn_updateInbetweenWaves;
+call _fn_updateInBetweenWaves;
 
 while {sleep 2; true} do {
-	if (_playerPoints != BLWK_playerKillPoints) then {
+	if (_playerPoints isNotEqualTo BLWK_playerKillPoints) then {
 		call _fn_updatePlayerPoints
 	};
-	if (_numRespawnTickets != BLWK_numRespawnTickets) then {
+	if (_numRespawnTickets isNotEqualTo BLWK_numRespawnTickets) then {
 		call _fn_updateRespawnTickets
 	};
-	if (_currentWave != BLWK_currentWaveNumber) then {
+	if (_currentWave isNotEqualTo BLWK_currentWaveNumber) then {
 		call _fn_updateCurrentWave
 	};
-	if !(_inBetweenWaves isEqualTo BLWK_inBetweenWaves) then {
-		call _fn_updateInbetweenWaves
+	if (_inBetweenWaves isNotEqualTo BLWK_inBetweenWaves) then {
+		call _fn_updateInBetweenWaves
 	};
 };

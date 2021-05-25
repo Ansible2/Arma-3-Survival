@@ -26,17 +26,18 @@ params [
 	["_player",player,[objNull]]
 ];
 
+
 if (damage _player isEqualTo 0 AND {!BLWK_ACELoaded}) exitWith {
 	hint "You have no damage to heal";
 };
 
 private _killPoints = missionNamespace getVariable ["BLWK_playerKillPoints",0];
 
-if (_killPoints < 500) exitWith {
+if (_killPoints < BLWK_pointsForHeal) exitWith {
 	hint "You do not have enough points to heal";
 };
 
-_killPoints = _killPoints - 500;
+_killPoints = _killPoints - BLWK_pointsForHeal;
 
 missionNamespace setVariable ["BLWK_playerKillPoints",_killPoints];
 

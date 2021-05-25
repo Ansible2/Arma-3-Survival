@@ -15,11 +15,13 @@ respawnOnStart = -1;
 // no respawn dialog
 respawnDialog = 0;
 
+// saving off
+saving = 0;
 
 // FAKs will be consumed on revive
 ReviveRequiredItemsFakConsumed = 1;
 
-
+enableDebugConsole = 2;
 
 corpseManagerMode = 1; // manage all units
 corpseLimit = 50;
@@ -29,11 +31,11 @@ wreckManagerMode = 1;		// manage all wrecks
 wreckLimit = 3;
 wreckRemovalMinTime = 240;
 wreckRemovalMaxTime = 600;
-minPlayerDistance = 50;
+minPlayerDistance = 25;
 
 class Header
 {
-	gameType =  Defend;
+	gameType =  Survive;
 	minPlayers =  	 1;
 	maxPlayers = 	 26;
 };
@@ -82,6 +84,24 @@ class CfgDebriefing
 		picture = "b_inf";
 		pictureColor[] = {0.0,0.3,0.6,1};
 	};
+	class LootListErrorEnd
+	{
+		title = "[Error] Critical Loot List Empty"
+		subtitle = "Mission Aborted";
+		description = "A required loot list returned no items. This likely means it has been improperly configured";
+		pictureBackground = "";
+		picture = "preview.paa";
+		//pictureColor[] = {0.0,0.3,0.6,1};
+	};
+	class UnitClassesErrorEnd
+	{
+		title = "[Error] Default Factions Undefined"
+		subtitle = "Mission Aborted";
+		description = "A fallthrough case for custom factions failed. A custom faction was not present and therefore a default faction was used, however, this default was undefined";
+		pictureBackground = "";
+		picture = "preview.paa";
+		//pictureColor[] = {0.0,0.3,0.6,1};
+	};
 };
 
 
@@ -110,4 +130,4 @@ class CfgNotifications
 
 #include "Headers\descriptionEXT\Build Items\Main Build Items.hpp"
 #include "Headers\descriptionEXT\Faction Headers\Faction Master.hpp"
-#include "Headers\descriptionEXT\Loot Lists.hpp"
+#include "Headers\descriptionEXT\Loot Lists\Main Loot List.hpp"

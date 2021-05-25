@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: KISKA_fnc_addParameterDiaryEntries
+Function: BLWK_fnc_addParameterDiaryEntries
 
 Description:
 	Creates a diary entry to save or delete saved mission parameters
@@ -12,9 +12,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		Postinit function
-
     (end)
 
 Author(s):
@@ -28,12 +26,20 @@ waitUntil {
     false
 };
 
-player createDiarySubject ["BLWK_params_entry","Save Mission Parameters",""];
 
-player createDiaryRecord ["BLWK_params_entry", ["Save Mission Parameters", 
-	"<execute expression='[true] call BLWK_fnc_paramsQuery'>SAVE MISSION PARAMETERS</execute>"
-]];
+[
+    [
+        "Save Mission Parameters",
+        "<execute expression='[true] call BLWK_fnc_paramsQuery'>SAVE MISSION PARAMETERS</execute>"
+    ]
+] call BLWK_fnc_addSurvivalDiaryEntry;
 
-player createDiaryRecord ["BLWK_params_entry", ["Save Mission Parameters", 
-	"<execute expression='[false] call BLWK_fnc_paramsQuery'>RESET SAVED MISSION PARAMETERS</execute>"
-]];
+[
+    [
+        "Save Mission Parameters",
+        "<execute expression='[false] call BLWK_fnc_paramsQuery'>RESET SAVED MISSION PARAMETERS</execute>"
+    ]
+] call BLWK_fnc_addSurvivalDiaryEntry;
+
+
+nil

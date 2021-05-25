@@ -2,7 +2,7 @@
 Function: KISKA_fnc_getMusicFromClass
 
 Description:
-	Returns an array of track names for the given class of music
+	Returns an array of track names for the given class of music.
 
 Parameters:
 	0: _musicClass <STRING> - a class of music to search for (e.g. "stealth")
@@ -12,22 +12,21 @@ Returns:
 
 Examples:
     (begin example)
-
 		["stealth"] call KISKA_fnc_getMusicFromClass;
-
     (end)
 
 Author(s):
 	Ansible2 // Cipher (modified by)
 ---------------------------------------------------------------------------- */
-scriptName "KISKA_fnc_getMusicFromClass";
+#define SCRIPT_NAME "KISKA_fnc_getMusicFromClass"
+scriptName SCRIPT_NAME;
 
 params [
 	["_musicClass","",[""]]
 ];
 
 if (_musicClass isEqualTo "") exitWith {
-	"no class string passed" call BIS_fnc_error;
+	["_musicClass is empty. Exiting...",true] call KISKA_fnc_log;
 };
 
 private _configCondition = ["getText (_x >> 'musicClass') == ",str _musicClass] joinString "";

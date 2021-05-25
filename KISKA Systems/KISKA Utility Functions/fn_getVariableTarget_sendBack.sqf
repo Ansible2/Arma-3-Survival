@@ -4,7 +4,7 @@ Function: KISKA_fnc_getVariableTarget
 Description:
 	The send back component of KISKA_fnc_getVariableTarget that is executed on the target.
 
-	Shouldn't be called on its own
+	Shouldn't be called on its own.
 
 Parameters:
 	0: _namespace : <NAMESPACE, OBJECT, STRING, GROUP, CONTROL, or LOCATION> - The namespace to get the variable from 
@@ -33,16 +33,30 @@ if (_sendBackTarget isEqualTo 0) then {
 	if (remoteExecutedOwner isEqualTo 0) then { // never broadcast to all clients
 		missionNamespace setVariable [_saveVariable,_getVariableValue];
 		
-		diag_log "KISKA_fnc_getVariableTarget_sendBack: Did not send back to 0 target, saved locally";
-		diag_log ("_saveVariable: " + _saveVariable);
-		diag_log ("_getVariableValue: " + (str _getVariableValue));
+		[
+			[
+				"Did not send back _saveVariable: ",
+				_saveVariable,
+				" to 0 target, saved value, which is: ",
+				_getVariableValue,
+				" locally."
+			],
+			false
+		] call KISKA_fnc_log;
 	} else {
 		missionNamespace setVariable [_saveVariable,_getVariableValue,remoteExecutedOwner];
 		
-		diag_log "KISKA_fnc_getVariableTarget_sendBack: Sent variable back";
-		diag_log ("_saveVariable: " + _saveVariable);
-		diag_log ("_getVariableValue: " + (str _getVariableValue));
-		diag_log ("remoteExecutedOwner: " + (str remoteExecutedOwner));
+		[
+			[
+				"Sent back _saveVariable: ",
+				_saveVariable,
+				" to ",
+				remoteExecutedOwner,
+				" ---Value sent was ",
+				_getVariableValue
+			],
+			false
+		] call KISKA_fnc_log;
 	};
 } else {
 	// setVariable with a public flag of 2 in singleplayer does not work
@@ -50,9 +64,16 @@ if (_sendBackTarget isEqualTo 0) then {
 		_sendBackTarget = 0;
 	};
 	missionNamespace setVariable [_saveVariable,_getVariableValue,_sendBackTarget];
-
-	diag_log "KISKA_fnc_getVariableTarget_sendBack: Sent variable back";
-	diag_log ("_saveVariable: " + _saveVariable);
-	diag_log ("_getVariableValue: " + (str _getVariableValue));
-	diag_log ("_sendBackTarget: " + (str _sendBackTarget));
+	
+	[
+		[
+			"Sent back _saveVariable: ",
+			_saveVariable,
+			" to ",
+			_sendBackTarget,
+			" ---Value sent was ",
+			_getVariableValue
+		],
+		false
+	] call KISKA_fnc_log;
 };

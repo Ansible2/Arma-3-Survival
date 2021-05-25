@@ -25,11 +25,11 @@ Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+#define BASE_ENEMY_NUMBER 2
+
 params [
 	["_isDefectorWave",false,[true]]
 ];
-
-#define BASE_ENEMY_NUMBER 2
 
 private _fn_getAvailableEnemyLists = {
 	if (_isDefectorWave) exitWith {
@@ -85,7 +85,7 @@ for "_i" from 1 to _totalNumEnemiesToSpawnDuringWave do {
 	_spawnPositionTemp = selectRandom BLWK_infantrySpawnPositions;
 	_typeTemp = call _fn_selectEnemyType;
 
-	[STANDARD_ENEMY_INFANTRY_QUEUE,_typeTemp,_spawnPositionTemp] call BLWK_fnc_addToqueue;
+	[STANDARD_ENEMY_INFANTRY_QUEUE,_typeTemp,_spawnPositionTemp] call BLWK_fnc_addToQueue;
 };
 
 

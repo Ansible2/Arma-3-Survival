@@ -31,7 +31,7 @@ params [
 ];
 
 if (_queueName isEqualTo "") exitWith {
-	"BLWK_fnc_createFromQueue: _queueName is empty string ''" call BIS_fnc_error;
+	["_queueName is empty string ''",true] call KISKA_fnc_log;
 	objNull
 };
 

@@ -1,5 +1,31 @@
+#include "..\..\Headers\descriptionEXT\GUI\musicManagerCommonDefines.hpp"
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_musicManager_updateLoadCombo
+
+Description:
+	Updates the drop down list of loadable playlists
+
+Parameters:
+	0: _control : <CONTROL> - The control of the combobox
+  	1: _goToIndex : <NUMBER> - What index should the load combo be set to after updating
+
+Returns:
+	NOTHING
+
+Examples:
+    (begin example)
+		[] spawn BLWK_fnc_musicManager_updateLoadCombo;
+    (end)
+
+Author(s):
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
+disableSerialization;
+scriptName "BLWK_fnc_musicManager_updateLoadCombo";
+
 if (!canSuspend) exitWith {
-	"BLWK_fnc_musicManager_updateLoadCombo needs to be run in a scheduled environment" call BIS_fnc_error;
+	["Needs to be run in scheduled, now running in scheduled",true] call KISKA_fnc_log;
+	_this spawn BLWK_fnc_musicManager_updateLoadCombo;
 };
 
 params [
@@ -8,10 +34,10 @@ params [
 ];
 
 private _playlistArray = profileNamespace getVariable ["BLWK_musicManagerPlaylists",[]];
+
 // if we are deleteing, the profile array may be empty, but we still need the list empty regardless
 lbClear _control;
-// adding a blank spot so things don't change
-_control lbAdd "DEFAULT";
+
 if !(_playlistArray isEqualTo []) then {
 	private _playlistNames = [];
 	_playlistArray apply {

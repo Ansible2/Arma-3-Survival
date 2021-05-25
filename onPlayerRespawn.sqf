@@ -23,7 +23,7 @@ if !(BLWK_saveRespawnLoadout) then {
 [_player] joinSilent BLWK_playerGroup;
 
 // should be free respawns unless it is during a wave
-if !(missionNamespace getVariable ["BLWK_inBetweenWaves",false]) then { 
+if !(missionNamespace getVariable ["BLWK_inBetweenWaves",false]) then {
     private _remainingTickets = [BLUFOR,-1] call BIS_fnc_respawnTickets;
     missionNamespace setVariable ["BLWK_numRespawnTickets",_remainingTickets,true];
 };
@@ -35,9 +35,11 @@ if (missionNamespace getVariable ["BLWK_isAircraftGunner",false]) then {
     missionNamespace setVariable ["BLWK_isAircraftGunner",false];
 };
 
+
+
 // make players briefly invincible
 _player allowDamage false;
-null = [] spawn {
+[] spawn {
     sleep 15;
     player allowDamage true;
 };

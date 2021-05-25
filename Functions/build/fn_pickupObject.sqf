@@ -1,9 +1,10 @@
 #include "..\..\Headers\Wait For Transfer Inline.hpp"
+#include "..\..\Headers\Build Objects Properties Defines.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_pickupObject
 
 Description:
-	Executes the action to pick up a player built object
+	Executes the action to pick up a player built object.
 
 	Executed from "BLWK_fnc_purchaseObject" & "BLWK_fnc_addBuildableObjectActions"
 
@@ -18,7 +19,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [myObject,player] spawn BLWK_fnc_pickupObject;
+		[myObject,player] spawn BLWK_fnc_pickupObject;
 
     (end)
 
@@ -38,18 +39,14 @@ params [
 	["_justPurchased",false,[true]]
 ];
 
-// get attachment info from global build objects array
-private _objectType = typeOf _object;
 
 if (_justPurchased) then {
-	private _index = BLWK_buildableObjects_array findIf {(_x select 1) == _objectType};
-	private _attachmentInfo = (BLWK_buildableObjects_array select _index) select 3;
-	_object attachTo [_player,_attachmentInfo select 1];
-	_object setDir (_attachmentInfo select 0);
+	private _propertiesArray = BLWK_buildableObjectsHash get (toLowerANSI (typeOf _object));
+	_object attachTo [_player,_propertiesArray select ATTACHMENT_COORDS];
+	_object setDir (_propertiesArray select ROTATION);
 } else {
 	WAIT_FOR_OWNERSHIP(_object)
 	[_object,_player,true] call BIS_fnc_attachToRelative;
-	//[_object,_player,true] remoteExecCall ["BIS_fnc_attachToRelative",_object];
 };
 
 // special handle for BLWK_randomWeaponBox being found
@@ -57,17 +54,19 @@ if (_object isEqualTo BLWK_randomWeaponBox AND {!(missionNamespace getVariable [
 	missionNamespace setVariable ["BLWK_randomWeaponBoxFound",true,true];
 };
 
-null = [_object] remoteExec ["BLWK_fnc_disableCollisionWithAllPlayers",_object];
+[_object] remoteExec ["BLWK_fnc_disableCollisionWithAllPlayers",_object];
 
 // make sure nobody else can manipulate the object through actions
-[_object,true] remoteExecCall ["BLWK_fnc_registerObjectPickup",BLWK_allClientsTargetId,true];
+[_object,true] remoteExecCall ["BLWK_fnc_registerObjectPickup",BLWK_allClientsTargetId,_object];
 
 // marks the client as holding an object for other functions such as trying to access the shop
 missionNamespace setVariable ["BLWK_heldObject",_object];
 
-// add every action to the player for or them to manipulate the object while it is being held
+// add every action to the player for them to manipulate the object while it is being held
 [_object,_player] call BLWK_fnc_addPickedUpObjectActions;
 
+
+[_object] call BLWK_fnc_buildEvent_onPickedUp;
 
 
 // this loop is checking to see if the player is unconcious or dead
@@ -76,7 +75,12 @@ missionNamespace setVariable ["BLWK_heldObject",_object];
 	params ["_object","_player"];
 
 	waitUntil {
-		if (isNil "BLWK_heldObject" OR {!(alive _player)} OR {!(incapacitatedState _player isEqualTo "")} OR {_player getVariable ["ace_isUnconscious",false]}) exitWith {
+		if (
+			isNil "BLWK_heldObject" OR 
+			{!(alive _player)} OR 
+			{incapacitatedState _player isNotEqualTo ""} OR 
+			{_player getVariable ["ace_isUnconscious",false]}
+		) exitWith {
 			
 			// check to see if object was already dropped (if the fnc was already called, BLWK_heldObjectActionIDs will have been set to nil)
 			if (!isNil "BLWK_heldObjectActionIDs") then {

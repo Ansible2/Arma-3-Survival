@@ -12,7 +12,7 @@ Parameters:
 	NONE
 
 Returns:
-	BOOL
+	NOTHING
 
 Examples:
     (begin example)
@@ -26,9 +26,14 @@ Author(s):
 ---------------------------------------------------------------------------- */
 #define PISTOL_MAG_CLASS "16Rnd_9x21_Mag"
 
+scriptName "BLWK_fnc_handleEnemyWeapons";
+
 params ["_unit"];
 
-if (!local _unit) exitWith {false};
+if (!local _unit) exitWith {
+	[[_unit," is not local to you, exiting..."],true] call KISKA_fnc_log;
+	nil
+};
 
 // handle pistol only wave and random weapons
 if (BLWK_currentWaveNumber <= BLWK_maxPistolOnlyWaves) then {
@@ -50,6 +55,3 @@ if (BLWK_currentWaveNumber <= BLWK_maxPistolOnlyWaves) then {
 	};
 	[_unit] call BLWK_fnc_optreMedicalToVanilla;
 };
-
-
-true

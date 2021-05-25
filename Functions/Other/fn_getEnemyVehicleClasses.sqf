@@ -1,3 +1,30 @@
+/* ----------------------------------------------------------------------------
+Function: BLWK_fnc_getEnemyVehicleClasses
+
+Description:
+	Gets a set of vehicle classes based on a typeId. If no classes are available 
+	 for a type, a default class if provided if requested
+
+Parameters:
+	0: _typeId : <NUMBER> - The type of vehicle requested (see below for numbers)
+	1: _supplementEmpty : <BOOL> - Return a default class if nothing exists for the type
+	2: _shuffle : <BOOL> - Shuffle the list of returned classes
+
+Returns:
+	<ARRAY> -  An array of strings that are the available classes for the type
+
+Examples:
+    (begin example)
+
+		_lightCarClasses = [0] call BLWK_fnc_getEnemyVehicleClasses;
+
+    (end)
+
+Author(s):
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
+scriptName "BLWK_fnc_getEnemyVehicleClasses";
+
 params [
 	["_typeId",0,[123]],
 	["_supplementEmpty",true,[true]],
@@ -13,7 +40,7 @@ params [
 			"B_MBT_01_cannon_F",\ 					3 // heavy armour
 			"B_Heli_Transport_01_F",\ 				4 // transport aircraft
 			"B_T_VTOL_01_vehicle_F",\ 				5 // cargo aircraft
-			"B_Plane_CAS_01_dynamicLoadout_F",\ 					6 // CAS plane 
+			"B_Plane_CAS_01_dynamicLoadout_F",\ 	6 // CAS plane 
 			"B_Heli_Attack_01_dynamicLoadout_F"\ 	7 // attack helicopter
 		]
 */
@@ -37,9 +64,9 @@ private _fn_pushVehicleForLevel = {
 	params ["_classes"];
 	private _classesOfType = _classes select _typeId;
 
-	if ((_classesOfType isEqualTo [])) then {
+	if (_classesOfType isEqualTo []) then {
 		if (_supplementEmpty) then {
-			_availableClasses pushBackUnique _defaultVehicleClass;
+			_availableClasses pushBack _defaultVehicleClass;
 		};
 	} else {
 		_classesOfType apply {
@@ -62,11 +89,6 @@ if (BLWK_currentWaveNumber > 20) then {
 	[BLWK_level5_vehicleClasses] call _fn_pushVehicleForLevel;
 };
 
-
-// check if we only got empty strings
-if (_availableClasses isEqualTo []) then {
-	_availableClasses = [_defaultVehicleClass];
-};
 
 // shuffle
 if ((count _availableClasses > 1) AND {_shuffle}) then {

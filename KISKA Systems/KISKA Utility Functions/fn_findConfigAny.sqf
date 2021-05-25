@@ -2,22 +2,23 @@
 Function: KISKA_fnc_findConfigAny
 
 Description:
-	Searchs configFile, missionConfigFile, and the campaignConfigFile
+	Searchs missionConfigFile, campaignConfigFile, and the configFile
 	 (in that order) to find a config based upon the sub paths provided.
 	
 	Reutrns the first one it finds.
 
+	The BIS counterpart to this is BIS_fnc_loadClass and while it can be about 0.0005-0.0010ms
+	 faster if the path is short (about 2 entries). It can yield about 0.005ms faster in various cases
+
 Parameters:
-	0: _pathArray : <ARRAY> - The global array in string format
+	0: _pathArray : <ARRAY> - The array in string format
 
 Returns:
 	<CONFIG> - The first config path if found or configNull if not
 
 Examples:
     (begin example)
-
 		[["CfgMusic","Music_Intro_02_MissionStart"]] call KISKA_fnc_findConfigAny;
-
     (end)
 
 Author(s):
@@ -30,13 +31,13 @@ params [
 ];
 
 if (_pathArray isEqualTo []) exitWith {
-	"_pathArray is empty array!" call BIS_fnc_error;
+	["_pathArray is empty array!",true] call KISKA_fnc_log;
 };
 
 private "_config_temp";
 private _configFound = false;
 private _configReturn = configNull;
-[configFile,missionConfigFile,campaignConfigFile] apply {
+[missionConfigFile,campaignConfigFile,configFile] apply {
 	_config_temp = _x;
 	_pathArray apply {
 		// stop going down the list if config does not exist
@@ -54,27 +55,3 @@ private _configReturn = configNull;
 
 
 _configReturn
-
-// alt method, slightly slower (0.010s about) when _pathArray gets longer
-/*
-	private _newArray = [];
-	["musicManagerDialog","controls","musicManagerDialogcomboBox_trackSpacing","ComboScrollBar"] apply {
-	_newArray pushBack (str _x)
-	};
-
-	private _string = _newArray joinString ">>";
-
-	private _stringNew = ["configFile >>",_string] joinString "";
-	_config = call compile _stringNew;
-	if (isClass _config) exitWith {_config};
-
-	_stringNew = ["missionConfigFile >>",_string] joinString "";
-	_config = call compile _stringNew;
-	if (isClass _config) exitWith {_config};
-
-	_stringNew = ["campaignConfigFile >>",_string] joinString "";
-	_config = call compile _stringNew;
-	if (isClass _config) exitWith {_config};
-
-	configNull
-*/

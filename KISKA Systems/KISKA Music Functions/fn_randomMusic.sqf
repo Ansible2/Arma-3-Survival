@@ -25,14 +25,14 @@ Examples:
     (begin example)
 		
 		// space tracks by 20 seconds exactly each
-		null = [false,"",arrayOfTracks,20] spawn KISKA_fnc_randomMusic;
+		[false,"",arrayOfTracks,20] spawn KISKA_fnc_randomMusic;
 
    	(end)
 
 	(begin example)
 		
 		// space tracks by UP TO 20 seconds each
-		null = [false,"",arrayOfTracks,[20]] spawn KISKA_fnc_randomMusic; 
+		[false,"",arrayOfTracks,[20]] spawn KISKA_fnc_randomMusic; 
 
    	(end)
 
@@ -40,15 +40,15 @@ Examples:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 #define SLEEP_BUFFER 3
-
-scriptName "KISKA_fnc_randomMusic";
+#define SCRIPT_NAME "KISKA_fnc_randomMusic"
+scriptName SCRIPT_NAME;
 
 if !(isServer) exitWith {
-	"KISKA_fnc_randomMusic Must be run on server" call BIS_fnc_error;
+	["Was not executed on server, exiting...",true] call KISKA_fnc_log;
 };
 
 if (!canSuspend) exitWith {
-	"KISKA_fnc_randomMusic must be run in scheduled" call BIS_fnc_error;
+	["Was not executed in a scheduled environment, exiting...",true] call KISKA_fnc_log;
 };
 
 params [
@@ -60,12 +60,12 @@ params [
 ];
 
 if (_musicTracks isEqualTo [] AND {_usedMusicTracks isEqualTo []}) exitWith {
-	"No music tracks were passed" call BIS_fnc_error;
+	["No music tracks were passed! Can't start.",true] call KISKA_fnc_log;
 };
 
 // check if _timeBetween is an array AND if it is the correct formats OR if it is just a single number
 if ((_timeBetween isEqualType []) AND {!((count _timeBetween) isEqualTo 1) AND {!((count _timeBetween) isEqualTo 3) OR !(_timeBetween isEqualTypeParams [1,2,3])}}) exitWith {
-	"_timeBetween array is incorrect format or types" call BIS_fnc_error;
+	[[_timeBetween," is not the correct format for _timeBetween"],true] call KISKA_fnc_log;
 };
 
 if (_musicTracks isEqualTo []) then {
@@ -90,15 +90,15 @@ if !(isDedicated) then {
 // play song
 private _targetId = [0,-2] select isDedicated;
 // volume is at 0.5 because ambient tracks should be a bit less pronounced
-null = [_selectedTrack,0,_doInterrupt,0.5] remoteExec ["KISKA_fnc_playMusic",_targetId];
-null = [_selectedTrack] remoteExecCall ["KISKA_fnc_setCurrentRandomMusicTrack",_targetId];
+[_selectedTrack,0,_doInterrupt,0.5] remoteExec ["KISKA_fnc_playMusic",_targetId];
+[_selectedTrack] remoteExecCall ["KISKA_fnc_setCurrentRandomMusicTrack",_targetId];
 
 if !(missionNamespace getVariable ["KISKA_musicSystemIsRunning",false]) then {
 	missionNamespace setVariable ["KISKA_musicSystemIsRunning",true];
 };
 
 // clear array of selected Track
-_musicTracks deleteAt (_musicTracks findIf {_x isEqualTo _selectedTrack});
+_musicTracks deleteAt (_musicTracks find _selectedTrack);
 KISKA_randomMusic_tracks = _musicTracks;
 // store track as used
 _usedMusicTracks pushBackUnique _selectedTrack;
@@ -135,9 +135,19 @@ if (_randomWaitTime < SLEEP_BUFFER) then {
 
 private _waitTime = _durationOfTrack + _randomWaitTime;
 
-diag_log format ["random wait time is: %1",_randomWaitTime];
-diag_log format ["duration of track is: %1",_durationOfTrack];
-diag_log format ["wait time is: %1",_waitTime];
+[
+	
+	[
+		"Random wait time is:",
+		_randomWaitTime,
+		"--- Duration of tack is:",
+		_durationOfTrack,
+		"--- Wait time is:",
+		_waitTime
+	],
+	false
+] call KISKA_fnc_log;
+
 // dont play this music if the system is stopped or another random music system was started
 if (missionNamespace getVariable ["KISKA_musicSystemIsRunning",true]) then {
 /*	
@@ -155,10 +165,8 @@ if (missionNamespace getVariable ["KISKA_musicSystemIsRunning",true]) then {
 	};
 
 	if (_startTime isEqualTo KISKA_randomMusicStartTIme) then {
-		diag_log "Sleep done";
+		["Sleep has finished, executing new randomMusic",false] call KISKA_fnc_log;
 		// the globals in params are not passed to allow for changes while music is playing
-		null = [true,_selectedTrack] spawn KISKA_fnc_randomMusic; 
-
-		diag_log "execing next song";
+		[true,_selectedTrack] spawn KISKA_fnc_randomMusic; 
 	};
 };

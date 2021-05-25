@@ -23,9 +23,11 @@
 	};
 
 #include "Faction Headers\Define Factions.hpp"
+#include "Loot Lists\Define Loot Lists.hpp"
 
+
+/* // prior to 0.8 parameter getting
 __EXEC(_savedParams = profileNamespace getVariable ["BLWK_savedMissionParameters",[]]);
-
 #define FIND_CODE(PARAM) __EXEC(_findParamCode = compile "_x select 0 == "#PARAM"");
 #define GET_PARAM_INDEX __EXEC(_paramIndex = _savedParams findIf _findParamCode);
 #define FOUND_COMPILE call compile (["(_savedParams select _paramIndex) select 1","-1"] select (_savedParams isEqualTo []))
@@ -35,7 +37,18 @@ __EXEC(_savedParams = profileNamespace getVariable ["BLWK_savedMissionParameters
 	FIND_CODE(NAME)\
 	GET_PARAM_INDEX\
 	default = GET_PARAM_VALUE(DEFAULT_VALUE)\
+*/
 
+
+// prior to 0.9, used arrays instead of hashes. Since params are auto loaded, in order to avoid errors on previous parameter saves,
+/// this will create an empty hash if an array is present in BLWK_savedMissionParameters or if nothing has been saved yet.
+/// ultimately allowing the use of the getOrDefault command for hashes
+__EXEC(_savedParams = [profileNamespace getVariable "BLWK_savedMissionParameters",createHashMap] select call compile "profileNamespace getVariable ['BLWK_savedMissionParameters',[]] isEqualType []");
+#define GET_DEFAULT_PARAM(NAME,DEFAULT_VALUE) default = __EVAL(_savedParams getOrDefault [#NAME,DEFAULT_VALUE]);
+
+
+#define WAVE_STEPS_VALUES values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 25, 9999};
+#define WAVE_STEPS_TEXTS texts[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "20", "25", "Never"};
 
 // waves
 A_SECTION_HEADER(WAVE);
@@ -43,9 +56,9 @@ A_SECTION_HEADER(WAVE);
 class BLWK_maxNumWaves
 {
 	title = "How Many Waves";
-	values[] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 125, 150, 999999};
-	texts[] = {"10", "20", "30", "40","50","60","70","80","90","100", "125", "150", "Infinite"};
-	GET_DEFAULT_PARAM(BLWK_maxNumWaves,30)
+	values[] = {10, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100, 125, 150, 999999};
+	texts[] = {"10", "20", "25", "30", "40","50","60","70","80","90","100", "125", "150", "Infinite"};
+	GET_DEFAULT_PARAM(BLWK_maxNumWaves,25)
 };
 class BLWK_timeBetweenRounds
 {
@@ -57,16 +70,23 @@ class BLWK_timeBetweenRounds
 class BLWK_vehicleStartWave
 {
 	title = "Vehicles can spawn after wave";
-	values[] = {5, 10, 15, 20, 25, 9999};
-	texts[] = {"5", "10", "15", "20", "25", "Never"};
+	WAVE_STEPS_VALUES
+	WAVE_STEPS_TEXTS
 	GET_DEFAULT_PARAM(BLWK_vehicleStartWave,5)
 };
 class BLWK_specialWavesStartAt
 {
 	title = "Special Wave Possibility Starts At Wave";
-	values[] = {5, 10, 15, 20, 25, 9999};
-	texts[] = {"5", "10", "15", "20", "25", "Never"};
-	GET_DEFAULT_PARAM(BLWK_specialWavesStartAt,10)
+	WAVE_STEPS_VALUES
+	WAVE_STEPS_TEXTS
+	GET_DEFAULT_PARAM(BLWK_specialWavesStartAt,7)
+};
+class BLWK_specialWaveLikelihood
+{
+	title = "Special Wave Likelihood (Ratio is against special waves: e.g. if 0.9, standard waves will have a likelihood of 0.1)";
+	values[] = {1,2,3,4,5,6,7,8,9,10};
+	texts[] = {"0.1","0.2","0.3","0.4","0.5","0.6","0.7","0.8","0.9","1"};
+	GET_DEFAULT_PARAM(BLWK_specialWaveLikelihood,5)
 };
 class BLWK_maxEnemyInfantryAtOnce
 {
@@ -110,6 +130,13 @@ class BLWK_roundsBeforeBodyDeletion
 	values[] = {0, 1, 2};
 	texts[] = {"0 (until next round begins)", "1", "2"};
 	GET_DEFAULT_PARAM(BLWK_roundsBeforeBodyDeletion,1)
+};
+class BLWK_minRoundsSinceVehicleSpawned
+{
+	title = "The minimum number of waves between vehicle spawns";
+	values[] = {0, 1, 2};
+	texts[] = {"0", "1", "2"};
+	GET_DEFAULT_PARAM(BLWK_minRoundsSinceVehicleSpawned,0)
 };
 
 
@@ -249,6 +276,13 @@ class BLWK_playAreaRadius
 	texts[] = {"(50m) Tiny", "(100m) Small", "(150m) Normal", "(200m) Large", "(250m) Huge"};
 	GET_DEFAULT_PARAM(BLWK_playAreaRadius,150)
 };
+class BLWK_maxLootSpawns
+{
+	title = "Max Number Of Loot Spawns";
+	values[] = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000};
+	texts[] = {"100","200","300","400","500","600","700","800","900","1000","1100","1200", "1300", "1400", "1500", "1600", "1700", "1800", "1900", "2000"};
+	GET_DEFAULT_PARAM(BLWK_maxLootSpawns,1000)
+};
 class BLWK_minNumberOfHousesInArea
 {
 	title = "Minimum number of buildings in the play area radius";
@@ -273,8 +307,8 @@ class BLWK_loot_roomDistribution
 class BLWK_loot_whiteListMode
 {
 	title = "Loot Whitelist Mode";
-	values[] = {0,1,2};
-	texts[] = {"OFF","Only Whitelist Items will spawn as loot","Whitelist items get added to existing loot (increases the chance of loot spawning)"};
+	values[] = {LOOT_LIST_VALUES};
+	texts[] = {LOOT_LIST_STRINGS};
 	GET_DEFAULT_PARAM(BLWK_loot_whiteListMode,0)
 };
 class BLWK_buildingsNearTheCrateAreIndestructable_radius
@@ -282,7 +316,7 @@ class BLWK_buildingsNearTheCrateAreIndestructable_radius
 	title = "The radius of indestructable buildings around The Crate";
 	values[] = {0,5,10,15,20,25,30};
 	texts[] = {"OFF","5m","10m","15m","20m","25m","30m"};
-	GET_DEFAULT_PARAM(BLWK_buildingsNearTheCrateAreIndestructable_radius,15)
+	GET_DEFAULT_PARAM(BLWK_buildingsNearTheCrateAreIndestructable_radius,20)
 };
 
 
@@ -295,8 +329,18 @@ class BLWK_timeOfDay
 	title = "The Time Of Day";
 	values[] = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22};
 	texts[] = {"0200","0400","0600","0800","1000","1200", "1400", "1600", "1800", "2000", "2200"};
-	GET_DEFAULT_PARAM(BLWK_timeOfDay,12)
+	GET_DEFAULT_PARAM(BLWK_timeOfDay,6)
 };
+
+class BLWK_daySpeedMultiplier
+{
+	title = "Day Speed Multiplier";
+	values[] = {1, 6, 8, 12, 24, 48, 72};
+	texts[] = {"x1 (24h cycle)","x6 (4h cycle)","x8 (3h cycle)","x12 (2h cycle)","x24 (1h cycle)","x48 (30m cycle)","x72 (20m cycle)"};
+	GET_DEFAULT_PARAM(BLWK_daySpeedMultiplier,8)
+};
+
+
 // weather
 #include "paramWeather.hpp"
 
@@ -315,16 +359,16 @@ class BLWK_showHitPoints
 class BLWK_pointsForKill
 {
 	title = "Base Points For Kill";
-	values[] = {10, 50, 100, 150, 200, 300};
-	texts[] = {"10","50","100","150","200","300"};
-	GET_DEFAULT_PARAM(BLWK_pointsForKill,100)
+	values[] = {10, 50, 100, 125, 150, 200, 300};
+	texts[] = {"10","50","100","125","150","200","300"};
+	GET_DEFAULT_PARAM(BLWK_pointsForKill,125)
 };
 class BLWK_pointsForHit
 {
 	title = "Base Points per Hit";
-	values[] = {0, 10, 20, 50, 100};
-	texts[] = {"0","10","20","50","100"};
-	GET_DEFAULT_PARAM(BLWK_pointsForHit,20)
+	values[] = {0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+	texts[] = {"0","10","20","30","40","50","60","70","80","90","100"};
+	GET_DEFAULT_PARAM(BLWK_pointsForHit,30)
 };
 class BLWK_pointsMultiForDamage
 {
@@ -409,7 +453,7 @@ class BLWK_level5Faction
 	title = "Level 5 Enemy Faction";
 	values[] = {FACTION_COUNT};
 	texts[] = {FACTION_STRINGS};
-	default = 13; // Contact Spetsnaz 
+	default = 13; // Contact Spetsnaz
 };
 
 
@@ -427,41 +471,69 @@ class BLWK_lightCarLikelihood
 	title = "Enemy Light Car Likelihood";
 	values[] = ZERO_TO_TEN;
 	texts[] = ZERO_TO_TEN_STRINGS;
-	GET_DEFAULT_PARAM(BLWK_lightCarLikelihood,5)
+	GET_DEFAULT_PARAM(BLWK_lightCarLikelihood,4)
 };
 class BLWK_heavyCarLikelihood
 {
 	title = "Enemy Heavy Car Likelihood";
 	values[] = ZERO_TO_TEN;
 	texts[] = ZERO_TO_TEN_STRINGS;
-	GET_DEFAULT_PARAM(BLWK_heavyCarLikelihood,3)
+	GET_DEFAULT_PARAM(BLWK_heavyCarLikelihood,5)
 };
 class BLWK_lightArmorLikelihood
 {
 	title = "Enemy Light Armor Likelihood";
 	values[] = ZERO_TO_TEN;
 	texts[] = ZERO_TO_TEN_STRINGS;
-	GET_DEFAULT_PARAM(BLWK_lightArmorLikelihood,2)
+	GET_DEFAULT_PARAM(BLWK_lightArmorLikelihood,5)
 };
 class BLWK_heavyArmorLikelihood
 {
 	title = "Enemy Heavy Armor Likelihood";
 	values[] = ZERO_TO_TEN;
 	texts[] = ZERO_TO_TEN_STRINGS;
-	GET_DEFAULT_PARAM(BLWK_lightArmorLikelihood,1)
+	GET_DEFAULT_PARAM(BLWK_heavyArmorLikelihood,4)
 };
+
+
+// AI
+A_SPACE(AI);
+A_SECTION_HEADER(AI);
+
+class BLWK_doDetectCollision
+{
+	title = "Run Enemy AI Collision Script? (If you plan to be in a mostly rural environment, possibly turn off)";
+	values[] = ZERO_OR_ONE;
+	texts[] = NO_OR_YES;
+	GET_DEFAULT_PARAM(BLWK_doDetectCollision,1)
+};
+class BLWK_doDetectMines
+{
+	title = "Enemy AI Mine Detection";
+	values[] = ZERO_OR_ONE;
+	texts[] = OFF_OR_ON;
+	GET_DEFAULT_PARAM(BLWK_doDetectMines,1)
+};
+class BLWK_suppressionEnabled
+{
+	title = "Enemy AI Suppression (OFF for more aggressive/less cautious AI)";
+	values[] = ZERO_OR_ONE;
+	texts[] = OFF_OR_ON;
+	GET_DEFAULT_PARAM(BLWK_suppressionEnabled,0)
+};
+class BLWK_autocombatEnabled
+{
+	title = "Enemy AI AutoCombat (OFF for more aggressive/less cautious AI)";
+	values[] = ZERO_OR_ONE;
+	texts[] = OFF_OR_ON;
+	GET_DEFAULT_PARAM(BLWK_autocombatEnabled,0)
+};
+
 
 // Other
 A_SPACE(Other);
 A_SECTION_HEADER(Other);
 
-class BLWK_doDetectCollision
-{
-	title = "Run Enemy AI Collision Script? (If you plan to be in a mostly rural environment, turn off)";
-	values[] = ZERO_OR_ONE;
-	texts[] = NO_OR_YES;
-	GET_DEFAULT_PARAM(BLWK_doDetectCollision,1)
-};
 class BLWK_multipleLootReveals
 {
 	title = "Show all loot with reveal?";

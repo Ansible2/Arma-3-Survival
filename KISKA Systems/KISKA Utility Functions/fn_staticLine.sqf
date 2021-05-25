@@ -13,15 +13,11 @@ Returns:
 
 Examples:
     (begin example)
-
 		[group1] call KISKA_fnc_staticLine;
-
     (end)
 
 	(begin example)
-
 		[[group1,unit2]] call KISKA_fnc_staticLine;
-
     (end)
 
 Author:
@@ -35,11 +31,13 @@ params [
 ];
 
 if (_dropArray isEqualTo []) exitWith {
+	["_dropArray is empty",true] call KISKA_fnc_log;
 	false
 };
 
 if (_dropArray isEqualTypeAny [objNull,grpNull] AND {isNull _dropArray}) exitWith {
-	"_dropArray isNull" call BIS_fnc_error;
+	["_dropArray isNull",true] call KISKA_fnc_log;
+	false
 };
 
 if (_dropArray isEqualType grpNull) then {
@@ -66,13 +64,13 @@ if (_dropArray isEqualType []) then {
 
 private _chuteType = ["B_Parachute","CUP_T10_Parachute_backpack"] select (isClass (configfile >> "CfgVehicles" >> "CUP_T10_Parachute_backpack"));
 
-localNamespace setVariable ["KISKA_fnc_staticline_doEJect",{
+localNamespace setVariable ["KISKA_fnc_staticline_doEject",{
 	params ["_unit","_chuteType","_index","_invincibleOnDrop"];
 
 	sleep (_index / 5); // delay for getting a spread of units
 
 	private _loadout = getUnitLoadout _unit;
-	
+
 	if !(isNull (unitbackpack _unit)) then {
 		removeBackpackGlobal _unit;
 	};
@@ -85,17 +83,17 @@ localNamespace setVariable ["KISKA_fnc_staticline_doEJect",{
 	};
 
 	private _aircraft = objectParent _unit;
-	
+
 	if !(isNull _aircraft) then {
 		[_unit] remoteExecCall ["unassignVehicle",_unit];
 		//[_unit,_aircraft] remoteExecCall ["leaveVehicle",_unit];
 		[_unit,["GetOut", _unit]] remoteExecCall ["action",_unit];
 		[_unit] remoteExecCall ["moveOut",_unit];
-		
+
 		// determine the side of the aircraft to eject the person on
 		private _sideOfAircraft = [10,-10] select ((_index mod 2) isEqualTo 0);
-		
-		
+
+
 		// might need to waitUntil backpackContainer is not Null to be sure
 		// delay chute open to create some distance with plane
 		[_unit,_aircraft,_sideOfAircraft] spawn {
@@ -107,14 +105,14 @@ localNamespace setVariable ["KISKA_fnc_staticline_doEJect",{
 			sleep 1;
 			[_unit,["OpenParachute", _unit]] remoteExecCall ["action",_unit];
 		};
-		
+
 		sleep 3;
 
 		if (_invincibleOnDrop) then {
 			[_unit,false] remoteExecCall ["allowDamage",_unit];
 		};
 
-		waitUntil { 
+		waitUntil {
 			if (((getPosATL _unit) select 2) < 0.1 OR {isTouchingGround _unit}) exitWith {true};
 			sleep 2;
 			false;
@@ -127,9 +125,10 @@ localNamespace setVariable ["KISKA_fnc_staticline_doEJect",{
 	};
 }];
 
+
 // execute eject
 {
-	null = [_x,_chuteType,_forEachIndex,_invincibleOnDrop] spawn (localNamespace getVariable "KISKA_fnc_staticLine_doEject");
+	[_x,_chuteType,_forEachIndex,_invincibleOnDrop] spawn (localNamespace getVariable "KISKA_fnc_staticLine_doEject");
 } forEach ([_dropArrayFiltered,_dropArray] select (_dropArrayFiltered isEqualTo []));
 
 

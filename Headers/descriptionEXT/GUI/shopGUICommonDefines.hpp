@@ -67,6 +67,9 @@
 #define STORAGE_CATEGORY "Storage"
 #define BUILDINGS_CATEGORY "Buildings"
 #define HBARR_CATEGORY "H-Barriers"
+#define UNIQUE_CATEGORY "Unique Items"
+#define TRENCH_CATEGORY "Trenches"
+#define REVETMENT_CATEGORY "Revetments"
 
 // categories for support items
 #define HEAVY_ARTILLERY_CATEGORY "Heavy Artillery"

@@ -10,10 +10,11 @@ class AAF_faction
 	};
 	lightArmor[] = {
 		"I_APC_Wheeled_03_cannon_F",
-		"I_APC_tracked_03_cannon_F"
+		"I_APC_tracked_03_cannon_F",
+		"I_LT_01_cannon_F"
 	};
 	heavyArmor[] = {
-		"I_MBT_03_cannon_F"			
+		"I_MBT_03_cannon_F"
 	};
 	transportHelicopters[] = {
 		"I_Heli_light_03_unarmed_F"
@@ -158,8 +159,7 @@ class CSAT_pacific_faction
 		"O_T_MBT_04_cannon_F"
 	};
 	transportHelicopters[] = {
-		"O_Heli_Light_02_unarmed_F",
-		"O_T_VTOL_02_infantry_dynamicLoadout_F"
+		"O_Heli_Light_02_unarmed_F"
 	};
 	cargoAircraft[] = {
 		"O_T_VTOL_02_infantry_dynamicLoadout_F"
@@ -167,14 +167,12 @@ class CSAT_pacific_faction
 	casAircraft[] = {
 		"O_Plane_CAS_02_dynamicLoadout_F",
 		"CUP_O_Su25_Dyn_CSAT_T",
-		"O_T_VTOL_02_infantry_dynamicLoadout_F",
 		"O_Plane_Fighter_02_F"
 	};
 	attackHelicopters[] = {
 		"O_Heli_Attack_02_dynamicLoadout_black_F",
 		"CUP_O_Mi24_Mk3_CSAT_T",
-		"CUP_O_Mi24_Mk4_CSAT_T",
-		"O_T_VTOL_02_infantry_dynamicLoadout_F"
+		"CUP_O_Mi24_Mk4_CSAT_T"
 	};
 	infantry[] = {
 		"O_T_Soldier_A_F",
@@ -208,7 +206,12 @@ class CSAT_pacific_faction
 		"O_T_Recon_Medic_F",
 		"O_T_Recon_F",
 		"O_T_Recon_LAT_F",
-		"O_T_Recon_TL_F"
+		"O_T_Recon_TL_F",
+		"O_T_Soldier_CQ_F",
+		"O_T_Sniper_F",
+		"O_T_ghillie_tna_F",
+		"O_T_Spotter_F",
+		"O_T_ghillie_spotter_tna_F"
 	};
 };
 
@@ -305,6 +308,7 @@ class NATO_faction
 		"B_recon_JTAC_F",
 		"B_recon_M_F",
 		"B_recon_medic_F",
+		"B_recon_CQ_F",
 		"B_recon_F",
 		"B_recon_LAT_F",
 		"B_Recon_Sharpshooter_F",
@@ -317,7 +321,11 @@ class NATO_faction
 		"B_Patrol_Soldier_MG_F",
 		"B_Patrol_Soldier_M_F",
 		"B_Patrol_Soldier_AT_F",
-		"B_Patrol_Soldier_TL_F"
+		"B_Patrol_Soldier_TL_F",
+		"B_ghillie_spotter_ard_F",
+		"B_spotter_F",
+		"B_sniper_F",
+		"B_ghillie_ard_F"
 	};
 };
 
@@ -373,7 +381,12 @@ class NATO_pacific_faction : NATO_faction
 		"B_T_Recon_Medic_F",
 		"B_T_Recon_F",
 		"B_T_Recon_LAT_F",
-		"B_T_Recon_TL_F"
+		"B_T_Recon_TL_F",
+		"B_T_Soldier_CQ_F",
+		"B_T_Sniper_F",
+		"B_T_ghillie_tna_F",
+		"B_T_Spotter_F",
+		"B_T_ghillie_spotter_tna_F"
 	};
 };
 
@@ -405,7 +418,12 @@ class NATO_woodland_faction : NATO_pacific_faction
 		"B_W_Soldier_LAT_F",
 		"B_W_Soldier_LAT2_F",
 		"B_W_Soldier_SL_F",
-		"B_W_Soldier_TL_F"
+		"B_W_Soldier_TL_F",
+		"B_W_Soldier_CQ_F",
+		"B_W_Sniper_F",
+		"B_W_ghillie_wdl_F",
+		"B_W_Spotter_F",
+		"B_W_ghillie_spotter_wdl_F"
 	};
 };
 
@@ -413,7 +431,8 @@ class CTRG_pacific_faction : NATO_pacific_faction
 {
 	displayName = "APEX - CTRG PACIFIC";
 	transportHelicopters[] = {
-		"B_CTRG_Heli_Transport_01_sand_F"
+		"B_CTRG_Heli_Transport_01_sand_F",
+		"B_CTRG_Heli_Transport_01_tropic_F"
 	};
 	infantry[] = {
 		"B_CTRG_Soldier_AR_tna_F",
@@ -424,7 +443,16 @@ class CTRG_pacific_faction : NATO_pacific_faction
 		"B_CTRG_Soldier_LAT2_tna_F",
 		"B_CTRG_Soldier_tna_F",
 		"B_CTRG_Soldier_LAT_tna_F",
-		"B_CTRG_Soldier_TL_tna_F"
+		"B_CTRG_Soldier_TL_tna_F",
+		"B_CTRG_Soldier_AR_urb_F",
+		"B_CTRG_Soldier_Exp_urb_F",
+		"B_CTRG_Soldier_JTAC_urb_F",
+		"B_CTRG_Soldier_M_urb_F",
+		"B_CTRG_Soldier_Medic_urb_F",
+		"B_CTRG_Soldier_urb_F",
+		"B_CTRG_Soldier_LAT_urb_F",
+		"B_CTRG_Soldier_LAT2_urb_F",
+		"B_CTRG_Soldier_TL_urb_F"
 	};
 };
 
@@ -489,6 +517,10 @@ class LDF_faction
 		"I_C_Offroad_02_LMG_F",
 		"B_G_Offroad_01_armed_F"
 	};
+	heavyCars[] = {
+		"I_E_MRAP_03_gmg_F",
+		"I_E_MRAP_03_hmg_F"
+	};
 	lightArmor[] = {
 		"I_E_APC_tracked_03_cannon_F"
 	};
@@ -497,6 +529,9 @@ class LDF_faction
 	};
 	transportHelicopters[] = {
 		"I_E_Heli_light_03_unarmed_F"
+	};
+	casAircraft[] = {
+		"I_E_Plane_Fighter_04_F"
 	};
 	infantry[] = {
 		"I_E_Soldier_A_F",
@@ -525,7 +560,9 @@ class LDF_faction
 		"I_E_Soldier_LAT2_F",
 		"I_E_Soldier_lite_F",
 		"I_E_Soldier_SL_F",
-		"I_E_Soldier_TL_F"
+		"I_E_Soldier_TL_F",
+		"I_E_ghillie_wdl_F",
+		"I_E_ghillie_spotter_wdl_F"
 	};
 };
 

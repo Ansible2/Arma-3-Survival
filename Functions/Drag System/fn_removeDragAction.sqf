@@ -3,7 +3,8 @@ Function: BLWK_fnc_removeDragAction
 
 Description:
 	Removes the drag action from a unit.
-	Also removes the unit's KILLED eventhandler
+	
+	Also removes the unit's KILLED eventhandler.
 
 	Executed from "BLWK_fnc_addDragKilledEh"
 
@@ -16,17 +17,21 @@ Returns:
 
 Examples:
     (begin example)
-
-		call BLWK_fnc_removeDragAction;
-
+		[_body,_id] call BLWK_fnc_removeDragAction;
     (end)
 
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "BLWK_fnc_removeDragAction";
+
 if (!hasInterface) exitWith {};
 
 params ["_unit","_eventHandlerId"];
+
+if (isNull _unit) exitWith {
+	["Null object passed. Exiting..."] call KISKA_fnc_log;
+};
 
 if (local _unit) then {
 	_unit removeEventHandler ["KILLED",_eventHandlerId];

@@ -22,9 +22,8 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if (!hasInterface) exitWith {};
-
 disableSerialization;
+if (!hasInterface) exitWith {};
 
 params ["_control","_checked"];
 
@@ -33,7 +32,7 @@ _checked = [false,true] select _checked;
 
 if (_checked) then {
 	if !(call KISKA_fnc_isVDLSystemRunning) then {
-		null = [] spawn KISKA_fnc_viewDistanceLimiter;
+		[] spawn KISKA_fnc_viewDistanceLimiter;
 		hint "VDL system starting...";
 	} else {
 		VDL_GLOBAL_RUN = true;

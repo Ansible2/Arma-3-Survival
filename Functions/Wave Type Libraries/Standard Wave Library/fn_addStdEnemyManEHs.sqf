@@ -22,26 +22,22 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+#define SCRIPT_NAME "BLWK_fnc_addStdEnemyManEHs"
+scriptName SCRIPT_NAME;
+
 params ["_unit"];
 
-if !(local _unit) exitWith {false};
-
-// CIPHER COMMENT: This may be better off just being a local hit handler that remoteExec's onto the instigator
-// It may spam the network in this case
-/*
-_unit addMPEventHandler ["mpHit",{
-	_this call BLWK_fnc_stdEnemyHitEvent;
-}];
-*/
+if !(local _unit) exitWith {
+	[["Tried to add events to ",_unit," but they are not local. Exiting..."],true] call KISKA_fnc_log;
+	false
+};
 
 _unit addEventHandler ["Hit",{
 	_this call BLWK_fnc_stdEnemyHitEventLocal;
 }];
 
 _unit addEventHandler ["Killed",{
-	diag_log "kill event";
 	_this call BLWK_fnc_stdEnemyKilledEvent;
-	diag_log _this;
 }];
 
 

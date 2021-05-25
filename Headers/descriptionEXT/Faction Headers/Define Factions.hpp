@@ -176,7 +176,119 @@
 	174,\
 	175,\
 	176,\
-	177
+	177,\
+	178,\
+	179,\
+	180,\
+	181,\
+	182,\
+	183,\
+	184,\
+	185,\
+	186,\
+	187,\
+	188,\
+	189,\
+	190,\
+	191,\
+	192,\
+	193,\
+	194,\
+	195,\
+	196,\
+	197,\
+	198,\
+	199,\
+	200,\
+	201,\
+	202,\
+	203,\
+	204,\
+	205,\
+	206,\
+	207,\
+	208,\
+	209,\
+	210,\
+	211,\
+	212,\
+	213,\
+	214,\
+  	215,\
+	216,\
+	217,\
+	218,\
+	219,\
+	220,\
+	221,\
+	222,\
+	223,\
+	224,\
+	225,\
+	226,\
+	227,\
+	228,\
+	229,\
+	230,\
+	231,\
+	232,\
+	233,\
+	234,\
+	235,\
+	236,\
+	237,\
+	238,\
+	239,\
+	240,\
+	241,\
+	242,\
+	243,\
+	244,\
+	245,\
+	246,\
+	247,\
+	248,\
+	249,\
+	250,\
+	251,\
+	252,\
+	253,\
+	254,\
+	255,\
+	256,\
+	257,\
+	258,\
+	259,\
+	260,\
+	261,\
+	262,\
+	263,\
+	264,\
+	265,\
+	266,\
+	267,\
+	268,\
+	269,\
+	270,\
+	271,\
+	272,\
+	273,\
+	274,\
+	275,\
+	276,\
+	277,\
+	278,\
+	279,\
+	280,\
+	281,\
+	282,\
+	283,\
+	284,\
+	285,\
+	286,\
+	287,\
+	288,\
+	289
 
 
 #define FACTION_STRINGS \
@@ -194,6 +306,61 @@
 	"CONTACT - NATO WOODLAND", \
 	"CONTACT - LDF", \
 	"CONTACT - Spetznas", \
+	"S.O.G. PF - ARVN", \
+	"S.O.G. PF - ARVN LLDB (Special Forces)", \
+	"S.O.G. PF - ARVN Rangers", \
+	"S.O.G. PF - Camp Strike Force", \
+	"S.O.G. PF - Long Range Reconnaissance Patrol", \
+	"S.O.G. PF - MACV-SOG", \
+	"S.O.G. PF - Mike Force", \
+	"S.O.G. PF - NVA Dac Cong", \
+	"S.O.G. PF - NVA", \
+	"S.O.G. PF - NVA (Field)", \
+	"S.O.G. PF - NVA 65", \
+	"S.O.G. PF - NVA 65 (Field)", \
+	"S.O.G. PF - Viet Cong (Local)", \
+	"S.O.G. PF - Viet Cong (Main Force)", \
+	"S.O.G. PF - Viet Cong (Regional)", \
+	"S.O.G. PF - US Army", \
+	"S.O.G. PF - USMC", \
+	"S.O.G. PF - US Navy", \
+	"S.O.G. PF - VPN Marines", \
+	"S.O.G. PF - VPN Navy", \
+	"3CB-BAF - Army Artic", \
+	"3CB-BAF - Army Desert", \
+	"3CB-BAF - Army Multicam (MTP)", \
+	"3CB-BAF - Army Temperate", \
+	"3CB-BAF - Army Tropical", \
+	"3CB-BAF - Army Woodland", \
+	"Aegis - AAF", \
+	"Aegis - British Armed Forces", \
+	"Aegis - British Armed Forces (Pacific)", \
+	"Aegis - British Armed Forces (Woodland)", \
+	"Aegis - China (CSAT Pacific)", \
+	"Aegis - CSAT Argana (Desert)", \
+	"Aegis - CTRG (Mediterranean)", \
+	"Aegis - Iranian Armed Forces (CSAT Arid)", \
+	"Aegis - Russia", \
+	"Aegis - Russia (Arid)", \
+	"Aegis Marines - Desert", \
+	"Aegis Marines - Woodland", \
+	"Aegis Atlas - Belarus", \
+	"Aegis Atlas - Bundeswehr", \
+	"Aegis Atlas - French Foreign Legion", \
+	"Aegis Atlas - HIMF", \
+	"Aegis Atlas - Israeli Defense Force", \
+	"Aegis Atlas - Taskistani Army", \
+	"Aegis Atlas - Viper (Woodland)", \
+	"CSAT Modification Project - Iran Arid", \
+	"CSAT Modification Project - Iran Arid (CBRN)", \
+	"CSAT Modification Project - Iran Semiarid", \
+	"CSAT Modification Project - Iran Special Forces (Arid)", \
+	"CSAT Modification Project - Iran Special Forces (Woodland)", \
+	"CSAT Modification Project - Iran Urban", \
+	"CSAT Modification Project - Iran Viper (Arid)", \
+	"CSAT Modification Project - Iran Viper (Woodland)", \
+	"CSAT Modification Project - Iran Woodland", \
+	"CSAT Modification Project - Iran Woodland (CBRN)", \
 	"CUP - Armed Forces of the Russian Federation (MSV - Modern - EMR)", \
 	"CUP - Armed Forces of the Russian Federation (VDV - Modern - EMR)", \
 	"CUP - Armed Forces of the Russian Federation (MSV - EMR)", \
@@ -262,6 +429,9 @@
 	"CUP - USMC Force Recon (Woodland)", \
 	"CUP - USMC FROG (Desert)", \
 	"CUP - USMC FROG (Woodland)", \
+	"Max Terminator - Skynet Army", \
+	"Max Terminator - Skynet Infiltration Units", \
+	"Max Terminator - Resistance", \
 	"OPCAN - Colonial Guard Corps", \
 	"OPCAN - Colonial Military Authority", \
 	"OPCAN - Colonial Police Force", \
@@ -320,6 +490,7 @@
 	"PROJECT OPFOR - Ulseter Volunteer Force",\
 	"PROJECT OPFOR - Ultranationalists",\
 	"PROJECT OPFOR - United Nations",\
+	"RHS ALL",\
 	"RHS AFRF - Russia MSV (EMR)", \
 	"RHS AFRF - Russia MSV (Flora)", \
 	"RHS AFRF - Russia VDV (EMR)", \
@@ -351,10 +522,63 @@
 	"RHS USAF - USMC Infantry (Woodland)", \
 	"RHS USAF - USMC RECON (Desert)", \
 	"RHS USAF - USMC RECON (Woodland)", \
+	"Russia 2035 - Desert", \
+	"Russia 2035 - Desert SF", \
+	"Russia 2035 - Urban", \
+	"Russia 2035 - Winter", \
+	"Russia 2035 - Winter SF", \
+	"Russia 2035 - Woodland", \
+	"Russia 2035 - Woodland SF", \
+	"There is Only War - Adeptus Astartes (Combined)", \
+	"There is Only War - Adeptus Astartes: Black Templars", \
+	"There is Only War - Adeptus Astartes: Blood Angels", \
+	"There is Only War - Adeptus Astartes: Blood Ravens", \
+	"There is Only War - Adeptus Astartes: Dark Angels", \
+	"There is Only War - Adeptus Astartes: Imperial Fists", \
+	"There is Only War - Adeptus Astartes: Iron Hands", \
+	"There is Only War - Adeptus Astartes: Raven Guard", \
+	"There is Only War - Adeptus Astartes: Salamanders", \
+	"There is Only War - Adeptus Astartes: Space Wolves", \
+	"There is Only War - Adeptus Astartes: Ultramarines", \
+	"There is Only War - Adeptus Astartes: White Scars", \
+	"There is Only War - Astra Militarum: Cadian (Combined)", \
+	"There is Only War - Astra Militarum: Cadian 667th", \
+	"There is Only War - Astra Militarum: Cadian 700th", \
+	"There is Only War - Astra Militarum: Cadian 776th", \
+	"There is Only War - Astra Militarum: Cadian 836th", \
+	"There is Only War - Astra Militarum: Death Korps of Krieg (Combined)", \
+	"There is Only War - Astra Militarum: Death Korps of Krieg 1489th", \
+	"There is Only War - Astra Militarum: Death Korps of Krieg 1490th", \
+	"There is Only War - Astra Militarum: Death Korps of Krieg 1491st", \
+	"There is Only War - Astra Militarum: Death Korps of Krieg 82nd", \
+	"There is Only War - Astra Militarum: Mordian Iron Guard (Combined)", \
+	"There is Only War - Astra Militarum: Mordian Iron Guard (Blue)", \
+	"There is Only War - Astra Militarum: Mordian Iron Guard (White)", \
+	"There is Only War - Astra Militarum Renegades", \
+	"There is Only War - Cadminae PDF Forces", \
+	"There is Only War - Chaos Cultists", \
+	"There is Only War - Chaos Space Marines (Combined)", \
+	"There is Only War - Chaos Space Marines: Alpha Legion", \
+	"There is Only War - Chaos Space Marines: Black Legion", \
+	"There is Only War - Chaos Space Marines: Death Guard", \
+	"There is Only War - Chaos Space Marines: Emperor's Children", \
+	"There is Only War - Chaos Space Marines: Iron Warriors", \
+	"There is Only War - Chaos Space Marines: Night Lords", \
+	"There is Only War - Chaos Space Marines: Thousand Sons", \
+	"There is Only War - Chaos Space Marines: World Bearers", \
+	"There is Only War - Chaos Space Marines: World Eaters", \
+	"There is Only War - Necrons", \
+	"There is Only War - Orks", \
+	"There is Only War - Tau (Combined)", \
+	"There is Only War - Tau: Dal'Yth Sept", \
+	"There is Only War - Tau: Farsight Enclave", \
+	"There is Only War - Tau: Sa'Cea Sept", \
+	"There is Only War - Tau: Vior'La Sept", \
 	"Zombies & Demons - Brittle Crawlers", \
 	"Zombies & Demons - Demons", \
 	"Zombies & Demons - Fast Zombies", \
 	"Zombies & Demons - Medium Zombies", \
 	"Zombies & Demons - Slow Zombies", \
 	"Zombies & Demons - Spider Zombies", \
-	"Zombies & Demons - Walkers"
+	"Zombies & Demons - Walkers", \
+	"JTFS Armory - United Rebel Front"
