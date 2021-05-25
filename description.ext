@@ -15,6 +15,8 @@ respawnOnStart = -1;
 // no respawn dialog
 respawnDialog = 0;
 
+// saving off
+saving = 0;
 
 // FAKs will be consumed on revive
 ReviveRequiredItemsFakConsumed = 1;
