@@ -209,6 +209,8 @@ class BLWK
 		{};
 		class handleEnemyWeapons
 		{};
+		class handleUnconsciousAiEvent
+		{};
 		class handleWaitingForReviveEvent
 		{};
 		class hideFoliage

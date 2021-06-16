@@ -22,6 +22,8 @@ call BLWK_fnc_spawnLoot;
 
 [] spawn BLWK_fnc_createBattleAmbienceSound;
 
+[] spawn BLWK_fnc_handleUnconsciousAiEvent;
+
 sleep (BLWK_timeBetweenRounds - 15);
 remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
 
