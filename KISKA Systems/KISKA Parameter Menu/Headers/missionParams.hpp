@@ -435,18 +435,123 @@ class KISKA_missionParams
 			title = $STR_A3_ReviveMode;
 
 			values[] = {
-				-100,
+				//-100,
 				0,
 				1
 			};
 			texts[] = {
-				$STR_A3_MissionDefault,
+				//$STR_A3_MissionDefault,
 				$STR_A3_Disabled,
 				$STR_A3_EnabledForAllPlayers
 			};
 			default = 1;
 			requiresRestart = 1;
-			initScript = "[_this select 0] call bis_fnc_paramReviveMode";
+			initScript = "(_this select 0) call bis_fnc_paramReviveMode";
+		};
+		class BLWK_ReviveDuration : sliderParamBase
+		{
+			title = $STR_A3_ReviveDuration;
+
+			min = 1;
+			max = 30;
+			default = 6;
+
+			initScript = "(_this select 0) call bis_fnc_paramReviveDuration";
+		};
+		class BLWK_ReviveRequiredTrait : comboParamBase
+		{
+			title = $STR_A3_RequiredTrait;
+
+			values[] = {
+				//-100,
+				0,
+				1
+			};
+			texts[] = {
+				//$STR_A3_MissionDefault,
+				$STR_A3_None,
+				$STR_A3_Medic
+			};
+			default = 0;
+			sortList = 0;
+			initScript = "(_this select 0) call bis_fnc_paramReviveRequiredTrait";
+		};
+		class BLWK_ReviveMedicSpeedMultiplier : sliderParamBase
+		{
+			title = $STR_A3_RequiredTrait_MedicSpeedMultiplier;
+
+			min = 1;
+			max = 3;
+			incriment = 0.1;
+
+			default = 1;
+
+			initScript = "(_this select 0) call bis_fnc_paramReviveMedicSpeedMultiplier";
+		};
+
+		class BLWK_ReviveRequiredItems : comboParamBase
+		{
+			title = $STR_A3_RequiredItems;
+
+			values[] = {
+				//-100,
+				0,
+				1,
+				2
+			};
+			texts[] = {
+				//$STR_A3_MissionDefault,
+				$STR_A3_None,
+				$STR_A3_Medikit,
+				$STR_A3_FirstAidKitOrMedikit
+			};
+
+			default = 2;
+			sortList = 0;
+			initScript = "(_this select 0) call bis_fnc_paramReviveRequiredItems";
+		};
+
+		class BLWK_UnconsciousStateMode
+		{
+			title = $STR_A3_IncapacitationMode;
+			tooltip = "In Basic mode players (should) always be incapcitated by lethal damage. Advanced mode tries to calculate player incapacitation differently. Things such as higher caliber bullets or hits to vital areas will be more likely to instantly kill players immediately instead of incapacitating them. Realistic is the same as advanced but players are still yet more likely to instantly die.";
+			values[] = {
+				//-100,
+				0,
+				1,
+				2
+			};
+			texts[] = {
+				//$STR_A3_MissionDefault,
+				$STR_A3_Basic,
+				$STR_A3_Advanced,
+				$STR_A3_Realistic
+			};
+			default = 0;
+			sortList = 0;
+			initScript = "(_this select 0) call bis_fnc_paramReviveUnconsciousStateMode";
+		};
+
+		class BLWK_ReviveBleedOutDuration : sliderParamBase
+		{
+			title = $STR_A3_BleedOutDuration;
+
+			min = 10;
+			max = 180;
+			default = 120;
+
+			initScript = "(_this select 0) call bis_fnc_paramReviveBleedOutDuration";
+		};
+
+		class BLWK_ReviveForceRespawnDuration : sliderParamBase
+		{
+			title = $STR_A3_ForceRespawnDuration;
+
+			min = 3;
+			max = 10;
+
+			default = 6;
+			initScript = "(_this select 0) call bis_fnc_paramReviveForceRespawnDuration";
 		};
 	};
 
