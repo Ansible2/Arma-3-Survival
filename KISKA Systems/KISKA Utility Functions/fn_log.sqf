@@ -31,11 +31,11 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if !(missionNamespace getVariable ["KISKA_doLog",true]) exitWith {};
+if !(missionNamespace getVariable ["KISKA_CBA_log",true]) exitWith {};
 
 params [
 	["_message","",[]],
-	["_logWithError",missionNamespace getVariable ["KISKA_logWithError",false],[true]],
+	["_logWithError",missionNamespace getVariable ["KISKA_CBA_logWithError",false],[true]],
 	["_forceLog",true,[true]],
 	["_joinString",true,[true]],
 	["_scriptName","",[""]]
@@ -47,7 +47,7 @@ if (_scriptName == "" AND {!isNil "_fnc_scriptNameParent"}) then {
 
 if !(_forceLog) then {
 	// set _forceLog to true if the scripts name is in the log array KISKA_logScripts
-	private _scripts = missionNamespace getVariable ["KISKA_logScripts",["all"]];
+	private _scripts = missionNamespace getVariable ["KISKA_CBA_logScripts_array",["all"]];
 	if ("all" in _scripts OR {(toLowerANSI _scriptName) in _scripts}) then {
 		_forceLog = true;
 	};
@@ -59,14 +59,14 @@ if !(_forceLog) exitWith {};
 private _currentLoggedScript = missionNamespace getVariable ["KISKA_currentLoggedScript",""];
 if (_currentLoggedScript != _scriptName) then {
 	missionNamespace setVariable ["KISKA_currentLoggedScript",_scriptName];
-	diag_log ("--------- KISKA Log " + _scriptName + " ---------");
+	diag_log text("--------- KISKA Log " + _scriptName + " ---------");
 };
 
 if (_message isEqualType [] AND {_joinString}) then {
 	_message = _message joinString "";
 };
 
-diag_log ("[" + _scriptName + "] " + _message);
+diag_log text("[" + _scriptName + "] " + _message);
 
 if (_logWithError) then {
 	(_scriptName + " : " + _message) call BIS_fnc_error;

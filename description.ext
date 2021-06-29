@@ -33,6 +33,8 @@ wreckRemovalMinTime = 240;
 wreckRemovalMaxTime = 600;
 minPlayerDistance = 25;
 
+briefing = 1;
+
 class Header
 {
 	gameType =  Survive;
@@ -131,3 +133,5 @@ class CfgNotifications
 #include "Headers\descriptionEXT\Build Items\Main Build Items.hpp"
 #include "Headers\descriptionEXT\Faction Headers\Faction Master.hpp"
 #include "Headers\descriptionEXT\Loot Lists\Main Loot List.hpp"
+
+#include "KISKA Systems\KISKA Parameter Menu\Headers\missionParams.hpp"
