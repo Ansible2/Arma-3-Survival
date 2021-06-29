@@ -35,8 +35,10 @@ private _remoteInfo = [
 
 
 {
-    _serialConfig = [_x] call KISKA_fnc_paramsMenu_serializeConfig;
-    [_serialConfig,_y] remoteExecCall _remoteInfo;
+    if !([_x >> "requiresRestart"] call BIS_fnc_getCfgDataBool) then {
+        _serialConfig = [_x] call KISKA_fnc_paramsMenu_serializeConfig;
+        [_serialConfig,_y] remoteExecCall _remoteInfo;
+    };
 } forEach (GET_STAGED_CHANGE_PARAMS_HASH);
 
 localNamespace setVariable [STAGED_CHANGE_VAR_HASH_VAR_STR,createHashMap];
