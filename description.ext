@@ -134,4 +134,5 @@ class CfgNotifications
 #include "Headers\descriptionEXT\Faction Headers\Faction Master.hpp"
 #include "Headers\descriptionEXT\Loot Lists\Main Loot List.hpp"
 
+#include "KISKA Systems\KISKA Parameter Menu\Headers\params menu.hpp"
 #include "KISKA Systems\KISKA Parameter Menu\Headers\missionParams.hpp"
