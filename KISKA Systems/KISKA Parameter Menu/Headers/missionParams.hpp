@@ -153,6 +153,7 @@ class KISKA_missionParams
 		{
 			title = "Mission Area Radius";
 			tooltip = "In meters, this is the size of the area players can move in";
+			requiresRestart = 1;
 			min = 50;
 			max = 250;
 			default = 150;
@@ -213,6 +214,7 @@ class KISKA_missionParams
 		{
 			title = "Friendly Faction";
 			populationScript = "";
+			sortList = 1;
 			default = "VANILLA - NATO";
 		};
 		class BLWK_level1Faction : BLWK_friendlyFaction
@@ -318,7 +320,7 @@ class KISKA_missionParams
 			default = 0.15;
 		};
 	};
-
+/*
 	class Points
 	{
 		title = "Player Point Settings";
@@ -407,7 +409,7 @@ class KISKA_missionParams
 			default = 8;
 		};
 	};
-
+*/
 	class Respawn
 	{
 		title = "Respawn Settings";
@@ -565,6 +567,7 @@ class KISKA_missionParams
 			tooltip = "Ensure that this is less then the max wave number";
 			min = 0;
 			max = 50;
+			requiresRestart = 1;
 			default = 0;
 		};
 		class BLWK_startingKillPoints : sliderParamBase
@@ -573,6 +576,7 @@ class KISKA_missionParams
 			tooltip = "Each player will start with this amount";
 			min = 0;
 			max = 15000;
+			requiresRestart = 1;
 			default = 0;
 		};
 		class BLWK_startingCommunityKillPoints : sliderParamBase
@@ -581,13 +585,15 @@ class KISKA_missionParams
 			tooltip = "The amount of points that will be in the shop community pool";
 			min = 0;
 			max = 30000;
+			requiresRestart = 1;
 			default = 0;
 		};
 		class BLWK_supportDishFound : yes_no_paramBase
 		{
-			title = "Find Satellite Dish to Unlock Supports?";
+			title = "Supports Unlocked From Start";
 			tooltip = "A satellite dish will spawn somewhere in the play area (in a building) and a player must interact with it to unlock the supports portion of the shop";
-			default = DEFAULT_FALSE;
+			requiresRestart = 1;
+			default = DEFAULT_TRUE;
 		};
 		class BLWK_numMedKits : sliderParamBase
 		{
@@ -595,6 +601,7 @@ class KISKA_missionParams
 			min = 0;
 			max = 8;
 			default = 3;
+			requiresRestart = 1;
 		};
 		class BLWK_playersStartWith_map : yes_no_paramBase
 		{
@@ -631,103 +638,6 @@ class KISKA_missionParams
 			title = "Players Start With NVGs";
 			tooltip = "Players will be given a pair of Night-Vision-Goggles intially and after they respawn";
 			default = DEFAULT_FALSE;
-		};
-	};
-
-	class test
-	{
-		title = "Test Category";
-
-		class BLWK_testParam : yes_no_paramBase
-		{
-			title = "Run Enemy AI Collision Script?";
-			tooltip = "This script will run on all enemy AI not in vehicles. It is for the purpose of keeping the AI from being able to walk through built objects (at approximately their eye line). It is NOT guaranteed.";
-			default = DEFAULT_TRUE;
-		};
-		class BLWK_testParam_1 : on_off_paramBase
-		{
-			title = "Run Enemy AI Collision Script?";
-			tooltip = "This script will run on all enemy AI not in vehicles. It is for the purpose of keeping the AI from being able to walk through built objects (at approximately their eye line). It is NOT guaranteed.";
-			default = DEFAULT_FALSE;
-		};
-		class BLWK_testParam_2 : editParamBase
-		{
-			title = "Edit Box Example";
-			tooltip = "Some generic stuff here about the control";
-			default = "Hello World";
-		};
-		class BLWK_testParam_3 : sliderParamBase
-		{
-			title = "Edit Box Example";
-			tooltip = "Some generic stuff here about the control";
-			min = 10;
-			max = 300;
-			incriment = 1;
-			default = 100;
-		};
-		class BLWK_timeOfDay1 : listParamBase
-		{
-			title = "Starting Time Of Day";
-			//values[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23};
-			texts[] = {
-				"0000",
-				"0100",
-				"0200",
-				"0300",
-				"0400",
-				"0500",
-				"0600",
-				"0700",
-				"0800",
-				"0900",
-				"1000",
-				"1100",
-				"1200",
-				"1300",
-				"1400",
-				"1500",
-				"1600",
-				"1700",
-				"1800",
-				"1900",
-				"2000",
-				"2100",
-				"2200",
-				"2300"
-			};
-			default = "0600";
-		};
-		class BLWK_timeOfDay2 : comboParamBase
-		{
-			title = "Starting Time Of Day";
-			values[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23};
-			texts[] = {
-				"0000",
-				"0100",
-				"0200",
-				"0300",
-				"0400",
-				"0500",
-				"0600",
-				"0700",
-				"0800",
-				"0900",
-				"1000",
-				"1100",
-				"1200",
-				"1300",
-				"1400",
-				"1500",
-				"1600",
-				"1700",
-				"1800",
-				"1900",
-				"2000",
-				"2100",
-				"2200",
-				"2300"
-			};
-			default = 6;
 		};
 	};
 
@@ -803,32 +713,37 @@ class KISKA_missionParams
 		class BLWK_specialWavesStartAt : sliderParamBase
 		{
 			title = "Special waves can start after wave";
-			type = TYPE_SLIDER;
 			tooltip = "";
 			min = 1;
 			max = 999;
 			default = 7;
 		};
+		class BLWK_specialWaveLikelihood : sliderParamBase
+		{
+			title = "Special Wave Likelihood Ratio";
+			tooltip = "This is the likelihood out of 1 for a special wave to happen. A value of 1 will make every wave a special wave, while 0.1 will make it very rare, or 0 outright impossible.";
+			min = 0;
+			max = 1;
+			incriment = 0.1;
+			default = 0.5;
+		};
 		class BLWK_maxEnemyInfantryAtOnce : sliderParamBase
 		{
 			title = "Max Enemy Infantry";
-			type = TYPE_SLIDER;
 			tooltip = "This is the maximum spawned enemy infantry at any one time. Units will be queued to spawn in once there is a free space (another unit dies). This has a large impact on perfomance.";
 			min = 1;
 			max = 75;
 			default = 30;
 		};
-		class BLWK_randomizeEnemyWeapons
+		class BLWK_randomizeEnemyWeapons : yes_no_paramBase
 		{
 			title = "Randomize Hostile Weapons";
-			type = TYPE_BINARY;
 			default = DEFAULT_TRUE;
 		};
 		class BLWK_maxPistolOnlyWaves : sliderParamBase
 		{
 			title = "Hostiles only use pistols until wave";
 			tooltip = "Enemy units will spawn with pistols (and possibly first-aid-kits) until the given wave. If 0, enemies will have their normal equipment from the start.";
-			type = TYPE_SLIDER;
 			min = 0;
 			max = 999;
 			default = 3;
@@ -868,13 +783,5 @@ class KISKA_missionParams
 			default = 0;
 		};
 	};
+
 };
-
-
-
-
-
-
-//#include "paramWeather.hpp"
-
-//#include "reviveParams.hpp"
