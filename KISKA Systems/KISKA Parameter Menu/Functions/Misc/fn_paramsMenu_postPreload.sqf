@@ -21,8 +21,6 @@ Author:
 ---------------------------------------------------------------------------- */
 scriptName "KISKA_fnc_paramsMenu_postPreload";
 
-//if (!hasInterface) exitWith {};
-
 if (call KISKA_fnc_isMainMenu) exitWith {
     ["Main menu detected, will not init",false] call KISKA_fnc_log;
     nil

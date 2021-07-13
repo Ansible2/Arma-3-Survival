@@ -6,8 +6,6 @@ class paramBase
 {
 	title = ""; // text that shows up next to parameter
 	tooltip = ""; // tooltip that will show when hovering over param (also should auto-add configName of param)
-	//isJIP = 0; // Should param be JIP synced?
-	//targets[] = {TARGET_ALL}; // an array of targets (as defined above) as to who needs the param to be synced with
 	initScript = ""; // script that is compiled and called after the params have finished init
 	varName = ""; // a global variable name to tie to the parameter, if not defined, the configName will be used
 	onChanged = ""; // a global event that fires each time a setting change is committed
@@ -202,7 +200,8 @@ class KISKA_missionParams
 		{
 			title = "Loot Whitelist Mode";
 			tooltip = "Pick a configured loot list to determine what weapons can spawn on the ground.";
-			populationScript = "";
+			populationScript = "call BLWK_fnc_KISKAParams_populateLootWhitelists";
+			default = "ALL";
 		};
 	};
 
@@ -213,7 +212,8 @@ class KISKA_missionParams
 		class BLWK_friendlyFaction : listParamBase
 		{
 			title = "Friendly Faction";
-			populationScript = "";
+			populationScript = "call BLWK_fnc_KISKAParams_populateFactionList";
+			requiresRestart = 1;
 			sortList = 1;
 			default = "VANILLA - NATO";
 		};
@@ -320,7 +320,7 @@ class KISKA_missionParams
 			default = 0.15;
 		};
 	};
-/*
+
 	class Points
 	{
 		title = "Player Point Settings";
@@ -354,7 +354,7 @@ class KISKA_missionParams
 			min = 0;
 			max = 100;
 			default = 20;
-		}:
+		};
 		class BLWK_pointsMulti_man_level1 : sliderParamBase
 		{
 			title = "Level 1 Points Multiplier";
@@ -409,7 +409,7 @@ class KISKA_missionParams
 			default = 8;
 		};
 	};
-*/
+
 	class Respawn
 	{
 		title = "Respawn Settings";

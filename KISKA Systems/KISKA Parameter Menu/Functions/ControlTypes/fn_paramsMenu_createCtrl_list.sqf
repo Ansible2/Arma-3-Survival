@@ -40,7 +40,7 @@ private _useValues = false;
 private _populationScript = getText(_paramConfig >> "populationScript");
 
 if (_populationScript isNotEqualTo "") then {
-    _listArray = call (compileFinal _populationScript);
+    _popList = call (compileFinal _populationScript);
     if ((_popList select 0) isEqualType []) then {
         _useValues = true;
     };
@@ -115,6 +115,7 @@ if (_useValues) then {
 } else {
     {
         _list_ctrl lbAdd _x;
+        _list_ctrl lbSetTooltip [_forEachIndex,_x];
 
         if (_x isEqualTo _currentValue) then {
             _indexOfCurrent = _forEachIndex;
