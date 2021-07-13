@@ -123,11 +123,7 @@ if (_useValues) then {
         if (_x isEqualTo _defaultValue) then {
             _indexOfDefault = _forEachIndex;
 
-            if (_isComboBox) then {
-                _defaultString = (_x select 0);
-            } else {
-                _defaultString = _x;
-            };
+            _defaultString = _x;
         };
 
     } forEach _listArray;
