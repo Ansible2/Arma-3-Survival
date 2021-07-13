@@ -136,7 +136,7 @@ class CUP_ACR_SF_WDL_faction : CUP_ACR_WDL_faction
 class CUP_BAF_MTP_faction
 {
 	displayName = "CUP - British Armed Forces (Multicam)";
-	
+
 	lightCars[] = {
 		"CUP_B_BAF_Coyote_GMG_D",
 		"CUP_B_BAF_Coyote_L2A1_D",
@@ -343,14 +343,14 @@ class CUP_BAF_WDL_faction : CUP_BAF_MTP_faction
 		"CUP_B_BAF_Spotter_DPM",
 		"CUP_B_BAF_Spotter_L85TWS_DPM",
 		"CUP_B_BAF_Soldier_SquadLeader_DPM",
-		"CUP_B_BAF_Soldier_TeamLeader_DPM"		
+		"CUP_B_BAF_Soldier_TeamLeader_DPM"
 	};
 };
 
 class CUP_GER_DES_faction
 {
 	displayName = "CUP - Bundeswehr (Desert)";
-	
+
 	lightCars[] = {
 		"CUP_B_LR_Special_GMG_GB_D",
 		"CUP_B_LR_Special_M2_GB_D",
@@ -405,7 +405,7 @@ class CUP_GER_DES_faction
 class CUP_GER_WDL_faction : CUP_GER_DES_faction
 {
 	displayName = "CUP - Bundeswehr (Woodland)";
-	
+
 	lightCars[] = {
 		"CUP_B_LR_Special_GMG_GB_W",
 		"CUP_B_LR_Special_M2_GB_W",
@@ -497,14 +497,14 @@ class CUP_GER_KSK_WDL_faction : CUP_GER_WDL_faction
 		"CUP_B_GER_Fleck_Soldier",
 		"CUP_B_GER_Fleck_Soldier_Scout",
 		"CUP_B_GER_Fleck_Soldier_Sniper",
-		"CUP_B_GER_Fleck_Soldier_TL"	
+		"CUP_B_GER_Fleck_Soldier_TL"
 	};
 };
 
 class CUP_CDF_DES_faction
 {
 	displayName = "CUP - Chernarus Defense Forces (Desert)";
-	
+
 	lightCars[] = {
 		"CUP_B_UAZ_AGS30_CDF",
 		"CUP_B_UAZ_MG_CDF"
@@ -538,7 +538,7 @@ class CUP_CDF_DES_faction
 		"CUP_I_Mi24_Mk3_ION",
 		"CUP_I_Mi24_Mk4_ION"
 	};
-	
+
 	infantry[] = {
 		"CUP_B_CDF_Soldier_AA_DST",
 		"CUP_B_CDF_Soldier_AAT_DST",
@@ -748,7 +748,7 @@ class CUP_HIL_SF_faction
 
 class CUP_USARMY_base
 {
-	displayName = "CUP - US ARMY Base";
+	displayName = "";
 
 	transportHelicopters[] = {
 		"CUP_B_CH47F_USA",
@@ -768,14 +768,14 @@ class CUP_USARMY_base
 
 class CUP_USARMY_DES_base : CUP_USARMY_base
 {
-	displayName = displayName "CUP - US ARMY Base (Desert)";
+	displayName = displayName "";
 
 	lightCars[] = {
 		"CUP_B_HMMWV_MK19_USA",
 		"CUP_B_HMMWV_M2_USA",
 		"CUP_B_HMMWV_SOV_M2_USA",
 		"CUP_B_HMMWV_SOV_USA",
-		"CUP_B_M1165_GMV_USA"		
+		"CUP_B_M1165_GMV_USA"
 	};
 	heavyCars[] = {
 		"CUP_B_HMMWV_Crows_M2_USA",
@@ -807,7 +807,7 @@ class CUP_USARMY_DES_base : CUP_USARMY_base
 
 class CUP_USARMY_WDL_base : CUP_USARMY_base
 {
-	displayName = displayName "CUP - US ARMY Base (Woodland)";
+	displayName = "";
 
 	lightCars[] = {
 		"CUP_B_M1165_GMV_WDL_USA",
@@ -1009,7 +1009,7 @@ class CUP_USARMY_SF_DES_faction : CUP_USARMY_DES_base
 class CUP_USARMY_SF_WDL_faction : CUP_USARMY_WDL_base
 {
 	displayName = "CUP - US Army Special Forces (Woodland)";
-	
+
 	transportHelicopters[] = {
 		"CUP_B_MH47E_USA",
 		"CUP_B_UH60M_US",
@@ -1102,7 +1102,7 @@ class CUP_USARMY_UCP_WDL_faction : CUP_USARMY_WDL_base
 
 class CUP_USMC_base
 {
-	displayName = "CUP - USMC Base";
+	displayName = "";
 
 	transportHelicopters[] = {
 		"CUP_B_UH1Y_Gunship_Dynamic_USMC",
@@ -1126,7 +1126,7 @@ class CUP_USMC_base
 
 class CUP_USMC_DES_base : CUP_USMC_base
 {
-	displayName = "CUP - USMC Base (Desert)";
+	displayName = "";
 
 	lightCars[] = {
 		"CUP_B_M1165_GMV_DSRT_USMC",
@@ -1157,7 +1157,7 @@ class CUP_USMC_DES_base : CUP_USMC_base
 
 class CUP_USMC_WDL_base : CUP_USMC_base
 {
-	displayName = "CUP - USMC Base (Woodland)";
+	displayName = "";
 
 	lightCars[] = {
 		"CUP_B_HMMWV_M1114_USMC",
@@ -1378,7 +1378,7 @@ class CUP_USMC_MARSOC_WDL_faction : CUP_USMC_WDL_base
 
 class CUP_AFRF_base
 {
-	displayName = "CUP - Armed Forces of the Russian Federation Base";
+	displayName = "";
 
 	lightCars[] = {
 		"CUP_O_UAZ_AGS30_RU",
@@ -1414,7 +1414,7 @@ class CUP_AFRF_base
 
 class CUP_AFRF_WDL_base : CUP_AFRF_base
 {
-	displayName = "CUP - Armed Forces of the Russian Federation Base (WDL)";
+	displayName = "";
 
 	lightArmor[] = {
 		"CUP_O_BMP2_RU",
@@ -1430,7 +1430,7 @@ class CUP_AFRF_WDL_base : CUP_AFRF_base
 
 class CUP_AFRF_DES_base : CUP_AFRF_base
 {
-	displayName = "CUP - Armed Forces of the Russian Federation Base (DES)";
+	displayName = "";
 
 	lightArmor[] = {
 		"CUP_O_BMP2_RU",
@@ -1445,7 +1445,7 @@ class CUP_AFRF_DES_base : CUP_AFRF_base
 
 class CUP_AFRF_SNW_base : CUP_AFRF_base
 {
-	displayName = "CUP - Armed Forces of the Russian Federation Base (SNW)";
+	displayName = "";
 
 	lightArmor[] = {
 		"CUP_O_BTR60_Winter_RU",
@@ -1456,7 +1456,7 @@ class CUP_AFRF_SNW_base : CUP_AFRF_base
 
 class CUP_AFRF_ARID_base : CUP_AFRF_base
 {
-	displayName = "CUP - Armed Forces of the Russian Federation Base (ARID)";
+	displayName = "";
 
 	lightArmor[] = {
 		"CUP_O_BTR60_RU",
@@ -1944,12 +1944,12 @@ class CUP_CHDKZ_faction
 		"CUP_O_INS_Woodlander2",
 		"CUP_O_INS_Worker2",
 		"CUP_O_INS_Villager4"
-	};	
+	};
 };
 
 class CUP_SLA_base
 {
-	displayName = "CUP - Sahrani Liberation Army Base";
+	displayName = "";
 
 	lightCars[] = {
 		"CUP_O_UAZ_AGS30_SLA",
@@ -2147,7 +2147,7 @@ class CUP_TKA_faction
 		"CUP_B_AH64_DL_USA",
 		"CUP_B_AH64D_DL_USA"
 	};
-	
+
 	infantry[] = {
 		"CUP_O_TK_Soldier_SL",
 		"CUP_O_TK_Soldier_AA",
@@ -2239,7 +2239,7 @@ class CUP_TKM_faction
 		"CUP_O_TK_INS_Soldier_AT",
 		"CUP_O_TK_INS_Sniper",
 		"CUP_O_TK_INS_Soldier_TL"
-	};	
+	};
 };
 
 class CUP_PMC_faction
@@ -2283,7 +2283,7 @@ class CUP_PMC_faction
 		"CUP_I_Mi24_Mk3_ION",
 		"CUP_I_Mi24_Mk4_ION"
 	};
-	
+
 	infantry[] = {
 		"CUP_I_PMC_Soldier_TL",
 		"CUP_I_PMC_Bodyguard_AA12",
@@ -2304,7 +2304,7 @@ class CUP_PMC_faction
 		"CUP_I_PMC_Sniper_KSVK",
 		"CUP_I_PMC_Soldier_AA"
 	};
-};	
+};
 
 class CUP_PMC_ARTIC_faction : CUP_PMC_faction
 {
@@ -2618,7 +2618,7 @@ class CUP_UN_DES_faction
 		"CUP_I_UN_CDF_Soldier_Backpack_DST",
 		"CUP_I_UN_CDF_Soldier_Light_DST",
 		"CUP_I_UN_CDF_Soldier_LAT_DST",
-		"CUP_I_UN_CDF_Soldier_AT_DST"		
+		"CUP_I_UN_CDF_Soldier_AT_DST"
 	};
 };
 
