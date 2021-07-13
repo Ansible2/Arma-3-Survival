@@ -50,7 +50,7 @@ if (isServer) then {
     publicVariable "BLWK_theAIHandlerOwnerID";
 
 
-    BLWK_loot_whiteListMode = ("BLWK_loot_whiteListMode" call BIS_fnc_getParamValue);
+    //BLWK_loot_whiteListMode = ("BLWK_loot_whiteListMode" call BIS_fnc_getParamValue);
 
     /* LOCATION LIST OPTIONS */
     BLWK_locations = nearestlocations [[0,0,0],["nameVillage","nameCity","nameCityCapital","nameMarine","Airport"],worldsize * sqrt 2];
@@ -370,5 +370,5 @@ BLWK_buildableObjectsHash = [missionConfigFile >> "BLWK_buildableItems"] call BL
 
 
 if (isServer) then {
-    localNamespace setVariable ["BLWK_serverGlobalsInitialized",true,true];
+    missionNamespace setVariable ["BLWK_serverGlobalsInitialized",true,true];
 };

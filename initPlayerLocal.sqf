@@ -5,7 +5,7 @@ waitUntil {
 };
 
 waitUntil {
-	if (localNamespace getVariable ["BLWK_serverGlobalsInitialized",false]) exitWith {true};
+	if (missionNamespace getVariable ["BLWK_serverGlobalsInitialized",false]) exitWith {true};
     sleep 0.1;
 	false
 };
