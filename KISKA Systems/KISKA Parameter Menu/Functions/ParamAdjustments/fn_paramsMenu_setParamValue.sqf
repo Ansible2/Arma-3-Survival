@@ -33,6 +33,10 @@ private _paramConfig = _parentControlGroup getVariable CTRL_GRP_PARAM_CONFIG_VAR
 private _currentPublicValue = [_paramConfig,false] call KISKA_fnc_paramsMenu_getCurrentParamValue;
 private _paramTitle_ctrl = _parentControlGroup controlsGroupCtrl PARAM_MENU_ROW_TITLE_IDC;
 
+if ([_paramConfig >> "isBool"] call BIS_fnc_getCfgDataBool) then {
+    _value = [false,true] select _value;
+};
+
 if (_value isNotEqualTo _currentPublicValue) then {
     [_paramConfig,_value] call KISKA_fnc_paramsMenu_addToChangedParamHash;
     _paramTitle_ctrl ctrlSetTextColor COLOR_YELLOW;
