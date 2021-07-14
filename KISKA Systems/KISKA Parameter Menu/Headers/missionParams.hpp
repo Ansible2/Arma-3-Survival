@@ -116,6 +116,7 @@ class KISKA_missionParams
 				"2200",
 				"2300"
 			};
+			requiresRestart = 1;
 			default = 6;
 		};
 		class BLWK_daySpeedMultiplier : sliderParamBase
@@ -196,7 +197,7 @@ class KISKA_missionParams
 			max = 200;
 			default = 800;
 		};
-		class BLWK_loot_whiteListMode
+		class BLWK_loot_whiteListMode : listParamBase
 		{
 			title = "Loot Whitelist Mode";
 			tooltip = "Pick a configured loot list to determine what weapons can spawn on the ground.";
@@ -209,7 +210,7 @@ class KISKA_missionParams
 	{
 		title = "Faction Selection";
 
-		class BLWK_friendlyFaction : listParamBase
+		class BLWK_friendlyFaction : comboParamBase
 		{
 			title = "Friendly Faction";
 			populationScript = "call BLWK_fnc_KISKAParams_populateFactionList";
@@ -561,7 +562,7 @@ class KISKA_missionParams
 	{
 		title = "Mission Start Settings";
 
-		class BLWK_startingWaveNumber : sliderParamBase
+		class BLWK_currentWaveNumber : sliderParamBase
 		{
 			title = "Start from wave number (should be less then max wave)";
 			tooltip = "Ensure that this is less then the max wave number";
