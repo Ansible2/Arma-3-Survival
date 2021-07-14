@@ -30,8 +30,8 @@ private _player = player;
 [_player] call BLWK_fnc_adjustPlayerTraits;
 
 //setup Kill Points
-private _startingKillPoints = ("BLWK_startingKillPoints" call BIS_fnc_getParamValue);
-missionNamespace setVariable ["BLWK_playerKillPoints",_startingKillPoints];
+missionNamespace setVariable ["BLWK_playerKillPoints",BLWK_startingKillPoints];
+
 
 // adds starter items if selected (map, NVGs, pistol, etc.)
 waitUntil {
