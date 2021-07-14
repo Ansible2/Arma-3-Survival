@@ -1,13 +1,12 @@
 #include "..\..\Headers\params menu common defines.hpp"
 
-// requires restart indication
 // indication bar?
-
 if (!canSuspend) exitWith {
     [] spawn KISKA_fnc_paramsMenu_open;
 };
 
 disableSerialization;
+
 /*
 openMap true;
 
@@ -17,16 +16,14 @@ sleep 1;
 ((findDisplay 12) displayCtrl 51) ctrlEnable false;
 */
 
-private _parentDisplay = -1;
-if (localNamespace getVariable ["KISKA_missionParams_preloadFinished",false]) then {
-    _parentDisplay = 46;
-} else {
-    _parentDisplay = call KISKA_fnc_paramsMenu_getBriefingIDD;;
+private _parentDisplayIDD = 46;
+if !(localNamespace getVariable ["KISKA_missionParams_preloadFinished",false]) then {
+    _parentDisplayIDD = call KISKA_fnc_paramsMenu_getBriefingIDD;;
 };
 
-waitUntil {!isNull (findDisplay _parentDisplay)};
+waitUntil {!isNull (findDisplay _parentDisplayIDD)};
 
-private _display = (findDisplay _parentDisplay) createDisplay "paramsMenu";
+private _display = (findDisplay _parentDisplayIDD) createDisplay "paramsMenu";
 localNamespace setVariable [PARAMS_MENU_DISPLAY_VAR_STR,_display];
 _display displayAddEventHandler ["Unload",{
     localNamespace setVariable [PARAMS_MENU_DISPLAY_VAR_STR,nil];
@@ -48,7 +45,20 @@ call KISKA_fnc_paramsMenu_cacheConfig;
 
 (_display displayCtrl PARAMS_MENU_COMMIT_BUTTON_IDC) ctrlAddEventHandler ["ButtonClick",{
     call KISKA_fnc_paramsMenu_commitChanges;
-    call KISKA_fnc_paramsMenu_refresh;
+
+    [] spawn {
+        disableUserInput true;
+
+        uisleep 5;
+
+        waitUntil {
+            disableUserInput false;
+            !userInputDisabled;
+        };
+
+        call KISKA_fnc_paramsMenu_refresh;
+    };
+    
 }];
 
 (_display displayCtrl PARAMS_MENU_CLOSE_BUTTON_IDC) ctrlAddEventHandler ["ButtonClick",{
