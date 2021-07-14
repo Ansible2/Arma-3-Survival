@@ -125,8 +125,10 @@ _loadButton_ctrl ctrlAddEventHandler ["ButtonClick",{
 
 private _deleteButton_ctrl = _paramsMenuDisplay displayCtrl PARAMS_MENU_DELETE_BUTTON_IDC;
 _deleteButton_ctrl ctrlAddEventHandler ["ButtonClick",{
-    private _loadCombo_ctrl = localNamespace getVariable ["KISKA_paramsMenu_loadCombo_ctrl",controlNull];
-    private _profileName = _loadCombo_ctrl lbText (lbCurSel _loadCombo_ctrl);
+    private _paramsMenuDisplay = localNamespace getVariable [PARAMS_MENU_DISPLAY_VAR_STR,displayNull];
+    private _loadCombo_ctrl = _paramsMenuDisplay getVariable ["KISKA_paramsMenu_loadCombo_ctrl",controlNull];
+    private _selectedIndex = lbCurSel _loadCombo_ctrl;
+    private _profileName = _loadCombo_ctrl lbText _selectedIndex;
 
     if (_profileName isNotEqualTo "") then {
         private _savedProfilesHash = profilenamespace getVariable [PARAMS_PROFILES_VAR_STR,createHashMap];
