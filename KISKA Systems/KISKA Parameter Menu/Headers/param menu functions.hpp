@@ -53,6 +53,8 @@ class ParamsMenu_misc
     {};
     class paramsMenu_paramChanged
     {};
+    class paramsMenu_paramChangedRemote
+    {};
     class paramsMenu_refresh
     {};
     class paramsMenu_serializeConfig
