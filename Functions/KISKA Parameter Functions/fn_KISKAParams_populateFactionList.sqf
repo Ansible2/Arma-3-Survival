@@ -23,18 +23,20 @@ scriptName "BLWK_fnc_KISKAParams_populateFactionList";
 private _listOfNames = localNamespace getVariable ["BLWK_factionNames",[]];
 if (_listOfNames isEqualTo []) then {
 
-    private _factionConfigs = "true" configClasses (missionConfigFile >> "BLWK_factions");
-    localNamespace setVariable ["BLWK_factionConfigs",_factionConfigs];
+    private _factionConfigsUnsorted = "true" configClasses (missionConfigFile >> "BLWK_factions");
 
     private _name = "";
-    _factionConfigs apply {
+    private _factionConfigs = [];
+    _factionConfigsUnsorted apply {
     	_name = getText(_x >> "displayName");
 
         if (_name isNotEqualTo "") then {
+            _factionConfigs pushBack _x;
             _listOfNames pushBack _name;
         };
     };
 
+    localNamespace setVariable ["BLWK_factionConfigs",_factionConfigs];
     localNamespace setVariable ["BLWK_factionNames",_listOfNames];
 
 };

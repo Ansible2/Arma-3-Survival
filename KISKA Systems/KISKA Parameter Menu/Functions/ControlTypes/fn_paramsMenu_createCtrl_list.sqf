@@ -45,7 +45,7 @@ if (_populationScript isNotEqualTo "") then {
         _useValues = true;
     };
 
-    _listArray = _popList;
+    _listArray = +_popList;
 
 } else {
     private _stringsList = getArray(_paramConfig >> "texts");
@@ -59,7 +59,7 @@ if (_populationScript isNotEqualTo "") then {
         } forEach _stringsList;
 
     } else {
-        _listArray = _stringsList;
+        _listArray = +_stringsList;
 
     };
 };
