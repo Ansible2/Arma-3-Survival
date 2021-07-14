@@ -27,19 +27,24 @@ scriptName "KISKA_fnc_paramsMenu_commitChanges";
 
 if !(call KISKA_fnc_isAdminOrHost) exitWith {};
 
-private "_serialConfig";
-private _remoteInfo = [
-    ["KISKA_fnc_paramsMenu_paramChangedRemote", 2],
-    ["KISKA_fnc_paramsMenu_paramChanged", 0, [_serialConfig] call KISKA_fnc_paramsMenu_getJIPQueueId]
-] select isServer;
 
+private _preloadFinished = localNamespace getVariable ["KISKA_missionParams_preloadFinished",false];
+if (isServer) then {
+    {
+        if (!_preloadFinished OR {!([_x >> "requiresRestart"] call BIS_fnc_getCfgDataBool)}) then {
+            _serialConfig = [_x] call KISKA_fnc_paramsMenu_serializeConfig;
+            [_serialConfig,_y] remoteExecCall ["KISKA_fnc_paramsMenu_paramChanged", 0, [_serialConfig] call KISKA_fnc_paramsMenu_getJIPQueueId];
+        };
+    } forEach (GET_STAGED_CHANGE_PARAMS_HASH);
 
-{
-    if !([_x >> "requiresRestart"] call BIS_fnc_getCfgDataBool) then {
-        _serialConfig = [_x] call KISKA_fnc_paramsMenu_serializeConfig;
-        [_serialConfig,_y] remoteExecCall _remoteInfo;
-    };
-} forEach (GET_STAGED_CHANGE_PARAMS_HASH);
+} else {
+    {
+        if (!_preloadFinished OR {!([_x >> "requiresRestart"] call BIS_fnc_getCfgDataBool)}) then {
+            _serialConfig = [_x] call KISKA_fnc_paramsMenu_serializeConfig;
+            [_serialConfig,_y] remoteExecCall ["KISKA_fnc_paramsMenu_paramChangedRemote", 2];
+        };
+    } forEach (GET_STAGED_CHANGE_PARAMS_HASH);
+};
 
 localNamespace setVariable [STAGED_CHANGE_VAR_HASH_VAR_STR,createHashMap];
 
