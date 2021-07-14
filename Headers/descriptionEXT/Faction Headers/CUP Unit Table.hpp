@@ -768,7 +768,7 @@ class CUP_USARMY_base
 
 class CUP_USARMY_DES_base : CUP_USARMY_base
 {
-	displayName = displayName "";
+	displayName = "";
 
 	lightCars[] = {
 		"CUP_B_HMMWV_MK19_USA",
