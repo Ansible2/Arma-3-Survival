@@ -97,8 +97,10 @@ private _defaultString = "";
 if (_useValues) then {
     private _lbValue = -1;
 
+    private _currentString = "";
     {
-        _list_ctrl lbAdd (_x select 0);
+        _currentString = _x select 0;
+        _list_ctrl lbAdd _currentString;
         _lbValue = _x select 1;
         _list_ctrl lbSetTooltip [_forEachIndex, str _lbValue];
         _list_ctrl lbSetValue [_forEachIndex, _lbValue];
@@ -108,7 +110,7 @@ if (_useValues) then {
         };
         if (_lbValue isEqualTo _defaultValue) then {
             _indexOfDefault = _forEachIndex;
-            _defaultString = (_x select 0);
+            _defaultString = _currentString;
         };
     } forEach _listArray;
 
@@ -122,7 +124,6 @@ if (_useValues) then {
         };
         if (_x isEqualTo _defaultValue) then {
             _indexOfDefault = _forEachIndex;
-
             _defaultString = _x;
         };
 
