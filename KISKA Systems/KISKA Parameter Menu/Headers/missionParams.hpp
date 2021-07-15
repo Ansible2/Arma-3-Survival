@@ -425,7 +425,7 @@ class KISKA_missionParams
 		class BLWK_saveRespawnLoadout : yes_no_paramBase
 		{
 			title = "Restore Player Loadout After Respawn";
-			default = DEFAULT_TRUE;
+			default = DEFAULT_FALSE;
 		};
 	};
 
@@ -454,7 +454,7 @@ class KISKA_missionParams
 		class BLWK_ReviveDuration : sliderParamBase
 		{
 			title = $STR_A3_ReviveDuration;
-
+			tooltip = "How long one needs to hold the revive action in order to revive another player";
 			min = 1;
 			max = 30;
 			default = 6;
@@ -514,7 +514,7 @@ class KISKA_missionParams
 			initScript = "(_this select 0) call bis_fnc_paramReviveRequiredItems";
 		};
 
-		class BLWK_UnconsciousStateMode
+		class BLWK_UnconsciousStateMode : comboParamBase
 		{
 			title = $STR_A3_IncapacitationMode;
 			tooltip = "In Basic mode players (should) always be incapcitated by lethal damage. Advanced mode tries to calculate player incapacitation differently. Things such as higher caliber bullets or hits to vital areas will be more likely to instantly kill players immediately instead of incapacitating them. Realistic is the same as advanced but players are still yet more likely to instantly die.";
@@ -624,7 +624,7 @@ class KISKA_missionParams
 		};
 		class BLWK_playersStartWith_mineDetector : yes_no_paramBase
 		{
-			title = "Players Start With A Compass";
+			title = "Players Start With A Mine Detector";
 			tooltip = "Players will be given a mine detector intially and after they respawn";
 			default = DEFAULT_FALSE;
 		};
@@ -739,7 +739,7 @@ class KISKA_missionParams
 		class BLWK_randomizeEnemyWeapons : yes_no_paramBase
 		{
 			title = "Randomize Hostile Weapons";
-			default = DEFAULT_TRUE;
+			default = DEFAULT_FALSE;
 		};
 		class BLWK_maxPistolOnlyWaves : sliderParamBase
 		{
@@ -769,11 +769,11 @@ class KISKA_missionParams
 		};
 		class BLWK_roundsBeforeBodyDeletion : sliderParamBase
 		{
-			title = "Dead bodies remain for how many waves (dead bodies impact perfomance)";
+			title = "Enemy Body Lifetime (waves)";
 			tooltip = "The more dead bodies present will impact perfomance. The vanilla garbage collector is on for extreme cases, but this ensures some degree of cleanup. A value of 0 will delete bodies after every wave.";
 			min = 0;
 			max = 2;
-			default = 0;
+			default = 2;
 		};
 		class BLWK_minRoundsSinceVehicleSpawned : sliderParamBase
 		{
