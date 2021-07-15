@@ -52,7 +52,7 @@ call KISKA_fnc_paramsMenu_cacheConfig;
         disableUserInput true;
         for "_i" from 1 to 5 do {
             ["Please wait..."] call KISKA_fnc_paramsMenu_logMessage;
-            sleep 1;
+            uisleep 1; // if in briefing menu, regular sleep is frozen
         };
 
         waitUntil {
