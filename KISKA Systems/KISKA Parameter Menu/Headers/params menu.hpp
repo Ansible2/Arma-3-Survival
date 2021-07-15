@@ -1,7 +1,6 @@
 #include "params menu common defines.hpp"
 
 /*
-// already imported in Headers\descriptionEXT\GUI\imports.hpp
 import RscText;
 import RscButtonMenu;
 import RscButton;
@@ -33,7 +32,7 @@ class paramsMenu
         	x = POS_X(-22);
         	y = POS_Y(-12);
         	w = POS_W(44);
-        	h = POS_H(25);
+        	h = POS_H(28.5);
         	colorBackground[] = GREY_COLOR(0.15,0.5);
         };
         class paramsMenu_mainControlsGroupBackground : RscText
@@ -218,6 +217,15 @@ class paramsMenu
         	w = POS_W(9);
         	h = POS_H(1);
             tooltip = "This will brodcast your changes over the network. Be aware that depending on the amount of changes, it can significantly and temporarily impact perfromance";
+        };
+        class paramsMenu_messageBox : RscListbox
+        {
+        	idc = PARAMS_MENU_MESSAGE_BOX_IDC;
+        	x = POS_X(-21.5);
+        	y = POS_Y(13);
+        	w = POS_W(43);
+        	h = POS_H(3);
+        	colorBackground[] = GREY_COLOR(0.35,0.5);
         };
     };
 };

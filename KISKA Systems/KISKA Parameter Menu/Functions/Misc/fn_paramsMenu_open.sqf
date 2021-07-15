@@ -30,6 +30,8 @@ _display displayAddEventHandler ["Unload",{
 }];
 
 
+_display setVariable [MESSAGE_BOX_CTRL_VAR_STR,_display displayCtrl PARAMS_MENU_MESSAGE_BOX_IDC];
+
 private _controlsGroup = _display displayCtrl PARAMS_MENU_MAIN_CONTROL_GROUP_IDC;
 _display setVariable [PARAMS_MENU_MAIN_CONTROL_GROUP_VAR_STR,_controlsGroup];
 
@@ -48,8 +50,10 @@ call KISKA_fnc_paramsMenu_cacheConfig;
 
     [] spawn {
         disableUserInput true;
-
-        uisleep 5;
+        for "_i" from 1 to 5 do {
+            ["Please wait..."] call KISKA_fnc_paramsMenu_logMessage;
+            sleep 1;
+        };
 
         waitUntil {
             disableUserInput false;
@@ -57,8 +61,9 @@ call KISKA_fnc_paramsMenu_cacheConfig;
         };
 
         call KISKA_fnc_paramsMenu_refresh;
+        ["Transmission Complete"] call KISKA_fnc_paramsMenu_logMessage;
     };
-    
+
 }];
 
 (_display displayCtrl PARAMS_MENU_CLOSE_BUTTON_IDC) ctrlAddEventHandler ["ButtonClick",{

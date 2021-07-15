@@ -57,14 +57,21 @@ _importButton_ctrl ctrlAddEventHandler ["ButtonClick",{
                     };
 
                 } else {
-                    [["Could not find a param config that matched variable ",_x],true] call KISKA_fnc_log;
+                    private _message = ["Could not find a param config that matched variable ",_x] joinString "";
+                    [_message] call KISKA_fnc_paramsMenu_logMessage;
+                    [[_message,_x],true] call KISKA_fnc_log;
 
                 };
 
             } forEach _arrayHash;
 
             call KISKA_fnc_paramsMenu_refresh;
+            ["Import Finished!"] call KISKA_fnc_paramsMenu_logMessage;
+        } else {
+            ["Please enter import text..."] call KISKA_fnc_paramsMenu_logMessage;
         };
+    } else {
+        ["You are NOT an admin or host and can't import settings"] call KISKA_fnc_paramsMenu_logMessage;
     };
 
 }];
@@ -80,7 +87,7 @@ _exportButton_ctrl ctrlAddEventHandler ["ButtonClick",{
     _portEdit_ctrl ctrlSetText _stringExport;
 
     copyToClipboard _stringExport;
-
+    ["Export string copied to clipboard..."] call KISKA_fnc_paramsMenu_logMessage;
 }];
 
 

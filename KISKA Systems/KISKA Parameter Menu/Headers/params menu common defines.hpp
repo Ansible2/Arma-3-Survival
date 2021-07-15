@@ -34,6 +34,8 @@
 #define PARAMS_MENU_COMMIT_BUTTON_IDC 5037
 #define PARAMS_MENU_DELETE_BUTTON_IDC 5038
 
+#define PARAMS_MENU_MESSAGE_BOX_IDC 5039
+
 
 #define PARAMS_MENU_CTRLGRP(CLASS) paramsMenu_controlGroup_##CLASS
 
@@ -100,6 +102,8 @@
 
 #define SLIDER_CTRL_INCRIMENT_VAR_STR "KISKA_paramsMenu_sliderIncriment"
 
+#define MESSAGE_BOX_CTRL_VAR_STR "KISKA_paramsMenu_messageBoxCtrl"
+#define MESSAGE_BOX_CURRENT_ENTRIES_VAR_STR "KISKA_paramsMenu_messageBox_entries"
 
 #define LIST_ARRAY_VAR_STR "KISKA_paramsMenu_listArray"
 #define LIST_USE_VALUES_VAR_STR "KISKA_paramsMenu_listUsesValues"

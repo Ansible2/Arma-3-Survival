@@ -27,7 +27,7 @@ scriptName "KISKA_fnc_paramsMenu_commitChanges";
 
 if !(call KISKA_fnc_isAdminOrHost) exitWith {};
 
-
+["Sending Changes..."] call KISKA_fnc_paramsMenu_logMessage;
 private _preloadFinished = localNamespace getVariable ["KISKA_missionParams_preloadFinished",false];
 if (isServer) then {
     {
@@ -47,6 +47,6 @@ if (isServer) then {
 };
 
 localNamespace setVariable [STAGED_CHANGE_VAR_HASH_VAR_STR,createHashMap];
-
+["Changes sent, wait for complete notice..."] call KISKA_fnc_paramsMenu_logMessage;
 
 nil

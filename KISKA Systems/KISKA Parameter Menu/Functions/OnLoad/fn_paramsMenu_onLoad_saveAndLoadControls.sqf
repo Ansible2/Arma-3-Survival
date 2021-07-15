@@ -45,9 +45,9 @@ _saveButton_ctrl ctrlAddEventHandler ["ButtonClick",{
 
         _savedProfilesHash set [_profileName,_savedMissionParamsHash];
         saveProfileNamespace;
-
+        ["Saved profile: " + _profileName] call KISKA_fnc_paramsMenu_logMessage;
     } else {
-        hint "No valid profile selected";
+        ["No valid profile was selected!"] call KISKA_fnc_paramsMenu_logMessage;
 
     };
 
@@ -69,9 +69,9 @@ _saveAsButton_ctrl ctrlAddEventHandler ["ButtonClick",{
         saveProfileNamespace;
 
         [_paramsMenuDisplay displayCtrl PARAMS_MENU_LOAD_COMBO_IDC] spawn KISKA_fnc_paramsMenu_updateLoadCombo;
-
+        ["Saved profile: " + _profileName] call KISKA_fnc_paramsMenu_logMessage;
     } else {
-        hint "You must enter a profile name";
+        ["You must enter a profile name"] call KISKA_fnc_paramsMenu_logMessage;
 
     };
 }];
@@ -108,16 +108,19 @@ _loadButton_ctrl ctrlAddEventHandler ["ButtonClick",{
                 };
 
             } else {
-                [["Could not find a param config that matched variable ",_x],true] call KISKA_fnc_log;
+                private _message = ["Could not find a param config that matched variable ",_x] joinString "";
+                [_message] call KISKA_fnc_paramsMenu_logMessage;
+                [[_message,_x],true] call KISKA_fnc_log;
+
             };
 
         } forEach _profileSettingsHash;
 
 
         call KISKA_fnc_paramsMenu_refresh;
-
+        ["Finished Load of: " + _profileName + "!"] call KISKA_fnc_paramsMenu_logMessage;
     } else {
-        hint "No valid profile selected";
+        ["No Valid Profile Selected!"] call KISKA_fnc_paramsMenu_logMessage;
 
     };
 }];
@@ -136,6 +139,9 @@ _deleteButton_ctrl ctrlAddEventHandler ["ButtonClick",{
         saveProfileNamespace;
 
         [_loadCombo_ctrl] spawn KISKA_fnc_paramsMenu_updateLoadCombo;
+        ["Saved profile: " + _profileName] call KISKA_fnc_paramsMenu_logMessage;
+    } else {
+        ["No valid profile selected for deletetion..."] call KISKA_fnc_paramsMenu_logMessage;
     };
 }];
 

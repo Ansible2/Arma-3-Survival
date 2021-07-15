@@ -33,7 +33,12 @@ if (isMultiplayer) then {
     };
 
 } else {
-    _idd = 37;
+    if (is3DEN) then {
+        _idd = 313;
+    } else {
+        _idd = 37;
+    };
+
 
 };
 

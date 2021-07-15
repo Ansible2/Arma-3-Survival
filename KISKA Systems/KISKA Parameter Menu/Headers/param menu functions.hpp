@@ -49,6 +49,8 @@ class ParamsMenu_misc
     {};
     class paramsMenu_loadCategory
     {};
+    class paramsMenu_logMessage
+    {};
     class paramsMenu_open
     {};
     class paramsMenu_paramChanged
