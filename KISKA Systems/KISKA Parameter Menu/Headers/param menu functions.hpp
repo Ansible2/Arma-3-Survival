@@ -45,6 +45,8 @@ class ParamsMenu_misc
     {};
     class paramsMenu_getParamVarName
     {};
+    class paramsMenu_getParamNamespace
+    {};
     class paramsMenu_hashParams
     {};
     class paramsMenu_loadCategory
@@ -72,8 +74,6 @@ class ParamsMenu_misc
     {
         //postInit = 1;
     };
-    class paramsMenu_notifyChange
-    {};
 
 };
 
