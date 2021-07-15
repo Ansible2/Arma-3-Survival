@@ -66,10 +66,23 @@ _paramControlGroup setVariable [CTRL_GRP_PARAM_VAR_STR,_paramVarName];
 ---------------------------------------------------------------------------- */
 private _paramTitle_ctrl = _paramControlGroup controlsGroupCtrl PARAM_MENU_ROW_TITLE_IDC;
 _paramTitle_ctrl ctrlSetText (getText(_paramConfig >> "title"));
+
+private _joinStringArray = [];
+private _configToolTipText = getText(_paramConfig >> "tooltip");
+if (_configToolTipText isNotEqualTo "") then {
+    _joinStringArray pushBack _configToolTipText;
+};
+
 // OPTIMIZE check if restart bool should be cached and also use when broadcasting to see if it is worth broadcasting a change that won't even take affect
 private _requiresRestart = [_paramConfig >> "requiresRestart"] call BIS_fnc_getCfgDataBool;
-private _restartText = ["No","Yes"] select _requiresRestart;
-private _paramTooltTip = [getText(_paramConfig >> "tooltip"),"Requires Restart: "+ _restartText,_paramVarName] joinString "\n";
+_joinStringArray pushBack ("Requires Restart: " + (["No","Yes"] select _requiresRestart));
+
+_joinStringArray pushBack ("Variable Name: " + _paramVarName);
+
+private _namespaceNumber = getNumber(_paramConfig >> "namespace");
+_joinStringArray pushBack ("Saved To: " + (["missionNamespace","localNamespace"] select _namespaceNumber));
+
+private _paramTooltTip = _joinStringArray joinString "\n";
 _paramTitle_ctrl ctrlSetTooltip _paramTooltTip;
 
 if (_paramConfig in (GET_STAGED_CHANGE_PARAMS_HASH)) then {

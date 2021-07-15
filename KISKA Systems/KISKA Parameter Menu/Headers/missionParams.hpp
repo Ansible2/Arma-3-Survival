@@ -10,6 +10,7 @@ class paramBase
 	varName = ""; // a global variable name to tie to the parameter, if not defined, the configName will be used
 	onChanged = ""; // a global event that fires each time a setting change is committed
 	requiresRestart = 0; // if the changed parameter requires a mission restart when changed after the briefing screen; 0 = false, 1 = true.
+	namespace = 0; // 0 to put variables inside the missionNamespace and 1 to put inside of the localNamespace
 };
 class sliderParamBase : paramBase
 {
@@ -25,7 +26,7 @@ class comboParamBase : paramBase
 	values[] = {}; // opional value array
 	texts[] = {}; // optional strings array (what shows up in combo)
 	populationScript = ""; // an optional script that can populate the list dynamically, must return either an array of [[strings],[numbers]] or and array of strings
-	sortList = 0; // 0 for false, 1 for true. Sorts the list alphabetically.
+	sortList = 0; // 0 for false, 1 for true. Sorts the list alphabetically using sort command.
 };
 class editParamBase : paramBase
 {
@@ -55,7 +56,7 @@ class KISKA_missionParams
 {
 	class AI
 	{
-		title = "AI Settings";
+		title = "Enemy AI Settings";
 
 		class BLWK_doDetectCollision : yes_no_paramBase
 		{
@@ -82,9 +83,9 @@ class KISKA_missionParams
 		};
 	};
 
-	class Ambient
+	class WeatherAndTime
 	{
-		title = "Ambient Settings";
+		title = "Weather And Time";
 
 		class BLWK_timeOfDay : comboParamBase
 		{
@@ -122,10 +123,12 @@ class KISKA_missionParams
 		class BLWK_daySpeedMultiplier : sliderParamBase
 		{
 			title = "Day Speed Multiplier";
-			tooltip = "(The higher the multiplier, the more impact it has on performance) Quick Values: x1 (24h cycle), x6 (4h cycle), x12 (2h cycle), x24 (1h cycle), x48 (30m cycle), x72 (20m cycle)";
+			tooltip = "(The higher the multiplier, the more impact it has on performance) Quick Values: x1 (24h cycle), x6 (4h cycle), x8 (3h cycle), x12 (2h cycle), x24 (1h cycle), x48 (30m cycle), x72 (20m cycle)";
 			min = 1;
 			max = 72;
-			default = 12;
+			onChanged = "if (isServer) then {setTimeMultiplier (_this select 0)}";
+			initScript = "if (isServer) then {setTimeMultiplier (_this select 0)}";
+			default = 8;
 		};
 		class BLWK_overcast : sliderParamBase
 		{
@@ -134,18 +137,20 @@ class KISKA_missionParams
 			min = 0;
 			max = 100;
 			default = 25;
+			onChanged = "[_this select 0] spawn BIS_fnc_paramWeather";
 			initScript = "[_this select 0] spawn BIS_fnc_paramWeather";
 		};
 	};
 
 	class Area
 	{
-		title = "Area Settings";
+		title = "Mission Area";
 
 		class BLWK_customPlayLocation : yes_no_paramBase
 		{
-			title = "Would you like to select a custom location to play?";
+			title = "Select a custom location to play?";
 			tooltip = "After parameters are initialized, you will be given the chance to select an area";
+			requiresRestart = 1;
 			default = DEFAULT_FALSE;
 		};
 		class BLWK_playAreaRadius : sliderParamBase
@@ -165,6 +170,28 @@ class KISKA_missionParams
 			max = 30;
 			default = 15;
 		};
+
+	};
+
+	class Loot
+	{
+		title = "Loot";
+
+		class BLWK_maxLootSpawns : sliderParamBase
+		{
+			title = "Max Number Of Loot Spawns";
+			tooltip = "There will not be more loot drops in the area then what is set. Higher values have a large impact on performance.";
+			min = 0;
+			max = 200;
+			default = 800;
+		};
+		class BLWK_loot_whiteListMode : listParamBase
+		{
+			title = "Loot Whitelist Mode";
+			tooltip = "Pick a configured loot list to determine what weapons can spawn on the ground.";
+			populationScript = "call BLWK_fnc_KISKAParams_populateLootWhitelists";
+			default = "ALL";
+		};
 		class BLWK_loot_cityDistribution : comboParamBase
 		{
 			title = "Loot City Distribution";
@@ -180,29 +207,6 @@ class KISKA_missionParams
 			values[] = {1, 2, 3, 4};
 			texts[] = {"Every location", "Every second location", "Every third location", "Every fourth location"};
 			default = 2;
-		};
-		class BLWK_buildingsNearTheCrateAreIndestructable_radius : sliderParamBase
-		{
-			title = "Radius of Indestructable Terrain Buildings Near The Crate";
-			tooltip = "Buildings that are a part of the map will be indestructable when within this distance (meters) to the Main Crate";
-			min = 0;
-			max = 30;
-			default = 20;
-		};
-		class BLWK_maxLootSpawns : sliderParamBase
-		{
-			title = "Max Number Of Loot Spawns";
-			tooltip = "There will not be more loot drops in the area then what is set. Higher values have a large impact on performance.";
-			min = 0;
-			max = 200;
-			default = 800;
-		};
-		class BLWK_loot_whiteListMode : listParamBase
-		{
-			title = "Loot Whitelist Mode";
-			tooltip = "Pick a configured loot list to determine what weapons can spawn on the ground.";
-			populationScript = "call BLWK_fnc_KISKAParams_populateLootWhitelists";
-			default = "ALL";
 		};
 	};
 
@@ -249,11 +253,20 @@ class KISKA_missionParams
 	{
 		title = "Misc Settings";
 
-		class BLWK_multipleLootReveals : on_off_paramBase
+		class BLWK_multipleLootReveals : yes_no_paramBase
 		{
-			title = "Multiple Loot Reveal Actions";
+			title = "Use Multiple Loot Reveal Actions";
 			tooltip = "To reduce map clutter, there will be multiple actions on the loot reveal box to choose what kind of loot should be highlighted on the map. If OFF, all map loot will be shown when picking up the box.";
 			default = DEFAULT_TRUE;
+		};
+		class BLWK_buildingsNearTheCrateAreIndestructable_radius : sliderParamBase
+		{
+			title = "Radius of Indestructable Terrain Buildings Near The Crate";
+			tooltip = "Buildings that are a part of the map will be indestructable when within this distance (meters) of the Main Crate";
+			min = 0;
+			max = 30;
+			requiresRestart = 1;
+			default = 20;
 		};
 		class BLWK_aircraftGunnerLifetime : sliderParamBase
 		{
@@ -262,12 +275,6 @@ class KISKA_missionParams
 			min = 1;
 			max = 5;
 			default = 2;
-		};
-		class BLWK_magRepackEnabled : yes_no_paramBase
-		{
-			title = "Enable Vanilla MagRepack";
-			tooltip = "Enables players to press (Ctrl + R) to run a mag repack script.";
-			default = DEFAULT_TRUE;
 		};
 		class BLWK_faksToMakeMedkit : sliderParamBase
 		{
@@ -284,6 +291,14 @@ class KISKA_missionParams
 			min = 1;
 			max = 25;
 			default = 3;
+		};
+		class BLWK_roundsBeforeBodyDeletion : sliderParamBase
+		{
+			title = "Enemy Body Lifetime (waves)";
+			tooltip = "The more dead bodies present will impact perfomance. The vanilla garbage collector is on for extreme cases, but this ensures some degree of cleanup. A value of 0 will delete bodies after every wave.";
+			min = 0;
+			max = 2;
+			default = 2;
 		};
 	};
 
@@ -304,7 +319,13 @@ class KISKA_missionParams
 			tooltip = "This is NOT ACE Medical compatabile";
 			default = 0;
 		};
-
+		class BLWK_magRepackEnabled : yes_no_paramBase
+		{
+			title = "Enable Vanilla MagRepack";
+			tooltip = "Enables players to press (Ctrl + R) to run a mag repack script.";
+			requiresRestart = 1;
+			default = DEFAULT_TRUE;
+		};
 		class BLWK_staminaEnabled : yes_no_paramBase
 		{
 			title = "Enable stamina";
@@ -320,11 +341,65 @@ class KISKA_missionParams
 			incriment = 0.01;
 			default = 0.15;
 		};
+		class BLWK_playersStartWith_map : yes_no_paramBase
+		{
+			title = "Players Start With Map";
+			tooltip = "Players will be given a map intially and after they respawn";
+			default = DEFAULT_TRUE;
+		};
+		class BLWK_playersStartWith_compass : yes_no_paramBase
+		{
+			title = "Players Start With Compass";
+			tooltip = "Players will be given a compass intially and after they respawn";
+			default = DEFAULT_TRUE;
+		};
+		class BLWK_playersStartWith_radio : yes_no_paramBase
+		{
+			title = "Players Start With A Radio";
+			tooltip = "Players will be given a radio intially and after they respawn. If players do not have a radio, they will not here the auto radio calls for supports. This is ACRE & TFAR compatible (343's & 152's respectively)";
+			default = DEFAULT_TRUE;
+		};
+		class BLWK_playersStartWith_mineDetector : yes_no_paramBase
+		{
+			title = "Players Start With A Mine Detector";
+			tooltip = "Players will be given a mine detector intially and after they respawn";
+			default = DEFAULT_FALSE;
+		};
+		class BLWK_playersStartWith_pistol : yes_no_paramBase
+		{
+			title = "Players Start With A Pistol";
+			tooltip = "Players will be given a pistol intially and after they respawn";
+			default = DEFAULT_FALSE;
+		};
+		class BLWK_defaultPistolClass : editParamBase
+		{
+			title = "Starting Pistol Classname";
+			tooltip = "This is the pistol that players will spawn with. It also affects what the AI use during pistol only waves.";
+			default = "hgun_P07_F";
+		};
+		class BLWK_defaultPistolMagClass : editParamBase
+		{
+			title = "Starting Pistol Magazine Classname";
+			tooltip = "This is the pistol that players will spawn with. It also affects what the AI use during pistol only waves.";
+			default = "16Rnd_9x21_Mag";
+		};
+		class BLWK_playersStartWith_NVGs : yes_no_paramBase
+		{
+			title = "Players Start With NVGs";
+			tooltip = "Players will be given a pair of Night-Vision-Goggles intially and after they respawn";
+			default = DEFAULT_FALSE;
+		};
+		class BLWK_defaultVestClass : editParamBase
+		{
+			title = "Starting Vest Classname";
+			tooltip = "This is the class of the vest that players will spawn with.";
+			default = "V_RangeMaster_Belt";
+		};
 	};
 
 	class Points
 	{
-		title = "Player Point Settings";
+		title = "Point Settings";
 
 		class BLWK_pointsForKill : sliderParamBase
 		{
@@ -420,6 +495,7 @@ class KISKA_missionParams
 			title = "Number of Respawn Tickets";
 			min = 0;
 			max = 100;
+			requiresRestart = 1;
 			default = 20;
 		};
 		class BLWK_saveRespawnLoadout : yes_no_paramBase
@@ -564,7 +640,7 @@ class KISKA_missionParams
 
 		class BLWK_currentWaveNumber : sliderParamBase
 		{
-			title = "Start from wave number (should be less then max wave)";
+			title = "Starting Wave Number";
 			tooltip = "Ensure that this is less then the max wave number";
 			min = 0;
 			max = 50;
@@ -577,7 +653,6 @@ class KISKA_missionParams
 			tooltip = "Each player will start with this amount";
 			min = 0;
 			max = 15000;
-			requiresRestart = 1;
 			default = 0;
 		};
 		class BLWK_startingCommunityKillPoints : sliderParamBase
@@ -586,7 +661,6 @@ class KISKA_missionParams
 			tooltip = "The amount of points that will be in the shop community pool";
 			min = 0;
 			max = 30000;
-			requiresRestart = 1;
 			default = 0;
 		};
 		class BLWK_supportDishFound : yes_no_paramBase
@@ -598,48 +672,15 @@ class KISKA_missionParams
 		};
 		class BLWK_numMedKits : sliderParamBase
 		{
-			title = "Number of Medkits Spawned In The Main Crate";
+			title = "Medkits In The Main Crate";
+			tooltip = "The Crate will be filled with these at the start of a mission";
 			min = 0;
 			max = 8;
 			default = 3;
 			requiresRestart = 1;
 		};
-		class BLWK_playersStartWith_map : yes_no_paramBase
-		{
-			title = "Players Start With Map";
-			tooltip = "Players will be given a map intially and after they respawn";
-			default = DEFAULT_TRUE;
-		};
-		class BLWK_playersStartWith_compass : yes_no_paramBase
-		{
-			title = "Players Start With Compass";
-			tooltip = "Players will be given a compass intially and after they respawn";
-			default = DEFAULT_TRUE;
-		};
-		class BLWK_playersStartWith_radio : yes_no_paramBase
-		{
-			title = "Players Start With A Radio";
-			tooltip = "Players will be given a radio intially and after they respawn. If players do not have a radio, they will not here the auto radio calls for supports. This is ACRE & TFAR compatible (343's & 152's respectively)";
-			default = DEFAULT_TRUE;
-		};
-		class BLWK_playersStartWith_mineDetector : yes_no_paramBase
-		{
-			title = "Players Start With A Mine Detector";
-			tooltip = "Players will be given a mine detector intially and after they respawn";
-			default = DEFAULT_FALSE;
-		};
-		class BLWK_playersStartWith_pistol : yes_no_paramBase
-		{
-			title = "Players Start With A Pistol";
-			tooltip = "Players will be given a pistol intially and after they respawn";
-			default = DEFAULT_FALSE;
-		};
-		class BLWK_playersStartWith_NVGs : yes_no_paramBase
-		{
-			title = "Players Start With NVGs";
-			tooltip = "Players will be given a pair of Night-Vision-Goggles intially and after they respawn";
-			default = DEFAULT_FALSE;
-		};
+
+
 	};
 
 	class VehicleLikelihoods
@@ -706,7 +747,6 @@ class KISKA_missionParams
 		{
 			title = "Vehicles can spawn after wave";
 			type = TYPE_SLIDER;
-			tooltip = "";
 			min = 1;
 			max = 999;
 			default = 5;
@@ -714,7 +754,6 @@ class KISKA_missionParams
 		class BLWK_specialWavesStartAt : sliderParamBase
 		{
 			title = "Special waves can start after wave";
-			tooltip = "";
 			min = 1;
 			max = 999;
 			default = 7;
@@ -744,7 +783,7 @@ class KISKA_missionParams
 		class BLWK_maxPistolOnlyWaves : sliderParamBase
 		{
 			title = "Hostiles only use pistols until wave";
-			tooltip = "Enemy units will spawn with pistols (and possibly first-aid-kits) until the given wave. If 0, enemies will have their normal equipment from the start.";
+			tooltip = "Enemy units will spawn with pistols (and possibly first-aid-kits) until the given wave. If 0, enemies will have full equipment from the start.";
 			min = 0;
 			max = 999;
 			default = 3;
@@ -766,14 +805,6 @@ class KISKA_missionParams
 			max = 2;
 			incriment = 0.5;
 			default = 1;
-		};
-		class BLWK_roundsBeforeBodyDeletion : sliderParamBase
-		{
-			title = "Enemy Body Lifetime (waves)";
-			tooltip = "The more dead bodies present will impact perfomance. The vanilla garbage collector is on for extreme cases, but this ensures some degree of cleanup. A value of 0 will delete bodies after every wave.";
-			min = 0;
-			max = 2;
-			default = 2;
 		};
 		class BLWK_minRoundsSinceVehicleSpawned : sliderParamBase
 		{

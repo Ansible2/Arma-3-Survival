@@ -35,7 +35,7 @@ params [
 private _paramConfig = [_paramSerial] call KISKA_fnc_paramsMenu_deserializeConfig;
 private _paramVarName = [_paramConfig] call KISKA_fnc_paramsMenu_getParamVarName;
 
-missionNamespace setVariable [_paramVarName, _newValue];
+([_paramConfig] call KISKA_fnc_paramsMenu_getParamNamespace) setVariable [_paramVarName, _newValue];
 
 if (localNamespace getVariable ["KISKA_missionParams_preloadFinished",false]) then {
 

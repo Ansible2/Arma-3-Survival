@@ -3,7 +3,7 @@
 Function: KISKA_fnc_paramsMenu_postPreload
 
 Description:
-
+    inits default values if needs for variables
 
 Parameters:
 	NONE
@@ -27,13 +27,22 @@ if (call KISKA_fnc_isMainMenu) exitWith {
 };
 
 call KISKA_fnc_paramsMenu_cacheConfig;
-private ["_varName","_defaultValue"];
+private ["_varName","_defaultValue","_namespace","_initScript","_currentValue"];
 (GET_PARAM_CONFIGS_FULL) apply {
     _varName = [_x] call KISKA_fnc_paramsMenu_getParamVarName;
+    _namespace = [_x] call KISKA_fnc_paramsMenu_getParamNamespace;
 
-    if (isNil _varName) then {
+    // don't overwrite variables that were changed in briefing or loaded from save
+    _currentValue = _namespace getVariable [_varName,nil];
+    if (isNil {_currentValue}) then {
         _defaultValue = [_x] call KISKA_fnc_paramsMenu_getDefaultParamValue;
-        missionNamespace setVariable [_varName,_defaultValue];
+        _namespace setVariable [_varName,_defaultValue];
+        _currentValue = _defaultValue;
+    };
+
+    _initScript = getText(_x >> "initScript");
+    if (_initScript isNotEqualTo "") then {
+        [_currentValue,_varName,_x] call (compileFinal _initScript);
     };
 };
 

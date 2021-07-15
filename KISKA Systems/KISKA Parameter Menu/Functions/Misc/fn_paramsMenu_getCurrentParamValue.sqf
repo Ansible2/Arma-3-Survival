@@ -48,7 +48,7 @@ if (_returnStagedChange AND {_paramConfig in _changedVarsHash}) then {
 } else {
     private _defaultValue = [_paramConfig] call KISKA_fnc_paramsMenu_getDefaultParamValue;
     private _paramVarName = [_paramConfig] call KISKA_fnc_paramsMenu_getParamVarName;
-    _currentValue = missionNamespace getVariable [_paramVarName,_defaultValue];
+    _currentValue = ([_paramConfig] call KISKA_fnc_paramsMenu_getParamNamespace) getVariable [_paramVarName,_defaultValue];
 
 };
 
