@@ -194,7 +194,7 @@ class paramsMenu
         	y = POS_Y(11.5);
         	w = POS_W(4);
         	h = POS_H(1);
-            tooltip = "This will also copy to output to your clipboard";
+            tooltip = "This will also copy the output to your clipboard";
         };
         class paramsMenu_portEditBox: RscEdit
         {
