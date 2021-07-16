@@ -97,6 +97,12 @@ if (isServer) then {
     createCenter BLUFOR;
     BLWK_playerGroup = createGroup [BLUFOR,false];
     publicVariable "BLWK_playerGroup";
+
+    if (BLWK_currentWaveNumber isEqualTo 0) then {
+        BLWK_startingFromWaveNumber = BLWK_currentWaveNumber + 1;
+    } else {
+        BLWK_startingFromWaveNumber = BLWK_currentWaveNumber;
+    };
 };
 if (isServer OR {!hasInterface}) then {
     /* DLC exclusion */
@@ -296,12 +302,6 @@ BLWK_level4_vehicleClasses = _unitTypeInfo select 9;
 BLWK_level5_menClasses = _unitTypeInfo select 10;
 BLWK_level5_vehicleClasses = _unitTypeInfo select 11;
 
-/*
-if (isNil "BLWK_currentWaveNumber") then {
-    BLWK_currentWaveNumber = "BLWK_startingWaveNumber" call BIS_fnc_getParamValue;
-    BLWK_startingFromWaveNumber = BLWK_currentWaveNumber + 1;
-};
-*/
 
 if (isNil "BLWK_inBetweenWaves") then {
     BLWK_inBetweenWaves = true;
