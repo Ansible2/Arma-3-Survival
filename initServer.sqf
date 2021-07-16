@@ -27,10 +27,19 @@ call BLWK_fnc_spawnLoot;
 
 [] spawn BLWK_fnc_createBattleAmbienceSound;
 
-sleep (BLWK_timeBetweenRounds - 15);
-remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
 
-sleep 15;
+
+if (BLWK_timeBetweenRounds > 0) then {
+
+	if (BLWK_timeBetweenRounds > 15) then {
+		uiSleep (BLWK_timeBetweenRounds - 15);
+		remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
+	} else {
+		[BLWK_timeBetweenRounds] remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
+		uiSleep BLWK_timeBetweenRounds;
+	};
+
+};
 
 [] spawn BLWK_fnc_startWave;
 

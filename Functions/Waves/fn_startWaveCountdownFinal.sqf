@@ -2,22 +2,20 @@
 Function: BLWK_fnc_startWaveCountdownFinal
 
 Description:
-	Prints out the final 15 seconds before a wave starts with sounds
+	Prints out the final seconds before a wave starts with sounds
 	 on a player's screen.
 
 	Executed from "BLWK_fnc_endWave"
 
 Parameters:
-	NONE
+	0: _countDown : <NUMBER> - The amount to countdown from
 
 Returns:
 	NOTHING
 
 Examples:
     (begin example)
-
-		call BLWK_fnc_startWaveCountdownFinal;
-
+		[5] spawn BLWK_fnc_startWaveCountdownFinal;
     (end)
 
 Author(s):
@@ -26,7 +24,14 @@ Author(s):
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};
 
-private _countDown = 15;
+if (!canSuspend) exitWith {
+	_this spawn BLWK_fnc_startWaveCountdownFinal;
+};
+
+params [
+	["_countDown",15,[123]]
+];
+
 while {_countDown >= 0} do {
 
 	if (_countDown <= 10) then {
@@ -34,7 +39,7 @@ while {_countDown >= 0} do {
 	};
 
 	[str _countDown, 0, 0, 1, 0] spawn BIS_fnc_dynamicText;
-	
-	sleep 1;
+
+	uiSleep 1;
 	_countDown = _countDown - 1;
 };
