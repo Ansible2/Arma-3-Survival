@@ -505,6 +505,39 @@ class KISKA_missionParams
 		};
 	};
 
+	class ItemReclaimer
+	{
+		title = "Item Reclaimer Settings";
+
+		class BLWK_IRP_weapons : sliderParamBase
+		{
+			title = "Points For Weapons";
+			tooltip = "The amount of points you get from the Item Reclaimer object from each weapon. Points are placed in the community pool.";
+			min = 1;
+			max = 750;
+			default = 250;
+		};
+		class BLWK_IRP_magazines : BLWK_IRP_weapons
+		{
+			title = "Points For Magazines";
+			tooltip = "The amount of points you get from the Item Reclaimer object from each magazine. Points are placed in the community pool.";
+			default = 50;
+		};
+		class BLWK_IRP_items : BLWK_IRP_weapons
+		{
+			title = "Points For Items";
+			tooltip = "The amount of points you get from the Item Reclaimer object from each item. Points are placed in the community pool.";
+			default = 125;
+		};
+		class BLWK_IRP_backpacks : BLWK_IRP_weapons
+		{
+			title = "Points For Backpacks";
+			tooltip = "The amount of points you get from the Item Reclaimer object from each backpack. Points are placed in the community pool.";
+			default = 350;
+		};
+
+	};
+
 	class Revive
 	{
 		title = "Vanilla Revive Settings";

@@ -20,11 +20,6 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define POINTS_FOR_MAGAZINES 20
-#define POINTS_FOR_WEAPONS 125
-#define POINTS_FOR_ITEMS 75
-#define POINTS_FOR_BACKPACKS 200
-
 #define ADD_TO(COUNT_VAR,NUM) COUNT_VAR = COUNT_VAR + NUM;
 
 scriptName "BLWK_fnc_itemReclaimer_reclaim";
@@ -93,10 +88,10 @@ clearWeaponCargoGlobal _reclaimerBox;
 clearMagazineCargoGlobal _reclaimerBox;
 
 private _totalPoints = 0;
-ADD_TO(_totalPoints,_weaponCount * POINTS_FOR_WEAPONS)
-ADD_TO(_totalPoints,_magazineCount * POINTS_FOR_MAGAZINES)
-ADD_TO(_totalPoints,_itemCount * POINTS_FOR_ITEMS)
-ADD_TO(_totalPoints,_backpackCount * POINTS_FOR_BACKPACKS)
+ADD_TO(_totalPoints,_weaponCount * BLWK_IRP_weapons)
+ADD_TO(_totalPoints,_magazineCount * BLWK_IRP_magazines)
+ADD_TO(_totalPoints,_itemCount * BLWK_IRP_items)
+ADD_TO(_totalPoints,_backpackCount * BLWK_IRP_backpacks)
 
 private _currentPoints = missionNamespace getVariable ["BLWK_communityKillPoints",0];
 missionNamespace setVariable ["BLWK_communityKillPoints",_totalPoints + _currentPoints,true];
