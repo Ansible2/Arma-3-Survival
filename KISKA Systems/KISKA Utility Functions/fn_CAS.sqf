@@ -236,8 +236,6 @@ _plane setPosASL _planeSpawnPosition;
 _plane setDir _attackDirection;
 
 
-//_plane disableAi "move";
-//_plane disableAi "target";
 _plane disableAi "autotarget";
 _plane setCombatMode "blue";
 
@@ -255,19 +253,6 @@ private _vectors = [_planePositionASL,_attackPosition] call KISKA_fnc_getVectorT
 _plane setVectorDirAndUp _vectors;
 private _planeVectorDirTo = _vectors select 0;
 private _planeVectorUp = _vectors select 1;
-/*
-// yaw
-private _planePositionASL = getPosASLVisual _plane;
-private _planeVectorDirTo = _planePositionASL vectorFromTo _attackPosition;
-_plane setVectorDir _planeVectorDirTo;
-
-
-private _planePositionATL = ASLToATL _planePositionASL;
-private _attackAngle = (_planePositionATL vectorDistance (ASLToATL _attackPosition)) / (_planePositionATL select 2);
-private _planeDir = getDir _plane;
-private _planeVectorUp = [-cos (_planeDir + 90), sin (_planeDir + 90),1 / tan _attackAngle];
-_plane setVectorUp _planeVectorUp;
-*/
 
 
 
