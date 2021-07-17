@@ -32,11 +32,12 @@ call BLWK_fnc_spawnLoot;
 if (BLWK_timeBetweenRounds > 0) then {
 
 	if (BLWK_timeBetweenRounds > 15) then {
-		uiSleep (BLWK_timeBetweenRounds - 15);
+		uisleep (BLWK_timeBetweenRounds - 15);
 		remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
+		uisleep 15;
 	} else {
 		[BLWK_timeBetweenRounds] remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
-		uiSleep BLWK_timeBetweenRounds;
+		uisleep BLWK_timeBetweenRounds;
 	};
 
 };

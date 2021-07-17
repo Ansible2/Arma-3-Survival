@@ -70,7 +70,7 @@ _players apply {
 		missionNamespace setVariable ["BLWK_numRespawnTickets",_respawns,true];
 		[0] remoteExecCall ["setPlayerRespawnTime",_playerTemp];
 		[_playerTemp] remoteExecCall ["forceRespawn",_playerTemp];
-		
+
 	} else {
 
 		if (lifeState _playerTemp == "INCAPACITATED") then {
@@ -108,6 +108,7 @@ if (BLWK_timeBetweenRounds > 0) then {
 	if (BLWK_timeBetweenRounds > 15) then {
 		uiSleep (BLWK_timeBetweenRounds - 15);
 		remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
+		uiSleep 15;
 	} else {
 		[BLWK_timeBetweenRounds] remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
 		uiSleep BLWK_timeBetweenRounds;
