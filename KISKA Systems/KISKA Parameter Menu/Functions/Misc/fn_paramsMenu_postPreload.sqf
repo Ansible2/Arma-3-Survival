@@ -47,4 +47,12 @@ private ["_varName","_defaultValue","_namespace","_initScript","_currentValue"];
 };
 
 
+[
+	[
+		"Mission Parameters",
+		"<execute expression='[] spawn KISKA_fnc_paramsMenu_open'>Open Mission Parameter Menu</execute>"
+	]
+] call KISKA_fnc_addKiskaDiaryEntry;
+
+
 localNamespace setVariable ["KISKA_missionParams_preloadFinished",true];
