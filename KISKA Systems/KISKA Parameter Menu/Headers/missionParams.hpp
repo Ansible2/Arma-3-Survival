@@ -669,7 +669,7 @@ class KISKA_missionParams
 
 	class Start
 	{
-		title = "Mission Start Settings";
+		title = "Start Settings";
 
 		class BLWK_currentWaveNumber : sliderParamBase
 		{
