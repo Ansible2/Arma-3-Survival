@@ -23,6 +23,11 @@ scriptName "KISKA_fnc_paramsMenu_open";
 
 if (!hasInterface) exitWith {};
 
+if !(call KISKA_fnc_isAdminOrHost) exitWith {
+    hint "You must be an admin or host to edit mission settings";
+    nil
+};
+
 // indication bar?
 if (!canSuspend) exitWith {
     [] spawn KISKA_fnc_paramsMenu_open;
