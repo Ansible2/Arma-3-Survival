@@ -67,5 +67,6 @@ class BLWK_lootLists
     class CustomLootLists
     {
         #include "SOG PF Loot List.hpp"
+        #include "OPTRE Loot Lists.hpp"
     };
 };
