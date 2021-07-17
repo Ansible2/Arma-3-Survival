@@ -73,6 +73,8 @@ class KISKA
 		{};
 		class CAS
 		{};
+		class CASattack
+		{};
 		class classTurretsWithGuns
 		{};
 		class deleteAtArray
@@ -88,6 +90,8 @@ class KISKA
 		class getVariableTarget
 		{};
 		class getVariableTarget_sendBack
+		{};
+		class getVectorToTarget
 		{};
 		class isPatchLoaded
 		{};
