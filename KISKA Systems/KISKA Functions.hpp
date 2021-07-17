@@ -73,6 +73,8 @@ class KISKA
 		file = "KISKA Systems\KISKA Utility Functions";
 		class addArsenal
 		{};
+		class addKiskaDiaryEntry
+		{};
 		class CAS
 		{};
 		class classTurretsWithGuns
@@ -92,6 +94,8 @@ class KISKA
 		class getVariableTarget
 		{};
 		class getVariableTarget_sendBack
+		{};
+		class isAdminOrHost
 		{};
 		class isPatchLoaded
 		{};
