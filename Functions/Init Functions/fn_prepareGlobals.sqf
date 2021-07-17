@@ -41,7 +41,7 @@ if (isServer) then {
 
     // number should never be zero, but it can be for some time until the server has initialized
     waitUntil {
-        if (owner BLWK_theAIHandlerEntity != 0) exitWith {true};
+        if (owner BLWK_theAIHandlerEntity isNotEqualTo 0) exitWith {true};
         sleep 1;
         false
     };

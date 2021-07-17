@@ -77,6 +77,8 @@ class KISKA
 		{};
 		class CAS
 		{};
+		class CASattack
+		{};
 		class classTurretsWithGuns
 		{};
 		class deleteAtArray
@@ -95,8 +97,10 @@ class KISKA
 		{};
 		class getVariableTarget_sendBack
 		{};
-		class isAdminOrHost
+    class getVectorToTarget
 		{};
+		class isAdminOrHost
+    {};
 		class isPatchLoaded
 		{};
 		class log
