@@ -188,7 +188,7 @@ class Land_vn_b_foxhole_01 : BLWK_genericTrenchBase
 
     attachmentX = 0;
     attachmentY = 8;
-    attachmentZ = 0.5
+    attachmentZ = 0.5;
 };
 
 
@@ -255,7 +255,7 @@ class Land_vn_b_trench_corner_01 : BLWK_genericTrenchBase
 {
     price = 500;
 
-    detectCollision = 1
+    detectCollision = 1;
     attachmentX = 0;
     attachmentY = 5;
     attachmentZ = 1;
