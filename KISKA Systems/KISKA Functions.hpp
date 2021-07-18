@@ -97,10 +97,12 @@ class KISKA
 		{};
 		class getVariableTarget_sendBack
 		{};
-    class getVectorToTarget
+    	class getVectorToTarget
 		{};
 		class isAdminOrHost
-    {};
+    	{};
+		class isMainMenu
+		{};
 		class isPatchLoaded
 		{};
 		class log
