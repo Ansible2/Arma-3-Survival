@@ -25,7 +25,7 @@ Author(s):
 #define KISKA_DIARY "KISKA Systems"
 scriptName "KISKA_fnc_addKiskaDiaryEntry";
 
-if !(hasInterface) exitWith {};
+if !(hasInterface) exitWith {diaryRecordNull};
 
 if !(player diarySubjectExists KISKA_DIARY) then {
 	player createDiarySubject [KISKA_DIARY, KISKA_DIARY];
