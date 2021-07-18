@@ -31,14 +31,14 @@ private ["_players","_nearPlayer"];
 private _bomberDistanceToBlow = random [10,15,20];
 while {alive _bomber} do {
 	_players = call CBAP_fnc_players;
-	
-	[_bomber] remoteExecCall ["BLWK_fnc_playBomberAudio",_players];
-		
+
+	[_bomber] remoteExec ["BLWK_fnc_playBomberAudio",_players];
+
 	_nearPlayer = _players findIf {(_bomber distance2D _x) <= _bomberDistanceToBlow};
-	
-	if (!(_nearPlayer isEqualTo -1) OR {_bomber distance2D BLWK_mainCrate <= 10}) exitWith {
+
+	if (_nearPlayer isNotEqualTo -1 OR {_bomber distance2D BLWK_mainCrate <= 10}) exitWith {
 		[_bomber] call BLWK_fnc_explodeSuicideBomberEvent;
 	};
 
 	sleep 3;
-};	
+};
