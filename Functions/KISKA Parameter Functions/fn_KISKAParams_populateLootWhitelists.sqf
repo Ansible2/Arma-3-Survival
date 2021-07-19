@@ -26,7 +26,7 @@ private _listOfTitles = localNamespace getVariable ["BLWK_lootListTitles",[]];
 if (_listOfTitles isEqualTo []) then {
 
     private _customLootListConfigs = "true" configClasses (missionConfigFile >> "BLWK_lootLists" >> "CustomLootLists");
-    localNamespace setVariable ["BLWK_lootListConfigs",_listOfTitles];
+    localNamespace setVariable ["BLWK_lootListConfigs",_customLootListConfigs];
 
     _listOfTitles = _customLootListConfigs apply {
         getText(_x >> "title");
