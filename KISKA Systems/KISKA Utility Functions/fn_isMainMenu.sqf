@@ -20,4 +20,6 @@ Author(s):
 ---------------------------------------------------------------------------- */
 scriptName "KISKA_fnc_isMainMenu";
 
+if (!hasInterface) exitWith {false};
+
 allDisplays isEqualTo [findDisplay 0]
