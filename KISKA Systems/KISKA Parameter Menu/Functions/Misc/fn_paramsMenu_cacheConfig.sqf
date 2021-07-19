@@ -21,7 +21,6 @@ Author:
 ---------------------------------------------------------------------------- */
 scriptName "KISKA_fnc_paramsMenu_cacheConfig";
 
-disableSerialization;
 
 private _categoryConfigs = GET_PARAMS_CATEGORY_CONFIGS;
 if (_categoryConfigs isEqualTo [] OR {!(GET_ARE_PARAMS_CACHED)}) then {
