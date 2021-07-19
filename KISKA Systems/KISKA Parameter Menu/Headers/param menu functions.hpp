@@ -33,6 +33,8 @@ class ParamsMenu_misc
     {};
     class paramsMenu_commitChanges
     {};
+    class paramsMenu_dedicatedPreload
+    {};
     class paramsMenu_deserializeConfig
     {};
     class paramsMenu_getBriefingIDD

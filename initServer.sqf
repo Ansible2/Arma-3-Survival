@@ -1,9 +1,7 @@
 ["<t size = '.5'>Preparing Global Vars.<br/>Please wait...</t>", 0, 0, 10, 0] remoteExec ["BIS_fnc_dynamicText", 0];
 
 waitUntil {
-	if (localNamespace getVariable ["KISKA_missionParams_preloadFinished",false]) exitWith {true};
-    sleep 0.1;
-	false
+	localNamespace getVariable ["KISKA_missionParams_preloadFinished",false]
 };
 
 call BLWK_fnc_prepareGlobals;

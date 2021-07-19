@@ -21,10 +21,16 @@ Author:
 ---------------------------------------------------------------------------- */
 scriptName "KISKA_fnc_paramsMenu_postPreload";
 
+if (localNamespace getVariable ["KISKA_missionParams_preloadFinished",false]) exitWith {
+    ["Preload is already finished",false] call KISKA_fnc_log;
+    nil
+};
+
 if (call KISKA_fnc_isMainMenu) exitWith {
     ["Main menu detected, will not init",false] call KISKA_fnc_log;
     nil
 };
+
 
 call KISKA_fnc_paramsMenu_cacheConfig;
 private ["_varName","_defaultValue","_namespace","_initScript","_currentValue"];
@@ -46,7 +52,6 @@ private ["_varName","_defaultValue","_namespace","_initScript","_currentValue"];
     };
 };
 
-
 [
 	[
 		"Mission Parameters",
@@ -56,3 +61,7 @@ private ["_varName","_defaultValue","_namespace","_initScript","_currentValue"];
 
 
 localNamespace setVariable ["KISKA_missionParams_preloadFinished",true];
+remoteExec ["KISKA_fnc_paramsMenu_dedicatedPreload",2];
+
+
+nil
