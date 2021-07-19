@@ -5,7 +5,7 @@ Function: KISKA_fnc_paramsMenu_paramChangedRemote
 Description:
     Acts as a go between for any admin that is setting parameters remotely on a server.
 
-    Instead of the admin sending the networked info, it first is sent to the server and then
+Instead of the admin sending the networked info, it first is sent to the server and then
      sent to all other machines.
 
 Parameters:
@@ -31,7 +31,7 @@ params [
     ["_newValue",-1,[123,"",true]]
 ];
 
-[_paramSerial,_newValue] remoteExecCall ["KISKA_fnc_paramsMenu_paramChanged", 0, [_paramSerial] call KISKA_fnc_paramsMenu_getJIPQueueId];
+[_paramSerial,_newValue] remoteExec ["KISKA_fnc_paramsMenu_paramChanged", 0, [_paramSerial] call KISKA_fnc_paramsMenu_getJIPQueueId];
 
 
 nil
