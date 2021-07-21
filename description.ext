@@ -58,13 +58,6 @@ class Params
 	//#include "Headers\descriptionEXT\missionParams.hpp"
 };
 
-#include "Headers\descriptionEXT\GUI\defines.hpp"
-
-class RscTitles
-{
-	#include "Headers\descriptionEXT\GUI\infoPanel.hpp"
-};
-
 
 class CfgDebriefing
 {
@@ -128,6 +121,13 @@ class CfgNotifications
 
 
 #include "Headers\descriptionEXT\GUI\imports.hpp"
+#include "Headers\descriptionEXT\GUI\defines.hpp"
+
+class RscTitles
+{
+	#include "Headers\descriptionEXT\GUI\infoPanel.hpp"
+};
+
 #include "Headers\descriptionEXT\GUI\shopGUI.hpp"
 #include "Headers\descriptionEXT\GUI\musicManager.hpp"
 #include "KISKA Systems\View Distance Limiter\ViewDistanceLimiterDialog.hpp"
