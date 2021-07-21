@@ -126,6 +126,8 @@ class CfgNotifications
 	};
 };
 
+
+#include "Headers\descriptionEXT\GUI\imports.hpp"
 #include "Headers\descriptionEXT\GUI\shopGUI.hpp"
 #include "Headers\descriptionEXT\GUI\musicManager.hpp"
 #include "KISKA Systems\View Distance Limiter\ViewDistanceLimiterDialog.hpp"
