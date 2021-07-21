@@ -6,11 +6,17 @@ class paramBase
 {
 	title = ""; // text that shows up next to parameter
 	tooltip = ""; // tooltip that will show when hovering over param (also should auto-add configName of param)
-	initScript = ""; // script that is compiled and called after the params have finished init
+	initScript = ""; // This is uncompiled code that will be compiled and run on EVERY MACHINE after the briefing menu is closed
+	/*
+		Parameters are:
+		_this select 0 - The new value
+		_this select 1 - <STRING> - The mission parameters variable name (either the param configName or varName property)
+		_this select 2 - <CONFIG> - The param Config path
+	*/
 	varName = ""; // a global variable name to tie to the parameter, if not defined, the configName will be used
-	onChanged = ""; // a global event that fires each time a setting change is committed
+	onChanged = ""; // This is uncompiled code that will be compiled and run on EVERY MACHINE when a change is commited (Parameters are the same as the initScript property)
 	requiresRestart = 0; // if the changed parameter requires a mission restart when changed after the briefing screen; 0 = false, 1 = true.
-	namespace = 0; // 0 to put variables inside the missionNamespace and 1 to put inside of the localNamespace
+	namespace = 0; // 0 to put variable inside the missionNamespace and 1 to put inside of the localNamespace
 };
 class sliderParamBase : paramBase
 {
@@ -25,7 +31,7 @@ class comboParamBase : paramBase
 	type = TYPE_COMBO;
 	values[] = {}; // opional value array
 	texts[] = {}; // optional strings array (what shows up in combo)
-	populationScript = ""; // an optional script that can populate the list dynamically, must return either an array of [[strings],[numbers]] or and array of strings
+	populationScript = ""; // an optional script that can populate the list dynamically, must return either an array of [[strings],[numbers]] (for use with values instead of strings) or an array of strings
 	sortList = 0; // 0 for false, 1 for true. Sorts the list alphabetically using sort command.
 };
 class editParamBase : paramBase
