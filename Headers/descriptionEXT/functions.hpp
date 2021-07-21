@@ -253,22 +253,7 @@ class BLWK
 		class addWeaponBoxSpinAction
 		{};
 	};
-/*
-	class ParameterSaving
-	{
-		file = "Functions\Parameter Saving";
-		class addParameterDiaryEntries
-		{
-			postInit = 1;
-		};
-		class deleteSavedMissionParameters
-		{};
-		class paramsQuery
-		{};
-		class saveAllMissionParameters
-		{};
-	};
-*/
+
 	class Points
 	{
 		file = "functions\Points";
