@@ -2,8 +2,7 @@
 Function: BLWK_fnc_addPlayerItems
 
 Description:
-	Adds a number of potential items to a
-	Based on mission params.
+	Adds a number of potential items to a player based on mission params.
 
 	Executed from "initPlayerLocal.sqf" & "onPlayerRespawn.sqf"
 
@@ -15,9 +14,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		[player] call BLWK_fnc_addPlayerItems;
-
     (end)
 
 Author(s):
@@ -29,12 +26,12 @@ params [
 	["_player",player,[objNull]]
 ];
 
-_player addVest "V_RangeMaster_Belt";
+_player addVest BLWK_defaultVestClass;
 
 if (BLWK_playersStartWith_pistol) then {
-	_player addMagazine "16Rnd_9x21_Mag";
-	_player addMagazine "16Rnd_9x21_Mag";
-	_player addWeapon "hgun_P07_F";
+	_player addMagazine BLWK_defaultPistolMagClass;
+	_player addMagazine BLWK_defaultPistolMagClass;
+	_player addWeapon BLWK_defaultPistolClass;
 };
 
 if (BLWK_playersStartWith_map) then {

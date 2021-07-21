@@ -143,6 +143,16 @@ class BLWK
 		{};
 	};
 
+
+	class KiskaParameterFunctions
+	{
+		file = "Functions\KISKA Parameter Functions";
+		class KISKAParams_populateLootWhitelists
+		{};
+		class KISKAParams_populateFactionList
+		{};
+	};
+
 	class MusicManager
 	{
 		file = "Functions\Music Manager";
@@ -241,21 +251,6 @@ class BLWK
 		class addUnlockSupportAction
 		{};
 		class addWeaponBoxSpinAction
-		{};
-	};
-
-	class ParameterSaving
-	{
-		file = "Functions\Parameter Saving";
-		class addParameterDiaryEntries
-		{
-			postInit = 1;
-		};
-		class deleteSavedMissionParameters
-		{};
-		class paramsQuery
-		{};
-		class saveAllMissionParameters
 		{};
 	};
 

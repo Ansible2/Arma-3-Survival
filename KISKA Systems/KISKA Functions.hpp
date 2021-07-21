@@ -1,5 +1,7 @@
 class KISKA
 {
+	#include "KISKA Parameter Menu\Headers\param menu functions.hpp"
+
 	class DynamicViewDistance
 	{
 		file = "KISKA Systems\View Distance Limiter\Functions";
@@ -71,6 +73,8 @@ class KISKA
 		file = "KISKA Systems\KISKA Utility Functions";
 		class addArsenal
 		{};
+		class addKiskaDiaryEntry
+		{};
 		class CAS
 		{};
 		class CASattack
@@ -87,11 +91,17 @@ class KISKA
 		{};
 		class findIfBool
 		{};
+		class getNearestIncriment
+		{};
 		class getVariableTarget
 		{};
 		class getVariableTarget_sendBack
 		{};
-		class getVectorToTarget
+    	class getVectorToTarget
+		{};
+		class isAdminOrHost
+    	{};
+		class isMainMenu
 		{};
 		class isPatchLoaded
 		{};
@@ -108,6 +118,8 @@ class KISKA
 		class spawnVehicle
 		{};
 		class staticLine
+		{};
+		class str
 		{};
 		class supplyDrop
 		{};

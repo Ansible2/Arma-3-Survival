@@ -33,6 +33,8 @@ wreckRemovalMinTime = 240;
 wreckRemovalMaxTime = 600;
 minPlayerDistance = 25;
 
+briefing = 1;
+
 class Header
 {
 	gameType =  Survive;
@@ -53,7 +55,7 @@ class CfgSounds
 
 class Params
 {
-	#include "Headers\descriptionEXT\missionParams.hpp"
+	//#include "Headers\descriptionEXT\missionParams.hpp"
 };
 
 #include "Headers\descriptionEXT\GUI\defines.hpp"
@@ -86,7 +88,7 @@ class CfgDebriefing
 	};
 	class LootListErrorEnd
 	{
-		title = "[Error] Critical Loot List Empty"
+		title = "[Error] Critical Loot List Empty";
 		subtitle = "Mission Aborted";
 		description = "A required loot list returned no items. This likely means it has been improperly configured";
 		pictureBackground = "";
@@ -95,7 +97,7 @@ class CfgDebriefing
 	};
 	class UnitClassesErrorEnd
 	{
-		title = "[Error] Default Factions Undefined"
+		title = "[Error] Default Factions Undefined";
 		subtitle = "Mission Aborted";
 		description = "A fallthrough case for custom factions failed. A custom faction was not present and therefore a default faction was used, however, this default was undefined";
 		pictureBackground = "";
@@ -131,3 +133,6 @@ class CfgNotifications
 #include "Headers\descriptionEXT\Build Items\Main Build Items.hpp"
 #include "Headers\descriptionEXT\Faction Headers\Faction Master.hpp"
 #include "Headers\descriptionEXT\Loot Lists\Main Loot List.hpp"
+
+#include "KISKA Systems\KISKA Parameter Menu\Headers\params menu.hpp"
+#include "KISKA Systems\KISKA Parameter Menu\Headers\missionParams.hpp"

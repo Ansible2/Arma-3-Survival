@@ -1,5 +1,9 @@
 ["<t size = '.5'>Preparing Global Vars.<br/>Please wait...</t>", 0, 0, 10, 0] remoteExec ["BIS_fnc_dynamicText", 0];
 
+waitUntil {
+	localNamespace getVariable ["KISKA_missionParams_preloadFinished",false]
+};
+
 call BLWK_fnc_prepareGlobals;
 
 [BLUFOR,BLWK_numRespawnTickets] call BIS_fnc_respawnTickets;
@@ -10,7 +14,6 @@ call BLWK_fnc_prepareGlobals;
 call BLWK_fnc_preparePlayArea;
 
 setDate [2020, 7, 1, BLWK_timeOfDay, 0];
-setTimeMultiplier BLWK_daySpeedMultiplier;
 
 waitUntil {count (call CBAP_fnc_players) > 0};
 
@@ -22,10 +25,20 @@ call BLWK_fnc_spawnLoot;
 
 [] spawn BLWK_fnc_createBattleAmbienceSound;
 
-sleep (BLWK_timeBetweenRounds - 15);
-remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
 
-sleep 15;
+
+if (BLWK_timeBetweenRounds > 0) then {
+
+	if (BLWK_timeBetweenRounds > 15) then {
+		uisleep (BLWK_timeBetweenRounds - 15);
+		remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
+		uisleep 15;
+	} else {
+		[BLWK_timeBetweenRounds] remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
+		uisleep BLWK_timeBetweenRounds;
+	};
+
+};
 
 [] spawn BLWK_fnc_startWave;
 
