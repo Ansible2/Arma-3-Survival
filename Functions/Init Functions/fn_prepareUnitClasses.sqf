@@ -1,5 +1,3 @@
-// set up MACRO vars that can be used between files and make changes easier
-//#include "..\..\Headers\descriptionEXT\Faction Headers\Define Factions.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_prepareUnitClasses
 
