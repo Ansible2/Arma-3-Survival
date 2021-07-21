@@ -62,6 +62,16 @@ _display setVariable [PARAMS_MENU_MAIN_CONTROL_GROUP_VAR_STR,_controlsGroup];
 call KISKA_fnc_paramsMenu_cacheConfig;
 
 
+if (isNil{localNamespace getVariable PARAMS_CURRENT_PROFILE_VAR_STR}) then {
+    private _profileVarName = getText(missionConfigFile >> "KISKA_missionParams" >> "ProfileVarName");
+    if (_profileVarName isEqualTo "") then {
+        _profileVarName = PARAMS_DEFAULT_PROFILES_VAR_STR;
+    };
+
+    localNamespace setVariable [PARAMS_CURRENT_PROFILE_VAR_STR,_profileVarName];
+};
+
+
 [_display] call KISKA_fnc_paramsMenu_onLoad_categoryCombo;
 
 [_display] call KISKA_fnc_paramsMenu_onLoad_saveAndLoadControls;

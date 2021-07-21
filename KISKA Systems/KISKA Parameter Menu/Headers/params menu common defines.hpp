@@ -95,7 +95,10 @@
 #define ARE_PARAMS_CACHED_VAR_STR "KISKA_missionParams_configsCached"
 #define GET_ARE_PARAMS_CACHED localNamespace getVariable [ARE_PARAMS_CACHED_VAR_STR,false]
 
-#define PARAMS_PROFILES_VAR_STR "KISKA_missionParams_savedProfiles"
+#define PARAMS_DEFAULT_PROFILES_VAR_STR "KISKA_missionParams_savedProfiles"
+#define PARAMS_CURRENT_PROFILE_VAR_STR "KISKA_paramsMenu_currentProfileVarName"
+#define GET_PARAMS_PROFILE_VAR_STR localNamespace getVariable [ PARAMS_CURRENT_PROFILE_VAR_STR, PARAMS_DEFAULT_PROFILES_VAR_STR ]
+#define GET_PARAMS_SAVED_PROFILES_HASHMAP (profilenamespace getVariable [(GET_PARAMS_PROFILE_VAR_STR),createHashMap])
 
 #define CTRL_GRP_PARAM_CONFIG_VAR_STR "KISKA_paramsMenu_paramConfig"
 #define CTRL_GRP_PARAM_VAR_STR "KISKA_paramsMenu_paramVarName"

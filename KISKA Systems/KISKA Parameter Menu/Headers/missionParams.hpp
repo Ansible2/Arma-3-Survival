@@ -54,6 +54,8 @@ class on_off_paramBase : yes_no_paramBase
 
 class KISKA_missionParams
 {
+	ProfileVarName = "BLWK_survivalParamProfiles"; // A profilenamespace variable that will hold mission parameter profiles
+
 	class AI
 	{
 		title = "Enemy AI Settings";

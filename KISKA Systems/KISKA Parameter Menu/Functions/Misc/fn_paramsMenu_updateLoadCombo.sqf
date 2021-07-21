@@ -35,7 +35,7 @@ params [
 ];
 
 
-private _savedProfilesHashMap = profilenamespace getVariable [PARAMS_PROFILES_VAR_STR,[]];
+private _savedProfilesHashMap = profilenamespace getVariable [GET_PARAMS_PROFILE_VAR_STR,[]];
 
 // if we are deleteing, the profile array may be empty, but we still need the list empty regardless
 lbClear _loadCombo_ctrl;

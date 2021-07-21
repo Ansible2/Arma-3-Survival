@@ -40,7 +40,7 @@ _saveButton_ctrl ctrlAddEventHandler ["ButtonClick",{
     private _profileName = _loadCombo_ctrl lbText (lbCurSel _loadCombo_ctrl);
 
     if (_profileName isNotEqualTo "") then {
-        private _savedProfilesHash = profilenamespace getVariable [PARAMS_PROFILES_VAR_STR,createHashMap];
+        private _savedProfilesHash = GET_PARAMS_SAVED_PROFILES_HASHMAP;
         private _savedMissionParamsHash = call KISKA_fnc_paramsMenu_hashParams;
 
         _savedProfilesHash set [_profileName,_savedMissionParamsHash];
@@ -61,11 +61,11 @@ _saveAsButton_ctrl ctrlAddEventHandler ["ButtonClick",{
     private _profileName = ctrlText (_paramsMenuDisplay displayCtrl PARAMS_MENU_SAVEAS_EDIT_BOX_IDC);
 
     if (_profileName isNotEqualTo "") then {
-        private _savedProfilesHash = profilenamespace getVariable [PARAMS_PROFILES_VAR_STR,createHashMap];
+        private _savedProfilesHash = GET_PARAMS_SAVED_PROFILES_HASHMAP;
         private _savedMissionParamsHash = call KISKA_fnc_paramsMenu_hashParams;
 
         _savedProfilesHash set [_profileName,_savedMissionParamsHash];
-        profilenamespace setVariable [PARAMS_PROFILES_VAR_STR,_savedProfilesHash];
+        profilenamespace setVariable [GET_PARAMS_PROFILE_VAR_STR,_savedProfilesHash];
         saveProfileNamespace;
 
         [_paramsMenuDisplay displayCtrl PARAMS_MENU_LOAD_COMBO_IDC] spawn KISKA_fnc_paramsMenu_updateLoadCombo;
@@ -86,7 +86,7 @@ _loadButton_ctrl ctrlAddEventHandler ["ButtonClick",{
     private _profileName = _loadCombo_ctrl lbText (lbCurSel _loadCombo_ctrl);
 
     if (_profileName isNotEqualTo "") then {
-        private _savedProfilesHash = profilenamespace getVariable [PARAMS_PROFILES_VAR_STR,createHashMap];
+        private _savedProfilesHash = GET_PARAMS_SAVED_PROFILES_HASHMAP;
         private _savedMissionParamsHash = call KISKA_fnc_paramsMenu_hashParams;
 
         private _profileSettingsHash = _savedProfilesHash get _profileName;
@@ -134,7 +134,7 @@ _deleteButton_ctrl ctrlAddEventHandler ["ButtonClick",{
     private _profileName = _loadCombo_ctrl lbText _selectedIndex;
 
     if (_profileName isNotEqualTo "") then {
-        private _savedProfilesHash = profilenamespace getVariable [PARAMS_PROFILES_VAR_STR,createHashMap];
+        private _savedProfilesHash = GET_PARAMS_SAVED_PROFILES_HASHMAP;
         _savedProfilesHash deleteAt _profileName;
         saveProfileNamespace;
 
