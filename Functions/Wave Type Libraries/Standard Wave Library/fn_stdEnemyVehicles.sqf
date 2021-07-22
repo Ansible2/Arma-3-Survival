@@ -56,7 +56,7 @@ if (_roundsSinceVehicleSpawned < BLWK_minRoundsSinceVehicleSpawned) exitWith {
 
 
 // each round increases the likelihood of a vehicle spawn by 5%
-private _howLikelyIsAVehicleToSpawn = (_roundsSinceVehicleSpawned * VEHICLE_SPAWN_INCREMENT) + (BLWK_baseVehicleSpawnLikelihood / 10);
+private _howLikelyIsAVehicleToSpawn = (_roundsSinceVehicleSpawned * VEHICLE_SPAWN_INCREMENT) + BLWK_baseVehicleSpawnLikelihood;
 if (_howLikelyIsAVehicleToSpawn > 1) then {
 	_howLikelyIsAVehicleToSpawn = 1;
 };
