@@ -25,13 +25,13 @@ enableDebugConsole = 2;
 
 corpseManagerMode = 1; // manage all units
 corpseLimit = 50;
-corpseRemovalMinTime = 600;
+corpseRemovalMinTime = 30;
 corpseRemovalMaxTime = 1200;
 wreckManagerMode = 1;		// manage all wrecks
 wreckLimit = 3;
-wreckRemovalMinTime = 240;
+wreckRemovalMinTime = 30;
 wreckRemovalMaxTime = 600;
-minPlayerDistance = 25;
+minPlayerDistance = 5;
 
 briefing = 1;
 
