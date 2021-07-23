@@ -26,8 +26,5 @@
 #define DEFECTORS_WAVE_NOTIFICATION "Defectors Are Attacking!"
 #define DRONE_WAVE_NOTIFICATION "Enemy Drones Inbound!"
 #define OVERRUN_WAVE_NOTIFICATION "The Area Was Overrun!"
-#define CIVILIAN_WAVE_NOTIFICATION "Civilians Are Fleeing, Watch Your Fire!"
 #define MORTAR_WAVE_NOTIFICATION "Incoming Mortar Fire!"
-#define SUICIDE_WAVE_NOTIFICATION "Enemy Suicide Bombers Are Incoming!"
-#define PARATROOPER_WAVE_NOTIFICATION "Enemy Paratroopers Inbound!"
 #define HELICOPTER_WAVE_NOTIFICATION "Enemy Helicopters Inbound!"

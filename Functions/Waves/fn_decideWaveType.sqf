@@ -41,6 +41,60 @@ scriptName "BLWK_fnc_decideWaveType";
 if (!isServer) exitWith {false};
 
 
+private _selectSpecialWave = false;
+if (BLWK_currentWaveNumber >= BLWK_specialWavesStartAt) then {
+	["Special waves can be selected this wave",false] call KISKA_fnc_log;
+	private _standardWaveLikelihood = 1 - BLWK_specialWaveLikelihood;
+	_selectSpecialWave = selectRandomWeighted [true,BLWK_specialWaveLikelihood,false,_standardWaveLikelihood];
+
+};
+
+
+private _usedSpecialWaves = localNamespace getVariable ["BLWK_usedSpecialWaveConfigs",[]];
+
+private _getAllowedSpecialWaves = {
+	BLWK_specialWaveConfigs select {
+		!(_x in _usedSpecialWaves) AND {missionNamespace getVariable [getText(_x >> "toggleVariable"),true]}
+	};
+};
+
+private _fn_getNormalWave = {
+	private _weights = BLWK_normalWaveConfigs apply {
+		missionNamespace getVariable [getText(_x >> "weightVariable"),0];
+	};
+
+	BLWK_normalWaveConfigs selectRandomWeighted _weights;
+};
+
+
+private _playAlarm = false;
+private _waveConfigPath = configNull;
+if (_selectSpecialWave) then {
+	["Selected a special wave instead of standard",false] call KISKA_fnc_log;
+
+	private _allowedSpecialWaves = call _getAllowedSpecialWaves;
+	if (_allowedSpecialWaves isEqualTo []) then {
+		_usedSpecialWaves = [];
+		localNamespace setVariable ["BLWK_usedSpecialWaveConfigs",_usedSpecialWaves];
+		_allowedSpecialWaves = call _getAllowedSpecialWaves;
+	};
+
+	_waveConfigPath = selectRandom _allowedSpecialWaves;
+	if (isNil "_waveConfigPath") exitWith {
+		_waveConfigPath = call _fn_getNormalWave;
+	};
+
+	_playAlarm = true;
+
+} else {
+	["Selected a standard wave type",false] call KISKA_fnc_log;
+	_waveConfigPath = call _fn_getNormalWave;
+
+};
+
+call compile (getText(_waveConfigPath >> "onSelected"));
+
+/*
 private _fn_getWaveType = {
 	private _usedWave = "";
 
@@ -50,18 +104,17 @@ private _fn_getWaveType = {
 
 		private _standardWaveLikelihood = 1 - BLWK_specialWaveLikelihood;
 		private _waveType = selectRandomWeighted [IS_SPECIAL,BLWK_specialWaveLikelihood,IS_STANDARD,_standardWaveLikelihood];
-		//[[IS_SPECIAL," ",BLWK_specialWaveLikelihood," ",IS_STANDARD," ",_standardWaveLikelihood],false] call KISKA_fnc_log;
 
 		if (_waveType isEqualTo IS_SPECIAL) then {
 			["Selected a special wave instead of standard",false] call KISKA_fnc_log;
 
-			private _usedSpecialWaves = missionNamespace getVariable ["BLWK_usedSpecialWaves",[]];
+			private _usedSpecialWaves = localNamespace getVariable ["BLWK_usedSpecialWaveConfigs",[]];
 			private _decideArray = [];
 			private _allSpecialWaves = SPECIAL_WAVES;
 
 			// checking if all special waves have already been used
 			if ((count _usedSpecialWaves) isEqualTo (count _allSpecialWaves)) then {
-				missionNamespace setVariable ["BLWK_usedSpecialWaves",[]];
+				localNamespace setVariable ["BLWK_usedSpecialWaveConfigs",[]];
 				_usedSpecialWaves = [];
 			};
 
@@ -73,7 +126,7 @@ private _fn_getWaveType = {
 
 			_usedWave = selectRandomWeighted _decideArray;
 			_usedSpecialWaves pushBack _usedWave;
-			missionNamespace setVariable ["BLWK_usedSpecialWaves",_usedSpecialWaves];
+			localNamespace setVariable ["BLWK_usedSpecialWaveConfigs",_usedSpecialWaves];
 		} else {
 			["Selected a standard wave instead of a special one",false] call KISKA_fnc_log;
 			_usedWave = STANDARD_WAVE;
@@ -139,14 +192,27 @@ private _fn_execWave = {
 		[SPECIAL_WARNING_TEMPLATE, [HELICOPTER_WAVE_NOTIFICATION]]
 	};
 };
+*/
+
 
 // notify players of wave start
-private _notification = call _fn_execWave;
+private _notification = [];
+_notification pushBack (getText(_waveConfigPath >> "creationNotificationTemplate"));
+
+private _notificationText = getText(_waveConfigPath >> "notificationText");
+if ([_waveConfigPath >> "compileNotificationText"] call BIS_fnc_getCfgDataBool) then {
+	_notificationText = call compile _notificationText;
+} else {
+	_notificationText = [_notificationText];
+};
+_notification pushBack _notificationText;
+
 private _players = call CBAP_fnc_players;
 _notification remoteExec ["BIS_fnc_showNotification", _players];
 
+
 // play a sound for special waves
-if (_selectedWaveType != STANDARD_WAVE) then {
+if (_playAlarm) then {
 	["Alarm"] remoteExec ["playSound", _players];
 };
 
