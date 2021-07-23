@@ -955,7 +955,7 @@ class KISKA_missionParams
 		};
 		class BLWK_defectorWaveWeight : sliderParamBase
 		{
-			title = "Paratrooper Wave Weight";
+			title = "Defector Wave Weight";
 			tooltip = "The friendly faction will spawn as enemies during the wave. The wave weight is considered against other normal wave weights and one is selected when the wave is not a Special Wave.";
 			min = 0.1;
 			max = 1;
