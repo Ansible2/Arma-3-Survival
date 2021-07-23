@@ -53,11 +53,6 @@ class CfgSounds
 	#include "Headers\descriptionEXT\sounds.hpp"
 };
 
-class Params
-{
-	//#include "Headers\descriptionEXT\missionParams.hpp"
-};
-
 
 class CfgDebriefing
 {
@@ -119,6 +114,7 @@ class CfgNotifications
 	};
 };
 
+#include "Headers\descriptionEXT\Wave Types.hpp"
 
 #include "Headers\descriptionEXT\GUI\imports.hpp"
 #include "Headers\descriptionEXT\GUI\defines.hpp"

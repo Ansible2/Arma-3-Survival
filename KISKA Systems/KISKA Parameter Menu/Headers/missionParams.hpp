@@ -64,7 +64,7 @@ class KISKA_missionParams
 
 	class AI
 	{
-		title = "Enemy AI Settings";
+		title = "Enemy AI";
 
 		class BLWK_doDetectCollision : yes_no_paramBase
 		{
@@ -88,6 +88,31 @@ class KISKA_missionParams
 			title = "Enemy AI AutoCombat";
 			tooltip = "AI that have AutoCombat enabled will be more cautious under fire";
 			default = DEFAULT_FALSE;
+		};
+
+		class BLWK_baseSkill : sliderParamBase
+		{
+			title = "Base Skill Level";
+			tooltip = "The base skill level is added to the wave incriment number, multiplied by your current wave, to get the AI's skill for that wave.";
+			min = 0.01;
+			max = 1;
+			incriment = 0.01;
+			default = 0.2;
+		};
+		class BLWK_skillIncriment : sliderParamBase
+		{
+			title = "Skill Level Wave Incriment";
+			tooltip = "Each wave will increase the AI's skill by this much.";
+			min = 0;
+			max = 1;
+			incriment = 0.01;
+			default = 0.02;
+		};
+		class BLWK_maxSkill : BLWK_baseSkill
+		{
+			title = "Max AI Skill Level";
+			tooltip = "The max an AI Skill level can be.";
+			default = 0.6;
 		};
 	};
 
@@ -178,7 +203,6 @@ class KISKA_missionParams
 			max = 30;
 			default = 15;
 		};
-
 	};
 
 	class Loot
@@ -220,7 +244,7 @@ class KISKA_missionParams
 
 	class Factions
 	{
-		title = "Faction Selection";
+		title = "Factions";
 
 		class BLWK_friendlyFaction : comboParamBase
 		{
@@ -230,36 +254,101 @@ class KISKA_missionParams
 			sortList = 1;
 			default = "VANILLA - NATO";
 		};
+
+
 		class BLWK_level1Faction : BLWK_friendlyFaction
 		{
 			title = "Level 1 Enemy Faction";
 			default = "VANILLA - FIA";
 		};
+		class BLWK_level1Faction_weight : sliderParamBase
+		{
+			title = "Level 2 Faction Weight";
+			tooltip = "The weight of a faction determines how prevelant it is when spawning. e.g. if the weight of level 1 is higher then level 2, you'll see more level 1 enemies.";
+			min = 1;
+			max = 5;
+			default = 1;
+		};
+
+
 		class BLWK_level2Faction : BLWK_friendlyFaction
 		{
 			title = "Level 2 Enemy Faction";
 			default = "VANILLA - AAF";
 		};
+		class BLWK_level2Faction_weight : BLWK_level1Faction_weight
+		{
+			title = "Level 2 Faction Weight";
+			default = 2;
+		};
+		class BLWK_level2Faction_startWave : sliderParamBase
+		{
+			title = "Level 2 Starting Wave";
+			tooltip = "At what wave number will level 2 enemies be allowed to spawn?"
+			min = 1;
+			max = 25;
+			default = 6;
+		};
+
+
 		class BLWK_level3Faction : BLWK_friendlyFaction
 		{
 			title = "Level 3 Enemy Faction";
 			default = "VANILLA - CSAT";
 		};
+		class BLWK_level3Faction_weight : BLWK_level1Faction_weight
+		{
+			title = "Level 3 Faction Weight";
+			default = 3;
+		};
+		class BLWK_level3Faction_startWave : BLWK_level2Faction_startWave
+		{
+			title = "Level 3 Starting Wave";
+			tooltip = "At what wave number will level 3 enemies be allowed to spawn?"
+			default = 11;
+		};
+
+
 		class BLWK_level4Faction : BLWK_friendlyFaction
 		{
 			title = "Level 4 Enemy Faction";
 			default = "VANILLA - CSAT URBAN";
 		};
+		class BLWK_level4Faction_weight : BLWK_level1Faction_weight
+		{
+			title = "Level 4 Faction Weight";
+			default = 4;
+		};
+		class BLWK_level4Faction_startWave : BLWK_level2Faction_startWave
+		{
+			title = "Level 4 Starting Wave";
+			tooltip = "At what wave number will level 4 enemies be allowed to spawn?"
+			default = 16;
+		};
+
+
 		class BLWK_level5Faction : BLWK_friendlyFaction
 		{
 			title = "Level 5 Enemy Faction";
 			default = "CONTACT - Spetznas";
 		};
+		class BLWK_level5Faction_weight : BLWK_level1Faction_weight
+		{
+			title = "Level 5 Faction Weight";
+			default = 5;
+		};
+		class BLWK_level5Faction_startWave : BLWK_level2Faction_startWave
+		{
+			title = "Level 5 Starting Wave";
+			tooltip = "At what wave number will level 5 enemies be allowed to spawn?"
+			default = 21;
+		};
+
 	};
 
 	class Misc
 	{
-		title = "Misc Settings";
+		title = "Misc";
 
 		class BLWK_multipleLootReveals : yes_no_paramBase
 		{
@@ -515,7 +604,7 @@ class KISKA_missionParams
 
 	class ItemReclaimer
 	{
-		title = "Item Reclaimer Settings";
+		title = "Item Reclaimer";
 
 		class BLWK_IRP_weapons : sliderParamBase
 		{
@@ -724,9 +813,26 @@ class KISKA_missionParams
 
 	};
 
-	class VehicleLikelihoods
+	class VehicleWaves
 	{
-		title = "Vehicle Spawn Likelihoods";
+		title = "Waves (Vehicles)";
+
+		class BLWK_vehicleStartWave : sliderParamBase
+		{
+			title = "Vehicles can spawn after wave";
+			type = TYPE_SLIDER;
+			min = 1;
+			max = 999;
+			default = 5;
+		};
+		class BLWK_minRoundsSinceVehicleSpawned : sliderParamBase
+		{
+			title = "The minimum number of waves between vehicle spawns";
+			tooltip = "If a vehicle spawns during a wave, this number of waves will have to pass until another vehicle can (possibly) spawn.";
+			min = 0;
+			max = 2;
+			default = 0;
+		};
 
 		class BLWK_baseVehicleSpawnLikelihood : sliderParamBase
 		{
@@ -763,35 +869,10 @@ class KISKA_missionParams
 		};
 	};
 
-	class Waves
+	class SpecialWaves
 	{
-		title = "Wave Settings";
+		title = "Waves (Special)";
 
-		class BLWK_maxNumWaves : sliderParamBase
-		{
-			title = "Number of Waves";
-			type = TYPE_SLIDER;
-			min = 1;
-			max = 999;
-			default = 25;
-		};
-		class BLWK_timeBetweenRounds : sliderParamBase
-		{
-			title = "Time between rounds";
-			type = TYPE_SLIDER;
-			tooltip = "Time is in seconds";
-			min = 1;
-			max = 300;
-			default = 60;
-		};
-		class BLWK_vehicleStartWave : sliderParamBase
-		{
-			title = "Vehicles can spawn after wave";
-			type = TYPE_SLIDER;
-			min = 1;
-			max = 999;
-			default = 5;
-		};
 		class BLWK_specialWavesStartAt : sliderParamBase
 		{
 			title = "Special waves can start after wave";
@@ -808,6 +889,84 @@ class KISKA_missionParams
 			incriment = 0.1;
 			default = 0.5;
 		};
+
+		class BLWK_allowCivWave : yes_no_paramBase
+		{
+			title = "Allow Civilian Wave";
+			tooltip = "The Civilian Wave will spawn in civilians that if killed by a player will dock 1000 points per for that players.";
+			default = DEFAULT_TRUE;
+		};
+		class BLWK_allowDroneWave : BLWK_allowCivWave
+		{
+			title = "Allow Drone Wave";
+			tooltip = "Drones will spawn in the air and attempt to drop bombs on your heads. Shoot them down for a good amount of points.";
+		};
+		class BLWK_allowHeliWave : BLWK_allowCivWave
+		{
+			title = "Allow Helicopter Wave";
+			tooltip = "An enemy attack and transport helicopter will spawn and try to gun you down. Best to stay in doors and pick your moments to move.";
+		};
+		class BLWK_allowMortarWave : BLWK_allowCivWave
+		{
+			title = "Allow Mortar Wave";
+			tooltip = "An enemy mortar spawns on the edge of the play area and will shell player areas periodically until killed";
+		};
+		class BLWK_allowOverrunWave : BLWK_allowCivWave
+		{
+			title = "Allow Overrun Wave";
+			tooltip = "Players will be teleported outside the play area to one side (all together with the Crate) and AI placed inside. Any new spawing AI will be spawned directly on the opposite side of the play area from where the players were placed.";
+		};
+		class BLWK_allowSuicideWave : BLWK_allowCivWave
+		{
+			title = "Allow Suicide Bomber Wave";
+			tooltip = "Suicide Bombers will rush players and will explode when in range. They will also explode when killed.";
+		};
+	};
+
+	class NormalWaves
+	{
+		title = "Waves (Normal)";
+
+		class BLWK_paratrooperWaveWeight : sliderParamBase
+		{
+			title = "Paratrooper Wave Weight";
+			tooltip = "Paratroopers will be dropped near player positions in addition to ground troops. The wave weight is considered against other normal wave weights and one is selected when the wave is not a Special Wave.";
+			min = 0.1;
+			max = 1;
+			incriment = 0.1;
+			default = 0.5;
+		};
+		class BLWK_defectorWaveWeight : sliderParamBase
+		{
+			title = "Paratrooper Wave Weight";
+			tooltip = "The friendly faction will spawn as enemies during the wave. The wave weight is considered against other normal wave weights and one is selected when the wave is not a Special Wave.";
+			min = 0.1;
+			max = 1;
+			incriment = 0.1;
+			default = 0.5;
+		};
+	};
+
+	class Waves
+	{
+		title = "Waves (General)";
+
+		class BLWK_maxNumWaves : sliderParamBase
+		{
+			title = "Number of Waves";
+			min = 1;
+			max = 999;
+			default = 25;
+		};
+		class BLWK_timeBetweenRounds : sliderParamBase
+		{
+			title = "Time between rounds";
+			tooltip = "Time is in seconds";
+			min = 1;
+			max = 300;
+			default = 60;
+		};
+
 		class BLWK_maxEnemyInfantryAtOnce : sliderParamBase
 		{
 			title = "Max Enemy Infantry";
@@ -847,14 +1006,7 @@ class KISKA_missionParams
 			incriment = 0.5;
 			default = 1;
 		};
-		class BLWK_minRoundsSinceVehicleSpawned : sliderParamBase
-		{
-			title = "The minimum number of waves between vehicle spawns";
-			tooltip = "If a vehicle spawns during a wave, this number of waves will have to pass until another vehicle can (possibly) spawn.";
-			min = 0;
-			max = 2;
-			default = 0;
-		};
+
 	};
 
 };

@@ -4,7 +4,7 @@ class BLWK_waveTypes
 {
     class normalWaves
     {
-        class infantryWave
+        class standardWave
         {
             onSelected = "remoteExec ['BLWK_fnc_handleStandardWave',BLWK_theAIHandlerOwnerID]"; // uncompiled code that is run on the server when the wave is selected (started). For context of execution see BLWK_fnc_startWave's use of BLWK_fnc_decideWaveType
             //onWaveEnd = ""; // uncompiled code that is run on the server when the wave is ended
@@ -19,10 +19,15 @@ class BLWK_waveTypes
             onSelected = "remoteExec ['BLWK_fnc_handleVehicleWave',BLWK_theAIHandlerOwnerID]";
         };
     */
-        class paratrooperWave : infantryWave
+        class paratrooperWave : standardWave
         {
             onSelected = "remoteExec ['BLWK_fnc_handleParatrooperWave',BLWK_theAIHandlerOwnerID]";
             weightVariable = "BLWK_paratrooperWaveWeight";
+        };
+        class defectorWave : standardWave
+        {
+            onSelected = "remoteExec ['BLWK_fnc_handleDefectorWave',BLWK_theAIHandlerOwnerID]";
+            weightVariable = "BLWK_defectorWaveWeight";
         };
     };
 
@@ -40,6 +45,30 @@ class BLWK_waveTypes
             onSelected = "remoteExec ['BLWK_fnc_handleInfantryWave',BLWK_theAIHandlerOwnerID]; call BLWK_fnc_civiliansWave";
             notificationText = "Civilians Are Fleeing, Watch Your Fire!";
             toggleVariable = "BLWK_allowCivWave";
+        };
+        class droneWave : suicideWave
+        {
+            onSelected = "remoteExec ['BLWK_fnc_handleDroneWave',BLWK_theAIHandlerOwnerID]";
+            notificationText = "Enemy Drones Inbound!";
+            toggleVariable = "BLWK_allowDroneWave";
+        };
+        class overrunWave : suicideWave
+        {
+            onSelected = "remoteExec ['BLWK_fnc_handleOverrunWave',BLWK_theAIHandlerOwnerID]";
+            notificationText = "The Area Was Overrun!";
+            toggleVariable = "BLWK_allowOverrunWave";
+        };
+        class heliWave : suicideWave
+        {
+            onSelected = "remoteExec ['BLWK_fnc_handleHelicopterWave',BLWK_theAIHandlerOwnerID]";
+            notificationText = "Enemy Helicopters Inbound!";
+            toggleVariable = "BLWK_allowHeliWave";
+        };
+        class mortarWave : suicideWave
+        {
+            onSelected = "remoteExec ['BLWK_fnc_handleMortarWave',BLWK_theAIHandlerOwnerID]";
+            notificationText = "Incoming Mortar Fire!";
+            toggleVariable = "BLWK_allowMortarWave";
         };
     };
 };
