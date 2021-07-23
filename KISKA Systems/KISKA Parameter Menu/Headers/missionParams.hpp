@@ -114,6 +114,23 @@ class KISKA_missionParams
 			tooltip = "The max an AI Skill level can be.";
 			default = 0.6;
 		};
+
+		class BLWK_aimSpeedMod : sliderParamBase
+		{
+			title = "Aiming Speed Modifier";
+			tooltip = "Whatever the outcome is of the AI skill level for a wave, it will be multiplied by this to set the AI's 'aimingSpeed' skill. A value of 1 means no change.";
+			min = 0.05;
+			max = 1;
+			incriment = 0.05;
+			default = 0.75;
+		};
+
+		class BLWK_spotTime : BLWK_baseSkill
+		{
+			title = "Spot Time";
+			tooltip = "The AI 'spotTime' skill is a static value that will not change. It is unaffected by the wave number or base skill.";
+			default = 0.3;
+		};
 	};
 
 	class WeatherAndTime
