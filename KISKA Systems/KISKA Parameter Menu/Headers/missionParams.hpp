@@ -907,35 +907,35 @@ class KISKA_missionParams
 			default = 0.5;
 		};
 
-		class BLWK_allowCivWave : yes_no_paramBase
+		class BLWK_allowCivWave : on_off_paramBase
 		{
-			title = "Allow Civilian Wave";
+			title = "Civilian Wave";
 			tooltip = "The Civilian Wave will spawn in civilians that if killed by a player will dock 1000 points per for that players.";
 			default = DEFAULT_TRUE;
 		};
 		class BLWK_allowDroneWave : BLWK_allowCivWave
 		{
-			title = "Allow Drone Wave";
+			title = "Drone Wave";
 			tooltip = "Drones will spawn in the air and attempt to drop bombs on your heads. Shoot them down for a good amount of points.";
 		};
 		class BLWK_allowHeliWave : BLWK_allowCivWave
 		{
-			title = "Allow Helicopter Wave";
+			title = "Helicopter Wave";
 			tooltip = "An enemy attack and transport helicopter will spawn and try to gun you down. Best to stay in doors and pick your moments to move.";
 		};
 		class BLWK_allowMortarWave : BLWK_allowCivWave
 		{
-			title = "Allow Mortar Wave";
+			title = "Mortar Wave";
 			tooltip = "An enemy mortar spawns on the edge of the play area and will shell player areas periodically until killed";
 		};
 		class BLWK_allowOverrunWave : BLWK_allowCivWave
 		{
-			title = "Allow Overrun Wave";
+			title = "Overrun Wave";
 			tooltip = "Players will be teleported outside the play area to one side (all together with the Crate) and AI placed inside. Any new spawing AI will be spawned directly on the opposite side of the play area from where the players were placed.";
 		};
 		class BLWK_allowSuicideWave : BLWK_allowCivWave
 		{
-			title = "Allow Suicide Bomber Wave";
+			title = "Suicide Bomber Wave";
 			tooltip = "Suicide Bombers will rush players and will explode when in range. They will also explode when killed.";
 		};
 	};
