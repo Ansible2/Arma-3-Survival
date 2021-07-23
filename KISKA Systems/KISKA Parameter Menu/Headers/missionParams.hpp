@@ -808,6 +808,7 @@ class KISKA_missionParams
 			tooltip = "The amount of points that will be in the shop community pool";
 			min = 0;
 			max = 30000;
+			requiresRestart = 1;
 			default = 0;
 		};
 		class BLWK_supportDishFound : yes_no_paramBase
@@ -892,7 +893,7 @@ class KISKA_missionParams
 
 		class BLWK_specialWavesStartAt : sliderParamBase
 		{
-			title = "Special waves can start after wave";
+			title = "Special Can Start At Wave";
 			min = 1;
 			max = 999;
 			default = 7;
@@ -944,23 +945,28 @@ class KISKA_missionParams
 	{
 		title = "Waves (Normal)";
 
+		class BLWK_normalWavesStartAt : sliderParamBase
+		{
+			title = "Normal Waves Can Start At Wave";
+			tooltip = "Normal waves aren't quite 'special' but just a minor change. Normal waves are weighed against the standard wave (infantry and possibly vehicles) to see what happens when a Normal Wave is selected. Until this wave is reached, for normal waves, only the standard wave will be used. The standard wave has a weight of 1.";
+			min = 1;
+			max = 999;
+			default = 5;
+		};
 		class BLWK_paratrooperWaveWeight : sliderParamBase
 		{
 			title = "Paratrooper Wave Weight";
-			tooltip = "Paratroopers will be dropped near player positions in addition to ground troops. The wave weight is considered against other normal wave weights and one is selected when the wave is not a Special Wave.";
-			min = 0.1;
+			tooltip = "Paratroopers will be dropped near player positions in addition to ground troops.";
+			min = 0.05;
 			max = 1;
-			incriment = 0.1;
-			default = 0.5;
+			incriment = 0.05;
+			default = 0.3;
 		};
-		class BLWK_defectorWaveWeight : sliderParamBase
+		class BLWK_defectorWaveWeight : BLWK_paratrooperWaveWeight
 		{
 			title = "Defector Wave Weight";
-			tooltip = "The friendly faction will spawn as enemies during the wave. The wave weight is considered against other normal wave weights and one is selected when the wave is not a Special Wave.";
-			min = 0.1;
-			max = 1;
-			incriment = 0.1;
-			default = 0.5;
+			tooltip = "The friendly faction will spawn as enemies during the wave. The wave weight is considered against other normal wave weights and one is selected when the wave is not a Special Wave. The standard wave has a weight of 1.";
+			default = 0.25;
 		};
 	};
 

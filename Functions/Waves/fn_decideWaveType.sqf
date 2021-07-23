@@ -45,11 +45,16 @@ private _getAllowedSpecialWaves = {
 };
 
 private _fn_getNormalWave = {
-	private _weights = BLWK_normalWaveConfigs apply {
-		missionNamespace getVariable [getText(_x >> "weightVariable"),0];
-	};
+	if (BLWK_currentWaveNumber >= BLWK_normalWavesStartAt) then {
+		private _weights = BLWK_normalWaveConfigs apply {
+			missionNamespace getVariable [getText(_x >> "weightVariable"),0];
+		};
 
-	BLWK_normalWaveConfigs selectRandomWeighted _weights;
+		BLWK_normalWaveConfigs selectRandomWeighted _weights;
+	} else {
+		missionConfigFile >> "BLWK_waveTypes" >> "normalWaves" >> "standardWave";
+		
+	};
 };
 
 
