@@ -40,21 +40,29 @@ _spawnPosition set [2,DROP_ALT];
 private _relativeDirection = _spawnPosition getDir _dropPosition;
 
 // spawn vehicle
-private _vehicleArray = [_spawnPosition,_relativeDirection,_vehicleClass,BLUFOR] call KISKA_fnc_spawnVehicle;
-private _aircraft = _vehicleArray select 0;
+private _vehicleArray = [
+	_spawnPosition,
+	_relativeDirection,
+	_vehicleClass,
+	BLUFOR,
+	true,
+	[BLWK_friendly_menClasses select 0]
+] call KISKA_fnc_spawnVehicle;
+
 
 private _aircraftCrew = _vehicleArray select 1;
-
 _aircraftCrew apply {
 	_x setCaptive true;
 };
-private _aircraftGroup = _vehicleArray select 2;
-_aircraft flyInHeight DROP_ALT;
 
+private _aircraft = _vehicleArray select 0;
+_aircraft flyInHeight DROP_ALT;
 _airCraft move _dropPosition;
+
 
 // give it a waypoint and delete it after it gets there
 private _flyToPosition = _dropPosition getPos [FLY_RADIUS,_relativeDirection];
+private _aircraftGroup = _vehicleArray select 2;
 
 [_aircraft,_dropPosition,_aircraftGroup,_flyToPosition] spawn {
 	params ["_aircraft","_dropPosition","_aircraftGroup","_flyToPosition"];
