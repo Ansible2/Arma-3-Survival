@@ -213,6 +213,9 @@ if (isNil "BLWK_randomWeaponBoxFound") then {
     BLWK_randomWeaponBoxFound = false;
 };
 
+if (isNil"BLWK_communityKillPoints") then {
+    BLWK_communityKillPoints = BLWK_startingCommunityKillPoints;
+};
 
 // shop arrays
 BLWK_supports_array = [missionConfigFile >> "CfgCommunicationMenu"] call BLWK_fnc_createSupportsArray;
