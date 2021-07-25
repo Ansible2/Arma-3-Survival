@@ -28,25 +28,16 @@ Author(s):
 ---------------------------------------------------------------------------- */
 if (!isServer OR {!canSuspend}) exitWith {};
 
-// handle drone wave global
-if !(isNil "BLWK_allDronesCreated") then {
-	missionNamespace setVariable ["BLWK_allDronesCreated",nil,[0,2] select isMultiplayer];
+private _currentWaveTypeConfig = localNamespace getVariable ["BLWK_currentWaveConfig",configNull];
+private _waveEndEvent = getText(_currentWaveTypeConfig >> "onWaveEnd");
+if (_waveEndEvent isNotEqualTo "") then {
+	call compileFinal _waveEndEvent;
 };
+
 
 // check for mission complete
 if (BLWK_currentWaveNumber isEqualTo BLWK_maxNumWaves) exitWith {
 	"End2" call BIS_fnc_endMissionServer;
-};
-
-// delete any alive civilians from special wave
-if ((missionNamespace getVariable ["BLWK_civiliansFromWave",[]]) isNotEqualTo []) then {
-	BLWK_civiliansFromWave apply {
-		if (alive _x) then {
-			deleteVehicle _x;
-		};
-	};
-
-	missionNamespace setVariable ["BLWK_civiliansFromWave",[]];
 };
 
 

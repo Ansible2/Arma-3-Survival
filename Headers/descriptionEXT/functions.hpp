@@ -384,6 +384,8 @@ class BLWK
 		{};
 		class killedCivilianEvent
 		{};
+		class onCivWaveEnd
+		{};
 	};
 
 	class DroneWaveLibrary
@@ -394,6 +396,8 @@ class BLWK
 		class droneAttackLoop
 		{};
 		class handleDroneWave
+		{};
+		class onDroneWaveEnd
 		{};
 	};
 

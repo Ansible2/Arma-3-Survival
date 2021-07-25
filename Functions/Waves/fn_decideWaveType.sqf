@@ -81,7 +81,7 @@ if (_selectSpecialWave) then {
 	_waveConfigPath = call _fn_getNormalWave;
 
 };
-
+localNamespace setVariable ["BLWK_currentWaveConfig",_waveConfigPath];
 call compileFinal (getText(_waveConfigPath >> "onSelected"));
 
 

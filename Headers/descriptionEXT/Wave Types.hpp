@@ -38,12 +38,14 @@ class BLWK_waveTypes
         {
             onSelected = "remoteExec ['BLWK_fnc_handleInfantryWave',BLWK_theAIHandlerOwnerID]; call BLWK_fnc_civiliansWave";
             notificationText = "Civilians Are Fleeing, Watch Your Fire!";
+            onWaveEnd = "call BLWK_fnc_onCivWaveEnd";
             toggleVariable = "BLWK_allowCivWave";
         };
         class droneWave : suicideWave
         {
             onSelected = "remoteExec ['BLWK_fnc_handleDroneWave',BLWK_theAIHandlerOwnerID]";
             notificationText = "Enemy Drones Inbound!";
+            onWaveEnd = "call BLWK_fnc_onDroneWaveEnd";
             toggleVariable = "BLWK_allowDroneWave";
         };
         class overrunWave : suicideWave
