@@ -211,6 +211,8 @@ class BLWK
 		class checkDLC
 		{};
 	*/
+		class closeArsenal
+		{};
 		class doMagRepack
 		{};
 		class getEnemyVehicleClasses
