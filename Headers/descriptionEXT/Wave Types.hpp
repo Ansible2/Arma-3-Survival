@@ -13,12 +13,6 @@ class BLWK_waveTypes
             compileNotificationText = 1; // notificationText will be compiled and called. It must return an array compatible with the "arguments" parameter of BIS_fnc_showNotification
             //weightVariable = "";
         };
-    /*
-        class vehicleWave : infantryWave
-        {
-            onSelected = "remoteExec ['BLWK_fnc_handleVehicleWave',BLWK_theAIHandlerOwnerID]";
-        };
-    */
         class paratrooperWave : standardWave
         {
             onSelected = "remoteExec ['BLWK_fnc_handleParatrooperWave',BLWK_theAIHandlerOwnerID]";

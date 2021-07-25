@@ -1,4 +1,3 @@
-//#include "..\..\Headers\String Constants.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_decideWaveType
 
@@ -53,7 +52,7 @@ private _fn_getNormalWave = {
 		BLWK_normalWaveConfigs selectRandomWeighted _weights;
 	} else {
 		missionConfigFile >> "BLWK_waveTypes" >> "normalWaves" >> "standardWave";
-		
+
 	};
 };
 
