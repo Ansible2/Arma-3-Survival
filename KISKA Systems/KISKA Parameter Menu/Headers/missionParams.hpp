@@ -231,8 +231,8 @@ class KISKA_missionParams
 			title = "Max Number Of Loot Spawns";
 			tooltip = "There will not be more loot drops in the area then what is set. Higher values have a large impact on performance.";
 			min = 0;
-			max = 200;
-			default = 800;
+			max = 800;
+			default = 500;
 		};
 		class BLWK_loot_whiteListMode : listParamBase
 		{
