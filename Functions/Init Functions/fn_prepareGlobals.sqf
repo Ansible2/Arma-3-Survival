@@ -74,6 +74,9 @@ if (isServer) then {
     } else {
         BLWK_startingFromWaveNumber = BLWK_currentWaveNumber;
     };
+
+    BLWK_specialWaveConfigs = "true" configClasses (missionConfigFile >> "BLWK_waveTypes" >> "specialWaves");
+    BLWK_normalWaveConfigs = "true" configClasses (missionConfigFile >> "BLWK_waveTypes" >> "normalWaves");
 };
 if (isServer OR {!hasInterface}) then {
     if (isServer) then {
