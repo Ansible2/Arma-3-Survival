@@ -11,7 +11,7 @@ class BLWK_waveTypes
             creationNotificationTemplate = TASK_ASSIGNED_TEMPLATE; // a CfgNotification template for when the wave starts
             notificationText = "['','Incoming Wave: ' + (str BLWK_currentWaveNumber)]"; // text to appear in wave start notification
             compileNotificationText = 1; // notificationText will be compiled and called. It must return an array compatible with the "arguments" parameter of BIS_fnc_showNotification
-            //weightVariable = "";
+            weightVariable = "BLWK_standardWaveWeight";
         };
         class paratrooperWave : standardWave
         {

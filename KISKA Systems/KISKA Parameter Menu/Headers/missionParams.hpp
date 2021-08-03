@@ -957,16 +957,22 @@ class KISKA_missionParams
 		{
 			title = "Paratrooper Wave Weight";
 			tooltip = "Paratroopers will be dropped near player positions in addition to ground troops.";
-			min = 0.05;
+			min = 0;
 			max = 1;
 			incriment = 0.05;
-			default = 0.3;
+			default = 0.25;
 		};
 		class BLWK_defectorWaveWeight : BLWK_paratrooperWaveWeight
 		{
 			title = "Defector Wave Weight";
-			tooltip = "The friendly faction will spawn as enemies during the wave. The wave weight is considered against other normal wave weights and one is selected when the wave is not a Special Wave. The standard wave has a weight of 1.";
+			tooltip = "The friendly faction will spawn as enemies during the wave. The wave weight is considered against other normal wave weights.";
 			default = 0.25;
+		};
+		class BLWK_standardWaveWeight : BLWK_paratrooperWaveWeight
+		{
+			title = "Standard Wave Weight";
+			tooltip = "Typical enemy infantry wave with a possibility of vehicles to spawn";
+			default = 1;
 		};
 	};
 
