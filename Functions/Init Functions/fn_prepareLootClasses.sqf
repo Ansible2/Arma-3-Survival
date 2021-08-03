@@ -43,7 +43,7 @@ if (!isServer AND {hasInterface}) exitWith {[]};
 
 ---------------------------------------------------------------------------- */
 private _mainListConfig = missionConfigFile >> "BLWK_lootLists";
-private _masterListConfig = _mainListConfig >> "masterList";
+private _masterListConfig = _mainListConfig >> "MasterLootList";
 
 private _fn_toLowerArray = {
 	params ["_array"];
