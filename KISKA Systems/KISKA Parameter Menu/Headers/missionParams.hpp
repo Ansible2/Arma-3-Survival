@@ -301,7 +301,7 @@ class KISKA_missionParams
 		class BLWK_level2Faction_startWave : sliderParamBase
 		{
 			title = "Level 2 Starting Wave";
-			tooltip = "At what wave number will level 2 enemies be allowed to spawn?"
+			tooltip = "At what wave number will level 2 enemies be allowed to spawn?";
 			min = 1;
 			max = 25;
 			default = 6;
@@ -321,7 +321,7 @@ class KISKA_missionParams
 		class BLWK_level3Faction_startWave : BLWK_level2Faction_startWave
 		{
 			title = "Level 3 Starting Wave";
-			tooltip = "At what wave number will level 3 enemies be allowed to spawn?"
+			tooltip = "At what wave number will level 3 enemies be allowed to spawn?";
 			default = 11;
 		};
 
@@ -339,7 +339,7 @@ class KISKA_missionParams
 		class BLWK_level4Faction_startWave : BLWK_level2Faction_startWave
 		{
 			title = "Level 4 Starting Wave";
-			tooltip = "At what wave number will level 4 enemies be allowed to spawn?"
+			tooltip = "At what wave number will level 4 enemies be allowed to spawn?";
 			default = 16;
 		};
 
@@ -357,7 +357,7 @@ class KISKA_missionParams
 		class BLWK_level5Faction_startWave : BLWK_level2Faction_startWave
 		{
 			title = "Level 5 Starting Wave";
-			tooltip = "At what wave number will level 5 enemies be allowed to spawn?"
+			tooltip = "At what wave number will level 5 enemies be allowed to spawn?";
 			default = 21;
 		};
 
