@@ -70,11 +70,15 @@ if (_selectSpecialWave) then {
 	};
 
 	_waveConfigPath = selectRandom _allowedSpecialWaves;
-	if (isNil "_waveConfigPath") exitWith {
+	if (isNil "_waveConfigPath") then {
 		_waveConfigPath = call _fn_getNormalWave;
-	};
 
-	_playAlarm = true;
+	} else {
+		_playAlarm = true;
+		_usedSpecialWaves pushBack _waveConfigPath;
+		localNamespace setVariable ["BLWK_usedSpecialWaveConfigs",_usedSpecialWaves];
+
+	};
 
 } else {
 	["Selected a standard wave type",false] call KISKA_fnc_log;
