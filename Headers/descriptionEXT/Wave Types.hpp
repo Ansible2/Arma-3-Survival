@@ -36,7 +36,7 @@ class BLWK_waveTypes
         };
         class civilianWave : suicideWave
         {
-            onSelected = "remoteExec ['BLWK_fnc_handleInfantryWave',BLWK_theAIHandlerOwnerID]; call BLWK_fnc_civiliansWave";
+            onSelected = "remoteExec ['BLWK_fnc_handleStandardWave',BLWK_theAIHandlerOwnerID]; call BLWK_fnc_civiliansWave";
             notificationText = "Civilians Are Fleeing, Watch Your Fire!";
             onWaveEnd = "call BLWK_fnc_onCivWaveEnd";
             toggleVariable = "BLWK_allowCivWave";
