@@ -37,7 +37,7 @@ class KISKA
 		{};
 		class getMusicFromClass
 		{};
-		class getMusicPlaying
+		class getPlayingMusic
 		{};
 		class isMusicPlaying
 		{};
