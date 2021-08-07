@@ -92,7 +92,7 @@ private _vehicleTypeValues = [];
 	};
 } forEach VEHICLE_TYPES;
 
-if (_likelihoodArray isEqualTo []) exitWith {
+if (_vehicleTypeValues isEqualTo []) exitWith {
 	["No vehicles to spawn for enemy factions, exiting",false] call KISKA_fnc_log;
 	[]
 };
