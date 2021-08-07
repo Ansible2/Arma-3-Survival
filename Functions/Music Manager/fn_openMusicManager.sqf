@@ -18,12 +18,11 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "BLWK_fnc_openMusicManager"
-scriptName SCRIPT_NAME;
+scriptName "BLWK_fnc_openMusicManager";
 
 // check if player is host or admin
-if (!(call BIS_fnc_admin > 0) AND {clientOwner != 2}) exitWith {
+if !(call KISKA_fnc_isAdminOrHost) exitWith {
 	hint "Only admins and hosts can open the manager";
 };
 
-createDialog "musicManagerDialog"; 
+createDialog "musicManagerDialog";

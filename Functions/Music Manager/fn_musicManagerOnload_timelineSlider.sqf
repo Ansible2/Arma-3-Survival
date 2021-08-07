@@ -28,7 +28,7 @@ _control ctrlAddEventHandler ["MouseButtonDown",{
 	// if music was playing
 	if (uiNamespace getVariable ["BLWK_musicManager_doPlay",false]) then {
 		playMusic ""; // stop music while adjusting
-		call KISKA_fnc_musicStopEvent;
+		[] call KISKA_fnc_musicStopEvent;
 
 		// tell music player in the mouse up event to resume
 		uiNamespace setVariable ["BLWK_musicManager_doResume",true];

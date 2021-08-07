@@ -55,6 +55,8 @@ class KISKA
 		{};
 		class setCurrentRandomMusicTrack
 		{};
+		class setRandomMusicTime
+		{};
 		class stopRandomMusicServer
 		{};
 		class stopRandomMusicClient

@@ -1,4 +1,5 @@
 #include "..\..\Headers\descriptionEXT\GUI\musicManagerCommonDefines.hpp"
+#include "..\..\KISKA Systems\KISKA Music Functions\Headers\Music Common Defines.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_musicManager_setPlaylistServer
 
@@ -33,10 +34,10 @@ private _publicPlaylist = +GET_PUBLIC_ARRAY_DEFAULT;
 missionNamespace setVariable ["KISKA_randomMusic_tracks",_publicPlaylist];
 
 // reset used tracks so we don't get duplicate tracks
-missionNamespace setVariable ["KISKA_randomMusic_usedTracks",[]];
+SET_MUSIC_VAR( MUSIC_RANDOM_USED_TRACKS_VAR_STR,[] );
 
 // if random music system was already running, start a new instance
-if (missionNamespace getVariable ["KISKA_musicSystemIsRunning",false]) then {
+if (GET_MUSIC_RANDOM_MUSIC_SYS_RUNNING) then {
 	[] spawn KISKA_fnc_randomMusic;
 };
 
