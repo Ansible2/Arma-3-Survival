@@ -1,4 +1,10 @@
 waitUntil {
+	if (localNamespace getVariable ["KISKA_missionParams_preloadFinished",false]) exitWith {true};
+    sleep 0.1;
+	false
+};
+
+waitUntil {
 	if (missionNamespace getVariable ["BLWK_serverGlobalsInitialized",false]) exitWith {true};
     sleep 0.1;
 	false
@@ -19,13 +25,14 @@ waitUntil {
 };
 
 private _player = player;
+_player allowDamage false;
 
 // Lower recoil, lower sway, remove stamina on respawn, make medic and engineer
 [_player] call BLWK_fnc_adjustPlayerTraits;
 
 //setup Kill Points
-private _startingKillPoints = ("BLWK_startingKillPoints" call BIS_fnc_getParamValue);
-missionNamespace setVariable ["BLWK_playerKillPoints",_startingKillPoints];
+missionNamespace setVariable ["BLWK_playerKillPoints",BLWK_startingKillPoints];
+
 
 // adds starter items if selected (map, NVGs, pistol, etc.)
 waitUntil {
@@ -70,6 +77,8 @@ _player switchMove ""; // set player standing
 [_player] call BLWK_fnc_initDragSystem;
 
 [false] call BLWK_fnc_playAreaEnforcementLoop;
+
+_player allowDamage true;
 
 waitUntil {
     sleep 0.1;

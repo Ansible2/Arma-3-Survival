@@ -4,10 +4,10 @@ Function: BLWK_fnc_createStdWaveInfantry
 
 Description:
 	Creates the standard infantry for a normal wave.
-	
+
 	Also has the ability to queue up units based upon the mission param size of
 	 units allowed at once.
-	 
+
 Parameters:
 	0: _isDefectorWave : <BOOL> - Will this be a wave of defectors
 
@@ -41,23 +41,23 @@ private _fn_getAvailableEnemyLists = {
 	// classes
 	_returnedLists pushback BLWK_level1_menClasses;
 	// weight of class
-	_returnedLists pushBack 1;
+	_returnedLists pushBack BLWK_level1Faction_weight;
 
-	if (BLWK_currentWaveNumber > 5) then {
+	if (BLWK_currentWaveNumber >= BLWK_level2Faction_startWave) then {
 		_returnedLists pushback BLWK_level2_menClasses;
-		_returnedLists pushBack 2;
+		_returnedLists pushBack BLWK_level2Faction_weight;
 	};
-	if (BLWK_currentWaveNumber > 10) then {
+	if (BLWK_currentWaveNumber > BLWK_level3Faction_startWave) then {
 		_returnedLists pushback BLWK_level3_menClasses;
-		_returnedLists pushBack 3;
+		_returnedLists pushBack BLWK_level3Faction_weight;
 	};
-	if (BLWK_currentWaveNumber > 15) then {
+	if (BLWK_currentWaveNumber > BLWK_level4Faction_startWave) then {
 		_returnedLists pushback BLWK_level4_menClasses;
-		_returnedLists pushBack 4;
+		_returnedLists pushBack BLWK_level4Faction_weight;
 	};
-	if (BLWK_currentWaveNumber > 20) then {
+	if (BLWK_currentWaveNumber > BLWK_level5Faction_startWave) then {
 		_returnedLists pushback BLWK_level5_menClasses;
-		_returnedLists pushBack 5;
+		_returnedLists pushBack BLWK_level5Faction_weight;
 	};
 
 	_returnedLists

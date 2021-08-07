@@ -1,3 +1,4 @@
+#include "Headers\Music Common Defines.hpp"
 /* ----------------------------------------------------------------------------
 Function: KISKA_fnc_stopRandomMusicServer
 
@@ -12,16 +13,13 @@ Returns:
 
 Examples:
     (begin example)
-
 		call KISKA_fnc_stopRandomMusicServer;
-
     (end)
 
 Author(s):
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "KISKA_fnc_stopRandomMusicServer"
-scriptName SCRIPT_NAME;
+scriptName "KISKA_fnc_stopRandomMusicServer";
 
 if (!isServer) exitWith {
 	["Needs to only be run on server, exiting...",true] call KISKA_fnc_log;
@@ -32,7 +30,8 @@ params [
 	["_playLastSong",false,[true]]
 ];
 
-missionNamespace setVariable ["KISKA_musicSystemIsRunning",false];
+SET_MUSIC_VAR(MUSIC_RANDOM_SYS_RUNNING_VAR_STR,false);
+SET_MUSIC_VAR(GET_MUSIC_RANDOM_START_TIME,nil);
 if (!_playLastSong) then {
 	remoteExecCall ["KISKA_fnc_stopRandomMusicClient",[0,-2] select isDedicated];
 };

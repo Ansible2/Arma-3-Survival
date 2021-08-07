@@ -13,15 +13,15 @@ Returns:
 
 Examples:
     (begin example)
-
 		[myPosition,"B_T_VTOL_01_vehicle_F"] call BLWK_fnc_arsenalSupplyDrop;
-
     (end)
 
 Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "BLWK_fnc_arsenalSupplyDrop";
+
 #define DROP_ALT 200
 #define FLY_RADIUS 2000
 #define ARSENAL_LIFETIME 300
@@ -40,21 +40,29 @@ _spawnPosition set [2,DROP_ALT];
 private _relativeDirection = _spawnPosition getDir _dropPosition;
 
 // spawn vehicle
-private _vehicleArray = [_spawnPosition,_relativeDirection,_vehicleClass,BLUFOR] call KISKA_fnc_spawnVehicle;
-private _aircraft = _vehicleArray select 0;
+private _vehicleArray = [
+	_spawnPosition,
+	_relativeDirection,
+	_vehicleClass,
+	BLUFOR,
+	true,
+	[BLWK_friendly_menClasses select 0]
+] call KISKA_fnc_spawnVehicle;
+
 
 private _aircraftCrew = _vehicleArray select 1;
-
 _aircraftCrew apply {
 	_x setCaptive true;
 };
-private _aircraftGroup = _vehicleArray select 2;
-_aircraft flyInHeight DROP_ALT;
 
+private _aircraft = _vehicleArray select 0;
+_aircraft flyInHeight DROP_ALT;
 _airCraft move _dropPosition;
+
 
 // give it a waypoint and delete it after it gets there
 private _flyToPosition = _dropPosition getPos [FLY_RADIUS,_relativeDirection];
+private _aircraftGroup = _vehicleArray select 2;
 
 [_aircraft,_dropPosition,_aircraftGroup,_flyToPosition] spawn {
 	params ["_aircraft","_dropPosition","_aircraftGroup","_flyToPosition"];
@@ -130,6 +138,8 @@ private _flyToPosition = _dropPosition getPos [FLY_RADIUS,_relativeDirection];
 	};
 
 	[[_arsenalBox]] call KISKA_fnc_removeArsenal;
+	remoteExecCall ["BLWK_fnc_closeArsenal",BLWK_allClientsTargetID];
+
 	sleep 2;
 
 	private _explosiveType = selectRandom ["DemoCharge_Remote_Ammo_Scripted","SatchelCharge_Remote_Ammo_Scripted","ClaymoreDirectionalMine_Remote_Ammo_Scripted"];
