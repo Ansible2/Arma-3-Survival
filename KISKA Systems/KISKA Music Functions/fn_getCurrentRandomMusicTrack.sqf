@@ -1,3 +1,4 @@
+#include "Headers\Music Common Defines.hpp"
 /* ----------------------------------------------------------------------------
 Function: KISKA_fnc_getCurrentRandomMusicTrack
 
@@ -15,16 +16,12 @@ Returns:
 
 Examples:
     (begin example)
-
 		_mostRecentRandomTrack = call KISKA_fnc_getCurrentRandomMusicTrack;
-
     (end)
 
 Author(s):
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
 scriptName "KISKA_fnc_getCurrentRandomMusicTrack";
 
-private _return = missionNamespace getVariable ["KISKA_currentRandomTrack",""];
-
-_return
+GET_MUSIC_CURRENT_RANDOM_TRACK;

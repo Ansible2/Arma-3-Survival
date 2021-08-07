@@ -12,26 +12,25 @@ Returns:
 
 Examples:
     (begin example)
-
 		_duration = ["LeadTrack01_F_Curator"] call KISKA_fnc_getMusicDuration;
-
     (end)
 
 Author(s):
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "KISKA_fnc_getMusicDuration"
-scriptName SCRIPT_NAME;
+scriptName "KISKA_fnc_getMusicDuration";
 
 params [
 	["_track","",["",configNull]]
 ];
 
+private _duration = 0;
+
 if (_track isEqualTo "") exitWith {
 	["_track is empty string",true] call KISKA_fnc_log;
+	_duration
 };
 
-private _duration = 0;
 private "_config";
 if (_track isEqualType configNull) then {
 	_config = _track;

@@ -19,13 +19,13 @@ Examples:
     (end)
 
 Author(s):
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
 scriptName "KISKA_fnc_stopRandomMusicClient";
 
 if (!hasInterface) exitWith {false};
 
-if ((call KISKA_fnc_getMusicPlaying) == (call KISKA_fnc_getCurrentRandomMusicTrack)) then {
+if ((call KISKA_fnc_getPlayingMusic) == (call KISKA_fnc_getCurrentRandomMusicTrack)) then {
 	/*
 		there should in the future be a more robust way of determining if a track did indeed come
 		 from KISKA_fnc_randomMusic. As it stands, if a manual song is playing that is ALSO in the list

@@ -37,7 +37,7 @@ class KISKA
 		{};
 		class getMusicFromClass
 		{};
-		class getMusicPlaying
+		class getPlayingMusic
 		{};
 		class isMusicPlaying
 		{};
@@ -54,6 +54,8 @@ class KISKA
 		class randomMusic
 		{};
 		class setCurrentRandomMusicTrack
+		{};
+		class setRandomMusicTime
 		{};
 		class stopRandomMusicServer
 		{};
