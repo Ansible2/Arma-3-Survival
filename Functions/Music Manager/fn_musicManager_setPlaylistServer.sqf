@@ -31,7 +31,7 @@ if (!isServer) exitWith {
 
 // copying playlist by value not reference, otherwise they will be deleted out of the current playlist box
 private _publicPlaylist = +GET_PUBLIC_ARRAY_DEFAULT;
-missionNamespace setVariable ["KISKA_randomMusic_tracks",_publicPlaylist];
+SET_MUSIC_VAR(MUSIC_RANDOM_UNUSED_TRACKS_VAR_STR,_publicPlaylist);
 
 // reset used tracks so we don't get duplicate tracks
 SET_MUSIC_VAR( MUSIC_RANDOM_USED_TRACKS_VAR_STR,[] );
