@@ -10,12 +10,12 @@ class paramBase
 	/*
 		Parameters are:
 		_this select 0 - The new value
-		_this select 1 - <STRING> - The mission parameters variable name (either the param configName or varName property)
+		_this select 1 - <STRING> - The mission parameter's variable name (either the param configName or varName property)
 		_this select 2 - <CONFIG> - The param Config path
 	*/
 	varName = ""; // a global variable name to tie to the parameter, if not defined, the configName will be used
-	onChanged = ""; // This is uncompiled code that will be compiled and run on EVERY MACHINE when a change is commited (Parameters are the same as the initScript property)
-	requiresRestart = 0; // if the changed parameter requires a mission restart when changed after the briefing screen; 0 = false, 1 = true.
+	onChanged = ""; // This is uncompiled code that will be compiled and run on EVERY MACHINE when a change is commited AFTER the briefing menu (Parameters are the same as the initScript property)
+	requiresRestart = 0; // if the changed parameter requires a mission restart when changed after the briefing screen; 0 = false, 1 = true. Any parameters that require restart will not have their changes broadcast mid mission
 	namespace = 0; // 0 to put variable inside the missionNamespace and 1 to put inside of the localNamespace
 };
 class sliderParamBase : paramBase
@@ -128,7 +128,7 @@ class KISKA_missionParams
 		class BLWK_spotTime : BLWK_baseSkill
 		{
 			title = "Spot Time";
-			tooltip = "The AI 'spotTime' skill is a static value that will not change. It is unaffected by the wave number or base skill.";
+			tooltip = "A modifier for adjusting how quickly the AI register enemies in their line-of-sight. This is a static value that will not change and is unaffected by the wave number or base skill.";
 			default = 0.3;
 		};
 	};
@@ -199,7 +199,7 @@ class KISKA_missionParams
 		class BLWK_customPlayLocation : yes_no_paramBase
 		{
 			title = "Select a custom location to play?";
-			tooltip = "After parameters are initialized, you will be given the chance to select an area";
+			tooltip = "After parameters are initialized, the host or first available admin will be given the chance to select an area.";
 			requiresRestart = 1;
 			default = DEFAULT_FALSE;
 		};
