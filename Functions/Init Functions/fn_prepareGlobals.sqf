@@ -16,11 +16,12 @@ Returns:
 
 Examples:
     (begin example)
-
 		call BLWK_fnc_prepareGlobals
-
     (end)
 ---------------------------------------------------------------------------- */
+// BLWK_startingWaveNumber is a seperate variable to avoid having saves of mission params mid-mission affected by BLWK_currentWaveNumber being increased
+BLWK_currentWaveNumber = BLWK_startingWaveNumber;
+
 if (isServer) then {
     // We don't need to constantly check if the server is dedicated, and we only want to run things like
     /// playSound and hud updates on a server with an interface (0) or just clients (-2)
@@ -157,7 +158,6 @@ if (isServer OR {!hasInterface}) then {
 if (isNil "BLWK_satShopOut") then {
     BLWK_satShopOut = false;
 };
-
 
 
 // AI unit classes

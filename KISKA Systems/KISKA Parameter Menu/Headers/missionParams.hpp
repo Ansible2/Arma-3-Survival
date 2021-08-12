@@ -33,6 +33,7 @@ class comboParamBase : paramBase
 	texts[] = {}; // optional strings array (what shows up in combo)
 	populationScript = ""; // an optional script that can populate the list dynamically, must return either an array of [[strings],[numbers]] (for use with values instead of strings) or an array of strings
 	sortList = 0; // 0 for false, 1 for true. Sorts the list alphabetically using sort command.
+	// the default property can either be a string or number depending on whether or not you are using values
 };
 class editParamBase : paramBase
 {
@@ -118,7 +119,7 @@ class KISKA_missionParams
 		class BLWK_aimSpeedMod : sliderParamBase
 		{
 			title = "Aiming Speed Modifier";
-			tooltip = "Whatever the outcome is of the AI skill level for a wave, it will be multiplied by this to set the AI's 'aimingSpeed' skill. A value of 1 means no change.";
+			tooltip = "Whatever the outcome is of the AI skill level equation for a wave, it will be multiplied by this to set the AI's 'aimingSpeed' skill. A value of 1 means no change.";
 			min = 0.05;
 			max = 1;
 			incriment = 0.05;
@@ -128,7 +129,7 @@ class KISKA_missionParams
 		class BLWK_spotTime : BLWK_baseSkill
 		{
 			title = "Spot Time";
-			tooltip = "A modifier for adjusting how quickly the AI register enemies in their line-of-sight. This is a static value that will not change and is unaffected by the wave number or base skill.";
+			tooltip = "A modifier for adjusting how quickly the AI register enemies in their line-of-sight. This is a static value that is unaffected by the wave number or base skill parameter.";
 			default = 0.3;
 		};
 	};
@@ -189,6 +190,27 @@ class KISKA_missionParams
 			default = 25;
 			onChanged = "[_this select 0] spawn BIS_fnc_paramWeather";
 			initScript = "[_this select 0] spawn BIS_fnc_paramWeather";
+		};
+
+		class BLWK_rain : sliderParamBase
+		{
+			title = "Rain";
+			tooltip = "Requires an overcast value of atleast 70";
+			min = 0;
+			max = 100;
+			default = 25;
+			onChanged = "if (isServer) then {0 setRain (_this select 0)}";
+			initScript = "if (isServer) then {0 setRain (_this select 0)}";
+		};
+		class BLWK_lightning : sliderParamBase
+		{
+			title = "Lightning";
+			tooltip = "Higher the value, the more lightning.";
+			min = 0;
+			max = 100;
+			default = 25;
+			onChanged = "0 setLightnings (_this select 0)";
+			initScript = "0 setLightnings (_this select 0)";
 		};
 	};
 
@@ -785,7 +807,7 @@ class KISKA_missionParams
 	{
 		title = "Start Settings";
 
-		class BLWK_currentWaveNumber : sliderParamBase
+		class BLWK_startingWaveNumber : sliderParamBase
 		{
 			title = "Starting Wave Number";
 			tooltip = "Ensure that this is less then the max wave number";
