@@ -24,6 +24,8 @@ class BLWK
 		{};
 		class addPickedUpObjectActions
 		{};
+		class addRemoveRemotePurchaseEvent
+		{};
 		class buildEvent_onPickedUp
 		{};
 		class buildEvent_onPlaced
@@ -33,6 +35,8 @@ class BLWK
 		class buildEvent_onPurchasedPostNetwork
 		{};
 		class buildEvent_onSold
+		{};
+		class buildItemPurchasedEvent_remote
 		{};
 		class disableCollisionWithAllPlayers
 		{};
@@ -139,6 +143,16 @@ class BLWK
 		{};
 	};
 
+
+	class KiskaParameterFunctions
+	{
+		file = "Functions\KISKA Parameter Functions";
+		class KISKAParams_populateLootWhitelists
+		{};
+		class KISKAParams_populateFactionList
+		{};
+	};
+
 	class MusicManager
 	{
 		file = "Functions\Music Manager";
@@ -189,12 +203,16 @@ class BLWK
 		{};
 		class addPlayerItems
 		{};
+		class addSurvivalDiaryEntry
+		{};
 		class adjustPlayerTraits
 		{};
 	/*
 		class checkDLC
 		{};
 	*/
+		class closeArsenal
+		{};
 		class doMagRepack
 		{};
 		class getEnemyVehicleClasses
@@ -235,21 +253,6 @@ class BLWK
 		class addUnlockSupportAction
 		{};
 		class addWeaponBoxSpinAction
-		{};
-	};
-
-	class ParameterSaving
-	{
-		file = "Functions\Parameter Saving";
-		class addParameterDiaryEntries
-		{
-			postInit = 1;
-		};
-		class deleteSavedMissionParameters
-		{};
-		class paramsQuery
-		{};
-		class saveAllMissionParameters
 		{};
 	};
 
@@ -383,6 +386,8 @@ class BLWK
 		{};
 		class killedCivilianEvent
 		{};
+		class onCivWaveEnd
+		{};
 	};
 
 	class DroneWaveLibrary
@@ -393,6 +398,8 @@ class BLWK
 		class droneAttackLoop
 		{};
 		class handleDroneWave
+		{};
+		class onDroneWaveEnd
 		{};
 	};
 

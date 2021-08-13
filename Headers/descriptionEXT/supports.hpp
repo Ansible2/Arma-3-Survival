@@ -67,7 +67,7 @@ class CRUISE_MISSILE_CLASS : basicSupport_baseClass
 
 class DAISY_CUTTER_CLASS : basicSupport_baseClass
 {
-	price = 1500;
+	price = 1000;
 	category = OTHER_CATEGORY;
 
 	text = DAISY_CUTTER_TEXT;

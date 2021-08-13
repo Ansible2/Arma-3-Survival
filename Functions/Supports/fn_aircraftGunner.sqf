@@ -114,7 +114,10 @@ if (KISKA_VDL_run) then {
 
 private _estimatedDistance = round (sqrt ((_loiterHeight^2) + (_loiterRadius^2)));
 private _overallViewDistance = round (_estimatedDistance * 2.5);
-private _objectViewDistance = round (_estimatedDistance * 1.5);
+private _objectViewDistance = round (_estimatedDistance * 1.8);
+if (_objectViewDistance > 2000) then {
+	_objectViewDistance = 2000;
+};
 if (viewDistance < _overallViewDistance) then {
 	setViewDistance _overallViewDistance;
 };

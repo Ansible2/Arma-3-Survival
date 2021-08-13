@@ -1,6 +1,8 @@
 // BAF Bases
 class AEGIS_BAF_base : NATO_faction
 {
+	displayName = "";
+
 	heavyCars[] = {
 		"B_A_MRAP_03_gmg_F",
 		"B_A_MRAP_03_hmg_F"
@@ -22,6 +24,8 @@ class AEGIS_BAF_base : NATO_faction
 };
 class AEGIS_BAF_pacific_base : NATO_pacific_faction
 {
+	displayName = "";
+	
 	heavyCars[] = {
 		"B_A_MRAP_03_gmg_tna_F",
 		"B_A_MRAP_03_hmg_tna_F"
@@ -33,9 +37,9 @@ class AEGIS_BAF_pacific_base : NATO_pacific_faction
 
 // BAF Factions
 class AEGIS_BAF_faction : AEGIS_BAF_base
-{	
+{
 	displayName = "Aegis - British Armed Forces";
-	
+
 	infantry[] = {
 		"B_A_Soldier_A_F",
 		"B_A_Soldier_AAR_F",
@@ -77,7 +81,7 @@ class AEGIS_BAF_faction : AEGIS_BAF_base
 		"B_A_Recon_Sharpshooter_F",
 		"B_A_Recon_TL_F",
 		"B_A_ghillie_ard_F",
-		"B_A_ghillie_spotter_ard_F"		
+		"B_A_ghillie_spotter_ard_F"
 	};
 };
 
@@ -133,7 +137,7 @@ class AEGIS_BAF_pacific_faction : AEGIS_BAF_pacific_base
 class AEGIS_BAF_woodland_faction : AEGIS_BAF_pacific_base
 {
 	displayName = "Aegis - British Armed Forces (Woodland)";
-	
+
 	infantry[] = {
 		"B_A_Soldier_A_wdl_F",
 		"B_A_Soldier_AAR_wdl_F",

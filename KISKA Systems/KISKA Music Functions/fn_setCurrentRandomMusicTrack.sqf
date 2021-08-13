@@ -1,3 +1,4 @@
+#include "Headers\Music Common Defines.hpp"
 /* ----------------------------------------------------------------------------
 Function: KISKA_fnc_setCurrentRandomMusicTrack
 
@@ -8,17 +9,15 @@ Parameters:
 	0: _trackClass <STRING> - a classname to check the duration of or its config path
 
 Returns:
-	<STRING> - The current randomly selected track
+	<BOOL> - True when set
 
 Examples:
     (begin example)
-
-		_mostRecentRandomTrack = call KISKA_fnc_setCurrentRandomMusicTrack;
-
+		["Some_Music_Track"] call KISKA_fnc_setCurrentRandomMusicTrack;
     (end)
 
 Author(s):
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
 scriptName "KISKA_fnc_setCurrentRandomMusicTrack";
 
@@ -26,7 +25,7 @@ params [
 	["_trackClass","",[""]]
 ];
 
-missionNamespace setVariable ["KISKA_currentRandomTrack",_trackClass];
-
+SET_MUSIC_VAR(MUSIC_CURRENT_RANDOM_TRACK_VAR_STR,_trackClass);
+[["Set Current Random Track ",_trackClass]] call KISKA_fnc_log;
 
 true

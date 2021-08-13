@@ -51,7 +51,7 @@ _comboControl lbSetTooltip [2,"Time between tracks will ALWAYS be this many seco
 
 
 // get current spacing setting from server
-private _currentSpacingSetting = ["KISKA_randomMusic_timeBetween",missionNamespace] call KISKA_fnc_getVariableTarget;
+private _currentSpacingSetting = ["KISKA_randomMusic_timeBetween",localNamespace] call KISKA_fnc_getVariableTarget;
 if (_currentSpacingSetting isEqualTo -1) then {
 	_comboControl lbSetCurSel 1; // set to random bell curve by default
 	_editBoxControl ctrlSetText "[1,2,3]";
@@ -93,20 +93,22 @@ _comboControl ctrlAddEventHandler ["LBSelChanged",{
 _buttonControl ctrlAddEventHandler ["ButtonClick",{
 	params ["_control"];
 
-	private _editControl = (uiNamespace getVariable "BLWK_musicManager_control_spacingEdit");
+	private _editControl = uiNamespace getVariable "BLWK_musicManager_control_spacingEdit";
 	private _editControlText = ctrlText _editControl;
 	private _textCompiled = call compile _editControlText;
 
 	if (
 		(_textCompiled isEqualType []) AND
-		{!((count _textCompiled) isEqualTo 1) AND
-		{!((count _textCompiled) isEqualTo 3) OR !(_textCompiled isEqualTypeParams [1,2,3])}}
+		{((count _textCompiled) isNotEqualTo 1) AND
+		{((count _textCompiled) isNotEqualTo 3) OR !(_textCompiled isEqualTypeParams [1,2,3])}}
 	) then {
 		hint "Format not accepted for track spacing!"
+
 	} else {
 		// send to server
-		missionNamespace setVariable ["KISKA_randomMusic_timeBetween",_textCompiled,[0,2] select isMultiplayer];
+		[_textCompiled] remoteExecCall ["KISKA_fnc_setRandomMusicTime",2];
 		hint ("Track spacing set to " + (str _textCompiled));
+
 	};
 }];
 

@@ -33,6 +33,7 @@ _addButtonControl ctrlAddEventHandler ["ButtonClick",{
 	private _selectedIndex = lnbCurSelRow _availableMusicListControl;
 	if (_selectedIndex isEqualTo -1) then {
 		hint "You need to have a selection made from the songs list";
+
 	} else {
 		private _classToAdd = _availableMusicListControl lnbData [_selectedIndex,0];
 		// class name of song is stored in its data
@@ -40,6 +41,7 @@ _addButtonControl ctrlAddEventHandler ["ButtonClick",{
 
 		// available music list coloring for
 		[_classToAdd,true] call BLWK_fnc_musicManager_adjustNameColor;
+
 	};
 
 }];
@@ -50,6 +52,7 @@ _removeButtonControl ctrlAddEventHandler ["ButtonClick",{
 	private _selectedIndex = lbCurSel (uiNamespace getVariable "BLWK_musicManager_control_currentPlaylist");
 	if (_selectedIndex isEqualTo -1) then {
 		hint "You need to have a selection made from the Current Playlist";
+		
 	} else {
 		// available music list set color back to white
 		private _classToRemove = BLWK_PUB_CURRENT_PLAYLIST select _selectedIndex;

@@ -69,8 +69,10 @@ _loadButtonControl ctrlAddEventHandler ["ButtonClick",{
 
 					// CIPHER COMMENT: Truth be told, there is no reason to have this be 0, just needs to be the server and players
 					[TO_STRING(BLWK_PUB_CURRENT_PLAYLIST),_x] remoteExecCall ["KISKA_fnc_pushBackToArray",0,true];
+					
 				} else {
 					_countOfUnavailable = _countOfUnavailable + 1;
+
 				};
 			};
 

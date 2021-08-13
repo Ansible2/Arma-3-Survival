@@ -86,8 +86,8 @@ if (_turretsWithWeapons isEqualTo []) exitWith {
 };
 
 
-if (_globalLimiter != "") then {
-	missionNamespace setVariable [_globalLimiter,true];
+if (_globalLimiter isNotEqualTo "") then {
+	missionNamespace setVariable [_globalLimiter,true,true];
 };
 
 
@@ -203,8 +203,8 @@ _params spawn {
 
 	// delete crew if vehicle got blown up on the way
 	private _fn_exitForDeadVehicle = {
-		if (_globalLimiter != "") then {
-			missionNamespace setVariable [_globalLimiter,false];
+		if (_globalLimiter isNotEqualTo "") then {
+			missionNamespace setVariable [_globalLimiter,false,true];
 		};
 
 		if (_side isEqualTo BLUFOR) then {
@@ -266,8 +266,8 @@ _params spawn {
 		call _fn_exitForDeadVehicle;
 	};
 
-	if (_globalLimiter != "") then {
-		missionNamespace setVariable [_globalLimiter,false];
+	if (_globalLimiter isNotEqualTo "") then {
+		missionNamespace setVariable [_globalLimiter,false,true];
 	};
 
 	if (_side isEqualTo BLUFOR) then {
@@ -292,7 +292,7 @@ _params spawn {
 		if (!alive _vehicle OR {(_vehicle distance2D _deletePosition) <= 200}) exitWith {true};
 
 		// if vehicle is disabled and makes a landing, just blow it up
-		if ((getPosATL _vehicle select 2) < 2) exitWith {
+		if ((getPosATL _vehicle select 2) < 5) exitWith {
 			_vehicle setDamage 1;
 			true
 		};

@@ -51,7 +51,16 @@ _spawnPosition set [2,DROP_ALT];
 private _relativeDirection = _spawnPosition getDir _dropPosition;
 
 // spawn vehicle
-private _vehicleArray = [_spawnPosition,_relativeDirection,_vehicleClass,BLUFOR] call KISKA_fnc_spawnVehicle;
+private _vehicleArray = [
+	_spawnPosition,
+	_relativeDirection,
+	_vehicleClass,
+	BLUFOR,
+	true,
+	[BLWK_friendly_menClasses select 0]
+] call KISKA_fnc_spawnVehicle;
+
+
 
 private _aircraftCrew = _vehicleArray select 1;
 _aircraftCrew apply {
@@ -61,6 +70,8 @@ _aircraftCrew apply {
 private _aircraft = _vehicleArray select 0;
 _aircraft flyInHeight DROP_ALT;
 _airCraft move _dropPosition;
+
+
 
 // give it a waypoint and delete it after it gets there
 private _flyToPosition = _dropPosition getPos [FLY_RADIUS,_relativeDirection];
@@ -109,21 +120,19 @@ _bomb setVectorDirAndUp [[0,0.01,1],[0,0,1]];
 
 
 // speed up the drop
-
 // give chute time to deploy
 sleep 3;
 
-private "_chuteVelocity";
-private _chuteHeight = (getPosATLVisual _chute) select 2;
-while {sleep 0.03; _chuteHeight > 5} do {
-
-	//_chuteVelocity = velocityModelSpace _chute;
-	_chute setVelocityModelSpace [0,0,-10];
+private "_chuteHeight";
+waitUntil {
+	sleep 0.03;
+	_chute setVelocity [0,0,-10];
 	_chuteHeight = (getPosATLVisual _chute) select 2;
+	_chuteHeight <= 5;
 };
 
 private _landPosition = position _bomb;
-[_landPosition,_radius] remoteExecCall ["BLWK_fnc_hideFoliage",2];
+[_landPosition,_radius] remoteExec ["BLWK_fnc_hideFoliage",2];
 
 detach _bomb;
 deleteVehicle _bomb;

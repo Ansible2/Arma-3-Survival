@@ -118,7 +118,7 @@ class RHSAFRF_MSV_FLORA_faction : RHSAFRF_MSV_EMR_faction
 class RHSAFRF_VDV_EMR_faction : RHSAFRF_MSV_EMR_faction
 {
 	displayName = "RHS AFRF - Russia VDV (EMR)";
-	
+
 	attackHelicopters[] = {
 		"O_Heli_Attack_02_dynamicLoadout_black_F",
 		"rhs_mi28n_vvsc"
@@ -264,7 +264,7 @@ class RHSAFRF_VMF_RECON_faction : RHSAFRF_VDV_EMR_faction
 
 class RHSAFRF_VMF_FLORA_faction : RHSAFRF_VDV_EMR_faction
 {
-	displayName = "RHS AFRF - Russia VMF (RECON)";
+	displayName = "RHS AFRF - Russia VMF (Flora)";
 
 	infantry[] = {
 		"rhs_vmf_flora_at",

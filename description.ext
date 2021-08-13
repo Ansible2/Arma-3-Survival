@@ -15,21 +15,25 @@ respawnOnStart = -1;
 // no respawn dialog
 respawnDialog = 0;
 
+// saving off
+saving = 0;
 
 // FAKs will be consumed on revive
 ReviveRequiredItemsFakConsumed = 1;
 
-
+enableDebugConsole = 2;
 
 corpseManagerMode = 1; // manage all units
 corpseLimit = 50;
-corpseRemovalMinTime = 600;
+corpseRemovalMinTime = 30;
 corpseRemovalMaxTime = 1200;
 wreckManagerMode = 1;		// manage all wrecks
 wreckLimit = 3;
-wreckRemovalMinTime = 240;
+wreckRemovalMinTime = 30;
 wreckRemovalMaxTime = 600;
-minPlayerDistance = 50;
+minPlayerDistance = 5;
+
+briefing = 1;
 
 class Header
 {
@@ -47,18 +51,6 @@ class CfgFunctions
 class CfgSounds
 {
 	#include "Headers\descriptionEXT\sounds.hpp"
-};
-
-class Params
-{
-	#include "Headers\descriptionEXT\missionParams.hpp"
-};
-
-#include "Headers\descriptionEXT\GUI\defines.hpp"
-
-class RscTitles
-{
-	#include "Headers\descriptionEXT\GUI\infoPanel.hpp"
 };
 
 
@@ -84,7 +76,7 @@ class CfgDebriefing
 	};
 	class LootListErrorEnd
 	{
-		title = "[Error] Critical Loot List Empty"
+		title = "[Error] Critical Loot List Empty";
 		subtitle = "Mission Aborted";
 		description = "A required loot list returned no items. This likely means it has been improperly configured";
 		pictureBackground = "";
@@ -93,7 +85,7 @@ class CfgDebriefing
 	};
 	class UnitClassesErrorEnd
 	{
-		title = "[Error] Default Factions Undefined"
+		title = "[Error] Default Factions Undefined";
 		subtitle = "Mission Aborted";
 		description = "A fallthrough case for custom factions failed. A custom faction was not present and therefore a default faction was used, however, this default was undefined";
 		pictureBackground = "";
@@ -122,6 +114,16 @@ class CfgNotifications
 	};
 };
 
+#include "Headers\descriptionEXT\Wave Types.hpp"
+
+#include "Headers\descriptionEXT\GUI\imports.hpp"
+#include "Headers\descriptionEXT\GUI\defines.hpp"
+
+class RscTitles
+{
+	#include "Headers\descriptionEXT\GUI\infoPanel.hpp"
+};
+
 #include "Headers\descriptionEXT\GUI\shopGUI.hpp"
 #include "Headers\descriptionEXT\GUI\musicManager.hpp"
 #include "KISKA Systems\View Distance Limiter\ViewDistanceLimiterDialog.hpp"
@@ -129,3 +131,6 @@ class CfgNotifications
 #include "Headers\descriptionEXT\Build Items\Main Build Items.hpp"
 #include "Headers\descriptionEXT\Faction Headers\Faction Master.hpp"
 #include "Headers\descriptionEXT\Loot Lists\Main Loot List.hpp"
+
+#include "KISKA Systems\KISKA Parameter Menu\Headers\params menu.hpp"
+#include "KISKA Systems\KISKA Parameter Menu\Headers\missionParams.hpp"

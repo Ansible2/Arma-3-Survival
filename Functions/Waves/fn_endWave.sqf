@@ -28,25 +28,16 @@ Author(s):
 ---------------------------------------------------------------------------- */
 if (!isServer OR {!canSuspend}) exitWith {};
 
-// handle drone wave global
-if !(isNil "BLWK_allDronesCreated") then {
-	missionNamespace setVariable ["BLWK_allDronesCreated",nil,[0,2] select isMultiplayer];
+private _currentWaveTypeConfig = localNamespace getVariable ["BLWK_currentWaveConfig",configNull];
+private _waveEndEvent = getText(_currentWaveTypeConfig >> "onWaveEnd");
+if (_waveEndEvent isNotEqualTo "") then {
+	call compileFinal _waveEndEvent;
 };
+
 
 // check for mission complete
 if (BLWK_currentWaveNumber isEqualTo BLWK_maxNumWaves) exitWith {
 	"End2" call BIS_fnc_endMissionServer;
-};
-
-// delete any alive civilians from special wave
-if !((missionNamespace getVariable ["BLWK_civiliansFromWave",[]]) isEqualTo []) then {
-	BLWK_civiliansFromWave apply {
-		if (alive _x) then {
-			deleteVehicle _x;
-		};
-	};
-
-	missionNamespace setVariable ["BLWK_civiliansFromWave",[]];
 };
 
 
@@ -70,7 +61,9 @@ _players apply {
 		missionNamespace setVariable ["BLWK_numRespawnTickets",_respawns,true];
 		[0] remoteExecCall ["setPlayerRespawnTime",_playerTemp];
 		[_playerTemp] remoteExecCall ["forceRespawn",_playerTemp];
+
 	} else {
+
 		if (lifeState _playerTemp == "INCAPACITATED") then {
 			if (BLWK_dontUseRevive) then {
 				if (BLWK_ACELoaded) then {
@@ -80,6 +73,7 @@ _players apply {
 				["BLWK_reviveOnStateVar", 1, _playerTemp] remoteExecCall ["BIS_fnc_reviveOnState",_playerTemp];
 			};
 		};
+
 	};
 };
 
@@ -95,14 +89,22 @@ if (((BLWK_currentWaveNumber + 1) mod BLWK_deleteDroppedItemsEvery) isEqualTo 0)
 	};
 };
 
+
 // invoke wave end event
 [missionNamespace,"BLWK_onWaveEnd"] remoteExecCall ["BIS_fnc_callScriptedEventHandler",0];
 
 // count down to next wave
 if (BLWK_timeBetweenRounds > 0) then {
-	sleep (BLWK_timeBetweenRounds - 15);
-	remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
-	sleep 15;
+
+	if (BLWK_timeBetweenRounds > 15) then {
+		uiSleep (BLWK_timeBetweenRounds - 15);
+		remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
+		uiSleep 15;
+	} else {
+		[BLWK_timeBetweenRounds] remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
+		uiSleep BLWK_timeBetweenRounds;
+	};
+
 };
 
 [_clearDroppedItems] spawn BLWK_fnc_startWave;

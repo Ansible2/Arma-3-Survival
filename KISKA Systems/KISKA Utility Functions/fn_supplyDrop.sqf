@@ -9,14 +9,19 @@ Parameters:
 	1: _altittude <NUMBER> - Start height of drop
 	2: _dropPosition <OBJECT, GROUP, ARRAY, LOCATION, TASK> - Position you want the drop to be near
 
+	OPTIONAL:
+	3: _stopAdjustingHeight <NUMBER> - The height (ATL) at which the velocity of the crates should top being managed
+	4: _chuteVelocityFreq <NUMBER> - The frequency in seconds at which the velocity of the crates should be managed
+	5: _stage_1_height <NUMBER> - The height above which the _stage_1_velocityDiff is used to manage the downward velocity of the crates
+	6: _stage_1_velocityDiff <NUMBER> - The downward velocity of the crates above _stage_1_height
+	7: _stage_2_velocityDiff <NUMBER> - The downward velocity of the crates below _stage_1_height
+
 Returns:
 	<ARRAY> - The containers dropped
 
 Examples:
     (begin example)
-
-		[["className1","className2"]], 500, player, -1] call KISKA_fnc_supplyDrop;
-
+		[["className1","className2"]], 500, player] call KISKA_fnc_supplyDrop;
     (end)
 
 Author(s):
@@ -27,11 +32,17 @@ scriptName "KISKA_fnc_supplyDrop";
 params [
 	["_classNames",["B_supplyCrate_F"],[[]]],
 	["_altittude",100,[1]],
-    ["_dropPosition",objNull,[objNull,[],grpNull,locationNull,taskNull]]
+    ["_dropPosition",objNull,[objNull,[],grpNull,locationNull,taskNull]],
+	["_stopAdjustingHeight",80,[123]],
+	["_chuteVelocityFreq",0.25,[123]],
+	["_stage_1_height",500,[123]],
+	["_stage_1_velocityDiff",90,[123]],
+	["_stage_2_velocityDiff",35,[123]]
 ];
 
 if (_classNames isEqualTo []) exitWith {
-	"No classnames passed!" call BIS_fnc_error;
+	["No classnames passed!",true] call KISKA_fnc_log;
+	[]
 };
 
 private _containersArray = [];
@@ -39,12 +50,9 @@ private ["_container_temp","_dropZone_temp","_chute_temp"];
 _classNames apply {
     // create Container
     _container_temp = createVehicle [_x,[0,0,0],[],0];
-
     _containersArray pushBack _container_temp;
 
-    // give the conatainer a random position above DZ
-    _dropZone_temp = [_dropPosition,50] call CBAP_fnc_randPos;    
-    // make it invincible
+    _dropZone_temp = [_dropPosition,50] call CBAP_fnc_randPos;
     _container_temp allowDamage false;
 
     // create it's parachutes
@@ -53,23 +61,35 @@ _classNames apply {
     _container_temp attachTo [_chute_temp,[0,0,0]];
 
     // speed up the drop
-	[_chute_temp,_container_temp] spawn {
-		params ["_chute","_container"];
-
+	[_chute_temp,_container_temp,_chuteVelocityFreq,_stage_1_height,_stage_1_velocityDiff,_stage_2_velocityDiff,_stopAdjustingHeight] spawn {
+		params [
+			"_chute",
+			"_container",
+			"_chuteVelocityFreq",
+			"_stage_1_height",
+			"_stage_1_velocityDiff",
+			"_stage_2_velocityDiff",
+			"_stopAdjustingHeight"
+		];
 		// give chute time to deploy
 		sleep 3;
 
+
 		private "_chuteVelocity";
 		private _chuteHeight = (getPosATLVisual _chute) select 2;
-		while {_chuteHeight > 80} do {
-			_chuteVelocity = velocityModelSpace _chute;
-			if (_chuteHeight > 500) then {
-				_chute setVelocityModelSpace (_chuteVelocity vectorDiff [0,0,90]);
+		waitUntil {
+			sleep _chuteVelocityFreq;
+			_chuteVelocity = velocity _chute;
+
+			if (_chuteHeight > _stage_1_height) then {
+				_chute setVelocity (_chuteVelocity vectorDiff [0,0,_stage_1_velocityDiff]);
 			} else {
-				_chute setVelocityModelSpace (_chuteVelocity vectorDiff [0,0,35]);
+				_chute setVelocity (_chuteVelocity vectorDiff [0,0,_stage_2_velocityDiff]);
 			};
             _chuteHeight = (getPosATLVisual _chute) select 2;
-			sleep 0.25;
+
+
+			_chuteHeight < _stopAdjustingHeight
 		};
 
 		waitUntil {
@@ -85,9 +105,12 @@ _classNames apply {
 };
 
 
-KISKA_fnc_SD_markDropPosition = {
+// give the containers arsenals
+[_containersArray] call KISKA_fnc_addArsenal;
+
+[_containersArray select 0] spawn {
     params ["_firstContainer"];
-	
+
 	private _containerHeight = (getPosATL _firstContainer) select 2;
 	waitUntil {
 		if (_containerHeight < 5) exitWith {true};
@@ -103,7 +126,7 @@ KISKA_fnc_SD_markDropPosition = {
     waitUntil {
         // waitUntil a player is within 10m of the first container
         if (!(((call CBAP_fnc_players) findIf {(_x distance2D _firstContainer) <= 10}) isEqualTo -1) OR {time > _deleteTime}) exitWith {true};
-        
+
         sleep 2;
         false
     };
@@ -114,11 +137,6 @@ KISKA_fnc_SD_markDropPosition = {
         };
     };
 };
-
-// give the containers arsenals
-[_containersArray] call KISKA_fnc_addArsenal;
-
-[_containersArray select 0] spawn KISKA_fnc_SD_markDropPosition;
 
 
 _containersArray

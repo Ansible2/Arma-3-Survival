@@ -59,7 +59,7 @@ _pauseButtonControl ctrlAddEventHandler ["ButtonClick",{
 		uiNamespace setVariable ["BLWK_musicManager_doPlay",false];
 		uiNamespace setVariable ["BLWK_musicManager_paused",true];
 		playMusic "";
-		call KISKA_fnc_musicStopEvent;
+		[] call KISKA_fnc_musicStopEvent;
 	};
 
 }];

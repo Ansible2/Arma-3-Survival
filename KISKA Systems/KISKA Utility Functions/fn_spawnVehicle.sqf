@@ -13,6 +13,9 @@ Parameters:
 	3. _group <SIDE or GROUP> - Either the side to create a group on or an
 		already existing group to add the units to
 	4. _forcePosition <BOOL> - Force vehicle to spawn at exact coordinates
+	5. _crewInstructions <ARRAY> - A formatted array of classnames of unit types to create and/or soldier objects
+		to use as crew with moveInAny order of precedence
+	6. _deleteOverflow <BOOL> - Delete any units from _crewInstructions that prexisted if they don't fit in the vehicle
 
 Returns:
 	<ARRAY> -
@@ -25,9 +28,26 @@ Examples:
 		[player,0,"someclass"] call KISKA_fnc_spawnVehicle;
     (end)
 
+	(begin example)
+		private _playerPosition = getPos player;
+		private _playerClass = typeOf player;
+		private _driver = createvehicle [_playerClass,[0,0,0],[],0,"NONE"];
+		[
+			_playerPosition vectorAdd [0,1000,300],
+			0,
+			"B_Heli_Light_01_F",
+			BLUFOR,
+			true,
+			[
+				_driver, // moves unit into driver seat
+				_playerClass // creates a unit of the player's class and moves into commander seat
+			]
+		] call KISKA_fnc_spawnVehicle;
+    (end)
+
 Author(s):
 	Joris-Jan van 't Land,
-	Modified by: Ansible2 // Cipher
+	Modified by: Ansible2
 ---------------------------------------------------------------------------- */
 scriptName "KISKA_fnc_spawnVehicle";
 
@@ -35,8 +55,10 @@ params [
 	["_spawnPosition",[0,0,0],[[]]],
 	["_spawnDirection",0,[123]],
 	["_vehicleClass","",[""]],
-	["_group",grpNull,[BLUFOR,grpNull]],
-	["_forcePosition",true,[true]]
+	["_group",BLUFOR,[sideUnknown,grpNull]],
+	["_forcePosition",true,[true]],
+	["_crewInstructions",[], [[]] ],
+	["_deleteOverflow",true,[true]]
 ];
 
 
@@ -92,7 +114,8 @@ if (_forcePosition) then {
 };
 
 
-private _crew = [_createdVehicle];
+
+private _crew = [];
 // soldiers do not need anymore handling
 if (_simulationType != "soldier") then {
 	// Set plane velocity straight ahead so they don't crash
@@ -102,8 +125,35 @@ if (_simulationType != "soldier") then {
 	};
 
 	// Spawn the crew and add the vehicle to the group
-	createvehiclecrew _createdVehicle;
-	_crew = crew _createdVehicle;
+	if (_crewInstructions isEqualTo []) then {
+		createvehiclecrew _createdVehicle;
+		_crew = crew _createdVehicle;
+
+	} else {
+
+		private _movedIn = false;
+		private "_unit";
+		_crewInstructions apply {
+			if (_x isEqualType objNull) then {
+				_unit = _x;
+			} else {
+				_unit = _group createunit [_x,[0,0,0],[],0,"NONE"];
+			};
+
+			_movedIn = _unit moveInAny _createdVehicle;
+			if (!_movedIn) then {
+				[["Unit ",_unit," could not be moved into the vehicle ",_createdVehicle," as there was no room in the vehicle"],true] call KISKA_fnc_log;
+				if (_deleteOverflow) then {
+					deleteVehicle _unit;
+				};
+
+			} else {
+				_crew pushBack _unit;
+			};
+		};
+
+	};
+
 	_crew joinsilent _group;
 	_group addVehicle _createdVehicle;
 
@@ -112,6 +162,10 @@ if (_simulationType != "soldier") then {
 	{
 		_group selectLeader (commander _createdVehicle);
 	};
+
+} else {
+	_crew pushBack _createdVehicle;
+
 };
 
 

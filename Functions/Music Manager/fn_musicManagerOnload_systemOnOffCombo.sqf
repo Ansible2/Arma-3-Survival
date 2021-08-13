@@ -1,3 +1,4 @@
+#include "..\..\KISKA Systems\KISKA Music Functions\Headers\Music Common Defines.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_musicManagerOnLoad_systemOnOffCombo
 
@@ -30,7 +31,7 @@ if (!canSuspend) exitWith {
 };
 
 // get current state of system from the server
-private _systemOn = ["KISKA_musicSystemIsRunning",missionNamespace,false] call KISKA_fnc_getVariableTarget;
+private _systemOn = [MUSIC_RANDOM_SYS_RUNNING_VAR_STR,localNamespace,false] call KISKA_fnc_getVariableTarget;
 _control lbAdd "SYSTEM IS: OFF"; // 0
 _control lbSetTooltip [0,"Setting the system directly to off while music is playing will have that song finish"];
 
@@ -48,7 +49,8 @@ _control ctrlAddEventHandler ["LBSelChanged",{
 
 	switch (_selectedIndex) do {
 		case 0:{ // system off
-			missionNamespace setVariable ["KISKA_musicSystemIsRunning",false,[0,2] select isMultiplayer];
+			//missionNamespace setVariable ["KISKA_musicSystemIsRunning",false,[0,2] select isMultiplayer];
+			[true] remoteExecCall ["KISKA_fnc_stopRandomMusicServer",2];
 
 			if (missionNamespace getVariable ["BLWK_musicManager_reset",false]) then {
 				//hint "System reseting...";

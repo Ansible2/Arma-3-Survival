@@ -127,7 +127,7 @@ _display displayAddEventHandler ["unload",{
 	// stop music if playing
 	if (uiNamespace getVariable ["BLWK_musicManager_doPlay",false]) then {
 		playMusic "";
-		call KISKA_fnc_musicStopEvent;
+		[] call KISKA_fnc_musicStopEvent;
 	};
 
 	// get rid of any hints
