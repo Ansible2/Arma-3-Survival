@@ -248,10 +248,12 @@ class KISKA_missionParams
 	{
 		title = "Loot";
 
-		class BLWK_maxLootSpawns : sliderParamBase
+		class BLWK_maxLootSpawns_param : sliderParamBase
 		{
 			title = "Max Number Of Loot Spawns";
 			tooltip = "There will not be more loot drops in the area then what is set. Higher values have a large impact on performance.";
+			initScript = "if (isServer) then {BLWK_maxLootSpawns = (_this select 0);}";
+			onChanged = "if (isServer) then {BLWK_maxLootSpawns = (_this select 0);}";
 			min = 0;
 			max = 800;
 			default = 500;
