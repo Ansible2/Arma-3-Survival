@@ -2,8 +2,9 @@
 Function: BLWK_fnc_getEnemyVehicleClasses
 
 Description:
-	Gets a set of vehicle classes based on a typeId. If no classes are available 
-	 for a type, a default class if provided if requested
+	Gets a set of vehicle classes based on a typeId. (see Headers\Faction Map Ids)
+
+	If no classes are available for a type, a default class is provided if requested
 
 Parameters:
 	0: _typeId : <NUMBER> - The type of vehicle requested (see below for numbers)
@@ -15,9 +16,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		_lightCarClasses = [0] call BLWK_fnc_getEnemyVehicleClasses;
-
     (end)
 
 Author(s):
@@ -34,16 +33,21 @@ params [
 /*
 	#define DEFAULT_VEHICLE_CLASSES \
 		[\
-			"B_LSV_01_armed_F",\ 					0 // light car 
+			"B_LSV_01_armed_F",\ 					0 // light car
 			"B_MRAP_01_hmg_F",\ 					1 // heavy car
 			"B_APC_Wheeled_01_cannon_F",\ 			2 // light armour
 			"B_MBT_01_cannon_F",\ 					3 // heavy armour
 			"B_Heli_Transport_01_F",\ 				4 // transport aircraft
 			"B_T_VTOL_01_vehicle_F",\ 				5 // cargo aircraft
-			"B_Plane_CAS_01_dynamicLoadout_F",\ 	6 // CAS plane 
+			"B_Plane_CAS_01_dynamicLoadout_F",\ 	6 // CAS plane
 			"B_Heli_Attack_01_dynamicLoadout_F"\ 	7 // attack helicopter
 		]
 */
+
+#define PUSH_VEHICLE_MAP(map,startingWave) \
+	if (BLWK_currentWaveNumber >= startingWave) then { \
+		[map] call _fn_pushVehicleForLevel; \
+	};
 
 #define DEFAULT_VEHICLE_CLASSES \
 	[\
@@ -61,33 +65,28 @@ private _availableClasses = [];
 private _defaultVehicleClass = DEFAULT_VEHICLE_CLASSES select _typeId;
 
 private _fn_pushVehicleForLevel = {
-	params ["_classes"];
-	private _classesOfType = _classes select _typeId;
+	params ["_factionMap"];
+	private _classesOfType = _factionMap get _typeId;
 
 	if (_classesOfType isEqualTo []) then {
 		if (_supplementEmpty) then {
-			_availableClasses pushBack _defaultVehicleClass;
+			_availableClasses pushBackUnique _defaultVehicleClass;
 		};
+
 	} else {
 		_classesOfType apply {
 			_availableClasses pushBackUnique _x;
 		};
+
 	};
 };
 
-[BLWK_level1_vehicleClasses] call _fn_pushVehicleForLevel;
-if (BLWK_currentWaveNumber > 5) then {
-	[BLWK_level2_vehicleClasses] call _fn_pushVehicleForLevel;
-};
-if (BLWK_currentWaveNumber > 10) then {
-	[BLWK_level3_vehicleClasses] call _fn_pushVehicleForLevel;
-};
-if (BLWK_currentWaveNumber > 15) then {
-	[BLWK_level4_vehicleClasses] call _fn_pushVehicleForLevel;
-};
-if (BLWK_currentWaveNumber > 20) then {
-	[BLWK_level5_vehicleClasses] call _fn_pushVehicleForLevel;
-};
+
+[BLWK_level1_factionMap] call _fn_pushVehicleForLevel;
+PUSH_VEHICLE_MAP( BLWK_level2_factionMap, BLWK_level2Faction_startWave )
+PUSH_VEHICLE_MAP( BLWK_level3_factionMap, BLWK_level3Faction_startWave )
+PUSH_VEHICLE_MAP( BLWK_level4_factionMap, BLWK_level4Faction_startWave )
+PUSH_VEHICLE_MAP( BLWK_level5_factionMap, BLWK_level5Faction_startWave )
 
 
 // shuffle
