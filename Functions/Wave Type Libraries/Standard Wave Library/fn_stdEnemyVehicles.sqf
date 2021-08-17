@@ -26,7 +26,7 @@ Author(s):
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_stdEnemyVehicles";
 
-#define VEHICLE_TYPES [LIGHT_CAR,HEAVY_CAR,LIGHT_ARMOR,HEAVY_ARMOR]
+#define VEHICLE_TYPES [LIGHT_CAR_FACTION_MAP_ID,HEAVY_CAR_FACTION_MAP_ID,LIGHT_ARMOR_FACTION_MAP_ID,HEAVY_ARMOR_FACTION_MAP_ID]
 #define VEHICLE_LIKELIHOODS [BLWK_lightCarLikelihood,BLWK_heavyCarLikelihood,BLWK_lightArmorLikelihood,BLWK_heavyArmorLikelihood]
 #define SECOND_VEHICLE_DIVIDER 1.35
 #define VEHICLE_SPAWN_INCREMENT 0.05 // how much to increase likelihood by each round
