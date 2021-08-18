@@ -76,11 +76,13 @@ _stalkerGroupUnits apply {
 			private _group = group _unit;
 			if !(isNull _group) then {
 				private _stalkedPlayer = _group getVariable STALKED_UNIT_VAR;
+
 				if !(isNull _stalkedPlayer) then {
 					private _numberOfStalkers = _stalkedPlayer getVariable STALKER_COUNT_VAR;
 					_numberOfStalkers = _numberOfStalkers - 1;
 					_stalkedPlayer setVariable [STALKER_COUNT_VAR,_numberOfStalkers];
 				};
+				
 			};
 		}];
 
@@ -115,6 +117,3 @@ while {!(isNull _stalkerGroup) AND {_stalkerGroup getVariable DO_STALK_VAR} } do
 		[_stalkerGroup,_defaultPosition] call BLWK_fnc_stopStalking;
 	};
 };
-
-hint "exited Loop";
-systemChat str (_stalkerGroup getVariable DO_STALK_VAR);
