@@ -57,43 +57,48 @@ if (_groupToCheck isEqualType objNull) then {
 	_groupToCheck = group _groupToCheck;
 };
 
-private _groupLeader = leader _groupToCheck;
-if (!alive _groupLeader) exitWith {
-	["_groupLeader is null. Exiting...",true] call KISKA_fnc_log;
-	nil
-};
-
 
 _groupToCheck setVariable [LOOP_VAR_NAME,true];
 while {sleep _timeBetweenChecks; true} do {
 
-	if (!(isNull _groupToCheck) AND {!(_groupToCheck getVariable [LOOP_VAR_NAME,false])}) exitWith {
+	if (
+		!(isNull _groupToCheck) AND
+		{ !(_groupToCheck getVariable [LOOP_VAR_NAME,false]) }
+
+	) then {
 		[["Loop var for group ",_groupToCheck," was set to false. Exiting..."],false] call KISKA_fnc_log;
+
+		break;
 	};
 
-	if !([_groupToCheck] call BLWK_fnc_pathing_checkGroupStatus) exitWith {
-		[["Found that ",_groupToCheck," failed group status check. Exiting..."],false] call KISKA_fnc_log;
+
+	if !([_groupToCheck] call BLWK_fnc_pathing_isGroupAlive) then {
+		[["Found that ",_groupToCheck," failed group alive check. Exiting..."],false] call KISKA_fnc_log;
 		_groupToCheck setVariable [LOOP_VAR_NAME,nil];
+
+		break;
 	};
+
 
 	_groupLeader = leader _groupToCheck;
-
-	// checks for units that walk aways from play area
+	// checks for units that walk away from play area
 	if (
 		!(_groupLeader getVariable ["BLWK_isACEUnconscious",true]) AND
 		{isNull (objectParent _groupLeader)} AND
-		{(_groupLeader distance2D BLWK_playAreaCenter) >= BLWK_maxDistanceFromPlayArea}
+		{ (_groupLeader distance2D BLWK_playAreaCenter) >= BLWK_maxDistanceFromPlayArea }
+
 	) then {
 		[["_groupLeader ",_groupLeader," appears to have walked too far from the play area and will be reset"],true] call KISKA_fnc_log;
 		RESET_POSITION
-	} else {
 
+	} else {
 		if !([_groupLeader] call BLWK_fnc_pathing_checkLeaderVelocity) then {
 			[["_groupLeader ",_groupLeader," failed velocity check at point 1"],false] call KISKA_fnc_log;
 
-			if ([_groupLeader] call BLWK_fnc_pathing_detailedStuckCheck) then {
+			if ([_groupToCheck] call BLWK_fnc_pathing_detailedStuckCheck) then {
 				[["_groupLeader ",_groupLeader," failed detailted stuck check at point 1"],false] call KISKA_fnc_log;
 				RESET_POSITION
+
 			};
 		};
 	};
