@@ -27,8 +27,7 @@ scriptName "BLWK_fnc_callForExtraction";
 #define SPACE_BUFFER 5
 
 #define MAX_ATTEMPTS 300
-#define MIN_SEARCH_DISTANCE_FOR_LZ 250
-#define MAX_SEARCH_DISTANCE_FOR_LZ 
+#define MAX_SEARCH_DISTANCE_FOR_LZ worldsize * sqrt 2
 
 
 if (!isServer) exitWith {
@@ -81,8 +80,89 @@ private _sizeOfLZArea = (_sizeOfTransport + SPACE_BUFFER) * _numberOfTransports;
 
 private _lzFound = false;
 private _landingPositions = [];
-while {!_lzFound OR {_attempts <= MAX_ATTEMPTS}} do {
-    private _centerPosition = [
-        BLWK_
-    ] call BIS_fnc_findSafePos;
+private _blackListPositions = [];
+private _fn_pushBackPos = {
+    params ["_pos"];
+    _blacklistPositions pushBack _pos;
+    _landingPositions pushBack _pos;
 };
+
+for "_i" from 1 to MAX_ATTEMPTS do {
+
+    private _centerPosition = [
+        BLWK_playAreaCenter,
+        BLWK_playAreaRadius,
+        MAX_SEARCH_DISTANCE_FOR_LZ,
+        0,
+        0,
+        0.25,
+        0,
+        _blacklistPositions,
+        [BLWK_playAreaCenter,BLWK_playAreaCenter]
+    ] call BIS_fnc_findSafePos;
+    [_centerPosition] call _fn_pushBackPos;
+
+
+    if (_centerPosition isEqualTo BLWK_playAreaCenter) then {
+        break;
+    };
+
+
+    for "_j" from 1 to (_numberOfTransports - 1) do {
+        private _lz = [
+            _centerPosition,
+            _sizeOfLZArea,
+            MAX_SEARCH_DISTANCE_FOR_LZ,
+            0,
+            0,
+            0.25,
+            0,
+            _blacklistPositions,
+            [BLWK_playAreaCenter,BLWK_playAreaCenter]
+        ] call BIS_fnc_findSafePos;
+
+        if (_lz isEqualTo BLWK_playAreaCenter) then {
+            break;
+        };
+
+        [_lz] call _fn_pushBackPos;
+    };
+
+
+    if ((count _landingPositions) isEqualTo _numberOfTransports) then {
+        _lzFound = true;
+        break;
+    };
+
+    // reset for next attempt
+    _landingPositions = [];
+};
+
+
+if (!_lzFound) exitWith {
+    ["The map does not accomodate an extraction, mission will end shortly..."] remoteExec ["hint",call CBAP_fnc_players];
+    sleep 5;
+    ["end1"] call BIS_fnc_endMissionServer;
+};
+
+
+
+
+private _hintMessage = ["You will be teleported to the extraction site in: ",BLWK_timeTillExtraction," seconds.","\n Cleanup your site!"] joinString "";
+[_hintMessage] remoteExec ["hint",call CBAP_fnc_players];
+
+
+
+
+// Clear LZ area
+[_centerPosition,_sizeOfLZArea] spawn {
+    params ["_centerPosition","_sizeOfLZArea"];
+
+    private _terrainObjects nearestTerrainObjects [_centerPosition,[],_sizeOfLZArea,false,true];
+    _terrainObjects apply {
+        hideObjectGlobal _x;
+    };
+
+
+};
+sleep BLWK_timeTillExtraction;
