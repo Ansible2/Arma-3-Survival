@@ -984,13 +984,13 @@ class KISKA_missionParams
 			min = 0;
 			max = 1;
 			incriment = 0.05;
-			default = 0.25;
+			default = 0.6;
 		};
 		class BLWK_defectorWaveWeight : BLWK_paratrooperWaveWeight
 		{
 			title = "Defector Wave Weight";
 			tooltip = "The friendly faction will spawn as enemies during the wave. The wave weight is considered against other normal wave weights.";
-			default = 0.25;
+			default = 0.6;
 		};
 		class BLWK_standardWaveWeight : BLWK_paratrooperWaveWeight
 		{
