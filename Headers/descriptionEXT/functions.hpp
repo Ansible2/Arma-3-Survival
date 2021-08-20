@@ -3,7 +3,7 @@ class BLWK
 	class AiPathing
 	{
 		file = "functions\AI Pathing";
-		class pathing_checkGroupStatus
+		class pathing_isGroupAlive
 		{};
 		class pathing_checkLeaderVelocity
 		{};
@@ -220,6 +220,8 @@ class BLWK
 		class getFriendlyVehicleClass
 		{};
 		class handleEnemyWeapons
+		{};
+		class handleUnconsciousAiEvent
 		{};
 		class handleWaitingForReviveEvent
 		{};

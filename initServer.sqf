@@ -25,6 +25,7 @@ call BLWK_fnc_spawnLoot;
 
 [] spawn BLWK_fnc_createBattleAmbienceSound;
 
+[] spawn BLWK_fnc_handleUnconsciousAiEvent;
 
 
 if (BLWK_timeBetweenRounds > 0) then {
