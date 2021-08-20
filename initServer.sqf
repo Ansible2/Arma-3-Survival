@@ -28,10 +28,6 @@ call BLWK_fnc_spawnLoot;
 [] spawn BLWK_fnc_handleUnconsciousAiEvent;
 
 
-sleep (BLWK_timeBetweenRounds - 15);
-remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
-
-
 if (BLWK_timeBetweenRounds > 0) then {
 
 	if (BLWK_timeBetweenRounds > 15) then {
