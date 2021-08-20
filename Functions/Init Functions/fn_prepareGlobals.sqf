@@ -71,12 +71,8 @@ if (isServer) then {
     BLWK_playerGroup = createGroup [BLUFOR,false];
     publicVariable "BLWK_playerGroup";
 
-    if (BLWK_currentWaveNumber isNotEqualTo 0) then {
-        BLWK_startingFromWaveNumber = BLWK_currentWaveNumber + 1;
-    } else {
-        BLWK_startingFromWaveNumber = BLWK_currentWaveNumber;
-    };
-
+    BLWK_startingFromWaveNumber = BLWK_currentWaveNumber + 1;
+    
     BLWK_specialWaveConfigs = "true" configClasses (missionConfigFile >> "BLWK_waveTypes" >> "specialWaves");
     BLWK_normalWaveConfigs = "true" configClasses (missionConfigFile >> "BLWK_waveTypes" >> "normalWaves");
 };
