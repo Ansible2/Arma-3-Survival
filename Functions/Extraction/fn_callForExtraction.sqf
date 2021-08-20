@@ -147,10 +147,8 @@ if (!_lzFound) exitWith {
 
 
 
-
-private _hintMessage = ["You will be teleported to the extraction site in: ",BLWK_timeTillExtraction," seconds.","\n Cleanup your site!"] joinString "";
+private _hintMessage = ["You will be teleported to the extraction site in: ",BLWK_timeTillExtractionTeleport," seconds.","\n Cleanup your site!"] joinString "";
 [_hintMessage] remoteExec ["hint",call CBAP_fnc_players];
-
 
 
 
@@ -162,7 +160,14 @@ private _hintMessage = ["You will be teleported to the extraction site in: ",BLW
     _terrainObjects apply {
         hideObjectGlobal _x;
     };
-
-
 };
+
+
+sleep BLWK_timeTillExtractionTeleport;
+
+
+[_centerPosition] remoteExec ["BLWK_fnc_teleportToExtractionSite",call CBAP_fnc_players];
+BLWK_mainCrate setPos _centerPosition;
+
+
 sleep BLWK_timeTillExtraction;

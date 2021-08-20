@@ -39,7 +39,13 @@ LAYER_NAME cutText ["Teleporting To Extraction Site...","BLACK IN",FADE_SPEED];
 sleep 3;
 
 private _teleportPos = [_position, RAND_POS_RADIUS] call CBAP_fnc_randPos;
-player setPos _teleportPos;
+missionNamespace setVariable ["BLWK_enforceArea",false];
 
-sleep 1;
+
+waitUntil {
+    !(missionNamespace getVariable ["BLKW_enforceAreaRunning",false]);
+};
+
+
+player setPos _teleportPos;
 LAYER_NAME cutText ["Teleporting To Extraction Site...","BLACK IN",FADE_SPEED];
