@@ -1,5 +1,6 @@
 #include "..\..\Headers\descriptionEXT\supportDefines.hpp"
 #include "..\..\Headers\descriptionEXT\GUI\shopGUICommonDefines.hpp"
+#include "..\..\Headers\Faction Map Ids.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_prepareGlobals
 
@@ -154,18 +155,33 @@ if (isServer OR {!hasInterface}) then {
 
 };
 
-// keep track of a satellite shop being out or not
-if (isNil "BLWK_satShopOut") then {
-    BLWK_satShopOut = false;
-};
+
 
 
 // AI unit classes
 private _unitTypeInfo = call BLWK_fnc_prepareUnitClasses;
 
 // friendly
-BLWK_friendly_menClasses = _unitTypeInfo select 0;
-BLWK_friendly_vehicleClasses = _unitTypeInfo select 1;
+BLWK_friendlyFactionMap = _unitTypeInfo select 0;
+BLWK_friendly_menClasses = BLWK_friendlyFactionMap get INFANTRY_FACTION_MAP_ID;
+//BLWK_friendly_vehicleClasses = ;
+
+// level 1
+BLWK_level1_factionMap = _unitTypeInfo select 1;
+BLWK_level1_menClasses = BLWK_level1_factionMap get INFANTRY_FACTION_MAP_ID;
+// level 2
+BLWK_level2_factionMap = _unitTypeInfo select 2;
+BLWK_level2_menClasses = BLWK_level2_factionMap get INFANTRY_FACTION_MAP_ID;
+// level 3
+BLWK_level3_factionMap = _unitTypeInfo select 3;
+BLWK_level3_menClasses = BLWK_level3_factionMap get INFANTRY_FACTION_MAP_ID;
+// level 4
+BLWK_level4_factionMap = _unitTypeInfo select 4;
+BLWK_level4_menClasses = BLWK_level4_factionMap get INFANTRY_FACTION_MAP_ID;
+// level 5
+BLWK_level5_factionMap = _unitTypeInfo select 5;
+BLWK_level5_menClasses = BLWK_level5_factionMap get INFANTRY_FACTION_MAP_ID;
+
 
 
 private _uniformClass = "";
@@ -178,22 +194,10 @@ BLWK_friendly_menClasses apply {
 BLWK_uniformClass = _uniformClass;
 
 
-// level 1
-BLWK_level1_menClasses = _unitTypeInfo select 2;
-BLWK_level1_vehicleClasses = _unitTypeInfo select 3;
-// level 2
-BLWK_level2_menClasses = _unitTypeInfo select 4;
-BLWK_level2_vehicleClasses = _unitTypeInfo select 5;
-// level 3
-BLWK_level3_menClasses = _unitTypeInfo select 6;
-BLWK_level3_vehicleClasses = _unitTypeInfo select 7;
-// level 4
-BLWK_level4_menClasses = _unitTypeInfo select 8;
-BLWK_level4_vehicleClasses = _unitTypeInfo select 9;
-// level 5
-BLWK_level5_menClasses = _unitTypeInfo select 10;
-BLWK_level5_vehicleClasses = _unitTypeInfo select 11;
-
+// keep track of a satellite shop being out or not
+if (isNil "BLWK_satShopOut") then {
+    BLWK_satShopOut = false;
+};
 
 if (isNil "BLWK_inBetweenWaves") then {
     BLWK_inBetweenWaves = true;

@@ -861,7 +861,7 @@ class KISKA_missionParams
 
 		class BLWK_vehicleStartWave : sliderParamBase
 		{
-			title = "Vehicles can spawn after wave";
+			title = "Vehicles can spawn at wave";
 			type = TYPE_SLIDER;
 			min = 1;
 			max = 999;

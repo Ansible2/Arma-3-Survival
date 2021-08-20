@@ -1,4 +1,5 @@
 #include "..\..\Headers\descriptionEXT\supportDefines.hpp"
+#include "..\..\Headers\Faction Map Ids.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_callingForSupportMaster
 
@@ -45,7 +46,7 @@ if (_targetPosition isEqualTo []) exitWith { \
 #define CAS_EXPRESSSION(CAS_TYPE) \
 	CHECK_POSITION \
 	_targetPosition = AGLToASL(_targetPosition);\
-	private _friendlyAttackAircraftClass = [6] call BLWK_fnc_getFriendlyVehicleClass;\
+	private _friendlyAttackAircraftClass = [CAS_ACFT_FACTION_MAP_ID] call BLWK_fnc_getFriendlyVehicleClass;\
 	[_targetPosition,CAS_TYPE,getDir _caller,_friendlyAttackAircraftClass] spawn KISKA_fnc_CAS;\
 	CAS_RADIO
 
@@ -82,7 +83,7 @@ if (CHECK_SUPPORT_CLASS(CRUISE_MISSILE_CLASS)) exitWith {
 
 if (CHECK_SUPPORT_CLASS(DAISY_CUTTER_CLASS)) exitWith {
 	CHECK_POSITION
-	private _friendlyDropAircraftClass = [5] call BLWK_fnc_getFriendlyVehicleClass;
+	private _friendlyDropAircraftClass = [CARGO_ACFT_FACTION_MAP_ID] call BLWK_fnc_getFriendlyVehicleClass;
 	[_targetPosition,40,_friendlyDropAircraftClass] spawn BLWK_fnc_daisyCutter;
 	[TYPE_STRIKE] call BLWK_fnc_supportRadioGlobal;
 };
@@ -166,7 +167,7 @@ if (CHECK_SUPPORT_CLASS(SUPPLY_ARSENAL_DROP_CLASS)) exitWith {
 	if !(missionNamespace getVariable ["BLWK_arsenalOut",false]) then {
 		missionNamespace setVariable ["BLWK_arsenalOut",true,true];
 
-		private _friendlyDropAircraftClass = [5] call BLWK_fnc_getFriendlyVehicleClass;
+		private _friendlyDropAircraftClass = [CARGO_ACFT_FACTION_MAP_ID] call BLWK_fnc_getFriendlyVehicleClass;
 		[_targetPosition,_friendlyDropAircraftClass] call BLWK_fnc_arsenalSupplyDrop;
 		[TYPE_SUPPLY_DROP_REQUEST] call BLWK_fnc_supportRadioGlobal;
 	} else {
@@ -208,16 +209,18 @@ if (CHECK_SUPPORT_CLASS(CAS_BOMB_CLUSTER_CLASS)) exitWith {
 if (CHECK_SUPPORT_CLASS(CAS_BOMB_NAPALM_CLASS)) exitWith {
 	CHECK_POSITION
 	_targetPosition = AGLToASL(_targetPosition);
-	private _friendlyAttackAircraftClass = [6] call BLWK_fnc_getFriendlyVehicleClass;
+	private _friendlyAttackAircraftClass = [CAS_ACFT_FACTION_MAP_ID] call BLWK_fnc_getFriendlyVehicleClass;
 	[_targetPosition,[8,"vn_bomb_f4_in_500_blu1b_fb_mag_x1"],getDir _caller,_friendlyAttackAircraftClass] spawn KISKA_fnc_CAS;
 	CAS_RADIO
+
 };
 if (CHECK_SUPPORT_CLASS(CAS_BOMB_NAPALM_2_CLASS)) exitWith {
 	CHECK_POSITION
 	_targetPosition = AGLToASL(_targetPosition);
-	private _friendlyAttackAircraftClass = [6] call BLWK_fnc_getFriendlyVehicleClass;
+	private _friendlyAttackAircraftClass = [CAS_ACFT_FACTION_MAP_ID] call BLWK_fnc_getFriendlyVehicleClass;
 	[_targetPosition,[8,"vn_bomb_f4_in_500_blu1b_fb_mag_x2"],getDir _caller,_friendlyAttackAircraftClass] spawn KISKA_fnc_CAS;
 	CAS_RADIO
+
 };
 
 
@@ -226,20 +229,24 @@ if (CHECK_SUPPORT_CLASS(CAS_BOMB_NAPALM_2_CLASS)) exitWith {
 ---------------------------------------------------------------------------- */
 if (CHECK_SUPPORT_CLASS(PASS_ATTACK_GUNNER_CLASS)) exitWith {
 	if !(missionNamespace getVariable ["BLWK_heliGunnerInUse",false]) then {
-		private _vehicleClass = [7] call BLWK_fnc_getFriendlyVehicleClass;
+		private _vehicleClass = [ATTACK_HELI_FACTION_MAP_ID] call BLWK_fnc_getFriendlyVehicleClass;
 		HELI_CAS_EXPRESSION(_vehicleClass,180,100,"B_Heli_Attack_01_dynamicLoadout_F","BLWK_heliGunnerInUse")
+
 	} else {
 		hint "Only one helicopter gunner support may be active at a time.";
 		ADD_SUPPORT_BACK
+
 	};
 };
 if (CHECK_SUPPORT_CLASS(PASS_DOOR_GUNNER_CLASS)) exitWith {
 	if !(missionNamespace getVariable ["BLWK_doorGunnerInUse",false]) then {
-		private _vehicleClass = [4,false] call BLWK_fnc_getFriendlyVehicleClass;
+		private _vehicleClass = [TRANSPORT_HELI_FACTION_MAP_ID,false] call BLWK_fnc_getFriendlyVehicleClass;
 		HELI_CAS_EXPRESSION(_vehicleClass,180,50,"B_Heli_Transport_01_F","BLWK_doorGunnerInUse")
+
 	} else {
 		hint "Only one door gunner support may be active at a time.";
 		ADD_SUPPORT_BACK
+
 	};
 };
 
@@ -253,7 +260,7 @@ if (CHECK_SUPPORT_CLASS(TURRET_DOOR_GUNNER_CLASS)) exitWith {
 	};
 
 	if !(missionNamespace getVariable ["BLWK_doorGunnerInUse",false]) then {
-		private _friendlyTransportHeliClass = [4,false] call BLWK_fnc_getFriendlyVehicleClass;
+		private _friendlyTransportHeliClass = [TRANSPORT_HELI_FACTION_MAP_ID,false] call BLWK_fnc_getFriendlyVehicleClass;
 		TURRET_EXPRESSION(_friendlyTransportHeliClass,125,BLWK_playAreaRadius * 1.5,"B_Heli_Transport_01_F","BLWK_doorGunnerInUse")
 	} else {
 		hint "Only one door gunner support may be active at a time.";
@@ -262,20 +269,24 @@ if (CHECK_SUPPORT_CLASS(TURRET_DOOR_GUNNER_CLASS)) exitWith {
 };
 if (CHECK_SUPPORT_CLASS(TURRET_ATTACK_HELI_GUNNER_CLASS)) exitWith {
 	if !(missionNamespace getVariable ["BLWK_heliGunnerInUse",false]) then {
-		private _friendlyAttackHeliClass = [7] call BLWK_fnc_getFriendlyVehicleClass;
+		private _friendlyAttackHeliClass = [ATTACK_HELI_FACTION_MAP_ID] call BLWK_fnc_getFriendlyVehicleClass;
 		TURRET_EXPRESSION(_friendlyAttackHeliClass,400,550,"B_Heli_Attack_01_dynamicLoadout_F","BLWK_heliGunnerInUse")
+
 	} else {
 		hint "Only one helicopter gunner support may be active at a time.";
 		ADD_SUPPORT_BACK
+
 	};
 };
 if (CHECK_SUPPORT_CLASS(TURRET_GUNSHIP_CLASS)) exitWith {
 	if !(missionNamespace getVariable ["BLWK_gunshipGunnerInUse",false]) then {
-		private _friendlyGunshipClass = [8,false] call BLWK_fnc_getFriendlyVehicleClass;
+		private _friendlyGunshipClass = [HEAVY_GUNSHIP_FACTION_MAP_ID,false] call BLWK_fnc_getFriendlyVehicleClass;
 		TURRET_EXPRESSION(_friendlyGunshipClass,700,1200,"B_T_VTOL_01_armed_F","BLWK_gunshipGunnerInUse")
+
 	} else {
 		hint "Only one heavy gunship gunner support may be active at a time.";
 		ADD_SUPPORT_BACK
+
 	};
 };
 
