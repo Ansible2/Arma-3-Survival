@@ -70,7 +70,7 @@ if (isServer) then {
     BLWK_playerGroup = createGroup [BLUFOR,false];
     publicVariable "BLWK_playerGroup";
 
-    if (BLWK_currentWaveNumber isEqualTo 0) then {
+    if (BLWK_currentWaveNumber isNotEqualTo 0) then {
         BLWK_startingFromWaveNumber = BLWK_currentWaveNumber + 1;
     } else {
         BLWK_startingFromWaveNumber = BLWK_currentWaveNumber;
