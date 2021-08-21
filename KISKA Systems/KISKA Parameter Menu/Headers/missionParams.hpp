@@ -11,7 +11,7 @@ class paramBase
 		Parameters are:
 		_this select 0 - The new value
 		_this select 1 - <STRING> - The mission parameter's variable name (either the param configName or varName property)
-		_this select 2 - <CONFIG> - The param Config path
+		_this select 2 - <CONFIG> - The param Config path of the variable in mission params config
 	*/
 	varName = ""; // a global variable name to tie to the parameter, if not defined, the configName will be used
 	onChanged = ""; // This is uncompiled code that will be compiled and run on EVERY MACHINE when a change is commited AFTER the briefing menu (Parameters are the same as the initScript property)
