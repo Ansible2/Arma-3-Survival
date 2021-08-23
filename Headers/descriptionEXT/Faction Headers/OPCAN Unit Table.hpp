@@ -46,7 +46,7 @@ class OPCAN_CGC_faction
 class OPCAN_UNSC_ARMY_D_faction
 {
 	displayName = "OPCAN - UNSC Army Desert";
-	
+
 	infantry[] = {
 		"LM_OPCAN_UNSCA_Assaultman_DES",
 		"LM_OPCAN_UNSCA_AutoRifleman_DES",
@@ -146,7 +146,7 @@ class OPCAN_UNSC_ARMY_MIXED_faction : OPCAN_UNSC_ARMY_WDL_faction
 
 class OPCAN_UNSC_MARINE_WDL_faction
 {
-	displayName = "OPCAN - UNSC Marine CE-A";
+	displayName = "OPCAN - UNSC Marine Woodland";
 
 	lightCars[] = {
 		"LM_OPCAN_HOG_G_MC_WDL",
@@ -375,7 +375,7 @@ class OPCAN_FRIDENS_faction : OPCAN_URA_faction
 		"LM_OPCAN_FRI_RTO",
 		"LM_OPCAN_FRI_SL",
 		"LM_OPCAN_FRI_TL"
-	};	
+	};
 };
 
 class OPCAN_FRIDENS_WDL_faction : OPCAN_FRIDENS_faction

@@ -43,7 +43,7 @@ class PROJOP_AFRICAN_MILITIA_faction : RHSGREF_TLA_faction
 		"LOP_AFR_OPF_Infantry_AR_Asst_2",
 		"LOP_AFR_OPF_Infantry_AR_Asst",
 		"LOP_AFR_OPF_Infantry_Driver",
-		"LOP_AFR_OPF_Infantry_SL"		
+		"LOP_AFR_OPF_Infantry_SL"
 	};
 };
 
@@ -65,7 +65,7 @@ class PROJOP_BOKO_HAREM_faction : PROJOP_AFRICAN_MILITIA_faction
 		"LOP_BH_Infantry_Rifleman_lite",
 		"LOP_BH_Infantry_AT",
 		"LOP_BH_Infantry_Marksman",
-		"LOP_BH_Infantry_SL"		
+		"LOP_BH_Infantry_SL"
 	};
 };
 
@@ -136,7 +136,7 @@ class PROJOP_ISIS_faction : RHSGREF_CHDKZ
 	};
 	heavyCars[] = {
 		"LOP_ISTS_OPF_M1025_W_M2",
-		"LOP_ISTS_OPF_M1025_W_Mk19"	
+		"LOP_ISTS_OPF_M1025_W_Mk19"
 	};
 	lightArmor[] = {
 		"LOP_ISTS_OPF_BTR60",
@@ -250,7 +250,7 @@ class PROJOP_SLA_faction : RHSGREF_CDF_faction
 
 	lightCars[] = {
 		"LOP_SLA_UAZ_AGS",
-		"LOP_SLA_UAZ_DshKM"		
+		"LOP_SLA_UAZ_DshKM"
 	};
 	heavyCars[] = {
 		"rhsgref_BRDM2_ins"
@@ -308,7 +308,7 @@ class PROJOP_SAF_faction : PROJOP_SLA_faction
 		"LOP_SYR_Infantry_Rifleman",
 		"LOP_SYR_Infantry_Rifleman_2",
 		"LOP_SYR_Infantry_SL",
-		"LOP_SYR_Infantry_TL"		
+		"LOP_SYR_Infantry_TL"
 	};
 };
 
@@ -550,7 +550,7 @@ class PROJOP_HAF_faction : RHSGREF_HIDF_faction
 class PROJOP_IAF_faction
 {
 	displayName = "PROJECT OPFOR - Iraqi Armed Forces";
-	
+
 	lightCars[] = {
 		"LOP_IA_Offroad_M2"
 	};
@@ -948,7 +948,7 @@ class PROJOP_UVF_faction : PROJOP_PMC_faction
 class PROJOP_ULT_faction
 {
 	displayName = "PROJECT OPFOR - Ultranationalists";
-	
+
 	lightCars[] = {
 		"LOP_UA_UAZ_DshKM",
 		"LOP_UA_UAZ_AGS"
@@ -991,11 +991,13 @@ class PROJOP_ULT_faction
 		"LOP_UA_Officer",
 		"LOP_UA_Infantry_SL",
 		"LOP_UA_Infantry_TL"
-	};	
+	};
 };
 
 class PROJOP_UN_faction
 {
+	displayName = "PROJECT OPFOR - United Nations";
+
 	lightCars[] = {
 		"LOP_UN_UAZ_DshKM",
 		"LOP_UN_UAZ_AGS"

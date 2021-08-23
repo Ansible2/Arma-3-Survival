@@ -439,7 +439,7 @@ class BLWK_buildableItems
 		tooltip = "Get a secondary shop that lasts 2 full waves";
 
 		onSold = "hint 'Shops cannot be sold'; false";
-		onPurchasedPrefix = "if (BLWK_satShopOut) then {hint 'There is already a satellite shop present'; _doExit = true; _refund = false;};";
+		onPurchasedPrefix = "if (BLWK_satShopOut) then {hint 'There is already a satellite shop present'; _doExit = true; _refund = true;};";
 		onPurchasedPostfix = "[_object] call BLWK_fnc_satelliteShop_init";
 	};
 

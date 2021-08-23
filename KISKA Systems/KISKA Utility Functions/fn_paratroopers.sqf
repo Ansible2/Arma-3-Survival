@@ -115,7 +115,7 @@ _unitsThatCanDrop apply {
 
 // move to drop zone
 (leader _aircraftGroup) doMove _dropZone;
-private _deletePosition = _dropZone getPos [5000,_flyDirection];
+private _deletePosition = _dropZone getPos [2000,_flyDirection];
 
 waitUntil {
 	if ((_aircraft distance2D _dropZone) <= 100) exitWith {true};

@@ -44,13 +44,15 @@ uiNamespace setVariable ["BLWK_fnc_musicManager_getMusicName",{
 }];
 
 // initially populate list if there is anything in the public array
-if !(GET_PUBLIC_ARRAY_DEFAULT isEqualTo []) then {
+if (GET_PUBLIC_ARRAY_DEFAULT isNotEqualTo []) then {
 	private "_displayName_temp";
 	BLWK_PUB_CURRENT_PLAYLIST apply {
 		_displayName_temp = [_x] call (uiNamespace getVariable "BLWK_fnc_musicManager_getMusicName");
 		_control lbAdd _displayName_temp;
 		[_x,true] call BLWK_fnc_musicManager_adjustNameColor;
+
 	};
+
 };
 
 _this spawn {
@@ -82,11 +84,14 @@ _this spawn {
 					_control lbSetText [_forEachIndex,_musicName];
 					_control lbSetTooltip [_forEachIndex,_musicName];
 				};
+				
 			} else {
 				_musicName = [_x] call (uiNamespace getVariable "BLWK_fnc_musicManager_getMusicName");
 				_control lbAdd _musicName;
 				_control lbSetTooltip [_forEachIndex,_musicName];
+
 			};
+
 		} forEach _globalArray;
 
 		// delete overflow items

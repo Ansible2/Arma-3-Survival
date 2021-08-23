@@ -1,4 +1,4 @@
-#include "..\..\..\Headers\Vehicle Class Indexes.hpp"
+#include "..\..\..\Headers\Faction Map Ids.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_stdEnemyVehicles
 
@@ -24,15 +24,15 @@ Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define VEHICLE_TYPES [LIGHT_CAR,HEAVY_CAR,LIGHT_ARMOR,HEAVY_ARMOR]
+scriptName "BLWK_fnc_stdEnemyVehicles";
+
+#define VEHICLE_TYPES [LIGHT_CAR_FACTION_MAP_ID,HEAVY_CAR_FACTION_MAP_ID,LIGHT_ARMOR_FACTION_MAP_ID,HEAVY_ARMOR_FACTION_MAP_ID]
 #define VEHICLE_LIKELIHOODS [BLWK_lightCarLikelihood,BLWK_heavyCarLikelihood,BLWK_lightArmorLikelihood,BLWK_heavyArmorLikelihood]
 #define SECOND_VEHICLE_DIVIDER 1.35
-
-scriptName "BLWK_fnc_stdEnemyVehicles";
+#define VEHICLE_SPAWN_INCREMENT 0.05 // how much to increase likelihood by each round
 
 if !(BLWK_currentWaveNumber >= BLWK_vehicleStartWave) exitWith {[]};
 
-#define VEHICLE_SPAWN_INCREMENT 0.05 // how much to increase likelihood by each round
 
 params [
 	"_availableInfantry",
@@ -56,7 +56,7 @@ if (_roundsSinceVehicleSpawned < BLWK_minRoundsSinceVehicleSpawned) exitWith {
 
 
 // each round increases the likelihood of a vehicle spawn by 5%
-private _howLikelyIsAVehicleToSpawn = (_roundsSinceVehicleSpawned * VEHICLE_SPAWN_INCREMENT) + (BLWK_baseVehicleSpawnLikelihood / 10);
+private _howLikelyIsAVehicleToSpawn = (_roundsSinceVehicleSpawned * VEHICLE_SPAWN_INCREMENT) + BLWK_baseVehicleSpawnLikelihood;
 if (_howLikelyIsAVehicleToSpawn > 1) then {
 	_howLikelyIsAVehicleToSpawn = 1;
 };
@@ -80,22 +80,29 @@ private _vehicleTypeValues = [];
 {
 	private _vehicleClasses = [];
 	if (_isDefectorWave) then {
-		_vehicleClasses = BLWK_friendly_vehicleClasses select _x;
+		_vehicleClasses = BLWK_friendlyFactionMap get _x;
+
 	} else {
 		_vehicleClasses = [_x,false] call BLWK_fnc_getEnemyVehicleClasses;
+
 	};
 
 	if (_vehicleClasses isNotEqualTo []) then {
 		_vehicleTypeHash set [_x,_vehicleClasses];
 		_likelihoodWeights pushBack (VEHICLE_LIKELIHOODS select _forEachIndex);
 		_vehicleTypeValues pushBack _x;
+
 	};
+
 } forEach VEHICLE_TYPES;
 
-if (_likelihoodArray isEqualTo []) exitWith {
+
+if (_vehicleTypeValues isEqualTo []) exitWith {
 	["No vehicles to spawn for enemy factions, exiting",false] call KISKA_fnc_log;
 	[]
 };
+
+
 
 private _returnedVehicles = [];
 private _fn_spawnAVehicle = {
@@ -136,7 +143,6 @@ private _fn_spawnAVehicle = {
 		_this call BLWK_fnc_stdVehicleKilledEvent;
 	}];
 };
-
 
 
 call _fn_spawnAVehicle;

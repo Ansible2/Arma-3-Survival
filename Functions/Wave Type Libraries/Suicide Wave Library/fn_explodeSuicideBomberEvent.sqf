@@ -35,5 +35,7 @@ private _explosiveType = selectRandom [
 private _explosive = _explosiveType createVehicle (getPosATLVisual _bomber);
 
 _explosive setDamage 1;
-
-deleteVehicle _bomber;
+[_bomber] spawn {
+	sleep 0.5; // give time for BLWK_fnc_handleKillEventPlayer to execute
+	deleteVehicle (_this select 0);
+};

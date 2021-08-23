@@ -3,7 +3,7 @@ class BLWK_factions
 /*
 class factionBase
 {
-	displayName = "Faction Base";
+	displayName = "";
 	lightCars[] = {
 	};
 	heavyCars[] = {
@@ -57,4 +57,3 @@ class factionBase
 #include "There is Only War Xenos Unit Table.hpp"
 #include "SOGPF Unit Table.hpp"
 };
-

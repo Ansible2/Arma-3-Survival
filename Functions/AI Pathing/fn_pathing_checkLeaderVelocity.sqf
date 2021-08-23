@@ -12,18 +12,23 @@ Returns:
 
 Examples:
     (begin example)
-
 		_isActive = [_unit] call BLWK_fnc_pathing_checkLeaderVelocity;
-
     (end)
 
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "BLWK_fnc_pathing_checkLeaderVelocity";
+
 params ["_unit"];
 
-if (isNull _unit OR {!alive _unit}) exitWith {
+if (!alive _unit) exitWith {
 	false
+};
+
+// units seem to only get stuck in the standing position, otherwise, assume they are shooting and/or under fire
+if (stance _unit != "STAND") exitWith {
+	true
 };
 
 // forward/backward velocity is the most telling of movement

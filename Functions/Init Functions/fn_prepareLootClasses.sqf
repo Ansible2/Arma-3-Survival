@@ -1,5 +1,3 @@
-// set up MACRO vars that can be used between files and make changes easier
-#include "..\..\Headers\descriptionEXT\Loot Lists\Define Loot Lists.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_prepareLootClasses
 
@@ -36,7 +34,7 @@ Author(s):
 scriptName "BLWK_fnc_prepareLootClasses";
 
 
-if (!isServer AND {hasInterface}) exitWith {false};
+if (!isServer AND {hasInterface}) exitWith {[]};
 
 
 /* ----------------------------------------------------------------------------
@@ -45,7 +43,7 @@ if (!isServer AND {hasInterface}) exitWith {false};
 
 ---------------------------------------------------------------------------- */
 private _mainListConfig = missionConfigFile >> "BLWK_lootLists";
-private _masterListConfig = _mainListConfig >> "masterList";
+private _masterListConfig = _mainListConfig >> "MasterLootList";
 
 private _fn_toLowerArray = {
 	params ["_array"];
@@ -78,39 +76,34 @@ private _explosiveClasses = getArray(_masterListConfig >> "lootWhitelist_explosi
 
 
 
+
 private _customLootListConfig = configNull;
 private _lootCondition_weapons = {true};
 private _lootCondition_clothes = {true};
 private _lootCondition_magazines = {true};
 private _checkForDuplicates = false;
 // if whitelist is Not set to off
-if (BLWK_loot_whiteListMode isNotEqualTo 0) then {
-	private _factionTitle = [LOOT_LIST_STRINGS] select BLWK_loot_whiteListMode;
-	private _lootListConfigs = "true" configClasses (_mainListConfig >> "CustomLootLists");
+if (BLWK_loot_whiteListMode != "ALL") then {
+	private _lootListNames = call BLWK_fnc_KISKAParams_populateLootWhitelists;
+	private _indexOfList = _lootListNames find BLWK_loot_whiteListMode;
 
-	private _index = _lootListConfigs findIf {
-		getText(_x >> "title") == _factionTitle
-	};
-
-	if (_index isNotEqualTo -1) then {
-		_customLootListConfig = _lootListConfigs select _index;
+	if (_indexOfList isNotEqualTo -1) then {
+		_customLootListConfig = (localNamespace getVariable "BLWK_lootListConfigs") select _indexOfList;
 		[[_customLootListConfig],false] call KISKA_fnc_log;
 
 		private _useCustomList = true;
 		private _patches = getArray(_customLootListConfig >> "patches");
 		if (_patches isNotEqualTo []) then {
-			private _passArray = _patches apply {
-				[_x] call KISKA_fnc_isPatchLoaded
-			};
-
-			private _nonPassIndex = _passArray find false;
-			private _nonPassPatch = "";
-			if (_nonPassIndex isNotEqualTo -1) then {
-				_nonPassPatch = _patches select _nonPassIndex;
-				[["Found that patch ",_nonPassPatch," was not loaded for loot list. Default list will be used"],true] call KISKA_fnc_log;
+			// find false entry e.g. not loaded patch
+			private _notLoadedIndex = _patches findIf {!([_x] call KISKA_fnc_isPatchLoaded)};
+			if (_notLoadedIndex isNotEqualTo -1) then {
+				private _patchName = _patches select _notLoadedIndex;
+				[["Found that patch ",_patchName," was not loaded for loot list. Default list will be used"],true] call KISKA_fnc_log;
 				_useCustomList = false;
 			};
+
 		};
+
 
 		if !(_useCustomList) exitWith {};
 

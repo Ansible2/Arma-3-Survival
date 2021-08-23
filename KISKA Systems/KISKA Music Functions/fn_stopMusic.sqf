@@ -12,16 +12,13 @@ Returns:
 
 Examples:
     (begin example)
-
 		call KISKA_fnc_stopMusic;
-
     (end)
 
 Author(s):
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "KISKA_fnc_stopMusic"
-scriptName SCRIPT_NAME;
+scriptName "KISKA_fnc_stopMusic";
 
 if (!hasInterface) exitWith {};
 
@@ -38,8 +35,8 @@ if !(call KISKA_fnc_isMusicPlaying) exitWith {};
 
 if (_fadeTime > 0) then {
 	_fadeTime fadeMusic 0;
+	sleep _fadeTime;
 };
-playMusic "";
 
 // reset event handler values as playMusic "" does not activate music events
-call KISKA_fnc_musicStopEvent;
+[true] call KISKA_fnc_musicStopEvent;
