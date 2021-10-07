@@ -98,6 +98,15 @@ class BLWK
 		{};
 	};
 
+	class Extraction
+	{
+		file = "Functions\Extraction";
+		class callForExtraction
+		{};
+		class teleportToExtractionSite
+		{};
+	};
+
 	class Init
 	{
 		file = "Functions\Init Functions";
