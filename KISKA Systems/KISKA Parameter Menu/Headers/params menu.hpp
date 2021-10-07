@@ -104,8 +104,8 @@ class paramsMenu
             {
                 left = 0;
                 top = 0;
-                w = 0.0117188 * safezoneW;
-                h = 0.0208333 * safezoneH;
+                w = POS_W(1);
+            	h = POS_H(1);
             };
 
         };
