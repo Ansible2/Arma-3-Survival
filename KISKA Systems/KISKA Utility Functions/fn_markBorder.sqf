@@ -42,7 +42,7 @@ private _markerInterval = 360 / _markerCount;
 private _heading = 0;
 private _objects = [];
 for "_i" from 1 to _markerCount do {
-    private _pos = AGLToASL(_startingPos getPos [_radius,_heading]) vectorAdd [0,0,_verticalOffset];
+    private _pos = AGLToASL(_centerPos getPos [_radius,_heading]) vectorAdd [0,0,_verticalOffset];
     _heading = _heading + _markerInterval;
 
     private _object = [_markerObjectClass,_pos,0,false,false] call BIS_fnc_createSimpleObject;
