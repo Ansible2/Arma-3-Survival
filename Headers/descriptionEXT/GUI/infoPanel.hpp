@@ -10,7 +10,7 @@ class BLWK_infoPanel {
 	class controlsBackground {
 		class BLWK_infoPanel_frame_static: RscText
 		{
-			idc = 2002;
+			idc = -1;
 			x = 0.00781247 * safezoneW + safezoneX;
 			y = 0.0104172 * safezoneH + safezoneY;
 			w = 0.152344 * safezoneW;
@@ -24,7 +24,7 @@ class BLWK_infoPanel {
 		// player name
 		class BLWK_infoPanel_playerName_static: RscText
 		{
-			idc = 2003;
+			idc = -1;
 			text = ""; //--- ToDo: Localize;
 			x = 0.0136719 * safezoneW + safezoneX;
 			y = 0.0208333 * safezoneH + safezoneY;
@@ -50,7 +50,7 @@ class BLWK_infoPanel {
 		// wave number
 		class BLWK_infoPanel_wave_static: RscText
 		{
-			idc = 2004;
+			idc = -1;
 			text = "Wave:"; //--- ToDo: Localize;
 			x = 0.0664062 * safezoneW + safezoneX;
 			y = 0.0520833 * safezoneH + safezoneY;
@@ -84,7 +84,7 @@ class BLWK_infoPanel {
 		};
 		class BLWK_infoPanel_respawnsLeft_static: RscText
 		{
-			idc = 2005;
+			idc = -1;
 			text = "Respawns Left:"; //--- ToDo: Localize;
 			x = 0.0664062 * safezoneW + safezoneX;
 			y = 0.0833333 * safezoneH + safezoneY;
@@ -96,7 +96,7 @@ class BLWK_infoPanel {
 		// wave status
 		class BLWK_infoPanel_waveStatus_static: RscText
 		{
-			idc = 2006;
+			idc = -1;
 			text = "Wave Status:"; //--- ToDo: Localize;
 			x = 0.0664062 * safezoneW + safezoneX;
 			y = 0.0208333 * safezoneH + safezoneY;
