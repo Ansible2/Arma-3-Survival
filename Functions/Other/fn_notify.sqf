@@ -139,11 +139,11 @@ if !(localNamespace getVariable ["BLWK_notificationLoopRunning",false]) then {
 
             // need to set this before reading the text height, to get the correct amount of auto line breaks
             _text ctrlSetPosition [0, 0, _width, _height];
-            _text ctrlCommit 0.01;
+            _text ctrlCommit 0;
 
             private _textHeight = ctrlTextHeight _text;
             _height = _textHeight max _height;
-
+            hint str _height;
             // ensure the box not going off screen
             private _right = _left + _width;
             private _bottom = _top + _height;
@@ -180,7 +180,7 @@ if !(localNamespace getVariable ["BLWK_notificationLoopRunning",false]) then {
             // fade in
             _controls apply {
                 _x ctrlSetFade 1;
-                _x ctrlCommit 0.01;
+                _x ctrlCommit 0;
                 _x ctrlSetFade 0;
                 _x ctrlCommit (FADE_IN_TIME);
             };
