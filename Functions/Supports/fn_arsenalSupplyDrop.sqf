@@ -114,7 +114,7 @@ private _aircraftGroup = _vehicleArray select 2;
 
 	// notify players of arsenal status
 	_arsenalBox addEventHandler ["Deleted", {
-		["Arsenal is deleted"] remoteExec ["hint",BLWK_allClientsTargetID];
+		["Arsenal is deleted"] remoteExec ["BLWK_fnc_notification",BLWK_allClientsTargetID];
 		missionNamespace setVariable ["BLWK_arsenalOut",false,true];
 	}];
 
@@ -132,7 +132,7 @@ private _aircraftGroup = _vehicleArray select 2;
 		_timeLeft = str (round (_timeBetweenMessages * _increment));
 		_message = "Arsenal Will Self Destruct In: " + _timeLeft + " Seconds";
 
-		[_message] remoteExec ["hint",BLWK_allClientsTargetID];
+		[_message] remoteExec ["BLWK_fnc_notification",BLWK_allClientsTargetID];
 
 		sleep _timeBetweenMessages;
 	};

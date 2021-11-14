@@ -30,11 +30,11 @@ scriptName "BLWK_fnc_overrunTheCrateWave";
 #define ENFORCEMENT_ID "overrunWave_JIP"
 
 // get opposite sides for players and enemies
-private _distanceToCenter = BLWK_playAreaRadius + DIST_BUFFER; 
+private _distanceToCenter = BLWK_playAreaRadius + DIST_BUFFER;
 private "_bearing";
 private _enemyCenterPosition = [];
 private _playerPosition = [];
-private _canExit = false; 
+private _canExit = false;
 for "_i" from 1 to 18 do {
 	if (_canExit) exitWith {};
 
@@ -50,14 +50,14 @@ for "_i" from 1 to 18 do {
 			_playerPosition = [];
 			_enemyCenterPosition = [];
 		} else {
-			_canExit = true; 
+			_canExit = true;
 		};
 	};
 };
 
 // if the area is not suitable, exit
 if (_enemyCenterPosition isEqualTo [] AND {_playerPosition isEqualTo []}) exitWith {
-	["Your play area did not meet the requirements for the Overrun Wave type (too much water)"] remoteExecCall ["hint",BLWK_allClientsTargetId];
+	["Your play area did not meet the requirements for the Overrun Wave type (too much water)"] remoteExecCall ["BLWK_fnc_errorNotification",BLWK_allClientsTargetId];
 	false
 };
 
@@ -91,7 +91,7 @@ BLWK_infantrySpawnPositions = _enemySpawnPositions;
 
 	// make sure crate is in play area
 	if !(BLWK_mainCrate inArea BLWK_playAreaMarker) then {
-		BLWK_mainCrate setPos ([BLWK_playAreaCenter, 0, 100, 0, 0] call BIS_fnc_findSafePos); 
+		BLWK_mainCrate setPos ([BLWK_playAreaCenter, 0, 100, 0, 0] call BIS_fnc_findSafePos);
 	};
 }] call BIS_fnc_addScriptedEventHandler;
 

@@ -143,7 +143,7 @@ if !(localNamespace getVariable ["BLWK_notificationLoopRunning",false]) then {
 
             private _textHeight = ctrlTextHeight _text;
             _height = _textHeight max _height;
-            hint str _height;
+
             // ensure the box not going off screen
             private _right = _left + _width;
             private _bottom = _top + _height;

@@ -13,9 +13,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		call BLWK_fnc_hintDroppedDelete;
-
     (end)
 
 Author(s):
@@ -23,4 +21,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};
 
-hint parseText "<t color='#03d7fc'>At the start of the next wave, dropped items will be DELETED</t>"; 
+[
+	["Notification:",1.1,[0.21,0.71,0.21,1]],
+	["At the start of the next wave, dropped items will be DELETED",1,[0,0.87,1,1]],
+	false
+] call BLWK_fnc_notify;

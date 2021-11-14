@@ -52,24 +52,24 @@ if (isNil "BLWK_mainCrate") then {
 };
 
 private _healString = ["<t color='#ff0000'>-- Heal Yourself ",BLWK_pointsForHeal,"p --</t>"] joinString "";
-[	
+[
 	_mainCrate,
-	_healString, 
-	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_revive_ca.paa", 
-	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_revive_ca.paa", 
-	"_this distance _target < 2", 
-	"_caller distance _target < 2", 
-	{}, 
-	{}, 
+	_healString,
+	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_revive_ca.paa",
+	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_revive_ca.paa",
+	"_this distance _target < 2",
+	"_caller distance _target < 2",
+	{},
+	{},
 	{
 		[_this select 1] call BLWK_fnc_healPlayer;
-	}, 
-	{}, 
-	[], 
-	1, 
-	2.5, 
-	false, 
-	false, 
+	},
+	{},
+	[],
+	1,
+	2.5,
+	false,
+	false,
 	false
 ] call BIS_fnc_holdActionAdd;
 
@@ -80,8 +80,8 @@ private _healString = ["<t color='#ff0000'>-- Heal Yourself ",BLWK_pointsForHeal
 
 _mainCrate addEventHandler ["ContainerOpened",{
 	params ["_mainCrate"];
-		
-	hint (format ["You can place %1 First Aid Kits in the The Crate to make automatically make a Medkit",BLWK_faksToMakeMedkit]);
+
+	[ format ["You can place %1 First Aid Kits in the The Crate to make automatically make a Medkit",BLWK_faksToMakeMedkit] ] call BLWK_fnc_notification;
 	// only show once
 	_mainCrate removeEventHandler ["ContainerOpened",_thisEventHandler];
 }];
