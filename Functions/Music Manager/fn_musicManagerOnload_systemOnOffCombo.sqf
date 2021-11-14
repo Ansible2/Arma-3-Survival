@@ -44,24 +44,26 @@ _control lbSetTooltip [2,"Current playing track from the playlist will cease on 
 _control ctrlSetFont "PuristaLight";
 _control lbSetCurSel ([0,1] select _systemOn);
 
+
+
 _control ctrlAddEventHandler ["LBSelChanged",{
 	params ["_control", "_selectedIndex"];
 
 	switch (_selectedIndex) do {
 		case 0:{ // system off
-			//missionNamespace setVariable ["KISKA_musicSystemIsRunning",false,[0,2] select isMultiplayer];
 			[true] remoteExecCall ["KISKA_fnc_stopRandomMusicServer",2];
 
 			if (missionNamespace getVariable ["BLWK_musicManager_reset",false]) then {
-				//hint "System reseting...";
 				missionNamespace setVariable ["BLWK_musicManager_reset",false];
+
 			} else {
-				hint "System OFF, last played song will finish...";
+				["System OFF, last played song will finish..."] call BLWK_fnc_notification;
+
 			};
 		};
 
 		case 1:{ // system on
-			hint "System starting... Make sure you commited a playlist to the server";
+			["System starting... Make sure you commited a playlist to the server"] call BLWK_fnc_notification;
 
 			// if music is playing from the manager, stop the timeline
 			if (uiNamespace getVariable ["BLWK_musicManager_doPlay",false]) then {

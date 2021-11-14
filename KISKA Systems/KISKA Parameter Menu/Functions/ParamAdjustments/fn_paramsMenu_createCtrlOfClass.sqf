@@ -77,7 +77,9 @@ if (_configToolTipText isNotEqualTo "") then {
 private _requiresRestart = [_paramConfig >> "requiresRestart"] call BIS_fnc_getCfgDataBool;
 _joinStringArray pushBack ("Requires Restart: " + (["No","Yes"] select _requiresRestart));
 
-_joinStringArray pushBack ("Variable Name: " + _paramVarName);
+if (call KISKA_fnc_isAdminOrHost) then {
+    _joinStringArray pushBack ("Variable Name: " + _paramVarName);
+};
 
 private _namespaceNumber = getNumber(_paramConfig >> "namespace");
 _joinStringArray pushBack ("Saved To: " + (["missionNamespace","localNamespace"] select _namespaceNumber));

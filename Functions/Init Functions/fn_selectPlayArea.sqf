@@ -2,7 +2,7 @@
 Function: BLWK_fnc_selectPlayArea
 
 Description:
-	Searches through a maps's locations for a suitable 
+	Searches through a maps's locations for a suitable
 	 play area that is within the player's parameters.
 
 	Will end mission if none exist.
@@ -38,7 +38,7 @@ if (BLWK_customPlayLocation) then {
 		};
 		// if we find an admin or host
 		if (_adminIndex != -1) exitWith {
-			["A location to play at is being selected by the admin"] remoteExecCall ["hint",_players];
+			["A location to play at is being selected by the admin"] remoteExecCall ["BLWK_fnc_notification",_players];
 			remoteExec ["BLWK_fnc_selectCustomPlayArea",_players select _adminIndex];
 
 			true
@@ -67,7 +67,7 @@ if (BLWK_customPlayLocation) then {
 
 		_return = (_positionToCheck nearObjects ["House", BLWK_playAreaRadius * _multiplier]) select {
 			// check that the building has cfg building positions to spawn stuff
-			!((_x buildingPos -1) isEqualTo []) AND 
+			!((_x buildingPos -1) isEqualTo []) AND
 			// And check that it doesn't have water directly beneath it (avoid being too far out on a dock)
 			{!(	surfaceIsWater (((lineIntersectsSurfaces [AGLToASL(_x buildingPos 0),AGLToASL(_x buildingPos 0) vectorDiff [0,0,20]]) select 0) select 0))}
 		};
@@ -86,7 +86,7 @@ if (BLWK_customPlayLocation) then {
 
 		// get all buildings in play area * 2
 		_buildingsNearLocation = [_locationPosition,true] call _fn_selectBuildings;
-		
+
 		// check if there are even enough buildings in double the radius
 		if (count _buildingsNearLocation >= BLWK_minNumberOfHousesInArea) then {
 
@@ -120,11 +120,12 @@ if (BLWK_customPlayLocation) then {
 
 	// exit if nothing found
 	if (_mapLocationPositions isEqualTo -1) then {
-		["No locations on map are within your selection parameters for building numbers"] remoteExecCall ["hint",0,true];
+		["No locations on map are within your selection parameters for building numbers"] remoteExecCall ["BLWK_fnc_errorNotification",0,true];
 
 		sleep 10;
 
 		call BIS_fnc_endMissionServer;
+
 	} else {
 
 		sleep 1;

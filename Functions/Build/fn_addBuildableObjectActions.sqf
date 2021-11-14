@@ -79,7 +79,7 @@ if (_addSellAction) then {
 			params ["_object","_caller"];
 
 			if (_object isEqualTo (missionNamespace getVariable ["BLWK_mainCrate",objNull]) OR {_object isEqualTo (missionNamespace getVariable ["BLWK_randomWeaponBox",objNull])}) exitWith {
-				hint parseText "<t color='#ff0000'>You can't sell this item</t>";
+				["You can't sell this item"] call BLWK_fnc_errorNotification;
 			};
 
 			[_object,_caller] call BLWK_fnc_sellObject;

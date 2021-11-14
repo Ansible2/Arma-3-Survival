@@ -291,20 +291,23 @@ private _exitAction = [
 	private _informed = false;
 	waitUntil {
 		if (!_informed AND {BLWK_currentWaveNumber == (_endWave - 1)}) then {
-			hint parseText "<t color='#03d7fc'>You gunner support will end the next wave!</t>";
+			["You gunner support will end the next wave!"] call BLWK_fnc_notification;
 			_informed = true;
 		};
+
 		if (BLWK_currentWaveNumber >= _endWave) exitWith {true};
 		if (isNull _vehicle) exitWith {true};
+
 		// if player died
 		if !(player in _vehicle) exitWith {true};
 		sleep 10;
+
 		false
 	};
 
 	if (isNull _vehicle) exitWith {};
 
-	hint "Your support expired";
+	["Your support expired"] call BLWK_fnc_notification;
 
 	[player,_exitAction,_actionArgs] call (localNamespace getVariable "BLWK_fnc_exitFromAircraft");
 };

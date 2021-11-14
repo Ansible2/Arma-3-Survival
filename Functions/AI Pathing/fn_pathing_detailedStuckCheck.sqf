@@ -9,14 +9,14 @@ Description:
 	Needs to be run in scheduled environment.
 
 Parameters:
-	0: _unit : <OBJECT> - The unit to handle
+	0: _group : <GROUP> - The group to check
 
 Returns:
 	<BOOL> - true if unit is stuck, false if not
 
 Examples:
     (begin example)
-		_needsToBeReset = [_unit] call BLWK_fnc_pathing_detailedStuckCheck;
+		_needsToBeReset = [_groupLeader] call BLWK_fnc_pathing_detailedStuckCheck;
     (end)
 
 Author(s):
@@ -24,40 +24,52 @@ Author(s):
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_pathing_detailedStuckCheck";
 
-params ["_unit"];
+params ["_group"];
 
+
+private _groupLeader = leader _group;
 // don't mess with vehicle units
-if (!isNull (objectParent _unit)) exitWith {false};
+if (!isNull (objectParent _groupLeader)) exitWith {false};
 
-private _currentPosition = getPosWorld _unit;
+private _currentPosition = getPosWorld _groupLeader;
+private _ammoOfLeader = _groupLeader ammo (currentMuzzle _groupLeader);
 
-sleep 20;
+
+sleep 5;
+
+
+// Check if leader was engaging targets
+if (_groupLeader ammo (currentMuzzle _groupLeader) < _ammoOfLeader) exitWith {
+	[["Leader of group: ", _group, " appears to be firing at something; doesn't need reset..."],false] call KISKA_fnc_log;
+	false;
+};
+
 
 // exit if all units are dead
-if !([_groupToCheck] call BLWK_fnc_pathing_checkGroupStatus) exitWith {
-	[[_groupToCheck," failed secondary group status check..."],false] call KISKA_fnc_log;
+if !([_group] call BLWK_fnc_pathing_isGroupAlive) exitWith {
+	[[_group," failed secondary group status check..."],false] call KISKA_fnc_log;
 	false
 };
 
 private _needsReset = true;
 // if the leader fails the velocity check again
-if !([_unit] call BLWK_fnc_pathing_checkLeaderVelocity) then {
-	[[_groupToCheck," failed secondary velocity status check..."],false] call KISKA_fnc_log;
+if !([_groupLeader] call BLWK_fnc_pathing_checkLeaderVelocity) then {
+	[[_group," failed secondary velocity status check..."],false] call KISKA_fnc_log;
 
 	// check if there is enough difference in their position to justify not reseting them
-	private _positionDifference = (getPosWorld _unit) vectorDiff _currentPosition;
-	[["Checking position differences for group ", _groupToCheck,"... Position differences are: ",_positionDifference],false] call KISKA_fnc_log;
+	private _positionDifference = (getPosWorld _groupLeader) vectorDiff _currentPosition;
+	[["Checking position differences for group ", _group,"... Position differences are: ",_positionDifference],false] call KISKA_fnc_log;
 	_positionDifference apply {
 		// check to make sure there was some significant movement in the unit on any axis
 		if ((abs _x) > 0.5) then {
-			[[_groupToCheck," found a position axis that passed..."],false] call KISKA_fnc_log;
+			[[_group," found a position axis that passed..."],false] call KISKA_fnc_log;
 			_needsReset = false;
 			break;
 		};
 	};
 
 } else {
-	[[_groupToCheck," had immediate velocity check that passed."],false] call KISKA_fnc_log;
+	[[_group," had immediate velocity check that passed."],false] call KISKA_fnc_log;
 	_needsReset = false;
 
 };

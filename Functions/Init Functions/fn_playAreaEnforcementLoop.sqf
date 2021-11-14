@@ -3,9 +3,9 @@ Function: BLWK_fnc_playAreaEnforcementLoop
 
 Description:
 	Starts the loop that plays the effects and teleports players back into bounds
-	
+
 	It is executed from the "initPlayerLocal.sqf"
-	
+
 Parameters:
 	0: _force <BOOL> - If true, the loop will auto set BLWK_enforceArea to true
 
@@ -16,7 +16,7 @@ Examples:
     (begin example)
 		call BLWK_fnc_playAreaEnforcementLoop;
     (end)
-	
+
 Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
@@ -57,7 +57,7 @@ missionNamespace setVariable ["BLKW_enforceAreaRunning",true];
 
 	/*
 	Each one of these functions checks the successive distance percentage to see if the player is farther away.
-	this is so that they do not overlay text on top of each other and to allow one condition check for 
+	this is so that they do not overlay text on top of each other and to allow one condition check for
 	the vast majority of the time which is when the player is WITHIN the boundries
 	*/
 	private _fn_90percentFromCenter = {
@@ -111,7 +111,8 @@ missionNamespace setVariable ["BLKW_enforceAreaRunning",true];
 			sleep 1;
 			false;
 		};
-		hint "Get back here you...";
+
+		["Get back here you..."] call BLWK_fnc_notification;
 	};
 
 

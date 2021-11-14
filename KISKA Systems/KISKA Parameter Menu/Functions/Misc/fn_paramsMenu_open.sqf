@@ -23,10 +23,12 @@ scriptName "KISKA_fnc_paramsMenu_open";
 
 if (!hasInterface) exitWith {};
 
+/*
 if !(call KISKA_fnc_isAdminOrHost) exitWith {
     hint "You must be an admin or host to edit mission settings";
     nil
 };
+*/
 
 // indication bar?
 if (!canSuspend) exitWith {
@@ -79,22 +81,29 @@ if (isNil{localNamespace getVariable PARAMS_CURRENT_PROFILE_VAR_STR}) then {
 [_display] call KISKA_fnc_paramsMenu_onLoad_portControls;
 
 (_display displayCtrl PARAMS_MENU_COMMIT_BUTTON_IDC) ctrlAddEventHandler ["ButtonClick",{
-    call KISKA_fnc_paramsMenu_commitChanges;
 
-    [] spawn {
-        disableUserInput true;
-        for "_i" from 1 to 5 do {
-            ["Please wait..."] call KISKA_fnc_paramsMenu_logMessage;
-            uisleep 1; // if in briefing menu, regular sleep is frozen
+    if !(call KISKA_fnc_isAdminOrHost) then {
+        ["You must be an admin or host to commit changes."] call KISKA_fnc_paramsMenu_logMessage;
+
+    } else {
+        call KISKA_fnc_paramsMenu_commitChanges;
+
+        [] spawn {
+            disableUserInput true;
+            for "_i" from 1 to 5 do {
+                ["Please wait..."] call KISKA_fnc_paramsMenu_logMessage;
+                uisleep 1; // if in briefing menu, regular sleep is frozen
+            };
+
+            waitUntil {
+                disableUserInput false;
+                !userInputDisabled;
+            };
+
+            call KISKA_fnc_paramsMenu_refresh;
+            ["Transmission Complete"] call KISKA_fnc_paramsMenu_logMessage;
         };
 
-        waitUntil {
-            disableUserInput false;
-            !userInputDisabled;
-        };
-
-        call KISKA_fnc_paramsMenu_refresh;
-        ["Transmission Complete"] call KISKA_fnc_paramsMenu_logMessage;
     };
 
 }];

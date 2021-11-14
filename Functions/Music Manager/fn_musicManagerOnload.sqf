@@ -130,9 +130,6 @@ _display displayAddEventHandler ["unload",{
 		[] call KISKA_fnc_musicStopEvent;
 	};
 
-	// get rid of any hints
-	hintSilent "";
-
 	// clear memory
 	uiNamespace setVariable ["BLWK_musicManager_display",nil];
 	uiNamespace setVariable ["BLWK_musicManager_control_currentPlaylist",nil];

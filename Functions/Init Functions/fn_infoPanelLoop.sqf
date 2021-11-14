@@ -16,17 +16,14 @@ Returns:
 
 Examples:
     (begin example)
-
 		[] spawn BLWK_fnc_infoPanelLoop;
-
     (end)
 
 Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "BLWK_fnc_infoPanelLoop"
-scriptName SCRIPT_NAME;
+scriptName "BLWK_fnc_infoPanelLoop";
 
 if (!hasInterface) exitWith {};
 
@@ -44,7 +41,7 @@ waitUntil {
 };
 
 
-"infoPanelLayer" cutRsc [INFO_PANEL_DISPLAYNAME,"PLAIN"];
+(["infoPanelLayer"] call BIS_fnc_rsclayer) cutRsc [INFO_PANEL_DISPLAYNAME,"PLAIN",-1,false];
 private _infoPanelDisplay = uiNamespace getVariable INFO_PANEL_DISPLAYNAME;
 
 // player points

@@ -24,8 +24,10 @@ Author:
 ---------------------------------------------------------------------------- */
 scriptName "KISKA_fnc_paramsMenu_commitChanges";
 
-
-if !(call KISKA_fnc_isAdminOrHost) exitWith {};
+if !(call KISKA_fnc_isAdminOrHost) exitWith {
+    ["You must be an admin or host to commit changes."] call KISKA_fnc_paramsMenu_logMessage;
+    nil
+};
 
 ["Sending Changes..."] call KISKA_fnc_paramsMenu_logMessage;
 private _preloadFinished = localNamespace getVariable ["KISKA_missionParams_preloadFinished",false];
@@ -44,6 +46,7 @@ if (isServer) then {
             [_serialConfig,_y] remoteExecCall ["KISKA_fnc_paramsMenu_paramChangedRemote", 2];
         };
     } forEach (GET_STAGED_CHANGE_PARAMS_HASH);
+
 };
 
 localNamespace setVariable [STAGED_CHANGE_VAR_HASH_VAR_STR,createHashMap];

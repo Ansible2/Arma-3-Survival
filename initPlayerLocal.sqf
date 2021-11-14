@@ -46,6 +46,8 @@ waitUntil {
 
 [_player] call BLWK_fnc_addACESupportMenuAction;
 
+[] spawn BLWK_fnc_handleUnconsciousAiEvent;
+
 // vanilla mag repack
 if (BLWK_magRepackEnabled) then {
     waituntil {!isNull (findDisplay 46)};

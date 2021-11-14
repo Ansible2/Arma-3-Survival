@@ -3,7 +3,7 @@ class BLWK
 	class AiPathing
 	{
 		file = "functions\AI Pathing";
-		class pathing_checkGroupStatus
+		class pathing_isGroupAlive
 		{};
 		class pathing_checkLeaderVelocity
 		{};
@@ -224,11 +224,15 @@ class BLWK
 		{};
 		class doMagRepack
 		{};
+		class errorNotification
+		{};
 		class getEnemyVehicleClasses
 		{};
 		class getFriendlyVehicleClass
 		{};
 		class handleEnemyWeapons
+		{};
+		class handleUnconsciousAiEvent
 		{};
 		class handleWaitingForReviveEvent
 		{};
@@ -237,6 +241,10 @@ class BLWK
 		class hintDroppedDelete
 		{};
 		class lootReveal
+		{};
+		class notify
+		{};
+		class notification
 		{};
 		class optreMedicalToVanilla
 		{};
@@ -522,6 +530,8 @@ class CBAP //ported CBA functions
 		class addWaypoint
 		{};
 		class clearWaypoints
+		{};
+		class directCall
 		{};
 		class getArea
 		{};

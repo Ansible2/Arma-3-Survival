@@ -1,4 +1,5 @@
 #include "..\..\Headers\descriptionEXT\GUI\musicManagerCommonDefines.hpp"
+#include "..\..\KISKA Systems\KISKA Music Functions\Headers\Music Common Defines.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_musicManagerOnLoad_trackSpacingControls
 
@@ -29,6 +30,8 @@ Author(s):
 disableSerialization;
 scriptName "BLWK_fnc_musicManagerOnLoad_trackSpacingControls";
 
+#define DEFAULT_TRACK_SPACING [120,180,240]
+
 params ["_comboControl","_editBoxControl","_buttonControl"];
 
 // KISKA_fnc_getVariableTarget needs a scheduled environment
@@ -51,24 +54,24 @@ _comboControl lbSetTooltip [2,"Time between tracks will ALWAYS be this many seco
 
 
 // get current spacing setting from server
-private _currentSpacingSetting = ["KISKA_randomMusic_timeBetween",localNamespace] call KISKA_fnc_getVariableTarget;
-if (_currentSpacingSetting isEqualTo -1) then {
-	_comboControl lbSetCurSel 1; // set to random bell curve by default
-	_editBoxControl ctrlSetText "[1,2,3]";
-} else {
-	if (_currentSpacingSetting isEqualType []) then {
-		// if random bell curve
-		if (_currentSpacingSetting isEqualTypeArray [1,2,3]) then {
-			_comboControl lbSetCurSel 1;
-		} else { // if random max
-			_comboControl lbSetCurSel 0;
-		};
-	} else { // if exact time
-		_comboControl lbSetCurSel 2;
+private _currentSpacingSetting = ["KISKA_randomMusic_timeBetween",localNamespace,GET_MUSIC_RANDOM_TIME_BETWEEN] call KISKA_fnc_getVariableTarget;
+if (_currentSpacingSetting isEqualType []) then {
+	// if random bell curve format
+	if (_currentSpacingSetting isEqualTypeArray [1,2,3]) then {
+		_comboControl lbSetCurSel 1;
+
+	} else { // if random max format
+		_comboControl lbSetCurSel 0;
+
 	};
 
-	_editBoxControl ctrlSetText (str _currentSpacingSetting);
+} else { // if exact time format
+	_comboControl lbSetCurSel 2;
+
 };
+
+_editBoxControl ctrlSetText (str _currentSpacingSetting);
+
 
 // combo change event
 _comboControl ctrlAddEventHandler ["LBSelChanged",{
@@ -102,12 +105,12 @@ _buttonControl ctrlAddEventHandler ["ButtonClick",{
 		{((count _textCompiled) isNotEqualTo 1) AND
 		{((count _textCompiled) isNotEqualTo 3) OR !(_textCompiled isEqualTypeParams [1,2,3])}}
 	) then {
-		hint "Format not accepted for track spacing!"
+		["Format not accepted for track spacing!"] call BLWK_fnc_errorNotification;
 
 	} else {
 		// send to server
 		[_textCompiled] remoteExecCall ["KISKA_fnc_setRandomMusicTime",2];
-		hint ("Track spacing set to " + (str _textCompiled));
+		["Track spacing set to " + (str _textCompiled)] call BLWK_fnc_notification;
 
 	};
 }];

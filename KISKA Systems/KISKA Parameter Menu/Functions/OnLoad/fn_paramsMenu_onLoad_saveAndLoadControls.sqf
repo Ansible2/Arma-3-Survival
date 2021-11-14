@@ -56,9 +56,11 @@ _saveButton_ctrl ctrlAddEventHandler ["ButtonClick",{
 
 private _saveAsButton_ctrl = _paramsMenuDisplay displayCtrl PARAMS_MENU_SAVEAS_BUTTON_IDC;
 _saveAsButton_ctrl ctrlAddEventHandler ["ButtonClick",{
+    params ["_saveAsButton_ctrl"];
 
-    private _paramsMenuDisplay = localNamespace getVariable [PARAMS_MENU_DISPLAY_VAR_STR,displayNull];
-    private _profileName = ctrlText (_paramsMenuDisplay displayCtrl PARAMS_MENU_SAVEAS_EDIT_BOX_IDC);
+    private _paramsMenuDisplay = GET_PARAMS_MENU_DISPLAY;
+    private _saveAsEditBox_ctrl = _paramsMenuDisplay displayCtrl PARAMS_MENU_SAVEAS_EDIT_BOX_IDC;
+    private _profileName = ctrlText _saveAsEditBox_ctrl;
 
     if (_profileName isNotEqualTo "") then {
         private _savedProfilesHash = GET_PARAMS_SAVED_PROFILES_HASHMAP;
@@ -68,12 +70,22 @@ _saveAsButton_ctrl ctrlAddEventHandler ["ButtonClick",{
         profilenamespace setVariable [GET_PARAMS_PROFILE_VAR_STR,_savedProfilesHash];
         saveProfileNamespace;
 
-        [_paramsMenuDisplay displayCtrl PARAMS_MENU_LOAD_COMBO_IDC] spawn KISKA_fnc_paramsMenu_updateLoadCombo;
+        private _loadCombo_ctrl = _paramsMenuDisplay displayCtrl PARAMS_MENU_LOAD_COMBO_IDC;
+        private _profiles = (keys _savedProfilesHash);
+        _profiles sort true;
+        private _index = _profiles find _profileName;
+        [_paramsMenuDisplay displayCtrl PARAMS_MENU_LOAD_COMBO_IDC,_index] spawn KISKA_fnc_paramsMenu_updateLoadCombo;
+
         ["Saved profile: " + _profileName] call KISKA_fnc_paramsMenu_logMessage;
+
+        _saveAsEditBox_ctrl ctrlSetText "";
+
     } else {
         ["You must enter a profile name"] call KISKA_fnc_paramsMenu_logMessage;
 
     };
+
+
 }];
 
 
@@ -139,9 +151,11 @@ _deleteButton_ctrl ctrlAddEventHandler ["ButtonClick",{
         saveProfileNamespace;
 
         [_loadCombo_ctrl] spawn KISKA_fnc_paramsMenu_updateLoadCombo;
-        ["Saved profile: " + _profileName] call KISKA_fnc_paramsMenu_logMessage;
+        ["Deleted profile: " + _profileName] call KISKA_fnc_paramsMenu_logMessage;
+
     } else {
         ["No valid profile selected for deletetion..."] call KISKA_fnc_paramsMenu_logMessage;
+
     };
 }];
 

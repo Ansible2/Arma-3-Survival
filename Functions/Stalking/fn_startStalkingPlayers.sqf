@@ -5,14 +5,14 @@ Function: BLWK_fnc_startStalkingPlayers
 Description:
 	Adds the number of a stalker group's units to the unit being stalked
 	 total's so that they can be evenly spread across all units.
-	
+
 	Also adds a KILLED EH that automatically adjusts the player's stalker count.
 
 Parameters:
 	0: _stalkerGroup : <OBJECT> - The group that will be stalking
 	1: _defaultPosition : <OBJECT, GROUP, or ARRAY> - The position to move to if no players
 	2: _checkRate : <NUMBER> - How often to update the stalk position
-	3: _conditionToEndStalking : <CODE> - Code that evaluates to a boolean, if met, 
+	3: _conditionToEndStalking : <CODE> - Code that evaluates to a boolean, if met,
 	 it will have the units move to the _defaultPosition
 
 Returns:
@@ -76,11 +76,13 @@ _stalkerGroupUnits apply {
 			private _group = group _unit;
 			if !(isNull _group) then {
 				private _stalkedPlayer = _group getVariable STALKED_UNIT_VAR;
+
 				if !(isNull _stalkedPlayer) then {
 					private _numberOfStalkers = _stalkedPlayer getVariable STALKER_COUNT_VAR;
 					_numberOfStalkers = _numberOfStalkers - 1;
 					_stalkedPlayer setVariable [STALKER_COUNT_VAR,_numberOfStalkers];
 				};
+				
 			};
 		}];
 
@@ -92,7 +94,7 @@ _stalkerGroupUnits apply {
 
 // do the stalking
 while {!(isNull _stalkerGroup) AND {_stalkerGroup getVariable DO_STALK_VAR} } do {
-	
+
 	[_stalkerGroup] call CBAP_fnc_clearWaypoints;
 	[_stalkerGroup, _playerToStalk, 10, "MOVE", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
 	//_stalkerGroup move (getPosWorld _playerToStalk);

@@ -104,8 +104,8 @@ class paramsMenu
             {
                 left = 0;
                 top = 0;
-                w = 0.0117188 * safezoneW;
-                h = 0.0208333 * safezoneH;
+                w = POS_W(1);
+            	h = POS_H(1);
             };
 
         };
@@ -216,7 +216,7 @@ class paramsMenu
         	y = POS_Y(-13);
         	w = POS_W(9);
         	h = POS_H(1);
-            tooltip = "This will brodcast your changes over the network. Be aware that depending on the amount of changes, it can significantly and temporarily impact perfromance";
+            tooltip = "This will brodcast your changes over the network to all connected machines and add the updates to the JIP queue.";
         };
         class paramsMenu_messageBox : RscListbox
         {

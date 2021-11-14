@@ -71,11 +71,7 @@ if (isServer) then {
     BLWK_playerGroup = createGroup [BLUFOR,false];
     publicVariable "BLWK_playerGroup";
 
-    if (BLWK_currentWaveNumber isEqualTo 0) then {
-        BLWK_startingFromWaveNumber = BLWK_currentWaveNumber + 1;
-    } else {
-        BLWK_startingFromWaveNumber = BLWK_currentWaveNumber;
-    };
+    BLWK_startingFromWaveNumber = BLWK_currentWaveNumber + 1;
 
     BLWK_specialWaveConfigs = "true" configClasses (missionConfigFile >> "BLWK_waveTypes" >> "specialWaves");
     BLWK_normalWaveConfigs = "true" configClasses (missionConfigFile >> "BLWK_waveTypes" >> "normalWaves");
@@ -164,7 +160,6 @@ private _unitTypeInfo = call BLWK_fnc_prepareUnitClasses;
 // friendly
 BLWK_friendlyFactionMap = _unitTypeInfo select 0;
 BLWK_friendly_menClasses = BLWK_friendlyFactionMap get INFANTRY_FACTION_MAP_ID;
-//BLWK_friendly_vehicleClasses = ;
 
 // level 1
 BLWK_level1_factionMap = _unitTypeInfo select 1;

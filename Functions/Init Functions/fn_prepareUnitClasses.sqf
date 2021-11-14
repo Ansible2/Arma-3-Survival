@@ -138,7 +138,10 @@ private _everyFactionConfigHashMap = _factionNames createHashMapFromArray (local
 
 
 private _fn_getSelectedClasses = {
-	params ["_factionString","_defaultFactionString"];
+	params ["_factionParamConfig"];
+
+	private _factionString = [_factionParamConfig,false] call KISKA_fnc_paramsMenu_getCurrentParamValue;
+	private _defaultFactionString = [_factionParamConfig] call KISKA_fnc_paramsMenu_getDefaultParamValue;
 
 	private _factionMap = [];
 	private _goToDefaultFaction = false;
@@ -165,6 +168,14 @@ private _fn_getSelectedClasses = {
 		private _doExit = false;
 		_factionConfigPath = _everyFactionConfigHashMap getOrDefault [_defaultFactionString,configNull];
 
+		// clients run BLWK_fnc_prepareUnitClasses after the server
+		// this handles a faction not being present on the server but is present on the client
+		// in which case the server will update all other machines (including JIP) to the default faction for the level
+		private _serialConfig = [_factionParamConfig] call KISKA_fnc_paramsMenu_serializeConfig;
+		private _JIP_id = [_serialConfig] call KISKA_fnc_paramsMenu_getJIPQueueId;
+		[_serialConfig,_defaultFactionString,false] remoteExecCall ["KISKA_fnc_paramsMenu_paramChanged", 0, _JIP_id];
+
+
 		if !(isNull _factionConfigPath) then {
 			_factionMap = [_factionConfigPath] call _fn_sortFactionClasses;
 
@@ -189,12 +200,15 @@ private _fn_getSelectedClasses = {
 
 
 // get faction classes
-private _friendlyFactionMap = [BLWK_friendlyFaction,"VANILLA - NATO"] call _fn_getSelectedClasses;
-private _level_1_factionMap = [BLWK_level1Faction,"VANILLA - FIA"] call _fn_getSelectedClasses;
-private _level_2_factionMap = [BLWK_level2Faction,"VANILLA - AAF"] call _fn_getSelectedClasses;
-private _level_3_factionMap = [BLWK_level3Faction,"VANILLA - CSAT"] call _fn_getSelectedClasses;
-private _level_4_factionMap = [BLWK_level4Faction,"VANILLA - CSAT URBAN"] call _fn_getSelectedClasses;
-private _level_5_factionMap = [BLWK_level5Faction,"APEX - VIPER"] call _fn_getSelectedClasses;
+private _factionParamsConfig = missionConfigFile >> "KISKA_missionParams" >> "Factions";
+#define FACTION_CONFIG(factionVar) _factionParamsConfig >> factionVar
+
+private _friendlyFactionMap = [FACTION_CONFIG("BLWK_friendlyFaction")] call _fn_getSelectedClasses;
+private _level_1_factionMap = [FACTION_CONFIG("BLWK_level1Faction")] call _fn_getSelectedClasses;
+private _level_2_factionMap = [FACTION_CONFIG("BLWK_level2Faction")] call _fn_getSelectedClasses;
+private _level_3_factionMap = [FACTION_CONFIG("BLWK_level3Faction")] call _fn_getSelectedClasses;
+private _level_4_factionMap = [FACTION_CONFIG("BLWK_level4Faction")] call _fn_getSelectedClasses;
+private _level_5_factionMap = [FACTION_CONFIG("BLWK_level5Faction")] call _fn_getSelectedClasses;
 
 
 // return for global var definition

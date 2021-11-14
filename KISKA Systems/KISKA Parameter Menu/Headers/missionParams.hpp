@@ -11,7 +11,7 @@ class paramBase
 		Parameters are:
 		_this select 0 - The new value
 		_this select 1 - <STRING> - The mission parameter's variable name (either the param configName or varName property)
-		_this select 2 - <CONFIG> - The param Config path
+		_this select 2 - <CONFIG> - The param Config path of the variable in mission params config
 	*/
 	varName = ""; // a global variable name to tie to the parameter, if not defined, the configName will be used
 	onChanged = ""; // This is uncompiled code that will be compiled and run on EVERY MACHINE when a change is commited AFTER the briefing menu (Parameters are the same as the initScript property)
@@ -984,13 +984,13 @@ class KISKA_missionParams
 			min = 0;
 			max = 1;
 			incriment = 0.05;
-			default = 0.25;
+			default = 0.6;
 		};
 		class BLWK_defectorWaveWeight : BLWK_paratrooperWaveWeight
 		{
 			title = "Defector Wave Weight";
 			tooltip = "The friendly faction will spawn as enemies during the wave. The wave weight is considered against other normal wave weights.";
-			default = 0.25;
+			default = 0.6;
 		};
 		class BLWK_standardWaveWeight : BLWK_paratrooperWaveWeight
 		{

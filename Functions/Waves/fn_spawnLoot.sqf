@@ -84,7 +84,7 @@ private _exit = false;
 			if (count _sortedPositions >= MAX_SPAWNS_PLUS_UNIQUES) then {_exit = true; break};
 
 			if (_forEachIndex isEqualTo 0 OR {(_forEachIndex mod BLWK_loot_roomDistribution) isEqualTo 0}) then {
-				_sortedPositions pushBack (_x vectorAdd [0,0,LOOT_HOLDER_Z_BUFFER]);
+				_sortedPositions pushBack (AGLToASL (_x vectorAdd [0,0,LOOT_HOLDER_Z_BUFFER]));
 			};
 		} forEach _buildingsPositions;
 	};
@@ -312,7 +312,7 @@ private _fn_addLoot = {
 		_selectedItemClass = selectRandom BLWK_loot_weaponClasses;
 		_magazineClass = [_selectedItemClass] call _fn_findAMagazine;
 		// if weapon has mags capable of spawning
-		if (_magazineClass != "") then {
+		if (_magazineClass isNotEqualTo "") then {
 			_holder addMagazineCargoGlobal [_magazineClass,round random [1,2,3]];
 		};
 
@@ -328,7 +328,7 @@ private _fn_addLoot = {
 };
 
 BLWK_lootHolders apply {
-	_x setPos (call _fn_getASpawnPosition);
+	_x setPosASL (call _fn_getASpawnPosition);
 
 	private _primaryLootClass = [_x] call _fn_addLoot;
 	// used for displaying loot markers in BLWK_fnc_createLootMarkers

@@ -34,7 +34,7 @@ private _poolTreeCtrl = _display displayCtrl BLWK_SHOP_POOL_TREE_IDC;
 private _selectedTreePath = tvCurSel _poolTreeCtrl;
 
 if (count _selectedTreePath < 2) exitWith { // if a category or nothing selected
-	hint parseText "<t color='#f51d1d'>You need a valid entry selected</t>";
+	["You need a valid entry selected"] call BLWK_fnc_errorNotification;
 };
 
 // get which global pool to change
@@ -43,7 +43,7 @@ private _treeCategory = _selectedTreePath select 0;
 private _indexInPoolArray = _selectedTreePath select 1;
 switch (_treeCategory) do {
 	case BUILD_TREE: {
-		[TO_STRING(BLWK_SHOP_BUILD_POOL_GVAR),_indexInPoolArray] remoteExecCall ["KISKA_fnc_deleteAtArray",BLWK_allClientsTargetId,true];		
+		[TO_STRING(BLWK_SHOP_BUILD_POOL_GVAR),_indexInPoolArray] remoteExecCall ["KISKA_fnc_deleteAtArray",BLWK_allClientsTargetId,true];
 	};
 	case SUPPORT_TREE: {
 		[TO_STRING(BLWK_SHOP_SUPP_POOL_GVAR),_indexInPoolArray] remoteExecCall ["KISKA_fnc_deleteAtArray",BLWK_allClientsTargetId,true];

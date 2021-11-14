@@ -1,8 +1,8 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_pathing_checkGroupStatus
+Function: BLWK_fnc_pathing_isGroupAlive
 
 Description:
-	Checks if a group is still alive.
+	Checks if a group still has an alive group member.
 
 Parameters:
 	0: _groupToCheck : <GROUP> - The group to check over
@@ -12,23 +12,23 @@ Returns:
 
 Examples:
     (begin example)
-
-		_isActive = [_group] call BLWK_fnc_pathing_checkGroupStatus;
-
+		_isAlive = [_group] call BLWK_fnc_pathing_isGroupAlive;
     (end)
 
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-scriptName "BLWK_fnc_pathing_checkGroupStatus";
+scriptName "BLWK_fnc_pathing_isGroupAlive";
 
 params ["_groupToCheck"];
 
+
 // check if it was deleted
 if (isNull _groupToCheck) exitWith {
-	[["Found that ",_groupToCheck," is a null group"],false] call KISKA_fnc_log;
+	["Was given a null group",false] call KISKA_fnc_log;
 	false
 };
+
 
 // check if anyone is in it
 private _groupUnits = units _groupToCheck;
@@ -37,11 +37,12 @@ if (_groupUnits isEqualTo []) exitWith {
 	false
 };
 
+
 // check if anyone is alive
 private _aliveIndex = _groupUnits findIf {alive _x};
-if (_aliveIndex != -1) exitWith {
+if (_aliveIndex isNotEqualTo -1) exitWith {
 	true
-}; 
+};
 
 
 false
