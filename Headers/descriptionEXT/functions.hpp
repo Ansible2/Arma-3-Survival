@@ -215,6 +215,8 @@ class BLWK
 		{};
 		class doMagRepack
 		{};
+		class errorNotification
+		{};
 		class getEnemyVehicleClasses
 		{};
 		class getFriendlyVehicleClass

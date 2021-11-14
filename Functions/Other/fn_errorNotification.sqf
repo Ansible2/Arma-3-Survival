@@ -1,8 +1,8 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_notification
+Function: BLWK_fnc_errorNotification
 
 Description:
-	Prints a simple notification
+	Prints an error notification
 
 Parameters:
 	0: _message : <STRING or ARRAY> - If string, the message to display as title
@@ -15,20 +15,20 @@ Returns:
 
 Examples:
     (begin example)
-        ["Hello World"] call BLWK_fnc_notification;
+        ["Hello World"] call BLWK_fnc_errorNotification;
     (end)
 
 Author:
 	Ansible2
 ---------------------------------------------------------------------------- */
-scriptName "BLWK_fnc_notification";
+scriptName "BLWK_fnc_errorNotification";
 
 params [
 	["_message","",["",[]]]
 ];
 
 [
-	["Notification:",1.1,[0.21,0.71,0.21,1]],
+	["Error:",1.1,[0.75,0,0,1]],
 	_message,
 	false
 ] call BLWK_fnc_notify;
