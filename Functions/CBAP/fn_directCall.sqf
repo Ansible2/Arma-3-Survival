@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: CBAPfnc_directCall
+Function: CBAP_fnc_directCall
 
 Description:
     Executes a piece of code in unscheduled environment.

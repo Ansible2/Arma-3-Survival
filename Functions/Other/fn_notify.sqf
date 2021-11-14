@@ -6,7 +6,7 @@ Description:
     Display a text message. Multiple incoming messages are queued.
 
 Parameters:
-	0: _titleLine : <STRING or ARRAY> -
+	0: _titleLine : <STRING or ARRAY> - If string, the message to display as title
         0: _text : <STRING> - Text to display or path to .paa or .jpg image (may be passed directly if only text is required)
         1: _size : <NUMBER> - Scale of text
         2: _color : <ARRAY> - RGB or RGBA color (range 0-1). (optional, default: [1, 1, 1, 1])
@@ -14,11 +14,11 @@ Parameters:
 	1: _subLine : <STRING or ARRAY> - Formatted the same as _titleLine
 	2: _skippable : <ARRAY> - If there are more notifications behind in the queue and this notification
         comes up, it will not be shown and thrown away
-        
-    Examples:
-        (begin example)
 
-        (end)
+Examples:
+    (begin example)
+
+    (end)
 
 Returns:
     NOTHING
@@ -34,12 +34,11 @@ Authors:
 
 #define TRIPLES(var1,var2,var3) var1##_##var2##_##var3
 
-#define NOTIFICATION_LIFETIME 3
+#define NOTIFICATION_LIFETIME 4
 
 #define FADE_IN_TIME 0.2
 #define FADE_OUT_TIME 1
 
-#define QUEUE BLWK_notificationQueue
 #define GET_QUEUE localNamespace getVariable "BLWK_notificationQueue"
 #define SET_QUEUE(var) localNamespace setVariable ["BLWK_notificationQueue",var]
 
@@ -98,20 +97,21 @@ if (isNil {GET_QUEUE}) then {
     SET_QUEUE([]);
 };
 
-QUEUE pushBack _notification;
-
+(GET_QUEUE) pushBack _notification;
 
 
 /* ----------------------------------------------------------------------------
     loop
 ---------------------------------------------------------------------------- */
 if !(localNamespace getVariable ["BLWK_notificationLoopRunning",false]) then {
+    localNamespace setVariable ["BLWK_notificationLoopRunning",true];
+
     [] spawn {
         /* ----------------------------------------------------------------------------
             _fn_createNotification
         ---------------------------------------------------------------------------- */
         private _fn_createNotification = {
-            params ["_composition"];
+            //params ["_composition"];
 
             "BLWK_ui_notify" cutRsc ["RscTitleDisplayEmpty", "PLAIN", 0, true];
             private _display = uiNamespace getVariable "RscTitleDisplayEmpty";
@@ -123,7 +123,7 @@ if !(localNamespace getVariable ["BLWK_notificationLoopRunning",false]) then {
             _background ctrlSetBackgroundColor [0,0,0,0.25];
 
             private _text = _display ctrlCreate ["RscStructuredText", -1];
-            _text ctrlSetStructuredText composeText _composition;
+            _text ctrlSetStructuredText (composeText _this);
 
             private _controls = [_background, _text];
 
@@ -136,7 +136,7 @@ if !(localNamespace getVariable ["BLWK_notificationLoopRunning",false]) then {
 
             // need to set this before reading the text height, to get the correct amount of auto line breaks
             _text ctrlSetPosition [0, 0, _width, _height];
-            _text ctrlCommit 0;
+            _text ctrlCommit 0.01;
 
             private _textHeight = ctrlTextHeight _text;
             _height = _textHeight max _height;
@@ -177,7 +177,7 @@ if !(localNamespace getVariable ["BLWK_notificationLoopRunning",false]) then {
             // fade in
             _controls apply {
                 _x ctrlSetFade 1;
-                _x ctrlCommit 0;
+                _x ctrlCommit 0.01;
                 _x ctrlSetFade 0;
                 _x ctrlCommit (FADE_IN_TIME);
             };
@@ -197,14 +197,18 @@ if !(localNamespace getVariable ["BLWK_notificationLoopRunning",false]) then {
             Queue loop
         ---------------------------------------------------------------------------- */
         private ["_notificationInfo","_skippable"];
-        while {(count QUEUE) > 0} do {
-            _notificationInfo = QUEUE deleteAt 0;
+        private _queue = GET_QUEUE;
+
+        while {(count _queue) > 0} do {
+            _notificationInfo = _queue deleteAt 0;
             _skippable = _notificationInfo select 1;
 
-            if !(_skippable AND ((count QUEUE) > 0)) then {
+            if !(_skippable AND ((count _queue) > 0)) then {
                 (_notificationInfo select 0) call _fn_createNotification;
-            }
-        }
+            };
+        };
+
+        localNamespace setVariable ["BLWK_notificationLoopRunning",false];
     };
 
 };

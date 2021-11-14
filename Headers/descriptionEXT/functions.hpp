@@ -231,6 +231,10 @@ class BLWK
 		{};
 		class lootReveal
 		{};
+		class notify
+		{};
+		class notification
+		{};
 		class optreMedicalToVanilla
 		{};
 		class randomizeWeapons
@@ -515,6 +519,8 @@ class CBAP //ported CBA functions
 		class addWaypoint
 		{};
 		class clearWaypoints
+		{};
+		class directCall
 		{};
 		class getArea
 		{};
