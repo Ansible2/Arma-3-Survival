@@ -39,6 +39,8 @@ Authors:
 #define FADE_IN_TIME 0.2
 #define FADE_OUT_TIME 1
 
+#define BACKGROUND_OPACITY 0.25
+
 #define GET_QUEUE localNamespace getVariable "BLWK_notificationQueue"
 #define SET_QUEUE(var) localNamespace setVariable ["BLWK_notificationQueue",var]
 
@@ -120,13 +122,14 @@ if !(localNamespace getVariable ["BLWK_notificationLoopRunning",false]) then {
             _vignette ctrlShow false;
 
             private _background = _display ctrlCreate ["RscText", -1];
-            _background ctrlSetBackgroundColor [0,0,0,0.25];
+            _background ctrlSetBackgroundColor [0,0,0,BACKGROUND_OPACITY];
 
             private _text = _display ctrlCreate ["RscStructuredText", -1];
             _text ctrlSetStructuredText (composeText _this);
 
             private _controls = [_background, _text];
 
+            // using CBA notification position if available
             private _left = profileNamespace getVariable ['TRIPLES(IGUI, cba_ui_notify, x)', NOTIFY_DEFAULT_X];
             private _top = profileNamespace getVariable ['TRIPLES(IGUI, cba_ui_notify, y)', NOTIFY_DEFAULT_Y];
             private _width = profileNamespace getVariable ['TRIPLES(IGUI, cba_ui_notify, w)', NOTIFY_MIN_WIDTH];
