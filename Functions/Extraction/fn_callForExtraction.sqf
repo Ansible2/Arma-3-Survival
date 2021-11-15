@@ -33,13 +33,20 @@ scriptName "BLWK_fnc_callForExtraction";
 
 if (!isServer) exitWith {
     ["Must be executed on the server!",true] call KISKA_fnc_log;
+    nil
+};
 
+
+if (!canSuspend) exitWith {
+    ["Must be called from scheduled",true] call KISKA_fnc_log;
+    _this spawn BLWK_fnc_callForExtraction;
+    nil
 };
 
 
 if !(BLWK_inBetweenWaves) exitWith {
-    ["You must be between waves to call for an extraction before reaching the end number of waves"] remoteExec ["hint",remoteExecutedOwner];
-
+    ["You must be between waves to call for an extraction before reaching the end number of waves"] remoteExec ["BLWK_fnc_errorNotification",remoteExecutedOwner];
+    nil
 };
 
 
@@ -57,9 +64,11 @@ private _fn_getNumberOfCargoSeats = {
 private _transportHeliClasses = BLWK_friendlyFactionMap get TRANSPORT_HELI_FACTION_MAP_ID;
 private _transportHeliClass = "";
 private _transportSeatCount = -1;
+private _cargoSeatsCount = 0;
 _transportHeliClasses apply {
-    private _cargoSeats = [_x] call _fn_getNumberOfCargoSeats;
-    if (_cargoSeats > _transportSeatCount) then {
+    _cargoSeatsCount = [_x] call _fn_getNumberOfCargoSeats;
+    if (_cargoSeatsCount > _transportSeatCount) then {
+        _transportSeatCount = _cargoSeatsCount;
         _transportHeliClass = _x;
     };
 };
@@ -68,6 +77,7 @@ if (_transportSeatCount < TOO_LITTLE_SEATS OR {_transportHeliClass isEqualTo ""}
     _transportHeliClass = DEFAULT_TRANSPORT_HELI;
     _transportSeatCount = [_transportHeliClass] call _fn_getNumberOfCargoSeats;
 };
+missionNamespace setVariable ["BLWK_extractSeatCount",_transportSeatCount];
 
 
 private _numberOfTransports = 1;
@@ -144,16 +154,16 @@ for "_i" from 1 to MAX_ATTEMPTS do {
 
 
 if (!_lzFound) exitWith {
-    ["The map does not accomodate an extraction, mission will end shortly..."] remoteExec ["hint",call CBAP_fnc_players];
+    ["The map does not accomodate an extraction, mission will end shortly..."] remoteExec ["BLWK_fnc_errorNotification",call CBAP_fnc_players];
     sleep 5;
     ["end1"] call BIS_fnc_endMissionServer;
 };
 
 
-/*
-private _hintMessage = ["You will be teleported to the extraction site in: ",BLWK_timeTillExtractionTeleport," seconds.","\n Cleanup your site!"] joinString "";
-[_hintMessage] remoteExec ["hint",call CBAP_fnc_players];
-*/
+
+private _hintMessage = ["You will be teleported to the extraction site in: ",BLWK_timeTillExtractionTeleport," seconds.","<br/> Cleanup your site!"] joinString "";
+[_hintMessage] remoteExec ["BLWK_fnc_notification",call CBAP_fnc_players];
+
 
 
 // Clear LZ area
@@ -186,9 +196,36 @@ BLWK_mainCrate setPos _centerPosition;
 } forEach _landingPositions;
 
 
-//sleep BLWK_timeTillExtraction;
+
+sleep BLWK_timeTillExtraction;
 
 
+private "_spawnPosition";
+_landingPositions apply {
+    _spawnPosition = [_centerPosition,3000,random 360] call CBAP_fnc_randPos;
+
+    private _aircraftInfo = [
+        _spawnPosition,
+        _spawnPosition getDir _centerPosition,
+        _transportHeliClasses
+    ] call KISKA_fnc_spawnVehicle;
+
+    private _aircraft = _aircraftInfo select 0;
+    _aircraft flyInHeight 50;
+    [
+        _aircraft,
+        _x,
+        "LAND"
+        true,
+        {
+            /* waitUntil {
+                sleep 2;
+                private _playerCount = count (call CBA_fnc_players);
+                ((_playerCount > 0) AND {count (crew ANG_mortarHeli) isEqualTo (MORTAR_HELI_CREW_COUNT + _playerCount)})
+            }; */
+        }
+    ] call KISKA_fnc_heliLand;
+};
 
 /*
 
