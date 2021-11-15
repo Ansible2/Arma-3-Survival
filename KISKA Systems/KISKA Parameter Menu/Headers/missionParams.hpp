@@ -283,6 +283,28 @@ class KISKA_missionParams
 		};
 	};
 
+	class Extraction
+	{
+		title = "Extraction";
+
+		class BLWK_timeTillExtractionTeleport : sliderParamBase
+		{
+			title = "Time Until Extraction Teleport";
+			tooltip = "This is how long you have to cleanup your surroundings before you are teleported to the extraction area";
+			min = 1;
+			max = 300;
+			default = 10;
+		};
+		class BLWK_timeTillExtraction : sliderParamBase
+		{
+			title = "Extraction Defense Time";
+			tooltip = "This is how long players will have to defend the extraction area";
+			min = 60;
+			max = 300;
+			default = 60;
+		};
+	};
+
 	class Factions
 	{
 		title = "Factions";
