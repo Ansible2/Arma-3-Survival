@@ -200,9 +200,10 @@ BLWK_mainCrate setPos _centerPosition;
 sleep BLWK_timeTillExtraction;
 
 
-private "_spawnPosition";
+BLWK_extractionAircraft = [];
+BLWK_playersInExtractAircraft = [];
 _landingPositions apply {
-    _spawnPosition = [_centerPosition,3000,random 360] call CBAP_fnc_randPos;
+    private _spawnPosition = [_centerPosition,3000,random 360] call CBAP_fnc_randPos;
 
     private _aircraftInfo = [
         _spawnPosition,
@@ -210,20 +211,62 @@ _landingPositions apply {
         _transportHeliClasses
     ] call KISKA_fnc_spawnVehicle;
 
+    // handle crew AI & diable damage
     private _aircraft = _aircraftInfo select 0;
+    BLWK_extractionAircraft pushBack _aircraft;
+    _aircraft allowDamage false;
+    _aircraft setCaptive true;
+    _aircraft lock 3; // keep players from piloting
     _aircraft flyInHeight 50;
+
+
+    _aircraft addEventHandler ["GetIn", {
+    	params ["_aircraft", "", "_unit"];
+
+        if (isPlayer _unit) then {
+            _unit allowDamage false;
+            _unit setCaptive true;
+            BLWK_playersInExtractAircraft pushBackUnique _unit;
+        };
+    }];
+    _aircraft addEventHandler ["GetOut", {
+    	params ["_aircraft", "", "_unit"];
+
+        if (isPlayer _unit) then {
+            BLWK_playersInExtractAircraft deleteAt (BLWK_playersInExtractAircraft find _unit);
+            _unit allowDamage true;
+            _unit setCaptive false;
+        };
+    }];
+
+
+    private _crew = _aircraftInfo select 1;
+    _crew apply {
+        _x allowDamage false;
+        _x setCaptive true;
+    };
+
+    private _exfilPosition = [
+        [1,1,1],
+        500,
+        360
+    ] call CBAP_fnc_randPos;
+    _aircraft setVariable ["BLWK_exfilPosition",_exfilPosition];
+
     [
         _aircraft,
         _x,
         "LAND"
         true,
         {
-            /* waitUntil {
+            waitUntil {
                 sleep 2;
-                private _playerCount = count (call CBA_fnc_players);
-                ((_playerCount > 0) AND {count (crew ANG_mortarHeli) isEqualTo (MORTAR_HELI_CREW_COUNT + _playerCount)})
-            }; */
+                (count (call CBAP_fnc_players)) isEqualTo (count BLWK_playersInExtractAircraft)
+            };
+
+            (_this select 0) move (_aircraft getVariable ["BLWK_exfilPosition",_exfilPosition])
         }
+
     ] call KISKA_fnc_heliLand;
 };
 
