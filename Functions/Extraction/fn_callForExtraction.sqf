@@ -256,7 +256,7 @@ _landingPositions apply {
     [
         _aircraft,
         _x,
-        "LAND"
+        "LAND",
         true,
         {
             waitUntil {
@@ -266,7 +266,6 @@ _landingPositions apply {
 
             (_this select 0) move (_aircraft getVariable ["BLWK_exfilPosition",_exfilPosition])
         }
-
     ] call KISKA_fnc_heliLand;
 };
 
