@@ -36,13 +36,15 @@ params [
 private _paramConfig = [_paramSerial] call KISKA_fnc_paramsMenu_deserializeConfig;
 private _paramVarName = [_paramConfig] call KISKA_fnc_paramsMenu_getParamVarName;
 
-([_paramConfig] call KISKA_fnc_paramsMenu_getParamNamespace) setVariable [_paramVarName, _newValue];
+private _paramNamespace = [_paramConfig] call KISKA_fnc_paramsMenu_getParamNamespace;
+private _previousValue = _paramNamespace getVariable _paramVarName;
+_paramNamespace setVariable [_paramVarName, _newValue];
 
 if (localNamespace getVariable ["KISKA_missionParams_preloadFinished",false] AND _runOnChanged) then {
 
     private _onChangedCode = getText(_paramConfig >> "onChanged");
     if (_onChangedCode isNotEqualTo "") then {
-        [_newValue,_paramVarName,_paramConfig] call (compileFinal _onChangedCode);
+        [_newValue,_paramVarName,_paramConfig,_previousValue] call (compileFinal _onChangedCode);
     };
 
 };
