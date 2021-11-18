@@ -36,12 +36,12 @@ private _category = _unitInfo select 0;
 if (_category == "soldier") exitWith {
 	private _unitClass = toLowerANSI (typeOf _unit);
 
-	IF_IN_LIST_EXIT(BLWK_level5_menClasses,BLWK_pointsMulti_man_level5)
-	IF_IN_LIST_EXIT(BLWK_level4_menClasses,BLWK_pointsMulti_man_level4)
-	IF_IN_LIST_EXIT(BLWK_level3_menClasses,BLWK_pointsMulti_man_level3)
-	IF_IN_LIST_EXIT(BLWK_level2_menClasses,BLWK_pointsMulti_man_level2)
-	IF_IN_LIST_EXIT(BLWK_level1_menClasses,BLWK_pointsMulti_man_level1)
-	IF_IN_LIST_EXIT(BLWK_friendly_menClasses,BLWK_pointsMulti_man_level5)
+	IF_IN_LIST_EXIT(BLWK_level5Faction_menClasses,BLWK_pointsMulti_man_level5)
+	IF_IN_LIST_EXIT(BLWK_level4Faction_menClasses,BLWK_pointsMulti_man_level4)
+	IF_IN_LIST_EXIT(BLWK_level3Faction_menClasses,BLWK_pointsMulti_man_level3)
+	IF_IN_LIST_EXIT(BLWK_level2Faction_menClasses,BLWK_pointsMulti_man_level2)
+	IF_IN_LIST_EXIT(BLWK_level1Faction_menClasses,BLWK_pointsMulti_man_level1)
+	IF_IN_LIST_EXIT(BLWK_friendlyFaction_menClasses,BLWK_pointsMulti_man_level5)
 };
 
 

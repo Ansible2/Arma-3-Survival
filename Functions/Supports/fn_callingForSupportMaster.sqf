@@ -307,7 +307,7 @@ if (CHECK_SUPPORT_CLASS(REINFORCE_PARATROOPERS_CLASS)) exitWith {
 	private "_unit_temp";
 	private _unitsToDrop = [];
 	for "_i" from 1 to NUMBER_OF_PARATROOPERS do {
-		_unit_temp = _playerGroup createUnit [selectRandom BLWK_friendly_menClasses,[0,0,0],[],0,"NONE"];
+		_unit_temp = _playerGroup createUnit [selectRandom BLWK_friendlyFaction_menClasses,[0,0,0],[],0,"NONE"];
 		[_unit_temp] joinSilent _playerGroup;
 		_unitsToDrop pushBack _unit_temp;
 	};

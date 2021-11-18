@@ -156,7 +156,7 @@ call BLWK_fnc_setupFactionMaps;
 
 
 private _uniformClass = "";
-BLWK_friendly_menClasses apply {
+BLWK_friendlyFaction_menClasses apply {
     _uniformClass = getText(configfile >> "CfgVehicles" >> _x >> "uniformClass");
     if (_uniformClass isNotEqualTo "") then {
         break;
