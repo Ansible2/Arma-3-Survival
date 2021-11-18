@@ -152,7 +152,7 @@ if (isServer OR {!hasInterface}) then {
 };
 
 
-call BLWK_fnc_setupFactionMaps;
+[false] call BLWK_fnc_setupFactionMaps;
 
 
 private _uniformClass = "";

@@ -9,7 +9,7 @@ Description:
 	Executed from "BLWK_fnc_prepareGlobals" and "BLWK_fnc_endWave"
 
 Parameters:
-	NONE
+	0: _changingDuringMission : <BOOL> - Is this being run during the mission (not part of initialization)
 
 Returns:
 	NOTHING
@@ -23,6 +23,10 @@ Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_setupFactionMaps";
+
+params [
+    ["_executedDuringMission",false,[true]]
+];
 
 if (isServer) then {
     localNamespace setVariable ["BLWK_factionChangeQueued",false];
@@ -45,7 +49,7 @@ if (isNil {localNamespace getVariable "BLWK_factionConfigsMap"}) then {
     "BLWK_level5Faction"
 ] apply {
     private _paramConfig = missionConfigFile >> "KISKA_missionParams" >> "Factions" >> _x;
-    private _map = [_paramConfig] call BLWK_fnc_prepareFactionMap;
+    private _map = [_paramConfig,_executedDuringMission] call BLWK_fnc_prepareFactionMap;
     missionNamespace setVariable [_x + "_map",_map];
     missionNamespace setVariable [_x + "_menClasses",_map get INFANTRY_FACTION_MAP_ID];
     // updating from the server here as public var because a JIP player may not have the correct mission param value
@@ -59,4 +63,8 @@ if (isNil {localNamespace getVariable "BLWK_factionConfigsMap"}) then {
         ];
     };
 
+};
+
+if !(_executedDuringMission) then {
+    localNamespace setVariable ["BLWK_intialFactionsInitDone",true];
 };

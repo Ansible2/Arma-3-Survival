@@ -48,8 +48,9 @@ private _players = call CBAP_fnc_players;
 
 // handle changing of factions during a mission
 if (localNamespace getVariable ["BLWK_factionChangeQueued",false]) then {
-    call BLWK_fnc_setupFactionMaps;
-	remoteExec ["BLWK_fnc_setupFactionMaps",-2];
+    [true] call BLWK_fnc_setupFactionMaps;
+	localNamespace setVariable ["BLWK_factionChangeQueued",false];
+	[true] remoteExec ["BLWK_fnc_setupFactionMaps",-2];
 };
 
 

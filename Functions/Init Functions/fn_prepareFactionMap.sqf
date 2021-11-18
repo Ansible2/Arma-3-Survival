@@ -10,6 +10,7 @@ Description:
 
 Parameters:
 	0: _factionParamConfig : <CONFIG> - The config of the corresponding mission parameter for this faction
+	1: _changingDuringMission : <BOOL> - Is this being run during the mission (not part of initialization)
 
 Returns:
 	HASHMAP - A map of the unit classes from the faction config.
@@ -26,7 +27,8 @@ Author(s):
 scriptName "BLWK_fnc_prepareFactionMap";
 
 params [
-	["_factionParamConfig",configNull,[configNull]]
+	["_factionParamConfig",configNull,[configNull]],
+	["_changingDuringMission",false,[true]]
 ];
 
 if (isNull _factionParamConfig) exitWith {
@@ -142,10 +144,13 @@ private _fn_sortFactionClasses = {
     Main Body
 
 ---------------------------------------------------------------------------- */
-private _factionString = ([_factionParamConfig] call KISKA_fnc_paramsMenu_getParamNamespace) getVariable [
-		([_factionParamConfig] call KISKA_fnc_paramsMenu_getParamVarName) + "_current",
-		[_factionParamConfig,false] call KISKA_fnc_paramsMenu_getCurrentParamValue
-	];
+private _factionString = [_factionParamConfig,false] call KISKA_fnc_paramsMenu_getCurrentParamValue;
+// this ensures that the JIP players are syncing on the factions that are current for the wave
+// and not factions that are queued for a change
+if (!_changingDuringMission AND !(localNamespace getVariable ["BLWK_intialFactionsInitDone",false])) then {
+	_factionString = missionNamespace getVariable [[_factionParamConfig] call KISKA_fnc_paramsMenu_getParamVarName + "_current",_factionString];
+};
+
 private _defaultFactionString = [_factionParamConfig] call KISKA_fnc_paramsMenu_getDefaultParamValue;
 
 
@@ -175,9 +180,6 @@ if (_goToDefaultFaction) then {
 	private _doExit = false;
 	_factionConfigPath = _everyFactionConfigHashMap getOrDefault [_defaultFactionString,configNull];
 
-	// clients run BLWK_fnc_prepareFactionMap after the server
-	// this handles a faction not being present on the server but is present on the client
-	// in which case the server will update all other machines (including JIP) to the default faction for the level
 	private _serialConfig = [_factionParamConfig] call KISKA_fnc_paramsMenu_serializeConfig;
 	private _JIP_id = [_serialConfig] call KISKA_fnc_paramsMenu_getJIPQueueId;
 	[_serialConfig,_defaultFactionString,false] remoteExecCall ["KISKA_fnc_paramsMenu_paramChanged", 0, _JIP_id];
