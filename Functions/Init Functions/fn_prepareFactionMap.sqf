@@ -148,7 +148,7 @@ private _factionString = [_factionParamConfig,false] call KISKA_fnc_paramsMenu_g
 // this ensures that the JIP players are syncing on the factions that are current for the wave
 // and not factions that are queued for a change
 if (!_changingDuringMission AND !(localNamespace getVariable ["BLWK_intialFactionsInitDone",false])) then {
-	_factionString = missionNamespace getVariable [[_factionParamConfig] call KISKA_fnc_paramsMenu_getParamVarName + "_current",_factionString];
+	_factionString = missionNamespace getVariable [([_factionParamConfig] call KISKA_fnc_paramsMenu_getParamVarName) + "_current",_factionString];
 };
 
 private _defaultFactionString = [_factionParamConfig] call KISKA_fnc_paramsMenu_getDefaultParamValue;
