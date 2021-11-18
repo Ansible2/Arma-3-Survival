@@ -152,30 +152,7 @@ if (isServer OR {!hasInterface}) then {
 };
 
 
-
-
-// AI unit classes
-
-// friendly
-BLWK_friendlyFactionMap = ["BLWK_friendlyFaction"] call BLWK_fnc_prepareUnitClasses;
-BLWK_friendly_menClasses = BLWK_friendlyFactionMap get INFANTRY_FACTION_MAP_ID;
-
-// level 1
-BLWK_level1_factionMap = ["BLWK_level1Faction"] call BLWK_fnc_prepareUnitClasses;
-BLWK_level1_menClasses = BLWK_level1_factionMap get INFANTRY_FACTION_MAP_ID;
-// level 2
-BLWK_level2_factionMap = ["BLWK_level2Faction"] call BLWK_fnc_prepareUnitClasses;
-BLWK_level2_menClasses = BLWK_level2_factionMap get INFANTRY_FACTION_MAP_ID;
-// level 3
-BLWK_level3_factionMap = ["BLWK_level3Faction"] call BLWK_fnc_prepareUnitClasses;
-BLWK_level3_menClasses = BLWK_level3_factionMap get INFANTRY_FACTION_MAP_ID;
-// level 4
-BLWK_level4_factionMap = ["BLWK_level4Faction"] call BLWK_fnc_prepareUnitClasses;
-BLWK_level4_menClasses = BLWK_level4_factionMap get INFANTRY_FACTION_MAP_ID;
-// level 5
-BLWK_level5_factionMap = ["BLWK_level5Faction"] call BLWK_fnc_prepareUnitClasses;
-BLWK_level5_menClasses = BLWK_level5_factionMap get INFANTRY_FACTION_MAP_ID;
-
+call BLWK_fnc_setupFactionMaps;
 
 
 private _uniformClass = "";

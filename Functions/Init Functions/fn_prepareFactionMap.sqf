@@ -1,12 +1,12 @@
 #include "..\..\Headers\Faction Map Ids.hpp"
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_prepareUnitClasses
+Function: BLWK_fnc_prepareFactionMap
 
 Description:
 	Gets the user selected unit class tables used for spawning AI
 	 and returns the desired on in the form of a hashmap.
 
-	Executed from "BLWK_fnc_prepareGlobals"
+	Executed from "BLWK_fnc_setupFactionMaps"
 
 Parameters:
 	0: _factionParamConfig : <CONFIG or STRING> - The config of the corresponding mission parameter for this faction
@@ -18,14 +18,14 @@ Returns:
 
 Examples:
     (begin example)
-		BLWK_level1_factionMap = ["BLWK_level1Faction"] call BLWK_fnc_prepareUnitClasses;
+		BLWK_level1Faction_map = ["BLWK_level1Faction"] call BLWK_fnc_prepareFactionMap;
     (end)
 
 Author(s):
 	Ansible2 // Cipher,
 	Hilltop(Willtop) & omNomios
 ---------------------------------------------------------------------------- */
-scriptName "BLWK_fnc_prepareUnitClasses";
+scriptName "BLWK_fnc_prepareFactionMap";
 
 params [
 	["_factionParamConfig",configNull,["",configNull]]
@@ -153,6 +153,17 @@ private _everyFactionConfigHashMap = _factionNames createHashMapFromArray (local
 
 private _factionString = [_factionParamConfig,false] call KISKA_fnc_paramsMenu_getCurrentParamValue;
 private _defaultFactionString = [_factionParamConfig] call KISKA_fnc_paramsMenu_getDefaultParamValue;
+// check if someone changed a faction during the mission, but the change has yet to take effect (not in between waves yet)
+if (["BLWK_factionChangeQueued",missionNamespace,false,2] call KISKA_fnc_getVariableTarget) then {
+	// get the setting from the server
+	_factionString = [
+		[_factionParamConfig] call KISKA_fnc_paramsMenu_getParamVarName + "_current",
+		[_factionParamConfig] cakk KISKA_fnc_paramsMenu_getParamNamespace,
+		_defaultFactionString,
+		2
+	] call KISKA_fnc_getVariableTarget;
+};
+
 
 private _factionMap = [];
 private _goToDefaultFaction = false;
@@ -179,7 +190,7 @@ if (_goToDefaultFaction) then {
 	private _doExit = false;
 	_factionConfigPath = _everyFactionConfigHashMap getOrDefault [_defaultFactionString,configNull];
 
-	// clients run BLWK_fnc_prepareUnitClasses after the server
+	// clients run BLWK_fnc_prepareFactionMap after the server
 	// this handles a faction not being present on the server but is present on the client
 	// in which case the server will update all other machines (including JIP) to the default faction for the level
 	private _serialConfig = [_factionParamConfig] call KISKA_fnc_paramsMenu_serializeConfig;

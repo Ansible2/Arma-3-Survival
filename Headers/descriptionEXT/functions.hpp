@@ -135,11 +135,13 @@ class BLWK
 		{};
 		class preparePlayArea
 		{};
-		class prepareUnitClasses
+		class prepareFactionMap
 		{};
 		class selectCustomPlayArea
 		{};
 		class selectPlayArea
+		{};
+		class setupFactionMaps
 		{};
 	};
 
