@@ -153,6 +153,8 @@ class BLWK
 		{};
 		class KISKAParams_populateFactionList
 		{};
+		class KISKAParams_queueFactionChange
+		{};
 	};
 
 	class MusicManager
