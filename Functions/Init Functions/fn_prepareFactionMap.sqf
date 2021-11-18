@@ -9,16 +9,14 @@ Description:
 	Executed from "BLWK_fnc_setupFactionMaps"
 
 Parameters:
-	0: _factionParamConfig : <CONFIG or STRING> - The config of the corresponding mission parameter for this faction
-        e.g."BLWK_friendlyFaction" for the friendly faction mission parameter or
-        missionConfigFile >> "KISKA_missionParams" >> "Factions" >> "BLWK_friendlyFaction"
+	0: _factionParamConfig : <CONFIG> - The config of the corresponding mission parameter for this faction
 
 Returns:
 	HASHMAP - A map of the unit classes from the faction config.
 
 Examples:
     (begin example)
-		BLWK_level1Faction_map = ["BLWK_level1Faction"] call BLWK_fnc_prepareFactionMap;
+		BLWK_level1Faction_map = [missionConfigFile >> "KISKA_missionParams" >> "Factions" >> "BLWK_friendlyFaction"] call BLWK_fnc_prepareFactionMap;
     (end)
 
 Author(s):
@@ -28,12 +26,8 @@ Author(s):
 scriptName "BLWK_fnc_prepareFactionMap";
 
 params [
-	["_factionParamConfig",configNull,["",configNull]]
+	["_factionParamConfig",configNull,[configNull]]
 ];
-
-if (_factionParamConfig isEqualType "") then {
-    _factionParamConfig = missionConfigFile >> "KISKA_missionParams" >> "Factions" >> _factionParamConfig;
-};
 
 if (isNull _factionParamConfig) exitWith {
     ["A null config was passed!",true] call KISKA_fnc_log;
@@ -148,26 +142,17 @@ private _fn_sortFactionClasses = {
     Main Body
 
 ---------------------------------------------------------------------------- */
-private _factionNames = call BLWK_fnc_KISKAParams_populateFactionList;
-private _everyFactionConfigHashMap = _factionNames createHashMapFromArray (localNamespace getVariable "BLWK_factionConfigs");
-
-private _factionString = [_factionParamConfig,false] call KISKA_fnc_paramsMenu_getCurrentParamValue;
+private _factionString = ([_factionParamConfig] call KISKA_fnc_paramsMenu_getParamNamespace) getVariable [
+		([_factionParamConfig] call KISKA_fnc_paramsMenu_getParamVarName) + "_current",
+		[_factionParamConfig,false] call KISKA_fnc_paramsMenu_getCurrentParamValue
+	];
 private _defaultFactionString = [_factionParamConfig] call KISKA_fnc_paramsMenu_getDefaultParamValue;
-// check if someone changed a faction during the mission, but the change has yet to take effect (not in between waves yet)
-if (["BLWK_factionChangeQueued",missionNamespace,false,2] call KISKA_fnc_getVariableTarget) then {
-	// get the setting from the server
-	_factionString = [
-		[_factionParamConfig] call KISKA_fnc_paramsMenu_getParamVarName + "_current",
-		[_factionParamConfig] cakk KISKA_fnc_paramsMenu_getParamNamespace,
-		_defaultFactionString,
-		2
-	] call KISKA_fnc_getVariableTarget;
-};
 
 
 private _factionMap = [];
 private _goToDefaultFaction = false;
 
+private _everyFactionConfigHashMap = localNamespace getVariable "BLWK_factionConfigsMap";
 private _factionConfigPath = _everyFactionConfigHashMap getOrDefault [_factionString,configNull];
 // if a faction was found for the string
 if !(isNull _factionConfigPath) then {
