@@ -299,9 +299,9 @@ class KISKA_missionParams
 		{
 			title = "Friendly Faction";
 			populationScript = "call BLWK_fnc_KISKAParams_populateFactionList";
-			requiresRestart = 1;
+			requiresRestart = 0;
 			sortList = 1;
-			onChanged = "_this call BLWK_fnc_KISKAParams_updateFactionClasses";
+			onChanged = "call BLWK_fnc_KISKAParams_queueFactionChange";
 			default = "VANILLA - NATO";
 		};
 
