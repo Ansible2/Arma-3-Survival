@@ -25,7 +25,7 @@ scriptName "BLWK_fnc_playAreaEnforcementLoop";
 
 if (!hasInterface) exitWith {false};
 
-if (missionNamespace getVariable ["BLKW_enforceAreaRunning",false]) exitWith {
+if (missionNamespace getVariable ["BLWK_enforceAreaRunning",false]) exitWith {
 	["There is already an enforce area loop running, exiting...",true] call KISKA_fnc_log;
 	false
 };
@@ -50,7 +50,7 @@ if (!_force AND {!BLWK_enforceArea}) exitWith {
 if (!BLWK_enforceArea) then {
 	BLWK_enforceArea = true
 };
-missionNamespace setVariable ["BLKW_enforceAreaRunning",true];
+missionNamespace setVariable ["BLWK_enforceAreaRunning",true];
 
 [] spawn {
 	waitUntil {!isNil "BLWK_mainCrate" AND {!isNil "BLWK_playAreaCenter"}};
@@ -124,7 +124,7 @@ missionNamespace setVariable ["BLKW_enforceAreaRunning",true];
 			call _fn_90percentFromCenter;
 		};
 	};
-	missionNamespace setVariable ["BLKW_enforceAreaRunning",false];
+	missionNamespace setVariable ["BLWK_enforceAreaRunning",false];
 };
 
 
