@@ -152,7 +152,17 @@ if (isServer OR {!hasInterface}) then {
 };
 
 
-[false] call BLWK_fnc_setupFactionMaps;
+[
+    false,
+    [
+        "BLWK_friendlyFaction",
+        "BLWK_level1Faction",
+        "BLWK_level2Faction",
+        "BLWK_level3Faction",
+        "BLWK_level4Faction",
+        "BLWK_level5Faction"
+    ]
+] call BLWK_fnc_setupFactionMaps;
 
 
 private _uniformClass = "";

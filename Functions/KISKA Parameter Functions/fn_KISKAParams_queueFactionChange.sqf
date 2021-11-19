@@ -23,6 +23,17 @@ scriptName "BLWK_fnc_KISKAParams_queueFactionChange";
 
 if (!isServer) exitWith {};
 
-if !(localNamespace getVariable ["BLWK_factionChangeQueued",false]) then {
-    localNamespace setVariable ["BLWK_factionChangeQueued",true];
+params [
+    "_newFactionName",
+    "_varName"
+];
+
+
+if (BLWK_inBetweenWaves) then {
+    [[_newFactionName],true] call BLWK_fnc_setupFactionMaps;
+
+} else {
+    private _queue = localNamespace getVariable ["BLWK_factionChangeQueue",[]];
+    _queue pushBack _newFactionName;
+    localNamespace setVariable ["BLWK_factionChangeQueue",_queue];
 };

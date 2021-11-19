@@ -10,13 +10,15 @@ Description:
 
 Parameters:
 	0: _changingDuringMission : <BOOL> - Is this being run during the mission (not part of initialization)
+    1: _factionQueue : <ARRAY> - Array containing the names (STRING) of mission param class to update (e.g. BLWK_level1Faction)
 
 Returns:
 	NOTHING
 
 Examples:
     (begin example)
-		call BLWK_fnc_setupFactionMaps;
+        // update level 1 faction
+		[true,["BLWK_level1Faction"]] call BLWK_fnc_setupFactionMaps;
     (end)
 
 Author(s):
@@ -25,12 +27,9 @@ Author(s):
 scriptName "BLWK_fnc_setupFactionMaps";
 
 params [
-    ["_executedDuringMission",false,[true]]
+    ["_executedDuringMission",false,[true]],
+    ["_factionQueue",[],[[]]]
 ];
-
-if (isServer) then {
-    localNamespace setVariable ["BLWK_factionChangeQueued",false];
-};
 
 if (isNil {localNamespace getVariable "BLWK_factionConfigsMap"}) then {
 	private _factionNames = call BLWK_fnc_KISKAParams_populateFactionList;
@@ -40,14 +39,7 @@ if (isNil {localNamespace getVariable "BLWK_factionConfigsMap"}) then {
 };
 
 
-[
-    "BLWK_friendlyFaction",
-    "BLWK_level1Faction",
-    "BLWK_level2Faction",
-    "BLWK_level3Faction",
-    "BLWK_level4Faction",
-    "BLWK_level5Faction"
-] apply {
+_factionQueue apply {
     private _paramConfig = missionConfigFile >> "KISKA_missionParams" >> "Factions" >> _x;
     private _map = [_paramConfig,_executedDuringMission] call BLWK_fnc_prepareFactionMap;
     missionNamespace setVariable [_x + "_map",_map];
@@ -64,6 +56,7 @@ if (isNil {localNamespace getVariable "BLWK_factionConfigsMap"}) then {
     };
 
 };
+
 
 if !(_executedDuringMission) then {
     localNamespace setVariable ["BLWK_intialFactionsInitDone",true];
