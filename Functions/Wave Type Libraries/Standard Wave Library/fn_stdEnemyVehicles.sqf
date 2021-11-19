@@ -80,7 +80,7 @@ private _vehicleTypeValues = [];
 {
 	private _vehicleClasses = [];
 	if (_isDefectorWave) then {
-		_vehicleClasses = BLWK_friendlyFactionMap get _x;
+		_vehicleClasses = BLWK_friendlyFaction_map get _x;
 
 	} else {
 		_vehicleClasses = [_x,false] call BLWK_fnc_getEnemyVehicleClasses;

@@ -13,8 +13,16 @@ class paramBase
 		_this select 1 - <STRING> - The mission parameter's variable name (either the param configName or varName property)
 		_this select 2 - <CONFIG> - The param Config path of the variable in mission params config
 	*/
+	onChanged = ""; // This is uncompiled code that will be compiled and run on EVERY MACHINE when a change is commited AFTER the briefing menu
+	/*
+		Parameters are:
+		_this select 0 - The new value
+		_this select 1 - <STRING> - The mission parameter's variable name (either the param configName or varName property)
+		_this select 2 - <CONFIG> - The param Config path of the variable in mission params config
+		_this select 4 - The old value
+	*/
+
 	varName = ""; // a global variable name to tie to the parameter, if not defined, the configName will be used
-	onChanged = ""; // This is uncompiled code that will be compiled and run on EVERY MACHINE when a change is commited AFTER the briefing menu (Parameters are the same as the initScript property)
 	requiresRestart = 0; // if the changed parameter requires a mission restart when changed after the briefing screen; 0 = false, 1 = true. Any parameters that require restart will not have their changes broadcast mid mission
 	namespace = 0; // 0 to put variable inside the missionNamespace and 1 to put inside of the localNamespace
 };
@@ -291,8 +299,9 @@ class KISKA_missionParams
 		{
 			title = "Friendly Faction";
 			populationScript = "call BLWK_fnc_KISKAParams_populateFactionList";
-			requiresRestart = 1;
+			requiresRestart = 0;
 			sortList = 1;
+			onChanged = "call BLWK_fnc_KISKAParams_queueFactionChange";
 			default = "VANILLA - NATO";
 		};
 

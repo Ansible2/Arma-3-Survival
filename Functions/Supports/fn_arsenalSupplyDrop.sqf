@@ -46,7 +46,7 @@ private _vehicleArray = [
 	_vehicleClass,
 	BLUFOR,
 	true,
-	[BLWK_friendly_menClasses select 0]
+	[BLWK_friendlyFaction_menClasses select 0]
 ] call KISKA_fnc_spawnVehicle;
 
 
