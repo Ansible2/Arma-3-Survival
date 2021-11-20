@@ -287,6 +287,18 @@ class KISKA_missionParams
 	{
 		title = "Extraction";
 
+		class BLWK_extractionEnabled : yes_no_paramBase
+		{
+			title = "Enable Extraction";
+			tooltip = "After completing the final wave, players will be teleported to a random location to defend before being picked up to complete the mission. This does not disable the admin/host's ability to call for an extraction from the map";
+			default = DEFAULT_TRUE;
+		};
+		class BLWK_extractionHintsEnabled : yes_no_paramBase
+		{
+			title = "Hints For Extraction";
+			tooltip = "Players get notifications during the extraction wave to help them better understand how things will work";
+			default = DEFAULT_TRUE;
+		};
 		class BLWK_timeTillExtractionTeleport : sliderParamBase
 		{
 			title = "Time Until Extraction Teleport";
