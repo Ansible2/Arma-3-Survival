@@ -521,7 +521,7 @@ class BLWK
 		{};
 		class startWave
 		{};
-		class startWaveCountdownFinal
+		class startWaveCountdown
 		{};
 	};
 };
