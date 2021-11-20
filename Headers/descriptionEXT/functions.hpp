@@ -103,6 +103,8 @@ class BLWK
 		file = "Functions\Extraction";
 		class callingForExtraction
 		{};
+		class cancelExtraction
+		{};
 		class extraction
 		{};
 		class teleportToExtractionSite
