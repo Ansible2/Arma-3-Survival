@@ -36,9 +36,21 @@ if (_waveEndEvent isNotEqualTo "") then {
 
 
 // check for mission complete
-if (BLWK_currentWaveNumber isEqualTo BLWK_maxNumWaves) exitWith {
+private _endMission = false;
+if (BLWK_currentWaveNumber isEqualTo BLWK_maxNumWaves) then {
+	if (BLWK_extractionEnabled) then {
+		call BLWK_fnc_callingForExtraction;
+
+	} else {
+		_endMission = true;
+
+	};
+};
+
+if (_endMission) exitWith {
 	"End2" call BIS_fnc_endMissionServer;
 };
+
 
 
 missionNamespace setVariable ["BLWK_inBetweenWaves",true,true];

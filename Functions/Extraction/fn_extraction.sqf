@@ -6,11 +6,10 @@ Description:
 
 
 Parameters:
-	0: _var : <> -
-
+	0: _manual : <BOOL> - Was this manually intiated
 
 Returns:
-
+    NOTHING
 
 Examples:
     (begin example)
@@ -22,13 +21,18 @@ Author(s):
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_callForExtraction";
 
+// have check to see if extraction is enabled
+// What is the logic for when someone manually initiates the extraction during a wave and while in between?
+// What is the logic for manually canceling an extraction
+// What notifications are needed for players
+
+
 #define DEFAULT_TRANSPORT_HELI "B_Heli_Transport_01_F"
 #define TOO_LITTLE_SEATS 3
 #define SPACE_BUFFER 5
 #define MIN_VEHICLE_SIZE 15
 
 #define MAX_ATTEMPTS 300
-//#define MAX_SEARCH_DISTANCE_FOR_LZ worldsize * sqrt 2
 
 
 if (!isServer) exitWith {
@@ -44,7 +48,7 @@ if (!canSuspend) exitWith {
 };
 
 
-if !(BLWK_inBetweenWaves) exitWith {
+if !(missionNamespace getVariable ["BLWK_inBetweenWaves",false]) exitWith {
     ["You must be between waves to call for an extraction before reaching the end number of waves"] remoteExec ["BLWK_fnc_errorNotification",remoteExecutedOwner];
     nil
 };
@@ -61,7 +65,7 @@ private _fn_getNumberOfCargoSeats = {
     _totalSeats - _crewSeats;
 };
 
-private _transportHeliClasses = BLWK_friendlyFactionMap get TRANSPORT_HELI_FACTION_MAP_ID;
+private _transportHeliClasses = BLWK_friendlyFaction_map get TRANSPORT_HELI_FACTION_MAP_ID;
 private _transportHeliClass = "";
 private _transportSeatCount = -1;
 private _cargoSeatsCount = 0;
@@ -156,7 +160,7 @@ for "_i" from 1 to MAX_ATTEMPTS do {
 if (!_lzFound) exitWith {
     ["The map does not accomodate an extraction, mission will end shortly..."] remoteExec ["BLWK_fnc_errorNotification",call CBAP_fnc_players];
     sleep 5;
-    ["end1"] call BIS_fnc_endMissionServer;
+    ["end2"] call BIS_fnc_endMissionServer;
 };
 
 
@@ -175,9 +179,6 @@ private _hintMessage = ["You will be teleported to the extraction site in: ",BLW
         hideObjectGlobal _x;
     };
 };
-
-
-sleep BLWK_timeTillExtractionTeleport;
 
 
 [_centerPosition] remoteExec ["BLWK_fnc_teleportToExtractionSite",call CBAP_fnc_players];
@@ -269,6 +270,8 @@ _landingPositions apply {
     ] call KISKA_fnc_heliLand;
 };
 
+
+nil
 /*
 
     How do you intend to deal with the fact that players:
