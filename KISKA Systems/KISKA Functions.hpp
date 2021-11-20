@@ -83,6 +83,8 @@ class KISKA
 		{};
 		class classTurretsWithGuns
 		{};
+		class countdown
+		{};
 		class deleteAtArray
 		{};
 		class detectControlKeys
