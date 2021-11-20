@@ -25,7 +25,9 @@ scriptName "BLWK_fnc_decideWaveType";
 
 if (!isServer) exitWith {false};
 
-
+/* ----------------------------------------------------------------------------
+	Check if special waves are allowed
+---------------------------------------------------------------------------- */
 private _selectSpecialWave = false;
 if (BLWK_currentWaveNumber >= BLWK_specialWavesStartAt) then {
 	["Special waves can be selected this wave",false] call KISKA_fnc_log;
@@ -34,9 +36,12 @@ if (BLWK_currentWaveNumber >= BLWK_specialWavesStartAt) then {
 
 };
 
-
 private _usedSpecialWaves = localNamespace getVariable ["BLWK_usedSpecialWaveConfigs",[]];
 
+
+/* ----------------------------------------------------------------------------
+	function definitions
+---------------------------------------------------------------------------- */
 private _getAllowedSpecialWaves = {
 	BLWK_specialWaveConfigs select {
 		!(_x in _usedSpecialWaves) AND {missionNamespace getVariable [getText(_x >> "toggleVariable"),true]}
@@ -57,6 +62,9 @@ private _fn_getNormalWave = {
 };
 
 
+/* ----------------------------------------------------------------------------
+	Select wave type
+---------------------------------------------------------------------------- */
 private _playAlarm = false;
 private _waveConfigPath = configNull;
 if (_selectSpecialWave) then {
@@ -89,15 +97,19 @@ localNamespace setVariable ["BLWK_currentWaveConfig",_waveConfigPath];
 call compileFinal (getText(_waveConfigPath >> "onSelected"));
 
 
-// notify players of wave start
+/* ----------------------------------------------------------------------------
+	Send wave start notification
+---------------------------------------------------------------------------- */
 private _notification = [];
 _notification pushBack (getText(_waveConfigPath >> "creationNotificationTemplate"));
 
 private _notificationText = getText(_waveConfigPath >> "notificationText");
 if ([_waveConfigPath >> "compileNotificationText"] call BIS_fnc_getCfgDataBool) then {
 	_notificationText = call compileFinal _notificationText;
+
 } else {
 	_notificationText = [_notificationText];
+
 };
 _notification pushBack _notificationText;
 
