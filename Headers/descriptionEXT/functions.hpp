@@ -505,6 +505,8 @@ class BLWK
 		file = "Functions\Waves";
 		class addToMustKillArray
 		{};
+		class cacheEnemyMenSpawnPositions
+		{};
 		class cleanUpTheDead
 		{};
 		class clearMustKillArray

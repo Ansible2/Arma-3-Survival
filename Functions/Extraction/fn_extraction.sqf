@@ -6,7 +6,7 @@ Description:
 
 
 Parameters:
-	0: _manual : <BOOL> - Was this manually intiated
+	NONE
 
 Returns:
     NOTHING
@@ -21,16 +21,11 @@ Author(s):
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_callForExtraction";
 
-// have check to see if extraction is enabled
-// What is the logic for when someone manually initiates the extraction during a wave and while in between?
-// What is the logic for manually canceling an extraction
-// What notifications are needed for players
-
-
 #define DEFAULT_TRANSPORT_HELI "B_Heli_Transport_01_F"
 #define TOO_LITTLE_SEATS 3
 #define SPACE_BUFFER 5
 #define MIN_VEHICLE_SIZE 15
+#define NUMBER_OF_ENEMIES 1000
 
 #define MAX_ATTEMPTS 300
 
@@ -40,7 +35,6 @@ if (!isServer) exitWith {
     nil
 };
 
-
 if (!canSuspend) exitWith {
     ["Must be called from scheduled",true] call KISKA_fnc_log;
     _this spawn BLWK_fnc_callForExtraction;
@@ -48,13 +42,9 @@ if (!canSuspend) exitWith {
 };
 
 
-if !(missionNamespace getVariable ["BLWK_inBetweenWaves",false]) exitWith {
-    ["You must be between waves to call for an extraction before reaching the end number of waves"] remoteExec ["BLWK_fnc_errorNotification",remoteExecutedOwner];
-    nil
-};
-
-
-
+/* ----------------------------------------------------------------------------
+	Determine helicopeter class to use for player pick up
+---------------------------------------------------------------------------- */
 // get the helicopter with the most seats
 private _fn_getNumberOfCargoSeats = {
     params ["_vehicleClass"];
@@ -84,6 +74,9 @@ if (_transportSeatCount < TOO_LITTLE_SEATS OR {_transportHeliClass isEqualTo ""}
 missionNamespace setVariable ["BLWK_extractSeatCount",_transportSeatCount];
 
 
+/* ----------------------------------------------------------------------------
+	Determine number of transports needed for player numbers
+---------------------------------------------------------------------------- */
 private _numberOfTransports = 1;
 private _currentNumPlayers = count (call CBAP_fnc_players);
 if (_transportSeatCount < _currentNumPlayers) then {
@@ -95,6 +88,9 @@ private _sizeOfTransport = (sizeOf _transportHeliClass) max MIN_VEHICLE_SIZE;
 private _sizeOfLZArea = (_sizeOfTransport + SPACE_BUFFER) * _numberOfTransports;
 
 
+/* ----------------------------------------------------------------------------
+	Find LZs needed for number of transports
+---------------------------------------------------------------------------- */
 private _lzFound = false;
 private _landingPositions = [];
 private _blackListPositions = [];
@@ -157,20 +153,27 @@ for "_i" from 1 to MAX_ATTEMPTS do {
 };
 
 
+/* ----------------------------------------------------------------------------
+	Notify players
+---------------------------------------------------------------------------- */
 if (!_lzFound) exitWith {
     ["The map does not accomodate an extraction, mission will end shortly..."] remoteExec ["BLWK_fnc_errorNotification",call CBAP_fnc_players];
     sleep 5;
     ["end2"] call BIS_fnc_endMissionServer;
 };
 
+private _players = call CBAP_fnc_players;
+["You will be teleported to the extraction site shortly"] remoteExec ["BLWK_fnc_notification",_players];
+if (BLWK_extractionHintsEnabled) then {
+    ["There will be marked positions that are your LZs, do not place objects inside of these zones!",5] remoteExec ["BLWK_fnc_notification",_players];
+};
 
 
-private _hintMessage = ["You will be teleported to the extraction site in: ",BLWK_timeTillExtractionTeleport," seconds.","<br/> Cleanup your site!"] joinString "";
-[_hintMessage] remoteExec ["BLWK_fnc_notification",call CBAP_fnc_players];
 
 
-
-// Clear LZ area
+/* ----------------------------------------------------------------------------
+	Remove terrain objects from LZ so helis can land
+---------------------------------------------------------------------------- */
 [_centerPosition,_sizeOfLZArea] spawn {
     params ["_centerPosition","_sizeOfLZArea"];
 
@@ -181,11 +184,20 @@ private _hintMessage = ["You will be teleported to the extraction site in: ",BLW
 };
 
 
-[_centerPosition] remoteExec ["BLWK_fnc_teleportToExtractionSite",call CBAP_fnc_players];
+/* ----------------------------------------------------------------------------
+	Teleport
+---------------------------------------------------------------------------- */
+BLWK_playAreaCenter = _centerPosition;
+[20,200,250,275] call BLWK_fnc_cacheEnemyMenSpawnPositions;
+
+[_centerPosition] remoteExec ["BLWK_fnc_teleportToExtractionSite",_players];
 // _centerPosition is a 2d position ([1,1])
 BLWK_mainCrate setPos _centerPosition;
 
 
+/* ----------------------------------------------------------------------------
+	Mark extraction sites for players
+---------------------------------------------------------------------------- */
 {
     private _markerName = "BLWK_extractionMarker_" + (str _forEachIndex);
     private _marker = createMarkerLocal [_markerName,_x];
@@ -197,10 +209,24 @@ BLWK_mainCrate setPos _centerPosition;
 } forEach _landingPositions;
 
 
+sleep BLWK_extractionSetUpTime;
 
+
+/* ----------------------------------------------------------------------------
+	Spawn enemy units
+---------------------------------------------------------------------------- */
+// set respawns to 0
+[missionNamespace,-([missionNamespace] call BIS_fnc_respawnTickets),false] call BIS_fnc_respawnTickets;
+[false,NUMBER_OF_ENEMIES] remoteExec ["BLWK_fnc_createStdWaveInfantry",BLWK_theAIHandlerOwnerID];
+
+
+["Enemies are inbound to your site, hold the position!"] remoteExec ["BLWK_fnc_notification",_players];
 sleep BLWK_timeTillExtraction;
 
 
+/* ----------------------------------------------------------------------------
+	Create helicopters and have them land
+---------------------------------------------------------------------------- */
 BLWK_extractionAircraft = [];
 BLWK_playersInExtractAircraft = [];
 _landingPositions apply {
@@ -272,10 +298,3 @@ _landingPositions apply {
 
 
 nil
-/*
-
-    How do you intend to deal with the fact that players:
-        1. do not know where the helicopters will land and can therefore block them with objects?
-            - Could either have players designate the LZ for each heli or mark the spots for each player
-        2. can join while the extraction is in progress causing the transport count to be off?
-*/
