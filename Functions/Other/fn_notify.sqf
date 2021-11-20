@@ -14,10 +14,16 @@ Parameters:
 	1: _subLine : <STRING or ARRAY> - Formatted the same as _titleLine
 	2: _skippable : <ARRAY> - If there are more notifications behind in the queue and this notification
         comes up, it will not be shown and thrown away
+    3: _lifetime : <NUMBER> - How long the notification lasts in seconds (at least 2)
 
 Examples:
     (begin example)
-
+        [
+            ["Hello",1.1,[0.75,0,0,1]],
+            "World",
+            false,
+            5
+        ] call BLWK_fnc_notify;
     (end)
 
 Returns:
@@ -33,8 +39,6 @@ Authors:
 #define NOTIFY_MIN_HEIGHT (3 * GUI_GRID_H)
 
 #define TRIPLES(var1,var2,var3) var1##_##var2##_##var3
-
-#define NOTIFICATION_LIFETIME 4
 
 #define FADE_IN_TIME 0.2
 #define FADE_OUT_TIME 1
@@ -55,8 +59,13 @@ if (!hasInterface) exitWith {};
 params [
     ["_titleLine","",[[],""]],
     ["_subLine","",[[],""]],
-    ["_skippable",false,[true]]
+    ["_skippable",false,[true]],
+    ["_lifetime",4,[123]]
 ];
+
+if (_lifetime < 2) then {
+    _lifetime = 2;
+};
 
 
 /* ----------------------------------------------------------------------------
@@ -92,7 +101,7 @@ private _composition = [];
 };
 
 
-private _notification = [_composition, _skippable];
+private _notification = [_composition, _lifetime, _skippable];
 
 // add the queue
 if (isNil {GET_QUEUE}) then {
@@ -113,7 +122,10 @@ if !(localNamespace getVariable ["BLWK_notificationLoopRunning",false]) then {
             _fn_createNotification
         ---------------------------------------------------------------------------- */
         private _fn_createNotification = {
-            //params ["_composition"];
+            params [
+                "_composition",
+                "_lifetime"
+            ];
 
             "BLWK_ui_notify" cutRsc ["RscTitleDisplayEmpty", "PLAIN", 0, true];
             private _display = uiNamespace getVariable "RscTitleDisplayEmpty";
@@ -125,7 +137,7 @@ if !(localNamespace getVariable ["BLWK_notificationLoopRunning",false]) then {
             _background ctrlSetBackgroundColor [0,0,0,BACKGROUND_OPACITY];
 
             private _text = _display ctrlCreate ["RscStructuredText", -1];
-            _text ctrlSetStructuredText (composeText _this);
+            _text ctrlSetStructuredText (composeText _composition);
 
             private _controls = [_background, _text];
 
@@ -204,10 +216,10 @@ if !(localNamespace getVariable ["BLWK_notificationLoopRunning",false]) then {
 
         while {(count _queue) > 0} do {
             _notificationInfo = _queue deleteAt 0;
-            _skippable = _notificationInfo select 1;
+            _skippable = _notificationInfo deleteAt 2;
 
             if !(_skippable AND ((count _queue) > 0)) then {
-                (_notificationInfo select 0) call _fn_createNotification;
+                _notificationInfo call _fn_createNotification;
             };
         };
 
