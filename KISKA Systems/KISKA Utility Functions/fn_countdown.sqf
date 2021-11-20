@@ -33,7 +33,7 @@ if (!hasInterface) exitWith {};
 
 if (!canSuspend) exitWith {
     ["Needs to be called from a scheduled environment!",true] call KISKA_fnc_log;
-	_this spawn BLWK_fnc_startWaveCountdownFinal;
+	_this spawn KISKA_fnc_countdown;
 };
 
 params [
