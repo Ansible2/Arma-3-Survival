@@ -296,24 +296,24 @@ class KISKA_missionParams
 		class BLWK_extractionHintsEnabled : yes_no_paramBase
 		{
 			title = "Hints For Extraction";
-			tooltip = "Players get notifications during the extraction wave to help them better understand how things will work";
+			tooltip = "Players get notifications during the extraction wave to help them better understand how things will work (for newer players)";
 			default = DEFAULT_TRUE;
 		};
-		class BLWK_timeTillExtractionTeleport : sliderParamBase
+		class BLWK_extractionSetUpTime : sliderParamBase
 		{
-			title = "Time Until Extraction Teleport";
-			tooltip = "This is how long you have to cleanup your surroundings before you are teleported to the extraction area";
+			title = "Time To Setup Base";
+			tooltip = "Once players have been teleported to the extraction site, how long should they have until enemies start attacking them?";
 			min = 1;
 			max = 300;
-			default = 10;
+			default = 60;
 		};
 		class BLWK_timeTillExtraction : sliderParamBase
 		{
 			title = "Extraction Defense Time";
-			tooltip = "This is how long players will have to defend the extraction area";
+			tooltip = "This is how long players will have to defend the extraction area until helicopters are dispatched to pick them up.";
 			min = 60;
-			max = 300;
-			default = 60;
+			max = 600;
+			default = 240;
 		};
 	};
 
