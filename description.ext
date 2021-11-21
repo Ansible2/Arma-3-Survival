@@ -9,7 +9,9 @@ overviewPicture = "preview.paa";
 loadScreen = "preview.paa";
 
 // instant respawns
-respawn = 2;
+respawn = "INSTANT";
+respawnButton = 1;
+respawnDelay = 1;
 // no respawn on start
 respawnOnStart = -1;
 // no respawn dialog
