@@ -191,7 +191,7 @@ missionNamespace setVariable ["BLWK_enforceArea",false,true];
 sleep 3;
 
 BLWK_playAreaCenter = _centerPosition;
-[20,250,300,325] call BLWK_fnc_cacheEnemyMenSpawnPositions;
+[20,450,500,525] call BLWK_fnc_cacheEnemyMenSpawnPositions;
 
 [_centerPosition] remoteExec ["BLWK_fnc_teleportToExtractionSite",_players];
 // _centerPosition is a 2d position ([1,1])
@@ -222,7 +222,8 @@ BLWK_mainCrate setPos _centerPosition;
 	Spawn enemy units
 ---------------------------------------------------------------------------- */
 // set respawns to 0
-[missionNamespace,-([missionNamespace] call BIS_fnc_respawnTickets),false] call BIS_fnc_respawnTickets;
+[BLUFOR,-([BLUFOR] call BIS_fnc_respawnTickets),false] call BIS_fnc_respawnTickets;
+missionNamespace setVariable ["BLWK_numRespawnTickets",0,true];
 [false,NUMBER_OF_ENEMIES] remoteExec ["BLWK_fnc_createStdWaveInfantry",BLWK_theAIHandlerOwnerID];
 
 ["Enemies are inbound to your site, hold the position!"] remoteExec ["BLWK_fnc_notification",call CBAP_fnc_players];
