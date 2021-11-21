@@ -152,35 +152,21 @@ if (isServer OR {!hasInterface}) then {
 };
 
 
-
-
-// AI unit classes
-private _unitTypeInfo = call BLWK_fnc_prepareUnitClasses;
-
-// friendly
-BLWK_friendlyFactionMap = _unitTypeInfo select 0;
-BLWK_friendly_menClasses = BLWK_friendlyFactionMap get INFANTRY_FACTION_MAP_ID;
-
-// level 1
-BLWK_level1_factionMap = _unitTypeInfo select 1;
-BLWK_level1_menClasses = BLWK_level1_factionMap get INFANTRY_FACTION_MAP_ID;
-// level 2
-BLWK_level2_factionMap = _unitTypeInfo select 2;
-BLWK_level2_menClasses = BLWK_level2_factionMap get INFANTRY_FACTION_MAP_ID;
-// level 3
-BLWK_level3_factionMap = _unitTypeInfo select 3;
-BLWK_level3_menClasses = BLWK_level3_factionMap get INFANTRY_FACTION_MAP_ID;
-// level 4
-BLWK_level4_factionMap = _unitTypeInfo select 4;
-BLWK_level4_menClasses = BLWK_level4_factionMap get INFANTRY_FACTION_MAP_ID;
-// level 5
-BLWK_level5_factionMap = _unitTypeInfo select 5;
-BLWK_level5_menClasses = BLWK_level5_factionMap get INFANTRY_FACTION_MAP_ID;
-
+[
+    false,
+    [
+        "BLWK_friendlyFaction",
+        "BLWK_level1Faction",
+        "BLWK_level2Faction",
+        "BLWK_level3Faction",
+        "BLWK_level4Faction",
+        "BLWK_level5Faction"
+    ]
+] call BLWK_fnc_setupFactionMaps;
 
 
 private _uniformClass = "";
-BLWK_friendly_menClasses apply {
+BLWK_friendlyFaction_menClasses apply {
     _uniformClass = getText(configfile >> "CfgVehicles" >> _x >> "uniformClass");
     if (_uniformClass isNotEqualTo "") then {
         break;

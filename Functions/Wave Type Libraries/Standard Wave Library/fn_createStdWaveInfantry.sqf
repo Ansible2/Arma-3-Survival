@@ -34,30 +34,30 @@ params [
 
 private _fn_getAvailableEnemyLists = {
 	if (_isDefectorWave) exitWith {
-		[BLWK_friendly_menClasses,1]
+		[BLWK_friendlyFaction_menClasses,1]
 	};
 
 	private _returnedLists = [];
 
 	// classes
-	_returnedLists pushback BLWK_level1_menClasses;
+	_returnedLists pushback BLWK_level1Faction_menClasses;
 	// weight of class
 	_returnedLists pushBack BLWK_level1Faction_weight;
 
 	if (BLWK_currentWaveNumber >= BLWK_level2Faction_startWave) then {
-		_returnedLists pushback BLWK_level2_menClasses;
+		_returnedLists pushback BLWK_level2Faction_menClasses;
 		_returnedLists pushBack BLWK_level2Faction_weight;
 	};
 	if (BLWK_currentWaveNumber > BLWK_level3Faction_startWave) then {
-		_returnedLists pushback BLWK_level3_menClasses;
+		_returnedLists pushback BLWK_level3Faction_menClasses;
 		_returnedLists pushBack BLWK_level3Faction_weight;
 	};
 	if (BLWK_currentWaveNumber > BLWK_level4Faction_startWave) then {
-		_returnedLists pushback BLWK_level4_menClasses;
+		_returnedLists pushback BLWK_level4Faction_menClasses;
 		_returnedLists pushBack BLWK_level4Faction_weight;
 	};
 	if (BLWK_currentWaveNumber > BLWK_level5Faction_startWave) then {
-		_returnedLists pushback BLWK_level5_menClasses;
+		_returnedLists pushback BLWK_level5Faction_menClasses;
 		_returnedLists pushBack BLWK_level5Faction_weight;
 	};
 

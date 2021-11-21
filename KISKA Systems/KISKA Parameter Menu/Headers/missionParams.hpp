@@ -13,8 +13,16 @@ class paramBase
 		_this select 1 - <STRING> - The mission parameter's variable name (either the param configName or varName property)
 		_this select 2 - <CONFIG> - The param Config path of the variable in mission params config
 	*/
+	onChanged = ""; // This is uncompiled code that will be compiled and run on EVERY MACHINE when a change is commited AFTER the briefing menu
+	/*
+		Parameters are:
+		_this select 0 - The new value
+		_this select 1 - <STRING> - The mission parameter's variable name (either the param configName or varName property)
+		_this select 2 - <CONFIG> - The param Config path of the variable in mission params config
+		_this select 4 - The old value
+	*/
+
 	varName = ""; // a global variable name to tie to the parameter, if not defined, the configName will be used
-	onChanged = ""; // This is uncompiled code that will be compiled and run on EVERY MACHINE when a change is commited AFTER the briefing menu (Parameters are the same as the initScript property)
 	requiresRestart = 0; // if the changed parameter requires a mission restart when changed after the briefing screen; 0 = false, 1 = true. Any parameters that require restart will not have their changes broadcast mid mission
 	namespace = 0; // 0 to put variable inside the missionNamespace and 1 to put inside of the localNamespace
 };
@@ -325,8 +333,9 @@ class KISKA_missionParams
 		{
 			title = "Friendly Faction";
 			populationScript = "call BLWK_fnc_KISKAParams_populateFactionList";
-			requiresRestart = 1;
+			requiresRestart = 0;
 			sortList = 1;
+			onChanged = "call BLWK_fnc_KISKAParams_queueFactionChange";
 			default = "VANILLA - NATO";
 		};
 
@@ -359,7 +368,7 @@ class KISKA_missionParams
 		class BLWK_level2Faction_startWave : sliderParamBase
 		{
 			title = "Level 2 Starting Wave";
-			tooltip = "At what wave number will level 2 enemies be allowed to spawn?";
+			tooltip = "At what wave number will level 2 enemies be allowed to spawn? Queued faction changes during the mission will be executed upon the completion of the current wave (immediately after all enemies are dead)";
 			min = 1;
 			max = 25;
 			default = 6;
@@ -379,7 +388,7 @@ class KISKA_missionParams
 		class BLWK_level3Faction_startWave : BLWK_level2Faction_startWave
 		{
 			title = "Level 3 Starting Wave";
-			tooltip = "At what wave number will level 3 enemies be allowed to spawn?";
+			tooltip = "At what wave number will level 3 enemies be allowed to spawn? Queued faction changes during the mission will be executed upon the completion of the current wave (immediately after all enemies are dead)";
 			default = 11;
 		};
 
@@ -397,7 +406,7 @@ class KISKA_missionParams
 		class BLWK_level4Faction_startWave : BLWK_level2Faction_startWave
 		{
 			title = "Level 4 Starting Wave";
-			tooltip = "At what wave number will level 4 enemies be allowed to spawn?";
+			tooltip = "At what wave number will level 4 enemies be allowed to spawn? Queued faction changes during the mission will be executed upon the completion of the current wave (immediately after all enemies are dead)";
 			default = 16;
 		};
 
@@ -415,7 +424,7 @@ class KISKA_missionParams
 		class BLWK_level5Faction_startWave : BLWK_level2Faction_startWave
 		{
 			title = "Level 5 Starting Wave";
-			tooltip = "At what wave number will level 5 enemies be allowed to spawn?";
+			tooltip = "At what wave number will level 5 enemies be allowed to spawn? Queued faction changes during the mission will be executed upon the completion of the current wave (immediately after all enemies are dead)";
 			default = 21;
 		};
 

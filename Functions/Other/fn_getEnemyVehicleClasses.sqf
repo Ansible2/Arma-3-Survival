@@ -82,11 +82,11 @@ private _fn_pushVehicleForLevel = {
 };
 
 
-[BLWK_level1_factionMap] call _fn_pushVehicleForLevel;
-PUSH_VEHICLE_MAP( BLWK_level2_factionMap, BLWK_level2Faction_startWave )
-PUSH_VEHICLE_MAP( BLWK_level3_factionMap, BLWK_level3Faction_startWave )
-PUSH_VEHICLE_MAP( BLWK_level4_factionMap, BLWK_level4Faction_startWave )
-PUSH_VEHICLE_MAP( BLWK_level5_factionMap, BLWK_level5Faction_startWave )
+[BLWK_level1Faction_map] call _fn_pushVehicleForLevel;
+PUSH_VEHICLE_MAP( BLWK_level2Faction_map, BLWK_level2Faction_startWave )
+PUSH_VEHICLE_MAP( BLWK_level3Faction_map, BLWK_level3Faction_startWave )
+PUSH_VEHICLE_MAP( BLWK_level4Faction_map, BLWK_level4Faction_startWave )
+PUSH_VEHICLE_MAP( BLWK_level5Faction_map, BLWK_level5Faction_startWave )
 
 
 // shuffle

@@ -10,7 +10,7 @@ Parameters:
 	0: _variableName : <STRING> - The string name of the varaible to get
 	1: _namespace : <NAMESPACE, OBJECT, STRING, GROUP, CONTROL, or LOCATION> - The namespace to get the variable from
 	2: _defaultValue : <ANY> - If the variable does not exist for the target, what should be returned instead
-	3: _target : <NUMBER, OBJECT, GROUP, or STRING> - Where the _target is local will be where the variable is taken from
+	3: _target : <NUMBER, OBJECT, or STRING> - Where the _target is local will be where the variable is taken from
 
 Returns:
 	<ANY> - Whatever the variable is, nil otherwise
@@ -24,7 +24,7 @@ Examples:
     (end)
 
 Author(s):
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
 scriptName "KISKA_fnc_getVariableTarget";
 
@@ -37,8 +37,14 @@ params [
 	["_variableName","",[""]],
 	["_namespace",missionNamespace,[missionNamespace,objNull,grpNull,"",controlNull,locationNull]],
 	["_defaultValue",-1],
-	["_target",2,[123,objNull,grpNull,""]]
+	["_target",2,[123,objNull,""]]
 ];
+
+// keep from remoting onto multiple machines
+if (_target <= 0) exitWith {
+	[["_target: ",_target," is invalid as it will be sent to more then one machine!"],true] call KISKA_fnc_log;
+	nil
+};
 
 if (_variableName isEqualTo "") exitWith {
 	["_variableName is empty",true] call KISKA_fnc_log;
@@ -56,17 +62,17 @@ private _saveVariable = ["KISKA_GVT",clientOwner,"_",_messageNumber] joinString 
 [_namespace,_variableName,_saveVariable,_defaultValue,clientOwner] remoteExecCall ["KISKA_fnc_getVariableTarget_sendBack",_target];
 
 waitUntil {
-	if (!isNil {missionNamespace getVariable _saveVariable}) exitWith {
+	if (!isNil _saveVariable) exitWith {
 		[["Got variable ",_saveVariable," from target ",_target],false] call KISKA_fnc_log;
 		true
 	};
-	sleep 0.25;
+	sleep 0.05;
 	[["Waiting for variable from target: ",_target],false] call KISKA_fnc_log;
 	false
 };
 
 private _return = missionNamespace getVariable _saveVariable;
-missionNamespace setVariable [_saveVariable,nil]; 
+missionNamespace setVariable [_saveVariable,nil];
 
 
 _return

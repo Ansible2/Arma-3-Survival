@@ -42,7 +42,7 @@ params [
 	]
 
 
-private _vehicleTypeArray = BLWK_friendlyFactionMap get _typeId;
+private _vehicleTypeArray = BLWK_friendlyFaction_map get _typeId;
 private _returnVehicleClass = "";
 
 private _numFriendlyClasses = count BLWK_friendly_vehicleClasses;

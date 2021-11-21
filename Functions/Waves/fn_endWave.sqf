@@ -17,15 +17,15 @@ Returns:
 
 Examples:
     (begin example)
-
 		[] spawn BLWK_fnc_endWave;
-
     (end)
 
 Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
+scriptName "BLWK_fnc_endWave";
+
 if (!isServer OR {!canSuspend}) exitWith {};
 
 private _currentWaveTypeConfig = localNamespace getVariable ["BLWK_currentWaveConfig",configNull];
@@ -56,6 +56,15 @@ if (_endMission) exitWith {
 missionNamespace setVariable ["BLWK_inBetweenWaves",true,true];
 private _players = call CBAP_fnc_players;
 [TASK_COMPLETE_TEMPLATE,["",COMPLETED_WAVE_NOTIFICATION(str BLWK_currentWaveNumber)]] remoteExec ["BIS_fnc_showNotification",_players];
+
+
+// handle changing of factions during a mission
+private _factionQueue = localNamespace getVariable ["BLWK_factionChangeQueue",[]];
+if (_factionQueue isNotEqualTo []) then {
+    [true,_factionQueue] call BLWK_fnc_setupFactionMaps;
+	localNamespace setVariable ["BLWK_factionChangeQueue",[]];
+	[true,_factionQueue] remoteExec ["BLWK_fnc_setupFactionMaps",-2];
+};
 
 
 /* ----------------------------------------------------------------------------

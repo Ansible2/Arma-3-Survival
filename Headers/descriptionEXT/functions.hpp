@@ -150,11 +150,13 @@ class BLWK
 		{};
 		class preparePlayArea
 		{};
-		class prepareUnitClasses
+		class prepareFactionMap
 		{};
 		class selectCustomPlayArea
 		{};
 		class selectPlayArea
+		{};
+		class setupFactionMaps
 		{};
 	};
 
@@ -165,6 +167,8 @@ class BLWK
 		class KISKAParams_populateLootWhitelists
 		{};
 		class KISKAParams_populateFactionList
+		{};
+		class KISKAParams_queueFactionChange
 		{};
 	};
 
