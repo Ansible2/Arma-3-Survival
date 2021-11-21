@@ -29,6 +29,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 #define SOUND "beep_target"
 
+if (!hasInterface) exitWith {};
+
 if (!canSuspend) exitWith {
     ["Needs to be called from a scheduled environment!",true] call KISKA_fnc_log;
 	_this spawn KISKA_fnc_countdown;
@@ -56,23 +58,26 @@ if (_countDownTotal < 0) exitWith {
     nil
 };
 
+if (hasInterface) then {
+    private _timeToSleepBeforeShown = _countDownTotal - _shownCountDown;
+    sleep _timeToSleepBeforeShown;
 
-private _timeToSleepBeforeShown = _countDownTotal - _shownCountDown;
-sleep _timeToSleepBeforeShown;
-
-private _hasInterface = hasInterface;
-while {_shownCountDown >= 0} do {
-    if (_hasInterface) then {
+    while {_shownCountDown >= 0} do {
     	if (_shownCountDown <= _soundedCountDown) then {
     		playSound SOUND;
     	};
 
     	[str _shownCountDown, 0, 0, 1, 0] spawn BIS_fnc_dynamicText;
+
+    	sleep 1;
+    	_shownCountDown = _shownCountDown - 1;
     };
 
-	sleep 1;
-	_shownCountDown = _shownCountDown - 1;
+} else {
+    sleep _countDownTotal;
+
 };
+
 
 
 nil
