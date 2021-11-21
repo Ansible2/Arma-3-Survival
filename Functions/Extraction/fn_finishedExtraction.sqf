@@ -26,3 +26,6 @@ if (localNamespace getVariable ["BLWK_extractionDone",false]) exitWith {};
 sleep (random [20,25,30]);
 
 "end2" call BIS_fnc_endMissionServer;
+
+
+nil

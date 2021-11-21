@@ -159,7 +159,7 @@ for "_i" from 1 to MAX_ATTEMPTS do {
 if (!_lzFound) exitWith {
     ["The map does not accomodate an extraction, mission will end shortly..."] remoteExec ["BLWK_fnc_errorNotification",call CBAP_fnc_players];
     sleep 5;
-    ["end2"] call BIS_fnc_endMissionServer;
+    "end2" call BIS_fnc_endMissionServer;
 };
 
 private _players = call CBAP_fnc_players;
