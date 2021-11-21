@@ -170,7 +170,6 @@ if (BLWK_extractionHintsEnabled) then {
 
 
 
-
 /* ----------------------------------------------------------------------------
 	Remove terrain objects from LZ so helis can land
 ---------------------------------------------------------------------------- */
@@ -192,7 +191,7 @@ missionNamespace setVariable ["BLWK_enforceArea",false,true];
 sleep 3;
 
 BLWK_playAreaCenter = _centerPosition;
-[20,200,250,275] call BLWK_fnc_cacheEnemyMenSpawnPositions;
+[20,250,300,325] call BLWK_fnc_cacheEnemyMenSpawnPositions;
 
 [_centerPosition] remoteExec ["BLWK_fnc_teleportToExtractionSite",_players];
 // _centerPosition is a 2d position ([1,1])
@@ -213,7 +212,8 @@ BLWK_mainCrate setPos _centerPosition;
 } forEach _landingPositions;
 
 
-sleep BLWK_extractionSetUpTime;
+[BLWK_extractionSetUpTime,15,10] remoteExec ["KISKA_fnc_countDown",-2];
+[BLWK_extractionSetUpTime,15,10] call KISKA_fnc_countDown;
 
 
 /* ----------------------------------------------------------------------------
@@ -223,9 +223,11 @@ sleep BLWK_extractionSetUpTime;
 [missionNamespace,-([missionNamespace] call BIS_fnc_respawnTickets),false] call BIS_fnc_respawnTickets;
 [false,NUMBER_OF_ENEMIES] remoteExec ["BLWK_fnc_createStdWaveInfantry",BLWK_theAIHandlerOwnerID];
 
+["Enemies are inbound to your site, hold the position!"] remoteExec ["BLWK_fnc_notification",call CBAP_fnc_players];
 
-["Enemies are inbound to your site, hold the position!"] remoteExec ["BLWK_fnc_notification",_players];
 sleep BLWK_timeTillExtraction;
+
+["Helicopters will arrive shortly"] remoteExec ["BLWK_fnc_notification",call CBAP_fnc_players];
 
 
 /* ----------------------------------------------------------------------------
@@ -239,10 +241,10 @@ _landingPositions apply {
     private _aircraftInfo = [
         _spawnPosition,
         _spawnPosition getDir _centerPosition,
-        _transportHeliClasses
+        _transportHeliClass
     ] call KISKA_fnc_spawnVehicle;
 
-    // handle crew AI & diable damage
+    // handle crew AI
     private _aircraft = _aircraftInfo select 0;
     BLWK_extractionAircraft pushBack _aircraft;
     _aircraft allowDamage false;
@@ -275,7 +277,15 @@ _landingPositions apply {
     _crew apply {
         _x allowDamage false;
         _x setCaptive true;
+        _x disableAI "AUTOCOMBAT";
+        _x disableAI "FSM";
+        _x disableAI "TARGET";
     };
+
+    private _aircraftGroup = _aircraftInfo select 2;
+    _aircraftGroup setBehaviour "CARELESS";
+    _aircraftGroup setCombatBehaviour "CARELESS";
+    _aircraftGroup setCombatMode "BLUE";
 
     private _exfilPosition = [
         [1,1,1],
