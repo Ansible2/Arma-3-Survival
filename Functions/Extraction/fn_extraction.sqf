@@ -311,8 +311,8 @@ _landingPositions apply {
                 sleep 2;
                 (count (call CBAP_fnc_players)) isEqualTo (count BLWK_playersInExtractAircraft)
             };
-
-            (_this select 0) move (_aircraft getVariable ["BLWK_exfilPosition",_exfilPosition])
+            private _aircraft = _this select 0;
+            _aircraft move (_aircraft getVariable ["BLWK_exfilPosition",_exfilPosition])
         }
     ] call KISKA_fnc_heliLand;
 };
