@@ -48,8 +48,6 @@ if (!(_aircraft isKindOf "Helicopter") AND {!(_aircraft isKindOf "VTOL_Base_F")}
 	false
 };
 
-// disable aceX hc transfer
-[group (currentPilot _aircraft),true] call KISKA_fnc_ACEX_setHCTransfer;
 
 // move command only supports positions, not objects
 if (_landingPosition isEqualType objNull) then {
