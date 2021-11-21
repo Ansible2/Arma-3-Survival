@@ -313,7 +313,7 @@ _landingPositions apply {
             };
 
             private _aircraft = _this select 0;
-            _aircraft move (_aircraft getVariable ["BLWK_exfilPosition",_exfilPosition])
+            _aircraft move (_aircraft getVariable ["BLWK_exfilPosition",_exfilPosition]);
 
             [] spawn BLWK_fnc_finishedExtraction;
         }
