@@ -24,6 +24,6 @@ if (!isServer OR !canSuspend) exitWith {};
 
 if (BLWK_timeBetweenRounds > 0) then {
 	private _params = [BLWK_timeBetweenRounds,15,10];
-	_params remoteExec ["KISKA_fnc_countdown",-2]
+	_params remoteExec ["KISKA_fnc_countdown",-2];
 	_params call KISKA_fnc_countdown;
 };
