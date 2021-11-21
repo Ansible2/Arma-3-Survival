@@ -55,7 +55,7 @@ private _fn_getNumberOfCargoSeats = {
     _totalSeats - _crewSeats;
 };
 
-private _transportHeliClasses = BLWK_friendlyFaction_map get TRANSPORT_HELI_FACTION_MAP_ID;
+private _transportHeliClasses = BLWK_friendlyFactionMap get TRANSPORT_HELI_FACTION_MAP_ID;
 private _transportHeliClass = "";
 private _transportSeatCount = -1;
 private _cargoSeatsCount = 0;
