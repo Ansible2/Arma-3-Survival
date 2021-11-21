@@ -254,6 +254,7 @@ _landingPositions apply {
     _aircraft flyInHeight 50;
     _aircraft lockDriver true;
 
+
     _aircraft addEventHandler ["GetIn", {
     	params ["_aircraft", "", "_unit"];
 
