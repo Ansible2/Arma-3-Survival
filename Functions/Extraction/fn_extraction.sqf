@@ -204,6 +204,8 @@ BLWK_mainCrate setPos _centerPosition;
 {
     private _markerName = "BLWK_extractionMarker_" + (str _forEachIndex);
     private _marker = createMarkerLocal [_markerName,_x];
+    _marker setMarkerShapeLocal "ICON";
+    _marker setMarkerTypeLocal "hd_dot";
     _marker setMarkerText ("Extraction LZ " +  (str(_forEachIndex + 1)));
     missionNamespace setVariable [_markerName,_marker];
 
@@ -249,9 +251,8 @@ _landingPositions apply {
     BLWK_extractionAircraft pushBack _aircraft;
     _aircraft allowDamage false;
     _aircraft setCaptive true;
-    _aircraft lock 3; // keep players from piloting
     _aircraft flyInHeight 50;
-
+    _aircraft lockDriver true;
 
     _aircraft addEventHandler ["GetIn", {
     	params ["_aircraft", "", "_unit"];
@@ -280,6 +281,10 @@ _landingPositions apply {
         _x disableAI "AUTOCOMBAT";
         _x disableAI "FSM";
         _x disableAI "TARGET";
+        private _turret = _aircraft unitTurret _x;
+        if (_turret isNotEqualTo [] AND {_turret isNotEqualTo [-1]}) then {
+            _aircraft lockTurret [_turret,true];
+        };
     };
 
     private _aircraftGroup = _aircraftInfo select 2;
@@ -294,10 +299,12 @@ _landingPositions apply {
     ] call CBAP_fnc_randPos;
     _aircraft setVariable ["BLWK_exfilPosition",_exfilPosition];
 
+
+
     [
         _aircraft,
         _x,
-        "LAND",
+        "GET IN",
         true,
         {
             waitUntil {
