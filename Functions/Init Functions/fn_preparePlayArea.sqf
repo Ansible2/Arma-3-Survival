@@ -50,7 +50,7 @@ BLWK_playAreaMarker setMarkerSizeLocal [BLWK_playAreaRadius, BLWK_playAreaRadius
 BLWK_playAreaMarker setMarkerColor "ColorWhite";
 
 
-call BLWK_fnc_cacheEnemyMenSpawnPositons;
+call BLWK_fnc_cacheEnemyMenSpawnPositions;
 
 
 // cache enemy vehicle spawn positions
