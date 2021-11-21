@@ -187,6 +187,10 @@ if (BLWK_extractionHintsEnabled) then {
 /* ----------------------------------------------------------------------------
 	Teleport
 ---------------------------------------------------------------------------- */
+// need to wait or else players will get auto placed at BLWK_playAreaCenter due to enforce area script
+missionNamespace setVariable ["BLWK_enforceArea",false,true];
+sleep 3;
+
 BLWK_playAreaCenter = _centerPosition;
 [20,200,250,275] call BLWK_fnc_cacheEnemyMenSpawnPositions;
 

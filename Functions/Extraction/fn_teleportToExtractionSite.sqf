@@ -36,15 +36,9 @@ if (!canSuspend) exitWith {
 params ["_position"];
 
 LAYER_NAME cutText ["Teleporting To Extraction Site...","BLACK OUT",FADE_SPEED];
-sleep FADE_SPEED + 1;
+uiSleep FADE_SPEED + 1;
 
 private _teleportPos = [_position, RAND_POS_RADIUS] call CBAP_fnc_randPos;
-missionNamespace setVariable ["BLWK_enforceArea",false];
-
-
-waitUntil {
-    !(missionNamespace getVariable ["BLWK_enforceAreaRunning",false]);
-};
 
 
 // _teleportPos is a 2d position ([1,1])
