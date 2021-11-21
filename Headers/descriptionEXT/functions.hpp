@@ -107,6 +107,8 @@ class BLWK
 		{};
 		class extraction
 		{};
+		class finishedExtraction
+		{};
 		class teleportToExtractionSite
 		{};
 	};
