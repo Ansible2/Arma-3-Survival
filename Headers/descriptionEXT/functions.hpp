@@ -98,6 +98,21 @@ class BLWK
 		{};
 	};
 
+	class Extraction
+	{
+		file = "Functions\Extraction";
+		class callingForExtraction
+		{};
+		class cancelExtraction
+		{};
+		class extraction
+		{};
+		class finishedExtraction
+		{};
+		class teleportToExtractionSite
+		{};
+	};
+
 	class Init
 	{
 		file = "Functions\Init Functions";
@@ -219,6 +234,8 @@ class BLWK
 		{};
 		class doMagRepack
 		{};
+		class errorNotification
+		{};
 		class getEnemyVehicleClasses
 		{};
 		class getFriendlyVehicleClass
@@ -234,6 +251,10 @@ class BLWK
 		class hintDroppedDelete
 		{};
 		class lootReveal
+		{};
+		class notify
+		{};
+		class notification
 		{};
 		class optreMedicalToVanilla
 		{};
@@ -490,6 +511,8 @@ class BLWK
 		file = "Functions\Waves";
 		class addToMustKillArray
 		{};
+		class cacheEnemyMenSpawnPositions
+		{};
 		class cleanUpTheDead
 		{};
 		class clearMustKillArray
@@ -506,7 +529,7 @@ class BLWK
 		{};
 		class startWave
 		{};
-		class startWaveCountdownFinal
+		class startWaveCountdown
 		{};
 	};
 };
@@ -519,6 +542,8 @@ class CBAP //ported CBA functions
 		class addWaypoint
 		{};
 		class clearWaypoints
+		{};
+		class directCall
 		{};
 		class getArea
 		{};

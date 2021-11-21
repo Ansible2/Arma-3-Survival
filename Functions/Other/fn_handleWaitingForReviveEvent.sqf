@@ -45,12 +45,12 @@ private _fn_addReviveAction = {
 		{},
 		{},
 		{
-			_caller removeItem "Medikit";				
+			_caller removeItem "Medikit";
 
 			// revives player for BIS revive system
 			["BLWK_reviveOnStateVar",1,_caller] call BIS_fnc_reviveOnState;
-			
-			hint "Reived from your medkit";
+
+			["Reived from your medkit"] call BLWK_fnc_notification;
 
 			// make the player invincible for 30 seconds to avoid BS
 			[_caller] spawn {
@@ -72,7 +72,7 @@ private _fn_addReviveAction = {
 
 // while still in incapacitatedState
 while {sleep 0.5; !(incapacitatedState _unit isEqualTo "") AND {alive _unit}} do {
-	
+
 	if ("Medikit" in (items _unit)) then {
 		// add action if medkit now present
 		if !(_actionAvailabile) then {

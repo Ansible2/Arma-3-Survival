@@ -88,4 +88,21 @@ if !(hasInterface) exitWith {};
 ] call BLWK_fnc_addSurvivalDiaryEntry;
 
 
+[
+	[
+		"Extraction",
+		"
+			Once an extraction begins, players will be teleported to a new random(ish) site that they must defend prior to being picked up by one or many helicopters.
+			If an extraction is manually requested, the start of the next wave will be when players are teleported.
+			<br/>
+			<br/>
+			<execute expression='call BLWK_fnc_callingForExtraction'>Call For Extraction</execute>
+			<br/>
+			<br/>
+			<execute expression='call BLWK_fnc_cancelExtraction'>Cancel Extraction Call</execute>
+		"
+	]
+] call BLWK_fnc_addSurvivalDiaryEntry;
+
+
 nil

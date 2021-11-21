@@ -27,19 +27,7 @@ call BLWK_fnc_spawnLoot;
 
 [] spawn BLWK_fnc_handleUnconsciousAiEvent;
 
-
-if (BLWK_timeBetweenRounds > 0) then {
-
-	if (BLWK_timeBetweenRounds > 15) then {
-		uisleep (BLWK_timeBetweenRounds - 15);
-		remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
-		uisleep 15;
-	} else {
-		[BLWK_timeBetweenRounds] remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
-		uisleep BLWK_timeBetweenRounds;
-	};
-
-};
+call BLWK_fnc_startWaveCountdown;
 
 [] spawn BLWK_fnc_startWave;
 

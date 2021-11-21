@@ -15,9 +15,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		[] spawn BLWK_fnc_preparePlayArea;
-
     (end)
 
 Author(s):
@@ -26,10 +24,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_preparePlayArea";
 
-#define NUMBER_OF_INFANTRY_SPAWN_POSITIONS 15
 #define NUMBER_OF_VEHICLE_SPAWN_POSITIONS 5
 #define MIN_VEHICLE_SPAWN_AREA 20
-
 
 if (!isServer) exitWith {};
 
@@ -54,20 +50,7 @@ BLWK_playAreaMarker setMarkerSizeLocal [BLWK_playAreaRadius, BLWK_playAreaRadius
 BLWK_playAreaMarker setMarkerColor "ColorWhite";
 
 
-// cache enemy infantry spawn positions
-private _AISpawnPositionsArray = [];
-private _positionToPushBack = [];
-private _minRadius = BLWK_playAreaRadius + 50;
-private _maxRadius = BLWK_playAreaRadius + 100;
-// used for AI inftantry in BLWK_fnc_pathing_checkUnitDistance
-_maxDist = BLWK_playAreaRadius + 125;
-missionNamespace setVariable ["BLWK_maxDistanceFromPlayArea",_maxDist,BLWK_theAIHandlerOwnerID];
-while {count _AISpawnPositionsArray < NUMBER_OF_INFANTRY_SPAWN_POSITIONS} do {
-	_positionToPushBack = [BLWK_playAreaCenter, _minRadius, _maxRadius, 0, 0] call BIS_fnc_findSafePos;
-	_AISpawnPositionsArray pushBackUnique _positionToPushBack;
-};
-// give the spawn positions to whomever will be handling AI (server or headless client)
-missionNamespace setVariable ["BLWK_infantrySpawnPositions",_AISpawnPositionsArray,BLWK_theAIHandlerOwnerID];
+call BLWK_fnc_cacheEnemyMenSpawnPositions;
 
 
 // cache enemy vehicle spawn positions

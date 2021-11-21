@@ -33,7 +33,9 @@ params [
 ];
 
 
-// wait for array to be cleared
+/* ----------------------------------------------------------------------------
+	Clean must kill array
+---------------------------------------------------------------------------- */
 /*
 	it's rare, but if enemies die too quickly,
 	this can cause overlap in the next wave of enemies.
@@ -46,6 +48,9 @@ waitUntil {
 	false
 };
 
+/* ----------------------------------------------------------------------------
+	Clear Dropped Items
+---------------------------------------------------------------------------- */
 if (_clearDroppedItems) then {
 
 	private _weaponHolders = BLWK_playAreaCenter nearObjects ["weaponHolder",250];
@@ -60,23 +65,44 @@ if (_clearDroppedItems) then {
 
 };
 
-// update wave number
+
+/* ----------------------------------------------------------------------------
+	Update wave info
+---------------------------------------------------------------------------- */
 private _previousWaveNum = missionNamespace getVariable ["BLWK_currentWaveNumber",0];
 missionNamespace setVariable ["BLWK_currentWaveNumber", _previousWaveNum + 1,true];
 
 missionNamespace setVariable ["BLWK_inBetweenWaves",false,true];
 missionNamespace setVariable ["BLWK_initialWaveSpawnComplete",false];
 
-call BLWK_fnc_decideWaveType;
 
-// loot is spawned before the wave starts at round 1
-if (BLWK_currentWaveNumber > BLWK_startingFromWaveNumber) then {
-	// this will also clean up previous loot
-	call BLWK_fnc_spawnLoot;
+/* ----------------------------------------------------------------------------
+	Decide Wave Type/Handle Extraction
+---------------------------------------------------------------------------- */
+if (missionNamespace getVariable ["BLWK_extractionQueued",false]) then {
+	call BLWK_fnc_extraction;
+
+} else {
+	call BLWK_fnc_decideWaveType;
+
+	// loot is spawned before the wave starts at round 1
+	if (BLWK_currentWaveNumber > BLWK_startingFromWaveNumber) then {
+		// this will also clean up previous loot
+		call BLWK_fnc_spawnLoot;
+	};
+
 };
 
+
+/* ----------------------------------------------------------------------------
+	Clean Dead
+---------------------------------------------------------------------------- */
 call BLWK_fnc_cleanUpTheDead;
 
+
+/* ----------------------------------------------------------------------------
+	Make sure enemies have spawned
+---------------------------------------------------------------------------- */
 // check to make sure there are actually units inside the wave array before looping
 // or that all initial units are spawned
 waitUntil {
@@ -88,13 +114,17 @@ waitUntil {
 	false
 };
 
+
 // log wave
 [["Start Wave: ",BLWK_currentWaveNumber],false] call KISKA_fnc_log;
 
 // invoke wave start event
 [missionNamespace,"BLWK_onWaveStart"] remoteExecCall ["BIS_fnc_callScriptedEventHandler",0];
 
-// loop to check wave end
+
+/* ----------------------------------------------------------------------------
+	Check for wave end
+---------------------------------------------------------------------------- */
 waitUntil {
 	if (call BLWK_fnc_isWaveCleared) exitWith {
 		[] spawn BLWK_fnc_endWave;

@@ -10,15 +10,15 @@ Description:
 
 Parameters:
 	0: _isDefectorWave : <BOOL> - Will this be a wave of defectors
+	1: _totalNumEnemiesToSpawnDuringWave : <NUMBER> - The number of units that will spawn in the wave
+		if less than BASE_ENEMY_NUMBER, total will be auto calculated
 
 Returns:
 	ARRAY - the units created
 
 Examples:
     (begin example)
-
 		[false] call BLWK_fnc_createStdWaveInfantry;
-
     (end)
 
 Author(s):
@@ -28,7 +28,8 @@ Author(s):
 #define BASE_ENEMY_NUMBER 2
 
 params [
-	["_isDefectorWave",false,[true]]
+	["_isDefectorWave",false,[true]],
+	["_totalNumEnemiesToSpawnDuringWave",-1,[123]]
 ];
 
 private _fn_getAvailableEnemyLists = {
@@ -65,10 +66,11 @@ private _fn_getAvailableEnemyLists = {
 
 // get the total enemy number for this round
 private _availableMenClassesWeighted = call _fn_getAvailableEnemyLists;
-private _totalNumEnemiesToSpawnDuringWave = BASE_ENEMY_NUMBER * ((BLWK_enemiesPerWaveMultiplier * BLWK_currentWaveNumber) + 1);
-_totalNumEnemiesToSpawnDuringWave = _totalNumEnemiesToSpawnDuringWave + (BLWK_enemiesPerPlayerMultiplier * (count (call CBAP_fnc_players)));
-_totalNumEnemiesToSpawnDuringWave = round _totalNumEnemiesToSpawnDuringWave;
-
+if (_totalNumEnemiesToSpawnDuringWave < BASE_ENEMY_NUMBER) then {
+	_totalNumEnemiesToSpawnDuringWave = BASE_ENEMY_NUMBER * ((BLWK_enemiesPerWaveMultiplier * BLWK_currentWaveNumber) + 1);
+	_totalNumEnemiesToSpawnDuringWave = _totalNumEnemiesToSpawnDuringWave + (BLWK_enemiesPerPlayerMultiplier * (count (call CBAP_fnc_players)));
+	_totalNumEnemiesToSpawnDuringWave = round _totalNumEnemiesToSpawnDuringWave;
+};
 
 
 private "_selectedEnemyLevelTemp";
@@ -103,4 +105,6 @@ for "_i" from 1 to _numStartingEnemies do {
 };
 
 missionNamespace setVariable ["BLWK_initialWaveSpawnComplete",true];
+
+
 _units

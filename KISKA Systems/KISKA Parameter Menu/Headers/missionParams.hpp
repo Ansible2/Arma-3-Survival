@@ -291,6 +291,40 @@ class KISKA_missionParams
 		};
 	};
 
+	class Extraction
+	{
+		title = "Extraction";
+
+		class BLWK_extractionEnabled : yes_no_paramBase
+		{
+			title = "Enable Extraction";
+			tooltip = "After completing the final wave, players will be teleported to a random location to defend before being picked up to complete the mission. This does not disable the admin/host's ability to call for an extraction from the map";
+			default = DEFAULT_TRUE;
+		};
+		class BLWK_extractionHintsEnabled : yes_no_paramBase
+		{
+			title = "Hints For Extraction";
+			tooltip = "Players get notifications during the extraction wave to help them better understand how things will work (for newer players)";
+			default = DEFAULT_TRUE;
+		};
+		class BLWK_extractionSetUpTime : sliderParamBase
+		{
+			title = "Time To Setup Base";
+			tooltip = "Once players have been teleported to the extraction site, how long should they have until enemies start attacking them?";
+			min = 1;
+			max = 300;
+			default = 60;
+		};
+		class BLWK_timeTillExtraction : sliderParamBase
+		{
+			title = "Extraction Defense Time";
+			tooltip = "This is how long players will have to defend the extraction area until helicopters are dispatched to pick them up.";
+			min = 60;
+			max = 600;
+			default = 240;
+		};
+	};
+
 	class Factions
 	{
 		title = "Factions";

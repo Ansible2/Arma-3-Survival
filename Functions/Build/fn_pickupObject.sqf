@@ -30,7 +30,7 @@ if (!hasInterface OR {!canSuspend}) exitWith {};
 
 // if they have an object in hand
 if !(isNil "BLWK_heldObject") exitWith {
-	hint "Can't pick up two objects Superman";
+	["Can't pick up two objects Superman"] call BLWK_fnc_notification;
 };
 
 params [
@@ -76,12 +76,12 @@ missionNamespace setVariable ["BLWK_heldObject",_object];
 
 	waitUntil {
 		if (
-			isNil "BLWK_heldObject" OR 
-			{!(alive _player)} OR 
-			{incapacitatedState _player isNotEqualTo ""} OR 
+			isNil "BLWK_heldObject" OR
+			{!(alive _player)} OR
+			{incapacitatedState _player isNotEqualTo ""} OR
 			{_player getVariable ["ace_isUnconscious",false]}
 		) exitWith {
-			
+
 			// check to see if object was already dropped (if the fnc was already called, BLWK_heldObjectActionIDs will have been set to nil)
 			if (!isNil "BLWK_heldObjectActionIDs") then {
 				[_object] call BLWK_fnc_placeObject;

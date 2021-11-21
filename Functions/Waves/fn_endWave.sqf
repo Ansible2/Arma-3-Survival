@@ -36,9 +36,21 @@ if (_waveEndEvent isNotEqualTo "") then {
 
 
 // check for mission complete
-if (BLWK_currentWaveNumber isEqualTo BLWK_maxNumWaves) exitWith {
+private _endMission = false;
+if (BLWK_currentWaveNumber isEqualTo BLWK_maxNumWaves) then {
+	if (BLWK_extractionEnabled) then {
+		call BLWK_fnc_callingForExtraction;
+
+	} else {
+		_endMission = true;
+
+	};
+};
+
+if (_endMission) exitWith {
 	"End2" call BIS_fnc_endMissionServer;
 };
+
 
 
 missionNamespace setVariable ["BLWK_inBetweenWaves",true,true];
@@ -55,7 +67,9 @@ if (_factionQueue isNotEqualTo []) then {
 };
 
 
-// revive the dead players
+/* ----------------------------------------------------------------------------
+ 	Revive downed players
+---------------------------------------------------------------------------- */
 private "_playerTemp";
 _players apply {
 	_playerTemp = _x;
@@ -87,7 +101,9 @@ _players apply {
 };
 
 
-// clear any dropped items if required
+/* ----------------------------------------------------------------------------
+	Clear dropped items
+---------------------------------------------------------------------------- */
 private _clearDroppedItems = false;
 if (((BLWK_currentWaveNumber + 1) mod BLWK_deleteDroppedItemsEvery) isEqualTo 0) then {
 	_clearDroppedItems = true;
@@ -102,18 +118,7 @@ if (((BLWK_currentWaveNumber + 1) mod BLWK_deleteDroppedItemsEvery) isEqualTo 0)
 // invoke wave end event
 [missionNamespace,"BLWK_onWaveEnd"] remoteExecCall ["BIS_fnc_callScriptedEventHandler",0];
 
-// count down to next wave
-if (BLWK_timeBetweenRounds > 0) then {
+call BLWK_fnc_startWaveCountdown;
 
-	if (BLWK_timeBetweenRounds > 15) then {
-		uiSleep (BLWK_timeBetweenRounds - 15);
-		remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
-		uiSleep 15;
-	} else {
-		[BLWK_timeBetweenRounds] remoteExec ["BLWK_fnc_startWaveCountDownFinal",BLWK_allClientsTargetID];
-		uiSleep BLWK_timeBetweenRounds;
-	};
-
-};
 
 [_clearDroppedItems] spawn BLWK_fnc_startWave;

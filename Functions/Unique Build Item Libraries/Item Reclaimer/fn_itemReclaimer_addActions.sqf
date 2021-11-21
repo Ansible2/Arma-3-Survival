@@ -51,24 +51,24 @@ _reclaimerObject addAction [
 
 
 [
-	_reclaimerObject,											
-	"Reclaim Items",										
-	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\refuel_ca.paa",	
-	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\refuel_ca.paa",	
-	"_this distance _target < 3",						
-	"_caller distance _target < 3",						
-	{},													
-	{},													
+	_reclaimerObject,
+	"Reclaim Items",
+	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\refuel_ca.paa",
+	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\refuel_ca.paa",
+	"_this distance _target < 3",
+	"_caller distance _target < 3",
+	{},
+	{},
 	{
 		[_this select 0] call BLWK_fnc_itemReclaimer_reclaim;
-		hint "Items Reclaimed";
-	},				
-	{},													
-	[],													
-	1,													
-	200,												
-	false,												
-	false											
+		["Items Reclaimed"] call BLWK_fnc_notification;
+	},
+	{},
+	[],
+	1,
+	200,
+	false,
+	false
 ] call BIS_fnc_holdActionAdd;
 
 

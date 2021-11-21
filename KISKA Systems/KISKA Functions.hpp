@@ -83,6 +83,8 @@ class KISKA
 		{};
 		class classTurretsWithGuns
 		{};
+		class countdown
+		{};
 		class deleteAtArray
 		{};
 		class detectControlKeys
@@ -101,6 +103,8 @@ class KISKA
 		{};
     	class getVectorToTarget
 		{};
+		class heliLand
+		{};
 		class isAdminOrHost
     	{};
 		class isMainMenu
@@ -108,6 +112,8 @@ class KISKA
 		class isPatchLoaded
 		{};
 		class log
+		{};
+		class markBorder
 		{};
 		class paraTroopers
 		{};

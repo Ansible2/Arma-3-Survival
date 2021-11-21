@@ -24,7 +24,7 @@ scriptName "BLWK_fnc_teleportToExtractionSite";
 
 #define LAYER_NAME "BLWK_extractionFade"
 #define FADE_SPEED 3
-#define RAND_POS_RADIUS 20;
+#define RAND_POS_RADIUS 20
 
 if (!hasInterface) exitWith {};
 
@@ -35,17 +35,15 @@ if (!canSuspend) exitWith {
 
 params ["_position"];
 
-LAYER_NAME cutText ["Teleporting To Extraction Site...","BLACK IN",FADE_SPEED];
-sleep 3;
+LAYER_NAME cutText ["Teleporting To Extraction Site...","BLACK OUT",FADE_SPEED];
+uiSleep FADE_SPEED + 1;
 
 private _teleportPos = [_position, RAND_POS_RADIUS] call CBAP_fnc_randPos;
-missionNamespace setVariable ["BLWK_enforceArea",false];
 
 
-waitUntil {
-    !(missionNamespace getVariable ["BLKW_enforceAreaRunning",false]);
-};
-
-
+// _teleportPos is a 2d position ([1,1])
 player setPos _teleportPos;
 LAYER_NAME cutText ["Teleporting To Extraction Site...","BLACK IN",FADE_SPEED];
+
+
+nil

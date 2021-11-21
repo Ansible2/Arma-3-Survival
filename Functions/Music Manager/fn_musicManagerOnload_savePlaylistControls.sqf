@@ -44,12 +44,15 @@ _saveButtonControl ctrlAddEventHandler ["ButtonClick",{
 			_savedPlaylistArray set [_loadComboSelectedIndex,[_playlistName,+BLWK_PUB_CURRENT_PLAYLIST]];
 			profileNamespace setVariable ["BLWK_musicManagerPlaylists",_savedPlaylistArray];
 			saveProfileNamespace;
+
 		} else {
-			hint (parseText "There are no entries in the Current Playlist.<br/>Save an empty list with Save As or Delete the list");
+			["There are no entries in the Current Playlist.<br/>Save an empty list with Save As or Delete the list"] call BLWK_fnc_errorNotification;
+
 		};
 
 	} else {
-		hint "You need a selection to be made in the Load Playlist drop down";
+		["You need a selection to be made in the Load Playlist drop down"] call BLWK_fnc_errorNotification;
+
 	};
 
 }];
@@ -70,7 +73,8 @@ _saveAsButtonControl ctrlAddEventHandler ["ButtonClick",{
 		[] spawn BLWK_fnc_musicManager_updateLoadCombo;
 
 	} else {
-		hint "Playlists require at least one character for a name";
+		["Playlists require at least one character for a name"] call BLWK_fnc_errorNotification;
+		
 	};
 
 }];

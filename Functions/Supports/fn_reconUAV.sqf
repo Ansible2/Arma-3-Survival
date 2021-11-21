@@ -51,9 +51,9 @@ private _endtime = time + LIFETIME;
 while {sleep UPDATE_TIME; time < _endTime} do {
 	//_unitsArray = units side OPFOR;
 	_unitsArray = missionNamespace getVariable [WAVE_ENEMIES_ARRAY,[]];
-	
+
 	if !(_unitsArray isEqualTo []) then {
-		
+
 		{
 			_markerName_temp = [RECON_MARKER,_forEachIndex] joinString "_";
 			_markerExists_temp = (getMarkerType _markerName_temp) != "";
@@ -66,7 +66,7 @@ while {sleep UPDATE_TIME; time < _endTime} do {
 					_marker_temp setMarkerTypeLocal "mil_triangle";
 					_marker_temp setMarkerSizeLocal [MARKER_SIZE,MARKER_SIZE];
 					_marker_temp setMarkerColor "colorOPFOR";
-					
+
 					_createdMarkers pushBack _marker_temp;
 					//diag_log (["created marker:",_marker_temp] joinString " ");
 				};
@@ -90,8 +90,11 @@ _createdMarkers apply {
 	if ((getMarkerType _x) != "") then {
 		//diag_log (["The marker isn't already deleted, deleting marker:",_x] joinString " ");
 		deleteMarker _x;
-	}; 
+	};
 };
 
 missionNamespace setVariable ["BLWK_reconUavActive",false,true];
-[parseText "<t color='#2adb59'>Recon UAV is no longer active</t>"] remoteExecCall ["hint",BLWK_allClientsTargetId];
+["Recon UAV is no longer active"] remoteExecCall ["BLWK_fnc_notification",BLWK_allClientsTargetId];
+
+
+nil
