@@ -197,7 +197,7 @@ if !(localNamespace getVariable ["BLWK_notificationLoopRunning",false]) then {
                 _x ctrlCommit (FADE_IN_TIME);
             };
 
-            sleep NOTIFICATION_LIFETIME - FADE_OUT_TIME;
+            sleep _lifetime - FADE_OUT_TIME;
 
             _controls apply {
                 _x ctrlSetFade 1;
