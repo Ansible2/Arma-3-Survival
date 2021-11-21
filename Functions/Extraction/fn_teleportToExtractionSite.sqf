@@ -44,3 +44,6 @@ private _teleportPos = [_position, RAND_POS_RADIUS] call CBAP_fnc_randPos;
 // _teleportPos is a 2d position ([1,1])
 player setPos _teleportPos;
 LAYER_NAME cutText ["Teleporting To Extraction Site...","BLACK IN",FADE_SPEED];
+
+
+nil
