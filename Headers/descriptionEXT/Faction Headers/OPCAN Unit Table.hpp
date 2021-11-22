@@ -15,9 +15,9 @@ class OPCAN_CGC_faction
 		"LM_OPCAN_CGC_RTO_WDL"
 	};
 	lightCars[] = {
-		"LM_OPCAN_HOG_MG_CMA_WDL",
-		"LM_OPCAN_HOG_AT_CMA_WDL",
-		"LM_OPCAN_HOG_G_CMA_WDL",
+		"OPTRE_M12_LRV",
+		"OPTRE_M12A1_LRV",
+		"OPTRE_M12G1_LRV",
 		"LM_OPCAN_Meerkat_CGC_HMG"
 	};
 	heavyCars[] = {
@@ -29,7 +29,7 @@ class OPCAN_CGC_faction
 		"LM_OPCAN_MGS_AR_WDL"
 	};
 	heavyArmor[] = {
-		"LM_OPCAN_M808_AR_WDL"
+		"OPTRE_M808L"
 	};
 	transportHelicopters[] = {
 		"LM_OPCAN_UH144_CGC"
@@ -64,8 +64,9 @@ class OPCAN_UNSC_ARMY_D_faction
 		"LM_OPCAN_UNSCA_Assaultman_DES"
 	};
 	lightCars[] = {
-		"LM_OPCAN_HOG_MG_AR_DES",
-		"LM_OPCAN_HOG_G_AR_DES"
+		"OPTRE_M12_LRV",
+		"OPTRE_M12A1_LRV",
+		"OPTRE_M12G1_LRV"
 	};
 	heavyCars[] = {
 		"LM_OPCAN_ARV_AR_HMG_DES",
@@ -93,8 +94,9 @@ class OPCAN_UNSC_ARMY_WDL_faction : OPCAN_CGC_faction
 	displayName = "OPCAN - UNSC Army Woodland";
 
 	lightCars[] = {
-		"LM_OPCAN_HOG_G_AR_WDL",
-		"LM_OPCAN_HOG_MG_AR_WDL"
+		"OPTRE_M12_LRV",
+		"OPTRE_M12A1_LRV",
+		"OPTRE_M12G1_LRV"
 	};
 	heavyCars[] = {
 		"LM_OPCAN_ARV_AR_HMG_WDL",
@@ -149,9 +151,9 @@ class OPCAN_UNSC_MARINE_WDL_faction
 	displayName = "OPCAN - UNSC Marine Woodland";
 
 	lightCars[] = {
-		"LM_OPCAN_HOG_G_MC_WDL",
-		"LM_OPCAN_HOG_AT_MC_WDL",
-		"LM_OPCAN_HOG_MG_MC_WDL"
+		"OPTRE_M12_LRV",
+		"OPTRE_M12A1_LRV",
+		"OPTRE_M12G1_LRV"
 	};
 	heavyCars[] = {
 		"LM_OPCAN_ARV_MC_HMG_WDL",
@@ -258,8 +260,8 @@ class OPCAN_URA_faction : CSAT_pacific_faction
 
 	lightCars[] = {
 		"OPTRE_M12_LRV_ins",
-		"OPTRE_M12A1_LRV_ins",
-		"LM_OPCAN_Meerkat_KOS_HMG"
+		"OPTRE_M12_TD_ins",
+		"OPTRE_M12A1_LRV_ins"
 	};
 	heavyCars[] = {
 		"LM_OPCAN_ARV_CMA_HMG_WDL"
@@ -301,6 +303,7 @@ class OPCAN_SU_faction : OPCAN_URA_faction
 	lightCars[] = {
 		"LM_OPCAN_Rake_SU_HMG",
 		"OPTRE_M12_LRV_ins",
+		"OPTRE_M12_TD_ins",
 		"OPTRE_M12A1_LRV_ins",
 		"LM_OPCAN_Meerkat_KOS_HMG"
 	};
@@ -354,6 +357,7 @@ class OPCAN_FRIDENS_faction : OPCAN_URA_faction
 
 	lightCars[] = {
 		"OPTRE_M12_LRV_ins",
+		"OPTRE_M12_TD_ins",
 		"OPTRE_M12A1_LRV_ins",
 		"LM_OPCAN_Meerkat_KOS_HMG",
 		"LM_OPCAN_Rake_FRI_HMG"
