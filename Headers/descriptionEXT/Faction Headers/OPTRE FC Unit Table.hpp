@@ -1,13 +1,17 @@
 class OPTRE_FC_COVENANT_faction
 {
 	displayName = "OPTRE FC - Covenant";
-	
+
 	infantry[] = {
 		"OPTRE_FC_Elite_FieldMarshal",
 		"OPTRE_FC_Elite_HonorGuard",
 		"OPTRE_FC_Elite_Major",
+		"OPTRE_FC_Elite_MinorAA",
+		"OPTRE_FC_Elite_MinorAT",
 		"OPTRE_FC_Elite_Minor",
+		"OPTRE_FC_Elite_Minor2",
 		"OPTRE_FC_Elite_SpecOps",
+		"OPTRE_FC_Elite_SpecOps2",
 		"OPTRE_FC_Elite_Ultra",
 		"OPTRE_FC_Elite_Zealot"
 	};
