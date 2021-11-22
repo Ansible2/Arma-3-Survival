@@ -97,6 +97,49 @@ class SOGPF_usmc : SOGPF_usArmy
     };
 };
 
+class SOGPF_SEAL_det_bravo : SOGPF_usmc
+{
+    displayName = "S.O.G. PF - SEALs Detachment Bravo";
+
+    infantry[] = {
+        "vn_b_men_seal_38",
+        "vn_b_men_seal_22",
+        "vn_b_men_seal_41",
+        "vn_b_men_seal_19",
+        "vn_b_men_seal_40",
+        "vn_b_men_seal_21",
+        "vn_b_men_seal_37",
+        "vn_b_men_seal_20",
+        "vn_b_men_seal_39",
+        "vn_b_men_seal_18"
+    };
+};
+
+class SOGPF_SEAL_team : SOGPF_usmc
+{
+    displayName = "S.O.G. PF - SEAL Team";
+
+    infantry[] = {
+        "vn_b_men_seal_10",
+        "vn_b_men_seal_11",
+        "vn_b_men_seal_14",
+        "vn_b_men_seal_15",
+        "vn_b_men_seal_07",
+        "vn_b_men_seal_03",
+        "vn_b_men_seal_09",
+        "vn_b_men_seal_08",
+        "vn_b_men_seal_12",
+        "vn_b_men_seal_05",
+        "vn_b_men_seal_16",
+        "vn_b_men_seal_17",
+        "vn_b_men_seal_13",
+        "vn_b_men_seal_02",
+        "vn_b_men_seal_06",
+        "vn_b_men_seal_04",
+        "vn_b_men_seal_01"
+    };
+};
+
 class SOGPF_mikeForce : SOGPF_usArmy
 {
     displayName = "S.O.G. PF - Mike Force";
