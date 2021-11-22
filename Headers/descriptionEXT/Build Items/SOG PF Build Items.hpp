@@ -346,3 +346,18 @@ class Land_vn_b_trench_firing_02 : Land_vn_b_trench_cross_02
     attachmentY = 11;
     rotation = 270;
 };
+
+class vn_b_navy_static_l60mk3 : BLWK_genericTurretBase
+{
+    price = 1100;
+    attachmentX = 0;
+    attachmentY = 4;
+    attachmentZ = 2;
+};
+class vn_b_navy_static_l70mk2 : BLWK_genericTurretBase
+{
+    price = 2500;
+    attachmentX = 0.25;
+    attachmentY = 2.25;
+    attachmentZ = 2;
+};
