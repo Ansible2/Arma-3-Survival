@@ -191,7 +191,7 @@ missionNamespace setVariable ["BLWK_enforceArea",false,true];
 sleep 3;
 
 BLWK_playAreaCenter = _centerPosition;
-[20,450,500,525] call BLWK_fnc_cacheEnemyMenSpawnPositions;
+[20,300,350,375] call BLWK_fnc_cacheEnemyMenSpawnPositions;
 
 [_centerPosition] remoteExec ["BLWK_fnc_teleportToExtractionSite",_players];
 // _centerPosition is a 2d position ([1,1])
