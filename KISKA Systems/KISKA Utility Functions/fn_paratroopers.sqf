@@ -31,6 +31,14 @@ Author(s):
 ---------------------------------------------------------------------------- */
 scriptName "KISKA_fnc_paratroopers";
 
+#define WAIT_TILL_NEAR(pos,dist,checkRate) \
+	waitUntil { \
+		if ((_aircraft distance2D pos) <= dist) exitWith {true}; \
+		if (isNull _aircraft) exitWith {true}; \
+		sleep checkRate; \
+		false \
+	};
+
 if (!canSuspend) exitWith {
 	["Needs to be run in scheduled; Exiting to scheduled...",true] call KISKA_fnc_log;
 	_this spawn KISKA_fnc_paratroopers;
@@ -48,7 +56,9 @@ params [
 	["_invincibleOnDrop",false,[true]]
 ];
 
-// check params
+/* ----------------------------------------------------------------------------
+	Check params
+---------------------------------------------------------------------------- */
 if ((_dropZone isEqualType objNull AND {isNull _dropZone}) OR {_dropzone isEqualTo []}) exitWith {
 	[[str _dropZone," is an invalid _dropZone"],true] call KISKA_fnc_log;
 	nil
@@ -70,6 +80,7 @@ if (_spawnDistance < 0) exitWith {
 	nil
 };
 
+
 // make sure vehicle can hold the number of units to drop and adjust accordingly
 private _unitCount = count _unitsThatCanDrop;
 if (_numToDrop isEqualTo -1 OR {_unitCount < _numToDrop}) then {
@@ -77,7 +88,7 @@ if (_numToDrop isEqualTo -1 OR {_unitCount < _numToDrop}) then {
 };
 private _vehicleCargoCapacity = ([_dropVehicleClass,true] call BIS_fnc_crewCount) - ([_dropVehicleClass,false] call BIS_fnc_crewCount);
 if (_numToDrop > _vehicleCargoCapacity) then {
-	[["vehicle class: ",_dropVehicleClass," has ",_vehicleCargoCapacity," cargo positions, requested",_numToDrop,"to be dropped!"],true] call KISKA_fnc_log;
+	[["vehicle class: ",_dropVehicleClass," has ",_vehicleCargoCapacity," cargo positions, requested ",_numToDrop," to be dropped!"],false] call KISKA_fnc_log;
 	_numToDrop = _vehicleCargoCapacity;
 };
 
@@ -89,17 +100,21 @@ if (_flyDirection < 0) then {
 	_flyDirection = round (random 360);
 };
 
+
 // get spawn position
 private _flyFromDirection = [_flyDirection + 180] call CBAP_fnc_simplifyAngle;
 _dropZone set [2,_flyInHeight];
 private _spawnPosition = _dropZone getPos [_spawnDistance,_flyFromDirection];
 _spawnPosition set [2,_flyInHeight];
 
-// create vehicle
+
+/* ----------------------------------------------------------------------------
+	Create vehicle to drop units
+---------------------------------------------------------------------------- */
 private _vehicleArray = [_spawnPosition,_flyDirection,_dropVehicleClass,_side] call KISKA_fnc_spawnVehicle;
 private _aircraft = _vehicleArray select 0;
 allCurators apply {
-	[_x,[[_aircraft],true]] remoteExecCall ["addCuratorEditableObjects",2];
+	[_x,[[_aircraft],true]] remoteExec ["addCuratorEditableObjects",2];
 };
 _aircraft flyInHeight _flyInHeight;
 private _aircraftGroup = _vehicleArray select 2;
@@ -113,40 +128,34 @@ _unitsThatCanDrop apply {
 	_unitsToDrop pushBack _x;
 };
 
-// move to drop zone
-(leader _aircraftGroup) doMove _dropZone;
-private _deletePosition = _dropZone getPos [2000,_flyDirection];
 
-waitUntil {
-	if ((_aircraft distance2D _dropZone) <= 100) exitWith {true};
-	if (isNull _aircraft) exitWith {true};
-	sleep 0.25;
-	false
-};
+/* ----------------------------------------------------------------------------
+	Move to drop zone
+---------------------------------------------------------------------------- */
+private _leader = leader _aircraftGroup;
+_leader doMove _dropZone;
+
+// get the ai near the DZ, if just used a position past the dz (_deletePosition), the AI might veer off course
+WAIT_TILL_NEAR(_dropZone,200,0.25)
 if (isNull _aircraft) exitWith {};
 
+// now fly past the dz and when close enough, drop units so there is a decent spread
+private _deletePosition = _dropZone getPos [2000,_flyDirection];
+_leader doMove _deletePosition;
+WAIT_TILL_NEAR(_dropZone,100,0.25)
 // get units out of aircraft
 [_unitsToDrop,_invincibleOnDrop] call KISKA_fnc_staticLine;
-// move to deletion point
-[
-	_aircraftGroup,
-	_deletePosition,
-	-1,
-	"MOVE",
-	"SAFE",
-	"BLUE",
-	"FULL",
-	"NO CHANGE",
-	"
-		private _aircraft = objectParent this;
-		thisList apply {
-			_aircraft deleteVehicleCrew _x;
-		};
-		deleteVehicle _aircraft;
-	",
-	[0,0,0],
-	100
-] call CBAP_fnc_addWaypoint;
+_leader doMove _deletePosition;
+
+
+/* ----------------------------------------------------------------------------
+	Delete Aircraft and Crew
+---------------------------------------------------------------------------- */
+WAIT_TILL_NEAR(_deletePosition,200,2)
+(_vehicleArray select 1) apply {
+	_aircraft deleteVehicleCrew _x;
+};
+deleteVehicle _aircraft;
 
 
 nil
