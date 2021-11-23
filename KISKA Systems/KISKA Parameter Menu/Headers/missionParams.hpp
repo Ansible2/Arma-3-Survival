@@ -106,7 +106,7 @@ class KISKA_missionParams
 			min = 0.01;
 			max = 1;
 			incriment = 0.01;
-			default = 0.2;
+			default = 0.8;
 		};
 		class BLWK_skillIncriment : sliderParamBase
 		{
@@ -121,7 +121,7 @@ class KISKA_missionParams
 		{
 			title = "Max AI Skill Level";
 			tooltip = "The max an AI Skill level can be.";
-			default = 0.6;
+			default = 1;
 		};
 
 		class BLWK_aimSpeedMod : sliderParamBase
