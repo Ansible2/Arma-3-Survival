@@ -17,10 +17,9 @@ Examples:
     (end)
 
 Author:
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "KISKA_fnc_setCrew"
-scriptName SCRIPT_NAME;
+scriptName "KISKA_fnc_setCrew";
 
 params [
 	["_crew",grpNull,[[],grpNull,objNull]],
@@ -39,7 +38,7 @@ if (_crew isEqualTo []) exitWith {
 
 if (isNull _vehicle OR {!(alive _vehicle)}) exitWith {
 	[["Found that ",_vehicle," is either null or dead already, exiting..."]] call KISKA_fnc_log;
-	
+
 	if (_deleteCrewIfNull) then {
 		[["Deleting crew of ",_vehicle,":",_crew]] call KISKA_fnc_log;
 		_crew apply {
@@ -50,14 +49,23 @@ if (isNull _vehicle OR {!(alive _vehicle)}) exitWith {
 	false
 };
 
-_crew apply {
-	private _movedIn = _x moveInAny _vehicle;
 
-	if !(_movedIn) then {
-		[["Deleted excess unit: ",_x]] call KISKA_fnc_log;
-		deleteVehicle _x
+[_crew,_vehicle] spawn {
+	params ["_crew","_vehicle"];
+
+	_crew apply {
+		// crew moved in too fast after init seems to be unreliable
+		// they may not end up in the vehicle
+		sleep 0.25;
+		private _movedIn = _x moveInAny _vehicle;
+
+		if !(_movedIn) then {
+			[["Deleted excess unit: ",_x]] call KISKA_fnc_log;
+			deleteVehicle _x
+		};
 	};
 };
+
 
 
 true
