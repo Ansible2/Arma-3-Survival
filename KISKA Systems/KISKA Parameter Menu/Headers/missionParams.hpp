@@ -313,7 +313,7 @@ class KISKA_missionParams
 			tooltip = "Once players have been teleported to the extraction site, how long should they have until enemies start attacking them?";
 			min = 1;
 			max = 300;
-			default = 60;
+			default = 120;
 		};
 		class BLWK_timeTillExtraction : sliderParamBase
 		{
@@ -321,7 +321,7 @@ class KISKA_missionParams
 			tooltip = "This is how long players will have to defend the extraction area until helicopters are dispatched to pick them up.";
 			min = 60;
 			max = 600;
-			default = 240;
+			default = 360;
 		};
 	};
 
