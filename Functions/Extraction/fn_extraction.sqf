@@ -55,7 +55,7 @@ private _fn_getNumberOfCargoSeats = {
     _totalSeats - _crewSeats;
 };
 
-private _transportHeliClasses = BLWK_friendlyFactionMap get TRANSPORT_HELI_FACTION_MAP_ID;
+private _transportHeliClasses = BLWK_friendlyFaction_map get TRANSPORT_HELI_FACTION_MAP_ID;
 private _transportHeliClass = "";
 private _transportSeatCount = -1;
 private _cargoSeatsCount = 0;
@@ -226,7 +226,7 @@ BLWK_mainCrate setPos _centerPosition;
 missionNamespace setVariable ["BLWK_numRespawnTickets",0,true];
 [false,NUMBER_OF_ENEMIES] remoteExec ["BLWK_fnc_createStdWaveInfantry",BLWK_theAIHandlerOwnerID];
 
-["Enemies are inbound to your site, hold the position!"] remoteExec ["BLWK_fnc_notification",call CBAP_fnc_players];
+["SpecialWarning",["Enemies are inbound to your site, hold the position!"]] remoteExec ["BIS_fnc_showNotification", _players];
 
 sleep BLWK_timeTillExtraction;
 
