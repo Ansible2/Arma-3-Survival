@@ -50,6 +50,7 @@ if (isServer) then {
     BLWK_theAIHandlerOwnerID = owner BLWK_theAIHandlerEntity;
     // having an owner id for the AI handler makes using setVariable remotely possible
     publicVariable "BLWK_theAIHandlerOwnerID";
+    [["Found AI Handler with Owner ID of ",BLWK_theAIHandlerOwnerID],false] call KISKA_fnc_log;
 
 
     // LOCATION LIST OPTIONS
@@ -142,9 +143,6 @@ if (isServer OR {!hasInterface}) then {
             };
         };
     };
-
-    BLWK_infantrySpawnPositions = [];
-    BLWK_vehicleSpawnPositions = [];
 
     // used for chaning medical items of OPTRE units (biofoam to FAKs)
     BLWK_isOptreLoaded = ["OPTRE_core"] call KISKA_fnc_ispatchLoaded;

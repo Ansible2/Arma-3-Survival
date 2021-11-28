@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_preparePlayArea
+Function: BLWK_fnc_cacheEnemyMenSpawnPositions
 
 Description:
 	Saves a number of positions for enemy Men AI to spawn at around the
@@ -34,6 +34,7 @@ params [
     ["_maxAiTravelDistance",BLWK_playAreaRadius + 125,[123]]
 ];
 
+["Starting cache of infantry spawn positions",false] call KISKA_fnc_log;
 // used for AI inftantry in BLWK_fnc_pathing_checkUnitDistance
 missionNamespace setVariable ["BLWK_maxDistanceFromPlayArea",_maxAiTravelDistance,BLWK_theAIHandlerOwnerID];
 
@@ -48,3 +49,7 @@ while {count _AISpawnPositionsArray < _numberOfPositions} do {
 
 // give the spawn positions to whomever will be handling AI (server or headless client)
 missionNamespace setVariable ["BLWK_infantrySpawnPositions",_AISpawnPositionsArray,BLWK_theAIHandlerOwnerID];
+["Completed cache of infantry spawn positions",false] call KISKA_fnc_log;
+
+
+nil
