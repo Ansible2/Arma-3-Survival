@@ -190,7 +190,7 @@ if (BLWK_extractionHintsEnabled) then {
 missionNamespace setVariable ["BLWK_enforceArea",false,true];
 sleep 3;
 
-BLWK_playAreaCenter = _centerPosition;
+missionNamespace setVariable ["BLWK_playAreaCenter",_centerPosition,true];
 [20,300,350,375] call BLWK_fnc_cacheEnemyMenSpawnPositions;
 
 [_centerPosition] remoteExec ["BLWK_fnc_teleportToExtractionSite",_players];
