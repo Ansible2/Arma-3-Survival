@@ -20,8 +20,11 @@ Examples:
 		call BLWK_fnc_prepareGlobals
     (end)
 ---------------------------------------------------------------------------- */
-// BLWK_startingWaveNumber is a seperate variable to avoid having saves of mission params mid-mission affected by BLWK_currentWaveNumber being increased
-BLWK_currentWaveNumber = BLWK_startingWaveNumber;
+// JIP players have wave number synced already
+if (isNil "BLWK_currentWaveNumber") then {
+    // BLWK_startingWaveNumber is a seperate variable to avoid having saves of mission params mid-mission affected by BLWK_currentWaveNumber being increased
+    BLWK_currentWaveNumber = BLWK_startingWaveNumber;
+};
 
 if (isServer) then {
     // We don't need to constantly check if the server is dedicated, and we only want to run things like
