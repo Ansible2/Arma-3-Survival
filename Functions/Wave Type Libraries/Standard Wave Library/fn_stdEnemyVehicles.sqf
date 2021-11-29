@@ -130,10 +130,9 @@ private _fn_spawnAVehicle = {
 	_group deleteGroupWhenEmpty true;
 	_group allowFleeing 0;
 
-	// CIPHER COMMENT: May need to clear the crews previous waypoints
 	_crew joinSilent _group;
 	[_group,_vehicle] call KISKA_fnc_setCrew;
-	[_group, BLWK_mainCrate, 20, "SAD", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
+	_group move (getPosATL BLWK_mainCrate);
 
 	[BLWK_zeus, [[_vehicle],false]] remoteExecCall ["addCuratorEditableObjects",2];
 

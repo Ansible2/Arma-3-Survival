@@ -7,6 +7,7 @@ Description:
 Parameters:
 	0: _crew : <GROUP, ARRAY, or OBJECT> - The units to move into the vehicle
 	1: _vehicle : <OBJECT> - The vehicle to put units into
+	2: _deleteCrewIfNull : <BOOL> - If the vehicle turns out to be null, the provided crew will be deleted
 
 Returns:
 	<BOOL> - True if crew was set, false if problem encountered
@@ -21,11 +22,17 @@ Author:
 ---------------------------------------------------------------------------- */
 scriptName "KISKA_fnc_setCrew";
 
+if (!canSuspend) exitWith {
+	_this spawn KISKA_fnc_setCrew;
+};
+
+
 params [
 	["_crew",grpNull,[[],grpNull,objNull]],
 	["_vehicle",objNull,[objNull]],
 	["_deleteCrewIfNull",true,[true]]
 ];
+
 
 if (_crew isEqualType grpNull) then {_crew = units _crew};
 
@@ -40,7 +47,7 @@ if (isNull _vehicle OR {!(alive _vehicle)}) exitWith {
 	[["Found that ",_vehicle," is either null or dead already, exiting..."]] call KISKA_fnc_log;
 
 	if (_deleteCrewIfNull) then {
-		[["Deleting crew of ",_vehicle,":",_crew]] call KISKA_fnc_log;
+		[["Deleting crew of null vehicle: ",_crew]] call KISKA_fnc_log;
 		_crew apply {
 			deleteVehicle _x;
 		};
@@ -50,22 +57,17 @@ if (isNull _vehicle OR {!(alive _vehicle)}) exitWith {
 };
 
 
-[_crew,_vehicle] spawn {
-	params ["_crew","_vehicle"];
+// crew moved in too fast after init seems to be unreliable
+// they may not end up in the vehicle
+sleep 0.5;
+_crew apply {
+	private _movedIn = _x moveInAny _vehicle;
 
-	_crew apply {
-		// crew moved in too fast after init seems to be unreliable
-		// they may not end up in the vehicle
-		sleep 0.25;
-		private _movedIn = _x moveInAny _vehicle;
-
-		if !(_movedIn) then {
-			[["Deleted excess unit: ",_x]] call KISKA_fnc_log;
-			deleteVehicle _x
-		};
+	if !(_movedIn) then {
+		[["Deleted excess unit: ",_x]] call KISKA_fnc_log;
+		deleteVehicle _x
 	};
 };
-
 
 
 true
