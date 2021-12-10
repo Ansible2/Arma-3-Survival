@@ -1076,6 +1076,11 @@ class KISKA_missionParams
 			title = "Randomize Hostile Weapons";
 			default = DEFAULT_FALSE;
 		};
+		class BLWK_multipleEnemyDirections : yes_no_paramBase
+		{
+			title = "Multiple Enemy Spawn Directions";
+			default = DEFAULT_TRUE;
+		};
 		class BLWK_maxPistolOnlyWaves : sliderParamBase
 		{
 			title = "Hostiles only use pistols until wave";
