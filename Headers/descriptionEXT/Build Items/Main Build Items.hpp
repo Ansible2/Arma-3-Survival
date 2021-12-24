@@ -66,6 +66,7 @@ class BLWK_buildableItems
 		price = 25;
 		category = PLATFORMS_CATEGORY;
 		attachmentY = 6;
+		invincible = 1;
 	};
 
 	class Land_ConcretePanels_02_single_v1_F: BLWK_genericBuildItemBase
@@ -73,6 +74,7 @@ class BLWK_buildableItems
 		price = 100;
 		category = PLATFORMS_CATEGORY;
 		attachmentY = 5;
+		invincible = 1;
 	};
 
 	class Land_BagFence_End_F: BLWK_genericBuildItemBase

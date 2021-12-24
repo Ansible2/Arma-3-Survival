@@ -20,9 +20,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		[aStalkerGroup,BLWK_mainCrate,20,{false}] spawn BLWK_fnc_startStalkingPlayers;
-
     (end)
 
 Author(s):
@@ -58,7 +56,7 @@ if (_conditionToEndStalking isEqualTo {}) then {
 // register stalkers
 private _playerToStalk = call BLWK_fnc_getAPlayerToStalk;
 if (isNull _playerToStalk) exitWith {
-	[_stalkerGroup, _defaultPosition, 10, "SAD", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
+	[_stalkerGroup,_defaultPosition] remoteExec ["move", groupOwner _stalkerGroup];
 };
 [_playerToStalk,_stalkerGroup] call BLWK_fnc_registerStalkers;
 _stalkerGroup setVariable [DO_STALK_VAR,true];
@@ -82,7 +80,7 @@ _stalkerGroupUnits apply {
 					_numberOfStalkers = _numberOfStalkers - 1;
 					_stalkedPlayer setVariable [STALKER_COUNT_VAR,_numberOfStalkers];
 				};
-				
+
 			};
 		}];
 
@@ -93,11 +91,10 @@ _stalkerGroupUnits apply {
 
 
 // do the stalking
-while {!(isNull _stalkerGroup) AND {_stalkerGroup getVariable DO_STALK_VAR} } do {
+while {!(isNull _stalkerGroup) AND (_stalkerGroup getVariable DO_STALK_VAR) } do {
 
-	[_stalkerGroup] call CBAP_fnc_clearWaypoints;
-	[_stalkerGroup, _playerToStalk, 10, "MOVE", "AWARE", "RED"] call CBAP_fnc_addWaypoint;
-	//_stalkerGroup move (getPosWorld _playerToStalk);
+	[_stalkerGroup,(getPosATL _playerToStalk)] remoteExec ["move", groupOwner _stalkerGroup];
+	[_stalkerGroup,"full"] remoteExec ["setSpeedMode",groupOwner _stalkerGroup];
 
 	// check if there are any units left in the stalker group to do the stalking
 	_stalkerGroupUnits = units _stalkerGroup;
@@ -113,7 +110,7 @@ while {!(isNull _stalkerGroup) AND {_stalkerGroup getVariable DO_STALK_VAR} } do
 	};
 
 	// check if stalking should end or if nobody is available for stalking (BLWK_fnc_getAPlayerToStalk will return null object)
-	if (([_stalkerGroup] call _conditionToEndStalking) OR {isNull _playerToStalk}) exitWith {
+	if (isNull _playerToStalk OR {[_stalkerGroup] call _conditionToEndStalking}) exitWith {
 		[_stalkerGroup,_defaultPosition] call BLWK_fnc_stopStalking;
 	};
 };

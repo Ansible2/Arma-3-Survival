@@ -33,8 +33,9 @@ private _bombersArray = _unitsToWorkWith select [0,_numberOfBombers];
 private "_unitGroupTemp";
 _bombersArray apply {
 	_unitGroupTemp = group _x;
-	[_unitGroupTemp] call CBAP_fnc_clearWaypoints;
-	[_unitGroupTemp, BLWK_mainCrate, 5, "MOVE", "CARELESS"] call CBAP_fnc_addWaypoint;
+	_unitGroupTemp setBehaviour "CARELESS";
+	[_unitGroupTemp,(getPosATL BLWK_mainCrate)] remoteExec ["move", groupOwner _unitGroupTemp];
+	[_unitGroupTemp,"full"] remoteExec ["setSpeedMode",groupOwner _unitGroupTemp];
 
 	removeAllWeapons _x;
 

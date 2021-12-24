@@ -49,42 +49,32 @@ while {BLWK_doDetectCollision AND {alive _unit}} do {
 	if (isNull (objectParent _unit)) then {
 		_position = getposASL _unit;
 		_objects = lineIntersectsObjs [_position,AGLToASL (_unit getRelPos [1,0]), objNull, _unit, false, 4];
-		
+
 		if (_objects isNotEqualTo []) then {
 
 			// check if any encountered object is a built one
 			_index = _objects findIf {
-				!(isNull _x) AND 
+				!(isNull _x) AND
 				{_x getVariable ["BLWK_collisionObject",false]}
 			};
-			
+
 			if (_index != -1) then {
 				private _collisionObject = _objects select _index;
 				_moveToPosition = (_unit getRelPos [20,180]);
 				// push the unit back from the object
 				_unit setPosATL (_unit getRelPos [2,180]);
-				
+
 				_unitGroup setCombatMode "BLUE";
 				_unitGroup setBehaviour "SAFE";
+				_unitGroup setSpeeedMode "FULL";
 				_unit disableAI "TARGET";
 				_unit disableAI "AUTOTARGET";
-				//_unit disableAI "AUTOCOMBAT";
-				
-				[group _unit] call CBAP_fnc_clearWaypoints;
-			/*	
-				waitUntil {
-					if (unitReady _unit) exitWith {true};
-					sleep 0.5;
-					false
-				};
-			*/
-				//_unit move _moveToPosition;
 
 				waitUntil {
 					if (isNull _unit OR {!alive _unit}) exitWith {true};
 					if (_unit distance2D _collisionObject >= 10) exitWith {true};
 					// tell the unit to move away
-					_unit move _moveToPosition;
+					[_unit,_moveToPosition] remoteExec ["move", _unit];
 					sleep 0.1;
 					false
 				};
@@ -92,7 +82,7 @@ while {BLWK_doDetectCollision AND {alive _unit}} do {
 				// return unit state
 				if (!isNull _unit AND {alive _unit}) then {
 					_unitGroup setCombatMode "YELLOW";
-					_unitGroup setBehaviour "AWARE";	
+					_unitGroup setBehaviour "AWARE";
 					_unit enableAI "TARGET";
 					_unit enableAI "AUTOTARGET";
 					//_unit enableAI "AUTOCOMBAT";
@@ -113,7 +103,7 @@ while {BLWK_doDetectCollision AND {alive _unit}} do {
 	if (isNull (objectParent _unit)) then {
 		_position = getposASL _unit;
 		_objects = lineIntersectsObjs [_position,AGLToASL (_unit getRelPos [1,0]), objNull, _unit, false, 4];
-		
+
 		if !(_objects isEqualTo []) then {
 
 			// check if any encountered object is a built one

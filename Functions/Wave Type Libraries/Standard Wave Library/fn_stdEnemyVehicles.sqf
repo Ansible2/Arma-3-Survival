@@ -132,7 +132,7 @@ private _fn_spawnAVehicle = {
 
 	_crew joinSilent _group;
 	[_group,_vehicle] call KISKA_fnc_setCrew;
-	_group move (getPosATL BLWK_mainCrate);
+	_crew doMove (getPosATL BLWK_mainCrate);
 
 	[BLWK_zeus, [[_vehicle],false]] remoteExecCall ["addCuratorEditableObjects",2];
 

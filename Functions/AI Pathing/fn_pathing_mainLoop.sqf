@@ -30,7 +30,8 @@ Author(s):
 #define RESET_POSITION\
 	_groupLeader setPos (selectRandom BLWK_infantrySpawnPositions);\
 	sleep 1;\
-	[_groupLeader,position BLWK_mainCrate] remoteExecCall ["move",_groupLeader];
+	[_groupLeader,position BLWK_mainCrate] remoteExecCall ["move",_groupLeader];\
+	[group _groupLeader,"full"] remoteExec ["setSpeedMode",_groupLeader];
 
 #define LOOP_VAR_NAME "BLWK_runPathingLoop"
 scriptName "BLWK_fnc_pathing_mainLoop";
