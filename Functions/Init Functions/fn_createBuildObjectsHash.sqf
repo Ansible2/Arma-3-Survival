@@ -15,16 +15,13 @@ Returns:
 
 Examples:
     (begin example)
-
 		BLWK_buildableObjectsHash = [missionConfigFile >> "BLWK_buildableItems"] call BLWK_fnc_createBuildObjectsHash;
-
     (end)
 
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "BLWK_fnc_createBuildObjectsHash"
-scriptName SCRIPT_NAME;
+scriptName "BLWK_fnc_createBuildObjectsHash";
 
 params [
 	["_configToSearch",configNull,[configNull]]
