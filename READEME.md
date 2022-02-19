@@ -2,7 +2,19 @@
 Survival started as a project to simply fix some bugs with [Dynamic Bulwarks](https://steamcommunity.com/sharedfiles/filedetails/?id=1402462003). It, however, morphed into a far larger endeavor to do not only a complete rewrite but to upgrade many of the user-facing systems within it.
 <br>
 <br>
-This project is still regularly looked at for improvements even if it appears inactive, this is simply due to more pressing matters at that time and/or temporary fatigue with the project. Forking is encouraged.
+No addons are required to play and/or edit the mission.
+<br>
+<br>
+The mission works with any map, all that is required is to change the map name of the resulting PBO after building, e.g. change the `Altis` here `Arma3Survival.Altis.pbo` to `Malden` (`Arma3Survival.Malden.pbo`) if you want to play on Malden.
+<br>
+<br>
+The project is still regularly looked at for improvements even if it appears inactive, this is simply due to more pressing matters at that time and/or temporary fatigue with the project. Forking is encouraged.
+
+## How To Build
+1. The easiest method is to clone the mission contents into one of your Arma 3 Mission editing folders which are by default in `C:\Users\%userprofile%\Documents\Arma 3\missions` or `C:\Users\%userprofile%\Documents\Arma 3\mpmissions`.
+2. Adjust the folder name to `Arma3Survival.Atlis` (or whatever legal name you choose so Arma can recognize it).
+3. Open the mission in the editor and then go to `Scenario` -> `Export` -> `Export To Multiplayer`.
+4. The PBO can be found in your Arma 3 installation folder's `MPMissions` folder (`...\steamapps\common\Arma 3\MPMissions`).
 
 ## Wiki
 If you are looking for some general how tos on editing some more of the open aspects of the mission, check the [wiki](https://github.com/Ansible2/Arma-3-Survival/wiki) and you may find answers. Feel free to create an issue that is a question.
