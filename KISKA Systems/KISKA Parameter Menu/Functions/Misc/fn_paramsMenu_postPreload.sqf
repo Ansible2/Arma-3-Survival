@@ -3,7 +3,7 @@
 Function: KISKA_fnc_paramsMenu_postPreload
 
 Description:
-    inits default values if needs for variables
+    Inits values of the mission parameters after preload (briefing map is gone).
 
 Parameters:
 	NONE

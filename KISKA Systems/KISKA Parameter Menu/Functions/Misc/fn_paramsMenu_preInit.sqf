@@ -1,9 +1,10 @@
 #include "..\..\Headers\params menu common defines.hpp"
 /* ----------------------------------------------------------------------------
-Function: KISKA_fnc_paramsMenu_init
+Function: KISKA_fnc_paramsMenu_preInit
 
 Description:
-
+    Adds the preload MissionEventHandler and button to open the parameter menu
+     during the pre-mission briefing map.
 
 Parameters:
 	NONE
@@ -13,7 +14,7 @@ Returns:
 
 Examples:
     (begin example)
-
+        PRE-INIT Function
     (end)
 
 Author:
