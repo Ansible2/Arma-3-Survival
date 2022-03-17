@@ -1,5 +1,6 @@
 class There_is_Only_War_Astra_Militarum_Cad_Combined
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Astra Militarum: Cadian (Combined)";
 
 	heavyArmor[] = {
@@ -121,6 +122,7 @@ class There_is_Only_War_Astra_Militarum_Cad_Combined
 
 class There_is_Only_War_Astra_Militarum_Cad_667th
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Astra Militarum: Cadian 667th";
 
 	heavyArmor[] = {
@@ -163,6 +165,7 @@ class There_is_Only_War_Astra_Militarum_Cad_667th
 
 class There_is_Only_War_Astra_Militarum_Cad_700th
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Astra Militarum: Cadian 700th";
 
 	heavyArmor[] = {
@@ -206,6 +209,7 @@ class There_is_Only_War_Astra_Militarum_Cad_700th
 
 class There_is_Only_War_Astra_Militarum_Cad_776th
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Astra Militarum: Cadian 776th";
 
 	heavyArmor[] = {
@@ -248,6 +252,7 @@ class There_is_Only_War_Astra_Militarum_Cad_776th
 
 class There_is_Only_War_Astra_Militarum_Cad_836th
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Astra Militarum: Cadian 836th";
 
 	heavyArmor[] = {
@@ -290,6 +295,7 @@ class There_is_Only_War_Astra_Militarum_Cad_836th
 
 class There_is_Only_War_Astra_Militarum_DKoK_Combined
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Astra Militarum: Death Korps of Krieg (Combined)";
 
 	heavyArmor[] = {
@@ -422,6 +428,7 @@ class There_is_Only_War_Astra_Militarum_DKoK_Combined
 
 class There_is_Only_War_Astra_Militarum_DKoK_1489th
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Astra Militarum: Death Korps of Krieg 1489th";
 
 	heavyArmor[] = {
@@ -471,6 +478,7 @@ class There_is_Only_War_Astra_Militarum_DKoK_1489th
 
 class There_is_Only_War_Astra_Militarum_DKoK_1490th
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Astra Militarum: Death Korps of Krieg 1490th";
 
 	heavyArmor[] = {
@@ -520,6 +528,7 @@ class There_is_Only_War_Astra_Militarum_DKoK_1490th
 
 class There_is_Only_War_Astra_Militarum_DKoK_1491th
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Astra Militarum: Death Korps of Krieg 1491st";
 
 	heavyArmor[] = {
@@ -569,6 +578,7 @@ class There_is_Only_War_Astra_Militarum_DKoK_1491th
 
 class There_is_Only_War_Astra_Militarum_DKoK_82nd
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Astra Militarum: Death Korps of Krieg 82nd";
 
 	heavyArmor[] = {
@@ -608,6 +618,7 @@ class There_is_Only_War_Astra_Militarum_DKoK_82nd
 
 class There_is_Only_War_Astra_Militarum_MIG_Combined
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Astra Militarum: Mordian Iron Guard (Combined)";
 
 	infantry[] = {
@@ -632,6 +643,7 @@ class There_is_Only_War_Astra_Militarum_MIG_Combined
 
 class There_is_Only_War_Astra_Militarum_MIG_Blue
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Astra Militarum: Mordian Iron Guard (Blue)";
 
 	infantry[] = {
@@ -648,6 +660,7 @@ class There_is_Only_War_Astra_Militarum_MIG_Blue
 
 class There_is_Only_War_Astra_Militarum_MIG_white
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Astra Militarum: Mordian Iron Guard (White)";
 
 	infantry[] = {
@@ -664,6 +677,7 @@ class There_is_Only_War_Astra_Militarum_MIG_white
 
 class There_is_Only_War_Astra_Militarum_C_PDF
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Cadminae PDF Forces";
 
 	infantry[] = {

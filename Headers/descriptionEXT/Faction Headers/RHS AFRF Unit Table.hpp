@@ -1,5 +1,6 @@
 class RHSAFRF_MSV_EMR_faction
 {
+	dependencies[] = { "@RHSAFRF" };
 	displayName = "RHS AFRF - Russia MSV (EMR)";
 	lightCars[] = {
 		"O_LSV_02_armed_black_F",
@@ -94,6 +95,7 @@ class RHSAFRF_MSV_EMR_faction
 
 class RHSAFRF_MSV_FLORA_faction : RHSAFRF_MSV_EMR_faction
 {
+	dependencies[] = { "@RHSAFRF" };
 	displayName = "RHS AFRF - Russia MSV (Flora)";
 
 	infantry[] = {
@@ -117,6 +119,7 @@ class RHSAFRF_MSV_FLORA_faction : RHSAFRF_MSV_EMR_faction
 
 class RHSAFRF_VDV_EMR_faction : RHSAFRF_MSV_EMR_faction
 {
+	dependencies[] = { "@RHSAFRF" };
 	displayName = "RHS AFRF - Russia VDV (EMR)";
 
 	attackHelicopters[] = {
@@ -148,6 +151,7 @@ class RHSAFRF_VDV_EMR_faction : RHSAFRF_MSV_EMR_faction
 
 class RHSAFRF_VDV_EMR_faction_DES : RHSAFRF_VDV_EMR_faction
 {
+	dependencies[] = { "@RHSAFRF" };
 	displayName = "RHS AFRF - Russia VDV (EMR-Des)";
 
 	infantry[] = {
@@ -173,6 +177,7 @@ class RHSAFRF_VDV_EMR_faction_DES : RHSAFRF_VDV_EMR_faction
 
 class RHSAFRF_VDV_FLORA_faction : RHSAFRF_VDV_EMR_faction
 {
+	dependencies[] = { "@RHSAFRF" };
 	displayName = "RHS AFRF - Russia VDV (Flora)";
 
 	infantry[] = {
@@ -195,6 +200,7 @@ class RHSAFRF_VDV_FLORA_faction : RHSAFRF_VDV_EMR_faction
 
 class RHSAFRF_VDV_MFLORA_faction : RHSAFRF_VDV_EMR_faction
 {
+	dependencies[] = { "@RHSAFRF" };
 	displayName = "RHS AFRF - Russia VDV (M-Flora)";
 
 	infantry[] = {
@@ -217,6 +223,7 @@ class RHSAFRF_VDV_MFLORA_faction : RHSAFRF_VDV_EMR_faction
 
 class RHSAFRF_VDV_RECON_faction : RHSAFRF_VDV_EMR_faction
 {
+	dependencies[] = { "@RHSAFRF" };
 	displayName = "RHS AFRF - Russia VDV (RECON)";
 
 	infantry[] = {
@@ -239,6 +246,7 @@ class RHSAFRF_VDV_RECON_faction : RHSAFRF_VDV_EMR_faction
 
 class RHSAFRF_VMF_RECON_faction : RHSAFRF_VDV_EMR_faction
 {
+	dependencies[] = { "@RHSAFRF" };
 	displayName = "RHS AFRF - Russia VMF (RECON)";
 
 	infantry[] = {
@@ -264,6 +272,7 @@ class RHSAFRF_VMF_RECON_faction : RHSAFRF_VDV_EMR_faction
 
 class RHSAFRF_VMF_FLORA_faction : RHSAFRF_VDV_EMR_faction
 {
+	dependencies[] = { "@RHSAFRF" };
 	displayName = "RHS AFRF - Russia VMF (Flora)";
 
 	infantry[] = {
@@ -287,6 +296,7 @@ class RHSAFRF_VMF_FLORA_faction : RHSAFRF_VDV_EMR_faction
 
 class RHSAFRF_VV_OSN_faction : RHSAFRF_VDV_EMR_faction
 {
+	dependencies[] = { "@RHSAFRF" };
 	displayName = "RHS AFRF - Russia VMF (OSN)";
 
 	infantry[] = {

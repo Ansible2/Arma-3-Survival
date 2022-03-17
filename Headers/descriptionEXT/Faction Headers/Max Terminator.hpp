@@ -1,5 +1,6 @@
 class Max_Terminator_Skynet_Army_faction
 {
+	dependencies[] = { "@Max_Terminator" };
 	displayName = "Max Terminator - Skynet Army";
 
 	heavyArmor[] = {
@@ -37,6 +38,7 @@ class Max_Terminator_Skynet_Army_faction
 
 class Max_Terminator_Skynet_Infiltration_faction
 {
+	dependencies[] = { "@Max_Terminator" };
 	displayName = "Max Terminator - Skynet Infiltration Units";
 
 	infantry[] = {
@@ -51,6 +53,7 @@ class Max_Terminator_Skynet_Infiltration_faction
 
 class Max_Terminator_Resistance_faction
 {
+	dependencies[] = { "@Max_Terminator" };
 	displayName = "Max Terminator - Resistance";
 
 	lightCars[] = {

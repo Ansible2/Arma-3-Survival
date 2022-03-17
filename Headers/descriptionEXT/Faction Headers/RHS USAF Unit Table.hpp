@@ -1,5 +1,6 @@
 class RHSUSF_ARMY_DES_faction
 {
+	dependencies[] = { "@RHSUSAF" };
 	displayName = "RHS USAF - US ARMY (Desert)";
 	lightCars[] = {
 		"rhsusf_m1025_d_m2",
@@ -102,6 +103,7 @@ class RHSUSF_ARMY_DES_faction
 
 class RHSUSF_ARMY_DES_CRYE_faction : RHSUSF_ARMY_DES_faction
 {
+	dependencies[] = { "@RHSUSAF" };
 	displayName = "RHS USAF - US ARMY (Desert CRYE)";
 
 	infantry[] = {
@@ -125,6 +127,7 @@ class RHSUSF_ARMY_DES_CRYE_faction : RHSUSF_ARMY_DES_faction
 
 class RHSUSF_ARMY_WDL_faction : RHSUSF_ARMY_DES_faction
 {
+	dependencies[] = { "@RHSUSAF" };
 	displayName = "RHS USAF - US ARMY (Woodland)";
 
 	lightCars[] = {
@@ -221,6 +224,7 @@ class RHSUSF_ARMY_WDL_faction : RHSUSF_ARMY_DES_faction
 
 class RHSUSF_ARMY_WDL_CRYE_faction : RHSUSF_ARMY_DES_faction
 {
+	dependencies[] = { "@RHSUSAF" };
 	displayName = "RHS USAF - US ARMY (Woodland CRYE)";
 
 	infantry[] = {
@@ -244,6 +248,7 @@ class RHSUSF_ARMY_WDL_CRYE_faction : RHSUSF_ARMY_DES_faction
 
 class RHSUSF_ARMY_DES_UCP_faction : RHSUSF_ARMY_DES_faction
 {
+	dependencies[] = { "@RHSUSAF" };
 	displayName = "RHS USAF - US ARMY (Desert UCP)";
 
 	infantry[] = {
@@ -278,6 +283,7 @@ class RHSUSF_ARMY_DES_UCP_faction : RHSUSF_ARMY_DES_faction
 
 class RHSUSF_ARMY_WDL_UCP_faction : RHSUSF_ARMY_WDL_faction
 {
+	dependencies[] = { "@RHSUSAF" };
 	displayName = "RHS USAF - US ARMY (Woodland UCP)";
 
 	infantry[] = {
@@ -312,6 +318,7 @@ class RHSUSF_ARMY_WDL_UCP_faction : RHSUSF_ARMY_WDL_faction
 
 class RHSUSF_ARMY_DES_UCP_CRYE_faction : RHSUSF_ARMY_DES_faction
 {
+	dependencies[] = { "@RHSUSAF" };
 	displayName = "RHS USAF - US ARMY (Desert UCP CRYE)";
 
 	infantry[] = {
@@ -336,6 +343,7 @@ class RHSUSF_ARMY_DES_UCP_CRYE_faction : RHSUSF_ARMY_DES_faction
 
 class RHSUSF_ARMY_WDL_UCP_CRYE_faction : RHSUSF_ARMY_WDL_faction
 {
+	dependencies[] = { "@RHSUSAF" };
 	displayName = "RHS USAF - US ARMY (Woodland UCP CRYE)";
 
 	infantry[] = {
@@ -360,6 +368,7 @@ class RHSUSF_ARMY_WDL_UCP_CRYE_faction : RHSUSF_ARMY_WDL_faction
 
 class RHSUSF_USMC_DES_faction
 {
+	dependencies[] = { "@RHSUSAF" };
 	displayName = "RHS USAF - USMC Infantry (Desert)";
 
 	lightCars[] = {
@@ -434,6 +443,7 @@ class RHSUSF_USMC_DES_faction
 
 class RHSUSF_USMC_WDL_faction : RHSUSF_USMC_DES_faction
 {
+	dependencies[] = { "@RHSUSAF" };
 	displayName = "RHS USAF - USMC Infantry (Woodland)";
 	lightCars[] = {
 		"rhsusf_m1025_w_s_m2",
@@ -494,6 +504,7 @@ class RHSUSF_USMC_WDL_faction : RHSUSF_USMC_DES_faction
 
 class RHSUSF_USMC_WDL_RECON_faction : RHSUSF_USMC_WDL_faction
 {
+	dependencies[] = { "@RHSUSAF" };
 	displayName = "RHS USAF - USMC RECON (Woodland)";
 
 	infantry[] = {
@@ -524,6 +535,7 @@ class RHSUSF_USMC_WDL_RECON_faction : RHSUSF_USMC_WDL_faction
 
 class RHSUSF_USMC_DES_RECON_faction : RHSUSF_USMC_DES_faction
 {
+	dependencies[] = { "@RHSUSAF" };
 	displayName = "RHS USAF - USMC RECON (Desert)";
 
 	infantry[] = {
@@ -554,6 +566,7 @@ class RHSUSF_USMC_DES_RECON_faction : RHSUSF_USMC_DES_faction
 
 class RHSUSF_MARSOC_faction : RHSUSF_USMC_DES_faction
 {
+	dependencies[] = { "@RHSUSAF" };
 	displayName = "RHS USAF - MARSOC";
 	lightCars[] = {
 		"rhsusf_M1084A1R_SOV_M2_D_fmtv_socom",

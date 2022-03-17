@@ -1,5 +1,6 @@
 class CUP_ACR_DES_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Army of the Czech Republic (Desert)";
 
 	lightCars[] = {
@@ -62,6 +63,7 @@ class CUP_ACR_DES_faction
 
 class CUP_ACR_WDL_faction : CUP_ACR_DES_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Army of the Czech Republic (Woodland)";
 
 	lightCars[] = {
@@ -105,6 +107,7 @@ class CUP_ACR_WDL_faction : CUP_ACR_DES_faction
 
 class CUP_ACR_SF_DES_faction : CUP_ACR_DES_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Army of the Czech Republic Special Forces (Desert)";
 
 	infantry[] = {
@@ -120,6 +123,7 @@ class CUP_ACR_SF_DES_faction : CUP_ACR_DES_faction
 
 class CUP_ACR_SF_WDL_faction : CUP_ACR_WDL_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Army of the Czech Republic Special Forces (Woodland)";
 
 	infantry[] = {
@@ -135,6 +139,7 @@ class CUP_ACR_SF_WDL_faction : CUP_ACR_WDL_faction
 
 class CUP_BAF_MTP_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - British Armed Forces (Multicam)";
 
 	lightCars[] = {
@@ -231,6 +236,7 @@ class CUP_BAF_MTP_faction
 
 class CUP_BAF_DES_faction : CUP_BAF_MTP_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - British Armed Forces (Desert)";
 
 	infantry[] = {
@@ -274,6 +280,7 @@ class CUP_BAF_DES_faction : CUP_BAF_MTP_faction
 
 class CUP_BAF_WDL_faction : CUP_BAF_MTP_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - British Armed Forces (Woodland)";
 
 	lightCars[] = {
@@ -349,6 +356,7 @@ class CUP_BAF_WDL_faction : CUP_BAF_MTP_faction
 
 class CUP_GER_DES_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Bundeswehr (Desert)";
 
 	lightCars[] = {
@@ -404,6 +412,7 @@ class CUP_GER_DES_faction
 
 class CUP_GER_WDL_faction : CUP_GER_DES_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Bundeswehr (Woodland)";
 
 	lightCars[] = {
@@ -449,6 +458,7 @@ class CUP_GER_WDL_faction : CUP_GER_DES_faction
 
 class CUP_GER_KSK_DES_faction : CUP_GER_DES_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Bundeswehr KSK (Desert)";
 
 	infantry[] = {
@@ -476,6 +486,7 @@ class CUP_GER_KSK_DES_faction : CUP_GER_DES_faction
 
 class CUP_GER_KSK_WDL_faction : CUP_GER_WDL_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Bundeswehr KSK (Woodland)";
 
 	infantry[] = {
@@ -503,6 +514,7 @@ class CUP_GER_KSK_WDL_faction : CUP_GER_WDL_faction
 
 class CUP_CDF_DES_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Chernarus Defense Forces (Desert)";
 
 	lightCars[] = {
@@ -562,6 +574,7 @@ class CUP_CDF_DES_faction
 
 class CUP_CDF_FST_faction : CUP_CDF_DES_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Chernarus Defense Forces (Forest)";
 
 	infantry[] = {
@@ -587,6 +600,7 @@ class CUP_CDF_FST_faction : CUP_CDF_DES_faction
 
 class CUP_CDF_MNT_faction : CUP_CDF_DES_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Chernarus Defense Forces (Mountain)";
 
 	infantry[] = {
@@ -612,6 +626,7 @@ class CUP_CDF_MNT_faction : CUP_CDF_DES_faction
 
 class CUP_CDF_SNW_faction : CUP_CDF_DES_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Chernarus Defense Forces (Snow)";
 
 	infantry[] = {
@@ -637,6 +652,7 @@ class CUP_CDF_SNW_faction : CUP_CDF_DES_faction
 
 class CUP_HIL_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Horizon Islands Legion";
 
 	lightCars[] = {
@@ -687,6 +703,7 @@ class CUP_HIL_faction
 
 class CUP_HIL_RECON_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Horizon Islands Legion (Recon)";
 
 	infantry[] = {
@@ -705,6 +722,7 @@ class CUP_HIL_RECON_faction
 
 class CUP_HIL_RES_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Horizon Islands Legion (Reservists)";
 
 	infantry[] = {
@@ -726,6 +744,7 @@ class CUP_HIL_RES_faction
 
 class CUP_HIL_SF_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Horizon Islands Legion (Special Forces)";
 
 	infantry[] = {
@@ -748,6 +767,7 @@ class CUP_HIL_SF_faction
 
 class CUP_USARMY_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "";
 
 	transportHelicopters[] = {
@@ -768,6 +788,7 @@ class CUP_USARMY_base
 
 class CUP_USARMY_DES_base : CUP_USARMY_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "";
 
 	lightCars[] = {
@@ -807,6 +828,7 @@ class CUP_USARMY_DES_base : CUP_USARMY_base
 
 class CUP_USARMY_WDL_base : CUP_USARMY_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "";
 
 	lightCars[] = {
@@ -846,6 +868,7 @@ class CUP_USARMY_WDL_base : CUP_USARMY_base
 
 class CUP_USARMY_OCP_DES_faction : CUP_USARMY_DES_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - US Army OCP (Desert)";
 
 	infantry[] = {
@@ -880,6 +903,7 @@ class CUP_USARMY_OCP_DES_faction : CUP_USARMY_DES_base
 
 class CUP_USARMY_OCP_WDL_faction : CUP_USARMY_WDL_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - US Army OCP (Woodland)";
 
 	infantry[] = {
@@ -914,6 +938,7 @@ class CUP_USARMY_OCP_WDL_faction : CUP_USARMY_WDL_base
 
 class CUP_USARMY_OEFCP_DES_faction : CUP_USARMY_DES_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - US Army OEF-CP (Desert)";
 
 	infantry[] = {
@@ -948,6 +973,7 @@ class CUP_USARMY_OEFCP_DES_faction : CUP_USARMY_DES_base
 
 class CUP_USARMY_OEFCP_WDL_faction : CUP_USARMY_WDL_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - US Army OEF-CP (Woodland)";
 
 	infantry[] = {
@@ -982,6 +1008,7 @@ class CUP_USARMY_OEFCP_WDL_faction : CUP_USARMY_WDL_base
 
 class CUP_USARMY_SF_DES_faction : CUP_USARMY_DES_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - US Army Special Forces (Desert)";
 
 	transportHelicopters[] = {
@@ -1008,6 +1035,7 @@ class CUP_USARMY_SF_DES_faction : CUP_USARMY_DES_base
 
 class CUP_USARMY_SF_WDL_faction : CUP_USARMY_WDL_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - US Army Special Forces (Woodland)";
 
 	transportHelicopters[] = {
@@ -1034,6 +1062,7 @@ class CUP_USARMY_SF_WDL_faction : CUP_USARMY_WDL_base
 
 class CUP_USARMY_UCP_DES_faction : CUP_USARMY_DES_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - US Army UCP (Desert)";
 
 	infantry[] = {
@@ -1068,6 +1097,7 @@ class CUP_USARMY_UCP_DES_faction : CUP_USARMY_DES_base
 
 class CUP_USARMY_UCP_WDL_faction : CUP_USARMY_WDL_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - US Army UCP (Woodland)";
 
 	infantry[] = {
@@ -1102,6 +1132,7 @@ class CUP_USARMY_UCP_WDL_faction : CUP_USARMY_WDL_base
 
 class CUP_USMC_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "";
 
 	transportHelicopters[] = {
@@ -1126,6 +1157,7 @@ class CUP_USMC_base
 
 class CUP_USMC_DES_base : CUP_USMC_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "";
 
 	lightCars[] = {
@@ -1157,6 +1189,7 @@ class CUP_USMC_DES_base : CUP_USMC_base
 
 class CUP_USMC_WDL_base : CUP_USMC_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "";
 
 	lightCars[] = {
@@ -1189,6 +1222,7 @@ class CUP_USMC_WDL_base : CUP_USMC_base
 
 class CUP_USMC_DES_faction : CUP_USMC_DES_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - USMC (Desert)";
 
 	infantry[] = {
@@ -1216,6 +1250,7 @@ class CUP_USMC_DES_faction : CUP_USMC_DES_base
 
 class CUP_USMC_WDL_faction : CUP_USMC_WDL_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - USMC (Woodland)";
 
 	infantry[] = {
@@ -1242,6 +1277,7 @@ class CUP_USMC_WDL_faction : CUP_USMC_WDL_base
 
 class CUP_USMC_FR_DES_faction : CUP_USMC_DES_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - USMC Force Recon (Desert)";
 
 	infantry[] = {
@@ -1262,6 +1298,7 @@ class CUP_USMC_FR_DES_faction : CUP_USMC_DES_base
 
 class CUP_USMC_FR_WDL_faction : CUP_USMC_WDL_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - USMC Force Recon (Woodland)";
 
 	infantry[] = {
@@ -1282,6 +1319,7 @@ class CUP_USMC_FR_WDL_faction : CUP_USMC_WDL_base
 
 class CUP_USMC_FROG_DES_faction : CUP_USMC_DES_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - USMC FROG (Desert)";
 
 	infantry[] = {
@@ -1302,6 +1340,7 @@ class CUP_USMC_FROG_DES_faction : CUP_USMC_DES_base
 
 class CUP_USMC_FROG_WDL_faction : CUP_USMC_WDL_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - USMC FROG (Woodland)";
 
 	infantry[] = {
@@ -1326,6 +1365,7 @@ class CUP_USMC_FROG_WDL_faction : CUP_USMC_WDL_base
 
 class CUP_USMC_MARSOC_DES_faction : CUP_USMC_DES_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - MARSOC (Desert)";
 
 	infantry[] = {
@@ -1352,6 +1392,7 @@ class CUP_USMC_MARSOC_DES_faction : CUP_USMC_DES_base
 
 class CUP_USMC_MARSOC_WDL_faction : CUP_USMC_WDL_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - MARSOC (Woodland)";
 
 	infantry[] = {
@@ -1378,6 +1419,7 @@ class CUP_USMC_MARSOC_WDL_faction : CUP_USMC_WDL_base
 
 class CUP_AFRF_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "";
 
 	lightCars[] = {
@@ -1414,6 +1456,7 @@ class CUP_AFRF_base
 
 class CUP_AFRF_WDL_base : CUP_AFRF_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "";
 
 	lightArmor[] = {
@@ -1430,6 +1473,7 @@ class CUP_AFRF_WDL_base : CUP_AFRF_base
 
 class CUP_AFRF_DES_base : CUP_AFRF_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "";
 
 	lightArmor[] = {
@@ -1445,6 +1489,7 @@ class CUP_AFRF_DES_base : CUP_AFRF_base
 
 class CUP_AFRF_SNW_base : CUP_AFRF_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "";
 
 	lightArmor[] = {
@@ -1456,6 +1501,7 @@ class CUP_AFRF_SNW_base : CUP_AFRF_base
 
 class CUP_AFRF_ARID_base : CUP_AFRF_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "";
 
 	lightArmor[] = {
@@ -1469,6 +1515,7 @@ class CUP_AFRF_ARID_base : CUP_AFRF_base
 
 class CUP_AFRF_MSV_MODERN_faction : CUP_AFRF_WDL_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Armed Forces of the Russian Federation (MSV - Modern - EMR)";
 
 	infantry[] = {
@@ -1496,6 +1543,7 @@ class CUP_AFRF_MSV_MODERN_faction : CUP_AFRF_WDL_base
 
 class CUP_AFRF_VDV_MODERN_faction : CUP_AFRF_WDL_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Armed Forces of the Russian Federation (VDV - Modern - EMR)";
 
 	infantry[] = {
@@ -1523,6 +1571,7 @@ class CUP_AFRF_VDV_MODERN_faction : CUP_AFRF_WDL_base
 
 class CUP_AFRF_MSV_EMR_faction : CUP_AFRF_WDL_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Armed Forces of the Russian Federation (MSV - EMR)";
 
 	infantry[] = {
@@ -1550,6 +1599,7 @@ class CUP_AFRF_MSV_EMR_faction : CUP_AFRF_WDL_base
 
 class CUP_AFRF_MSV_TTSKO_faction : CUP_AFRF_DES_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Armed Forces of the Russian Federation (MSV - TTsKO)";
 
 	infantry[] = {
@@ -1577,6 +1627,7 @@ class CUP_AFRF_MSV_TTSKO_faction : CUP_AFRF_DES_base
 
 class CUP_AFRF_MSV_VSR93_faction : CUP_AFRF_WDL_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Armed Forces of the Russian Federation (MSV - VSR-93)";
 
 	infantry[] = {
@@ -1602,6 +1653,7 @@ class CUP_AFRF_MSV_VSR93_faction : CUP_AFRF_WDL_base
 
 class CUP_AFRF_MVD_faction : CUP_AFRF_DES_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Armed Forces of the Russian Federation (MVD)";
 
 	infantry[] = {
@@ -1617,6 +1669,7 @@ class CUP_AFRF_MVD_faction : CUP_AFRF_DES_base
 
 class CUP_AFRF_RATNIK_AUT_faction : CUP_AFRF_ARID_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Armed Forces of the Russian Federation (Ratnik - Autumn)";
 
 	infantry[] = {
@@ -1651,6 +1704,7 @@ class CUP_AFRF_RATNIK_AUT_faction : CUP_AFRF_ARID_base
 
 class CUP_AFRF_RATNIK_BD_faction : CUP_AFRF_ARID_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Armed Forces of the Russian Federation (Ratnik - Beige Digital)";
 
 	infantry[] = {
@@ -1685,6 +1739,7 @@ class CUP_AFRF_RATNIK_BD_faction : CUP_AFRF_ARID_base
 
 class CUP_AFRF_RATNIK_DES_faction : CUP_AFRF_DES_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Armed Forces of the Russian Federation (Ratnik - Desert)";
 
 	infantry[] = {
@@ -1719,6 +1774,7 @@ class CUP_AFRF_RATNIK_DES_faction : CUP_AFRF_DES_base
 
 class CUP_AFRF_RATNIK_SUM_faction : CUP_AFRF_WDL_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Armed Forces of the Russian Federation (Ratnik - Summer)";
 
 	infantry[] = {
@@ -1753,6 +1809,7 @@ class CUP_AFRF_RATNIK_SUM_faction : CUP_AFRF_WDL_base
 
 class CUP_AFRF_RATNIK_SNW_faction : CUP_AFRF_SNW_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Armed Forces of the Russian Federation (Ratnik - Winter)";
 
 	infantry[] = {
@@ -1787,6 +1844,7 @@ class CUP_AFRF_RATNIK_SNW_faction : CUP_AFRF_SNW_base
 
 class CUP_AFRF_SPETSNAZ_AUT_faction : CUP_AFRF_ARID_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Armed Forces of the Russian Federation (Spetsnaz - Autumn)";
 
 	infantry[] = {
@@ -1805,6 +1863,7 @@ class CUP_AFRF_SPETSNAZ_AUT_faction : CUP_AFRF_ARID_base
 
 class CUP_AFRF_SPETSNAZ_SUM_faction : CUP_AFRF_WDL_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Armed Forces of the Russian Federation (Spetsnaz - Summer)";
 
 	infantry[] = {
@@ -1823,6 +1882,7 @@ class CUP_AFRF_SPETSNAZ_SUM_faction : CUP_AFRF_WDL_base
 
 class CUP_AFRF_VDV_EMR_faction : CUP_AFRF_WDL_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Armed Forces of the Russian Federation (VDV - EMR)";
 
 	infantry[] = {
@@ -1850,6 +1910,7 @@ class CUP_AFRF_VDV_EMR_faction : CUP_AFRF_WDL_base
 
 class CUP_AFRF_VDV_TTSKO_faction : CUP_AFRF_DES_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Armed Forces of the Russian Federation (VDV - TTsKO)";
 
 	infantry[] = {
@@ -1877,6 +1938,7 @@ class CUP_AFRF_VDV_TTSKO_faction : CUP_AFRF_DES_base
 
 class CUP_CHDKZ_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Chernarus Movement of the Red Star";
 
 	lightCars[] = {
@@ -1949,6 +2011,7 @@ class CUP_CHDKZ_faction
 
 class CUP_SLA_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "";
 
 	lightCars[] = {
@@ -1990,6 +2053,7 @@ class CUP_SLA_base
 
 class CUP_SLA_FOREST_faction : CUP_SLA_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Sahrani Liberation Army (Forest)";
 
 	infantry[] = {
@@ -2024,6 +2088,7 @@ class CUP_SLA_FOREST_faction : CUP_SLA_base
 
 class CUP_SLA_DESERT_faction : CUP_SLA_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Sahrani Liberation Army (Desert)";
 
 	infantry[] = {
@@ -2053,6 +2118,7 @@ class CUP_SLA_DESERT_faction : CUP_SLA_base
 
 class CUP_SLA_MILITIA_faction : CUP_SLA_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Sahrani Liberation Army (Militia)";
 
 	infantry[] = {
@@ -2075,6 +2141,7 @@ class CUP_SLA_MILITIA_faction : CUP_SLA_base
 
 class CUP_SLA_URBAN_faction : CUP_SLA_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Sahrani Liberation Army (Urban)";
 
 	infantry[] = {
@@ -2104,6 +2171,7 @@ class CUP_SLA_URBAN_faction : CUP_SLA_base
 
 class CUP_TKA_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Takistani Army";
 
 	lightCars[] = {
@@ -2181,6 +2249,7 @@ class CUP_TKA_faction
 
 class CUP_TKM_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Takistani Militia";
 
 	lightCars[] = {
@@ -2244,6 +2313,7 @@ class CUP_TKM_faction
 
 class CUP_PMC_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - ION PMC";
 
 	lightCars[] = {
@@ -2308,6 +2378,7 @@ class CUP_PMC_faction
 
 class CUP_PMC_ARTIC_faction : CUP_PMC_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - ION PMC (Artic)";
 
 	heavyCars[] = {
@@ -2342,6 +2413,7 @@ class CUP_PMC_ARTIC_faction : CUP_PMC_faction
 
 class CUP_NAPA_faction : CUP_CHDKZ_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - National Party of Chernarus";
 
 	lightCars[] = {
@@ -2404,6 +2476,7 @@ class CUP_NAPA_faction : CUP_CHDKZ_faction
 
 class CUP_RACS_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Royal Army Corps of Sahrani";
 
 	lightCars[] = {
@@ -2443,6 +2516,7 @@ class CUP_RACS_base
 };
 class CUP_RACS_DES_faction : CUP_RACS_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Royal Army Corps of Sahrani (Desert)";
 
 	infantry[] = {
@@ -2467,6 +2541,7 @@ class CUP_RACS_DES_faction : CUP_RACS_base
 };
 class CUP_RACS_JUNGLE_faction : CUP_RACS_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Royal Army Corps of Sahrani (Jungle)";
 
 	infantry[] = {
@@ -2491,6 +2566,7 @@ class CUP_RACS_JUNGLE_faction : CUP_RACS_base
 };
 class CUP_RACS_URBAN_faction : CUP_RACS_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Royal Army Corps of Sahrani (Urban)";
 
 	infantry[] = {
@@ -2515,6 +2591,7 @@ class CUP_RACS_URBAN_faction : CUP_RACS_base
 };
 class CUP_RACS_WDL_faction : CUP_RACS_base
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Royal Army Corps of Sahrani (Woodland)";
 
 	infantry[] = {
@@ -2543,6 +2620,7 @@ class CUP_RACS_WDL_faction : CUP_RACS_base
 
 class CUP_TKL_faction : CUP_TKM_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - Takistani Locals";
 
 	infantry[] = {
@@ -2569,6 +2647,7 @@ class CUP_TKL_faction : CUP_TKM_faction
 
 class CUP_UN_DES_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - United Nations (Desert)";
 
 	lightCars[] = {
@@ -2624,6 +2703,7 @@ class CUP_UN_DES_faction
 
 class CUP_UN_FOREST_faction : CUP_UN_DES_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - United Nations (Forest)";
 
 	infantry[] = {
@@ -2645,6 +2725,7 @@ class CUP_UN_FOREST_faction : CUP_UN_DES_faction
 
 class CUP_UN_MNT_faction : CUP_UN_DES_faction
 {
+	dependencies[] = { "@CUP Units", "@CUP Vehicles", "@CUP Weapons" };
 	displayName = "CUP - United Nations (Mountain)";
 
 	infantry[] = {

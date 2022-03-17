@@ -1,5 +1,6 @@
 class OPCAN_CGC_faction
 {
+	dependencies[] = { "@OPCAN 3.0 By Wolf Of Tribute Modding (formerly LM)" };
 	displayName = "OPCAN - Colonial Guard Corps";
 	infantry[] = {
 		"LM_OPCAN_CGC_SL_WDL",
@@ -45,6 +46,7 @@ class OPCAN_CGC_faction
 
 class OPCAN_UNSC_ARMY_D_faction
 {
+	dependencies[] = { "@OPCAN 3.0 By Wolf Of Tribute Modding (formerly LM)" };
 	displayName = "OPCAN - UNSC Army Desert";
 
 	infantry[] = {
@@ -91,6 +93,7 @@ class OPCAN_UNSC_ARMY_D_faction
 
 class OPCAN_UNSC_ARMY_WDL_faction : OPCAN_CGC_faction
 {
+	dependencies[] = { "@OPCAN 3.0 By Wolf Of Tribute Modding (formerly LM)" };
 	displayName = "OPCAN - UNSC Army Woodland";
 
 	lightCars[] = {
@@ -125,6 +128,7 @@ class OPCAN_UNSC_ARMY_WDL_faction : OPCAN_CGC_faction
 
 class OPCAN_UNSC_ARMY_MIXED_faction : OPCAN_UNSC_ARMY_WDL_faction
 {
+	dependencies[] = { "@OPCAN 3.0 By Wolf Of Tribute Modding (formerly LM)" };
 	displayName = "OPCAN - UNSC Army Mixed";
 
 	infantry[] = {
@@ -148,6 +152,7 @@ class OPCAN_UNSC_ARMY_MIXED_faction : OPCAN_UNSC_ARMY_WDL_faction
 
 class OPCAN_UNSC_MARINE_WDL_faction
 {
+	dependencies[] = { "@OPCAN 3.0 By Wolf Of Tribute Modding (formerly LM)" };
 	displayName = "OPCAN - UNSC Marine Woodland";
 
 	lightCars[] = {
@@ -193,6 +198,7 @@ class OPCAN_UNSC_MARINE_WDL_faction
 
 class OPCAN_UNSC_MARINE_CEA_faction : OPCAN_UNSC_MARINE_WDL_faction
 {
+	dependencies[] = { "@OPCAN 3.0 By Wolf Of Tribute Modding (formerly LM)" };
 	displayName = "OPCAN - UNSC Marine CE-A";
 
 	infantry[] = {
@@ -214,6 +220,7 @@ class OPCAN_UNSC_MARINE_CEA_faction : OPCAN_UNSC_MARINE_WDL_faction
 
 class OPCAN_UNSC_MARINE_DES_faction : OPCAN_UNSC_MARINE_WDL_faction
 {
+	dependencies[] = { "@OPCAN 3.0 By Wolf Of Tribute Modding (formerly LM)" };
 	displayName = "OPCAN - UNSC Marine Desert";
 
 	infantry[] = {
@@ -235,6 +242,7 @@ class OPCAN_UNSC_MARINE_DES_faction : OPCAN_UNSC_MARINE_WDL_faction
 
 class OPCAN_UNSC_MARINE_INF_faction : OPCAN_UNSC_MARINE_WDL_faction
 {
+	dependencies[] = { "@OPCAN 3.0 By Wolf Of Tribute Modding (formerly LM)" };
 	displayName = "OPCAN - UNSC Marine Infinite";
 
 	infantry[] = {
@@ -256,6 +264,7 @@ class OPCAN_UNSC_MARINE_INF_faction : OPCAN_UNSC_MARINE_WDL_faction
 
 class OPCAN_URA_faction : CSAT_pacific_faction
 {
+	dependencies[] = { "@OPCAN 3.0 By Wolf Of Tribute Modding (formerly LM)" };
 	displayName = "OPCAN - United Rebel Army";
 
 	lightCars[] = {
@@ -299,6 +308,7 @@ class OPCAN_URA_faction : CSAT_pacific_faction
 
 class OPCAN_SU_faction : OPCAN_URA_faction
 {
+	dependencies[] = { "@OPCAN 3.0 By Wolf Of Tribute Modding (formerly LM)" };
 	displayName = "OPCAN - Secessionist Union";
 	lightCars[] = {
 		"LM_OPCAN_Rake_SU_HMG",
@@ -333,6 +343,7 @@ class OPCAN_SU_faction : OPCAN_URA_faction
 
 class OPCAN_KOSLOVICS_faction : OPCAN_URA_faction
 {
+	dependencies[] = { "@OPCAN 3.0 By Wolf Of Tribute Modding (formerly LM)" };
 	displayName = "OPCAN - Koslovics";
 
 	infantry[] = {
@@ -353,6 +364,7 @@ class OPCAN_KOSLOVICS_faction : OPCAN_URA_faction
 
 class OPCAN_FRIDENS_faction : OPCAN_URA_faction
 {
+	dependencies[] = { "@OPCAN 3.0 By Wolf Of Tribute Modding (formerly LM)" };
 	displayName = "OPCAN - Fridens";
 
 	lightCars[] = {
@@ -384,6 +396,7 @@ class OPCAN_FRIDENS_faction : OPCAN_URA_faction
 
 class OPCAN_FRIDENS_WDL_faction : OPCAN_FRIDENS_faction
 {
+	dependencies[] = { "@OPCAN 3.0 By Wolf Of Tribute Modding (formerly LM)" };
 	displayName = "OPCAN - Fridens Woodland";
 
 	infantry[] = {
@@ -404,6 +417,7 @@ class OPCAN_FRIDENS_WDL_faction : OPCAN_FRIDENS_faction
 
 class OPCAN_FRIDENS_DES_faction : OPCAN_FRIDENS_faction
 {
+	dependencies[] = { "@OPCAN 3.0 By Wolf Of Tribute Modding (formerly LM)" };
 	displayName = "OPCAN - Fridens Desert";
 
 	infantry[] = {
@@ -425,6 +439,7 @@ class OPCAN_FRIDENS_DES_faction : OPCAN_FRIDENS_faction
 
 class OPCAN_CMA_faction : OPCAN_CGC_faction
 {
+	dependencies[] = { "@OPCAN 3.0 By Wolf Of Tribute Modding (formerly LM)" };
 	displayName = "OPCAN - Colonial Military Authority";
 
 	infantry[] = {
@@ -445,6 +460,7 @@ class OPCAN_CMA_faction : OPCAN_CGC_faction
 
 class OPCAN_CPF_faction : OPCAN_CMA_faction
 {
+	dependencies[] = { "@OPCAN 3.0 By Wolf Of Tribute Modding (formerly LM)" };
 	displayName = "OPCAN - Colonial Police Force";
 
 	infantry[] = {

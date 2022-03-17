@@ -1,5 +1,6 @@
 class AAF_faction
 {
+	dependencies[] = { "A3" };
 	displayName = "VANILLA - AAF";
 	lightCars[] = {
 		"B_T_LSV_01_armed_F"
@@ -62,6 +63,7 @@ class AAF_faction
 
 class CSAT_faction
 {
+	dependencies[] = { "A3" };
 	displayName = "VANILLA - CSAT";
 	lightCars[] = {
 		"O_LSV_02_armed_F"
@@ -134,6 +136,7 @@ class CSAT_faction
 
 class CSAT_urban_faction : CSAT_faction
 {
+	dependencies[] = { "A3" };
 	displayName = "VANILLA - CSAT URBAN";
 	attackHelicopters[] = {
 		"O_Heli_Attack_02_dynamicLoadout_black_F"
@@ -142,6 +145,7 @@ class CSAT_urban_faction : CSAT_faction
 
 class CSAT_pacific_faction
 {
+	dependencies[] = { "expansion" };
 	displayName = "APEX - CSAT PACIFIC";
 	lightCars[] = {
 		"O_T_LSV_02_armed_F"
@@ -217,6 +221,7 @@ class CSAT_pacific_faction
 
 class VIPER_faction : CSAT_pacific_faction
 {
+	dependencies[] = { "expansion" };
 	displayName = "APEX - VIPER";
 	infantry[] = {
 		"O_V_Soldier_Exp_hex_F",
@@ -231,6 +236,7 @@ class VIPER_faction : CSAT_pacific_faction
 
 class VIPER_pacific_faction : CSAT_pacific_faction
 {
+	dependencies[] = { "expansion" };
 	displayName = "APEX - VIPER PACIFIC";
 	infantry[] = {
 		"O_V_Soldier_Exp_ghex_F",
@@ -245,6 +251,7 @@ class VIPER_pacific_faction : CSAT_pacific_faction
 
 class NATO_faction
 {
+	dependencies[] = { "A3" };
 	displayName = "VANILLA - NATO";
 	lightCars[] = {
 		"B_LSV_01_armed_F"
@@ -331,6 +338,7 @@ class NATO_faction
 
 class NATO_pacific_faction : NATO_faction
 {
+	dependencies[] = { "expansion" };
 	displayName = "APEX - NATO PACIFIC";
 	lightCars[] = {
 		"B_T_LSV_01_armed_F"
@@ -392,6 +400,7 @@ class NATO_pacific_faction : NATO_faction
 
 class NATO_woodland_faction : NATO_pacific_faction
 {
+	dependencies[] = { "enoch" };
 	displayName = "CONTACT - NATO WOODLAND";
 	infantry[] = {
 		"B_W_Soldier_A_F",
@@ -429,6 +438,7 @@ class NATO_woodland_faction : NATO_pacific_faction
 
 class CTRG_pacific_faction : NATO_pacific_faction
 {
+	dependencies[] = { "expansion" };
 	displayName = "APEX - CTRG PACIFIC";
 	transportHelicopters[] = {
 		"B_CTRG_Heli_Transport_01_sand_F",
@@ -458,6 +468,7 @@ class CTRG_pacific_faction : NATO_pacific_faction
 
 class FIA_faction
 {
+	dependencies[] = { "A3" };
 	displayName = "VANILLA - FIA";
 	lightCars[] = {
 		"I_C_Offroad_02_LMG_F",
@@ -490,6 +501,7 @@ class FIA_faction
 
 class SYNDIKAT_faction : FIA_faction
 {
+	dependencies[] = { "expansion" };
 	displayName = "APEX - SYNDIKAT";
 	infantry[] = {
 		"I_C_Soldier_Bandit_3_F",
@@ -512,6 +524,7 @@ class SYNDIKAT_faction : FIA_faction
 
 class LDF_faction
 {
+	dependencies[] = { "enoch" };
 	displayName = "CONTACT - LDF";
 	lightCars[] = {
 		"I_C_Offroad_02_LMG_F",
@@ -568,6 +581,7 @@ class LDF_faction
 
 class SPETZNAS_CONTACT_faction : VIPER_pacific_faction
 {
+	dependencies[] = { "enoch" };
 	displayName = "CONTACT - Spetznas";
 	infantry[] = {
 		"O_R_Soldier_TL_F",

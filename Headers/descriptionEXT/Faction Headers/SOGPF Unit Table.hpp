@@ -1,5 +1,6 @@
 class SOGPF_usArmy
 {
+    dependencies[] = { "VN" };
     displayName = "S.O.G. PF - US Army";
 
     lightCars[] = {
@@ -68,6 +69,7 @@ class SOGPF_usArmy
 
 class SOGPF_usmc : SOGPF_usArmy
 {
+    dependencies[] = { "VN" };
     displayName = "S.O.G. PF - USMC";
 
     heavyArmor[] = {
@@ -99,6 +101,7 @@ class SOGPF_usmc : SOGPF_usArmy
 
 class SOGPF_SEAL_det_bravo : SOGPF_usmc
 {
+    dependencies[] = { "VN" };
     displayName = "S.O.G. PF - SEALs Detachment Bravo";
 
     infantry[] = {
@@ -117,6 +120,7 @@ class SOGPF_SEAL_det_bravo : SOGPF_usmc
 
 class SOGPF_SEAL_team : SOGPF_usmc
 {
+    dependencies[] = { "VN" };
     displayName = "S.O.G. PF - SEAL Team";
 
     infantry[] = {
@@ -142,6 +146,7 @@ class SOGPF_SEAL_team : SOGPF_usmc
 
 class SOGPF_mikeForce : SOGPF_usArmy
 {
+    dependencies[] = { "VN" };
     displayName = "S.O.G. PF - Mike Force";
 
     infantry[] = {
@@ -172,6 +177,7 @@ class SOGPF_mikeForce : SOGPF_usArmy
 
 class SOGPF_usNavy : SOGPF_usmc
 {
+    dependencies[] = { "VN" };
     displayName = "S.O.G. PF - US Navy";
 
     infantry[] = {
@@ -189,6 +195,7 @@ class SOGPF_usNavy : SOGPF_usmc
 
 class SOGPF_macvSOG : SOGPF_usArmy
 {
+    dependencies[] = { "VN" };
     displayName = "S.O.G. PF - MACV-SOG";
 
     transportHelicopters[] = {
@@ -233,6 +240,7 @@ class SOGPF_macvSOG : SOGPF_usArmy
 
 class SOGPF_lrrp : SOGPF_usArmy
 {
+    dependencies[] = { "VN" };
     displayName = "S.O.G. PF - Long Range Reconnaissance Patrol";
 
     infantry[] = {
@@ -250,6 +258,7 @@ class SOGPF_lrrp : SOGPF_usArmy
 
 class SOGPF_campStrikeForce : SOGPF_usArmy
 {
+    dependencies[] = { "VN" };
     displayName = "S.O.G. PF - Camp Strike Force";
 
     infantry[] = {
@@ -282,6 +291,7 @@ class SOGPF_campStrikeForce : SOGPF_usArmy
 
 class SOGPF_NVA_dacCong
 {
+    dependencies[] = { "VN" };
     displayName = "S.O.G. PF - NVA Dac Cong";
 
     lightCars[] = {
@@ -335,6 +345,7 @@ class SOGPF_NVA_dacCong
 
 class SOGPF_NVA_inf_65_field : SOGPF_NVA_dacCong
 {
+    dependencies[] = { "VN" };
     displayName = "S.O.G. PF - NVA 65 (Field)";
 
     infantry[] = {
@@ -359,6 +370,7 @@ class SOGPF_NVA_inf_65_field : SOGPF_NVA_dacCong
 
 class SOGPF_NVA_inf_65 : SOGPF_NVA_dacCong
 {
+    dependencies[] = { "VN" };
     displayName = "S.O.G. PF - NVA 65";
 
     infantry[] = {
@@ -384,6 +396,7 @@ class SOGPF_NVA_inf_65 : SOGPF_NVA_dacCong
 
 class SOGPF_NVA_field : SOGPF_NVA_dacCong
 {
+    dependencies[] = { "VN" };
     displayName = "S.O.G. PF - NVA (Field)";
 
     infantry[] = {
@@ -411,6 +424,7 @@ class SOGPF_NVA_field : SOGPF_NVA_dacCong
 
 class SOGPF_NVA : SOGPF_NVA_dacCong
 {
+    dependencies[] = { "VN" };
     displayName = "S.O.G. PF - NVA";
 
     infantry[] = {
@@ -438,6 +452,7 @@ class SOGPF_NVA : SOGPF_NVA_dacCong
 
 class SOGPF_VPN_marines : SOGPF_NVA_dacCong
 {
+    dependencies[] = { "VN" };
     displayName = "S.O.G. PF - VPN Marines";
 
     heavyCars[] = {
@@ -470,6 +485,7 @@ class SOGPF_VPN_marines : SOGPF_NVA_dacCong
 
 class SOGPF_VPN_navy : SOGPF_VPN_marines
 {
+    dependencies[] = { "VN" };
     displayName = "S.O.G. PF - VPN Navy";
 
     infantry[] = {
@@ -492,6 +508,7 @@ class SOGPF_VPN_navy : SOGPF_VPN_marines
 
 class SOGPF_VC_local : SOGPF_VPN_marines
 {
+    dependencies[] = { "VN" };
     displayName = "S.O.G. PF - Viet Cong (Local)";
 
     heavyArmor[] = {
@@ -535,6 +552,7 @@ class SOGPF_VC_local : SOGPF_VPN_marines
 
 class SOGPF_VC_main : SOGPF_VPN_marines
 {
+    dependencies[] = { "VN" };
     displayName = "S.O.G. PF - Viet Cong (Main Force)";
 
     infantry[] = {
@@ -560,6 +578,7 @@ class SOGPF_VC_main : SOGPF_VPN_marines
 
 class SOGPF_VC_regional : SOGPF_VPN_marines
 {
+    dependencies[] = { "VN" };
     displayName = "S.O.G. PF - Viet Cong (Regional)";
 
     infantry[] = {
@@ -583,6 +602,7 @@ class SOGPF_VC_regional : SOGPF_VPN_marines
 
 class SOGPF_ARVN : SOGPF_usArmy
 {
+    dependencies[] = { "VN" };
     displayName = "S.O.G. PF - ARVN";
 
     lightCars[] = {
@@ -630,6 +650,7 @@ class SOGPF_ARVN : SOGPF_usArmy
 
 class SOGPF_ARVN_lldb : SOGPF_ARVN
 {
+    dependencies[] = { "VN" };
     displayName = "S.O.G. PF - ARVN LLDB (Special Forces)";
 
     transportHelicopters[] = {
@@ -656,6 +677,7 @@ class SOGPF_ARVN_lldb : SOGPF_ARVN
 
 class SOGPF_ARVN_rangers : SOGPF_ARVN
 {
+    dependencies[] = { "VN" };
     displayName = "S.O.G. PF - ARVN Rangers";
 
     infantry[] = {

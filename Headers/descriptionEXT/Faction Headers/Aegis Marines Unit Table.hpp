@@ -1,5 +1,6 @@
 class AEGIS_MARINE_desert_faction : NATO_faction
 {
+	dependencies[] = { "@Arma 3 Aegis - Marines" };
 	displayName = "Aegis Marines - Desert";
 
 	attackHelicopters[] = {
@@ -28,6 +29,7 @@ class AEGIS_MARINE_desert_faction : NATO_faction
 
 class AEGIS_MARINE_woodland_faction : NATO_pacific_faction
 {
+	dependencies[] = { "@Arma 3 Aegis - Marines" };
 	displayName = "Aegis Marines - Woodland";
 
 	attackHelicopters[] = {

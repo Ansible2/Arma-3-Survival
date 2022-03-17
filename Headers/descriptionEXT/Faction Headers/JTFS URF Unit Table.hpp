@@ -2,6 +2,7 @@
 
 class JTFS_URF_faction
 {
+	dependencies[] = { "???" }; // Couldn't find a matching mod on the workshop
 	displayName = "JTFS Armory - United Rebel Front"; 
 
 	//excluding JTFS_Crewman, JTFS_Pilot_01, JTFS_Pilot_02, JTFS_Officer_01, JTFS_Officer_02

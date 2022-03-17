@@ -1,5 +1,6 @@
 class RHSALL_faction
 {
+	dependencies[] = { "@RHSAFRF", "@RHSGREF", "@RHSUSAF" };
 	displayName = "RHS ALL";
 	lightCars[] = {
 		"O_LSV_02_armed_black_F",
