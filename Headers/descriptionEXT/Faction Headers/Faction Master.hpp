@@ -40,6 +40,7 @@ class factionBase
 #include "RHS USAF Unit Table.hpp"
 #include "RHS AFRF Unit Table.hpp"
 #include "RHS GREF Unit Table.hpp"
+#include "RHS SAF Unit Table.hpp"
 #include "PROJECT OPFOR Unit Table.hpp"
 #include "Zombies And Demons Unit Table.hpp"
 #include "CUP Unit Table.hpp"
