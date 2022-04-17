@@ -107,26 +107,26 @@ class RHSSAF_OAKLEAF_faction : RHSSAF_AIRBORNE_faction
 	displayName = "RHS SAF - Serbian Armed Forces (Oakleaf)";
 
 	infantry[] = {
-		"rhssaf_army_o_m10_oakleaf_asst_mgun_m84",
-		"rhssaf_army_o_m10_oakleaf_asst_spec_aa",
-		"rhssaf_army_o_m10_oakleaf_asst_spec_at",
-		"rhssaf_army_o_m10_oakleaf_engineer",
-		"rhssaf_army_o_m10_oakleaf_exp",
-		"rhssaf_army_o_m10_oakleaf_medic",
-		"rhssaf_army_o_m10_oakleaf_ft_lead",
-		"rhssaf_army_o_m10_oakleaf_gl",
-		"rhssaf_army_o_m10_oakleaf_mgun_m84",
-		"rhssaf_army_o_m10_oakleaf_sniper_m76",
-		"rhssaf_army_o_m10_oakleaf_spec_aa",
-		"rhssaf_army_o_m10_oakleaf_spec_at",
-		"rhssaf_army_o_m10_oakleaf_officer",
-		"rhssaf_army_o_m10_oakleaf_repair",
-		"rhssaf_army_o_m10_oakleaf_rifleman_ammo",
-		"rhssaf_army_o_m10_oakleaf_rifleman_at",
-		"rhssaf_army_o_m10_oakleaf_rifleman_m21",
-		"rhssaf_army_o_m10_oakleaf_rifleman_m70",
-		"rhssaf_army_o_m10_oakleaf_spotter",
-		"rhssaf_army_o_m10_oakleaf_sq_lead"
+		"rhssaf_army_o_m93_oakleaf_summer_asst_mgun",
+		"rhssaf_army_o_m93_oakleaf_summer_asst_spec_aa", 
+		"rhssaf_army_o_m93_oakleaf_summer_asst_spec_at",
+		"rhssaf_army_o_m93_oakleaf_summer_engineer",
+		"rhssaf_army_o_m93_oakleaf_summer_exp",
+		"rhssaf_army_o_m93_oakleaf_summer_medic",
+		"rhssaf_army_o_m93_oakleaf_summer_ft_lead",
+		"rhssaf_army_o_m93_oakleaf_summer_gl",
+		"rhssaf_army_o_m93_oakleaf_summer_mgun_m84",
+		"rhssaf_army_o_m93_oakleaf_summer_sniper_m76",
+		"rhssaf_army_o_m93_oakleaf_summer_spec_aa",
+		"rhssaf_army_o_m93_oakleaf_summer_spec_at",
+		"rhssaf_army_o_m93_oakleaf_summer_officer",
+		"rhssaf_army_o_m93_oakleaf_summer_repair",
+		"rhssaf_army_o_m93_oakleaf_summer_rifleman_ammo",
+		"rhssaf_army_o_m93_oakleaf_summer_rifleman_at",
+		"rhssaf_army_o_m93_oakleaf_summer_rifleman_m21",
+		"rhssaf_army_o_m93_oakleaf_summer_rifleman_m70",
+		"rhssaf_army_o_m93_oakleaf_summer_spotter",
+		"rhssaf_army_o_m93_oakleaf_summer_sq_lead"
 	};
 };
 
