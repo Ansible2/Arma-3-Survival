@@ -1076,9 +1076,10 @@ class KISKA_missionParams
 			title = "Randomize Hostile Weapons";
 			default = DEFAULT_FALSE;
 		};
-		class BLWK_multipleEnemyDirections : yes_no_paramBase
+		class BLWK_multipleEnemyPositions : yes_no_paramBase
 		{
-			title = "Multiple Enemy Spawn Directions";
+			title = "Multiple Enemy Infantry Spawn Positions";
+			tooltip = "Enemies will spawn at a single (random) position or at several different random positions";
 			default = DEFAULT_TRUE;
 		};
 		class BLWK_maxPistolOnlyWaves : sliderParamBase
