@@ -25,7 +25,7 @@ If you are looking for some general how tos on editing some more of the open asp
 ## Supported Modifications
 - ACE3:
 <br>
-ACE is supported functionally. If it is loaded on the server and clients, certain aspects of the mission function differently.
+ACE is supported functionally. If it is loaded on the server and clients, certain aspects of the mission change such as the dragging and revive systems.
 
 ### Supported Faction Mods
 - [3CB BAF](https://steamcommunity.com/sharedfiles/filedetails/?id=893346105)
