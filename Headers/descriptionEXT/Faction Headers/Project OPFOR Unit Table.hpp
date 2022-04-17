@@ -1,5 +1,6 @@
 class PROJOP_AFRICAN_MILITIA_faction : RHSGREF_TLA_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - African Militia";
 
 	lightCars[] = {
@@ -49,6 +50,7 @@ class PROJOP_AFRICAN_MILITIA_faction : RHSGREF_TLA_faction
 
 class PROJOP_BOKO_HAREM_faction : PROJOP_AFRICAN_MILITIA_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Boko Harem";
 
 	infantry[] = {
@@ -71,6 +73,7 @@ class PROJOP_BOKO_HAREM_faction : PROJOP_AFRICAN_MILITIA_faction
 
 class PROJOP_CHDKZ_faction : RHSGREF_CHDKZ
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - ChDKZ";
 
 	lightArmor[] = {
@@ -101,6 +104,7 @@ class PROJOP_CHDKZ_faction : RHSGREF_CHDKZ
 
 class PROJOP_IRA_faction : RHSGREF_CHDKZ
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Irish Republic Army";
 
 	lightCars[] = {
@@ -127,6 +131,7 @@ class PROJOP_IRA_faction : RHSGREF_CHDKZ
 
 class PROJOP_ISIS_faction : RHSGREF_CHDKZ
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Islamic State";
 
 	lightCars[] = {
@@ -174,6 +179,7 @@ class PROJOP_ISIS_faction : RHSGREF_CHDKZ
 
 class PROJOP_KPA_faction : RHSGREF_CHDKZ
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Korean Peoples Army";
 
 
@@ -213,6 +219,7 @@ class PROJOP_KPA_faction : RHSGREF_CHDKZ
 
 class PROJOP_MEM_faction : PROJOP_KPA_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Middle East Militia";
 
 	lightCars[] = {
@@ -246,6 +253,7 @@ class PROJOP_MEM_faction : PROJOP_KPA_faction
 
 class PROJOP_SLA_faction : RHSGREF_CDF_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Sahrani Liberation Army";
 
 	lightCars[] = {
@@ -289,6 +297,7 @@ class PROJOP_SLA_faction : RHSGREF_CDF_faction
 
 class PROJOP_SAF_faction : PROJOP_SLA_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Syrian Armed Forces";
 
 	heavyArmor[] = {
@@ -314,6 +323,7 @@ class PROJOP_SAF_faction : PROJOP_SLA_faction
 
 class PROJOP_TAF_faction : PROJOP_SLA_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Takistan Armed Forces";
 
 	lightCars[] = {
@@ -358,6 +368,7 @@ class PROJOP_TAF_faction : PROJOP_SLA_faction
 
 class PROJOP_NAF_faction : PROJOP_TAF_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Novorossiya Armed Forces";
 
 	lightCars[] = {
@@ -402,6 +413,7 @@ class PROJOP_NAF_faction : PROJOP_TAF_faction
 
 class PROJOP_ANA_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Afghan National Army";
 
 	lightCars[] = {
@@ -460,6 +472,7 @@ class PROJOP_ANA_faction
 
 class PROJOP_ANP_faction : PROJOP_ANA_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Afghan National Police";
 
 	lightCars[] = {
@@ -508,6 +521,7 @@ class PROJOP_ANP_faction : PROJOP_ANA_faction
 
 class PROJOP_CDF_faction : RHSGREF_CDF_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - CDF";
 
 	infantry[] = {
@@ -531,6 +545,7 @@ class PROJOP_CDF_faction : RHSGREF_CDF_faction
 
 class PROJOP_HAF_faction : RHSGREF_HIDF_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Hellnic Armed Forces";
 
 	infantry[] = {
@@ -549,6 +564,7 @@ class PROJOP_HAF_faction : RHSGREF_HIDF_faction
 
 class PROJOP_IAF_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Iraqi Armed Forces";
 
 	lightCars[] = {
@@ -608,6 +624,7 @@ class PROJOP_IAF_faction
 
 class PROJOP_IAF_WDL_faction : PROJOP_IAF_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Iraqi Armed Forces (Woodland)";
 
 	infantry[] = {
@@ -633,6 +650,7 @@ class PROJOP_IAF_WDL_faction : PROJOP_IAF_faction
 
 class PROJOP_IAF_SF_faction : PROJOP_IAF_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Iraqi Special Forces";
 
 	infantry[] = {
@@ -653,6 +671,7 @@ class PROJOP_IAF_SF_faction : PROJOP_IAF_faction
 
 class PROJOP_KPF_faction : PROJOP_ANP_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Kurdish Peshmerga";
 
 	lightCars[] = {
@@ -685,6 +704,7 @@ class PROJOP_KPF_faction : PROJOP_ANP_faction
 
 class PROJOP_CNI_faction : RHSGREF_NAPA_MILITIA_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Chernarus National Insurgents";
 
 	infantry[] = {
@@ -707,6 +727,7 @@ class PROJOP_CNI_faction : RHSGREF_NAPA_MILITIA_faction
 
 class PROJOP_IRAN_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Iranian Armed Forces";
 
 	lightCars[] = {
@@ -764,6 +785,7 @@ class PROJOP_IRAN_faction
 
 class PROJOP_IRAN_SF_faction : PROJOP_IRAN_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Iranian Special Forces";
 
 	infantry[] = {
@@ -784,6 +806,7 @@ class PROJOP_IRAN_SF_faction : PROJOP_IRAN_faction
 
 class PROJOP_PMC_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - PMC";
 
 	lightCars[] = {
@@ -834,6 +857,7 @@ class PROJOP_PMC_faction
 
 class PROJOP_RACS_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Royal Army Corps of Sahrani";
 
 	lightCars[] = {
@@ -864,6 +888,7 @@ class PROJOP_RACS_faction
 
 class PROJOP_TURK_faction : PROJOP_CDF_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Turkish Armed Forces";
 
 	infantry[] = {
@@ -883,6 +908,7 @@ class PROJOP_TURK_faction : PROJOP_CDF_faction
 
 class PROJOP_UAF_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Ukrainian Armed Forces";
 
 	lightCars[] = {
@@ -926,6 +952,7 @@ class PROJOP_UAF_faction
 
 class PROJOP_UVF_faction : PROJOP_PMC_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Ulseter Volunteer Force";
 
 	infantry[] = {
@@ -947,6 +974,7 @@ class PROJOP_UVF_faction : PROJOP_PMC_faction
 
 class PROJOP_ULT_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - Ultranationalists";
 
 	lightCars[] = {
@@ -996,6 +1024,7 @@ class PROJOP_ULT_faction
 
 class PROJOP_UN_faction
 {
+	dependencies[] = { "@Project OPFOR" };
 	displayName = "PROJECT OPFOR - United Nations";
 
 	lightCars[] = {

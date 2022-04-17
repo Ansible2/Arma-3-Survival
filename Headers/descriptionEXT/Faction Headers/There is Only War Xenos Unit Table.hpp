@@ -1,5 +1,6 @@
 class There_is_Only_War_Xenos_Necrons
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Necrons";
 
 	infantry[] = {
@@ -24,6 +25,7 @@ class There_is_Only_War_Xenos_Necrons
 
 class There_is_Only_War_Xenos_Orks
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
    displayName = "There is Only War - Orks";
 
    infantry[] = {
@@ -62,6 +64,7 @@ class There_is_Only_War_Xenos_Orks
 
 class There_is_Only_War_Xenos_Tau_DY
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
    displayName = "There is Only War - Tau: Dal'Yth Sept";
 
    infantry[] = {
@@ -98,6 +101,7 @@ class There_is_Only_War_Xenos_Tau_DY
 
 class There_is_Only_War_Xenos_Tau_FE
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
    displayName = "There is Only War - Tau: Farsight Enclave";
 
    infantry[] = {
@@ -134,6 +138,7 @@ class There_is_Only_War_Xenos_Tau_FE
 
 class There_is_Only_War_Xenos_Tau_SC
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
    displayName = "There is Only War - Tau: Sa'Cea Sept";
 
    infantry[] = {
@@ -170,6 +175,7 @@ class There_is_Only_War_Xenos_Tau_SC
 
 class There_is_Only_War_Xenos_Tau_VL
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
    displayName = "There is Only War - Tau: Vior'La Sept";
 
    infantry[] = {

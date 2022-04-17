@@ -1,5 +1,6 @@
 class 3CBBAF_Woodland_Base : NATO_pacific_faction
-{	
+{
+	dependencies[] = { "@3CB BAF Equipment", "@3CB BAF Units", "@3CB BAF Vehicles", "@3CB BAF Weapons" };
 	displayName = "";
 
 	lightCars[] = {
@@ -41,7 +42,8 @@ class 3CBBAF_Woodland_Base : NATO_pacific_faction
 };
 
 class 3CBBAF_Desert_Base : NATO_faction
-{	
+{
+	dependencies[] = { "@3CB BAF Equipment", "@3CB BAF Units", "@3CB BAF Vehicles", "@3CB BAF Weapons" };
 	displayName = "";
 
 	lightCars[] = {
@@ -84,6 +86,7 @@ class 3CBBAF_Desert_Base : NATO_faction
 
 class 3CBBAF_army_desert_faction : 3CBBAF_Desert_Base
 {
+	dependencies[] = { "@3CB BAF Equipment", "@3CB BAF Units", "@3CB BAF Vehicles", "@3CB BAF Weapons" };
 	displayName = "3CB-BAF - Army Desert";
 	infantry[] = {
 		"UK3CB_BAF_MATC_DDPM", 
@@ -132,6 +135,7 @@ class 3CBBAF_army_desert_faction : 3CBBAF_Desert_Base
 };
 class 3CBBAF_army_artic_faction : 3CBBAF_Desert_Base
 {
+	dependencies[] = { "@3CB BAF Equipment", "@3CB BAF Units", "@3CB BAF Vehicles", "@3CB BAF Weapons" };
 	displayName = "3CB-BAF - Army Artic";
 	infantry[] = {
 		"UK3CB_BAF_MATC_Arctic", 
@@ -179,6 +183,7 @@ class 3CBBAF_army_artic_faction : 3CBBAF_Desert_Base
 };
 class 3CBBAF_army_mtp_faction : 3CBBAF_Desert_Base
 {
+	dependencies[] = { "@3CB BAF Equipment", "@3CB BAF Units", "@3CB BAF Vehicles", "@3CB BAF Weapons" };
 	displayName = "3CB-BAF - Army Multicam (MTP)";
 	infantry[] = {
 		"UK3CB_BAF_MATC_MTP", 
@@ -264,6 +269,7 @@ class 3CBBAF_army_mtp_faction : 3CBBAF_Desert_Base
 };
 class 3CBBAF_army_temperate_faction : 3CBBAF_Woodland_Base
 {
+	dependencies[] = { "@3CB BAF Equipment", "@3CB BAF Units", "@3CB BAF Vehicles", "@3CB BAF Weapons" };
 	displayName = "3CB-BAF - Army Temperate";
 	infantry[] = {
 		"UK3CB_BAF_MATC_DPMT", 
@@ -313,6 +319,7 @@ class 3CBBAF_army_temperate_faction : 3CBBAF_Woodland_Base
 };
 class 3CBBAF_army_tropical_faction : 3CBBAF_Woodland_Base
 {
+	dependencies[] = { "@3CB BAF Equipment", "@3CB BAF Units", "@3CB BAF Vehicles", "@3CB BAF Weapons" };
 	displayName = "3CB-BAF - Army Tropical";
 	infantry[] = {
 		"UK3CB_BAF_MATC_Tropical", 
@@ -362,6 +369,7 @@ class 3CBBAF_army_tropical_faction : 3CBBAF_Woodland_Base
 };
 class 3CBBAF_army_woodland_faction : 3CBBAF_Woodland_Base
 {
+	dependencies[] = { "@3CB BAF Equipment", "@3CB BAF Units", "@3CB BAF Vehicles", "@3CB BAF Weapons" };
 	displayName = "3CB-BAF - Army Woodland";
 	infantry[] = {
 		"UK3CB_BAF_MATC_DPMW", 

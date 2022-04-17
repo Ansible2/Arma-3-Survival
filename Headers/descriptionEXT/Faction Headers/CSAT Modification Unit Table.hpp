@@ -1,5 +1,6 @@
 class TEC_Iran_Arid_faction
 {
+	dependencies[] = { "@The CSAT Modification Project" };
 	displayName = "CSAT Modification Project - Iran Arid";
 
 	lightCars[] = {
@@ -86,6 +87,7 @@ class TEC_Iran_Arid_faction
 
 class TEC_Iran_arid_CBRN_faction : TEC_Iran_Arid_faction
 {
+	dependencies[] = { "@The CSAT Modification Project" };
 	displayName = "CSAT Modification Project - Iran Arid (CBRN)";
 
 	infantry[] = {
@@ -121,6 +123,7 @@ class TEC_Iran_arid_CBRN_faction : TEC_Iran_Arid_faction
 
 class TEC_Iran_Semiarid_faction : TEC_Iran_Arid_faction
 {
+	dependencies[] = { "@The CSAT Modification Project" };
 	displayName = "CSAT Modification Project - Iran Semiarid";
 
 	infantry[] = {
@@ -155,6 +158,7 @@ class TEC_Iran_Semiarid_faction : TEC_Iran_Arid_faction
 
 class TEC_Iran_urban_faction : TEC_Iran_Arid_faction
 {
+	dependencies[] = { "@The CSAT Modification Project" };
 	displayName = "CSAT Modification Project - Iran Urban";
 
 	transportHelicopters[] = {
@@ -201,6 +205,7 @@ class TEC_Iran_urban_faction : TEC_Iran_Arid_faction
 
 class TEC_Iran_SF_Arid_faction : TEC_Iran_Arid_faction
 {
+	dependencies[] = { "@The CSAT Modification Project" };
 	displayName = "CSAT Modification Project - Iran Special Forces (Arid)";
 
 	infantry[] = {
@@ -233,6 +238,7 @@ class TEC_Iran_SF_Arid_faction : TEC_Iran_Arid_faction
 
 class TEC_Iran_Viper_Arid_faction : TEC_Iran_Arid_faction
 {
+	dependencies[] = { "@The CSAT Modification Project" };
 	displayName = "CSAT Modification Project - Iran Viper (Arid)";
 
 	infantry[] = {
@@ -251,6 +257,7 @@ class TEC_Iran_Viper_Arid_faction : TEC_Iran_Arid_faction
 
 class TEC_Iran_WDL_faction
 {
+	dependencies[] = { "@The CSAT Modification Project" };
 	displayName = "CSAT Modification Project - Iran Woodland";
 
 	lightCars[] = {
@@ -337,6 +344,7 @@ class TEC_Iran_WDL_faction
 
 class TEC_Iran_WDL_CBRN_faction : TEC_Iran_WDL_faction
 {
+	dependencies[] = { "@The CSAT Modification Project" };
 	displayName = "CSAT Modification Project - Iran Woodland (CBRN)";
 
 	infantry[] = {
@@ -371,6 +379,7 @@ class TEC_Iran_WDL_CBRN_faction : TEC_Iran_WDL_faction
 
 class TEC_Iran_SF_WDL_faction : TEC_Iran_WDL_faction
 {
+	dependencies[] = { "@The CSAT Modification Project" };
 	displayName = "CSAT Modification Project - Iran Special Forces (Woodland)";
 
 	infantry[] = {
@@ -404,6 +413,7 @@ class TEC_Iran_SF_WDL_faction : TEC_Iran_WDL_faction
 
 class TEC_Iran_Viper_WDL_faction : TEC_Iran_WDL_faction
 {
+	dependencies[] = { "@The CSAT Modification Project" };
 	displayName = "CSAT Modification Project - Iran Viper (Woodland)";
 
 	infantry[] = {

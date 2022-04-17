@@ -1,5 +1,6 @@
 class There_is_Only_War_Chaos_SM_CC
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Chaos Cultists";
 
 	infantry[] = {
@@ -15,6 +16,7 @@ class There_is_Only_War_Chaos_SM_CC
 
 class There_is_Only_War_Chaos_SM_Combined
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Chaos Space Marines (Combined)";
 
 	heavyArmor[] = {
@@ -164,6 +166,7 @@ class There_is_Only_War_Chaos_SM_Combined
 
 class There_is_Only_War_Chaos_SM_AL
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Chaos Space Marines: Alpha Legion";
 
 	heavyArmor[] = {
@@ -194,6 +197,7 @@ class There_is_Only_War_Chaos_SM_AL
 
 class There_is_Only_War_Chaos_SM_BL
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Chaos Space Marines: Black Legion";
 
 	heavyArmor[] = {
@@ -223,6 +227,7 @@ class There_is_Only_War_Chaos_SM_BL
 
 class There_is_Only_War_Chaos_SM_DG
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Chaos Space Marines: Death Guard";
 
 	heavyArmor[] = {
@@ -252,6 +257,7 @@ class There_is_Only_War_Chaos_SM_DG
 
 class There_is_Only_War_Chaos_SM_EC
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Chaos Space Marines: Emperor's Children";
 
 	heavyArmor[] = {
@@ -281,6 +287,7 @@ class There_is_Only_War_Chaos_SM_EC
 
 class There_is_Only_War_Chaos_SM_IW
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Chaos Space Marines: Iron Warriors";
 
 	heavyArmor[] = {
@@ -310,6 +317,7 @@ class There_is_Only_War_Chaos_SM_IW
 
 class There_is_Only_War_Chaos_SM_NL
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Chaos Space Marines: Night Lords";
 
 	heavyArmor[] = {
@@ -339,6 +347,7 @@ class There_is_Only_War_Chaos_SM_NL
 
 class There_is_Only_War_Chaos_SM_TS
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Chaos Space Marines: Thousand Sons";
 
 	heavyArmor[] = {
@@ -368,6 +377,7 @@ class There_is_Only_War_Chaos_SM_TS
 
 class There_is_Only_War_Chaos_SM_WB
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Chaos Space Marines: World Bearers";
 
 	heavyArmor[] = {
@@ -397,6 +407,7 @@ class There_is_Only_War_Chaos_SM_WB
 
 class There_is_Only_War_Chaos_SM_WE
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Chaos Space Marines: World Eaters";
 
 	heavyArmor[] = {
@@ -426,6 +437,7 @@ class There_is_Only_War_Chaos_SM_WE
 
 class There_is_Only_War_Astra_Militarum_Chaos_Renegades
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Astra Militarum Renegades";
 
 	heavyArmor[] = {

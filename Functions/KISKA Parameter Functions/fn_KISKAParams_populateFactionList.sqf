@@ -24,16 +24,37 @@ private _listOfNames = localNamespace getVariable ["BLWK_factionNames",[]];
 if (_listOfNames isEqualTo []) then {
 
     private _factionConfigsUnsorted = "true" configClasses (missionConfigFile >> "BLWK_factions");
+    private _mods = getLoadedModsInfo apply { _x select 1 };
 
     private _name = "";
+    private _dependencies = [];
+    private _loadedDependencies = [];
+    private _hasAllDependencies = false;
     private _factionConfigs = [];
-    _factionConfigsUnsorted apply {
-    	_name = getText(_x >> "displayName");
 
+    _factionConfigsUnsorted apply {
+        _name = getText (_x >> "displayName");
         if (_name isNotEqualTo "") then {
-            _factionConfigs pushBack _x;
-            _listOfNames pushBack _name;
-        };
+
+            _dependencies = getArray (_x >> "dependencies");
+            if (_dependencies isNotEqualTo []) then {
+                _loadedDependencies = _mods arrayIntersect _dependencies;
+                _hasAllDependencies = (count _loadedDependencies) isEqualTo (count _dependencies);
+
+                if (_hasAllDependencies) then {
+                    _factionConfigs pushBack _x;
+                    _listOfNames pushBack _name;
+                };
+
+            } else {
+                // some players may have added custom factions in the past without this
+                // so add to the list if no dependencies are defined
+                _factionConfigs pushBack _x;
+                _listOfNames pushBack _name;
+
+            };
+        }
+
     };
 
     localNamespace setVariable ["BLWK_factionConfigs",_factionConfigs];

@@ -1,5 +1,6 @@
 class MIN_WDL
-{	
+{
+	dependencies[] = { "@2035- Russian Armed Forces" };
 	displayName = "Russia 2035 - Woodland";
 
 	lightCars[] = {
@@ -60,6 +61,7 @@ class MIN_WDL
 
 class MIN_WDL_SF : MIN_WDL
 {
+	dependencies[] = { "@2035- Russian Armed Forces" };
 	displayName = "Russia 2035 - Woodland SF";
 
 	infantry[] = {
@@ -84,6 +86,7 @@ class MIN_WDL_SF : MIN_WDL
 
 class MIN_URB : MIN_WDL
 {
+	dependencies[] = { "@2035- Russian Armed Forces" };
 	displayName = "Russia 2035 - Urban";
 
 	infantry[] = {
@@ -110,6 +113,7 @@ class MIN_URB : MIN_WDL
 
 class MIN_DES : MIN_WDL
 {
+	dependencies[] = { "@2035- Russian Armed Forces" };
 	displayName = "Russia 2035 - Desert";
 
 	lightArmor[] = {
@@ -158,6 +162,7 @@ class MIN_DES : MIN_WDL
 
 class MIN_DES_SF : MIN_DES
 {
+	dependencies[] = { "@2035- Russian Armed Forces" };
 	displayName = "Russia 2035 - Desert SF";
 
 	infantry[] = {
@@ -182,6 +187,7 @@ class MIN_DES_SF : MIN_DES
 
 class MIN_WINT : MIN_DES
 {
+	dependencies[] = { "@2035- Russian Armed Forces" };
 	displayName = "Russia 2035 - Winter";
 
 	heavyCars[] = {
@@ -228,6 +234,7 @@ class MIN_WINT : MIN_DES
 
 class MIN_WINT_SF : MIN_WINT
 {
+	dependencies[] = { "@2035- Russian Armed Forces" };
 	displayName = "Russia 2035 - Winter SF";
 
 	infantry[] = {

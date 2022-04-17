@@ -1,5 +1,6 @@
 class OPTRE_FC_COVENANT_faction
 {
+	dependencies[] = { "@Operation TREBUCHET First Contact" };
 	displayName = "OPTRE FC - Covenant";
 
 	infantry[] = {
@@ -25,6 +26,7 @@ class OPTRE_FC_COVENANT_faction
 
 class OPTRE_FC_MARINES_HCW_faction : OPTRE_MARINES_faction
 {
+	dependencies[] = { "@Operation TREBUCHET First Contact" };
 	displayName = "OPTRE FC - UNSC Marines HCW";
 
 	infantry[] = {

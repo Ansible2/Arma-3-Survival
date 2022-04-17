@@ -1,6 +1,7 @@
 // BAF Bases
 class AEGIS_BAF_base : NATO_faction
 {
+	dependencies[] = { "@Arma 3 Aegis" };
 	displayName = "";
 
 	heavyCars[] = {
@@ -24,6 +25,7 @@ class AEGIS_BAF_base : NATO_faction
 };
 class AEGIS_BAF_pacific_base : NATO_pacific_faction
 {
+	dependencies[] = { "@Arma 3 Aegis" };
 	displayName = "";
 	
 	heavyCars[] = {
@@ -38,6 +40,7 @@ class AEGIS_BAF_pacific_base : NATO_pacific_faction
 // BAF Factions
 class AEGIS_BAF_faction : AEGIS_BAF_base
 {
+	dependencies[] = { "@Arma 3 Aegis" };
 	displayName = "Aegis - British Armed Forces";
 
 	infantry[] = {
@@ -87,6 +90,7 @@ class AEGIS_BAF_faction : AEGIS_BAF_base
 
 class AEGIS_BAF_pacific_faction : AEGIS_BAF_pacific_base
 {
+	dependencies[] = { "@Arma 3 Aegis" };
 	displayName = "Aegis - British Armed Forces (Pacific)";
 
 	infantry[] = {
@@ -136,6 +140,7 @@ class AEGIS_BAF_pacific_faction : AEGIS_BAF_pacific_base
 
 class AEGIS_BAF_woodland_faction : AEGIS_BAF_pacific_base
 {
+	dependencies[] = { "@Arma 3 Aegis" };
 	displayName = "Aegis - British Armed Forces (Woodland)";
 
 	infantry[] = {
@@ -187,6 +192,7 @@ class AEGIS_BAF_woodland_faction : AEGIS_BAF_pacific_base
 // CTRG
 class AEGIS_CTRG_medit_faction : NATO_faction
 {
+	dependencies[] = { "@Arma 3 Aegis" };
 	displayName = "Aegis - CTRG (Mediterranean)";
 
 	lightCars[] = {
@@ -201,6 +207,7 @@ class AEGIS_CTRG_medit_faction : NATO_faction
 // CSAT
 class AEGIS_Argana_faction : CSAT_faction
 {
+	dependencies[] = { "@Arma 3 Aegis" };
 	displayName = "Aegis - CSAT Argana (Desert)";
 
 	casAircraft[] = {
@@ -226,6 +233,7 @@ class AEGIS_Argana_faction : CSAT_faction
 
 class AEGIS_China_faction : CSAT_pacific_faction
 {
+	dependencies[] = { "@Arma 3 Aegis" };
 	displayName = "Aegis - China (CSAT Pacific)";
 
 	casAircraft[] = {
@@ -240,6 +248,7 @@ class AEGIS_China_faction : CSAT_pacific_faction
 
 class AEGIS_Iran_faction : CSAT_faction
 {
+	dependencies[] = { "@Arma 3 Aegis" };
 	displayName = "Aegis - Iranian Armed Forces (CSAT Arid)";
 
 	casAircraft[] = {
@@ -254,6 +263,7 @@ class AEGIS_Iran_faction : CSAT_faction
 
 class AEGIS_Russia_faction
 {
+	dependencies[] = { "@Arma 3 Aegis" };
 	displayName = "Aegis - Russia";
 
 	lightCars[] = {
@@ -346,6 +356,7 @@ class AEGIS_Russia_faction
 
 class AEGIS_Russia_arid_faction : AEGIS_Russia_faction
 {
+	dependencies[] = { "@Arma 3 Aegis" };
 	displayName = "Aegis - Russia (Arid)";
 
 	cargoAircraft[] = {
@@ -400,6 +411,7 @@ class AEGIS_Russia_arid_faction : AEGIS_Russia_faction
 
 class AEGIS_AAF_faction : AAF_faction
 {
+	dependencies[] = { "@Arma 3 Aegis" };
 	displayName = "Aegis - AAF";
 
 	cargoAircraft[] = {

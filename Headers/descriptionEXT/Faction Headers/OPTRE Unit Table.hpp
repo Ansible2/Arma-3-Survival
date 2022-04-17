@@ -1,5 +1,6 @@
 class OPTRE_MARINES_faction
 {	
+	dependencies[] = { "@Operation TREBUCHET" };
 	displayName = "OPTRE - UNSC Marines";
 
 	lightCars[] = {
@@ -54,6 +55,7 @@ class OPTRE_MARINES_faction
 
 class OPTRE_ODST_faction : OPTRE_MARINES_faction
 {
+	dependencies[] = { "@Operation TREBUCHET" };
 	displayName = "OPTRE - ODSTs";
 	lightCars[] = {
 		"OPTRE_M12_LRV_black",
@@ -88,6 +90,7 @@ class OPTRE_ODST_faction : OPTRE_MARINES_faction
 
 class OPTRE_ARMY_SNOW_faction : OPTRE_MARINES_faction
 {
+	dependencies[] = { "@Operation TREBUCHET" };
 	displayName = "OPTRE - UNSC Army Snow";
 	lightCars[] = {
 		"OPTRE_M12_LRV_snow",
@@ -123,6 +126,7 @@ class OPTRE_ARMY_SNOW_faction : OPTRE_MARINES_faction
 
 class OPTRE_ARMY_DES_faction : OPTRE_MARINES_faction
 {
+	dependencies[] = { "@Operation TREBUCHET" };
 	displayName = "OPTRE - UNSC Army Desert";
 	lightCars[] = {
 		"OPTRE_M12_LRV_tan",
@@ -165,6 +169,7 @@ class OPTRE_ARMY_DES_faction : OPTRE_MARINES_faction
 
 class OPTRE_ARMY_OLI_faction : OPTRE_MARINES_faction
 {
+	dependencies[] = { "@Operation TREBUCHET" };
 	displayName = "OPTRE - UNSC Army Olive";
 
 	infantry[] = {
@@ -192,6 +197,7 @@ class OPTRE_ARMY_OLI_faction : OPTRE_MARINES_faction
 
 class OPTRE_ARMY_TROPICAL_faction : OPTRE_MARINES_faction
 {
+	dependencies[] = { "@Operation TREBUCHET" };
 	displayName = "OPTRE - UNSC Army Tropical";
 
 	infantry[] = {
@@ -219,6 +225,7 @@ class OPTRE_ARMY_TROPICAL_faction : OPTRE_MARINES_faction
 
 class OPTRE_ARMY_URBAN_faction : OPTRE_ODST_faction
 {
+	dependencies[] = { "@Operation TREBUCHET" };
 	displayName = "OPTRE - UNSC Army Urban";
 
 	infantry[] = {
@@ -246,6 +253,7 @@ class OPTRE_ARMY_URBAN_faction : OPTRE_ODST_faction
 
 class OPTRE_ARMY_WDL_faction : OPTRE_MARINES_faction
 {
+	dependencies[] = { "@Operation TREBUCHET" };
 	displayName = "OPTRE - UNSC Army Woodland";
 
 	infantry[] = {
@@ -273,6 +281,7 @@ class OPTRE_ARMY_WDL_faction : OPTRE_MARINES_faction
 
 class OPTRE_URF_faction : CSAT_pacific_faction
 {
+	dependencies[] = { "@Operation TREBUCHET" };
 	displayName = "OPTRE - United Rebel Front";
 
 	lightCars[] = {
@@ -314,6 +323,7 @@ class OPTRE_URF_faction : CSAT_pacific_faction
 
 class OPTRE_BJ_URBAN_faction : OPTRE_URF_faction
 {
+	dependencies[] = { "@Operation TREBUCHET" };
 	displayName = "OPTRE - Battle Jumpers Urban";
 	infantry[] = {
 		"OPTRE_Ins_BJ_Soldier_URB_Automatic_Rifleman",
@@ -330,6 +340,7 @@ class OPTRE_BJ_URBAN_faction : OPTRE_URF_faction
 
 class OPTRE_INSURGENTS_faction : FIA_faction
 {
+	dependencies[] = { "@Operation TREBUCHET" };
 	displayName = "OPTRE - Insurgents";
 	
 	lightCars[] = {

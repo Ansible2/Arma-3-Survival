@@ -1,5 +1,6 @@
 class There_is_Only_War_Adeptus_Astartes_Combined
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Adeptus Astartes (Combined)";
 
 	heavyArmor[] = {
@@ -190,6 +191,7 @@ class There_is_Only_War_Adeptus_Astartes_Combined
 
 class There_is_Only_War_Adeptus_Astartes_BT
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Adeptus Astartes: Black Templars";
 
 	heavyArmor[] = {
@@ -220,6 +222,7 @@ class There_is_Only_War_Adeptus_Astartes_BT
 
 class There_is_Only_War_Adeptus_Astartes_Combined_BA
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Adeptus Astartes: Blood Angels";
 
 	heavyArmor[] = {
@@ -249,6 +252,7 @@ class There_is_Only_War_Adeptus_Astartes_Combined_BA
 
 class There_is_Only_War_Adeptus_Astartes_BR
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Adeptus Astartes: Blood Ravens";
 
 	heavyArmor[] = {
@@ -278,6 +282,7 @@ class There_is_Only_War_Adeptus_Astartes_BR
 
 class There_is_Only_War_Adeptus_Astartes_DA
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Adeptus Astartes: Dark Angels";
 
 	heavyArmor[] = {
@@ -318,6 +323,7 @@ class There_is_Only_War_Adeptus_Astartes_DA
 
 class There_is_Only_War_Adeptus_Astartes_IF
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Adeptus Astartes: Imperial Fists";
 
 	heavyArmor[] = {
@@ -347,6 +353,7 @@ class There_is_Only_War_Adeptus_Astartes_IF
 
 class There_is_Only_War_Adeptus_Astartes_IH
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Adeptus Astartes: Iron Hands";
 
 	heavyArmor[] = {
@@ -376,6 +383,7 @@ class There_is_Only_War_Adeptus_Astartes_IH
 
 class There_is_Only_War_Adeptus_Astartes_RG
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Adeptus Astartes: Raven Guard";
 
 	heavyArmor[] = {
@@ -404,6 +412,7 @@ class There_is_Only_War_Adeptus_Astartes_RG
 
 class There_is_Only_War_Adeptus_Astartes_SL
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Adeptus Astartes: Salamanders";
 
 	heavyArmor[] = {
@@ -433,6 +442,7 @@ class There_is_Only_War_Adeptus_Astartes_SL
 
 class There_is_Only_War_Adeptus_Astartes_SW
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Adeptus Astartes: Space Wolves";
 
 	heavyArmor[] = {
@@ -462,6 +472,7 @@ class There_is_Only_War_Adeptus_Astartes_SW
 
 class There_is_Only_War_Adeptus_Astartes_UM
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Adeptus Astartes: Ultramarines";
 
 	heavyArmor[] = {
@@ -491,6 +502,7 @@ class There_is_Only_War_Adeptus_Astartes_UM
 
 class There_is_Only_War_Adeptus_Astartes_WS
 {
+	dependencies[] = { "@There is Only War Mod - Release 5 BETA" };
 	displayName = "There is Only War - Adeptus Astartes: White Scars";
 
 	heavyArmor[] = {

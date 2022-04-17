@@ -1,5 +1,6 @@
 class ZND_BRTILLE_CRAWLERS_faction
 {
+	dependencies[] = { "@Zombies and Demons" };
 	displayName = "Zombies & Demons - Brittle Crawlers";
 
 	infantry[] = {
@@ -40,6 +41,7 @@ class ZND_BRTILLE_CRAWLERS_faction
 
 class ZND_DEMONS_faction
 {
+	dependencies[] = { "@Zombies and Demons" };
 	displayName = "Zombies & Demons - Demons";
 
 	infantry[] = {
@@ -80,6 +82,7 @@ class ZND_DEMONS_faction
 
 class ZND_FAST_faction
 {
+	dependencies[] = { "@Zombies and Demons" };
 	displayName = "Zombies & Demons - Fast Zombies";
 
 	infantry[] = {
@@ -131,6 +134,7 @@ class ZND_FAST_faction
 
 class ZND_MEDIUM_faction
 {
+	dependencies[] = { "@Zombies and Demons" };
 	displayName = "Zombies & Demons - Medium Zombies";
 
 	infantry[] = {
@@ -182,6 +186,7 @@ class ZND_MEDIUM_faction
 
 class ZND_SLOW_faction
 {
+	dependencies[] = { "@Zombies and Demons" };
 	displayName = "Zombies & Demons - Slow Zombies";
 
 	infantry[] = {
@@ -233,6 +238,7 @@ class ZND_SLOW_faction
 
 class ZND_SPIDERS_faction
 {
+	dependencies[] = { "@Zombies and Demons" };
 	displayName = "Zombies & Demons - Spider Zombies";
 
 	infantry[] = {
@@ -273,6 +279,7 @@ class ZND_SPIDERS_faction
 
 class ZND_WALKERS_faction
 {
+	dependencies[] = { "@Zombies and Demons" };
 	displayName = "Zombies & Demons - Walkers";
 
 	infantry[] = {

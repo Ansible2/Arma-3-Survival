@@ -1,5 +1,6 @@
 class AEGIS_ATLAS_germany_faction : NATO_pacific_faction
 {
+	dependencies[] = { "@Arma 3 Atlas" };
 	displayName = "Aegis Atlas - Bundeswehr";
 
 	heavyCars[] = {
@@ -61,6 +62,7 @@ class AEGIS_ATLAS_germany_faction : NATO_pacific_faction
 
 class AEGIS_ATLAS_legion_faction : NATO_faction
 {
+	dependencies[] = { "@Arma 3 Atlas" };
 	displayName = "Aegis Atlas - French Foreign Legion";
 
 	infantry[] = {
@@ -95,6 +97,7 @@ class AEGIS_ATLAS_legion_faction : NATO_faction
 
 class AEGIS_ATLAS_himf_faction : FIA_faction
 {
+	dependencies[] = { "@Arma 3 Atlas" };
 	displayName = "Aegis Atlas - HIMF";
 
 	lightCars[] = {
@@ -118,6 +121,7 @@ class AEGIS_ATLAS_himf_faction : FIA_faction
 
 class AEGIS_ATLAS_belarus_faction : AEGIS_China_faction
 {
+	dependencies[] = { "@Arma 3 Atlas" };
 	displayName = "Aegis Atlas - Belarus";
 
 	attackHelicopters[] = {
@@ -156,6 +160,7 @@ class AEGIS_ATLAS_belarus_faction : AEGIS_China_faction
 
 class AEGIS_ATLAS_viper_woodland_faction : VIPER_pacific_faction
 {
+	dependencies[] = { "@Arma 3 Atlas" };
 	displayName = "Aegis Atlas - Viper (Woodland)";
 
 	infantry[] = {
@@ -171,6 +176,7 @@ class AEGIS_ATLAS_viper_woodland_faction : VIPER_pacific_faction
 
 class AEGIS_ATLAS_takistan_faction : AEGIS_Argana_faction
 {
+	dependencies[] = { "@Arma 3 Atlas" };
 	displayName = "Aegis Atlas - Taskistani Army";
 
 	infantry[] = {
@@ -192,6 +198,7 @@ class AEGIS_ATLAS_takistan_faction : AEGIS_Argana_faction
 
 class AEGIS_ATLAS_idf_faction : NATO_faction
 {
+	dependencies[] = { "@Arma 3 Atlas" };
 	displayName = "Aegis Atlas - Israeli Defense Force";
 
 	heavyCars[] = {

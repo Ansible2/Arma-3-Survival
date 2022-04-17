@@ -1,5 +1,6 @@
 class RHSGREF_HIDF_faction
 {
+	dependencies[] = { "@RHSGREF" };
 	displayName = "RHS GREF - Horizon Islands Defence Force";
 
 	lightCars[] = {
@@ -44,6 +45,7 @@ class RHSGREF_HIDF_faction
 //O_Heli_Attack_02_dynamicLoadout_black_F
 class RHSGREF_CDF_faction
 {
+	dependencies[] = { "@RHSGREF" };
 	displayName = "RHS GREF - CDF";
 	
 	lightCars[] = {
@@ -111,6 +113,7 @@ class RHSGREF_CDF_faction
 
 class RHSGREF_CDF_GUARD_faction : RHSGREF_CDF_faction
 {
+	dependencies[] = { "@RHSGREF" };
 	displayName = "RHS GREF - CDF Guard";
 
 	infantry[] = {
@@ -129,6 +132,7 @@ class RHSGREF_CDF_GUARD_faction : RHSGREF_CDF_faction
 
 class RHSGREF_CDF_PARA_faction : RHSGREF_CDF_faction
 {
+	dependencies[] = { "@RHSGREF" };
 	displayName = "RHS GREF - CDF Paratroopers";
 
 	infantry[] = {
@@ -146,6 +150,7 @@ class RHSGREF_CDF_PARA_faction : RHSGREF_CDF_faction
 
 class RHSGREF_CHDKZ
 {
+	dependencies[] = { "@RHSGREF" };
 	displayName = "RHS GREF - ChDKZ";
 
 	lightCars[] = {
@@ -209,6 +214,7 @@ class RHSGREF_CHDKZ
 
 class RHSGREF_TLA_faction : RHSGREF_CHDKZ
 {
+	dependencies[] = { "@RHSGREF" };
 	displayName = "RHS GREF - Tanoan Liberation Army";
 
 	lightCars[] = {
@@ -241,6 +247,7 @@ class RHSGREF_TLA_faction : RHSGREF_CHDKZ
 
 class RHSGREF_NAPA_MILITIA_faction
 {
+	dependencies[] = { "@RHSGREF" };
 	displayName = "RHS GREF - NAPA Militia";
 
 	lightCars[] = {
@@ -291,6 +298,7 @@ class RHSGREF_NAPA_MILITIA_faction
 
 class RHSGREF_NAPA_PARA_faction : RHSGREF_NAPA_MILITIA_faction
 {
+	dependencies[] = { "@RHSGREF" };
 	displayName = "RHS GREF - NAPA Paramilitary";
 
 	infantry[] = {
