@@ -83,8 +83,14 @@ private _fn_selectEnemyType = {
 
 // cache AI spawn info for queue
 private ["_spawnPositionTemp","_typeTemp"];
-for "_i" from 1 to _totalNumEnemiesToSpawnDuringWave do {
+if (!BLWK_multipleEnemyPositions) then {
 	_spawnPositionTemp = selectRandom BLWK_infantrySpawnPositions;
+};
+
+for "_i" from 1 to _totalNumEnemiesToSpawnDuringWave do {
+	if (BLWK_multipleEnemyPositions) then {
+		_spawnPositionTemp = selectRandom BLWK_infantrySpawnPositions;
+	};
 	_typeTemp = call _fn_selectEnemyType;
 
 	[STANDARD_ENEMY_INFANTRY_QUEUE,_typeTemp,_spawnPositionTemp] call BLWK_fnc_addToQueue;
