@@ -2,8 +2,8 @@
 
 class JTFS_URF_faction
 {
-	dependencies[] = { "???" }; // Couldn't find a matching mod on the workshop
-	displayName = "JTFS Armory - United Rebel Front"; 
+	dependencies[] = { "@JTFS Armory" }; // Couldn't find a matching mod on the workshop
+	displayName = "JTFS Armory - United Rebel Front";
 
 	//excluding JTFS_Crewman, JTFS_Pilot_01, JTFS_Pilot_02, JTFS_Officer_01, JTFS_Officer_02
 	infantry[]={
@@ -52,8 +52,8 @@ class JTFS_URF_faction
 		"JTFS_Plane_Xian_inf", //VTOL transport, infantry variant. JTFS_Plane_Xian_vic for vics if we ever need it.
 		"JTFS_Heli_Mohawk"
 		//"JTFS_Pelican_unarmed" // prone to errors in flight
-		
-		 
+
+
 	};
 	// excluded are the armed pelican, falcon, hornet, and Xi'an transport (have you seen how much ordnance that thing carries??)
 	casAircraft[]={
@@ -63,7 +63,7 @@ class JTFS_URF_faction
 	attackHelicopters[]={
 		"JTFS_Heli_Kajman"
 	};
-	// maybe I'll reskin an equivalent for the rebels.. 
+	// maybe I'll reskin an equivalent for the rebels..
 	heavyGunships[]={
 	};
 };
