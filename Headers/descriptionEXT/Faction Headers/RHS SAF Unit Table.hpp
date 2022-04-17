@@ -76,9 +76,8 @@ class RHSSAF_AIRBORNE_faction
 
 class RHSSAF_DIGITAL_faction : RHSSAF_AIRBORNE_faction
 {
-	dependencies[] = { "@RHSSAF", "@RHSGREF", "@RHSAFRF" };
 	displayName = "RHS SAF - Serbian Armed Forces (Digital)";
-	
+
 	infantry[] = {
 		"rhssaf_army_o_m10_digital_asst_mgun_m84",
 		"rhssaf_army_o_m10_digital_asst_spec_aa",
@@ -105,9 +104,8 @@ class RHSSAF_DIGITAL_faction : RHSSAF_AIRBORNE_faction
 
 class RHSSAF_OAKLEAF_faction : RHSSAF_AIRBORNE_faction
 {
-	dependencies[] = { "@RHSSAF", "@RHSGREF", "@RHSAFRF" };
 	displayName = "RHS SAF - Serbian Armed Forces (Oakleaf)";
-	
+
 	infantry[] = {
 		"rhssaf_army_o_m10_oakleaf_asst_mgun_m84",
 		"rhssaf_army_o_m10_oakleaf_asst_spec_aa",
@@ -134,9 +132,8 @@ class RHSSAF_OAKLEAF_faction : RHSSAF_AIRBORNE_faction
 
 class RHSSAF_ALL_faction : RHSSAF_AIRBORNE_faction
 {
-	dependencies[] = { "@RHSSAF", "@RHSGREF", "@RHSAFRF" };
 	displayName = "RHS SAF - Serbian Armed Forces (All)";
-	
+
 	infantry[] = {
 		"rhssaf_army_o_m10_para_asst_mgun_m84",
 		"rhssaf_army_o_m10_para_asst_mgun_minimi",
