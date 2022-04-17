@@ -23,7 +23,7 @@ Author(s):
 ---------------------------------------------------------------------------- */
 params ["_unit"];
 
-private _skillLevel = BLWK_maxSkill min (BLWK_baseSkill * (BLWK_skillIncriment * BLWK_currentWaveNumber));
+private _skillLevel = BLWK_maxSkill min (BLWK_baseSkill + (BLWK_skillIncriment * BLWK_currentWaveNumber));
 
 _unit setSkill ["aimingAccuracy", _skillLevel];
 _unit setSkill ["aimingSpeed", (_skillLevel * BLWK_aimSpeedMod)];

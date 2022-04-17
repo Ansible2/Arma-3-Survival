@@ -66,7 +66,7 @@ while {BLWK_doDetectCollision AND {alive _unit}} do {
 
 				_unitGroup setCombatMode "BLUE";
 				_unitGroup setBehaviour "SAFE";
-				_unitGroup setSpeeedMode "FULL";
+				_unitGroup setSpeedMode "FULL";
 				_unit disableAI "TARGET";
 				_unit disableAI "AUTOTARGET";
 
