@@ -1,3 +1,4 @@
+#include "..\..\Headers\Stalker Global Strings.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_pathing_mainLoop
 
@@ -26,11 +27,13 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-// using setPos as BLWK_infantrySpawnPositions are [x,y]
+// telling the unit to go to their stalked player seems to cause
+// the issue of AI getting stuck too, hence why they go to the crate
 #define RESET_POSITION\
-	_groupLeader setPos (selectRandom BLWK_infantrySpawnPositions);\
-	sleep 1;\
-	[_groupLeader,position BLWK_mainCrate] remoteExecCall ["move",_groupLeader];\
+	doStop _groupLeader; \
+	sleep 1; \
+	[_groupLeader,_groupLeader] remoteExecCall ["doFollow",_groupLeader]; \
+	[_groupLeader,[BLWK_mainCrate, 25] call CBA_fnc_randPos] remoteExecCall ["move",_groupLeader]; \
 	[group _groupLeader,"full"] remoteExec ["setSpeedMode",_groupLeader];
 
 #define LOOP_VAR_NAME "BLWK_runPathingLoop"
