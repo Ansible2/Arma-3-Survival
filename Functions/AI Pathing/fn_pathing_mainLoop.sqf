@@ -33,7 +33,7 @@ Author(s):
 	doStop _groupLeader; \
 	sleep 1; \
 	[_groupLeader,_groupLeader] remoteExecCall ["doFollow",_groupLeader]; \
-	[_groupLeader,[BLWK_mainCrate, 25] call CBA_fnc_randPos] remoteExecCall ["move",_groupLeader]; \
+	[_groupLeader,[BLWK_mainCrate, 5] call CBA_fnc_randPos] remoteExecCall ["move",_groupLeader]; \
 	[group _groupLeader,"full"] remoteExec ["setSpeedMode",_groupLeader];
 
 #define LOOP_VAR_NAME "BLWK_runPathingLoop"
