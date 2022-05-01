@@ -163,7 +163,7 @@ private _fn_getASpawnPosition = {
 if (!(isNil "BLWK_lootRevealerBox") AND {!(isNull BLWK_lootRevealerBox)}) then {
 	deleteVehicle BLWK_lootRevealerBox;
 };
-BLWK_lootRevealerBox = createVehicle [LOOT_REVEAL_BOX_CLASS, call _fn_getASpawnPosition, [], 0, "CAN_COLLIDE"];
+BLWK_lootRevealerBox = createVehicle [LOOT_REVEAL_BOX_CLASS, ASLToATL (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
 BLWK_lootRevealerBox allowDamage false;
 
 publicVariable "BLWK_lootRevealerBox";
@@ -180,7 +180,7 @@ if (!BLWK_supportDishFound) then {
 		deleteVehicle BLWK_supportDish;
 	};
 
-	BLWK_supportDish = createVehicle [SUPPORT_SATT_CLASS, selectRandom _sortedPositions, [], 0, "CAN_COLLIDE"];
+	BLWK_supportDish = createVehicle [SUPPORT_SATT_CLASS, ASLToATL (selectRandom _sortedPositions), [], 0, "CAN_COLLIDE"];
 	publicVariable "BLWK_supportDish";
 	BLWK_supportDish allowDamage false;
 	_addToZeusArray pushBack BLWK_supportDish;
@@ -197,7 +197,7 @@ if !(missionNamespace getVariable ["BLWK_randomWeaponBoxFound",false]) then {
 		deleteVehicle BLWK_randomWeaponBox;
 	};
 
-	BLWK_randomWeaponBox = createVehicle [RANDOM_WEAPON_BOX_CLASS, selectRandom _sortedPositions, [], 4, "NONE"];
+	BLWK_randomWeaponBox = createVehicle [RANDOM_WEAPON_BOX_CLASS, ASLToATL (selectRandom _sortedPositions), [], 4, "NONE"];
 	BLWK_randomWeaponBox allowDamage false;
 	publicVariable "BLWK_randomWeaponBox";
 	_addToZeusArray pushBack BLWK_randomWeaponBox;
@@ -214,7 +214,7 @@ if (!(isNil "BLWK_moneyPile") AND {!(isNull BLWK_moneyPile)}) then {
 	deleteVehicle BLWK_moneyPile;
 };
 
-BLWK_moneyPile = createVehicle [MONEY_PILE_CLASS, call _fn_getASpawnPosition, [], 0, "CAN_COLLIDE"];
+BLWK_moneyPile = createVehicle [MONEY_PILE_CLASS, ASLToATL (call _fn_getASpawnPosition), [], 0, "CAN_COLLIDE"];
 publicVariable "BLWK_moneyPile";
 BLWK_moneyPile allowDamage false;
 _addToZeusArray pushBack BLWK_moneyPile;
