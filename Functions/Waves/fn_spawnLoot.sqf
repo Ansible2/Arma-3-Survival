@@ -28,7 +28,7 @@ Author(s):
 #define LOOT_HOLDER_CLASS "GroundWeaponHolder_Scripted"
 #define NUMBER_OF_IMPACTED_UNIQUES 2
 #define MAX_SPAWNS_PLUS_UNIQUES (BLWK_maxLootSpawns + NUMBER_OF_IMPACTED_UNIQUES)
-#define MAX_SPAWNS_MINUS_UNIQUES (BLWK_maxLootSpawns - NUMBER_OF_IMPACTED_UNIQUES)
+#define MAX_SPAWNS_MINUS_UNIQUES ((BLWK_maxLootSpawns - NUMBER_OF_IMPACTED_UNIQUES) max 0)
 #define LOOT_HOLDER_Z_BUFFER 0.1
 
 if (!isServer) exitWith {false};
@@ -111,10 +111,11 @@ BLWK_lootHolders = BLWK_lootHolders select {
 private _addToZeusArray = [];
 
 private _lootHolderCount = count BLWK_lootHolders;
-if (_lootHolderCount isNotEqualTo MAX_SPAWNS_MINUS_UNIQUES) then {
+private _numberOfOptionalSpawnPositions = MAX_SPAWNS_MINUS_UNIQUES;
+if (_lootHolderCount isNotEqualTo _numberOfOptionalSpawnPositions) then {
 
-	if (_lootHolderCount < MAX_SPAWNS_MINUS_UNIQUES) then {
-		for "_i" from 1 to (MAX_SPAWNS_MINUS_UNIQUES - _lootHolderCount) do {
+	if (_lootHolderCount < _numberOfOptionalSpawnPositions) then {
+		for "_i" from 1 to (_numberOfOptionalSpawnPositions - _lootHolderCount) do {
 			["Found need for loot holder, adding...",false] call KISKA_fnc_log;
 			private _holder = createVehicle [LOOT_HOLDER_CLASS, [0,0,1000], [], 0, "FLY"];
 			_holder allowDamage false;
@@ -124,7 +125,7 @@ if (_lootHolderCount isNotEqualTo MAX_SPAWNS_MINUS_UNIQUES) then {
 		};
 
 	} else {
-		for "_i" from 1 to (_lootHolderCount - MAX_SPAWNS_MINUS_UNIQUES) do {
+		for "_i" from 1 to (_lootHolderCount - _numberOfOptionalSpawnPositions) do {
 			["Found excess loot holder, deleteing...",false] call KISKA_fnc_log;
 			private _holder = BLWK_lootHolders deleteAt 0;
 			deleteVehicle _holder;
