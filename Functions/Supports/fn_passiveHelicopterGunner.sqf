@@ -52,6 +52,7 @@ scriptName "BLWK_fnc_passiveHelicopterGunner";
 #define DETECT_ENEMY_RADIUS 700
 #define MIN_RADIUS 200
 #define STAR_BEARINGS [0,144,288,72,216]
+#define VEHICLE_DOWNED(vehicle) ((!alive vehicle) OR {(crew vehicle) isEqualTo []} OR {((getPosATL vehicle) select 2) < 3})
 
 params [
 	"_centerPosition",
@@ -191,18 +192,27 @@ _params spawn {
 		_radius = MIN_RADIUS;
 	};
 
+	private _downed = false;
+
 	// move to support zone
 	waitUntil {
-		if ((!alive _vehicle) OR {(_vehicle distance2D _centerPosition) <= _radius}) exitWith {
+		if (VEHICLE_DOWNED(_vehicle)) exitWith {
+			_downed = true;
 			true
 		};
+		if ((_vehicle distance2D _centerPosition) <= _radius) exitWith {
+			true
+		};
+
 		_vehicle move _centerPosition;
+
 		sleep 2;
+
 		false
 	};
 
 	// delete crew if vehicle got blown up on the way
-	private _fn_exitForDeadVehicle = {
+	private _fn_exitForDownedVehicle = {
 		if (_globalLimiter isNotEqualTo "") then {
 			missionNamespace setVariable [_globalLimiter,false,true];
 		};
@@ -212,14 +222,18 @@ _params spawn {
 		};
 
 		_vehicleCrew apply {
-			if (alive _x) then {
-				deleteVehicle _x
-			};
+			deleteVehicle _x;
 		};
+
+		if (alive _vehicle) then {
+			_vehicle setDamage 1;
+
+		};
+
 	};
 
-	if (!alive _vehicle) exitWith {
-		call _fn_exitForDeadVehicle;
+	if (_downed OR {VEHICLE_DOWNED(_vehicle)}) exitWith {
+		call _fn_exitForDownedVehicle;
 	};
 
 
@@ -239,9 +253,13 @@ _params spawn {
 
 	private _sleepTime = _timeOnStation / 5;
 	private "_currentTarget";
+	private _dead = false;
 	for "_i" from 0 to 4 do {
 
-		if (!alive _vehicle) exitWith {};
+		if (_downed OR {VEHICLE_DOWNED(_vehicle)}) then {
+			_downed = true;
+			break;
+		};
 
 		_targetsInArea = call _fn_getTargets;
 		if !(_targetsInArea isEqualTo []) then {
@@ -262,8 +280,8 @@ _params spawn {
 	/* ----------------------------------------------------------------------------
 		After support is done
 	---------------------------------------------------------------------------- */
-	if (!alive _vehicle) exitWith {
-		call _fn_exitForDeadVehicle;
+	if (_downed OR {VEHICLE_DOWNED(_vehicle)}) exitWith {
+		call _fn_exitForDownedVehicle;
 	};
 
 	if (_globalLimiter isNotEqualTo "") then {
@@ -289,11 +307,12 @@ _params spawn {
 	_vehicle doMove _deletePosition;
 
 	waitUntil {
-		if (!alive _vehicle OR {(_vehicle distance2D _deletePosition) <= 200}) exitWith {true};
+		if (_downed OR {VEHICLE_DOWNED(_vehicle)}) exitWith {
+			_downed = true;
+			true
+		};
 
-		// if vehicle is disabled and makes a landing, just blow it up
-		if ((getPosATL _vehicle select 2) < 5) exitWith {
-			_vehicle setDamage 1;
+		if ((_vehicle distance2D _deletePosition) <= 200) exitWith {
 			true
 		};
 
@@ -301,13 +320,14 @@ _params spawn {
 		false
 	};
 
-
 	_vehicleCrew apply {
-		if (alive _x) then {
-			_vehicle deleteVehicleCrew _x;
-		};
+		deleteVehicle _x;
 	};
-	if (alive _vehicle) then {
+
+	if (_downed) then {
+		_vehicle setDamage 1;
+
+	} else {
 		deleteVehicle _vehicle;
 	};
 };
