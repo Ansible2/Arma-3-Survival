@@ -1,4 +1,4 @@
-#define SOG_CONDITION "(getAssetDLCInfo [_this select 0,_this select 1] select 4) isEqualTo '1227700'"
+#define SOG_CONDITION "(_this select 0) select [0,3] == 'vn_'"
 class sogpf_lootList
 {
     title = "SOG PF Loot List";
