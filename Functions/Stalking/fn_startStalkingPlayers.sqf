@@ -91,16 +91,33 @@ _stalkerGroupUnits apply {
 
 
 // do the stalking
+[_stalkerGroup,"full"] remoteExec ["setSpeedMode",groupOwner _stalkerGroup];
 while {!(isNull _stalkerGroup) AND (_stalkerGroup getVariable DO_STALK_VAR) } do {
-
-	[_stalkerGroup,(getPosATL _playerToStalk)] remoteExec ["move", groupOwner _stalkerGroup];
-	[_stalkerGroup,"full"] remoteExec ["setSpeedMode",groupOwner _stalkerGroup];
 
 	// check if there are any units left in the stalker group to do the stalking
 	_stalkerGroupUnits = units _stalkerGroup;
-	if (_stalkerGroupUnits isEqualTo [] OR {(_stalkerGroupUnits findIf {alive _x}) isEqualTo -1}) exitWith {
+	if (_stalkerGroupUnits isEqualTo [] OR {(_stalkerGroupUnits findIf {alive _x}) isEqualTo -1}) then {
 		[_stalkerGroup] call BLWK_fnc_stopStalking;
+		break;
 	};
+
+	// may be worth trying to use waypoints until the unit is within a certain distance2D of the player
+	// then switch to move command so they can enter buildings and such
+	private _stalkerLeader = leader _stalkerGroup;
+	if !(alive _stalkerLeader) then {
+		break;
+	};
+
+	if (_stalkerLeader distance2D < 20) then {
+		[_stalkerGroup] call CBA_fnc_clearWaypoints;
+		[_stalkerGroup,(getPosATL _playerToStalk)] remoteExec ["move", _stalkerLeader];
+
+	} else {
+		[_stalkerGroup] call CBA_fnc_clearWaypoints;
+		[_stalkerGroup, _playerToStalk, 0, "MOVE", "AWARE" "FULL"] call CBA_fnc_addWaypoint;
+		
+	};
+
 
 	sleep _checkRate;
 
@@ -110,7 +127,8 @@ while {!(isNull _stalkerGroup) AND (_stalkerGroup getVariable DO_STALK_VAR) } do
 	};
 
 	// check if stalking should end or if nobody is available for stalking (BLWK_fnc_getAPlayerToStalk will return null object)
-	if (isNull _playerToStalk OR {[_stalkerGroup] call _conditionToEndStalking}) exitWith {
+	if (isNull _playerToStalk OR {[_stalkerGroup] call _conditionToEndStalking}) then {
 		[_stalkerGroup,_defaultPosition] call BLWK_fnc_stopStalking;
+		break;
 	};
 };

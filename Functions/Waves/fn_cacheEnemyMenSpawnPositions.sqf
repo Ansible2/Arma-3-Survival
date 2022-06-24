@@ -31,7 +31,8 @@ params [
     ["_numberOfPositions",15,[123]],
     ["_minRadius",BLWK_playAreaRadius + 50,[123]],
     ["_maxRadius",BLWK_playAreaRadius + 100,[123]],
-    ["_maxAiTravelDistance",BLWK_playAreaRadius + 125,[123]]
+    ["_maxAiTravelDistance",BLWK_playAreaRadius + 125,[123]],
+    ["_distanceToObjects",3,[123]]
 ];
 
 ["Starting cache of infantry spawn positions",false] call KISKA_fnc_log;
@@ -42,7 +43,7 @@ missionNamespace setVariable ["BLWK_maxDistanceFromPlayArea",_maxAiTravelDistanc
 private _AISpawnPositionsArray = [];
 private _positionToPushBack = [];
 while {count _AISpawnPositionsArray < _numberOfPositions} do {
-	_positionToPushBack = [BLWK_playAreaCenter, _minRadius, _maxRadius, 0, 0] call BIS_fnc_findSafePos;
+	_positionToPushBack = [BLWK_playAreaCenter, _minRadius, _maxRadius, _distanceToObjects, 0] call BIS_fnc_findSafePos;
 	_AISpawnPositionsArray pushBackUnique _positionToPushBack;
 };
 
