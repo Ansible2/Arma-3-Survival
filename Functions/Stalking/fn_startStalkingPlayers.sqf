@@ -56,7 +56,8 @@ if (_conditionToEndStalking isEqualTo {}) then {
 // register stalkers
 private _playerToStalk = call BLWK_fnc_getAPlayerToStalk;
 if (isNull _playerToStalk) exitWith {
-	[_stalkerGroup,_defaultPosition] remoteExec ["move", groupOwner _stalkerGroup];
+	sleep 0.5;
+	[_stalkerGroup, _defaultPosition] remoteExecCall ["move", groupOwner _stalkerGroup];
 };
 [_playerToStalk,_stalkerGroup] call BLWK_fnc_registerStalkers;
 _stalkerGroup setVariable [DO_STALK_VAR,true];
@@ -108,14 +109,16 @@ while {!(isNull _stalkerGroup) AND (_stalkerGroup getVariable DO_STALK_VAR) } do
 		break;
 	};
 
-	if (_stalkerLeader distance2D < 20) then {
+	if (_stalkerLeader distance2D < 50) then {
 		[_stalkerGroup] call CBA_fnc_clearWaypoints;
-		[_stalkerGroup,(getPosATL _playerToStalk)] remoteExec ["move", _stalkerLeader];
+		// if not slept before and remoteExecCalled (not just remoteExec'd) unit will just stand still
+		sleep 0.5;
+		[_stalkerLeader,(getPosATL _playerToStalk)] remoteExecCall ["move", _stalkerLeader];
 
 	} else {
 		[_stalkerGroup] call CBA_fnc_clearWaypoints;
 		[_stalkerGroup, _playerToStalk, 0, "MOVE", "AWARE" "FULL"] call CBA_fnc_addWaypoint;
-		
+
 	};
 
 
