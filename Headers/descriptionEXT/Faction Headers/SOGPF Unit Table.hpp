@@ -34,7 +34,8 @@ class SOGPF_usArmy
     };
 
     casAircraft[] = {
-        "vn_b_air_f4c_cas"
+        "vn_b_air_f4c_cas",
+        "vn_b_air_f100d_cas"
     };
     attackHelicopters[] = {
         "vn_b_air_ah1g_04",
@@ -316,7 +317,7 @@ class SOGPF_NVA_dacCong
         "vn_o_air_mi2_01_02"
     };
     casAircraft[] = {
-        "vn_b_air_f4c_cas"
+        "vn_o_air_mig19_cas"
     };
     attackHelicopters[] = {
         "vn_b_air_ah1g_05_usmc"
@@ -701,5 +702,151 @@ class SOGPF_ARVN_rangers : SOGPF_ARVN
         "vn_i_men_ranger_08",
         "vn_i_men_ranger_09",
         "vn_i_men_ranger_02"
+    };
+};
+
+
+class SOGPF_ROK_army_65 : SOGPF_usArmy
+{
+    dependencies[] = { "VN" };
+    displayName = "S.O.G. PF - Republic Of Korea Army (65)";
+
+    infantry[] = {
+        "vn_b_men_rok_army_65_16",
+        "vn_b_men_rok_army_65_12",
+        "vn_b_men_rok_army_65_05",
+        "vn_b_men_rok_army_65_04",
+        "vn_b_men_rok_army_65_07",
+        "vn_b_men_rok_army_65_17",
+        "vn_b_men_rok_army_65_06",
+        "vn_b_men_rok_army_65_27",
+        "vn_b_men_rok_army_65_10",
+        "vn_b_men_rok_army_65_03",
+        "vn_b_men_rok_army_65_01",
+        "vn_b_men_rok_army_65_15",
+        "vn_b_men_rok_army_65_18",
+        "vn_b_men_rok_army_65_19",
+        "vn_b_men_rok_army_65_20",
+        "vn_b_men_rok_army_65_21",
+        "vn_b_men_rok_army_65_08",
+        "vn_b_men_rok_army_65_09",
+        "vn_b_men_rok_army_65_11",
+        "vn_b_men_rok_army_65_02",
+        "vn_b_men_rok_army_65_14",
+        "vn_b_men_rok_army_65_13",
+        "vn_b_men_rok_army_65_31",
+        "vn_b_men_rok_army_65_30"
+    };
+
+    lightCars[] = {
+        "vn_b_wheeled_m151_mg_01_rok_army",
+        "vn_b_wheeled_m151_mg_02_rok_army"
+    };
+
+    lightArmor[] = {
+        "vn_b_armor_m113_acav_04_rok_army",
+        "vn_b_armor_m113_acav_02_rok_army",
+        "vn_b_armor_m113_acav_01_rok_army",
+        "vn_b_armor_m113_acav_06_rok_army",
+        "vn_b_armor_m113_acav_03_rok_army",
+        "vn_b_armor_m113_acav_05_rok_army"
+    };
+};
+
+class SOGPF_ROK_army_68 : SOGPF_ROK_army_65
+{
+    displayName = "S.O.G. PF - Republic Of Korea Army (68)";
+
+    infantry[] = {
+        "vn_b_men_rok_army_68_13",
+        "vn_b_men_rok_army_68_16",
+        "vn_b_men_rok_army_68_12",
+        "vn_b_men_rok_army_68_05",
+        "vn_b_men_rok_army_68_04",
+        "vn_b_men_rok_army_68_07",
+        "vn_b_men_rok_army_68_17",
+        "vn_b_men_rok_army_68_06",
+        "vn_b_men_rok_army_68_27",
+        "vn_b_men_rok_army_68_10",
+        "vn_b_men_rok_army_68_03",
+        "vn_b_men_rok_army_68_01",
+        "vn_b_men_rok_army_68_15",
+        "vn_b_men_rok_army_68_18",
+        "vn_b_men_rok_army_68_19",
+        "vn_b_men_rok_army_68_20",
+        "vn_b_men_rok_army_68_21",
+        "vn_b_men_rok_army_68_08",
+        "vn_b_men_rok_army_68_09",
+        "vn_b_men_rok_army_68_11",
+        "vn_b_men_rok_army_68_02",
+        "vn_b_men_rok_army_68_23",
+        "vn_b_men_rok_army_68_24",
+        "vn_b_men_rok_army_68_25"
+    };
+};
+
+class SOGPF_ROK_marines_65 : SOGPF_usmc
+{
+    displayName = "S.O.G. PF - Republic Of Korea Marines (65)";
+    infantry[] = {
+        "vn_b_men_rok_marine_65_14",
+        "vn_b_men_rok_marine_65_12",
+        "vn_b_men_rok_marine_65_03",
+        "vn_b_men_rok_marine_65_05",
+        "vn_b_men_rok_marine_65_04",
+        "vn_b_men_rok_marine_65_07",
+        "vn_b_men_rok_marine_65_17",
+        "vn_b_men_rok_marine_65_06",
+        "vn_b_men_rok_marine_65_10",
+        "vn_b_men_rok_marine_65_01",
+        "vn_b_men_rok_marine_65_15",
+        "vn_b_men_rok_marine_65_16",
+        "vn_b_men_rok_marine_65_18",
+        "vn_b_men_rok_marine_65_19",
+        "vn_b_men_rok_marine_65_20",
+        "vn_b_men_rok_marine_65_21",
+        "vn_b_men_rok_marine_65_08",
+        "vn_b_men_rok_marine_65_09",
+        "vn_b_men_rok_marine_65_11",
+        "vn_b_men_rok_marine_65_02",
+        "vn_b_men_rok_marine_65_30",
+        "vn_b_men_rok_marine_65_31",
+        "vn_b_men_rok_marine_65_13"
+    };
+
+    lightCars[] = {
+        "vn_b_wheeled_m151_mg_01_rok_army",
+        "vn_b_wheeled_m151_mg_02_rok_army"
+    };
+};
+
+class SOGPF_ROK_marines_68 : SOGPF_ROK_marines_65
+{
+    displayName = "S.O.G. PF - Republic Of Korea Marines (68)";
+
+    infantry[] = {
+        "vn_b_men_rok_marine_68_02",
+        "vn_b_men_rok_marine_68_12",
+        "vn_b_men_rok_marine_68_11",
+        "vn_b_men_rok_marine_68_03",
+        "vn_b_men_rok_marine_68_14",
+        "vn_b_men_rok_marine_68_13",
+        "vn_b_men_rok_marine_68_05",
+        "vn_b_men_rok_marine_68_04",
+        "vn_b_men_rok_marine_68_07",
+        "vn_b_men_rok_marine_68_17",
+        "vn_b_men_rok_marine_68_31",
+        "vn_b_men_rok_marine_68_30",
+        "vn_b_men_rok_marine_68_06",
+        "vn_b_men_rok_marine_68_10",
+        "vn_b_men_rok_marine_68_01",
+        "vn_b_men_rok_marine_68_15",
+        "vn_b_men_rok_marine_68_16",
+        "vn_b_men_rok_marine_68_18",
+        "vn_b_men_rok_marine_68_19",
+        "vn_b_men_rok_marine_68_20",
+        "vn_b_men_rok_marine_68_21",
+        "vn_b_men_rok_marine_68_09",
+        "vn_b_men_rok_marine_68_08"
     };
 };
