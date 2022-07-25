@@ -850,3 +850,6 @@ class SOGPF_ROK_marines_68 : SOGPF_ROK_marines_65
         "vn_b_men_rok_marine_68_08"
     };
 };
+
+
+// TODO: Laos, New Zealand, Austrailia, Pathet Lao
