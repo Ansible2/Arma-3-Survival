@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_errorNotification
+Function: KISKA_fnc_errorNotification
 
 Description:
 	Prints an error notification
@@ -16,13 +16,13 @@ Returns:
 
 Examples:
     (begin example)
-        ["Hello World"] call BLWK_fnc_errorNotification;
+        ["Hello World"] call KISKA_fnc_errorNotification;
     (end)
 
 Author:
 	Ansible2
 ---------------------------------------------------------------------------- */
-scriptName "BLWK_fnc_errorNotification";
+scriptName "KISKA_fnc_errorNotification";
 
 params [
 	["_message","",["",[]]],

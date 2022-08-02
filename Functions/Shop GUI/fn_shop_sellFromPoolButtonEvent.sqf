@@ -34,7 +34,7 @@ private _poolTreeCtrl = _display displayCtrl BLWK_SHOP_POOL_TREE_IDC;
 private _selectedTreePath = tvCurSel _poolTreeCtrl;
 
 if (count _selectedTreePath < 2) exitWith { // if a category or nothing selected
-	["You need a valid entry selected"] call BLWK_fnc_errorNotification;
+	["You need a valid entry selected"] call KISKA_fnc_errorNotification;
 };
 
 // get which global pool to change

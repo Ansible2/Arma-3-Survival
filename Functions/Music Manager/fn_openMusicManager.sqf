@@ -22,7 +22,7 @@ scriptName "BLWK_fnc_openMusicManager";
 
 // check if player is host or admin
 if !(call KISKA_fnc_isAdminOrHost) exitWith {
-	["Only admins and hosts can open the manager"] call BLWK_fnc_errorNotification;
+	["Only admins and hosts can open the manager"] call KISKA_fnc_errorNotification;
 };
 
 createDialog "musicManagerDialog";

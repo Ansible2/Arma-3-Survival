@@ -34,7 +34,7 @@ private _poolTreeCtrl = _display displayCtrl BLWK_SHOP_POOL_TREE_IDC;
 private _selectedTreePath = tvCurSel _poolTreeCtrl;
 
 if (count _selectedTreePath < 2) exitWith {
-	["You need a valid entry selected"] call BLWK_fnc_errorNotification;
+	["You need a valid entry selected"] call KISKA_fnc_errorNotification;
 };
 
 // get which global pool to change
@@ -46,7 +46,7 @@ switch (_treeCategory) do {
 	case BUILD_TREE: {
 
 		if !(isNil "BLWK_heldObject") exitWith {
-			["You can't hold two objects at once"] call BLWK_fnc_errorNotification;
+			["You can't hold two objects at once"] call KISKA_fnc_errorNotification;
 		};
 
 		[TO_STRING(BLWK_SHOP_BUILD_POOL_GVAR),_indexInTree] remoteExecCall ["KISKA_fnc_deleteAtArray",BLWK_allClientsTargetId,true];
@@ -59,7 +59,7 @@ switch (_treeCategory) do {
 	case SUPPORT_TREE: {
 
 		if (count (player getVariable ["BIS_fnc_addCommMenuItem_menu",[]]) isEqualTo 10) exitWith {
-			["You already have the max supports possible"] call BLWK_fnc_errorNotification;
+			["You already have the max supports possible"] call KISKA_fnc_errorNotification;
 		};
 
 		[TO_STRING(BLWK_SHOP_SUPP_POOL_GVAR),_indexInTree] remoteExecCall ["KISKA_fnc_deleteAtArray",BLWK_allClientsTargetId,true];

@@ -120,7 +120,7 @@ if (BLWK_customPlayLocation) then {
 
 	// exit if nothing found
 	if (_mapLocationPositions isEqualTo -1) then {
-		["No locations on map are within your selection parameters for building numbers"] remoteExecCall ["BLWK_fnc_errorNotification",0,true];
+		["No locations on map are within your selection parameters for building numbers"] remoteExecCall ["KISKA_fnc_errorNotification",0,true];
 
 		sleep 10;
 

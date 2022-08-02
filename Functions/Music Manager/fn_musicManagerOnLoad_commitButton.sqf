@@ -31,7 +31,7 @@ _control ctrlAddEventHandler ["ButtonClick",{
 		["Playlist set on server"] call BLWK_fnc_notification;
 
 	} else {
-		["You can't commit an empty playlist"] call BLWK_fnc_errorNotification;
+		["You can't commit an empty playlist"] call KISKA_fnc_errorNotification;
 
 	};
 

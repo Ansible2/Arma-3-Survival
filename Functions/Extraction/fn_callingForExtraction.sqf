@@ -22,11 +22,11 @@ Author(s):
 scriptName "BLWK_fnc_callingForExtraction";
 
 if !(call KISKA_fnc_isAdminOrHost) exitWith {
-    ["You must be an admin or a host to initiate the extraction"] call BLWK_fnc_errorNotification;
+    ["You must be an admin or a host to initiate the extraction"] call KISKA_fnc_errorNotification;
 };
 
 if (missionNamespace getVariable ["BLWK_extractionQueued",false]) exitWith {
-    ["An extraction is already queued!"] call BLWK_fnc_errorNotification;
+    ["An extraction is already queued!"] call KISKA_fnc_errorNotification;
 };
 
 

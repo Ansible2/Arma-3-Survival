@@ -35,7 +35,7 @@ _randomWeaponBox addAction [
 	{
 		// check if player has enough to use the box
 		if ((missionNamespace getVariable ["BLWK_playerKillPoints",0]) < COST_OF_SPIN) exitWith {
-			["You Do Not Enough Points To Spin The Box"] call BLWK_fnc_errorNotification;
+			["You Do Not Enough Points To Spin The Box"] call KISKA_fnc_errorNotification;
 		};
 
 		[COST_OF_SPIN] call BLWK_fnc_subtractPoints;

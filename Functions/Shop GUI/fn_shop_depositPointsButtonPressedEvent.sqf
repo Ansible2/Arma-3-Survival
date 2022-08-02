@@ -35,7 +35,7 @@ if (_depositAmount <= 0) exitWith {};
 
 private _currentPlayerPoints = missionNamespace getVariable ["BLWK_playerKillPoints",0];
 if (_depositAmount > _currentPlayerPoints) exitWith {
-	["This deposit amount is more then you have"] call BLWK_fnc_errorNotification;
+	["This deposit amount is more then you have"] call KISKA_fnc_errorNotification;
 };
 
 private _currentCommunityPoints = missionNamespace getVariable ["BLWK_communityKillPoints",0];

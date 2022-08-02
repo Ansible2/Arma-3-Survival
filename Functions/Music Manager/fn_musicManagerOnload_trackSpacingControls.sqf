@@ -105,7 +105,7 @@ _buttonControl ctrlAddEventHandler ["ButtonClick",{
 		{((count _textCompiled) isNotEqualTo 1) AND
 		{((count _textCompiled) isNotEqualTo 3) OR !(_textCompiled isEqualTypeParams [1,2,3])}}
 	) then {
-		["Format not accepted for track spacing!"] call BLWK_fnc_errorNotification;
+		["Format not accepted for track spacing!"] call KISKA_fnc_errorNotification;
 
 	} else {
 		// send to server
