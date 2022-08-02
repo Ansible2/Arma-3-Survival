@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_notification
+Function: KISKA_fnc_notification
 
 Description:
 	Prints a simple notification
@@ -16,13 +16,13 @@ Returns:
 
 Examples:
     (begin example)
-        ["Hello World"] call BLWK_fnc_notification;
+        ["Hello World"] call KISKA_fnc_notification;
     (end)
 
 Author:
 	Ansible2
 ---------------------------------------------------------------------------- */
-scriptName "BLWK_fnc_notification";
+scriptName "KISKA_fnc_notification";
 
 params [
 	["_message","",["",[]]],

@@ -38,5 +38,5 @@ if (BLWK_currentWaveNumber > BLWK_maxNumWaves) exitWith {
 };
 
 
-["Extraction has been cancelled"] remoteExec ["BLWK_fnc_notification", call CBAP_fnc_players];
+["Extraction has been cancelled"] remoteExec ["KISKA_fnc_notification", call CBAP_fnc_players];
 missionNamespace setVariable ["BLWK_extractionQueued",false,true];

@@ -38,7 +38,7 @@ if (BLWK_customPlayLocation) then {
 		};
 		// if we find an admin or host
 		if (_adminIndex != -1) exitWith {
-			["A location to play at is being selected by the admin"] remoteExecCall ["BLWK_fnc_notification",_players];
+			["A location to play at is being selected by the admin"] remoteExecCall ["KISKA_fnc_notification",_players];
 			remoteExec ["BLWK_fnc_selectCustomPlayArea",_players select _adminIndex];
 
 			true

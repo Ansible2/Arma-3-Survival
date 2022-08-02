@@ -70,7 +70,7 @@ if (isNull _unitWithCurator) then {
 				if !(isNull (getAssignedCuratorUnit _curatorObject)) exitWith {
 					[player,_curatorObject] remoteExecCall ["assignCurator",2];
 					if (_isManual) then {
-						["You are now the curator"] call BLWK_fnc_notification;
+						["You are now the curator"] call KISKA_fnc_notification;
 					};
 					true
 				};

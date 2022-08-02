@@ -32,7 +32,7 @@ waituntil {!isNull MAIN_DISPLAY};
 
 openMap true;
 
-["Just click on the map to select a custom area. Press ctrl+M to initiate the mission with an area selected."] call BLWK_fnc_notification;
+["Just click on the map to select a custom area. Press ctrl+M to initiate the mission with an area selected."] call KISKA_fnc_notification;
 
 BLWK_customAreaDisplayEH = MAIN_DISPLAY displayAddEventHandler ["KeyDown",{
 	// if the pressed keys are ctrl+M
@@ -185,7 +185,7 @@ BLWK_customPlayAreaMapEH = addMissionEventHandler ["MapSingleClick", {
 
 	// inform the player of poor positions
 	if (_numberOfLootPositions < 10 OR {_numberOfBuildings < 10}) then {
-		["There is a very limited amount of buildings and/or loot spawns here. Maybe pick another location..."] call BLWK_fnc_notification;
+		["There is a very limited amount of buildings and/or loot spawns here. Maybe pick another location..."] call KISKA_fnc_notification;
 	};
 
 	// save for checking in BLWK_fnc_checkLocation

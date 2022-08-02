@@ -291,7 +291,7 @@ private _exitAction = [
 	private _informed = false;
 	waitUntil {
 		if (!_informed AND {BLWK_currentWaveNumber == (_endWave - 1)}) then {
-			["You gunner support will end the next wave!"] call BLWK_fnc_notification;
+			["You gunner support will end the next wave!"] call KISKA_fnc_notification;
 			_informed = true;
 		};
 
@@ -307,7 +307,7 @@ private _exitAction = [
 
 	if (isNull _vehicle) exitWith {};
 
-	["Your support expired"] call BLWK_fnc_notification;
+	["Your support expired"] call KISKA_fnc_notification;
 
 	[player,_exitAction,_actionArgs] call (localNamespace getVariable "BLWK_fnc_exitFromAircraft");
 };

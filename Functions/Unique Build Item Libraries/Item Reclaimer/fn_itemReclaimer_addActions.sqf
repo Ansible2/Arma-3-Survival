@@ -61,7 +61,7 @@ _reclaimerObject addAction [
 	{},
 	{
 		[_this select 0] call BLWK_fnc_itemReclaimer_reclaim;
-		["Items Reclaimed"] call BLWK_fnc_notification;
+		["Items Reclaimed"] call KISKA_fnc_notification;
 	},
 	{},
 	[],
