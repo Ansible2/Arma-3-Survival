@@ -58,7 +58,7 @@ if (canSuspend) exitWith {
     [
         KISKA_fnc_notify,
         _this
-    ] call CBA_fnc_directCall;
+    ] call CBAP_fnc_directCall;
 };
 
 if (!hasInterface) exitWith {};
@@ -146,7 +146,7 @@ if !(localNamespace getVariable ["KISKA_notificationLoopRunning",false]) then {
         ---------------------------------------------------------------------------- */
         private _fn_createNotification = {
             disableSerialization;
-            
+
             params [
                 "_composition",
                 "_lifetime"
