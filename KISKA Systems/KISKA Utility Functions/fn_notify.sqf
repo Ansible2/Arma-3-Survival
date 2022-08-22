@@ -56,7 +56,7 @@ scriptName "KISKA_fnc_notify";
 
 if (canSuspend) exitWith {
     [
-        KISKA_fnc_notify_test,
+        KISKA_fnc_notify,
         _this
     ] call CBA_fnc_directCall;
 };
@@ -145,6 +145,8 @@ if !(localNamespace getVariable ["KISKA_notificationLoopRunning",false]) then {
             _fn_createNotification
         ---------------------------------------------------------------------------- */
         private _fn_createNotification = {
+            disableSerialization;
+            
             params [
                 "_composition",
                 "_lifetime"
@@ -168,8 +170,11 @@ if !(localNamespace getVariable ["KISKA_notificationLoopRunning",false]) then {
             // using CBA notification position if available
             private _left = profileNamespace getVariable ['TRIPLES(IGUI,cba_ui_notify,x)', NOTIFY_DEFAULT_X];
             private _top = profileNamespace getVariable ['TRIPLES(IGUI,cba_ui_notify,y)', NOTIFY_DEFAULT_Y];
-            private _width = ctrlTextWidth _notificationCtrl;
-            private _height = ctrlTextHeight _notificationCtrl;
+            private _width = profileNamespace getVariable ['TRIPLES(IGUI, cba_ui_notify, w)', NOTIFY_MIN_WIDTH];
+            private _height = profileNamespace getVariable ['TRIPLES(IGUI, cba_ui_notify, h)', NOTIFY_MIN_HEIGHT];
+
+            _width = (ctrlTextWidth _notificationCtrl) max _width;
+            _height = (ctrlTextHeight _notificationCtrl) max _height;
 
             // ensure the box not going off screen
             private _right = _left + _width;
