@@ -44,7 +44,7 @@ _control ctrlAddEventHandler ["ButtonClick",{
 		[] spawn BLWK_fnc_musicManager_updateLoadCombo;
 
 	} else {
-		["You need a valid selection to delete"] call BLWK_fnc_errorNotification;
+		["You need a valid selection to delete"] call KISKA_fnc_errorNotification;
 
 	};
 

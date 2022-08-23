@@ -57,7 +57,7 @@ for "_i" from 1 to 18 do {
 
 // if the area is not suitable, exit
 if (_enemyCenterPosition isEqualTo [] AND {_playerPosition isEqualTo []}) exitWith {
-	["Your play area did not meet the requirements for the Overrun Wave type (too much water)"] remoteExecCall ["BLWK_fnc_errorNotification",BLWK_allClientsTargetId];
+	["Your play area did not meet the requirements for the Overrun Wave type (too much water)"] remoteExecCall ["KISKA_fnc_errorNotification",BLWK_allClientsTargetId];
 	false
 };
 

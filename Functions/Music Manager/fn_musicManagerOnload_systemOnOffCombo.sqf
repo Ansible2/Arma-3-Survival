@@ -57,13 +57,13 @@ _control ctrlAddEventHandler ["LBSelChanged",{
 				missionNamespace setVariable ["BLWK_musicManager_reset",false];
 
 			} else {
-				["System OFF, last played song will finish..."] call BLWK_fnc_notification;
+				["System OFF, last played song will finish..."] call KISKA_fnc_notification;
 
 			};
 		};
 
 		case 1:{ // system on
-			["System starting... Make sure you commited a playlist to the server"] call BLWK_fnc_notification;
+			["System starting... Make sure you commited a playlist to the server"] call KISKA_fnc_notification;
 
 			// if music is playing from the manager, stop the timeline
 			if (uiNamespace getVariable ["BLWK_musicManager_doPlay",false]) then {

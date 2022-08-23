@@ -33,7 +33,7 @@ _playButtonControl ctrlAddEventHandler ["ButtonClick",{
 
 		private _selectedIndex = lnbCurSelRow _availableMusicListControl;
 		if (_selectedIndex isEqualTo -1) then {
-			["You need to have a selection made from the songs list"] call BLWK_fnc_errorNotification;
+			["You need to have a selection made from the songs list"] call KISKA_fnc_errorNotification;
 
 		} else {
 

@@ -105,12 +105,12 @@ _buttonControl ctrlAddEventHandler ["ButtonClick",{
 		{((count _textCompiled) isNotEqualTo 1) AND
 		{((count _textCompiled) isNotEqualTo 3) OR !(_textCompiled isEqualTypeParams [1,2,3])}}
 	) then {
-		["Format not accepted for track spacing!"] call BLWK_fnc_errorNotification;
+		["Format not accepted for track spacing!"] call KISKA_fnc_errorNotification;
 
 	} else {
 		// send to server
 		[_textCompiled] remoteExecCall ["KISKA_fnc_setRandomMusicTime",2];
-		["Track spacing set to " + (str _textCompiled)] call BLWK_fnc_notification;
+		["Track spacing set to " + (str _textCompiled)] call KISKA_fnc_notification;
 
 	};
 }];

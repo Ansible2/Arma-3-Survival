@@ -28,13 +28,13 @@ params [
 
 
 if (damage _player isEqualTo 0 AND {!BLWK_ACELoaded}) exitWith {
-	["You have no damage to heal"] call BLWK_fnc_notification;
+	["You have no damage to heal"] call KISKA_fnc_notification;
 };
 
 private _killPoints = missionNamespace getVariable ["BLWK_playerKillPoints",0];
 
 if (_killPoints < BLWK_pointsForHeal) exitWith {
-	["You do not have enough points to heal"] call BLWK_fnc_notification;
+	["You do not have enough points to heal"] call KISKA_fnc_notification;
 };
 
 _killPoints = _killPoints - BLWK_pointsForHeal;

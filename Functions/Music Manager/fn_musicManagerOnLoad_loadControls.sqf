@@ -77,7 +77,7 @@ _loadButtonControl ctrlAddEventHandler ["ButtonClick",{
 			};
 
 			if (_countOfUnavailable > 0) then {
-				[((str _countOfUnavailable) + " songs could not be found and were not added to the list")] call BLWK_fnc_notification;
+				[((str _countOfUnavailable) + " songs could not be found and were not added to the list")] call KISKA_fnc_notification;
 			};
 		};
 	};
