@@ -1,29 +1,32 @@
 #include "\a3\ui_f\hpp\defineCommonGrids.inc"
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_notify
+Function: KISKA_fnc_notify
 
 Description:
-    Display a text message. Multiple incoming messages are queued.
+    Display a text message. Multiple incoming messages are queued. Also controls
+     the lifetime of a notification
 
 Parameters:
-	0: _titleLine : <STRING or ARRAY> - If string, the message to display as title
-        0: _text : <STRING> - Text to display or path to .paa or .jpg image (may be passed directly if only text is required)
-        1: _size : <NUMBER> - Scale of text
-        2: _color : <ARRAY> - RGB or RGBA color (range 0-1). (optional, default: [1, 1, 1, 1])
+	0: _titleLine : <STRING, STRUCTURED TEXT, or ARRAY> - If string, the message to display as title.
+        If array:
+            0: _text : <STRING> - Text to display or path to .paa or .jpg
+                image (may be passed directly if only text is required)
+            1: _size : <NUMBER> - Scale of text
+            2: _color : <ARRAY> - RGB or RGBA color (range 0-1). (optional, default: [1, 1, 1, 1])
 
-	1: _subLine : <STRING or ARRAY> - Formatted the same as _titleLine
-	2: _skippable : <ARRAY> - If there are more notifications behind in the queue and this notification
+	1: _subLine : <STRING, STRUCTURED TEXT, or ARRAY> - Formatted the same as _titleLine
+    2: _lifetime : <NUMBER> - How long the notification lasts in seconds (at least 2)
+	3: _skippable : <BOOL> - If there are more notifications behind in the queue and this notification
         comes up, it will not be shown and thrown away
-    3: _lifetime : <NUMBER> - How long the notification lasts in seconds (at least 2)
 
 Examples:
     (begin example)
         [
             ["Hello",1.1,[0.75,0,0,1]],
             "World",
-            false,
-            5
-        ] call BLWK_fnc_notify;
+            5,
+            false
+        ] call KISKA_fnc_notify;
     (end)
 
 Returns:
@@ -31,8 +34,10 @@ Returns:
 
 Authors:
     commy2,
-    Modified by: Ansible2 // Cipher
+    Modified by: Ansible2
 ---------------------------------------------------------------------------- */
+scriptName "KISKA_fnc_notify";
+
 #define NOTIFY_DEFAULT_X (safezoneX + safezoneW - 13 * GUI_GRID_W)
 #define NOTIFY_DEFAULT_Y (safezoneY + 6 * GUI_GRID_H)
 #define NOTIFY_MIN_WIDTH (12 * GUI_GRID_W)
@@ -45,22 +50,25 @@ Authors:
 
 #define BACKGROUND_OPACITY 0.25
 
-#define GET_QUEUE localNamespace getVariable "BLWK_notificationQueue"
-#define SET_QUEUE(var) localNamespace setVariable ["BLWK_notificationQueue",var]
+#define GET_QUEUE localNamespace getVariable "KISKA_notificationQueue"
+#define SET_QUEUE(var) localNamespace setVariable ["KISKA_notificationQueue",var]
 
 
 if (canSuspend) exitWith {
-    [BLWK_fnc_notify, _this] call CBAP_fnc_directCall;
+    [
+        KISKA_fnc_notify,
+        _this
+    ] call CBAP_fnc_directCall;
 };
 
 if (!hasInterface) exitWith {};
 
-
+private _structuredText = text "";
 params [
     ["_titleLine","",[[],""]],
-    ["_subLine","",[[],""]],
-    ["_skippable",false,[true]],
-    ["_lifetime",4,[123]]
+    ["_subLine","",[[],"",_structuredText]],
+    ["_lifetime",4,[123]],
+    ["_skippable",false,[true]]
 ];
 
 if (_lifetime < 2) then {
@@ -72,13 +80,23 @@ if (_lifetime < 2) then {
     Build composition
 ---------------------------------------------------------------------------- */
 private _composition = [];
+// top lineBreak is for gap at top of notification
+// bottom two lineBreaks create a gap at the bottom of the notification
+[lineBreak,_titleLine,lineBreak,_subLine,lineBreak,lineBreak] apply {
+    if (_x isEqualTo lineBreak) then {
+        _composition pushBack lineBreak;
+        continue;
+    };
 
-[_titleLine,_subLine] apply {
+    private _isStructuredText = _x isEqualType (text "");
+    if (_isStructuredText) then {
+        _composition pushBack _x;
+        continue;
+    };
+
     // Line
-    _composition pushBack lineBreak;
-
     _x params [
-        ["_text","",[""]],
+        ["_text","",["",text ""]],
         ["_size",1,[123]],
         ["_color",[1,1,1,1],[[]],[3,4]]
     ];
@@ -92,14 +110,19 @@ private _composition = [];
 
     private _isImage = (toLower _text) select [(count _text) - 4] in [".paa", ".jpg"];
     if (_isImage) then {
-        _composition pushBack parseText format ["<img align='center' size='%2' color='%3' image='%1'/>", _text, _size, _color];
+        _composition pushBack (parseText format ["<img align='center' valign='middle' size='%2' color='%3' image='%1'/>", _text, _size, _color]);
 
     } else {
-        _composition pushBack parseText format ["<t align='center' size='%2' color='%3'>%1</t>", _text, _size, _color];
+        _text = text _text;
+        _text setAttributes [
+            "color", _color,
+            "size", str _size
+        ];
 
+        _text = composeText [_text];
+        _composition pushBack _text;
     };
 };
-
 
 private _notification = [_composition, _lifetime, _skippable];
 
@@ -114,47 +137,44 @@ if (isNil {GET_QUEUE}) then {
 /* ----------------------------------------------------------------------------
     loop
 ---------------------------------------------------------------------------- */
-if !(localNamespace getVariable ["BLWK_notificationLoopRunning",false]) then {
-    localNamespace setVariable ["BLWK_notificationLoopRunning",true];
+if !(localNamespace getVariable ["KISKA_notificationLoopRunning",false]) then {
+    localNamespace setVariable ["KISKA_notificationLoopRunning",true];
 
     [] spawn {
         /* ----------------------------------------------------------------------------
             _fn_createNotification
         ---------------------------------------------------------------------------- */
         private _fn_createNotification = {
+            disableSerialization;
+            
             params [
                 "_composition",
                 "_lifetime"
             ];
 
-            "BLWK_ui_notify" cutRsc ["RscTitleDisplayEmpty", "PLAIN", 0, true];
+            "KISKA_ui_notify" cutRsc ["RscTitleDisplayEmpty", "PLAIN", 0, true];
             private _display = uiNamespace getVariable "RscTitleDisplayEmpty";
 
             private _vignette = _display displayCtrl 1202;
             _vignette ctrlShow false;
 
-            private _background = _display ctrlCreate ["RscText", -1];
-            _background ctrlSetBackgroundColor [0,0,0,BACKGROUND_OPACITY];
+            private _notificationCtrl = _display ctrlCreate ["RscStructuredText", -1];
 
-            private _text = _display ctrlCreate ["RscStructuredText", -1];
-            _text ctrlSetStructuredText (composeText _composition);
-
-            private _controls = [_background, _text];
+            private _structuredText = composeText _composition;
+            _structuredText setAttributes ["align","center"];
+            _structuredText = composeText [_structuredText];
+            _notificationCtrl ctrlSetStructuredText _structuredText;
+            _notificationCtrl ctrlSetBackgroundColor [0,0,0,BACKGROUND_OPACITY];
+            _notificationCtrl ctrlCommit 0.1;
 
             // using CBA notification position if available
-            private _left = profileNamespace getVariable ['TRIPLES(IGUI, cba_ui_notify, x)', NOTIFY_DEFAULT_X];
-            private _top = profileNamespace getVariable ['TRIPLES(IGUI, cba_ui_notify, y)', NOTIFY_DEFAULT_Y];
+            private _left = profileNamespace getVariable ['TRIPLES(IGUI,cba_ui_notify,x)', NOTIFY_DEFAULT_X];
+            private _top = profileNamespace getVariable ['TRIPLES(IGUI,cba_ui_notify,y)', NOTIFY_DEFAULT_Y];
             private _width = profileNamespace getVariable ['TRIPLES(IGUI, cba_ui_notify, w)', NOTIFY_MIN_WIDTH];
             private _height = profileNamespace getVariable ['TRIPLES(IGUI, cba_ui_notify, h)', NOTIFY_MIN_HEIGHT];
 
-            _width = ctrlTextWidth _text max _width;
-
-            // need to set this before reading the text height, to get the correct amount of auto line breaks
-            _text ctrlSetPosition [0, 0, _width, _height];
-            _text ctrlCommit 0;
-
-            private _textHeight = ctrlTextHeight _text;
-            _height = _textHeight max _height;
+            _width = (ctrlTextWidth _notificationCtrl) max _width;
+            _height = (ctrlTextHeight _notificationCtrl) max _height;
 
             // ensure the box not going off screen
             private _right = _left + _width;
@@ -181,28 +201,23 @@ if !(localNamespace getVariable ["BLWK_notificationLoopRunning",false]) then {
                 _top = _top + (_topEdge - _top);
             };
 
-            _background ctrlSetPosition [_left, _top, _width, _height];
 
-            if (_textHeight < _height) then {
-                _top = _top + (_height - _textHeight) / 2;
-            };
+            _notificationCtrl ctrlSetPositionW _width;
+            _notificationCtrl ctrlSetPositionX _left;
+            _notificationCtrl ctrlSetPositionY _top;
 
-            _text ctrlSetPosition [_left, _top, _width, _textHeight];
-
-            // fade in
-            _controls apply {
-                _x ctrlSetFade 1;
-                _x ctrlCommit 0;
-                _x ctrlSetFade 0;
-                _x ctrlCommit (FADE_IN_TIME);
-            };
+            _notificationCtrl ctrlSetFade 1;
+            _notificationCtrl ctrlCommit 0;
+            // in order to get the height of the background to be properly sized,
+            // need to commit other changes before checking ctrlTextHeight
+            _notificationCtrl ctrlSetPositionH (ctrlTextHeight _notificationCtrl);
+            _notificationCtrl ctrlSetFade 0;
+            _notificationCtrl ctrlCommit (FADE_IN_TIME);
 
             sleep _lifetime - FADE_OUT_TIME;
 
-            _controls apply {
-                _x ctrlSetFade 1;
-                _x ctrlCommit (FADE_OUT_TIME);
-            };
+            _notificationCtrl ctrlSetFade 1;
+            _notificationCtrl ctrlCommit (FADE_OUT_TIME);
 
             sleep FADE_OUT_TIME;
         };
@@ -223,7 +238,7 @@ if !(localNamespace getVariable ["BLWK_notificationLoopRunning",false]) then {
             };
         };
 
-        localNamespace setVariable ["BLWK_notificationLoopRunning",false];
+        localNamespace setVariable ["KISKA_notificationLoopRunning",false];
     };
 
 };

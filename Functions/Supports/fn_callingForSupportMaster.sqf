@@ -28,7 +28,7 @@ Authors:
 
 #define CHECK_POSITION \
 if (_targetPosition isEqualTo []) exitWith { \
-	["Position is invalid, try again"] call BLWK_fnc_errorNotification; \
+	["Position is invalid, try again"] call KISKA_fnc_errorNotification; \
 	ADD_SUPPORT_BACK \
 };
 
@@ -66,7 +66,7 @@ params ["_caller","_targetPosition","_supportClass"];
 
 // if a ctrl key is held and one left clicks to select the support while in the map, they can call in an infinite number of the support
 if (visibleMap AND {missionNamespace getVariable ["KISKA_ctrlDown",false]}) exitWith {
-	["You can't call in a support while holding down a crtl key and in the map. It causes a bug with the support menu."] call BLWK_fnc_errorNotification;
+	["You can't call in a support while holding down a crtl key and in the map. It causes a bug with the support menu."] call KISKA_fnc_errorNotification;
 	ADD_SUPPORT_BACK
 };
 
@@ -171,7 +171,7 @@ if (CHECK_SUPPORT_CLASS(SUPPLY_ARSENAL_DROP_CLASS)) exitWith {
 		[_targetPosition,_friendlyDropAircraftClass] call BLWK_fnc_arsenalSupplyDrop;
 		[TYPE_SUPPLY_DROP_REQUEST] call BLWK_fnc_supportRadioGlobal;
 	} else {
-		["An arsenal is already in use"] call BLWK_fnc_errorNotification;
+		["An arsenal is already in use"] call KISKA_fnc_errorNotification;
 		ADD_SUPPORT_BACK
 	};
 };
@@ -233,7 +233,7 @@ if (CHECK_SUPPORT_CLASS(PASS_ATTACK_GUNNER_CLASS)) exitWith {
 		HELI_CAS_EXPRESSION(_vehicleClass,180,100,"B_Heli_Attack_01_dynamicLoadout_F","BLWK_heliGunnerInUse")
 
 	} else {
-		["Only one helicopter gunner support may be active at a time."] call BLWK_fnc_errorNotification;
+		["Only one helicopter gunner support may be active at a time."] call KISKA_fnc_errorNotification;
 		ADD_SUPPORT_BACK
 
 	};
@@ -244,7 +244,7 @@ if (CHECK_SUPPORT_CLASS(PASS_DOOR_GUNNER_CLASS)) exitWith {
 		HELI_CAS_EXPRESSION(_vehicleClass,180,50,"B_Heli_Transport_01_F","BLWK_doorGunnerInUse")
 
 	} else {
-		["Only one door gunner support may be active at a time."] call BLWK_fnc_errorNotification;
+		["Only one door gunner support may be active at a time."] call KISKA_fnc_errorNotification;
 		ADD_SUPPORT_BACK
 
 	};
@@ -256,14 +256,14 @@ if (CHECK_SUPPORT_CLASS(PASS_DOOR_GUNNER_CLASS)) exitWith {
 ---------------------------------------------------------------------------- */
 if (CHECK_SUPPORT_CLASS(TURRET_DOOR_GUNNER_CLASS)) exitWith {
 	if (missionNamespace getVariable ["BLWK_isAircraftGunner",false]) exitWith {
-		["You can not go straight into another gunner support"] call BLWK_fnc_errorNotification;
+		["You can not go straight into another gunner support"] call KISKA_fnc_errorNotification;
 	};
 
 	if !(missionNamespace getVariable ["BLWK_doorGunnerInUse",false]) then {
 		private _friendlyTransportHeliClass = [TRANSPORT_HELI_FACTION_MAP_ID,false] call BLWK_fnc_getFriendlyVehicleClass;
 		TURRET_EXPRESSION(_friendlyTransportHeliClass,125,BLWK_playAreaRadius * 1.5,"B_Heli_Transport_01_F","BLWK_doorGunnerInUse")
 	} else {
-		["Only one door gunner support may be active at a time."] call BLWK_fnc_errorNotification;
+		["Only one door gunner support may be active at a time."] call KISKA_fnc_errorNotification;
 		ADD_SUPPORT_BACK
 	};
 };
@@ -273,7 +273,7 @@ if (CHECK_SUPPORT_CLASS(TURRET_ATTACK_HELI_GUNNER_CLASS)) exitWith {
 		TURRET_EXPRESSION(_friendlyAttackHeliClass,400,550,"B_Heli_Attack_01_dynamicLoadout_F","BLWK_heliGunnerInUse")
 
 	} else {
-		["Only one helicopter gunner support may be active at a time."] call BLWK_fnc_errorNotification;
+		["Only one helicopter gunner support may be active at a time."] call KISKA_fnc_errorNotification;
 		ADD_SUPPORT_BACK
 
 	};
@@ -284,7 +284,7 @@ if (CHECK_SUPPORT_CLASS(TURRET_GUNSHIP_CLASS)) exitWith {
 		TURRET_EXPRESSION(_friendlyGunshipClass,700,1200,"B_T_VTOL_01_armed_F","BLWK_gunshipGunnerInUse")
 
 	} else {
-		["Only one heavy gunship gunner support may be active at a time."] call BLWK_fnc_errorNotification;
+		["Only one heavy gunship gunner support may be active at a time."] call KISKA_fnc_errorNotification;
 		ADD_SUPPORT_BACK
 
 	};
@@ -327,7 +327,7 @@ if (CHECK_SUPPORT_CLASS(RECON_UAV_CLASS)) exitWith {
 
 	} else {
 		ADD_SUPPORT_BACK
-		["Recon UAV is already active"] call BLWK_fnc_errorNotification;
+		["Recon UAV is already active"] call KISKA_fnc_errorNotification;
 
 	};
 };

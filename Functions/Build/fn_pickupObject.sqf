@@ -30,7 +30,7 @@ if (!hasInterface OR {!canSuspend}) exitWith {};
 
 // if they have an object in hand
 if !(isNil "BLWK_heldObject") exitWith {
-	["Can't pick up two objects Superman"] call BLWK_fnc_notification;
+	["Can't pick up two objects Superman"] call KISKA_fnc_notification;
 };
 
 params [

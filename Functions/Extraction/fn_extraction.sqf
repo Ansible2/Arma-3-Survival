@@ -157,15 +157,15 @@ for "_i" from 1 to MAX_ATTEMPTS do {
 	Notify players
 ---------------------------------------------------------------------------- */
 if (!_lzFound) exitWith {
-    ["The map does not accomodate an extraction, mission will end shortly..."] remoteExec ["BLWK_fnc_errorNotification",call CBAP_fnc_players];
+    ["The map does not accomodate an extraction, mission will end shortly..."] remoteExec ["KISKA_fnc_errorNotification",call CBAP_fnc_players];
     sleep 5;
     "end2" call BIS_fnc_endMissionServer;
 };
 
 private _players = call CBAP_fnc_players;
-["You will be teleported to the extraction site shortly"] remoteExec ["BLWK_fnc_notification",_players];
+["You will be teleported to the extraction site shortly"] remoteExec ["KISKA_fnc_notification",_players];
 if (BLWK_extractionHintsEnabled) then {
-    ["There will be marked positions that are your LZs, do not place objects inside of these zones!",5] remoteExec ["BLWK_fnc_notification",_players];
+    ["There will be marked positions that are your LZs, do not place objects inside of these zones!",5] remoteExec ["KISKA_fnc_notification",_players];
 };
 
 
@@ -230,7 +230,7 @@ missionNamespace setVariable ["BLWK_numRespawnTickets",0,true];
 
 sleep BLWK_timeTillExtraction;
 
-["Helicopters will arrive shortly"] remoteExec ["BLWK_fnc_notification",call CBAP_fnc_players];
+["Helicopters will arrive shortly"] remoteExec ["KISKA_fnc_notification",call CBAP_fnc_players];
 
 
 /* ----------------------------------------------------------------------------

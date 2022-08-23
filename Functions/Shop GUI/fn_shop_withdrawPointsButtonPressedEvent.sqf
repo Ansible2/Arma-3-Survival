@@ -36,7 +36,7 @@ if (_withdrawAmount <= 0) exitWith {};
 private _currentCommunityPoints = missionNamespace getVariable ["BLWK_communityKillPoints",0];
 
 if (_withdrawAmount > _currentPlayerPoints) exitWith {
-	["This withdraw amount is more than what is in the pool"] call BLWK_fnc_errorNotification;
+	["This withdraw amount is more than what is in the pool"] call KISKA_fnc_errorNotification;
 };
 
 private _currentPlayerPoints = missionNamespace getVariable ["BLWK_playerKillPoints",0];

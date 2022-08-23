@@ -112,7 +112,7 @@ missionNamespace setVariable ["BLWK_enforceAreaRunning",true];
 			false;
 		};
 
-		["Get back here you..."] call BLWK_fnc_notification;
+		["Get back here you..."] call KISKA_fnc_notification;
 	};
 
 

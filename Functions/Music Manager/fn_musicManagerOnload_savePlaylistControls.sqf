@@ -46,12 +46,12 @@ _saveButtonControl ctrlAddEventHandler ["ButtonClick",{
 			saveProfileNamespace;
 
 		} else {
-			["There are no entries in the Current Playlist.<br/>Save an empty list with Save As or Delete the list"] call BLWK_fnc_errorNotification;
+			["There are no entries in the Current Playlist.<br/>Save an empty list with Save As or Delete the list"] call KISKA_fnc_errorNotification;
 
 		};
 
 	} else {
-		["You need a selection to be made in the Load Playlist drop down"] call BLWK_fnc_errorNotification;
+		["You need a selection to be made in the Load Playlist drop down"] call KISKA_fnc_errorNotification;
 
 	};
 
@@ -73,7 +73,7 @@ _saveAsButtonControl ctrlAddEventHandler ["ButtonClick",{
 		[] spawn BLWK_fnc_musicManager_updateLoadCombo;
 
 	} else {
-		["Playlists require at least one character for a name"] call BLWK_fnc_errorNotification;
+		["Playlists require at least one character for a name"] call KISKA_fnc_errorNotification;
 		
 	};
 

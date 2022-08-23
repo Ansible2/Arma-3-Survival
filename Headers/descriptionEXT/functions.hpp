@@ -234,8 +234,6 @@ class BLWK
 		{};
 		class doMagRepack
 		{};
-		class errorNotification
-		{};
 		class getEnemyVehicleClasses
 		{};
 		class getFriendlyVehicleClass
@@ -251,10 +249,6 @@ class BLWK
 		class hintDroppedDelete
 		{};
 		class lootReveal
-		{};
-		class notify
-		{};
-		class notification
 		{};
 		class optreMedicalToVanilla
 		{};

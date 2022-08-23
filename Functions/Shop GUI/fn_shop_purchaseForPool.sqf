@@ -42,14 +42,14 @@ private _tvCtrl = (ctrlParent _control) displayCtrl _treeIDC;
 // check if the player has anything selected or something like a section header
 private _tvSelectedPath = tvCurSel _tvCtrl;
 if (_tvSelectedPath isEqualTo [] OR {(count _tvSelectedPath) isEqualTo 1}) exitWith {
-	["You do not have a valid selection made"] call BLWK_fnc_errorNotification;
+	["You do not have a valid selection made"] call KISKA_fnc_errorNotification;
 };
 
 // check if player has the points to afford it
 private _cost = _tvCtrl tvValue _tvSelectedPath;
 private _currentPlayerPoints = missionNamespace getVariable ["BLWK_playerKillPoints",0];
 if (_cost > _currentPlayerPoints) exitWith {
-	["You do not have enough for this item"] call BLWK_fnc_errorNotification;
+	["You do not have enough for this item"] call KISKA_fnc_errorNotification;
 };
 
 // this is the array index or class name in either BLWK_supports_array or BLWK_buildableObjectsHash respectively

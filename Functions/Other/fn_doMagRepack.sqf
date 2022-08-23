@@ -31,7 +31,7 @@ params [
 private _unitMags = (magazinesAmmoFull _unit) select {(_x select 1) != 0};
 if (_unitMags isEqualTo []) exitWith {
 	if (_doHint) then {
-		["You have no mags to repack"] call BLWK_fnc_notification;
+		["You have no mags to repack"] call KISKA_fnc_notification;
 	};
 	false
 };
@@ -171,7 +171,7 @@ if !(_unitMagsSorted isEqualTo []) then {
 	
 } else {
 	if (_doHint) then {
-		["You have no mags that need to be repacked"] call BLWK_fnc_notification;
+		["You have no mags that need to be repacked"] call KISKA_fnc_notification;
 	};
 
 	false

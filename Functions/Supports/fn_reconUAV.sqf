@@ -94,7 +94,7 @@ _createdMarkers apply {
 };
 
 missionNamespace setVariable ["BLWK_reconUavActive",false,true];
-["Recon UAV is no longer active"] remoteExecCall ["BLWK_fnc_notification",BLWK_allClientsTargetId];
+["Recon UAV is no longer active"] remoteExecCall ["KISKA_fnc_notification",BLWK_allClientsTargetId];
 
 
 nil

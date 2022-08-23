@@ -28,10 +28,10 @@ _control ctrlAddEventHandler ["ButtonClick",{
 
 	if (GET_PUBLIC_ARRAY_DEFAULT isNotEqualTo []) then {
 		remoteExecCall ["BLWK_fnc_musicManager_setPlaylistServer",2];
-		["Playlist set on server"] call BLWK_fnc_notification;
+		["Playlist set on server"] call KISKA_fnc_notification;
 
 	} else {
-		["You can't commit an empty playlist"] call BLWK_fnc_errorNotification;
+		["You can't commit an empty playlist"] call KISKA_fnc_errorNotification;
 
 	};
 

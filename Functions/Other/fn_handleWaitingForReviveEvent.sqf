@@ -50,7 +50,7 @@ private _fn_addReviveAction = {
 			// revives player for BIS revive system
 			["BLWK_reviveOnStateVar",1,_caller] call BIS_fnc_reviveOnState;
 
-			["Reived from your medkit"] call BLWK_fnc_notification;
+			["Reived from your medkit"] call KISKA_fnc_notification;
 
 			// make the player invincible for 30 seconds to avoid BS
 			[_caller] spawn {

@@ -32,7 +32,7 @@ waituntil {!isNull MAIN_DISPLAY};
 
 openMap true;
 
-["Just click on the map to select a custom area. Press ctrl+M to initiate the mission with an area selected."] call BLWK_fnc_notification;
+["Just click on the map to select a custom area. Press ctrl+M to initiate the mission with an area selected."] call KISKA_fnc_notification;
 
 BLWK_customAreaDisplayEH = MAIN_DISPLAY displayAddEventHandler ["KeyDown",{
 	// if the pressed keys are ctrl+M
@@ -79,19 +79,19 @@ BLWK_fnc_checkLocation = {
 	private _missionAreaInfo = missionNamespace getVariable ["BLWK_missionAreaInfo_temp",[]];
 	// if no selection has been made
 	if (_missionAreaInfo isEqualTo []) exitWith {
-		["You neeed to click on the map to select a mission area"] call BLWK_fnc_errorNotification;
+		["You neeed to click on the map to select a mission area"] call KISKA_fnc_errorNotification;
 		false
 	};
 
 	_missionAreaInfo params ["","_numBuildings","_numLootPositions"];
 	if (_numBuildings isEqualTo 0) exitWith {
-		["You need an area with buildings to spawn stuff"] call BLWK_fnc_errorNotification;
+		["You need an area with buildings to spawn stuff"] call KISKA_fnc_errorNotification;
 		false
 	};
 
 	// some of the mandatory items like the weapon box, loot revealer and satellite dish require unique positions
 	if (_numLootPositions < REQ_NUMBER_OF_LOOT_POSITIONS) exitWith {
-		["You need at least SIX positions to spawn loot"] call BLWK_fnc_errorNotification;
+		["You need at least SIX positions to spawn loot"] call KISKA_fnc_errorNotification;
 		false
 	};
 
@@ -185,7 +185,7 @@ BLWK_customPlayAreaMapEH = addMissionEventHandler ["MapSingleClick", {
 
 	// inform the player of poor positions
 	if (_numberOfLootPositions < 10 OR {_numberOfBuildings < 10}) then {
-		["There is a very limited amount of buildings and/or loot spawns here. Maybe pick another location..."] call BLWK_fnc_notification;
+		["There is a very limited amount of buildings and/or loot spawns here. Maybe pick another location..."] call KISKA_fnc_notification;
 	};
 
 	// save for checking in BLWK_fnc_checkLocation

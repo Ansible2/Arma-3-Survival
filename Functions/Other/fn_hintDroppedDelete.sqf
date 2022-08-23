@@ -24,5 +24,6 @@ if (!hasInterface) exitWith {};
 [
 	["Notification:",1.1,[0.21,0.71,0.21,1]],
 	["At the start of the next wave, dropped items will be DELETED",1,[0,0.87,1,1]],
+	5,
 	false
-] call BLWK_fnc_notify;
+] call KISKA_fnc_notify;

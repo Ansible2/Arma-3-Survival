@@ -34,7 +34,7 @@ params [
 
 if !(call KISKA_fnc_isAdminOrHost) exitWith {
 	if (_isManual) then {
-		["Only admins can be assigned curator"] call BLWK_fnc_errorNotification;
+		["Only admins can be assigned curator"] call KISKA_fnc_errorNotification;
 	};
 };
 
@@ -53,10 +53,10 @@ if (isNull _unitWithCurator) then {
 	if (alive _unitWithCurator) then {
 		// no sense in alerting player if they are the curator still
 		if (!(_unitWithCurator isEqualTo player)) then {
-			["Another currently alive admin has the curator assigned to them already"] call BLWK_fnc_errorNotification;
+			["Another currently alive admin has the curator assigned to them already"] call KISKA_fnc_errorNotification;
 
 		} else {
-			["You are already the curator"] call BLWK_fnc_errorNotification;
+			["You are already the curator"] call KISKA_fnc_errorNotification;
 
 		};
 
@@ -70,7 +70,7 @@ if (isNull _unitWithCurator) then {
 				if !(isNull (getAssignedCuratorUnit _curatorObject)) exitWith {
 					[player,_curatorObject] remoteExecCall ["assignCurator",2];
 					if (_isManual) then {
-						["You are now the curator"] call BLWK_fnc_notification;
+						["You are now the curator"] call KISKA_fnc_notification;
 					};
 					true
 				};

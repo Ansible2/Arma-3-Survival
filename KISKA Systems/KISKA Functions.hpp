@@ -91,6 +91,8 @@ class KISKA
 		{
 			preinit = 1;
 		};
+		class errorNotification
+		{};
 		class findConfigAny
 		{};
 		class findIfBool
@@ -112,6 +114,10 @@ class KISKA
 		class isPatchLoaded
 		{};
 		class log
+		{};
+		class notification
+		{};
+		class notify
 		{};
 		class markBorder
 		{};

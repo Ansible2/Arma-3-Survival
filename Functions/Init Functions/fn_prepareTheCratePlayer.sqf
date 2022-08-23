@@ -81,7 +81,7 @@ private _healString = ["<t color='#ff0000'>-- Heal Yourself ",BLWK_pointsForHeal
 _mainCrate addEventHandler ["ContainerOpened",{
 	params ["_mainCrate"];
 
-	[ format ["You can place %1 First Aid Kits in the The Crate to make automatically make a Medkit",BLWK_faksToMakeMedkit] ] call BLWK_fnc_notification;
+	[ format ["You can place %1 First Aid Kits in the The Crate to make automatically make a Medkit",BLWK_faksToMakeMedkit] ] call KISKA_fnc_notification;
 	// only show once
 	_mainCrate removeEventHandler ["ContainerOpened",_thisEventHandler];
 }];
