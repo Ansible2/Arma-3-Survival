@@ -146,7 +146,7 @@ if !(localNamespace getVariable ["KISKA_notificationLoopRunning",false]) then {
         ---------------------------------------------------------------------------- */
         private _fn_createNotification = {
             disableSerialization;
-
+            
             params [
                 "_composition",
                 "_lifetime"
