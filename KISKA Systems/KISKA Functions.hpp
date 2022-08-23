@@ -115,8 +115,6 @@ class KISKA
 		{};
 		class log
 		{};
-		class markBorder
-		{};
 		class notification
 		{};
 		class notify
