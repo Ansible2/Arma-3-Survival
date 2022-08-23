@@ -27,7 +27,7 @@ Examples:
     (end)
 
 Author(s):
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
 scriptName "KISKA_fnc_paratroopers";
 
@@ -111,14 +111,14 @@ _spawnPosition set [2,_flyInHeight];
 /* ----------------------------------------------------------------------------
 	Create vehicle to drop units
 ---------------------------------------------------------------------------- */
-private _vehicleArray = [_spawnPosition,_flyDirection,_dropVehicleClass,_side] call KISKA_fnc_spawnVehicle;
+private _vehicleArray = [_spawnPosition,_flyDirection,_dropVehicleClass,_side,false] call KISKA_fnc_spawnVehicle;
 private _aircraft = _vehicleArray select 0;
 allCurators apply {
 	[_x,[[_aircraft],true]] remoteExec ["addCuratorEditableObjects",2];
 };
 _aircraft flyInHeight _flyInHeight;
 private _aircraftGroup = _vehicleArray select 2;
-_aircraftGroup setBehaviour "SAFE";
+_aircraftGroup setCombatBehaviour "CARELESS";
 
 // move units into vehicle cargo
 private _unitsToDrop = [];
@@ -144,7 +144,7 @@ private _deletePosition = _dropZone getPos [2000,_flyDirection];
 _leader doMove _deletePosition;
 WAIT_TILL_NEAR(_dropZone,100,0.25)
 // get units out of aircraft
-[_unitsToDrop,_invincibleOnDrop] call KISKA_fnc_staticLine;
+[_aircraft,_unitsToDrop,_invincibleOnDrop] call KISKA_fnc_staticLine;
 _leader doMove _deletePosition;
 
 
