@@ -111,14 +111,14 @@ while {!(isNull _stalkerGroup) AND (_stalkerGroup getVariable DO_STALK_VAR) } do
 	_stalkerLeader reveal [_playerToStalk, 1.5];
 
 	if (_stalkerLeader distance2D _playerToStalk < 50) then {
-		[_stalkerGroup] call CBA_fnc_clearWaypoints;
+		[_stalkerGroup] call CBAP_fnc_clearWaypoints;
 		// if not slept before and remoteExecCalled (not just remoteExec'd) unit will just stand still
 		sleep 0.5;
 		[_stalkerLeader,(getPosATL _playerToStalk)] remoteExecCall ["move", _stalkerLeader];
 
 	} else {
-		[_stalkerGroup] call CBA_fnc_clearWaypoints;
-		[_stalkerGroup, _playerToStalk, 0, "MOVE", "AWARE", "FULL"] call CBA_fnc_addWaypoint;
+		[_stalkerGroup] call CBAP_fnc_clearWaypoints;
+		[_stalkerGroup, _playerToStalk, 0, "MOVE", "AWARE", "FULL"] call CBAP_fnc_addWaypoint;
 
 	};
 
