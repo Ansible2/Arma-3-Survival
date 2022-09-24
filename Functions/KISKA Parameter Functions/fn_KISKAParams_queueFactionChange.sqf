@@ -34,6 +34,6 @@ if (BLWK_inBetweenWaves) then {
 
 } else {
     private _queue = localNamespace getVariable ["BLWK_factionChangeQueue",[]];
-    _queue pushBack _newFactionName;
+    _queue pushBack _varName;
     localNamespace setVariable ["BLWK_factionChangeQueue",_queue];
 };
