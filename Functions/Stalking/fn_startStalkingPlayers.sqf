@@ -91,6 +91,12 @@ _stalkerGroupUnits apply {
 };
 
 
+// TODO: It seems very apparent that ACE is somewhat the culprit of AI not pathing correctly after spawning and about 1 wave in
+// they jsut stop in their tracks at seemingly the first waypoint refresh
+
+
+
+
 // do the stalking
 [_stalkerGroup,"full"] remoteExec ["setSpeedMode",groupOwner _stalkerGroup];
 while {!(isNull _stalkerGroup) AND (_stalkerGroup getVariable DO_STALK_VAR) } do {
@@ -101,23 +107,33 @@ while {!(isNull _stalkerGroup) AND (_stalkerGroup getVariable DO_STALK_VAR) } do
 		[_stalkerGroup] call BLWK_fnc_stopStalking;
 		break;
 	};
-
-	// may be worth trying to use waypoints until the unit is within a certain distance2D of the player
-	// then switch to move command so they can enter buildings and such
+	
 	private _stalkerLeader = leader _stalkerGroup;
 	if !(alive _stalkerLeader) then {
 		break;
 	};
-	_stalkerLeader reveal [_playerToStalk, 1.5];
 
+	[_stalkerGroup] call KISKA_fnc_clearWaypoints;
+	// TODO: this under move handling may not be needed
+	if (_stalkerGroup getVariable ["BLWK_isUnderMove",false]) then {
+		doStop _stalkerGroupUnits;
+		sleep 1;
+		_stalkerGroupUnits doFollow _stalkerLeader;
+	};
+
+	waitUntil {
+		sleep 1;
+		if (count (waypoints _stalkerGroup) isEqualTo 0) exitWith {true};
+		(units _stalkerGroup) isEqualTo []
+	};
+
+	// move allows units to go to a 3d position (inside a building)
+	// therefore, when they are close to their target, start using "move" instead
 	if (_stalkerLeader distance2D _playerToStalk < 50) then {
-		[_stalkerGroup] call KISKA_fnc_clearWaypoints;
-		waitUntil {count (waypoints _stalkerGroup) isEqualTo 0};
+		_stalkerGroup setVariable ["BLWK_isUnderMove",true];
 		[_stalkerLeader,(getPosATL _playerToStalk)] remoteExecCall ["move", _stalkerLeader];
-
 	} else {
-		[_stalkerGroup] call KISKA_fnc_clearWaypoints;
-		waitUntil {count (waypoints _stalkerGroup) isEqualTo 0};
+		_stalkerGroup setVariable ["BLWK_isUnderMove",false];
 		[_stalkerGroup, _playerToStalk, 0, "MOVE", "AWARE", "FULL"] call CBAP_fnc_addWaypoint;
 
 	};
