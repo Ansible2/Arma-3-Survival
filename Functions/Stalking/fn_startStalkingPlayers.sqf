@@ -104,11 +104,13 @@ addMissionEventHandler ["Draw3D", {
 		["_stalkerGroup",grpNull,[grpNull]]
 	];
 
-	if (isNull _stalkerGroup) then {
+	if (isNull _stalkerGroup OR !(_stalkerGroup getVariable ["BLWK_doStalkPlayers",false])) then {
 		removeMissionEventHandler ["draw3d",_thisEventHandler];
 	} else {
-		private _text = (_stalkerGroup getVariable ["BLWK_stalkerText",[""]]) joinString "|";
-		drawIcon3D ["", [1,0,0,1], ASLToAGL (getPosASLVisual (leader _stalkerGroup)), 0, 0, 0, _text, 1, 0.05, "PuristaMedium"];
+		if (missionNamespace getVariable ["BLWK_debug",false]) then {
+			private _text = (_stalkerGroup getVariable ["BLWK_stalkerText",[""]]) joinString "|";
+			drawIcon3D ["", [1,0,0,1], ASLToAGL (getPosASLVisual (leader _stalkerGroup)), 0, 0, 0, _text, 1, 0.05, "PuristaMedium"];
+		};
 	};
 
 },[_stalkerGroup]];
@@ -147,7 +149,8 @@ while {!(isNull _stalkerGroup) AND (_stalkerGroup getVariable DO_STALK_VAR) } do
 
 
 	// TODO: this under move handling may not be needed
-	if (_stalkerGroup getVariable ["BLWK_isUnderMove",false]) then {
+	private _useMove = _stalkerLeader distance2D _playerToStalk < 50;
+	if (_stalkerGroup getVariable ["BLWK_isUnderMove",false] && (!_useMove)) then {
 		[_stalkerGroup,"Used doStop"] call _fn_add3dLog;
 		doStop _stalkerGroupUnits;
 		sleep 1;
@@ -168,13 +171,11 @@ while {!(isNull _stalkerGroup) AND (_stalkerGroup getVariable DO_STALK_VAR) } do
 		sleep 1;
 		(units _stalkerGroup) isEqualTo []
 	};
-	[_stalkerGroup,"Cleared waypoints"] call _fn_add3dLog;
+	[_stalkerGroup,str ["Cleared waypoints: ",_waypointCount]] call _fn_add3dLog;
 
 	// move allows units to go to a 3d position (inside a building)
 	// therefore, when they are close to their target, start using "move" instead
-	private _useMove = _stalkerLeader distance2D _playerToStalk < 50;
 	private _hasWaypoint = _waypointCount isEqualTo 1;
-	
 	if (_useMove) then {
 		[_stalkerGroup,"Using Move"] call _fn_add3dLog;
 		_stalkerGroup setVariable ["BLWK_isUnderMove",true];
@@ -186,17 +187,17 @@ while {!(isNull _stalkerGroup) AND (_stalkerGroup getVariable DO_STALK_VAR) } do
 
 	} else {
 		[_stalkerGroup,"Using waypoints"] call _fn_add3dLog;
-		private _hasStalkerWaypoint = waypointName [_stalkerGroup,0] == "BLWK_stalkWaypoint";
+		private _hasStalkerWaypoint = waypointName [_stalkerGroup,currentWaypoint _stalkerGroup] == "BLWK_stalkWaypoint";
 		if (_hasWaypoint AND !_hasStalkerWaypoint) then {
-			[_stalkerGroup,"Deleted non stalker WP"] call _fn_add3dLog;
-			deleteWaypoint [_stalkerGroup,0];
+			[_stalkerGroup] call KISKA_fnc_clearWaypoints;
+			[_stalkerGroup,"Deleted non stalker WPs"] call _fn_add3dLog;
 		};
 
 		_stalkerGroup setVariable ["BLWK_isUnderMove",false];
 		
 		if (_hasStalkerWaypoint) then {
 			[_stalkerGroup,"Moving stalker WP"] call _fn_add3dLog;
-			private _waypoint = [_stalkerGroup,currentWaypoint _stalkerGroup];
+			private _waypoint = [_stalkerGroup,0];
 			_waypoint setWaypointBehaviour "AWARE";
 			_waypoint setWaypointPosition [getPos _playerToStalk,5];
 

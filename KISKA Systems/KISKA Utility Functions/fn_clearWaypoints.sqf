@@ -6,14 +6,15 @@ Description:
 
 Parameters:
     0: _group <GROUP or OBJECT> - The group to clear the waypoints of.
-    1: _stopUnits <BOOL> - Should the units stop in place after clear?
+    1: _numberToRemove <NUMBER> - The number of waypoints to remove (-1 will remove all)
+    2: _stopUnits <BOOL> - Should the units stop in place after clear?
 
 Returns:
     NOTHING
 
 Example:
     (begin example)
-        [group player,false] call KISKA_fnc_clearWaypoints
+        [group player,-1,false] call KISKA_fnc_clearWaypoints
     (end)
 
 Author(s):
@@ -22,6 +23,7 @@ Author(s):
 ---------------------------------------------------------------------------- */
 params [
 	["_group", grpNull, [grpNull, objNull]],
+    ["_numberToRemove",-1,[123]],
 	["_stopUnits", false, [true]]
 ];
 
@@ -29,13 +31,20 @@ if (_group isEqualType objNull) then {
 	_group = group _group;
 };
 
-private _waypoints = waypoints _group;
-_waypoints apply {
-    // Waypoint index changes with each deletion, so don't delete _x
-    deleteWaypoint [_group, 0];
+private _numberOfCurrentWaypoints = count (waypoints _group);
+if (_numberOfCurrentWaypoints isEqualTo 0) exitWith {};
+
+if (_numberToRemove isEqualTo -1) then {
+    _numberToRemove = _numberOfCurrentWaypoints;
 };
 
-if (!_stopUnits) exitWith {};
+for "_i" from (_numberToRemove - 1) to 0 step -1 do {
+	deleteWaypoint [_group, _i];
+};
+
+private _removedAllWaypoints = _numberToRemove isEqualTo _numberOfCurrentWaypoints;
+if (!_stopUnits OR !_removedAllWaypoints) exitWith {};
+
 
 
 if ((units _group) isNotEqualTo []) then {
