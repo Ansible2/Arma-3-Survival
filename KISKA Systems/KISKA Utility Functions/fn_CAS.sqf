@@ -226,7 +226,10 @@ _weaponsToUse apply {
 	// the cannon may not have any pylon data and therefore _pylonData will be []
 	if !(_pylonData isEqualTo []) then {
 		(_x select 2) params ["_magClass","_pylon"];
-		_plane setPylonLoadout [_pylon,_magClass,true];
+		private _pylonSet = _plane setPylonLoadout [_pylon,_magClass,true,[]];
+		if (!_pylonSet) then {
+			[["Pylon not set for pylon: ",_pylon," with mag: ",_magClass],true] call KISKA_fnc_log;
+		};
 	};
 };
 
