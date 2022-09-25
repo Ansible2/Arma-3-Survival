@@ -1110,4 +1110,36 @@ class SOGPF_AUS_SAS_70 : SOGPF_AUS_RAR_66
     };
 };
 
+
+class SOGPF_RLA : SOGPF_usArmy
+{
+    displayName = "S.O.G. PF - Royal Lao Army";
+
+    lightCars[] = {
+        "vn_i_wheeled_m151_mg_01_rla", 
+        "vn_i_wheeled_m151_mg_02_rla"
+    };
+
+    infantry[] = {
+        "vn_i_men_rla_02", 
+        "vn_i_men_rla_12", 
+        "vn_i_men_rla_05", 
+        "vn_i_men_rla_04", 
+        "vn_i_men_rla_07", 
+        "vn_i_men_rla_17", 
+        "vn_i_men_rla_06", 
+        "vn_i_men_rla_11", 
+        "vn_i_men_rla_10", 
+        "vn_i_men_rla_03", 
+        "vn_i_men_rla_01", 
+        "vn_i_men_rla_15", 
+        "vn_i_men_rla_16", 
+        "vn_i_men_rla_18", 
+        "vn_i_men_rla_19", 
+        "vn_i_men_rla_20", 
+        "vn_i_men_rla_21", 
+        "vn_i_men_rla_08", 
+        "vn_i_men_rla_09"
+    };
+};
 // TODO: Laos, Pathet Lao
