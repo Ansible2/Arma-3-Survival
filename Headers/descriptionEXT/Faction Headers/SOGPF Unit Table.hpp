@@ -976,5 +976,138 @@ class SOGPF_RNZIR_70 : SOGPF_NZSAS_66
 };
 
 
+class SOGPF_AUS_RAR_66 : SOGPF_usArmy
+{
+    displayName = "S.O.G. PF - Royal Austrailian Regiment (66)";
+    lightArmor[] = {
+        "vn_b_armor_m113_01_aus_army"
+    };
 
-// TODO: Laos, Austrailia, Pathet Lao
+    lightCars[] = {
+        "vn_b_wheeled_m151_mg_02_aus_army", 
+        "vn_b_wheeled_m151_mg_03_aus_army"
+    };
+    
+    transportHelicopters[] = {
+        "vn_b_air_uh1d_03_06",
+        "vn_b_air_uh1d_02_06"
+    };
+
+    infantry[] = {
+        "vn_b_men_aus_army_66_15", 
+        "vn_b_men_aus_army_66_16", 
+        "vn_b_men_aus_army_66_12", 
+        "vn_b_men_aus_army_66_18", 
+        "vn_b_men_aus_army_66_05", 
+        "vn_b_men_aus_army_66_07", 
+        "vn_b_men_aus_army_66_17", 
+        "vn_b_men_aus_army_66_06", 
+        "vn_b_men_aus_army_66_10", 
+        "vn_b_men_aus_army_66_19", 
+        "vn_b_men_aus_army_66_03", 
+        "vn_b_men_aus_army_66_08", 
+        "vn_b_men_aus_army_66_04", 
+        "vn_b_men_aus_army_66_09", 
+        "vn_b_men_aus_army_66_11", 
+        "vn_b_men_aus_army_66_02", 
+        "vn_b_men_aus_army_66_01"
+    };
+};
+
+class SOGPF_AUS_RAR_68 : SOGPF_AUS_RAR_66
+{
+    displayName = "S.O.G. PF - Royal Austrailian Regiment (68)";
+
+    infantry[] = {
+        "vn_b_men_aus_army_68_01", 
+        "vn_b_men_aus_army_68_16", 
+        "vn_b_men_aus_army_68_12", 
+        "vn_b_men_aus_army_68_18", 
+        "vn_b_men_aus_army_68_21", 
+        "vn_b_men_aus_army_68_05", 
+        "vn_b_men_aus_army_68_07", 
+        "vn_b_men_aus_army_68_17", 
+        "vn_b_men_aus_army_68_06", 
+        "vn_b_men_aus_army_68_10", 
+        "vn_b_men_aus_army_68_19", 
+        "vn_b_men_aus_army_68_03", 
+        "vn_b_men_aus_army_68_08", 
+        "vn_b_men_aus_army_68_04", 
+        "vn_b_men_aus_army_68_09", 
+        "vn_b_men_aus_army_68_11", 
+        "vn_b_men_aus_army_68_02", 
+        "vn_b_men_aus_army_68_15"
+    };
+};
+
+class SOGPF_AUS_RAR_70 : SOGPF_AUS_RAR_66
+{
+    displayName = "S.O.G. PF - Royal Austrailian Regiment (70)";
+
+    infantry[] = {
+        "vn_b_men_aus_army_70_01", 
+        "vn_b_men_aus_army_70_16", 
+        "vn_b_men_aus_army_70_12", 
+        "vn_b_men_aus_army_70_18", 
+        "vn_b_men_aus_army_70_21", 
+        "vn_b_men_aus_army_70_05", 
+        "vn_b_men_aus_army_70_07", 
+        "vn_b_men_aus_army_70_17", 
+        "vn_b_men_aus_army_70_06", 
+        "vn_b_men_aus_army_70_10", 
+        "vn_b_men_aus_army_70_19", 
+        "vn_b_men_aus_army_70_03", 
+        "vn_b_men_aus_army_70_08", 
+        "vn_b_men_aus_army_70_04", 
+        "vn_b_men_aus_army_70_09", 
+        "vn_b_men_aus_army_70_11", 
+        "vn_b_men_aus_army_70_02", 
+        "vn_b_men_aus_army_70_15"
+    };
+};
+
+class SOGPF_AUS_SAS_66 : SOGPF_AUS_RAR_66
+{
+    displayName = "S.O.G. PF - Austrailian SAS (66)";
+
+    infantry[] = {
+        "vn_b_men_aus_sas_66_04", 
+        "vn_b_men_aus_sas_66_09", 
+        "vn_b_men_aus_sas_66_10", 
+        "vn_b_men_aus_sas_66_11", 
+        "vn_b_men_aus_sas_66_07", 
+        "vn_b_men_aus_sas_66_05", 
+        "vn_b_men_aus_sas_66_06", 
+        "vn_b_men_aus_sas_66_01", 
+        "vn_b_men_aus_sas_66_12", 
+        "vn_b_men_aus_sas_66_13", 
+        "vn_b_men_aus_sas_66_14", 
+        "vn_b_men_aus_sas_66_02", 
+        "vn_b_men_aus_sas_66_08", 
+        "vn_b_men_aus_sas_66_03"
+    };
+};
+
+class SOGPF_AUS_SAS_70 : SOGPF_AUS_RAR_66
+{
+    displayName = "S.O.G. PF - Austrailian SAS (70)";
+
+    infantry[] = {
+        "vn_b_men_aus_sas_70_04", 
+        "vn_b_men_aus_sas_70_09", 
+        "vn_b_men_aus_sas_70_10", 
+        "vn_b_men_aus_sas_70_11", 
+        "vn_b_men_aus_sas_70_07", 
+        "vn_b_men_aus_sas_70_05", 
+        "vn_b_men_aus_sas_70_06", 
+        "vn_b_men_aus_sas_70_01", 
+        "vn_b_men_aus_sas_70_12", 
+        "vn_b_men_aus_sas_70_13", 
+        "vn_b_men_aus_sas_70_14", 
+        "vn_b_men_aus_sas_70_02", 
+        "vn_b_men_aus_sas_70_08", 
+        "vn_b_men_aus_sas_70_03"
+    };
+};
+
+// TODO: Laos, Pathet Lao
