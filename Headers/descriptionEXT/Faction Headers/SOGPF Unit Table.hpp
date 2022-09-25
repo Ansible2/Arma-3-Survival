@@ -852,4 +852,129 @@ class SOGPF_ROK_marines_68 : SOGPF_ROK_marines_65
 };
 
 
-// TODO: Laos, New Zealand, Austrailia, Pathet Lao
+class SOGPF_NZSAS_66 : SOGPF_usArmy
+{
+    displayName = "S.O.G. PF - New Zealand SAS (66)";
+    lightCars[] = {
+        "vn_b_wheeled_m151_mg_02_nz_army", 
+        "vn_b_wheeled_m151_mg_03_nz_army"
+    };
+
+    infantry[] = {
+        "vn_b_men_nz_sas_66_09", 
+        "vn_b_men_nz_sas_66_10", 
+        "vn_b_men_nz_sas_66_11", 
+        "vn_b_men_nz_sas_66_07", 
+        "vn_b_men_nz_sas_66_05", 
+        "vn_b_men_nz_sas_66_06", 
+        "vn_b_men_nz_sas_66_01", 
+        "vn_b_men_nz_sas_66_12", 
+        "vn_b_men_nz_sas_66_13", 
+        "vn_b_men_nz_sas_66_14", 
+        "vn_b_men_nz_sas_66_02", 
+        "vn_b_men_nz_sas_66_08", 
+        "vn_b_men_nz_sas_66_03", 
+        "vn_b_men_nz_sas_66_04"
+    };
+};
+
+class SOGPF_NZSAS_70 : SOGPF_NZSAS_66
+{
+    displayName = "S.O.G. PF - New Zealand SAS (70)";
+    infantry[] = {
+        "vn_b_men_nz_sas_70_09", 
+        "vn_b_men_nz_sas_70_10", 
+        "vn_b_men_nz_sas_70_11", 
+        "vn_b_men_nz_sas_70_07", 
+        "vn_b_men_nz_sas_70_05", 
+        "vn_b_men_nz_sas_70_06", 
+        "vn_b_men_nz_sas_70_01", 
+        "vn_b_men_nz_sas_70_12", 
+        "vn_b_men_nz_sas_70_13", 
+        "vn_b_men_nz_sas_70_14", 
+        "vn_b_men_nz_sas_70_02", 
+        "vn_b_men_nz_sas_70_08", 
+        "vn_b_men_nz_sas_70_03", 
+        "vn_b_men_nz_sas_70_04"
+    };
+};
+
+class SOGPF_RNZIR_66 : SOGPF_NZSAS_66
+{
+    displayName = "S.O.G. PF - Royal New Zealand Infantry Regiment (66)";
+    infantry[] = {
+        "vn_b_men_nz_army_66_01", 
+        "vn_b_men_nz_army_66_14", 
+        "vn_b_men_nz_army_66_12", 
+        "vn_b_men_nz_army_66_16", 
+        "vn_b_men_nz_army_66_19", 
+        "vn_b_men_nz_army_66_05", 
+        "vn_b_men_nz_army_66_07", 
+        "vn_b_men_nz_army_66_06", 
+        "vn_b_men_nz_army_66_10", 
+        "vn_b_men_nz_army_66_17", 
+        "vn_b_men_nz_army_66_03", 
+        "vn_b_men_nz_army_66_08", 
+        "vn_b_men_nz_army_66_04", 
+        "vn_b_men_nz_army_66_09", 
+        "vn_b_men_nz_army_66_11", 
+        "vn_b_men_nz_army_66_02", 
+        "vn_b_men_nz_army_66_15", 
+        "vn_b_men_nz_army_66_13"
+    };
+};
+
+class SOGPF_RNZIR_68 : SOGPF_NZSAS_66
+{
+    displayName = "S.O.G. PF - Royal New Zealand Infantry Regiment (68)";
+    infantry[] = {
+        "vn_b_men_nz_army_68_01", 
+        "vn_b_men_nz_army_68_14", 
+        "vn_b_men_nz_army_68_12", 
+        "vn_b_men_nz_army_68_16", 
+        "vn_b_men_nz_army_68_19", 
+        "vn_b_men_nz_army_68_05", 
+        "vn_b_men_nz_army_68_07", 
+        "vn_b_men_nz_army_68_06", 
+        "vn_b_men_nz_army_68_10", 
+        "vn_b_men_nz_army_68_17", 
+        "vn_b_men_nz_army_68_03", 
+        "vn_b_men_nz_army_68_08", 
+        "vn_b_men_nz_army_68_04", 
+        "vn_b_men_nz_army_68_09", 
+        "vn_b_men_nz_army_68_11", 
+        "vn_b_men_nz_army_68_02", 
+        "vn_b_men_nz_army_68_18", 
+        "vn_b_men_nz_army_68_13", 
+        "vn_b_men_nz_army_68_15"
+    };
+};
+
+class SOGPF_RNZIR_70 : SOGPF_NZSAS_66
+{
+    displayName = "S.O.G. PF - Royal New Zealand Infantry Regiment (70)";
+    infantry[] = {
+        "vn_b_men_nz_army_70_01", 
+        "vn_b_men_nz_army_70_14", 
+        "vn_b_men_nz_army_70_12", 
+        "vn_b_men_nz_army_70_16", 
+        "vn_b_men_nz_army_70_19", 
+        "vn_b_men_nz_army_70_05", 
+        "vn_b_men_nz_army_70_07", 
+        "vn_b_men_nz_army_70_06", 
+        "vn_b_men_nz_army_70_10", 
+        "vn_b_men_nz_army_70_17", 
+        "vn_b_men_nz_army_70_03", 
+        "vn_b_men_nz_army_70_08", 
+        "vn_b_men_nz_army_70_04", 
+        "vn_b_men_nz_army_70_09", 
+        "vn_b_men_nz_army_70_11", 
+        "vn_b_men_nz_army_70_02", 
+        "vn_b_men_nz_army_70_13", 
+        "vn_b_men_nz_army_70_15"
+    };
+};
+
+
+
+// TODO: Laos, Austrailia, Pathet Lao
