@@ -1142,4 +1142,48 @@ class SOGPF_RLA : SOGPF_usArmy
         "vn_i_men_rla_09"
     };
 };
-// TODO: Laos, Pathet Lao
+
+class SOGPF_PATHET_LAO : SOGPF_NVA_field
+{
+    displayName = "S.O.G. PF - Pathet Lao";
+    infantry[] = {
+        "vn_o_men_pl_21", 
+        "vn_o_men_pl_23", 
+        "vn_o_men_pl_22", 
+        "vn_o_men_pl_14", 
+        "vn_o_men_pl_26", 
+        "vn_o_men_pl_07", 
+        "vn_o_men_pl_25", 
+        "vn_o_men_pl_11", 
+        "vn_o_men_pl_10", 
+        "vn_o_men_pl_28", 
+        "vn_o_men_pl_08", 
+        "vn_o_men_pl_16", 
+        "vn_o_men_pl_15", 
+        "vn_o_men_pl_17", 
+        "vn_o_men_pl_01", 
+        "vn_o_men_pl_27", 
+        "vn_o_men_pl_04", 
+        "vn_o_men_pl_05", 
+        "vn_o_men_pl_03", 
+        "vn_o_men_pl_02", 
+        "vn_o_men_pl_06", 
+        "vn_o_men_pl_13", 
+        "vn_o_men_pl_12"
+    };
+
+    lightCars[] = {
+        "vn_o_wheeled_z157_mg_01_pl",
+        "vn_o_wheeled_btr40_mg_02_pl", 
+        "vn_o_wheeled_btr40_mg_01_pl"
+    };
+
+    heavyCars[] = {
+        "vn_o_wheeled_btr40_mg_03_pl",
+        "vn_o_wheeled_z157_mg_02_pl"
+    };
+
+    lightArmor[] = {
+        "vn_o_armor_pt76a_01_pl"
+    };
+};
