@@ -335,7 +335,7 @@ class KISKA_missionParams
 			populationScript = "call BLWK_fnc_KISKAParams_populateFactionList";
 			requiresRestart = 0;
 			sortList = 1;
-			onChanged = "call BLWK_fnc_KISKAParams_queueFactionChange";
+			onChanged = "_this call BLWK_fnc_KISKAParams_queueFactionChange";
 			default = "VANILLA - NATO";
 		};
 
