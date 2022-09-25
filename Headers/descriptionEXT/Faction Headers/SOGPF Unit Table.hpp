@@ -34,7 +34,8 @@ class SOGPF_usArmy
     };
 
     casAircraft[] = {
-        "vn_b_air_f4c_cas"
+        "vn_b_air_f4c_cas",
+        "vn_b_air_f100d_cas"
     };
     attackHelicopters[] = {
         "vn_b_air_ah1g_04",
@@ -316,7 +317,7 @@ class SOGPF_NVA_dacCong
         "vn_o_air_mi2_01_02"
     };
     casAircraft[] = {
-        "vn_b_air_f4c_cas"
+        "vn_o_air_mig19_cas"
     };
     attackHelicopters[] = {
         "vn_b_air_ah1g_05_usmc"
@@ -701,5 +702,488 @@ class SOGPF_ARVN_rangers : SOGPF_ARVN
         "vn_i_men_ranger_08",
         "vn_i_men_ranger_09",
         "vn_i_men_ranger_02"
+    };
+};
+
+
+class SOGPF_ROK_army_65 : SOGPF_usArmy
+{
+    dependencies[] = { "VN" };
+    displayName = "S.O.G. PF - Republic Of Korea Army (65)";
+
+    infantry[] = {
+        "vn_b_men_rok_army_65_16",
+        "vn_b_men_rok_army_65_12",
+        "vn_b_men_rok_army_65_05",
+        "vn_b_men_rok_army_65_04",
+        "vn_b_men_rok_army_65_07",
+        "vn_b_men_rok_army_65_17",
+        "vn_b_men_rok_army_65_06",
+        "vn_b_men_rok_army_65_27",
+        "vn_b_men_rok_army_65_10",
+        "vn_b_men_rok_army_65_03",
+        "vn_b_men_rok_army_65_01",
+        "vn_b_men_rok_army_65_15",
+        "vn_b_men_rok_army_65_18",
+        "vn_b_men_rok_army_65_19",
+        "vn_b_men_rok_army_65_20",
+        "vn_b_men_rok_army_65_21",
+        "vn_b_men_rok_army_65_08",
+        "vn_b_men_rok_army_65_09",
+        "vn_b_men_rok_army_65_11",
+        "vn_b_men_rok_army_65_02",
+        "vn_b_men_rok_army_65_14",
+        "vn_b_men_rok_army_65_13",
+        "vn_b_men_rok_army_65_31",
+        "vn_b_men_rok_army_65_30"
+    };
+
+    lightCars[] = {
+        "vn_b_wheeled_m151_mg_01_rok_army",
+        "vn_b_wheeled_m151_mg_02_rok_army"
+    };
+
+    lightArmor[] = {
+        "vn_b_armor_m113_acav_04_rok_army",
+        "vn_b_armor_m113_acav_02_rok_army",
+        "vn_b_armor_m113_acav_01_rok_army",
+        "vn_b_armor_m113_acav_06_rok_army",
+        "vn_b_armor_m113_acav_03_rok_army",
+        "vn_b_armor_m113_acav_05_rok_army"
+    };
+};
+
+class SOGPF_ROK_army_68 : SOGPF_ROK_army_65
+{
+    displayName = "S.O.G. PF - Republic Of Korea Army (68)";
+
+    infantry[] = {
+        "vn_b_men_rok_army_68_13",
+        "vn_b_men_rok_army_68_16",
+        "vn_b_men_rok_army_68_12",
+        "vn_b_men_rok_army_68_05",
+        "vn_b_men_rok_army_68_04",
+        "vn_b_men_rok_army_68_07",
+        "vn_b_men_rok_army_68_17",
+        "vn_b_men_rok_army_68_06",
+        "vn_b_men_rok_army_68_27",
+        "vn_b_men_rok_army_68_10",
+        "vn_b_men_rok_army_68_03",
+        "vn_b_men_rok_army_68_01",
+        "vn_b_men_rok_army_68_15",
+        "vn_b_men_rok_army_68_18",
+        "vn_b_men_rok_army_68_19",
+        "vn_b_men_rok_army_68_20",
+        "vn_b_men_rok_army_68_21",
+        "vn_b_men_rok_army_68_08",
+        "vn_b_men_rok_army_68_09",
+        "vn_b_men_rok_army_68_11",
+        "vn_b_men_rok_army_68_02",
+        "vn_b_men_rok_army_68_23",
+        "vn_b_men_rok_army_68_24",
+        "vn_b_men_rok_army_68_25"
+    };
+};
+
+class SOGPF_ROK_marines_65 : SOGPF_usmc
+{
+    displayName = "S.O.G. PF - Republic Of Korea Marines (65)";
+    infantry[] = {
+        "vn_b_men_rok_marine_65_14",
+        "vn_b_men_rok_marine_65_12",
+        "vn_b_men_rok_marine_65_03",
+        "vn_b_men_rok_marine_65_05",
+        "vn_b_men_rok_marine_65_04",
+        "vn_b_men_rok_marine_65_07",
+        "vn_b_men_rok_marine_65_17",
+        "vn_b_men_rok_marine_65_06",
+        "vn_b_men_rok_marine_65_10",
+        "vn_b_men_rok_marine_65_01",
+        "vn_b_men_rok_marine_65_15",
+        "vn_b_men_rok_marine_65_16",
+        "vn_b_men_rok_marine_65_18",
+        "vn_b_men_rok_marine_65_19",
+        "vn_b_men_rok_marine_65_20",
+        "vn_b_men_rok_marine_65_21",
+        "vn_b_men_rok_marine_65_08",
+        "vn_b_men_rok_marine_65_09",
+        "vn_b_men_rok_marine_65_11",
+        "vn_b_men_rok_marine_65_02",
+        "vn_b_men_rok_marine_65_30",
+        "vn_b_men_rok_marine_65_31",
+        "vn_b_men_rok_marine_65_13"
+    };
+
+    lightCars[] = {
+        "vn_b_wheeled_m151_mg_01_rok_army",
+        "vn_b_wheeled_m151_mg_02_rok_army"
+    };
+};
+
+class SOGPF_ROK_marines_68 : SOGPF_ROK_marines_65
+{
+    displayName = "S.O.G. PF - Republic Of Korea Marines (68)";
+
+    infantry[] = {
+        "vn_b_men_rok_marine_68_02",
+        "vn_b_men_rok_marine_68_12",
+        "vn_b_men_rok_marine_68_11",
+        "vn_b_men_rok_marine_68_03",
+        "vn_b_men_rok_marine_68_14",
+        "vn_b_men_rok_marine_68_13",
+        "vn_b_men_rok_marine_68_05",
+        "vn_b_men_rok_marine_68_04",
+        "vn_b_men_rok_marine_68_07",
+        "vn_b_men_rok_marine_68_17",
+        "vn_b_men_rok_marine_68_31",
+        "vn_b_men_rok_marine_68_30",
+        "vn_b_men_rok_marine_68_06",
+        "vn_b_men_rok_marine_68_10",
+        "vn_b_men_rok_marine_68_01",
+        "vn_b_men_rok_marine_68_15",
+        "vn_b_men_rok_marine_68_16",
+        "vn_b_men_rok_marine_68_18",
+        "vn_b_men_rok_marine_68_19",
+        "vn_b_men_rok_marine_68_20",
+        "vn_b_men_rok_marine_68_21",
+        "vn_b_men_rok_marine_68_09",
+        "vn_b_men_rok_marine_68_08"
+    };
+};
+
+
+class SOGPF_NZSAS_66 : SOGPF_usArmy
+{
+    displayName = "S.O.G. PF - New Zealand SAS (66)";
+    lightCars[] = {
+        "vn_b_wheeled_m151_mg_02_nz_army", 
+        "vn_b_wheeled_m151_mg_03_nz_army"
+    };
+
+    infantry[] = {
+        "vn_b_men_nz_sas_66_09", 
+        "vn_b_men_nz_sas_66_10", 
+        "vn_b_men_nz_sas_66_11", 
+        "vn_b_men_nz_sas_66_07", 
+        "vn_b_men_nz_sas_66_05", 
+        "vn_b_men_nz_sas_66_06", 
+        "vn_b_men_nz_sas_66_01", 
+        "vn_b_men_nz_sas_66_12", 
+        "vn_b_men_nz_sas_66_13", 
+        "vn_b_men_nz_sas_66_14", 
+        "vn_b_men_nz_sas_66_02", 
+        "vn_b_men_nz_sas_66_08", 
+        "vn_b_men_nz_sas_66_03", 
+        "vn_b_men_nz_sas_66_04"
+    };
+};
+
+class SOGPF_NZSAS_70 : SOGPF_NZSAS_66
+{
+    displayName = "S.O.G. PF - New Zealand SAS (70)";
+    infantry[] = {
+        "vn_b_men_nz_sas_70_09", 
+        "vn_b_men_nz_sas_70_10", 
+        "vn_b_men_nz_sas_70_11", 
+        "vn_b_men_nz_sas_70_07", 
+        "vn_b_men_nz_sas_70_05", 
+        "vn_b_men_nz_sas_70_06", 
+        "vn_b_men_nz_sas_70_01", 
+        "vn_b_men_nz_sas_70_12", 
+        "vn_b_men_nz_sas_70_13", 
+        "vn_b_men_nz_sas_70_14", 
+        "vn_b_men_nz_sas_70_02", 
+        "vn_b_men_nz_sas_70_08", 
+        "vn_b_men_nz_sas_70_03", 
+        "vn_b_men_nz_sas_70_04"
+    };
+};
+
+class SOGPF_RNZIR_66 : SOGPF_NZSAS_66
+{
+    displayName = "S.O.G. PF - Royal New Zealand Infantry Regiment (66)";
+    infantry[] = {
+        "vn_b_men_nz_army_66_01", 
+        "vn_b_men_nz_army_66_14", 
+        "vn_b_men_nz_army_66_12", 
+        "vn_b_men_nz_army_66_16", 
+        "vn_b_men_nz_army_66_19", 
+        "vn_b_men_nz_army_66_05", 
+        "vn_b_men_nz_army_66_07", 
+        "vn_b_men_nz_army_66_06", 
+        "vn_b_men_nz_army_66_10", 
+        "vn_b_men_nz_army_66_17", 
+        "vn_b_men_nz_army_66_03", 
+        "vn_b_men_nz_army_66_08", 
+        "vn_b_men_nz_army_66_04", 
+        "vn_b_men_nz_army_66_09", 
+        "vn_b_men_nz_army_66_11", 
+        "vn_b_men_nz_army_66_02", 
+        "vn_b_men_nz_army_66_15", 
+        "vn_b_men_nz_army_66_13"
+    };
+};
+
+class SOGPF_RNZIR_68 : SOGPF_NZSAS_66
+{
+    displayName = "S.O.G. PF - Royal New Zealand Infantry Regiment (68)";
+    infantry[] = {
+        "vn_b_men_nz_army_68_01", 
+        "vn_b_men_nz_army_68_14", 
+        "vn_b_men_nz_army_68_12", 
+        "vn_b_men_nz_army_68_16", 
+        "vn_b_men_nz_army_68_19", 
+        "vn_b_men_nz_army_68_05", 
+        "vn_b_men_nz_army_68_07", 
+        "vn_b_men_nz_army_68_06", 
+        "vn_b_men_nz_army_68_10", 
+        "vn_b_men_nz_army_68_17", 
+        "vn_b_men_nz_army_68_03", 
+        "vn_b_men_nz_army_68_08", 
+        "vn_b_men_nz_army_68_04", 
+        "vn_b_men_nz_army_68_09", 
+        "vn_b_men_nz_army_68_11", 
+        "vn_b_men_nz_army_68_02", 
+        "vn_b_men_nz_army_68_18", 
+        "vn_b_men_nz_army_68_13", 
+        "vn_b_men_nz_army_68_15"
+    };
+};
+
+class SOGPF_RNZIR_70 : SOGPF_NZSAS_66
+{
+    displayName = "S.O.G. PF - Royal New Zealand Infantry Regiment (70)";
+    infantry[] = {
+        "vn_b_men_nz_army_70_01", 
+        "vn_b_men_nz_army_70_14", 
+        "vn_b_men_nz_army_70_12", 
+        "vn_b_men_nz_army_70_16", 
+        "vn_b_men_nz_army_70_19", 
+        "vn_b_men_nz_army_70_05", 
+        "vn_b_men_nz_army_70_07", 
+        "vn_b_men_nz_army_70_06", 
+        "vn_b_men_nz_army_70_10", 
+        "vn_b_men_nz_army_70_17", 
+        "vn_b_men_nz_army_70_03", 
+        "vn_b_men_nz_army_70_08", 
+        "vn_b_men_nz_army_70_04", 
+        "vn_b_men_nz_army_70_09", 
+        "vn_b_men_nz_army_70_11", 
+        "vn_b_men_nz_army_70_02", 
+        "vn_b_men_nz_army_70_13", 
+        "vn_b_men_nz_army_70_15"
+    };
+};
+
+
+class SOGPF_AUS_RAR_66 : SOGPF_usArmy
+{
+    displayName = "S.O.G. PF - Royal Austrailian Regiment (66)";
+    lightArmor[] = {
+        "vn_b_armor_m113_01_aus_army"
+    };
+
+    lightCars[] = {
+        "vn_b_wheeled_m151_mg_02_aus_army", 
+        "vn_b_wheeled_m151_mg_03_aus_army"
+    };
+    
+    transportHelicopters[] = {
+        "vn_b_air_uh1d_03_06",
+        "vn_b_air_uh1d_02_06"
+    };
+
+    infantry[] = {
+        "vn_b_men_aus_army_66_15", 
+        "vn_b_men_aus_army_66_16", 
+        "vn_b_men_aus_army_66_12", 
+        "vn_b_men_aus_army_66_18", 
+        "vn_b_men_aus_army_66_05", 
+        "vn_b_men_aus_army_66_07", 
+        "vn_b_men_aus_army_66_17", 
+        "vn_b_men_aus_army_66_06", 
+        "vn_b_men_aus_army_66_10", 
+        "vn_b_men_aus_army_66_19", 
+        "vn_b_men_aus_army_66_03", 
+        "vn_b_men_aus_army_66_08", 
+        "vn_b_men_aus_army_66_04", 
+        "vn_b_men_aus_army_66_09", 
+        "vn_b_men_aus_army_66_11", 
+        "vn_b_men_aus_army_66_02", 
+        "vn_b_men_aus_army_66_01"
+    };
+};
+
+class SOGPF_AUS_RAR_68 : SOGPF_AUS_RAR_66
+{
+    displayName = "S.O.G. PF - Royal Austrailian Regiment (68)";
+
+    infantry[] = {
+        "vn_b_men_aus_army_68_01", 
+        "vn_b_men_aus_army_68_16", 
+        "vn_b_men_aus_army_68_12", 
+        "vn_b_men_aus_army_68_18", 
+        "vn_b_men_aus_army_68_21", 
+        "vn_b_men_aus_army_68_05", 
+        "vn_b_men_aus_army_68_07", 
+        "vn_b_men_aus_army_68_17", 
+        "vn_b_men_aus_army_68_06", 
+        "vn_b_men_aus_army_68_10", 
+        "vn_b_men_aus_army_68_19", 
+        "vn_b_men_aus_army_68_03", 
+        "vn_b_men_aus_army_68_08", 
+        "vn_b_men_aus_army_68_04", 
+        "vn_b_men_aus_army_68_09", 
+        "vn_b_men_aus_army_68_11", 
+        "vn_b_men_aus_army_68_02", 
+        "vn_b_men_aus_army_68_15"
+    };
+};
+
+class SOGPF_AUS_RAR_70 : SOGPF_AUS_RAR_66
+{
+    displayName = "S.O.G. PF - Royal Austrailian Regiment (70)";
+
+    infantry[] = {
+        "vn_b_men_aus_army_70_01", 
+        "vn_b_men_aus_army_70_16", 
+        "vn_b_men_aus_army_70_12", 
+        "vn_b_men_aus_army_70_18", 
+        "vn_b_men_aus_army_70_21", 
+        "vn_b_men_aus_army_70_05", 
+        "vn_b_men_aus_army_70_07", 
+        "vn_b_men_aus_army_70_17", 
+        "vn_b_men_aus_army_70_06", 
+        "vn_b_men_aus_army_70_10", 
+        "vn_b_men_aus_army_70_19", 
+        "vn_b_men_aus_army_70_03", 
+        "vn_b_men_aus_army_70_08", 
+        "vn_b_men_aus_army_70_04", 
+        "vn_b_men_aus_army_70_09", 
+        "vn_b_men_aus_army_70_11", 
+        "vn_b_men_aus_army_70_02", 
+        "vn_b_men_aus_army_70_15"
+    };
+};
+
+class SOGPF_AUS_SAS_66 : SOGPF_AUS_RAR_66
+{
+    displayName = "S.O.G. PF - Austrailian SAS (66)";
+
+    infantry[] = {
+        "vn_b_men_aus_sas_66_04", 
+        "vn_b_men_aus_sas_66_09", 
+        "vn_b_men_aus_sas_66_10", 
+        "vn_b_men_aus_sas_66_11", 
+        "vn_b_men_aus_sas_66_07", 
+        "vn_b_men_aus_sas_66_05", 
+        "vn_b_men_aus_sas_66_06", 
+        "vn_b_men_aus_sas_66_01", 
+        "vn_b_men_aus_sas_66_12", 
+        "vn_b_men_aus_sas_66_13", 
+        "vn_b_men_aus_sas_66_14", 
+        "vn_b_men_aus_sas_66_02", 
+        "vn_b_men_aus_sas_66_08", 
+        "vn_b_men_aus_sas_66_03"
+    };
+};
+
+class SOGPF_AUS_SAS_70 : SOGPF_AUS_RAR_66
+{
+    displayName = "S.O.G. PF - Austrailian SAS (70)";
+
+    infantry[] = {
+        "vn_b_men_aus_sas_70_04", 
+        "vn_b_men_aus_sas_70_09", 
+        "vn_b_men_aus_sas_70_10", 
+        "vn_b_men_aus_sas_70_11", 
+        "vn_b_men_aus_sas_70_07", 
+        "vn_b_men_aus_sas_70_05", 
+        "vn_b_men_aus_sas_70_06", 
+        "vn_b_men_aus_sas_70_01", 
+        "vn_b_men_aus_sas_70_12", 
+        "vn_b_men_aus_sas_70_13", 
+        "vn_b_men_aus_sas_70_14", 
+        "vn_b_men_aus_sas_70_02", 
+        "vn_b_men_aus_sas_70_08", 
+        "vn_b_men_aus_sas_70_03"
+    };
+};
+
+
+class SOGPF_RLA : SOGPF_usArmy
+{
+    displayName = "S.O.G. PF - Royal Lao Army";
+
+    lightCars[] = {
+        "vn_i_wheeled_m151_mg_01_rla", 
+        "vn_i_wheeled_m151_mg_02_rla"
+    };
+
+    infantry[] = {
+        "vn_i_men_rla_02", 
+        "vn_i_men_rla_12", 
+        "vn_i_men_rla_05", 
+        "vn_i_men_rla_04", 
+        "vn_i_men_rla_07", 
+        "vn_i_men_rla_17", 
+        "vn_i_men_rla_06", 
+        "vn_i_men_rla_11", 
+        "vn_i_men_rla_10", 
+        "vn_i_men_rla_03", 
+        "vn_i_men_rla_01", 
+        "vn_i_men_rla_15", 
+        "vn_i_men_rla_16", 
+        "vn_i_men_rla_18", 
+        "vn_i_men_rla_19", 
+        "vn_i_men_rla_20", 
+        "vn_i_men_rla_21", 
+        "vn_i_men_rla_08", 
+        "vn_i_men_rla_09"
+    };
+};
+
+class SOGPF_PATHET_LAO : SOGPF_NVA_field
+{
+    displayName = "S.O.G. PF - Pathet Lao";
+    infantry[] = {
+        "vn_o_men_pl_21", 
+        "vn_o_men_pl_23", 
+        "vn_o_men_pl_22", 
+        "vn_o_men_pl_14", 
+        "vn_o_men_pl_26", 
+        "vn_o_men_pl_07", 
+        "vn_o_men_pl_25", 
+        "vn_o_men_pl_11", 
+        "vn_o_men_pl_10", 
+        "vn_o_men_pl_28", 
+        "vn_o_men_pl_08", 
+        "vn_o_men_pl_16", 
+        "vn_o_men_pl_15", 
+        "vn_o_men_pl_17", 
+        "vn_o_men_pl_01", 
+        "vn_o_men_pl_27", 
+        "vn_o_men_pl_04", 
+        "vn_o_men_pl_05", 
+        "vn_o_men_pl_03", 
+        "vn_o_men_pl_02", 
+        "vn_o_men_pl_06", 
+        "vn_o_men_pl_13", 
+        "vn_o_men_pl_12"
+    };
+
+    lightCars[] = {
+        "vn_o_wheeled_z157_mg_01_pl",
+        "vn_o_wheeled_btr40_mg_02_pl", 
+        "vn_o_wheeled_btr40_mg_01_pl"
+    };
+
+    heavyCars[] = {
+        "vn_o_wheeled_btr40_mg_03_pl",
+        "vn_o_wheeled_z157_mg_02_pl"
+    };
+
+    lightArmor[] = {
+        "vn_o_armor_pt76a_01_pl"
     };
 };
