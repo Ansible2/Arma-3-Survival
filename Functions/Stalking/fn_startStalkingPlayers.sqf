@@ -94,8 +94,40 @@ _stalkerGroupUnits apply {
 // TODO: It seems very apparent that ACE is somewhat the culprit of AI not pathing correctly after spawning and about 1 wave in
 // they jsut stop in their tracks at seemingly the first waypoint refresh
 
+// TODO Tests:
+// - Remove clear waypoints all together
+// - Give unit a single waypoint at the start of a round and see if they get stuck (no reseting)
+// - Simply change the waypoints position if they have one
 
+addMissionEventHandler ["Draw3D", {
+	_thisArgs params [
+		["_stalkerGroup",grpNull,[grpNull]]
+	];
 
+	if (isNull _stalkerGroup) then {
+		removeMissionEventHandler ["draw3d",_thisEventHandler];
+	} else {
+		private _text = (_stalkerGroup getVariable ["BLWK_stalkerText",[""]]) joinString "|";
+		drawIcon3D ["", [1,0,0,1], ASLToAGL (getPosASLVisual (leader _stalkerGroup)), 0, 0, 0, _text, 1, 0.05, "PuristaMedium"];
+	};
+
+},[_stalkerGroup]];
+
+private _fn_add3dLog = {
+	params ["_group","_text"];
+	private _array = _group getVariable ["BLWK_stalkerText",[]];
+	if (_array isEqualTo []) then {
+		_group setVariable ["BLWK_stalkerText",_array];
+	};
+
+	if ((count _array) isEqualTo 5) then {
+		_array deleteAt 0;
+	};
+	_array pushBack _text;
+};
+
+[_stalkerGroup] call KISKA_fnc_clearWaypoints;
+[_stalkerGroup,"Cleared Initial Waypoints"] call _fn_add3dLog;
 
 // do the stalking
 [_stalkerGroup,"full"] remoteExec ["setSpeedMode",groupOwner _stalkerGroup];
@@ -113,32 +145,69 @@ while {!(isNull _stalkerGroup) AND (_stalkerGroup getVariable DO_STALK_VAR) } do
 		break;
 	};
 
-	[_stalkerGroup] call KISKA_fnc_clearWaypoints;
+
 	// TODO: this under move handling may not be needed
 	if (_stalkerGroup getVariable ["BLWK_isUnderMove",false]) then {
+		[_stalkerGroup,"Used doStop"] call _fn_add3dLog;
 		doStop _stalkerGroupUnits;
 		sleep 1;
 		_stalkerGroupUnits doFollow _stalkerLeader;
+		[_stalkerGroup,"Used doFollow"] call _fn_add3dLog;
 	};
 
+	private "_waypointCount";
+	[_stalkerGroup,"Waiting to clear waypoints"] call _fn_add3dLog;
 	waitUntil {
+		_waypointCount = count (waypoints _stalkerGroup);
+		[
+			_stalkerGroup,
+			(_waypointCount - 1)
+		] call KISKA_fnc_clearWaypoints;
+
+		if (_waypointCount < 2) exitWith {true};
 		sleep 1;
-		if (count (waypoints _stalkerGroup) isEqualTo 0) exitWith {true};
 		(units _stalkerGroup) isEqualTo []
 	};
+	[_stalkerGroup,"Cleared waypoints"] call _fn_add3dLog;
 
 	// move allows units to go to a 3d position (inside a building)
 	// therefore, when they are close to their target, start using "move" instead
-	if (_stalkerLeader distance2D _playerToStalk < 50) then {
+	private _useMove = _stalkerLeader distance2D _playerToStalk < 50;
+	private _hasWaypoint = _waypointCount isEqualTo 1;
+	
+	if (_useMove) then {
+		[_stalkerGroup,"Using Move"] call _fn_add3dLog;
 		_stalkerGroup setVariable ["BLWK_isUnderMove",true];
 		[_stalkerLeader,(getPosATL _playerToStalk)] remoteExecCall ["move", _stalkerLeader];
+		if (_hasWaypoint) then {
+			[_stalkerGroup,"Deleted waypoint after move"] call _fn_add3dLog;
+			deleteWaypoint [_stalkerGroup,0];
+		};
+
 	} else {
+		[_stalkerGroup,"Using waypoints"] call _fn_add3dLog;
+		private _hasStalkerWaypoint = waypointName [_stalkerGroup,0] == "BLWK_stalkWaypoint";
+		if (_hasWaypoint AND !_hasStalkerWaypoint) then {
+			[_stalkerGroup,"Deleted non stalker WP"] call _fn_add3dLog;
+			deleteWaypoint [_stalkerGroup,0];
+		};
+
 		_stalkerGroup setVariable ["BLWK_isUnderMove",false];
-		[_stalkerGroup, _playerToStalk, 0, "MOVE", "AWARE", "FULL"] call CBAP_fnc_addWaypoint;
+		
+		if (_hasStalkerWaypoint) then {
+			[_stalkerGroup,"Moving stalker WP"] call _fn_add3dLog;
+			private _waypoint = [_stalkerGroup,currentWaypoint _stalkerGroup];
+			_waypoint setWaypointBehaviour "AWARE";
+			_waypoint setWaypointPosition [getPos _playerToStalk,5];
 
+		} else {
+			[_stalkerGroup,"Adding stalker WP"] call _fn_add3dLog;
+			private _waypoint = [_stalkerGroup, _playerToStalk, 0, "MOVE", "AWARE", "FULL"] call CBAP_fnc_addWaypoint;
+			_waypoint setWaypointName "BLWK_stalkWaypoint";
+		};
+		
 	};
-
-
+	
 	sleep _checkRate;
 
 	// check if player is worth stalking and if not, get another player to stalk
