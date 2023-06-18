@@ -155,7 +155,7 @@ if (_isNewLoop) then {
     },
     [_tickId],
     _waitTime
-] call CBA_fnc_waitAndExecute;
+] call CBAP_fnc_waitAndExecute;
 
 
 nil

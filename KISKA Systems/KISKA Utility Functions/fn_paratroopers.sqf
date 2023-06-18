@@ -102,7 +102,7 @@ if (_flyDirection < 0) then {
 
 
 // get spawn position
-private _flyFromDirection = [_flyDirection + 180] call CBA_fnc_simplifyAngle;
+private _flyFromDirection = [_flyDirection + 180] call CBAP_fnc_simplifyAngle;
 _dropZone set [2,_flyInHeight];
 private _spawnPosition = _dropZone getPos [_spawnDistance,_flyFromDirection];
 _spawnPosition set [2,_flyInHeight];
