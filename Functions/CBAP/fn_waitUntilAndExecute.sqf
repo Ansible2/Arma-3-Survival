@@ -38,7 +38,7 @@ Author(s):
 
 if (["cba_common"] call KISKA_fnc_isPatchLoaded) exitWith {
 	_this call CBA_fnc_waitUntilAndExecute;
-}
+};
 
 params [
     ["_condition", {}, [{}]],
