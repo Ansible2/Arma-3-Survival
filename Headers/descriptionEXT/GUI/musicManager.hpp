@@ -168,9 +168,9 @@ class musicManagerDialog
 			w = POS_W(9);
 			h = POS_H(2);
 			
-			colorBackground[] = {1,0,0,0.45};
-			colorBackgroundActive[] = {1,0,0,0.75};
-			colorFocused[] = {1,0,0,0.45};
+			colorBackground[] = {0.3,1,0.5,0.5};
+			colorBackgroundActive[] = {0.3,1,0.5,0.75};
+			colorFocused[] = {0.3,1,0.5,0.5};
 
 			toolTip = "Save Current Playlist to the server for use with the system";
 		};
