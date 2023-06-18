@@ -34,7 +34,7 @@ if (_group isEqualType objNull) then {
 private _numberOfCurrentWaypoints = count (waypoints _group);
 if (_numberOfCurrentWaypoints isEqualTo 0) exitWith {};
 
-if (_numberToRemove isEqualTo -1) then {
+if (_numberToRemove < 0) then {
     _numberToRemove = _numberOfCurrentWaypoints;
 };
 
