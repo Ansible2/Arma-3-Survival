@@ -3,41 +3,41 @@
 Function: KISKA_fnc_musicStopEvent
 
 Description:
-	The function that should be activated when music stops playing.
+    The function that should be activated when music stops playing.
 
-	It can also be manually triggered and a param is added to stop the music audio
-	 by playing an empty track ("").
+    It can also be manually triggered and a param is added to stop the music audio
+     by playing an empty track ("").
 
 Parameters:
-	0: _stopAudio <BOOL> - Play and empty track ("") to actually stop the audio
+    0: _stopAudio <BOOL> - Play and empty track ("") to actually stop the audio
 
 Returns:
-	NOTHING
+    NOTHING
 
 Examples:
     (begin example)
-		[] call KISKA_fnc_musicStopEvent;
+        [] call KISKA_fnc_musicStopEvent;
     (end)
 
 Author:
-	Ansible2
+    Ansible2
 ---------------------------------------------------------------------------- */
 scriptName "KISKA_fnc_musicStopEvent";
 
 if (!hasInterface) exitWith {};
 
 params [
-	["_stopAudio",false,[true]]
+    ["_stopAudio",false,[true]]
 ];
 
 if (_stopAudio) then {
-	playMusic "";
+    playMusic "";
 };
 
 
 SET_MUSIC_VAR(MUSIC_IS_PLAYING_VAR_STR,false);
 SET_MUSIC_VAR(MUSIC_CURRENT_TRACK_VAR_STR,"");
-[""] call KISKA_fnc_setCurrentRandomMusicTrack;
+[""] call KISKA_fnc_randomMusic_setCurrentTrack;
 
 ["Music stopped",false] call KISKA_fnc_log;
 

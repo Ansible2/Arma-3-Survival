@@ -2,14 +2,14 @@
 Function: KISKA_fnc_classTurretsWithGuns
 
 Description:
-	Checks a given vehicle class to see if it has turrets that have guns
+    Checks a given vehicle class to see if it has turrets that have guns
      and returns those turret paths
 
 Parameters:
-	0: _classToCheck <STRING> - The vehicle class to check
+    0: _classToCheck <STRING> - The vehicle class to check
 
 Returns:
-	<ARRAY> - The turret paths
+    <ARRAY> - The turret paths
 
 Examples:
     (begin example)
@@ -17,7 +17,7 @@ Examples:
     (end)
 
 Author:
-	Ansible2 // Cipher
+    Ansible2
 ---------------------------------------------------------------------------- */
 scriptName "KISKA_fnc_classTurretsWithGuns";
 
@@ -33,7 +33,7 @@ if (_classToCheck isEqualTo "") exitWith {
 
 
 if !(isClass(configFile >> "CfgVehicles" >> _classToCheck)) exitWith {
-    ["_classToCheck is not defined within CfgVehicles!",true] call KISKA_fnc_log;
+    ["_classToCheck is not defined withing CfgVehicles!",true] call KISKA_fnc_log;
     []
 };
 
@@ -44,21 +44,21 @@ private _allVehicleTurrets = [_classToCheck, false] call BIS_fnc_allTurrets;
 private _turretsWithWeapons =  [];
 private ["_turretWeapons_temp","_return_temp","_turretPath_temp"];
 _allVehicleTurrets apply {
-	_turretPath_temp = _x;
-	_turretWeapons_temp = getArray([_classToCheck,_turretPath_temp] call BIS_fnc_turretConfig >> "weapons");
-	// if turrets are found
-	if !(_turretWeapons_temp isEqualTo []) then {
-		// some turrets are just optics, need to see they actually have ammo to shoot
-		_return_temp = _turretWeapons_temp findIf {
-			private _mags = [_x] call BIS_fnc_compatibleMagazines;
+    _turretPath_temp = _x;
+    _turretWeapons_temp = getArray([_classToCheck,_turretPath_temp] call BIS_fnc_turretConfig >> "weapons");
+    // if turrets are found
+    if (_turretWeapons_temp isNotEqualTo []) then {
+        // some turrets are just optics, need to see they actually have ammo to shoot
+        _return_temp = _turretWeapons_temp findIf {
+            private _mags = [_x] call BIS_fnc_compatibleMagazines;
             // some turrets are just laser designators, hence checking that there are no laserbatteries
-			!(_mags isEqualTo []) AND {!((_mags select 0) == "laserbatteries")}
-		};
+            (_mags isNotEqualTo []) AND {!((_mags select 0) == "laserbatteries")}
+        };
 
-		if !(_return_temp isEqualTo -1) then {
-			_turretsWithWeapons pushBack _turretPath_temp;
-		};
-	};
+        if (_return_temp isNotEqualTo -1) then {
+            _turretsWithWeapons pushBack _turretPath_temp;
+        };
+    };
 };
 
 

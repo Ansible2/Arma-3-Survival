@@ -3,21 +3,21 @@
 Function: KISKA_fnc_getPlayingMusic
 
 Description:
-	Returns the current playing tracks class name.
+    Returns the current playing tracks class name.
 
 Parameters:
-	NONE
+    NONE
 
 Returns:
-	<STRING> - The class name of music. Will be "" if nonthing is playing.
+    <STRING> - The class name of music. Will be "" if nothing is playing.
 
 Examples:
     (begin example)
-		call KISKA_fnc_getPlayingMusic;
+        private _track = call KISKA_fnc_getPlayingMusic;
     (end)
 
 Author(s):
-	Ansible2
+    Ansible2
 ---------------------------------------------------------------------------- */
 scriptName "KISKA_fnc_getPlayingMusic";
 

@@ -18,6 +18,10 @@
 #define GET_MUSIC_IS_PLAYING MUSIC_VAR_SPACE getVariable [MUSIC_IS_PLAYING_VAR_STR,false]
 
 
+#define MUSIC_CURRENT_TRACK_ID_VAR_STR "KISKA_currentTrackID"
+#define GET_MUSIC_CURRENT_TRACK_ID MUSIC_VAR_SPACE getVariable [MUSIC_CURRENT_TRACK_ID_VAR_STR,-1]
+
+
 /* ----------------------------------------------------------------------------
     Random Music
 ---------------------------------------------------------------------------- */
@@ -42,4 +46,8 @@
 
 
 #define MUSIC_RANDOM_SYS_RUNNING_VAR_STR "KISKA_musicSystemIsRunning"
-#define GET_MUSIC_RANDOM_MUSIC_SYS_RUNNING MUSIC_VAR_SPACE getVariable [MUSIC_RANDOM_SYS_RUNNING_VAR_STR,false]
+#define GET_MUSIC_RANDOM_SYS_RUNNING MUSIC_VAR_SPACE getVariable [MUSIC_RANDOM_SYS_RUNNING_VAR_STR,false]
+
+
+#define MUSIC_RANDOM_VOLUME_VAR_STR "KISKA_randomMusic_volume"
+#define GET_MUSIC_RANDOM_VOLUME MUSIC_VAR_SPACE getVariable [MUSIC_RANDOM_VOLUME_VAR_STR,0.5]

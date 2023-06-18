@@ -2,40 +2,40 @@
 Function: KISKA_fnc_stopMusic
 
 Description:
-	Stops the currently playing music with a fade if desired.
+    Stops the currently playing music with a fade if desired.
 
 Parameters:
-	0: _fadeTime <NUMBER> - How long to fade out
+    0: _fadeTime <NUMBER> - How long to fade out
 
 Returns:
-	NOTHING
+    NOTHING
 
 Examples:
     (begin example)
-		call KISKA_fnc_stopMusic;
+        [] spawn KISKA_fnc_stopMusic;
     (end)
 
 Author(s):
-	Ansible2
+    Ansible2
 ---------------------------------------------------------------------------- */
 scriptName "KISKA_fnc_stopMusic";
 
 if (!hasInterface) exitWith {};
 
 if (!canSuspend) exitWith {
-	["Was not run in scheduled environment, executing in scheduled...",true] call KISKA_fnc_log;
-	_this spawn KISKA_fnc_stopMusic;
+    ["Was not run in scheduled environment, executing in scheduled...",true] call KISKA_fnc_log;
+    _this spawn KISKA_fnc_stopMusic;
 };
 
 params [
-	["_fadeTime",3,[123]]
+    ["_fadeTime",3,[123]]
 ];
 
 if !(call KISKA_fnc_isMusicPlaying) exitWith {};
 
 if (_fadeTime > 0) then {
-	_fadeTime fadeMusic 0;
-	sleep _fadeTime;
+    _fadeTime fadeMusic 0;
+    sleep _fadeTime;
 };
 
 // reset event handler values as playMusic "" does not activate music events

@@ -13,10 +13,10 @@ Returns:
 
 Example:
     (begin example)
-        _result = [[1, 2, 3, 4, 5]] call CBA_fnc_shuffle;
+        _result = [[1, 2, 3, 4, 5]] call CBAP_fnc_shuffle;
         // _result could be [4, 2, 5, 1, 3]
         _array = [1, 2, 3, 4, 5];
-        [_array, true] call CBA_fnc_shuffle;
+        [_array, true] call CBAP_fnc_shuffle;
         // _array could now be [4, 2, 5, 1, 3]
     (end)
 

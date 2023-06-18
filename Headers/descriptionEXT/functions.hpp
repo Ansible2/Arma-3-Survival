@@ -565,5 +565,9 @@ class CBAP //ported CBA functions
 		{};
 		class vectRotate3D
 		{};
+		class waitAndExecute
+		{};
+		class waitUntilAndExecute
+		{};
 	};
 };

@@ -51,7 +51,7 @@ _control ctrlAddEventHandler ["LBSelChanged",{
 
 	switch (_selectedIndex) do {
 		case 0:{ // system off
-			[true] remoteExecCall ["KISKA_fnc_stopRandomMusicServer",2];
+			[true] remoteExecCall ["KISKA_fnc_randomMusic_stopServer",2];
 
 			if (missionNamespace getVariable ["BLWK_musicManager_reset",false]) then {
 				missionNamespace setVariable ["BLWK_musicManager_reset",false];
@@ -75,7 +75,7 @@ _control ctrlAddEventHandler ["LBSelChanged",{
 		};
 
 		case 2:{ // system reset
-			[false] remoteExecCall ["KISKA_fnc_stopRandomMusicServer",2];
+			[false] remoteExecCall ["KISKA_fnc_randomMusic_stopServer",2];
 			missionNamespace setVariable ["BLWK_musicManager_reset",true];
 			_control lbSetCurSel 0; // set to appear off
 		};

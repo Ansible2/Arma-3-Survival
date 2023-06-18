@@ -28,10 +28,44 @@ class KISKA
 		class viewDistanceLimiter
 		{};
 	};
+	class KISKA_RandomMusic
+	{
+		file = "KISKA Systems\KISKA Music Functions\Random Music";
+		class randomMusic_getCurrentTrack
+		{};
+		class randomMusic_getTrackInterval
+		{};
+		class randomMusic_getUnusedTracks
+		{};
+		class randomMusic_getUsedTracks
+		{};
+		class randomMusic_getVolume
+		{};
+		class randomMusic_isSystemRunning
+		{};
+		class randomMusic_setCurrentTrack
+		{};
+		class randomMusic_setSystemRunning
+		{};
+		class randomMusic_setTrackInterval
+		{};
+		class randomMusic_setUnusedTracks
+		{};
+		class randomMusic_setUsedTracks
+		{};
+		class randomMusic_setVolume
+		{};
+		class randomMusic_stopClient
+		{};
+		class randomMusic_stopServer
+		{};
+		class randomMusic
+		{};
+	};
 	class KISKA_music
 	{
 		file = "KISKA Systems\KISKA Music Functions";
-		class getCurrentRandomMusicTrack
+		class getLatestPlayedMusicID
 		{};
 		class getMusicDuration
 		{};
@@ -51,16 +85,6 @@ class KISKA
 		{};
 		class playMusic
 		{};
-		class randomMusic
-		{};
-		class setCurrentRandomMusicTrack
-		{};
-		class setRandomMusicTime
-		{};
-		class stopRandomMusicServer
-		{};
-		class stopRandomMusicClient
-		{};
 		class stopMusic
 		{};
 	};
@@ -77,6 +101,8 @@ class KISKA
 		{};
 		class addKiskaDiaryEntry
 		{};
+		class callBack
+		{};
 		class CAS
 		{};
 		class CASattack
@@ -88,6 +114,8 @@ class KISKA
 		class countdown
 		{};
 		class deleteAtArray
+		{};
+		class deleteRandomIndex
 		{};
 		class detectControlKeys
 		{

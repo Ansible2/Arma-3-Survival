@@ -1,5 +1,4 @@
 #include "..\..\Headers\descriptionEXT\GUI\musicManagerCommonDefines.hpp"
-#include "..\..\KISKA Systems\KISKA Music Functions\Headers\Music Common Defines.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_musicManager_setPlaylistServer
 
@@ -31,10 +30,10 @@ if (!isServer) exitWith {
 
 // copying playlist by value not reference, otherwise they will be deleted out of the current playlist box
 private _publicPlaylist = +GET_PUBLIC_ARRAY_DEFAULT;
-SET_MUSIC_VAR(MUSIC_RANDOM_UNUSED_TRACKS_VAR_STR,_publicPlaylist);
+[_publicPlaylist] call KISKA_fnc_randomMusic_setUnusedTracks;
 
 // reset used tracks so we don't get duplicate tracks
-SET_MUSIC_VAR( MUSIC_RANDOM_USED_TRACKS_VAR_STR,[] );
+[[]] call KISKA_fnc_randomMusic_setUsedTracks;
 
 // if random music system was already running, start a new instance
 if (GET_MUSIC_RANDOM_MUSIC_SYS_RUNNING) then {

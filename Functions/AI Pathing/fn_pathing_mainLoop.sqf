@@ -32,7 +32,7 @@ Author(s):
 
 #define RESET_POSITION \
 	[["Reset ", _groupLeader],false] call KISKA_fnc_log; \
-	[_groupLeader,[BLWK_mainCrate, 5] call CBA_fnc_randPos] remoteExecCall ["move",_groupLeader]; \
+	[_groupLeader,[BLWK_mainCrate, 5] call CBAP_fnc_randPos] remoteExecCall ["move",_groupLeader]; \
 
 
 #define LOOP_VAR_NAME "BLWK_runPathingLoop"
