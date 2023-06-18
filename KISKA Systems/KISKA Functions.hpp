@@ -133,6 +133,8 @@ class KISKA
 		{};
 		class staticLine
 		{};
+		class staticLine_eject
+		{};
 		class str
 		{};
 		class supplyDrop
