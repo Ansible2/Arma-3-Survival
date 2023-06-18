@@ -71,7 +71,6 @@ _control ctrlAddEventHandler ["LBSelChanged",{
 				uiNamespace setVariable ["BLWK_musicManager_paused",true];
 			};
 			// start system on server
-			hint str ([] call KISKA_fnc_randomMusic_getUnusedTracks);
 			remoteExec ["KISKA_fnc_randomMusic",2];
 		};
 
