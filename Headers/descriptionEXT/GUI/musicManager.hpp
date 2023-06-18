@@ -113,7 +113,7 @@ class musicManagerDialog
 				{
 					idc = BLWK_MUSIC_MANAGER_SONG_NAMES_LIST_IDC;
 					style = LB_MULTI + LB_TEXTURES;
-					// x = POS_X();
+					// x = POS_X(-20.5);
 					// y = POS_Y();
 					w = POS_W(20.5);
 					h = POS_H(16);
@@ -124,7 +124,7 @@ class musicManagerDialog
 				class musicManagerDialogListBox_availableSongDurations: musicManagerDialogListBox_availableSongNames
 				{
 					idc = BLWK_MUSIC_MANAGER_SONG_DURATIONS_LIST_IDC;
-					x = POS_X(20.5);
+					x = POS_X(3);
 					// y = POS_Y();
 					w = POS_W(4.5);
 					h = POS_H(16);
@@ -297,7 +297,7 @@ class musicManagerDialog
 			idc = BLWK_MUSIC_MANAGER_SPACING_COMBO_IDC;
 			x = POS_X(-20.5);
 			y = POS_Y(-10.5);
-			w = POS_W(-);
+			w = POS_W(9);
 			h = POS_H(1);
 			
 		};
@@ -327,9 +327,10 @@ class musicManagerDialog
 		class musicManagerDialogComboBox_loadPlaylist: RscCombo
 		{
 			idc = BLWK_MUSIC_MANAGER_LOAD_COMBO_IDC;
-			x = POS_X(-6.5);
-			y = POS_Y(-11);
-			w = POS_W(6.5);
+
+			x = POS_X(-9);
+			y = POS_Y(-10);
+			w = POS_W(9);
 			h = POS_H(1);
 		};
 		class musicManagerDialogHeaderText_trackSpacing: RscText
