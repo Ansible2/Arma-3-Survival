@@ -56,13 +56,15 @@ _this spawn {
 	waitUntil {
 		if (_args call _condition) exitWith {
 			[_statement, _args] call CBAP_fnc_directCall;
+			true
 		};
 
 		if (_hasTimeout AND (time >= _timeoutTime)) exitWith {
 			[_timeoutCode, _args] call CBAP_fnc_directCall;
+			true
 		};
 
-		true
+		false
 	};
 };
 
