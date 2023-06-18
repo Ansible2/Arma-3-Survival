@@ -101,6 +101,8 @@ class KISKA
 		{};
 		class addKiskaDiaryEntry
 		{};
+		class callBack
+		{};
 		class CAS
 		{};
 		class CASattack
