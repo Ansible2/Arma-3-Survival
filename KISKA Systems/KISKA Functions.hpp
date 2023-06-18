@@ -83,6 +83,8 @@ class KISKA
 		{};
 		class classTurretsWithGuns
 		{};
+		class clearWaypoints
+		{};
 		class countdown
 		{};
 		class deleteAtArray

@@ -535,8 +535,6 @@ class CBAP //ported CBA functions
 		file = "functions\CBAP";
 		class addWaypoint
 		{};
-		class clearWaypoints
-		{};
 		class directCall
 		{};
 		class getArea

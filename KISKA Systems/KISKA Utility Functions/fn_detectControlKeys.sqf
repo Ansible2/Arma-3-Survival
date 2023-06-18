@@ -34,6 +34,7 @@ if (!canSuspend) exitWith {
 
 
 if (["ace_interact_menu"] call KISKA_fnc_isPatchLoaded) then {
+    // if ACE is loaded so will CBA, so CBA_fnc_addEventhandler will be defined
     [
         "ace_interactMenuClosed",
         {

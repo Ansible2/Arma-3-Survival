@@ -47,7 +47,7 @@ _position = [_position, _group] select (_position isEqualTo []);
 _position = _position call CBAP_fnc_getPos;
 
 // Clear existing waypoints first
-[_group] call CBAP_fnc_clearWaypoints;
+[_group] call KISKA_fnc_clearWaypoints;
 {
     _x enableAI "PATH";
 } forEach units _group;

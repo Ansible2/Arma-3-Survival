@@ -29,12 +29,11 @@ Author(s):
 ---------------------------------------------------------------------------- */
 // telling the unit to go to their stalked player seems to cause
 // the issue of AI getting stuck too, hence why they go to the crate
-#define RESET_POSITION\
-	doStop _groupLeader; \
-	sleep 1; \
-	[_groupLeader,_groupLeader] remoteExecCall ["doFollow",_groupLeader]; \
+
+#define RESET_POSITION \
+	[["Reset ", _groupLeader],false] call KISKA_fnc_log; \
 	[_groupLeader,[BLWK_mainCrate, 5] call CBA_fnc_randPos] remoteExecCall ["move",_groupLeader]; \
-	[group _groupLeader,"full"] remoteExec ["setSpeedMode",_groupLeader];
+
 
 #define LOOP_VAR_NAME "BLWK_runPathingLoop"
 scriptName "BLWK_fnc_pathing_mainLoop";
