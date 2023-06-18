@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: CBA_fnc_vectDir
+Function: CBAP_fnc_vectDir
 
 Description:
  Returns the angle of a vector with the given i and k coordinates in the range 0 to 360.
