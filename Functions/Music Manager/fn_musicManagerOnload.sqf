@@ -38,9 +38,17 @@ uiNamespace setVariable ["BLWK_musicManager_control_closeButton",_closeButtonCon
 
 
 // available tracks list
-private _songListControl = _display displayCtrl BLWK_MUSIC_MANAGER_SONGS_LIST_IDC;
-uiNamespace setVariable ["BLWK_musicManager_control_songsList",_songListControl];
-[_songListControl] call BLWK_fnc_musicManagerOnLoad_availableMusicList;
+private _songListGroupControl = _display displayCtrl BLWK_MUSIC_MANAGER_SONG_GROUP_LIST_IDC;
+private _songNamesListControl = _songListGroupControl controlsGroupCtrl BLWK_MUSIC_MANAGER_SONG_NAMES_LIST_IDC;
+private _songDurationsListControl = _songListGroupControl controlsGroupCtrl BLWK_MUSIC_MANAGER_SONG_DURATIONS_LIST_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_songGroup",_songListGroupControl];
+uiNamespace setVariable ["BLWK_musicManager_control_songNamesList",_songListControl];
+uiNamespace setVariable ["BLWK_musicManager_control_songDurationsList",_songDurationsListControl];
+[
+	_songListGroupControl,
+	_songListControl,
+	_songDurationsListControl
+] call BLWK_fnc_musicManagerOnLoad_availableMusicList;
 
 
 // current playlist
@@ -131,33 +139,41 @@ _display displayAddEventHandler ["unload",{
 	};
 
 	// clear memory
-	uiNamespace setVariable ["BLWK_musicManager_display",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_currentPlaylist",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_songsList",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_closeButton",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_commitButton",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_timelineSlider",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_volumeSLider",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_playButton",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_pauseButton",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_spacingEdit",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_spacingButton",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_spacingCombo",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_onOffCombo",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_saveEdit",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_saveButton",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_loadCombo",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_addToButton",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_removeFromButton",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_deleteButton",nil];
-	uiNamespace setVariable ["BLWK_musicManager_paused",nil];
-	uiNamespace setVariable ["BLWK_musicManager_selectedTrack",nil];
-	uiNamespace setVariable ["BLWK_musicManager_doPlay",nil];
-	uiNamespace setVariable ["BLWK_fnc_musicManager_getMusicName",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_loadPlaylistButton",nil];
-	uiNamespace setVariable ["BLWK_musicManager_loadCombo_currentSelection",nil];
-	uiNamespace setVariable ["BLWK_musicManager_coloredClasses",nil];
-	uiNamespace getVariable ["BLWK_musicManager_timelineLooping",nil];
+	[
+		"BLWK_musicManager_display",
+		"BLWK_musicManager_control_currentPlaylist",
+		"BLWK_musicManager_control_songNamesList",
+		"BLWK_musicManager_control_closeButton",
+		"BLWK_musicManager_control_commitButton",
+		"BLWK_musicManager_control_timelineSlider",
+		"BLWK_musicManager_control_volumeSLider",
+		"BLWK_musicManager_control_playButton",
+		"BLWK_musicManager_control_pauseButton",
+		"BLWK_musicManager_control_spacingEdit",
+		"BLWK_musicManager_control_spacingButton",
+		"BLWK_musicManager_control_spacingCombo",
+		"BLWK_musicManager_control_onOffCombo",
+		"BLWK_musicManager_control_saveEdit",
+		"BLWK_musicManager_control_saveButton",
+		"BLWK_musicManager_control_loadCombo",
+		"BLWK_musicManager_control_addToButton",
+		"BLWK_musicManager_control_removeFromButton",
+		"BLWK_musicManager_control_deleteButton",
+		"BLWK_musicManager_paused",
+		"BLWK_musicManager_selectedTrack",
+		"BLWK_musicManager_doPlay",
+		"BLWK_fnc_musicManager_getMusicName",
+		"BLWK_musicManager_control_loadPlaylistButton",
+		"BLWK_musicManager_loadCombo_currentSelection",
+		"BLWK_musicManager_coloredClasses",
+		"BLWK_musicManager_timelineLooping",
+		"BLWK_musicManager_control_songNamesList",
+		"BLWK_musicManager_control_songDurationsList"
+	] apply {
+		uiNamespace setVariable [_x,nil];
+	};
+	
+
 }];
 
 

@@ -28,8 +28,8 @@ params ["_addButtonControl","_removeButtonControl"];
 _addButtonControl ctrlAddEventHandler ["ButtonClick",{
 	params ["_control"];
 
-	private _availableMusicListControl = (uiNamespace getVariable "BLWK_musicManager_control_songsList");
-
+	private _availableMusicListControl = (uiNamespace getVariable "BLWK_musicManager_control_songNamesList");
+	[str (lbSelection _control)] call KISKA_fnc_notification;
 	private _selectedIndex = lnbCurSelRow _availableMusicListControl;
 	if (_selectedIndex isEqualTo -1) then {
 		["You need to have a selection made from the songs list"] call KISKA_fnc_errorNotification;

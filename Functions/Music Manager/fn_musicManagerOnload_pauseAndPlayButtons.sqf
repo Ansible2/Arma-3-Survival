@@ -29,7 +29,7 @@ _playButtonControl ctrlAddEventHandler ["ButtonClick",{
 
 	// if music is already playing
 	if !(uiNamespace getVariable ["BLWK_musicManager_doPlay",false]) then {
-		private _availableMusicListControl = uiNamespace getVariable "BLWK_musicManager_control_songsList";
+		private _availableMusicListControl = uiNamespace getVariable "BLWK_musicManager_control_songNamesList";
 
 		private _selectedIndex = lnbCurSelRow _availableMusicListControl;
 		if (_selectedIndex isEqualTo -1) then {

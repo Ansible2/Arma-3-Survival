@@ -58,5 +58,5 @@ if (_added) then {
     _color = WHITE_COLOR;
 };
 
-private _availableMusicListControl = (uiNamespace getVariable "BLWK_musicManager_control_songsList");
+private _availableMusicListControl = (uiNamespace getVariable "BLWK_musicManager_control_songNamesList");
 _availableMusicListControl lnbSetColor [[_index, 0], _color];

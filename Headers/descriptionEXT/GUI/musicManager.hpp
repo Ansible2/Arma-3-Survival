@@ -31,9 +31,7 @@ class musicManagerDialogButton: RscButton
 	colorShadow[] = {0,0,0,1};
 	colorBorder[] = {0,0,0,1};
 };
-
-
-
+// missionconfigfile >> "musicManagerDialog"
 /* -------------------------------------------------------------------------
 	Dialog
 ------------------------------------------------------------------------- */
@@ -48,47 +46,41 @@ class musicManagerDialog
 		class musicManagerDialogBackground_frame: RscText
 		{
 			idc = -1;
-			x = 0.253906 * safezoneW + safezoneX;
-			y = 0.25 * safezoneH + safezoneY;
-			w = 0.492188 * safezoneW;
-			h = 0.53125 * safezoneH;
+			x = POS_X(-21);
+			y = POS_Y(-12);
+			w = POS_W(42);
+			h = POS_H(25.5);
 			colorBackground[] = GREY_COLOR(0.24,0.7);
 		};
 		class musicManagerDialogBackground_filler_1: RscText
 		{
 			idc = -1;
-			x = 0.552734 * safezoneW + safezoneX;
-			y = 0.416667 * safezoneH + safezoneY;
-			w = 0.0117188 * safezoneW;
-			h = 0.114583 * safezoneH;
+			x = POS_X(4.5);
+			y = POS_Y(-4);
+			w = POS_W(1);
+			h = POS_H(5.5);
 			colorBackground[] = {-1,-1,-1,1};
 		};
-		class musicManagerDialogBackground_filler_2: RscText
+		class musicManagerDialogBackground_filler_2: musicManagerDialogBackground_filler_1
 		{
-			idc = -1;
-			x = 0.552734 * safezoneW + safezoneX;
-			y = 0.59375 * safezoneH + safezoneY;
-			w = 0.0117188 * safezoneW;
-			h = 0.15625 * safezoneH;
-			colorBackground[] = {-1,-1,-1,1};
+			y = POS_Y(4.5);
+			h = POS_H(7.5);
 		};
-		class musicManagerDialogBackground_filler_3: RscText
+		class musicManagerDialogBackground_filler_3: musicManagerDialogBackground_filler_1
 		{
-			idc = -1;
-			x = 0.552734 * safezoneW + safezoneX;
-			y = 0.552083 * safezoneH + safezoneY;
-			w = 0.0117188 * safezoneW;
-			h = 0.0208333 * safezoneH;
-			colorBackground[] = {-1,-1,-1,1};
+			y = POS_Y(2.5);
+			h = POS_H(1);
 		};
 		class musicManagerDialogBackground_filler_4: RscText
 		{
 			idc = -1;
 			text = "";
-			x = 0.259766 * safezoneW + safezoneX;
-			y = 0.75 * safezoneH + safezoneY;
-			w = 0.480469 * safezoneW;
-			h = 0.0208333 * safezoneH;
+			
+			x = POS_X(-20.5);
+			y = POS_Y(12);
+			w = POS_W(41);
+			h = POS_H(1);
+			
 			colorBackground[] = {-1,-1,-1,1};
 		};
 	};
@@ -98,33 +90,58 @@ class musicManagerDialog
 		class musicManagerDialogListBox_currentPlaylist: RscListBox
 		{
 			idc = BLWK_MUSIC_MANAGER_CURRENT_PLAYLIST_IDC;
+			x = POS_X(5.5);
+			y = POS_Y(-4);
+			w = POS_W(15);
+			h = POS_H(16);
 
-			x = 0.564453 * safezoneW + safezoneX;
-			y = 0.416667 * safezoneH + safezoneY;
-			w = 0.175781 * safezoneW;
-			h = 0.333333 * safezoneH;
+			style = LB_MULTI + LB_TEXTURES;
 			colorBackground[] = GREY_COLOR(0,1);
 			sizeEx = 0.0208333 * safezoneH;
 		};
-		class musicManagerDialogListNBox_availableSongs: RscListNBox
+		class musicManagerDialog_availableSongsGroup : RscControlsGroupNoHScrollbars
 		{
-			idc = BLWK_MUSIC_MANAGER_SONGS_LIST_IDC;
-
-			x = 0.259766 * safezoneW + safezoneX;
-			y = 0.416667 * safezoneH + safezoneY;
-			w = 0.292969 * safezoneW;
-			h = 0.333333 * safezoneH;
-			colorBackground[] = GREY_COLOR(0.24,1);
-			sizeEx = 0.0208333 * safezoneH;
+			idc = BLWK_MUSIC_MANAGER_SONG_GROUP_LIST_IDC;
+			x = POS_X(-20.5);
+			y = POS_Y(-4);
+			w = POS_W(25);
+			h = POS_H(16);
+			
+			class controls
+			{
+				class musicManagerDialogListBox_availableSongNames: ctrlListBox
+				{
+					idc = BLWK_MUSIC_MANAGER_SONG_NAMES_LIST_IDC;
+					style = LB_MULTI + LB_TEXTURES;
+					// x = POS_X();
+					// y = POS_Y();
+					w = POS_W(20.5);
+					h = POS_H(16);
+			
+					sizeEx = 0.0208333 * safezoneH;
+					colorBackground[] = GREY_COLOR(0.24,1);
+				};
+				class musicManagerDialogListBox_availableSongDurations: musicManagerDialogListBox_availableSongNames
+				{
+					idc = BLWK_MUSIC_MANAGER_SONG_DURATIONS_LIST_IDC;
+					x = POS_X(20.5);
+					// y = POS_Y();
+					w = POS_W(4.5);
+					h = POS_H(16);
+			
+				};
+			};
 		};
+		
 		class musicManagerDialogHeaderText_musicManager: RscText
 		{
 			idc = -1;
 			text = "Music Manager"; //--- ToDo: Localize;
-			x = 0.253906 * safezoneW + safezoneX;
-			y = 0.229167 * safezoneH + safezoneY;
-			w = 0.427734 * safezoneW;
-			h = 0.0208333 * safezoneH;
+			x = POS_X(-21);
+			y = POS_Y(-13);
+			w = POS_W(36.5);
+			h = POS_H(1);
+			
 			colorBackground[] = PROFILE_BACKGROUND_COLOR(1);
 		};
 		class musicManagerDialogButton_closeDialog: musicManagerDialogButton
@@ -132,11 +149,11 @@ class musicManagerDialog
 			idc = BLWK_MUSIC_MANAGER_CLOSE_BUTTON_IDC;
 
 			text = "Close"; //--- ToDo: Localize;
-			x = 0.681641 * safezoneW + safezoneX;
-			y = 0.229167 * safezoneH + safezoneY;
-			w = 0.0644531 * safezoneW;
-			h = 0.0208333 * safezoneH;
-
+			x = POS_X(15.5);
+			y = POS_Y(-13);
+			w = POS_W(5.5);
+			h = POS_H(1);
+			
 			colorBackground[] = {1,0,0,0.45};
 			colorBackgroundActive[] = {1,0,0,0.75};
 			colorFocused[] = {1,0,0,0.45};
@@ -146,10 +163,11 @@ class musicManagerDialog
 			idc = BLWK_MUSIC_MANAGER_COMMIT_BUTTON_IDC;
 
 			text = "Commit Playlist To Server"; //--- ToDo: Localize;
-			x = 0.634766 * safezoneW + safezoneX;
-			y = 0.28125 * safezoneH + safezoneY;
-			w = 0.105469 * safezoneW;
-			h = 0.0416667 * safezoneH;
+			x = POS_X(11.5);
+			y = POS_Y(-10.5);
+			w = POS_W(9);
+			h = POS_H(2);
+			
 			colorBackground[] = {1,0,0,0.45};
 			colorBackgroundActive[] = {1,0,0,0.75};
 			colorFocused[] = {1,0,0,0.45};
@@ -159,40 +177,43 @@ class musicManagerDialog
 		class musicManagerDialogSlider_timeline: musicManagerDialogSliderX
 		{
 			idc = BLWK_MUSIC_MANAGER_TIMELINE_SLIDER_IDC;
-
-			x = 0.242187 * safezoneW + safezoneX;
-			y = 0.364583 * safezoneH + safezoneY;
-			w = 0.515625 * safezoneW;
-			h = 0.03125 * safezoneH;
+			x = POS_X(-22);
+			y = POS_Y(-6.5);
+			w = POS_W(44);
+			h = POS_H(1.5);
+			
 			sliderStep = 0.01;
 		};
 		class musicManagerDialogButton_play: musicManagerDialogButton
 		{
 			idc = BLWK_MUSIC_MANAGER_PLAY_BUTTON_IDC;
 			text = "Play"; //--- ToDo: Localize;
-			x = 0.652344 * safezoneW + safezoneX;
-			y = 0.333333 * safezoneH + safezoneY;
-			w = 0.0527344 * safezoneW;
-			h = 0.0208333 * safezoneH;
+			x = POS_X(13);
+			y = POS_Y(-8);
+			w = POS_W(4.5);
+			h = POS_H(1);
+			
 		};
 		class musicManagerDialogButton_pause: musicManagerDialogButton
 		{
 			idc = BLWK_MUSIC_MANAGER_PAUSE_BUTTON_IDC;
 			text = "Pause"; //--- ToDo: Localize;
-			x = 0.294922 * safezoneW + safezoneX;
-			y = 0.333333 * safezoneH + safezoneY;
-			w = 0.0527344 * safezoneW;
-			h = 0.0208333 * safezoneH;
+			x = POS_X(-17.5);
+			y = POS_Y(-8);
+			w = POS_W(4.5);
+			h = POS_H(1);
+			
 		};
 		class musicManagerDialogHeaderText_currentPlaylist: RscText
 		{
 			idc = -1;
 
 			text = "Current Playlist"; //--- ToDo: Localize;
-			x = 0.564453 * safezoneW + safezoneX;
-			y = 0.395833 * safezoneH + safezoneY;
-			w = 0.175781 * safezoneW;
-			h = 0.0208333 * safezoneH;
+			x = POS_X(5.5);
+			y = POS_Y(-5);
+			w = POS_W(15);
+			h = POS_H(1);
+			
 			colorBackground[] = PROFILE_BACKGROUND_COLOR(1);
 		};
 		class musicManagerDialogHeaderText_volume: RscText
@@ -200,20 +221,21 @@ class musicManagerDialog
 			idc = -1;
 
 			text = "Volume:"; //--- ToDo: Localize;
-			x = 0.435547 * safezoneW + safezoneX;
-			y = 0.333333 * safezoneH + safezoneY;
-			w = 0.0351563 * safezoneW;
-			h = 0.0208333 * safezoneH;
+			x = POS_X(-5.5);
+			y = POS_Y(-8);
+			w = POS_W(3);
+			h = POS_H(1);
+			
 			colorBackground[] = PROFILE_BACKGROUND_COLOR(1);
 		};
 		class musicManagerDialogSlider_volume: musicManagerDialogSliderX
 		{
 			idc = BLWK_MUSIC_MANAGER_VOLUME_SLIDER_IDC;
-
-			x = 0.458984 * safezoneW + safezoneX;
-			y = 0.333333 * safezoneH + safezoneY;
-			w = 0.123047 * safezoneW;
-			h = 0.0208333 * safezoneH;
+			x = POS_X(-3.5);
+			y = POS_Y(-8);
+			w = POS_W(10.5);
+			h = POS_H(1);
+			
 			sliderStep = 0.05;
 			sliderRange = [0,1];
 		};
@@ -222,10 +244,12 @@ class musicManagerDialog
 			idc = -1;
 
 			text = "Track Title"; //--- ToDo: Localize;
-			x = 0.259766 * safezoneW + safezoneX;
-			y = 0.395833 * safezoneH + safezoneY;
-			w = 0.240234 * safezoneW;
-			h = 0.0208333 * safezoneH;
+
+			x = POS_X(-20.5);
+			y = POS_Y(-5);
+			w = POS_W(20.5);
+			h = POS_H(1);
+			
 			colorBackground[] = PROFILE_BACKGROUND_COLOR(1);
 		};
 		class musicManagerDialogHeaderText_duration: RscText
@@ -233,10 +257,12 @@ class musicManagerDialog
 			idc = -1;
 
 			text = "Duration"; //--- ToDo: Localize;
-			x = 0.5 * safezoneW + safezoneX;
-			y = 0.395833 * safezoneH + safezoneY;
-			w = 0.0644531 * safezoneW;
-			h = 0.0208333 * safezoneH;
+
+			x = POS_X(0);
+			y = POS_Y(-5);
+			w = POS_W(20.5);
+			h = POS_H(1);
+			
 			colorBackground[] = PROFILE_BACKGROUND_COLOR(1);
 		};
 		class musicManagerDialogEdit_trackSpacing: RscEdit
@@ -244,10 +270,12 @@ class musicManagerDialog
 			idc = BLWK_MUSIC_MANAGER_SPACING_EDIT_IDC;
 
 			//text = "[200,250,300]"; //--- ToDo: Localize;
-			x = 0.306641 * safezoneW + safezoneX;
-			y = 0.302083 * safezoneH + safezoneY;
-			w = 0.0585937 * safezoneW;
-			h = 0.0208333 * safezoneH;
+
+			x = POS_X(-16.5);
+			y = POS_Y(-9.5);
+			w = POS_W(5);
+			h = POS_H(1);
+			
 			colorBackground[] = GREY_COLOR(1,0.25);
 			
 		};
@@ -256,59 +284,64 @@ class musicManagerDialog
 			idc = BLWK_MUSIC_MANAGER_SPACING_BUTTON_IDC;
 
 			text = "Set Spacing"; //--- ToDo: Localize;
-			x = 0.259766 * safezoneW + safezoneX;
-			y = 0.302083 * safezoneH + safezoneY;
-			w = 0.046875 * safezoneW;
-			h = 0.0208333 * safezoneH;
+
+			x = POS_X(-20.5);
+			y = POS_Y(-9.5);
+			w = POS_W(4);
+			h = POS_H(1);
+			
 			toolTip = "Setting will be saved to the server";
 		};
 		class musicManagerDialogComboBox_trackSpacing: RscCombo
 		{
 			idc = BLWK_MUSIC_MANAGER_SPACING_COMBO_IDC;
-
-			x = 0.259766 * safezoneW + safezoneX;
-			y = 0.28125 * safezoneH + safezoneY;
-			w = 0.105469 * safezoneW;
-			h = 0.0208333 * safezoneH;
+			x = POS_X(-20.5);
+			y = POS_Y(-10.5);
+			w = POS_W(-);
+			h = POS_H(1);
+			
 		};
 		class musicManagerDialogComboBox_systemOnOff: RscCombo
 		{
 			idc = BLWK_MUSIC_MANAGER_ONOFF_COMBO_IDC;
-
-			x = 0.634766 * safezoneW + safezoneX;
-			y = 0.260417 * safezoneH + safezoneY;
-			w = 0.105469 * safezoneW;
-			h = 0.0208333 * safezoneH;
+			x = POS_X(11.5);
+			y = POS_Y(-11.5);
+			w = POS_W(9);
+			h = POS_H(1);
+			
 		};
 		class musicManagerDialogEdit_savePlaylist: RscEdit
 		{
 			idc = BLWK_MUSIC_MANAGER_SAVE_EDIT_IDC;
 
 			text = "A Playlist Name"; //--- ToDo: Localize;
-			x = 0.5 * safezoneW + safezoneX;
-			y = 0.291667 * safezoneH + safezoneY;
-			w = 0.105469 * safezoneW;
-			h = 0.0208333 * safezoneH;
+
+			x = POS_X(0);
+			y = POS_Y(-10);
+			w = POS_W(9);
+			h = POS_H(1);
+			
 			maxChars = 20;
 			colorBackground[] = GREY_COLOR(1,0.25);
 		};
 		class musicManagerDialogComboBox_loadPlaylist: RscCombo
 		{
 			idc = BLWK_MUSIC_MANAGER_LOAD_COMBO_IDC;
-
-			x = 0.394531 * safezoneW + safezoneX;
-			y = 0.291667 * safezoneH + safezoneY;
-			w = 0.105469 * safezoneW;
-			h = 0.0208333 * safezoneH;
+			x = POS_X(-6.5);
+			y = POS_Y(-11);
+			w = POS_W(6.5);
+			h = POS_H(1);
 		};
 		class musicManagerDialogHeaderText_trackSpacing: RscText
 		{
 			idc = -1;
 			text = "Track Spacing"; //--- ToDo: Localize;
-			x = 0.259766 * safezoneW + safezoneX;
-			y = 0.260417 * safezoneH + safezoneY;
-			w = 0.105469 * safezoneW;
-			h = 0.0208333 * safezoneH;
+
+			x = POS_X(-20.5);
+			y = POS_Y(-11.5);
+			w = POS_W(9);
+			h = POS_H(1);
+			
 			colorBackground[] = PROFILE_BACKGROUND_COLOR(1);
 		};
 		class musicManagerDialogButton_savePlaylist: musicManagerDialogButton
@@ -316,10 +349,12 @@ class musicManagerDialog
 			idc = BLWK_MUSIC_MANAGER_SAVE_BUTTON_IDC;
 
 			text = "Save"; //--- ToDo: Localize;
-			x = 0.552734 * safezoneW + safezoneX;
-			y = 0.270833 * safezoneH + safezoneY;
-			w = 0.0527344 * safezoneW;
-			h = 0.0208333 * safezoneH;
+
+			x = POS_X(4.5);
+			y = POS_Y(-11);
+			w = POS_W(4.5);
+			h = POS_H(1);
+			
 			toolTip = "Save over the current list selected in the drop down";
 		};
 		class musicManagerDialogButton_saveAsPlaylist: musicManagerDialogButton
@@ -327,10 +362,12 @@ class musicManagerDialog
 			idc = BLWK_MUSIC_MANAGER_SAVEAS_BUTTON_IDC;
 
 			text = "Save As"; //--- ToDo: Localize;
-			x = 0.5 * safezoneW + safezoneX;
-			y = 0.270833 * safezoneH + safezoneY;
-			w = 0.0527344 * safezoneW;
-			h = 0.0208333 * safezoneH;
+
+			x = POS_X(0);
+			y = POS_Y(-11);
+			w = POS_W(4.5);
+			h = POS_H(1);
+			
 			toolTip = "Save a new playlist based upon the edit box";
 		};
 		class musicManagerDialogButton_deletePlaylist: musicManagerDialogButton
@@ -338,20 +375,24 @@ class musicManagerDialog
 			idc = BLWK_MUSIC_MANAGER_DELETE_BUTTON_IDC;
 
 			text = "Delete"; //--- ToDo: Localize;
-			x = 0.394531 * safezoneW + safezoneX;
-			y = 0.270833 * safezoneH + safezoneY;
-			w = 0.0292969 * safezoneW;
-			h = 0.0208333 * safezoneH;
+
+			x = POS_X(-9);
+			y = POS_Y(-11);
+			w = POS_W(2.5);
+			h = POS_H(1);
+			
 			toolTip = "Delete the currently selected list in the drop down";
 		};
 		class musicManagerDialogHeaderText_loadPlaylist: musicManagerDialogButton
 		{
 			idc = BLWK_MUSIC_MANAGER_LOAD_PLAYLIST_BUTTON_IDC;
 			text = "Load Playlist"; //--- ToDo: Localize;
-			x = 0.423828 * safezoneW + safezoneX;
-			y = 0.270833 * safezoneH + safezoneY;
-			w = 0.0761719 * safezoneW;
-			h = 0.0208333 * safezoneH;
+
+			x = POS_X(-6.5);
+			y = POS_Y(-11);
+			w = POS_W(6.5);
+			h = POS_H(1);
+			
 			
 			toolTip = "Load selected item into Current Playlist";
 		};
@@ -361,11 +402,12 @@ class musicManagerDialog
 			idc = BLWK_MUSIC_MANAGER_ADDTO_BUTTON_IDC;
 
 			text = "+"; //--- ToDo: Localize;
-			x = 0.552734 * safezoneW + safezoneX;
-			y = 0.53125 * safezoneH + safezoneY;
-			w = 0.0117188 * safezoneW;
-			h = 0.0208333 * safezoneH;
 
+			x = POS_X(4.5);
+			y = POS_Y(1.5);
+			w = POS_W(1);
+			h = POS_H(1);
+			
 			toolTip = "Add to Current Playlist";
 		};
 		class musicManagerDialogButton_removeFromCurrentPlaylist: musicManagerDialogButton
@@ -373,11 +415,12 @@ class musicManagerDialog
 			idc = BLWK_MUSIC_MANAGER_REMOVEFROM_BUTTON_IDC;
 
 			text = "-"; //--- ToDo: Localize;
-			x = 0.552734 * safezoneW + safezoneX;
-			y = 0.572917 * safezoneH + safezoneY;
-			w = 0.0117188 * safezoneW;
-			h = 0.0208333 * safezoneH;
 
+			x = POS_X(4.5);
+			y = POS_Y(3.5);
+			w = POS_W(1);
+			h = POS_H(1);
+			
 			toolTip = "Remove from Current Playlist";
 		};
 	};
