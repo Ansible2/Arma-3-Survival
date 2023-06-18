@@ -3,7 +3,7 @@ Function: CBAP_fnc_randPosArea
 
 Description:
     Find a random (uniformly distributed) position within the given area without rejection sampling.
-    * You can use <CBA_fnc_randPos> to find a position within a simple radius.
+    * You can use <CBAP_fnc_randPos> to find a position within a simple radius.
 
 Parameters:
     _area      - The area to find a position within <MARKER, TRIGGER, LOCATION, ARRAY>
