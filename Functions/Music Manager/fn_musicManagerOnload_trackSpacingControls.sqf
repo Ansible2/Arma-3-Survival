@@ -109,7 +109,7 @@ _buttonControl ctrlAddEventHandler ["ButtonClick",{
 
 	} else {
 		// send to server
-		[_textCompiled] remoteExecCall ["KISKA_fnc_setRandomMusicTime",2];
+		[_textCompiled] remoteExecCall ["KISKA_fnc_randomMusic_setTrackInterval",2];
 		["Track spacing set to " + (str _textCompiled)] call KISKA_fnc_notification;
 
 	};
