@@ -42,11 +42,11 @@ private _songListGroupControl = _display displayCtrl BLWK_MUSIC_MANAGER_SONG_GRO
 private _songNamesListControl = _songListGroupControl controlsGroupCtrl BLWK_MUSIC_MANAGER_SONG_NAMES_LIST_IDC;
 private _songDurationsListControl = _songListGroupControl controlsGroupCtrl BLWK_MUSIC_MANAGER_SONG_DURATIONS_LIST_IDC;
 uiNamespace setVariable ["BLWK_musicManager_control_songGroup",_songListGroupControl];
-uiNamespace setVariable ["BLWK_musicManager_control_songNamesList",_songListControl];
+uiNamespace setVariable ["BLWK_musicManager_control_songNamesList",_songNamesListControl];
 uiNamespace setVariable ["BLWK_musicManager_control_songDurationsList",_songDurationsListControl];
 [
 	_songListGroupControl,
-	_songListControl,
+	_songNamesListControl,
 	_songDurationsListControl
 ] call BLWK_fnc_musicManagerOnLoad_availableMusicList;
 

@@ -6,14 +6,21 @@ Description:
 	 is openned.
 
 Parameters:
-	0: _control : <CONTROL> - The control for the ListNBox with available music
+	0: _songListGroupControl : <CONTROL> - The control for the controls group that 
+		has both the duration and name listboxes
+	1: _songNamesListControl : <CONTROL> - The control for the ListBox with available music names
+	2: _songDurationsListControl : <CONTROL> - The control for the ListBox with available music durations
 
 Returns:
 	NOTHING
 
 Examples:
     (begin example)
-		[_control] call BLWK_fnc_musicManagerOnLoad_availableMusicList;
+		[
+			_songListGroupControl,
+			_songNamesListControl,
+			_songDurationsListControl
+		] call BLWK_fnc_musicManagerOnLoad_availableMusicList;
     (end)
 
 Author(s):
@@ -22,14 +29,18 @@ Author(s):
 disableSerialization;
 scriptName "BLWK_fnc_musicManagerOnLoad_availableMusicList";
 
-params ["_control"];
-
+params [
+	"_songListGroupControl",
+	"_songNamesListControl",
+	"_songDurationsListControl"
+];
+// TODO: handle new controls
 // reset music pause state when selection is changed
-_control ctrlAddEventHandler ["LBSelChanged",{
-	params ["_control","_selectedIndex"];
+_songNamesListControl ctrlAddEventHandler ["LBSelChanged",{
+	params ["_songNamesListControl","_selectedIndex"];
 
-	private _display = ctrlParent _control;
-	private _musicClass = _control lnbData [_selectedIndex,0];
+	private _display = ctrlParent _songNamesListControl;
+	private _musicClass = _songNamesListControl lnbData [_selectedIndex,0];
 	uiNamespace setVariable ["BLWK_musicManager_selectedTrack",_musicClass];
 	//uiNamespace setVariable ["BLWK_musicManager_paused",false];
 
@@ -40,7 +51,7 @@ _control ctrlAddEventHandler ["LBSelChanged",{
 	};
 
 	// adjust slider range to song duration
-	private _musicDuration = [_control lnbText [_selectedIndex,1]] call BIS_fnc_parseNumber;
+	private _musicDuration = [_songNamesListControl lnbText [_selectedIndex,1]] call BIS_fnc_parseNumber;
 	_timeLineSlider sliderSetRange [0,_musicDuration];
 
 
@@ -93,21 +104,21 @@ if (isNil {missionNamespace getVariable "BLWK_musicManager_musicHash"}) then {
 };
 
 // add duration column
-_control lnbAddColumn 1;
-_control lnbSetColumnsPos [0,0.82];
+_songNamesListControl lnbAddColumn 1;
+_songNamesListControl lnbSetColumnsPos [0,0.82];
 
 // fill list
 private "_row";
 {
 	// track name and duration
-	_row = _control lnbAddRow [_y select 0,str (_y select 1)];
-	_control lnbSetData [[_row,0],_x]; // set data to the track class name
-	_control lnbSetTooltip [[_row,0],_x];
+	_row = _songNamesListControl lnbAddRow [_y select 0,str (_y select 1)];
+	_songNamesListControl lnbSetData [[_row,0],_x]; // set data to the track class name
+	_songNamesListControl lnbSetTooltip [[_row,0],_x];
 } forEach _musicHash;
 
 
 // Hashes are not sorted even when added from array.
-_control lnbSort [0, false];
+_songNamesListControl lnbSort [0, false];
 
 
 nil
