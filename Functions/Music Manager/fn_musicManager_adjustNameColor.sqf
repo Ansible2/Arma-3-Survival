@@ -38,7 +38,7 @@ if (_class isEqualTo "") exitWith {
     nil
 };
 
-private _musicHash = missionNamespace getVariable "BLWK_musicManager_musicHash";
+private _musicHash = localNamespace getVariable "BLWK_musicManager_musicMap";
 private _classInfo = _musicHash get _class;
 private _index = _classInfo select INDEX_IN_AVAILABLE_MUSIC_LIST;
 

@@ -1,9 +1,19 @@
+#include "..\..\Headers\descriptionEXT\GUI\musicManagerCommonDefines.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_musicManagerOnLoad_availableMusicList
 
 Description:
-	Populates the ListNBox that shows all available tracks when the Music Manager
+	Populates the listboxes that shows all available tracks when the Music Manager
 	 is openned.
+
+	Important Note:
+		While ideally a ListNBox would have been used to support multiple columns
+		with the duration and name, support for multi select seems to not be available
+		for ListNBox at the time of implementing this feature.
+
+		Therefore, this what appears to be a single listNBox is actually two listboxes
+		inside a controls group and their height maxed out to allow scrolling on the control
+		group.
 
 Parameters:
 	0: _songListGroupControl : <CONTROL> - The control for the controls group that 
@@ -34,24 +44,51 @@ params [
 	"_songNamesListControl",
 	"_songDurationsListControl"
 ];
-// TODO: handle new controls
-// reset music pause state when selection is changed
-_songNamesListControl ctrlAddEventHandler ["LBSelChanged",{
-	params ["_songNamesListControl","_selectedIndex"];
 
-	private _display = ctrlParent _songNamesListControl;
-	private _musicClass = _songNamesListControl lnbData [_selectedIndex,0];
+/* ----------------------------------------------------------------------------
+	Setup events
+---------------------------------------------------------------------------- */
+private _selectionCode = {
+	params ["_selectedListboxControl","_selectedIndex"];
+
+	private _otherListboxControl = controlNull;
+	private _songNamesListControl = uiNamespace getVariable ["BLWK_musicManager_control_songNamesList",controlNull];
+	private _songDurationsListControl = uiNamespace getVariable ["BLWK_musicManager_control_songDurationsList",controlNull];
+	if (_selectedListboxControl isEqualTo _songDurationsListControl) then {
+		_otherListboxControl = _songNamesListControl;
+	} else {
+		_otherListboxControl = _songDurationsListControl;
+	};
+
+	// infinite loop
+	if ((lbCurSel _otherListboxControl) isNotEqualTo _selectedIndex) then {
+		_otherListboxControl lbSetSelected [-1,false];
+		_otherListboxControl lbSetSelected [_selectedIndex,true,true];
+	};
+};
+
+
+
+private _scrollCode = {
+	params ["_selectedControl"];
+};
+
+
+
+private _doubleClickCode = {
+	params ["_selectedControl"];
+
+	private _musicClass = _selectedControl lbData _selectedIndex;
 	uiNamespace setVariable ["BLWK_musicManager_selectedTrack",_musicClass];
-	//uiNamespace setVariable ["BLWK_musicManager_paused",false];
 
 	// reset timeline slider to 0
 	private _timeLineSlider = uiNamespace getVariable "BLWK_musicManager_control_timelineSlider";
-	if ((sliderPosition _timeLineSlider) != 0) then {
+	if ((sliderPosition _timeLineSlider) isNotEqualTo 0) then {
 		_timeLineSlider sliderSetPosition 0;
 	};
 
 	// adjust slider range to song duration
-	private _musicDuration = [_songNamesListControl lnbText [_selectedIndex,1]] call BIS_fnc_parseNumber;
+	private _musicDuration = [_selectedControl lnbText [_selectedIndex,1]] call BIS_fnc_parseNumber;
 	_timeLineSlider sliderSetRange [0,_musicDuration];
 
 
@@ -59,31 +96,42 @@ _songNamesListControl ctrlAddEventHandler ["LBSelChanged",{
 	if !(uiNamespace getVariable ["BLWK_musicManager_paused",false]) then {
 		[_musicClass,0] spawn BLWK_fnc_musicManager_playMusic;
 	};
+};
 
-}];
+[
+	_songDurationsListControl,
+	_songNamesListControl
+] apply {
+	_x ctrlAddEventHandler ["LBSelChanged",_selectionCode];
+	_x ctrlAddEventHandler ["onLBDblClick",_doubleClickCode];
+	_x ctrlAddEventHandler ["onMouseZChanged",_scrollCode];
+};
 
 
+
+/* ----------------------------------------------------------------------------
+	Generate List
+---------------------------------------------------------------------------- */
 // cache and/or get music info for list
 // get classes
-private "_musicHash";
-if (isNil {missionNamespace getVariable "BLWK_musicManager_musicHash"}) then {
+private "_musicMap";
+if (isNil {localNamespace getVariable "BLWK_musicManager_musicMap"}) then {
 	private _musicClasses = "true" configClasses (configFile >> "cfgMusic");
 
 	// collect music info
-	private ["_name_temp","_duration_temp","_class_temp"];
-	private _musicArray = [];
-	_musicClasses apply {
+	
+	private _musicArray = _musicClasses apply {
 		// name
-		_name_temp = getText(_x >> "name");
-		if (_name_temp isEqualTo "") then {
-			_name_temp = configName _x;
+		private _songName = getText(_x >> "name");
+		if (_songName isEqualTo "") then {
+			_songName = configName _x;
 		};
 
 		// duration
-		_duration_temp = round (getNumber(_x >> "duration"));
-		_class_temp = configName _x;
+		private _songDuration = round (getNumber(_x >> "duration"));
+		private _songClassname = configName _x;
 
-		_musicArray pushBack [_class_temp,[_name_temp,_duration_temp]];
+		[_songClassname,[_songName,str _songDuration]]
 	};
 
 	// sort by track name
@@ -93,32 +141,57 @@ if (isNil {missionNamespace getVariable "BLWK_musicManager_musicHash"}) then {
 		// provide the index within _musicArray for a particular class
 		// this will be used for finding the location within the available music list control (and avoid looping through the list)
 		// so that we can selectively color entries depending on if they are in the current music list control
-		(_x select 1) pushBack _forEachIndex;
+		private _songInfoArray = _x select 1;
+		_songInfoArray pushBack _forEachIndex;
 	} forEach _musicArray;
 
-	_musicHash = createHashMapFromArray _musicArray;
-	missionNamespace setVariable ["BLWK_musicManager_musicHash",_musicHash];
+	_musicMap = createHashMapFromArray _musicArray;
+	localNamespace setVariable ["BLWK_musicManager_musicMap",_musicMap];
 
 } else {
-	_musicHash = missionNamespace getVariable "BLWK_musicManager_musicHash";
+	_musicMap = localNamespace getVariable "BLWK_musicManager_musicMap";
 };
 
-// add duration column
-_songNamesListControl lnbAddColumn 1;
-_songNamesListControl lnbSetColumnsPos [0,0.82];
+private _numberOfSongs = count _musicMap;
+private _heightOfControlGroup = (ctrlPosition _songListGroupControl) select 3;
+private _heightOfControls = POS_H(_numberOfSongs) max _heightOfControlGroup;
+[
+	_numberOfSongs,
+	_songNamesListControl,
+	_songDurationsListControl,
+	_heightOfControls
+] spawn {
+	params [
+		"_numberOfSongs",
+		"_songNamesListControl",
+		"_songDurationsListControl",
+		"_heightOfControls"
+	];
 
-// fill list
-private "_row";
+	_songNamesListControl ctrlSetPositionH _heightOfControls;
+	_songNamesListControl ctrlCommit 0.1;
+	_songDurationsListControl ctrlSetPositionH _heightOfControls;
+	_songDurationsListControl ctrlCommit 0.1;
+};
+
+
 {
-	// track name and duration
-	_row = _songNamesListControl lnbAddRow [_y select 0,str (_y select 1)];
-	_songNamesListControl lnbSetData [[_row,0],_x]; // set data to the track class name
-	_songNamesListControl lnbSetTooltip [[_row,0],_x];
-} forEach _musicHash;
+	_y params ["_songName","_songDuration","_songIndex"];
+	private _rowIndex = _songNamesListControl lbAdd _songName;
+	_songDurationsListControl lbAdd _songDuration;
+
+	private _songClassname = _x;
+	_songNamesListControl lbSetData [_rowIndex,_songClassname];
+	_songDurationsListControl lbSetData [_rowIndex,_songClassname];
+	_songNamesListControl lbSetTooltip [_rowIndex,_songClassname];
+	_songDurationsListControl lbSetTooltip [_rowIndex,_songClassname];
+} forEach _musicMap;
 
 
-// Hashes are not sorted even when added from array.
-_songNamesListControl lnbSort [0, false];
+// TODO:
+// be able to sort list by the name of the track
+// be able to select a song name OR duration and have that translate to both the name and duration as
+/// though it is one row
 
 
 nil

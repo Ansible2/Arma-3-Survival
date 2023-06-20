@@ -116,9 +116,9 @@ class musicManagerDialog
 					// x = POS_X(-20.5);
 					// y = POS_Y();
 					w = POS_W(20.5);
-					h = POS_H(16);
+					h = POS_H(0);
 			
-					sizeEx = 0.0208333 * safezoneH;
+					sizeEx = POS_H(1);
 					colorBackground[] = GREY_COLOR(0.24,1);
 				};
 				class musicManagerDialogListBox_availableSongDurations: musicManagerDialogListBox_availableSongNames
@@ -127,7 +127,7 @@ class musicManagerDialog
 					x = POS_X(3);
 					// y = POS_Y();
 					w = POS_W(4.5);
-					h = POS_H(16);
+					h = POS_H(0);
 			
 				};
 			};
