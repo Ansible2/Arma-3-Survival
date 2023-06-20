@@ -60,11 +60,17 @@ private _selectionCode = {
 		_otherListboxControl = _songDurationsListControl;
 	};
 
-	// infinite loop
-	if ((lbCurSel _otherListboxControl) isNotEqualTo _selectedIndex) then {
-		_otherListboxControl lbSetSelected [-1,false];
-		_otherListboxControl lbSetSelected [_selectedIndex,true,true];
+	
+	_otherListboxControl lbSetSelected [-1,false];
+	private _selectedTrackClassnames = (lbSelection _selectedListboxControl) apply {
+		_otherListboxControl lbSetSelected [_x,true];
+		
+		_selectedListboxControl lbData _x
 	};
+	uiNamespace setVariable ["BLWK_musicManager_selectedTracks",_selectedTrackClassnames];
+
+	private _musicClass = _selectedListboxControl lbData _selectedIndex;
+	uiNamespace setVariable ["BLWK_musicManager_playingTrack",_musicClass];
 };
 
 
@@ -76,26 +82,22 @@ private _scrollCode = {
 
 
 private _doubleClickCode = {
-	params ["_selectedControl"];
+	params ["_control", "_selectedIndex"];
 
-	private _musicClass = _selectedControl lbData _selectedIndex;
-	uiNamespace setVariable ["BLWK_musicManager_selectedTrack",_musicClass];
+	private _musicClass = _control lbData _selectedIndex;
+	uiNamespace setVariable ["BLWK_musicManager_playingTrack",_musicClass];
 
-	// reset timeline slider to 0
 	private _timeLineSlider = uiNamespace getVariable "BLWK_musicManager_control_timelineSlider";
-	if ((sliderPosition _timeLineSlider) isNotEqualTo 0) then {
-		_timeLineSlider sliderSetPosition 0;
-	};
+	_timeLineSlider sliderSetPosition 0;
 
-	// adjust slider range to song duration
-	private _musicDuration = [_selectedControl lnbText [_selectedIndex,1]] call BIS_fnc_parseNumber;
+	private _musicMap = localNamespace getVariable "BLWK_musicManager_musicMap";
+	private _musicDuration = (_musicMap get _musicClass) select 2;
+	// TODO: need more of a one-stop-shop for translating a music class into playing
+	// music, the fact that so many different places need logic to reset the slider
+	// and change do play logic, etc. is smelly
 	_timeLineSlider sliderSetRange [0,_musicDuration];
 
-
-	// play new track unless music is paused
-	if !(uiNamespace getVariable ["BLWK_musicManager_paused",false]) then {
-		[_musicClass,0] spawn BLWK_fnc_musicManager_playMusic;
-	};
+	[_musicClass,0] spawn BLWK_fnc_musicManager_playMusic;
 };
 
 [
@@ -103,8 +105,8 @@ private _doubleClickCode = {
 	_songNamesListControl
 ] apply {
 	_x ctrlAddEventHandler ["LBSelChanged",_selectionCode];
-	_x ctrlAddEventHandler ["onLBDblClick",_doubleClickCode];
-	_x ctrlAddEventHandler ["onMouseZChanged",_scrollCode];
+	_x ctrlAddEventHandler ["LBDblClick",_doubleClickCode];
+	_x ctrlAddEventHandler ["MouseZChanged",_scrollCode];
 };
 
 
@@ -128,10 +130,10 @@ if (isNil {localNamespace getVariable "BLWK_musicManager_musicMap"}) then {
 		};
 
 		// duration
-		private _songDuration = round (getNumber(_x >> "duration"));
+		private _songDuration = getNumber(_x >> "duration");
 		private _songClassname = configName _x;
 
-		[_songClassname,[_songName,str _songDuration]]
+		[_songClassname,[_songName, str (round _songDuration), _songDuration]]
 	};
 
 	// sort by track name
@@ -190,8 +192,12 @@ private _heightOfControls = POS_H(_numberOfSongs) max _heightOfControlGroup;
 
 // TODO:
 // be able to sort list by the name of the track
-// be able to select a song name OR duration and have that translate to both the name and duration as
-/// though it is one row
+// clicking the add button with one track selected will add that single track
+// clicking the add button with MORE than one track will add multiple tracks
+	// tracks will have some kind of indication that the have been added
+// can scroll through listbox
+// can playmusic with double click
+// can click on a single track and 
 
 
 nil

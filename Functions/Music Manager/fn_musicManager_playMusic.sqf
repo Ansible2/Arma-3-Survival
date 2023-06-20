@@ -37,6 +37,7 @@ params [
 
 private _sliderControl = uiNamespace getVariable "BLWK_musicManager_control_timelineSlider";
 private _sliderMax = (sliderRange _sliderControl) select 1;
+_sliderControl sliderSetPosition _startTime;
 
 if (_startTime isEqualTo 0) then {
 	playMusic _musicClass;
@@ -45,12 +46,13 @@ if (_startTime isEqualTo 0) then {
 };
 
 uiNamespace setVariable ["BLWK_musicManager_doPlay",true];
-// set paused to false if it was true
+
 if (uiNamespace getVariable ["BLWK_musicManager_paused",false]) then {
 	uiNamespace setVariable ["BLWK_musicManager_paused",false];
 };
 
-// move timeline
+
+
 if !(uiNamespace getVariable ["BLWK_musicManager_timelineLooping",false]) then {
 	// in order to switch from one track to another and not stack loops
 	// we keep track of the timeline's moving state
@@ -58,10 +60,10 @@ if !(uiNamespace getVariable ["BLWK_musicManager_timelineLooping",false]) then {
 
 	while {
 		(!isNull (uiNamespace getVariable "BLWK_musicManager_display")) AND
-		{uiNamespace getVariable ["BLWK_musicManager_doPlay",true]} AND
+		(uiNamespace getVariable ["BLWK_musicManager_doPlay",true]) AND
 		// check if end of song is reached
-		{sliderPosition _sliderControl < _sliderMax} }
-	do {
+		{sliderPosition _sliderControl < _sliderMax} 
+	} do {
 		sleep INTERVAL;
 		// update slider position to mimic timeline
 	 	_sliderControl sliderSetPosition ((sliderPosition _sliderControl) + INTERVAL);

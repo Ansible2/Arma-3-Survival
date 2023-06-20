@@ -27,28 +27,24 @@ params ["_playButtonControl","_pauseButtonControl"];
 _playButtonControl ctrlAddEventHandler ["ButtonClick",{
 	params ["_control"];
 
-	// if music is already playing
-	if !(uiNamespace getVariable ["BLWK_musicManager_doPlay",false]) then {
-		private _availableMusicListControl = uiNamespace getVariable "BLWK_musicManager_control_songNamesList";
+	private _availableMusicListControl = uiNamespace getVariable "BLWK_musicManager_control_songNamesList";
+	private _selectedIndex = lbCurSel _availableMusicListControl;
+	if (_selectedIndex isEqualTo -1) then {
+		["You need to have a selection made from the songs list"] call KISKA_fnc_errorNotification;
 
-		private _selectedIndex = lnbCurSelRow _availableMusicListControl;
-		if (_selectedIndex isEqualTo -1) then {
-			["You need to have a selection made from the songs list"] call KISKA_fnc_errorNotification;
+	} else {
 
+		private _musicClass = _availableMusicListControl lbData _selectedIndex;
+		// if music is paused, start from slider position
+		if (uiNamespace getVariable ["BLWK_musicManager_paused",false]) then {
+			private _sliderPosition = sliderPosition (uiNamespace getVariable "BLWK_musicManager_control_timelineSlider");
+			[_musicClass,_sliderPosition] spawn BLWK_fnc_musicManager_playMusic;
 		} else {
-
-			private _musicClass = _availableMusicListControl lnbData [_selectedIndex,0];
-			// if music is paused, start from slider position
-			if (uiNamespace getVariable ["BLWK_musicManager_paused",false]) then {
-				private _sliderPosition = sliderPosition (uiNamespace getVariable "BLWK_musicManager_control_timelineSlider");
-				[_musicClass,_sliderPosition] spawn BLWK_fnc_musicManager_playMusic;
-			} else {
-				[_musicClass] spawn BLWK_fnc_musicManager_playMusic;
-			};
-
-			uiNamespace setVariable ["BLWK_musicManager_doPlay",true];
-			[] spawn BLWK_fnc_musicManager_moveTimeline;
+			[_musicClass] spawn BLWK_fnc_musicManager_playMusic;
 		};
+
+		uiNamespace setVariable ["BLWK_musicManager_doPlay",true];
+		[] spawn BLWK_fnc_musicManager_moveTimeline;
 	};
 
 }];
