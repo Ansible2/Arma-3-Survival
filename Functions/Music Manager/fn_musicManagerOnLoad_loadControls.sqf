@@ -35,11 +35,11 @@ _loadComboControl ctrlAddEventHandler ["LBSelChanged",{
 _loadButtonControl ctrlAddEventHandler ["ButtonClick",{
 	// clear out any colored indexes in the available music list
 	// we make a copy of BLWK_musicManager_coloredClasses because the full loop will not complete given that
-	// BLWK_fnc_musicManager_adjustNameColor deletes entries from directly the array
+	// BLWK_fnc_musicManager_markAvailableSong deletes entries from directly the array
 	private _coloredClasses = +(uiNamespace getVariable ["BLWK_musicManager_coloredClasses",[]]);
 	if (_coloredClasses isNotEqualTo []) then {
 		_coloredClasses apply {
-			[_x,false] call BLWK_fnc_musicManager_adjustNameColor;
+			[_x,false] call BLWK_fnc_musicManager_markAvailableSong;
 		};
 	};
 
@@ -65,7 +65,7 @@ _loadButtonControl ctrlAddEventHandler ["ButtonClick",{
 				// make sure song exists right now
 				if !(isNull _configPath_temp) then {
 					// update Available Music List Control color
-					[_x,true] call BLWK_fnc_musicManager_adjustNameColor;
+					[_x,true] call BLWK_fnc_musicManager_markAvailableSong;
 
 					// CIPHER COMMENT: Truth be told, there is no reason to have this be 0, just needs to be the server and players
 					[TO_STRING(BLWK_PUB_CURRENT_PLAYLIST),_x] remoteExecCall ["KISKA_fnc_pushBackToArray",0,true];

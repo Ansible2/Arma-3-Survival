@@ -175,7 +175,7 @@ class BLWK
 	class MusicManager
 	{
 		file = "Functions\Music Manager";
-		class musicManager_adjustNameColor
+		class musicManager_markAvailableSong
 		{};
 		class musicManager_playMusic
 		{};

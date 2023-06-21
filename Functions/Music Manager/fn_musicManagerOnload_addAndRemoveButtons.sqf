@@ -32,14 +32,12 @@ _addButtonControl ctrlAddEventHandler ["ButtonClick", {
 		["You need to have a selection made from the available songs list"] call KISKA_fnc_errorNotification;
 
 	} else {
-		private _availableMusicListControl = uiNamespace getVariable "BLWK_musicManager_control_currentPlaylist";
+		private _availableMusicListControl = uiNamespace getVariable "BLWK_musicManager_control_availableSongsList";
+		
 		_selectedTrackIndexes apply {
-			private _songClassname = _availableMusicListControl lnbData [_x,0];
-
-			// TODO: gonna have to change this interaction of adding and removing from lists
-			[TO_STRING(BLWK_PUB_CURRENT_PLAYLIST),_songClassname] remoteExecCall ["KISKA_fnc_pushBackToArray",0,true];
-			// available music list coloring for
-			[_songClassname,true] call BLWK_fnc_musicManager_adjustNameColor;
+			private _songClassName = _availableMusicListControl lnbData [_x,0];
+			[str _availableMusicListControl] call KISKA_fnc_notification;
+			[TO_STRING(BLWK_PUB_CURRENT_PLAYLIST),_songClassName] remoteExecCall ["KISKA_fnc_pushBackToArray",0,true];
 		};
 
 	};
@@ -55,11 +53,11 @@ _removeButtonControl ctrlAddEventHandler ["ButtonClick", {
 		private _currentPlaylistControl = uiNamespace getVariable "BLWK_musicManager_control_currentPlaylist";
 		// available music list set color back to white
 		private _classToRemove = BLWK_PUB_CURRENT_PLAYLIST select _selectedIndex;
-		[_classToRemove,false] call BLWK_fnc_musicManager_adjustNameColor;
+		[_classToRemove,false] call BLWK_fnc_musicManager_markAvailableSong;
 
 		// class name of song is stored in its data
 		[TO_STRING(BLWK_PUB_CURRENT_PLAYLIST),_selectedIndex] remoteExecCall ["KISKA_fnc_deleteAtArray",0,true];
-
+		
 	};
 }];
 

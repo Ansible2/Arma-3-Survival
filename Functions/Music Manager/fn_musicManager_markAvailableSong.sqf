@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_musicManager_adjustNameColor
+Function: BLWK_fnc_musicManager_markAvailableSong
 
 Description:
 	Changes the color of an available music list entry depending on if
@@ -15,14 +15,14 @@ Returns:
 Examples:
     (begin example)
         // change color to be taken
-		["someClass",true] call BLWK_fnc_musicManager_adjustNameColor;
+		["someClass",true] call BLWK_fnc_musicManager_markAvailableSong;
     (end)
 
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 disableSerialization;
-scriptName "BLWK_fnc_musicManager_adjustNameColor";
+scriptName "BLWK_fnc_musicManager_markAvailableSong";
 
 #define TAKEN_COLOR [0.22,1,0.16,1]
 #define WHITE_COLOR [1,1,1,1]

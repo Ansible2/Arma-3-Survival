@@ -158,7 +158,7 @@ _display displayAddEventHandler ["unload",{
 		"BLWK_musicManager_selectedAvailableTrackIndexes",
 		"BLWK_musicManager_songOnTimeline_duration",
 		"BLWK_musicManager_doPlay",
-		"BLWK_fnc_musicManager_getMusicName",
+		"BLWK_fnc_musicManager_getSongName",
 		"BLWK_musicManager_control_loadPlaylistButton",
 		"BLWK_musicManager_loadCombo_currentSelection",
 		"BLWK_musicManager_coloredClasses",

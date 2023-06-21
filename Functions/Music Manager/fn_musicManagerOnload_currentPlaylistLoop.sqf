@@ -7,7 +7,7 @@ Description:
 	 can be simaltaneously updating it.
 
 Parameters:
-	0: _control : <CONTROL> - The control for the list box to update
+	0: _currentPlaylistControl : <CONTROL> - The control for the list box to update
 	1: _display : <DISPLAY> - The display for the Music Manager
 
 Returns:
@@ -15,16 +15,23 @@ Returns:
 
 Examples:
     (begin example)
-		[_control] call BLWK_fnc_musicManagerOnLoad_currentPlaylistLoop;
+		[_currentPlaylistControl] call BLWK_fnc_musicManagerOnLoad_currentPlaylistLoop;
     (end)
 
 Author(s):
 	Ansible2 // Cipher
+
+
+	// TODO:
+	- list needs to be multiplayer synced
+	- list needs to be sorted alphabetically
+	- user can add a song to the list with just its className
+	- user can remove a song from the list with just its className
 ---------------------------------------------------------------------------- */
 disableSerialization;
 scriptName "BLWK_fnc_musicManagerOnLoad_currentPlaylistLoop";
 
-params ["_control","_display"];
+params ["_currentPlaylistControl","_display"];
 
 // initialize variable if not done
 if (isNil TO_STRING(BLWK_PUB_CURRENT_PLAYLIST)) then {
@@ -32,84 +39,81 @@ if (isNil TO_STRING(BLWK_PUB_CURRENT_PLAYLIST)) then {
 };
 
 // CIPHER COMMENT: Why not use localNamespace?
-uiNamespace setVariable ["BLWK_fnc_musicManager_getMusicName",{
-	params ["_configClass"];
-	private _configPath = [["cfgMusic",_configClass]] call KISKA_fnc_findConfigAny;
-	private _displayName = getText(_configPath >> "name");
-	if (_displayName isEqualTo "") then {
-		_displayName = configName _configPath;
+uiNamespace setVariable ["BLWK_fnc_musicManager_getSongName",{
+	scriptName "BLWK_fnc_musicManager_getSongName";
+	params ["_songClassName"];
+
+	private _musicMap = localNamespace getVariable "BLWK_musicManager_musicMap";
+	private _songInfo = _musicMap getOrDefaultCall [_songClassName,{[]}];
+	if (_songInfo isEqualTo []) exitWith {
+		[["Error, could not find music map info for: ",_songClassName],true] call KISKA_fnc_log;
+		""
 	};
 
-	_displayName
+	private _songName = _songInfo param [0,""];
+	_songName
 }];
 
-// initially populate list if there is anything in the public array
-if (GET_PUBLIC_ARRAY_DEFAULT isNotEqualTo []) then {
-	private "_displayName_temp";
-	BLWK_PUB_CURRENT_PLAYLIST apply {
-		_displayName_temp = [_x] call (uiNamespace getVariable "BLWK_fnc_musicManager_getMusicName");
-		_control lbAdd _displayName_temp;
-		[_x,true] call BLWK_fnc_musicManager_adjustNameColor;
-
-	};
-
-};
+// TODO: this should not be needed
+// // initially populate list if there is anything in the public array
+// if (GET_PUBLIC_ARRAY_DEFAULT isNotEqualTo []) then {
+// 	BLWK_PUB_CURRENT_PLAYLIST apply {
+// 		private _songName = [_x] call (uiNamespace getVariable "BLWK_fnc_musicManager_getSongName");
+// 		_currentPlaylistControl lbAdd _songName;
+// 		[_x,true] call BLWK_fnc_musicManager_markAvailableSong;
+// 	};
+// };
 
 _this spawn {
-	params ["_control","_display"];
+	params ["_currentPlaylistControl","_display"];
 
 	private _fn_adjustList = {
-		params ["_displayedArray","_globalArray"];
+		params ["_displayedPlaylist","_actualPlaylist"];
 
-		// delete all entries if global is empty
-		if (_globalArray isEqualTo []) exitWith {
-			private _countOfEntries = lbSize _control;
-			if (_countOfEntries > 0) then { // make sure the shown array isn't already empty
-				lbClear _control;
+		if (_actualPlaylist isEqualTo []) exitWith {
+			private _listBoxIsAlreadyEmpty = (lbSize _currentPlaylistControl) < 1;
+			if !(_listBoxIsAlreadyEmpty) then {
+				lbClear _currentPlaylistControl;
 			};
 		};
 
-		// get index numbers of array (start from 0)
-		private _indexesOfDisplayed = count _displayedArray - 1;
-		private _indexesOfCurrent = count _globalArray - 1;
-		private ["_comparedIndex","_musicName"];
+		private _maxIndexOfDisplayedPlaylist = count _displayedPlaylist - 1;
+		private _maxIndexOfActualPlaylist = count _actualPlaylist - 1;
 		{
-			// check to see if we are out of bounds on the display array
-			// e.g. stop changing entries and start adding them
-			if (_indexesOfDisplayed >= _forEachIndex) then {
-				_comparedIndex = _displayedArray select _forEachIndex;
-				// if the index is not already the same
-				if (_comparedIndex != _x) then {
-					_musicName = [_x] call (uiNamespace getVariable "BLWK_fnc_musicManager_getMusicName");
-					_control lbSetText [_forEachIndex,_musicName];
-					_control lbSetTooltip [_forEachIndex,_musicName];
-				};
-				
-			} else {
-				_musicName = [_x] call (uiNamespace getVariable "BLWK_fnc_musicManager_getMusicName");
-				_control lbAdd _musicName;
-				_control lbSetTooltip [_forEachIndex,_musicName];
+			private _musicAtIndex = _currentPlaylistControl lbData _forEachIndex;
+			private _classNamesMatch = _musicAtIndex == _x;
+			if (_classNamesMatch) then { continue };
 
+
+			private _songName = [_x] call (uiNamespace getVariable "BLWK_fnc_musicManager_getSongName");
+			private _listItemAlreadyExists = _musicAtIndex isNotEqualTo "";
+			if (_listItemAlreadyExists) then {
+				_currentPlaylistControl lbSetText [_forEachIndex,_songName];
+			} else {
+				_currentPlaylistControl lbAdd _songName;
 			};
 
-		} forEach _globalArray;
 
-		// delete overflow items
-		if (_indexesOfDisplayed > _indexesOfCurrent) then {
-			private _indexToDelete = _indexesOfCurrent + 1;
-			for "_i" from _indexesOfCurrent to _indexesOfDisplayed do {
+			_currentPlaylistControl lbSetTooltip [_forEachIndex,_x];
+			_currentPlaylistControl lbSetData [_forEachIndex,_x];
+		} forEach _actualPlaylist;
+
+		private _previousListOverflows = _maxIndexOfDisplayedPlaylist > _maxIndexOfActualPlaylist;
+		if (_previousListOverflows) then {
+			private _indexToDelete = _maxIndexOfActualPlaylist + 1;
+			for "_i" from _maxIndexOfActualPlaylist to _maxIndexOfDisplayedPlaylist do {
 				// deleting the same index because the list will move down with each deletetion
-				_control lbDelete _indexToDelete;
+				_currentPlaylistControl lbDelete _indexToDelete;
 			};
 		};
 
 	};
 
-	private _playlist_displayed = +GET_PUBLIC_ARRAY_DEFAULT;
+	private _playlist_displayed = [];
 	while {sleep 0.5; !(isNull _display)} do {
 
 		// compare cached and public array
-		if !(_playlist_displayed isEqualTo GET_PUBLIC_ARRAY_DEFAULT) then {
+		if (_playlist_displayed isNotEqualTo GET_PUBLIC_ARRAY_DEFAULT) then {
 			[_playlist_displayed,BLWK_PUB_CURRENT_PLAYLIST] call _fn_adjustList;
 			_playlist_displayed = +BLWK_PUB_CURRENT_PLAYLIST;
 		};
