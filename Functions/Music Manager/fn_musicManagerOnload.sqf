@@ -38,17 +38,11 @@ uiNamespace setVariable ["BLWK_musicManager_control_closeButton",_closeButtonCon
 
 
 // available tracks list
-private _songListGroupControl = _display displayCtrl BLWK_MUSIC_MANAGER_SONG_GROUP_LIST_IDC;
-private _songNamesListControl = _songListGroupControl controlsGroupCtrl BLWK_MUSIC_MANAGER_SONG_NAMES_LIST_IDC;
-private _songDurationsListControl = _songListGroupControl controlsGroupCtrl BLWK_MUSIC_MANAGER_SONG_DURATIONS_LIST_IDC;
-uiNamespace setVariable ["BLWK_musicManager_control_songGroup",_songListGroupControl];
+private _availableSongsListControl = _display displayCtrl BLWK_MUSIC_MANAGER_AVAILABLE_SONGS_LIST_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_availableSongsList",_availableSongsListControl];
 uiNamespace setVariable ["BLWK_musicManager_control_songNamesList",_songNamesListControl];
 uiNamespace setVariable ["BLWK_musicManager_control_songDurationsList",_songDurationsListControl];
-[
-	_songListGroupControl,
-	_songNamesListControl,
-	_songDurationsListControl
-] call BLWK_fnc_musicManagerOnLoad_availableMusicList;
+[_availableSongsListControl] call BLWK_fnc_musicManagerOnLoad_availableMusicList;
 
 
 // current playlist
@@ -160,8 +154,8 @@ _display displayAddEventHandler ["unload",{
 		"BLWK_musicManager_control_removeFromButton",
 		"BLWK_musicManager_control_deleteButton",
 		"BLWK_musicManager_paused",
-		"BLWK_musicManager_playingTrack",
-		"BLWK_musicManager_selectedTracks",
+		"BLWK_musicManager_selectedTrackToPlay",
+		"BLWK_musicManager_selectedAvailableTrackIndexes",
 		"BLWK_musicManager_doPlay",
 		"BLWK_fnc_musicManager_getMusicName",
 		"BLWK_musicManager_control_loadPlaylistButton",

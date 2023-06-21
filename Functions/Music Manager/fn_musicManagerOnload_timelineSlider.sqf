@@ -43,7 +43,7 @@ _control ctrlAddEventHandler ["MouseButtonUp",{
 	// don't immediately play music if the music is paused
 	if (uiNamespace getVariable ["BLWK_musicManager_doResume",false]) then {
 		uiNamespace setVariable ["BLWK_musicManager_doResume",nil];
-		private _musicClass = uiNamespace getVariable ["BLWK_musicManager_playingTrack",""];
+		private _musicClass = uiNamespace getVariable ["BLWK_musicManager_selectedTrackToPlay",""];
 		[_musicClass,sliderPosition _control] spawn BLWK_fnc_musicManager_playMusic;
 	};
 }];

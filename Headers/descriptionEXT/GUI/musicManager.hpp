@@ -31,7 +31,7 @@ class musicManagerDialogButton: RscButton
 	colorShadow[] = {0,0,0,1};
 	colorBorder[] = {0,0,0,1};
 };
-// missionconfigfile >> "musicManagerDialog"
+
 /* -------------------------------------------------------------------------
 	Dialog
 ------------------------------------------------------------------------- */
@@ -56,19 +56,19 @@ class musicManagerDialog
 		{
 			idc = -1;
 			x = POS_X(4.5);
-			y = POS_Y(-4);
+			y = POS_Y(-3);
 			w = POS_W(1);
 			h = POS_H(5.5);
-			colorBackground[] = {-1,-1,-1,1};
+			colorBackground[] = GREY_COLOR(0.5,0.5);
 		};
 		class musicManagerDialogBackground_filler_2: musicManagerDialogBackground_filler_1
 		{
-			y = POS_Y(4.5);
+			y = POS_Y(5);
 			h = POS_H(7.5);
 		};
 		class musicManagerDialogBackground_filler_3: musicManagerDialogBackground_filler_1
 		{
-			y = POS_Y(2.5);
+			y = POS_Y(3.5);
 			h = POS_H(1);
 		};
 		class musicManagerDialogBackground_filler_4: RscText
@@ -77,11 +77,15 @@ class musicManagerDialog
 			text = "";
 			
 			x = POS_X(-20.5);
-			y = POS_Y(12);
+			y = POS_Y(-4);
 			w = POS_W(41);
-			h = POS_H(1);
+			h = POS_H(0.5);
 			
 			colorBackground[] = {-1,-1,-1,1};
+		};
+		class musicManagerDialogBackground_filler_5: musicManagerDialogBackground_filler_4
+		{
+			y = POS_Y(12.5);
 		};
 	};
 	
@@ -91,46 +95,27 @@ class musicManagerDialog
 		{
 			idc = BLWK_MUSIC_MANAGER_CURRENT_PLAYLIST_IDC;
 			x = POS_X(5.5);
-			y = POS_Y(-4);
+			y = POS_Y(-3.5);
 			w = POS_W(15);
 			h = POS_H(16);
 
 			style = LB_MULTI + LB_TEXTURES;
-			colorBackground[] = GREY_COLOR(0,1);
-			sizeEx = 0.0208333 * safezoneH;
+			colorBackground[] = GREY_COLOR(0,0.5);
+			sizeEx = POS_H(1);
 		};
-		class musicManagerDialog_availableSongsGroup : RscControlsGroupNoHScrollbars
+
+		class musicManagerDialogListNBox_availableSongs: ctrlListNBox
 		{
-			idc = BLWK_MUSIC_MANAGER_SONG_GROUP_LIST_IDC;
+			idc = BLWK_MUSIC_MANAGER_AVAILABLE_SONGS_LIST_IDC;
+
 			x = POS_X(-20.5);
-			y = POS_Y(-4);
+			y = POS_Y(-3.5);
 			w = POS_W(25);
 			h = POS_H(16);
-			
-			class controls
-			{
-				class musicManagerDialogListBox_availableSongNames: ctrlListBox
-				{
-					idc = BLWK_MUSIC_MANAGER_SONG_NAMES_LIST_IDC;
-					style = LB_MULTI + LB_TEXTURES;
-					// x = POS_X(-20.5);
-					// y = POS_Y();
-					w = POS_W(20.5);
-					h = POS_H(0);
-			
-					sizeEx = POS_H(1);
-					colorBackground[] = GREY_COLOR(0.24,1);
-				};
-				class musicManagerDialogListBox_availableSongDurations: musicManagerDialogListBox_availableSongNames
-				{
-					idc = BLWK_MUSIC_MANAGER_SONG_DURATIONS_LIST_IDC;
-					x = POS_X(3);
-					// y = POS_Y();
-					w = POS_W(4.5);
-					h = POS_H(0);
-			
-				};
-			};
+
+			style = LB_MULTI + LB_TEXTURES;
+			// colorBackground[] = GREY_COLOR(0,0.5);
+			sizeEx = POS_H(1);
 		};
 		
 		class musicManagerDialogHeaderText_musicManager: RscText
@@ -260,7 +245,7 @@ class musicManagerDialog
 
 			x = POS_X(0);
 			y = POS_Y(-5);
-			w = POS_W(20.5);
+			w = POS_W(5.5);
 			h = POS_H(1);
 			
 			colorBackground[] = PROFILE_BACKGROUND_COLOR(1);
@@ -405,7 +390,7 @@ class musicManagerDialog
 			text = "+"; //--- ToDo: Localize;
 
 			x = POS_X(4.5);
-			y = POS_Y(1.5);
+			y = POS_Y(2.5);
 			w = POS_W(1);
 			h = POS_H(1);
 			
@@ -418,7 +403,7 @@ class musicManagerDialog
 			text = "-"; //--- ToDo: Localize;
 
 			x = POS_X(4.5);
-			y = POS_Y(3.5);
+			y = POS_Y(4.5);
 			w = POS_W(1);
 			h = POS_H(1);
 			
