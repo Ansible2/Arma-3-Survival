@@ -56,9 +56,9 @@ class musicManagerDialog
 		{
 			idc = -1;
 			x = POS_X(4.5);
-			y = POS_Y(-3);
+			y = POS_Y(-3.5);
 			w = POS_W(1);
-			h = POS_H(5.5);
+			h = POS_H(6);
 			colorBackground[] = GREY_COLOR(0.5,0.5);
 		};
 		class musicManagerDialogBackground_filler_2: musicManagerDialogBackground_filler_1

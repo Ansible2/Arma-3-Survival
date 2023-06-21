@@ -36,17 +36,17 @@ _availableSongsListControl ctrlAddEventHandler ["LBSelChanged", {
 
 	uiNamespace setVariable ["BLWK_musicManager_selectedAvailableTrackIndexes",_allCurrentlySelectedIndexes];
 	
-	private _musicClass = _selectedListboxControl lnbData [_selectedIndex,0];
+	private _musicClass = _availableSongsListControl lnbData [_lastSelectedIndex,0];
 	uiNamespace setVariable ["BLWK_musicManager_selectedTrackToPlay",_musicClass];
 }];
 
 _availableSongsListControl ctrlAddEventHandler ["LBDblClick", {
 	params ["_availableSongsListControl", "_selectedIndex"];
 
-	private _musicClass = _selectedListboxControl lnbData [_selectedIndex,0];
+	// TODO: This may be redundant with the above LBSelChanged
+	private _musicClass = _availableSongsListControl lnbData [_selectedIndex,0];
 	uiNamespace setVariable ["BLWK_musicManager_selectedTrackToPlay",_musicClass];
-
-	[_musicClass,0] spawn BLWK_fnc_musicManager_playMusic;
+	[] call BLWK_fnc_musicManager_playMusic;
 }];
 
 
@@ -54,37 +54,22 @@ _availableSongsListControl ctrlAddEventHandler ["LBDblClick", {
 	Generate List
 ---------------------------------------------------------------------------- */
 // cache and/or get music info for list
-// get classes
 private "_musicMap";
 if (isNil {localNamespace getVariable "BLWK_musicManager_musicMap"}) then {
 	private _musicClasses = "true" configClasses (configFile >> "cfgMusic");
 
-	// collect music info
 	
 	private _musicArray = _musicClasses apply {
-		// name
 		private _songName = getText(_x >> "name");
 		if (_songName isEqualTo "") then {
 			_songName = configName _x;
 		};
 
-		// duration
 		private _songDuration = getNumber(_x >> "duration");
 		private _songClassname = configName _x;
 
 		[_songClassname,[_songName, str (round _songDuration), _songDuration]]
 	};
-
-	// sort by track name
-	_musicArray = [_musicArray,[],{(_x select 1) select 0}] call BIS_fnc_sortBy;
-
-	{
-		// provide the index within _musicArray for a particular class
-		// this will be used for finding the location within the available music list control (and avoid looping through the list)
-		// so that we can selectively color entries depending on if they are in the current music list control
-		private _songInfoArray = _x select 1;
-		_songInfoArray pushBack _forEachIndex;
-	} forEach _musicArray;
 
 	_musicMap = createHashMapFromArray _musicArray;
 	localNamespace setVariable ["BLWK_musicManager_musicMap",_musicMap];
@@ -118,7 +103,6 @@ _availableSongsListControl lnbSort [0, false];
 	// tracks will have some kind of indication that the have been added
 // can scroll through listbox
 // can playmusic with double click
-// can click on a single track and 
 
 
-nil
+

@@ -40,8 +40,6 @@ uiNamespace setVariable ["BLWK_musicManager_control_closeButton",_closeButtonCon
 // available tracks list
 private _availableSongsListControl = _display displayCtrl BLWK_MUSIC_MANAGER_AVAILABLE_SONGS_LIST_IDC;
 uiNamespace setVariable ["BLWK_musicManager_control_availableSongsList",_availableSongsListControl];
-uiNamespace setVariable ["BLWK_musicManager_control_songNamesList",_songNamesListControl];
-uiNamespace setVariable ["BLWK_musicManager_control_songDurationsList",_songDurationsListControl];
 [_availableSongsListControl] call BLWK_fnc_musicManagerOnLoad_availableMusicList;
 
 
@@ -132,7 +130,6 @@ _display displayAddEventHandler ["unload",{
 		[] call KISKA_fnc_musicStopEvent;
 	};
 
-	// clear memory
 	[
 		"BLWK_musicManager_display",
 		"BLWK_musicManager_control_currentPlaylist",
@@ -154,8 +151,12 @@ _display displayAddEventHandler ["unload",{
 		"BLWK_musicManager_control_removeFromButton",
 		"BLWK_musicManager_control_deleteButton",
 		"BLWK_musicManager_paused",
+		"BLWK_musicManager_songOnTimeline",
 		"BLWK_musicManager_selectedTrackToPlay",
+		"BLWK_musicManager_resumeAfterTimelineAdjustment",
+		"BLWK_musicManager_selectedCurrentTrackIndexes",
 		"BLWK_musicManager_selectedAvailableTrackIndexes",
+		"BLWK_musicManager_songOnTimeline_duration",
 		"BLWK_musicManager_doPlay",
 		"BLWK_fnc_musicManager_getMusicName",
 		"BLWK_musicManager_control_loadPlaylistButton",

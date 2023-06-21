@@ -5,16 +5,14 @@ Description:
 	Starts the playing of music from the manager.
 
 Parameters:
-	0: _musicClass : <STRING> - The track classname as defined in CfgMusic
-  	1: _startTime : <NUMBER> - The seek time to start playing music at
-	  	(e.g. 1 is 1 second into the song)
+	0: _songToPlay : <STRING> - The track classname as defined in CfgMusic
 
 Returns:
 	NOTHING
 
 Examples:
     (begin example)
-		["myTrack",10] spawn BLWK_fnc_musicManager_playMusic;
+		["myTrack",10] call BLWK_fnc_musicManager_playMusic;
     (end)
 
 Author(s):
@@ -25,49 +23,61 @@ scriptName "BLWK_fnc_musicManager_playMusic";
 
 #define INTERVAL 0.01
 
-if (!canSuspend) exitWith {
-	["Needs to be run in scheduled, now running in scheduled",true] call KISKA_fnc_log;
-	_this spawn BLWK_fnc_musicManager_playMusic;
+private _songToPlay = uiNamespace getVariable ["BLWK_musicManager_selectedTrackToPlay",""];
+if (_songToPlay isEqualTo "") exitWith {
+	["You need to have a selection made from the songs list to play"] call KISKA_fnc_errorNotification;
+	nil
 };
 
-params [
-	"_musicClass",
-	["_startTime",0]
-];
+private _musicMap = localNamespace getVariable "BLWK_musicManager_musicMap";
+private _songToPlayInfo = _musicMap get _songToPlay;
+private _songDuration = _songToPlayInfo select 2;
+uiNamespace setVariable ["BLWK_musicManager_songOnTimeline_duration",_songDuration];
 
+
+private _startTime = 0;
+private _songOnTimeline = uiNamespace getVariable ["BLWK_musicManager_songOnTimeline",""];
 private _sliderControl = uiNamespace getVariable "BLWK_musicManager_control_timelineSlider";
-private _sliderMax = (sliderRange _sliderControl) select 1;
-_sliderControl sliderSetPosition _startTime;
-
-if (_startTime isEqualTo 0) then {
-	playMusic _musicClass;
+if (_songOnTimeline != _songToPlay) then {
+	_sliderControl sliderSetRange [0,_songDuration];
+	_sliderControl sliderSetPosition 0;
 } else {
-	playMusic [_musicClass,_startTime];
+	_startTime = sliderPosition _sliderControl;
 };
 
-uiNamespace setVariable ["BLWK_musicManager_doPlay",true];
 
-if (uiNamespace getVariable ["BLWK_musicManager_paused",false]) then {
-	uiNamespace setVariable ["BLWK_musicManager_paused",false];
+uiNamespace setVariable ["BLWK_musicManager_paused",false];
+uiNamespace setVariable ["BLWK_musicManager_songOnTimeline",_songToPlay];
+if (_startTime <= 0) then {
+	playMusic _songToPlay;
+} else {
+	playMusic [_songToPlay,_startTime];
 };
-
 
 
 if !(uiNamespace getVariable ["BLWK_musicManager_timelineLooping",false]) then {
-	// in order to switch from one track to another and not stack loops
-	// we keep track of the timeline's moving state
-	uiNamespace setVariable ["BLWK_musicManager_timelineLooping",true];
+	[_sliderControl] spawn {
+		params ["_sliderControl"];
+		// in order to switch from one track to another and not stack loops
+		// we keep track of the timeline's moving state
+		uiNamespace setVariable ["BLWK_musicManager_timelineLooping",true];
 
-	while {
-		(!isNull (uiNamespace getVariable "BLWK_musicManager_display")) AND
-		(uiNamespace getVariable ["BLWK_musicManager_doPlay",true]) AND
-		// check if end of song is reached
-		{sliderPosition _sliderControl < _sliderMax} 
-	} do {
-		sleep INTERVAL;
-		// update slider position to mimic timeline
-	 	_sliderControl sliderSetPosition ((sliderPosition _sliderControl) + INTERVAL);
+		while {
+			(!isNull (uiNamespace getVariable "BLWK_musicManager_display")) AND
+			!(uiNamespace getVariable ["BLWK_musicManager_paused",false])
+		} do {
+			sleep INTERVAL;
+			// update slider position to mimic timeline
+			private _songDuration = uiNamespace getVariable ["BLWK_musicManager_songOnTimeline_duration",0];
+			private _newTimelinePosition = (sliderPosition _sliderControl) + INTERVAL;
+			
+			if (_newTimelinePosition >= _songDuration) then { break };
+			_sliderControl sliderSetPosition _newTimelinePosition;
+		};
+
+		if !(isNull _sliderControl) then {
+			_sliderControl sliderSetPosition 0;
+		};
+		uiNamespace setVariable ["BLWK_musicManager_timelineLooping",false];
 	};
-
-	uiNamespace setVariable ["BLWK_musicManager_timelineLooping",false];
 };
