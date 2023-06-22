@@ -3,24 +3,24 @@
 Function: BLWK_fnc_musicManagerOnLoad
 
 Description:
-	This is the entry point for the Music Manager. It initializes its variables
-	 and sets up relevant information to display when openned.
+    This is the entry point for the Music Manager. It initializes its variables
+     and sets up relevant information to display when openned.
 
-	It is executed from the (configed) onLoad event.
+    It is executed from the (configed) onLoad event.
 
 Parameters:
-	0: _display : <DISPLAY> - The display of the Music Manager
+    0: _display : <DISPLAY> - The display of the Music Manager
 
 Returns:
-	NOTHING
+    NOTHING
 
 Examples:
     (begin example)
-		call BLWK_fnc_musicManagerOnLoad;
+        call BLWK_fnc_musicManagerOnLoad;
     (end)
 
 Author(s):
-	Ansible2 // Cipher
+    Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 disableSerialization;
 scriptName "BLWK_fnc_musicManagerOnLoad";
@@ -41,12 +41,6 @@ uiNamespace setVariable ["BLWK_musicManager_control_closeButton",_closeButtonCon
 private _availableSongsListControl = _display displayCtrl BLWK_MUSIC_MANAGER_AVAILABLE_SONGS_LIST_IDC;
 uiNamespace setVariable ["BLWK_musicManager_control_availableSongsList",_availableSongsListControl];
 [_availableSongsListControl] call BLWK_fnc_musicManagerOnLoad_availableMusicList;
-
-
-// current playlist
-private _currentPlaylistControl = _display displayCtrl BLWK_MUSIC_MANAGER_CURRENT_PLAYLIST_IDC;
-uiNamespace setVariable ["BLWK_musicManager_control_currentPlaylist",_currentPlaylistControl];
-[_currentPlaylistControl,_display] call BLWK_fnc_musicManagerOnLoad_currentPlaylistLoop;
 
 
 // add to and remove from current playlist buttons
@@ -124,51 +118,51 @@ uiNamespace setVariable ["BLWK_musicManager_control_commitButton",_commitButtonC
 
 
 _display displayAddEventHandler ["unload",{
-	// stop music if playing
-	if (uiNamespace getVariable ["BLWK_musicManager_doPlay",false]) then {
-		playMusic "";
-		[] call KISKA_fnc_musicStopEvent;
-	};
+    // stop music if playing
+    if (uiNamespace getVariable ["BLWK_musicManager_doPlay",false]) then {
+        playMusic "";
+        [] call KISKA_fnc_musicStopEvent;
+    };
 
-	[
-		"BLWK_musicManager_display",
-		"BLWK_musicManager_control_currentPlaylist",
-		"BLWK_musicManager_control_songNamesList",
-		"BLWK_musicManager_control_closeButton",
-		"BLWK_musicManager_control_commitButton",
-		"BLWK_musicManager_control_timelineSlider",
-		"BLWK_musicManager_control_volumeSLider",
-		"BLWK_musicManager_control_playButton",
-		"BLWK_musicManager_control_pauseButton",
-		"BLWK_musicManager_control_spacingEdit",
-		"BLWK_musicManager_control_spacingButton",
-		"BLWK_musicManager_control_spacingCombo",
-		"BLWK_musicManager_control_onOffCombo",
-		"BLWK_musicManager_control_saveEdit",
-		"BLWK_musicManager_control_saveButton",
-		"BLWK_musicManager_control_loadCombo",
-		"BLWK_musicManager_control_addToButton",
-		"BLWK_musicManager_control_removeFromButton",
-		"BLWK_musicManager_control_deleteButton",
-		"BLWK_musicManager_paused",
-		"BLWK_musicManager_songOnTimeline",
-		"BLWK_musicManager_selectedTrackToPlay",
-		"BLWK_musicManager_resumeAfterTimelineAdjustment",
-		"BLWK_musicManager_selectedCurrentTrackIndexes",
-		"BLWK_musicManager_selectedAvailableTrackIndexes",
-		"BLWK_musicManager_songOnTimeline_duration",
-		"BLWK_musicManager_doPlay",
-		"BLWK_fnc_musicManager_getSongName",
-		"BLWK_musicManager_control_loadPlaylistButton",
-		"BLWK_musicManager_loadCombo_currentSelection",
-		"BLWK_musicManager_coloredClasses",
-		"BLWK_musicManager_timelineLooping",
-		"BLWK_musicManager_control_songNamesList",
-		"BLWK_musicManager_control_songDurationsList"
-	] apply {
-		uiNamespace setVariable [_x,nil];
-	};
-	
+    [
+        "BLWK_musicManager_display",
+        "BLWK_musicManager_control_currentPlaylist",
+        "BLWK_musicManager_control_songNamesList",
+        "BLWK_musicManager_control_closeButton",
+        "BLWK_musicManager_control_commitButton",
+        "BLWK_musicManager_control_timelineSlider",
+        "BLWK_musicManager_control_volumeSLider",
+        "BLWK_musicManager_control_playButton",
+        "BLWK_musicManager_control_pauseButton",
+        "BLWK_musicManager_control_spacingEdit",
+        "BLWK_musicManager_control_spacingButton",
+        "BLWK_musicManager_control_spacingCombo",
+        "BLWK_musicManager_control_onOffCombo",
+        "BLWK_musicManager_control_saveEdit",
+        "BLWK_musicManager_control_saveButton",
+        "BLWK_musicManager_control_loadCombo",
+        "BLWK_musicManager_control_addToButton",
+        "BLWK_musicManager_control_removeFromButton",
+        "BLWK_musicManager_control_deleteButton",
+        "BLWK_musicManager_paused",
+        "BLWK_musicManager_songOnTimeline",
+        "BLWK_musicManager_selectedTrackToPlay",
+        "BLWK_musicManager_resumeAfterTimelineAdjustment",
+        "BLWK_musicManager_selectedCurrentTrackIndexes",
+        "BLWK_musicManager_selectedAvailableTrackRowIndexes",
+        "BLWK_musicManager_songOnTimeline_duration",
+        "BLWK_musicManager_doPlay",
+        "BLWK_fnc_musicManager_getSongName",
+        "BLWK_musicManager_control_loadPlaylistButton",
+        "BLWK_musicManager_loadCombo_currentSelection",
+        "BLWK_musicManager_coloredClasses",
+        "BLWK_musicManager_timelineLooping",
+        "BLWK_musicManager_control_songNamesList",
+        "BLWK_musicManager_control_songDurationsList"
+    ] apply {
+        uiNamespace setVariable [_x,nil];
+    };
+    
 
 }];
 

@@ -175,13 +175,17 @@ class BLWK
 	class MusicManager
 	{
 		file = "Functions\Music Manager";
-		class musicManager_markAvailableSong
+		class musicManager_markAvailableMusicListEntry
 		{};
 		class musicManager_playMusic
 		{};
 		class musicManager_setPlayListServer
 		{};
 		class musicManager_updateLoadCombo
+		{};
+		class musicManager_addSongToPlaylist
+		{};
+		class musicManager_removeSongFromPlaylist
 		{};
 		class musicManagerOnLoad
 		{};
@@ -192,8 +196,6 @@ class BLWK
 		class musicManagerOnLoad_closeButton
 		{};
 		class musicManagerOnLoad_commitButton
-		{};
-		class musicManagerOnLoad_currentPlaylistLoop
 		{};
 		class musicManagerOnLoad_deleteButton
 		{};

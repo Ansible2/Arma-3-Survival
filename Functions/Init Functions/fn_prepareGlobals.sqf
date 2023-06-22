@@ -44,6 +44,14 @@ if (isServer) then {
     };
     publicVariable "BLWK_theAIHandlerEntity";
 
+    private _sortedMusicClasses = [
+        "true" configClasses (configFile >> "CfgMusic"),
+        [],
+        { getText(_x >> "name") }
+    ] call BIS_fnc_sortBy;
+    missionNamespace setVariable ["BLWK_sortedServerMusicConfigs",_sortedMusicClasses,true];
+
+
     // number should never be zero, but it can be for some time until the server has initialized
     waitUntil {
         if (owner BLWK_theAIHandlerEntity isNotEqualTo 0) exitWith {true};
@@ -78,8 +86,9 @@ if (isServer) then {
     BLWK_startingFromWaveNumber = BLWK_currentWaveNumber + 1;
 
     BLWK_specialWaveConfigs = "true" configClasses (missionConfigFile >> "BLWK_waveTypes" >> "specialWaves");
-    BLWK_normalWaveConfigs = "true" configClasses (missionConfigFile >> "BLWK_waveTypes" >> "normalWaves");
+    BLWK_normalWaveConfigs = "true" configClasses (missionConfigFile >> "BLWK_waveTypes" >> "normalWaves");    
 };
+
 if (isServer OR {!hasInterface}) then {
     if (isServer) then {
         ["<t size = '.5'>Preparing Loot Class Vars...<br/>Please wait...</t>", 0, 0, 10, 0] remoteExec ["BIS_fnc_dynamicText", BLWK_allClientsTargetID];
