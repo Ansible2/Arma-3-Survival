@@ -27,6 +27,7 @@ Author(s):
 	- list needs to be sorted alphabetically
 	- user can add a song to the list with just its className
 	- user can remove a song from the list with just its className
+	- available list correctly reflects that a song has been added
 ---------------------------------------------------------------------------- */
 disableSerialization;
 scriptName "BLWK_fnc_musicManagerOnLoad_currentPlaylistLoop";
@@ -80,23 +81,29 @@ _this spawn {
 		private _maxIndexOfDisplayedPlaylist = count _displayedPlaylist - 1;
 		private _maxIndexOfActualPlaylist = count _actualPlaylist - 1;
 		{
-			private _musicAtIndex = _currentPlaylistControl lbData _forEachIndex;
-			private _classNamesMatch = _musicAtIndex == _x;
-			if (_classNamesMatch) then { continue };
 
+			private _previousClassname = _currentPlaylistControl lbData _forEachIndex;
+			private _classNamesMatch = _previousClassname == _x;
+			if (_classNamesMatch) then { 
+				[_previousClassname,true] call BLWK_fnc_musicManager_markAvailableSong;
+				continue 
+			};
+			
 
 			private _songName = [_x] call (uiNamespace getVariable "BLWK_fnc_musicManager_getSongName");
-			private _listItemAlreadyExists = _musicAtIndex isNotEqualTo "";
+			private _listItemAlreadyExists = _previousClassname isNotEqualTo "";
 			if (_listItemAlreadyExists) then {
+				[_previousClassname,false] call BLWK_fnc_musicManager_markAvailableSong;
 				_currentPlaylistControl lbSetText [_forEachIndex,_songName];
 			} else {
 				_currentPlaylistControl lbAdd _songName;
 			};
 
-
+			[_x,true] call BLWK_fnc_musicManager_markAvailableSong;
 			_currentPlaylistControl lbSetTooltip [_forEachIndex,_x];
 			_currentPlaylistControl lbSetData [_forEachIndex,_x];
 		} forEach _actualPlaylist;
+
 
 		private _previousListOverflows = _maxIndexOfDisplayedPlaylist > _maxIndexOfActualPlaylist;
 		if (_previousListOverflows) then {
@@ -107,6 +114,7 @@ _this spawn {
 			};
 		};
 
+		lbSort _currentPlaylistControl
 	};
 
 	private _playlist_displayed = [];

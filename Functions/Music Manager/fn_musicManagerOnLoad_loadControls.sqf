@@ -36,16 +36,14 @@ _loadButtonControl ctrlAddEventHandler ["ButtonClick",{
 	// clear out any colored indexes in the available music list
 	// we make a copy of BLWK_musicManager_coloredClasses because the full loop will not complete given that
 	// BLWK_fnc_musicManager_markAvailableSong deletes entries from directly the array
-	private _coloredClasses = +(uiNamespace getVariable ["BLWK_musicManager_coloredClasses",[]]);
+	private _coloredClasses = uiNamespace getVariable ["BLWK_musicManager_coloredClasses",[]];
 	if (_coloredClasses isNotEqualTo []) then {
 		_coloredClasses apply {
 			[_x,false] call BLWK_fnc_musicManager_markAvailableSong;
 		};
 	};
 
-	// get all the playlists the player has saved
 	private _playlistArray = profileNamespace getVariable ["BLWK_musicManagerPlaylists",[]];
-
 	private _selectedIndex = uiNamespace getVariable ["BLWK_musicManager_loadCombo_currentSelection",0];
 
 	if (_playlistArray isNotEqualTo []) then {
@@ -53,7 +51,6 @@ _loadButtonControl ctrlAddEventHandler ["ButtonClick",{
 		private _chosenPlaylist = _playlistArray select _selectedIndex;
 		private _musicClassesInList = _chosenPlaylist select 1;
 
-		// clear global array before adding to it
 		missionNamespace setVariable [TO_STRING(BLWK_PUB_CURRENT_PLAYLIST),[],true];
 		// if there is actually anything to add
 		if !(_musicClassesInList isEqualTo []) then {

@@ -58,8 +58,8 @@ private "_musicMap";
 if (isNil {localNamespace getVariable "BLWK_musicManager_musicMap"}) then {
 	private _musicClasses = "true" configClasses (configFile >> "cfgMusic");
 
-	
-	private _musicArray = _musicClasses apply {
+	private _musicArray = [];
+	{
 		private _songName = getText(_x >> "name");
 		if (_songName isEqualTo "") then {
 			_songName = configName _x;
@@ -68,14 +68,15 @@ if (isNil {localNamespace getVariable "BLWK_musicManager_musicMap"}) then {
 		private _songDuration = getNumber(_x >> "duration");
 		private _songClassname = configName _x;
 
-		[_songClassname,[_songName, str (round _songDuration), _songDuration]]
-	};
+		_musicArray pushBack [_songClassname,[_songName, str (round _songDuration), _songDuration,_forEachIndex]];
+	} forEach _musicClasses;
 
 	_musicMap = createHashMapFromArray _musicArray;
 	localNamespace setVariable ["BLWK_musicManager_musicMap",_musicMap];
 
 } else {
 	_musicMap = localNamespace getVariable "BLWK_musicManager_musicMap";
+
 };
 
 // add duration column
