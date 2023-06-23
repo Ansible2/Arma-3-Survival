@@ -43,7 +43,6 @@ _availableSongsListControl ctrlAddEventHandler ["LBSelChanged", {
 _availableSongsListControl ctrlAddEventHandler ["LBDblClick", {
     params ["_availableSongsListControl", "_selectedIndex"];
 
-    // TODO: This may be redundant with the above LBSelChanged
     private _musicClass = _availableSongsListControl lnbData [_selectedIndex,0];
     uiNamespace setVariable ["BLWK_musicManager_selectedTrackToPlay",_musicClass];
     [] call BLWK_fnc_musicManager_playMusic;

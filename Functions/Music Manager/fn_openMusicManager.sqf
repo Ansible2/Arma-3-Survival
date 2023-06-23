@@ -25,4 +25,5 @@ if !(call KISKA_fnc_isAdminOrHost) exitWith {
 	["Only admins and hosts can open the manager"] call KISKA_fnc_errorNotification;
 };
 
+// TODO: remove force on top
 createDialog ["musicManagerDialog",true];
