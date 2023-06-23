@@ -55,27 +55,35 @@ _availableSongsListControl ctrlAddEventHandler ["LBDblClick", {
 ---------------------------------------------------------------------------- */
 // cache and/or get music info for list
 private "_musicMap";
-if (isNil {localNamespace getVariable "BLWK_musicManager_musicMap"}) then {
+if (isNil {localNamespace getVariable "BLWK_musicManager_classNameToInfoMap"}) then {
     
     private _musicClasses = missionNamespace getVariable ["BLWK_sortedServerMusicConfigs",[]];
-    private _musicArray = [];
+    private _classNameToInfoArray = [];
+    private _indexToInfoArray = [];
     {
-        private _songName = getText(_x >> "name");
-        if (_songName isEqualTo "") then {
-            _songName = configName _x;
+        private _songDisplayName = getText(_x >> "name");
+        if (_songDisplayName isEqualTo "") then {
+            _songDisplayName = configName _x;
         };
 
         private _songDuration = getNumber(_x >> "duration");
         private _songClassname = configName _x;
-
-        _musicArray pushBack [_songClassname,[_songName, str (round _songDuration), _songDuration,_forEachIndex]];
+        _classNameToInfoArray pushBack [
+            _songClassname,
+            [_songDisplayName, str (round _songDuration), _songDuration,_forEachIndex]
+        ];
+        _indexToInfoArray pushBack [
+            _forEachIndex,
+            [_songDisplayName, str (round _songDuration), _songDuration,_songClassname]
+        ];
     } forEach _musicClasses;
 
-    _musicMap = createHashMapFromArray _musicArray;
-    localNamespace setVariable ["BLWK_musicManager_musicMap",_musicMap];
+    _musicMap = createHashMapFromArray _classNameToInfoArray;
+    localNamespace setVariable ["BLWK_musicManager_classNameToInfoMap",_musicMap];
+    localNamespace setVariable ["BLWK_musicManager_indexToInfoMap",createHashMapFromArray _indexToInfoArray];
 
 } else {
-    _musicMap = localNamespace getVariable "BLWK_musicManager_musicMap";
+    _musicMap = localNamespace getVariable "BLWK_musicManager_classNameToInfoMap";
 
 };
 
@@ -92,11 +100,10 @@ _availableSongsListControl lnbSetColumnsPos [0,0.82];
     _availableSongsListControl lnbSetData [[_rowIndex,0],_songClassname];
     _availableSongsListControl lnbSetValue [[_rowIndex,0],_songIndex];
     _availableSongsListControl lnbSetTooltip [[_rowIndex,0],_songClassname];
-    _availableSongsListControl lnbSetTooltip [[_rowIndex,1],_songClassname];
 } forEach _musicMap;
 
 
-_availableSongsListControl lnbSort [0, false];
+_availableSongsListControl lnbSort [0,false];
 
 // TODO:
 // be able to sort list by the name of the track

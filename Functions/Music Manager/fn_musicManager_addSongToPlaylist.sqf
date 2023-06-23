@@ -37,7 +37,7 @@ if (isNull _songConfig) exitWith {
 };
 
 private _songClassName = configName _songConfig;
-if (_songClassName in _currentPlaylistMap) exitWith {
+if (_songIndex in _currentPlaylistMap) exitWith {
     [[_songClassName," is already located in BLWK_musicManager_currentPlaylistMap"]] call KISKA_fnc_log;
     nil
 };
@@ -48,7 +48,6 @@ if (isServer) then {
     [[]] call KISKA_fnc_randomMusic_setUsedTracks;
 };
 
-// TODO: incorrect mark song index
 [_songIndex,true] call BLWK_fnc_musicManager_markAvailableMusicListEntry;
 
 

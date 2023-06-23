@@ -29,7 +29,7 @@ if (_songToPlay isEqualTo "") exitWith {
 	nil
 };
 
-private _musicMap = localNamespace getVariable "BLWK_musicManager_musicMap";
+private _musicMap = localNamespace getVariable "BLWK_musicManager_classNameToInfoMap";
 private _songToPlayInfo = _musicMap get _songToPlay;
 private _songDuration = _songToPlayInfo select 2;
 uiNamespace setVariable ["BLWK_musicManager_songOnTimeline_duration",_songDuration];

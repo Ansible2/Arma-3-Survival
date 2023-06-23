@@ -47,7 +47,13 @@ if (isServer) then {
     private _sortedMusicClasses = [
         "true" configClasses (configFile >> "CfgMusic"),
         [],
-        { getText(_x >> "name") }
+        { 
+            private _songDisplayName = getText(_x >> "name");
+            if (_songDisplayName isEqualTo "") then {
+                _songDisplayName = configName _x;
+            };
+            _songDisplayName
+        }
     ] call BIS_fnc_sortBy;
     missionNamespace setVariable ["BLWK_sortedServerMusicConfigs",_sortedMusicClasses,true];
 

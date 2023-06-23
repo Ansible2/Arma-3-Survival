@@ -148,7 +148,6 @@ _display displayAddEventHandler ["unload",{
         "BLWK_musicManager_songOnTimeline",
         "BLWK_musicManager_selectedTrackToPlay",
         "BLWK_musicManager_resumeAfterTimelineAdjustment",
-        "BLWK_musicManager_selectedCurrentTrackIndexes",
         "BLWK_musicManager_selectedAvailableTrackRowIndexes",
         "BLWK_musicManager_songOnTimeline_duration",
         "BLWK_musicManager_doPlay",

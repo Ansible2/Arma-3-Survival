@@ -33,7 +33,6 @@ _addButtonControl ctrlAddEventHandler ["ButtonClick", {
 
     } else {
         private _availableMusicListControl = uiNamespace getVariable "BLWK_musicManager_control_availableSongsList";
-        
         _selectedTrackIndexes apply {
             private _songIndex = _availableMusicListControl lnbValue [_x,0];
             [_songIndex] remoteExecCall ["BLWK_fnc_musicManager_addSongToPlaylist",0,true];
@@ -44,11 +43,13 @@ _addButtonControl ctrlAddEventHandler ["ButtonClick", {
 }];
 
 _removeButtonControl ctrlAddEventHandler ["ButtonClick", {
-    private _selectedTrackIndexes = uiNamespace getVariable ["BLWK_musicManager_selectedCurrentTrackIndexes",[]];
+    private _selectedTrackIndexes = uiNamespace getVariable ["BLWK_musicManager_selectedAvailableTrackRowIndexes",[]];
+
     if (_selectedTrackIndexes isEqualTo []) then {
         ["You need to have a selection made from the Current Playlist"] call KISKA_fnc_errorNotification;
 
     } else {
+        private _availableMusicListControl = uiNamespace getVariable "BLWK_musicManager_control_availableSongsList";
         _selectedTrackIndexes apply {
             private _songIndex = _availableMusicListControl lnbValue [_x,0];
 			[_songIndex] remoteExecCall ["BLWK_fnc_musicManager_removeSongFromPlaylist",0,true];
