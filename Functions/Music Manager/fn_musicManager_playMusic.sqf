@@ -75,7 +75,7 @@ if !(uiNamespace getVariable ["BLWK_musicManager_timelineLooping",false]) then {
 			_sliderControl sliderSetPosition _newTimelinePosition;
 		};
 
-		if !(isNull _sliderControl) then {
+		if (!(isNull _sliderControl) AND !(uiNamespace getVariable ["BLWK_musicManager_paused",false])) then {
 			_sliderControl sliderSetPosition 0;
 		};
 		uiNamespace setVariable ["BLWK_musicManager_timelineLooping",false];
