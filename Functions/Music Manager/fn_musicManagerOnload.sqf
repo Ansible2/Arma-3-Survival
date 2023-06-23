@@ -144,7 +144,6 @@ _display displayAddEventHandler ["unload",{
         "BLWK_musicManager_doPlay",
         "BLWK_musicManager_control_loadPlaylistButton",
         "BLWK_musicManager_loadCombo_currentSelection",
-        "BLWK_musicManager_coloredClasses",
         "BLWK_musicManager_timelineLooping",
         "BLWK_musicManager_control_songDurationsList"
     ] apply {
