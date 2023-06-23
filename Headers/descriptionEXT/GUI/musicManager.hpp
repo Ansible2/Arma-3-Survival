@@ -91,19 +91,6 @@ class musicManagerDialog
 	
 	class controls
 	{
-		class musicManagerDialogListBox_currentPlaylist: RscListBox
-		{
-			idc = BLWK_MUSIC_MANAGER_CURRENT_PLAYLIST_IDC;
-			x = POS_X(5.5);
-			y = POS_Y(-3.5);
-			w = POS_W(15);
-			h = POS_H(16);
-
-			style = LB_MULTI + LB_TEXTURES;
-			colorBackground[] = GREY_COLOR(0,0.5);
-			sizeEx = POS_H(1);
-		};
-
 		class musicManagerDialogListNBox_availableSongs: ctrlListNBox
 		{
 			idc = BLWK_MUSIC_MANAGER_AVAILABLE_SONGS_LIST_IDC;
@@ -143,22 +130,6 @@ class musicManagerDialog
 			colorBackgroundActive[] = {1,0,0,0.75};
 			colorFocused[] = {1,0,0,0.45};
 		};
-		class musicManagerDialogButton_commit: musicManagerDialogButton
-		{
-			idc = BLWK_MUSIC_MANAGER_COMMIT_BUTTON_IDC;
-
-			text = "Commit Playlist To Server"; //--- ToDo: Localize;
-			x = POS_X(11.5);
-			y = POS_Y(-10.5);
-			w = POS_W(9);
-			h = POS_H(2);
-			
-			colorBackground[] = {0.3,1,0.5,0.5};
-			colorBackgroundActive[] = {0.3,1,0.5,0.75};
-			colorFocused[] = {0.3,1,0.5,0.5};
-
-			toolTip = "Save Current Playlist to the server for use with the system";
-		};
 		class musicManagerDialogSlider_timeline: musicManagerDialogSliderX
 		{
 			idc = BLWK_MUSIC_MANAGER_TIMELINE_SLIDER_IDC;
@@ -188,18 +159,6 @@ class musicManagerDialog
 			w = POS_W(4.5);
 			h = POS_H(1);
 			
-		};
-		class musicManagerDialogHeaderText_currentPlaylist: RscText
-		{
-			idc = -1;
-
-			text = "Current Playlist"; //--- ToDo: Localize;
-			x = POS_X(5.5);
-			y = POS_Y(-5);
-			w = POS_W(15);
-			h = POS_H(1);
-			
-			colorBackground[] = PROFILE_BACKGROUND_COLOR(1);
 		};
 		class musicManagerDialogHeaderText_volume: RscText
 		{

@@ -111,12 +111,6 @@ uiNamespace setVariable ["BLWK_musicManager_control_deleteButton",_deleteButtonC
 [_deleteButtonControl] call BLWK_fnc_musicManagerOnLoad_deleteButton;
 
 
-// commit button
-private _commitButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_COMMIT_BUTTON_IDC;
-uiNamespace setVariable ["BLWK_musicManager_control_commitButton",_commitButtonControl];
-[_commitButtonControl] call BLWK_fnc_musicManagerOnLoad_commitButton;
-
-
 _display displayAddEventHandler ["unload",{
     // stop music if playing
     if (uiNamespace getVariable ["BLWK_musicManager_doPlay",false]) then {
@@ -126,10 +120,7 @@ _display displayAddEventHandler ["unload",{
 
     [
         "BLWK_musicManager_display",
-        "BLWK_musicManager_control_currentPlaylist",
-        "BLWK_musicManager_control_songNamesList",
         "BLWK_musicManager_control_closeButton",
-        "BLWK_musicManager_control_commitButton",
         "BLWK_musicManager_control_timelineSlider",
         "BLWK_musicManager_control_volumeSLider",
         "BLWK_musicManager_control_playButton",
@@ -151,12 +142,10 @@ _display displayAddEventHandler ["unload",{
         "BLWK_musicManager_selectedAvailableTrackRowIndexes",
         "BLWK_musicManager_songOnTimeline_duration",
         "BLWK_musicManager_doPlay",
-        "BLWK_fnc_musicManager_getSongName",
         "BLWK_musicManager_control_loadPlaylistButton",
         "BLWK_musicManager_loadCombo_currentSelection",
         "BLWK_musicManager_coloredClasses",
         "BLWK_musicManager_timelineLooping",
-        "BLWK_musicManager_control_songNamesList",
         "BLWK_musicManager_control_songDurationsList"
     ] apply {
         uiNamespace setVariable [_x,nil];
