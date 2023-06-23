@@ -30,6 +30,9 @@ class musicManagerDialogButton: RscButton
     colorBackgroundDisabled[] = {0,0,0,0.5};
     colorShadow[] = {0,0,0,1};
     colorBorder[] = {0,0,0,1};
+    tooltipColorText[] = {1,1,1,1};
+	tooltipColorBox[] = {1,1,1,1};
+	tooltipColorShade[] = {0,0,0,1};
 };
 
 /* -------------------------------------------------------------------------
