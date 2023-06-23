@@ -105,13 +105,13 @@ _availableSongsListControl lnbSetColumnsPos [0,0.82];
 
 _availableSongsListControl lnbSort [0,false];
 
-// TODO:
-// be able to sort list by the name of the track
-// clicking the add button with one track selected will add that single track
-// clicking the add button with MORE than one track will add multiple tracks
-    // tracks will have some kind of indication that the have been added
-// can scroll through listbox
-// can playmusic with double click
+private _currentPlaylistMap = localNamespace getVariable ["BLWK_musicManager_currentPlaylistMap", -1];
+private _noPlaylistToLoad = _currentPlaylistMap isEqualTo -1;
+if (_noPlaylistToLoad) exitWith {};
+
+(keys _currentPlaylistMap) apply {
+    [_x,true,false] call BLWK_fnc_musicManager_markAvailableMusicListEntry;
+};
 
 
-
+nil

@@ -8,6 +8,7 @@ Description:
 Parameters:
 	0: _songIndex : <NUMBER> - The songs index in the music selection listNBox
   	1: _added : <BOOL> - true if added, false if removed
+  	2: _notify : <BOOL> - true to show notification about the addition or removal
 
 Returns:
 	NOTHING
@@ -34,7 +35,8 @@ if ((!hasInterface) OR _musicManagerIsClosed) exitWith {};
 
 params [
     ["_songIndex",-1,[123]],
-    ["_added",true,[true]]
+    ["_added",true,[true]],
+    ["_notify",true,[true]]
 ];
 
 
@@ -48,10 +50,12 @@ private _availableMusicListControl = uiNamespace getVariable "BLWK_musicManager_
 private _color = [NOT_TAKEN_COLOR,TAKEN_COLOR] select _added;
 _availableMusicListControl lnbSetColor [[_songIndex, 0],_color];
 
-private _songInfo = (localNamespace getVariable "BLWK_musicManager_indexToInfoMap") getOrDefault [_songIndex,[]];
-private _songName = _songInfo param [0,""];
-private _notificationText = ["removed from playlist","added to playlist"] select _added;
-[[_songName,_notificationText] joinString " ",2,true] call KISKA_fnc_notification;
+if (_notify) then {
+    private _songInfo = (localNamespace getVariable "BLWK_musicManager_indexToInfoMap") getOrDefault [_songIndex,[]];
+    private _songName = _songInfo param [0,""];
+    private _notificationText = ["removed from playlist","added to playlist"] select _added;
+    [[_songName,_notificationText] joinString " ",2,true] call KISKA_fnc_notification;
+};
 
 
 nil
