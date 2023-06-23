@@ -31,6 +31,15 @@ Author(s):
 #define MAX_SPAWNS_MINUS_UNIQUES ((BLWK_maxLootSpawns - NUMBER_OF_IMPACTED_UNIQUES) max 0)
 #define LOOT_HOLDER_Z_BUFFER 0.1
 
+#define LOOT_TYPE_BACKPACK 0
+#define LOOT_TYPE_WEAPONS 1
+#define LOOT_TYPE_ITEMS 2
+#define LOOT_TYPE_VESTS 3
+#define LOOT_TYPE_UNIFORMS 4
+#define LOOT_TYPE_EXPLOSIVES 5
+#define LOOT_TYPE_MAGAZINES 6
+#define LOOT_TYPE_HEADGEAR 7
+
 if (!isServer) exitWith {false};
 
 
@@ -249,6 +258,18 @@ private _fn_findAMagazine = {
 	};
 };
 
+private _lootTypeWeights = [
+	LOOT_TYPE_BACKPACK,localNamespace getVariable ["BLWK_lootWeight_backpack",1],
+	LOOT_TYPE_EXPLOSIVES,localNamespace getVariable ["BLWK_lootWeight_explosives",1],
+	LOOT_TYPE_HEADGEAR,localNamespace getVariable ["BLWK_lootWeight_headgear",1],
+	LOOT_TYPE_ITEMS,localNamespace getVariable ["BLWK_lootWeight_items",1],
+	LOOT_TYPE_MAGAZINES,localNamespace getVariable ["BLWK_lootWeight_magazines",1],
+	LOOT_TYPE_UNIFORMS,localNamespace getVariable ["BLWK_lootWeight_uniforms",1],
+	LOOT_TYPE_VESTS,localNamespace getVariable ["BLWK_lootWeight_vests",1],
+	// selectRandomWeighted requires at least one weigh be above zero
+	LOOT_TYPE_WEAPONS,(localNamespace getVariable ["BLWK_lootWeight_weapons",1]) max 1 
+];
+
 private _fn_addLoot = {
 	params ["_holder"];
 
@@ -257,46 +278,46 @@ private _fn_addLoot = {
 	clearItemCargoGlobal _holder;
 	clearBackpackCargoGlobal _holder;
 
-	private _typeToSpawn = round random 9;
+	private _typeToSpawn = selectRandomWeighted _lootTypeWeights;
 
 	private ["_selectedItemClass","_magazineClass"];
-	// backpack
-	if (_typeToSpawn isEqualTo 0) exitWith {
+
+	if (_typeToSpawn isEqualTo LOOT_TYPE_BACKPACK) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_backpackClasses;
 		_holder addBackpackCargoGlobal [_selectedItemClass,1];
 
 		_selectedItemClass
 	};
-	// vest
-	if (_typeToSpawn isEqualTo 1) exitWith {
+
+	if (_typeToSpawn isEqualTo LOOT_TYPE_VESTS) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_vestClasses;
 		_holder addItemCargoGlobal [_selectedItemClass,1];
 
 		_selectedItemClass
 	};
-	// uniforms
-	if (_typeToSpawn isEqualTo 2) exitWith {
+
+	if (_typeToSpawn isEqualTo LOOT_TYPE_UNIFORMS) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_uniformClasses;
 		_holder addItemCargoGlobal [_selectedItemClass,1];
 
 		_selectedItemClass
 	};
-	// items
-	if (_typeToSpawn isEqualTo 3) exitWith {
+
+	if (_typeToSpawn isEqualTo LOOT_TYPE_ITEMS) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_itemClasses;
 		_holder addItemCargoGlobal [_selectedItemClass,1];
 
 		_selectedItemClass
 	};
-	// explosives
-	if (_typeToSpawn isEqualTo 4) exitWith {
+	
+	if (_typeToSpawn isEqualTo LOOT_TYPE_EXPLOSIVES) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_explosiveClasses;
 		_holder addMagazineCargoGlobal [_selectedItemClass,round random [1,2,3]];
 
 		_selectedItemClass
 	};
-	// weapons
-	if (_typeToSpawn isEqualTo 5 OR {_typeToSpawn isEqualTo 8} OR {_typeToSpawn isEqualTo 9}) exitWith { // there are three numbers here to encourage more weapon spawns
+
+	if (_typeToSpawn isEqualTo LOOT_TYPE_WEAPONS) exitWith { // there are three numbers here to encourage more weapon spawns
 		_selectedItemClass = selectRandom BLWK_loot_weaponClasses;
 		_holder addWeaponCargoGlobal [_selectedItemClass,1];
 
@@ -308,8 +329,8 @@ private _fn_addLoot = {
 
 		_selectedItemClass
 	};
-	// magazines
-	if (_typeToSpawn isEqualTo 6) exitWith {
+
+	if (_typeToSpawn isEqualTo LOOT_TYPE_MAGAZINES) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_weaponClasses;
 		_magazineClass = [_selectedItemClass] call _fn_findAMagazine;
 		// if weapon has mags capable of spawning
@@ -319,8 +340,8 @@ private _fn_addLoot = {
 
 		_magazineClass
 	};
-	// headgear
-	if (_typeToSpawn isEqualTo 7) exitWith {
+
+	if (_typeToSpawn isEqualTo LOOT_TYPE_HEADGEAR) exitWith {
 		_selectedItemClass = selectRandom BLWK_loot_headGearClasses;
 		_holder addItemCargoGlobal [_selectedItemClass,1];
 

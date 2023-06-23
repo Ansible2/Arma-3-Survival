@@ -289,6 +289,53 @@ class KISKA_missionParams
 			texts[] = {"Every location", "Every second location", "Every third location", "Every fourth location"};
 			default = 2;
 		};
+
+		class BLWK_lootWeight_backpack : sliderParamBase
+		{
+			title = "Loot Weight - Backpacks";
+			tooltip = "Determines the relative likelihood that a backpack will spawn at a given loot location relative to other weights. (Higher Number = More Likely)";
+			min = 0;
+			max = 10;
+			default = 1;
+			namespace = 1;
+		};
+		class BLWK_lootWeight_explosives : BLWK_lootWeight_backpack
+		{
+			title = "Loot Weight - Explosives";
+			tooltip = "Determines the relative likelihood that an explosive (mines, grenades, etc.) will spawn at a given loot location relative to other weights. (Higher Number = More Likely)";
+		};
+		class BLWK_lootWeight_headgear : BLWK_lootWeight_backpack
+		{
+			title = "Loot Weight - Headgear";
+			tooltip = "Determines the relative likelihood that a headgear will spawn at a given loot location relative to other weights. (Higher Number = More Likely)";
+		};
+		class BLWK_lootWeight_items : BLWK_lootWeight_backpack
+		{
+			title = "Loot Weight - Items";
+			tooltip = "Determines the relative likelihood that an item (medical supplies, weapon attachments, etc.) will spawn at a given loot location relative to other weights. (Higher Number = More Likely)";
+		};
+		class BLWK_lootWeight_magazines : BLWK_lootWeight_backpack
+		{
+			title = "Loot Weight - Magazines";
+			tooltip = "Determines the relative likelihood that a magazine (ammo) will spawn at a given loot location relative to other weights. (Higher Number = More Likely)";
+		};
+		class BLWK_lootWeight_uniforms : BLWK_lootWeight_backpack
+		{
+			title = "Loot Weight - Uniforms";
+			tooltip = "Determines the relative likelihood that a uniform will spawn at a given loot location relative to other weights. (Higher Number = More Likely)";
+		};
+		class BLWK_lootWeight_vests : BLWK_lootWeight_backpack
+		{
+			title = "Loot Weight - Vests";
+			tooltip = "Determines the relative likelihood that a vest will spawn at a given loot location relative to other weights. (Higher Number = More Likely)";
+		};
+		class BLWK_lootWeight_weapons : BLWK_lootWeight_backpack
+		{
+			title = "Loot Weight - Weapons";
+			tooltip = "Determines the relative likelihood that a weapon will spawn at a given loot location relative to other weights. Weapons have a minimum weight of 1. (Higher Number = More Likely)";
+			default = 3;
+			min = 1;
+		};
 	};
 
 	class Extraction
