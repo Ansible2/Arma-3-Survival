@@ -195,8 +195,6 @@ class BLWK
 		{};
 		class musicManagerOnLoad_closeButton
 		{};
-		class musicManagerOnLoad_commitButton
-		{};
 		class musicManagerOnLoad_deleteButton
 		{};
 		class musicManagerOnLoad_loadControls
