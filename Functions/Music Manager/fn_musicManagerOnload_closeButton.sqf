@@ -24,6 +24,13 @@ scriptName "BLWK_fnc_musicManagerOnLoad_closeButton";
 params ["_control"];
 
 _control ctrlAddEventHandler ["ButtonClick",{
+	private _musicIsPlayingFromMusicManager = uiNamespace getVariable ["BLWK_musicManager_timelineLooping",false];
+	if (_musicIsPlayingFromMusicManager) then {
+		uiNamespace setVariable ["BLWK_musicManager_paused",true];	
+		playMusic "";
+		[] call KISKA_fnc_musicStopEvent;
+	};
+	
 	(uiNamespace getVariable "BLWK_musicManager_display") closeDisplay 2;
 }];
 
