@@ -26,24 +26,24 @@ scriptName "BLWK_fnc_musicManagerOnLoad_savePlaylistControls";
 params ["_saveButtonControl","_saveAsButtonControl"];
 
 _saveButtonControl ctrlAddEventHandler ["ButtonClick",{
-	//params ["_control"];
-
-	// make sure a selection is made in the load drop down
 	private _loadComboControl = uiNamespace getVariable "BLWK_musicManager_control_loadCombo";
 	private _loadComboSelectedIndex = lbCurSel _loadComboControl;
 
-	// if a selection has been made in the load playlist drop down AND it is not the DEFAULT entry
-	if (_loadComboSelectedIndex isNotEqualTo -1) then {
+	private _selectionInLoadDropdownMade = _loadComboSelectedIndex isNotEqualTo -1;
+	if (_selectionInLoadDropdownMade) then {
 
-		// make sure there is anything to overwrite the list with
-		if (GET_PUBLIC_ARRAY_DEFAULT isNotEqualTo []) then {
-			private _savedPlaylistArray = profileNamespace getVariable ["BLWK_musicManagerPlaylists",[]];
-			private _playlistName = _loadComboControl lbText _loadComboSelectedIndex;
-			// creating a copy of BLWK_PUB_CURRENT_PLAYLIST as otherwise, any changes to BLWK_PUB_CURRENT_PLAYLIST after would
-			// directly go to the profileNamespace saved array
-			_savedPlaylistArray set [_loadComboSelectedIndex,[_playlistName,+BLWK_PUB_CURRENT_PLAYLIST]];
-			profileNamespace setVariable ["BLWK_musicManagerPlaylists",_savedPlaylistArray];
+		private _currentPlaylist = localNamespace getVariable ["BLWK_musicManager_currentPlaylistMap",[]];
+		private _currentPlaylistIsEmpty = (count _currentPlaylist) < 1;
+		if (!_currentPlaylistIsEmpty) then {
+			private _savedPlaylistsArray = profileNamespace getVariable ["BLWK_musicManagerPlaylists",[]];
+			private _currentlySelectedPlaylist = _loadComboControl lbText _loadComboSelectedIndex;
+			private _songs = values _currentPlaylist;
+			_savedPlaylistsArray set [_loadComboSelectedIndex,[_currentlySelectedPlaylist,_songs]];
+			
+			profileNamespace setVariable ["BLWK_musicManagerPlaylists",_savedPlaylistsArray];
 			saveProfileNamespace;
+
+			[[_currentlySelectedPlaylist,"was saved to your profile"] joinString " "] call KISKA_fnc_notification;
 
 		} else {
 			["There are no entries in the Current Playlist.<br/>Save an empty list with Save As or Delete the list"] call KISKA_fnc_errorNotification;
@@ -58,17 +58,18 @@ _saveButtonControl ctrlAddEventHandler ["ButtonClick",{
 }];
 
 _saveAsButtonControl ctrlAddEventHandler ["ButtonClick",{
-	//params ["_control"];
-
 	private _editBoxControl = uiNamespace getVariable "BLWK_musicManager_control_saveEdit";
-	private _playlistName = ctrlText _editBoxControl;
+	private _newPlaylistName = ctrlText _editBoxControl;
 
-	if (_playlistName isNotEqualTo "") then {
+	if (_newPlaylistName isNotEqualTo "") then {
 
-		private _savedPlaylistArray = profileNamespace getVariable ["BLWK_musicManagerPlaylists",[]];
-		_savedPlaylistArray pushBack [_playlistName,BLWK_PUB_CURRENT_PLAYLIST];
-		profileNamespace setVariable ["BLWK_musicManagerPlaylists",_savedPlaylistArray];
+		private _currentPlaylist = localNamespace getVariable ["BLWK_musicManager_currentPlaylistMap",[]];
+		private _savedPlaylistsArray = profileNamespace getVariable ["BLWK_musicManagerPlaylists",[]];
+		_savedPlaylistsArray pushBack [_newPlaylistName,values _currentPlaylist];
+		profileNamespace setVariable ["BLWK_musicManagerPlaylists",_savedPlaylistsArray];
 		saveProfileNamespace;
+
+		[[_newPlaylistName,"was saved to your profile"] joinString " "] call KISKA_fnc_notification;
 
 		[] spawn BLWK_fnc_musicManager_updateLoadCombo;
 

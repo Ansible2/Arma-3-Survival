@@ -3,24 +3,24 @@
 Function: BLWK_fnc_musicManagerOnLoad
 
 Description:
-	This is the entry point for the Music Manager. It initializes its variables
-	 and sets up relevant information to display when openned.
+    This is the entry point for the Music Manager. It initializes its variables
+     and sets up relevant information to display when openned.
 
-	It is executed from the (configed) onLoad event.
+    It is executed from the (configed) onLoad event.
 
 Parameters:
-	0: _display : <DISPLAY> - The display of the Music Manager
+    0: _display : <DISPLAY> - The display of the Music Manager
 
 Returns:
-	NOTHING
+    NOTHING
 
 Examples:
     (begin example)
-		call BLWK_fnc_musicManagerOnLoad;
+        call BLWK_fnc_musicManagerOnLoad;
     (end)
 
 Author(s):
-	Ansible2 // Cipher
+    Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 disableSerialization;
 scriptName "BLWK_fnc_musicManagerOnLoad";
@@ -38,15 +38,9 @@ uiNamespace setVariable ["BLWK_musicManager_control_closeButton",_closeButtonCon
 
 
 // available tracks list
-private _songListControl = _display displayCtrl BLWK_MUSIC_MANAGER_SONGS_LIST_IDC;
-uiNamespace setVariable ["BLWK_musicManager_control_songsList",_songListControl];
-[_songListControl] call BLWK_fnc_musicManagerOnLoad_availableMusicList;
-
-
-// current playlist
-private _currentPlaylistControl = _display displayCtrl BLWK_MUSIC_MANAGER_CURRENT_PLAYLIST_IDC;
-uiNamespace setVariable ["BLWK_musicManager_control_currentPlaylist",_currentPlaylistControl];
-[_currentPlaylistControl,_display] call BLWK_fnc_musicManagerOnLoad_currentPlaylistLoop;
+private _availableSongsListControl = _display displayCtrl BLWK_MUSIC_MANAGER_AVAILABLE_SONGS_LIST_IDC;
+uiNamespace setVariable ["BLWK_musicManager_control_availableSongsList",_availableSongsListControl];
+[_availableSongsListControl] call BLWK_fnc_musicManagerOnLoad_availableMusicList;
 
 
 // add to and remove from current playlist buttons
@@ -117,47 +111,46 @@ uiNamespace setVariable ["BLWK_musicManager_control_deleteButton",_deleteButtonC
 [_deleteButtonControl] call BLWK_fnc_musicManagerOnLoad_deleteButton;
 
 
-// commit button
-private _commitButtonControl = _display displayCtrl BLWK_MUSIC_MANAGER_COMMIT_BUTTON_IDC;
-uiNamespace setVariable ["BLWK_musicManager_control_commitButton",_commitButtonControl];
-[_commitButtonControl] call BLWK_fnc_musicManagerOnLoad_commitButton;
-
-
 _display displayAddEventHandler ["unload",{
-	// stop music if playing
-	if (uiNamespace getVariable ["BLWK_musicManager_doPlay",false]) then {
-		playMusic "";
-		[] call KISKA_fnc_musicStopEvent;
-	};
+    // stop music if playing
+    if (uiNamespace getVariable ["BLWK_musicManager_doPlay",false]) then {
+        playMusic "";
+        [] call KISKA_fnc_musicStopEvent;
+    };
 
-	// clear memory
-	uiNamespace setVariable ["BLWK_musicManager_display",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_currentPlaylist",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_songsList",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_closeButton",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_commitButton",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_timelineSlider",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_volumeSLider",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_playButton",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_pauseButton",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_spacingEdit",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_spacingButton",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_spacingCombo",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_onOffCombo",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_saveEdit",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_saveButton",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_loadCombo",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_addToButton",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_removeFromButton",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_deleteButton",nil];
-	uiNamespace setVariable ["BLWK_musicManager_paused",nil];
-	uiNamespace setVariable ["BLWK_musicManager_selectedTrack",nil];
-	uiNamespace setVariable ["BLWK_musicManager_doPlay",nil];
-	uiNamespace setVariable ["BLWK_fnc_musicManager_getMusicName",nil];
-	uiNamespace setVariable ["BLWK_musicManager_control_loadPlaylistButton",nil];
-	uiNamespace setVariable ["BLWK_musicManager_loadCombo_currentSelection",nil];
-	uiNamespace setVariable ["BLWK_musicManager_coloredClasses",nil];
-	uiNamespace getVariable ["BLWK_musicManager_timelineLooping",nil];
+    [
+        "BLWK_musicManager_display",
+        "BLWK_musicManager_control_closeButton",
+        "BLWK_musicManager_control_timelineSlider",
+        "BLWK_musicManager_control_volumeSLider",
+        "BLWK_musicManager_control_playButton",
+        "BLWK_musicManager_control_pauseButton",
+        "BLWK_musicManager_control_spacingEdit",
+        "BLWK_musicManager_control_spacingButton",
+        "BLWK_musicManager_control_spacingCombo",
+        "BLWK_musicManager_control_onOffCombo",
+        "BLWK_musicManager_control_saveEdit",
+        "BLWK_musicManager_control_saveButton",
+        "BLWK_musicManager_control_loadCombo",
+        "BLWK_musicManager_control_addToButton",
+        "BLWK_musicManager_control_removeFromButton",
+        "BLWK_musicManager_control_deleteButton",
+        "BLWK_musicManager_paused",
+        "BLWK_musicManager_songOnTimeline",
+        "BLWK_musicManager_selectedTrackToPlay",
+        "BLWK_musicManager_resumeAfterTimelineAdjustment",
+        "BLWK_musicManager_selectedAvailableTrackRowIndexes",
+        "BLWK_musicManager_songOnTimeline_duration",
+        "BLWK_musicManager_doPlay",
+        "BLWK_musicManager_control_loadPlaylistButton",
+        "BLWK_musicManager_loadCombo_currentSelection",
+        "BLWK_musicManager_timelineLooping",
+        "BLWK_musicManager_control_songDurationsList"
+    ] apply {
+        uiNamespace setVariable [_x,nil];
+    };
+    
+
 }];
 
 

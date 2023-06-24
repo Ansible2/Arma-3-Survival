@@ -2,112 +2,115 @@
 Function: BLWK_fnc_musicManagerOnLoad_availableMusicList
 
 Description:
-	Populates the ListNBox that shows all available tracks when the Music Manager
-	 is openned.
+    Populates the ListNBox that shows all available tracks when the Music Manager
+     is openned.
 
 Parameters:
-	0: _control : <CONTROL> - The control for the ListNBox with available music
+    0: _availableSongsListControl : <CONTROL> - The control for the ListNBox with available music
 
 Returns:
-	NOTHING
+    NOTHING
 
 Examples:
     (begin example)
-		[_control] call BLWK_fnc_musicManagerOnLoad_availableMusicList;
+        [_availableSongsListControl] call BLWK_fnc_musicManagerOnLoad_availableMusicList;
     (end)
 
 Author(s):
-	Ansible2 // Cipher
+    Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 disableSerialization;
 scriptName "BLWK_fnc_musicManagerOnLoad_availableMusicList";
 
-params ["_control"];
+params ["_availableSongsListControl"];
 
-// reset music pause state when selection is changed
-_control ctrlAddEventHandler ["LBSelChanged",{
-	params ["_control","_selectedIndex"];
+/* ----------------------------------------------------------------------------
+    Setup events
+---------------------------------------------------------------------------- */
+_availableSongsListControl ctrlAddEventHandler ["LBSelChanged", {
+    params [
+        "_availableSongsListControl",
+        "_lastSelectedIndex",
+        "_allCurrentlySelectedIndexes"
+    ];
 
-	private _display = ctrlParent _control;
-	private _musicClass = _control lnbData [_selectedIndex,0];
-	uiNamespace setVariable ["BLWK_musicManager_selectedTrack",_musicClass];
-	//uiNamespace setVariable ["BLWK_musicManager_paused",false];
+    uiNamespace setVariable ["BLWK_musicManager_selectedAvailableTrackRowIndexes",_allCurrentlySelectedIndexes];
+    
+    private _musicClass = _availableSongsListControl lnbData [_lastSelectedIndex,0];
+    uiNamespace setVariable ["BLWK_musicManager_selectedTrackToPlay",_musicClass];
+}];
 
-	// reset timeline slider to 0
-	private _timeLineSlider = uiNamespace getVariable "BLWK_musicManager_control_timelineSlider";
-	if ((sliderPosition _timeLineSlider) != 0) then {
-		_timeLineSlider sliderSetPosition 0;
-	};
+_availableSongsListControl ctrlAddEventHandler ["LBDblClick", {
+    params ["_availableSongsListControl", "_selectedIndex"];
 
-	// adjust slider range to song duration
-	private _musicDuration = [_control lnbText [_selectedIndex,1]] call BIS_fnc_parseNumber;
-	_timeLineSlider sliderSetRange [0,_musicDuration];
-
-
-	// play new track unless music is paused
-	if !(uiNamespace getVariable ["BLWK_musicManager_paused",false]) then {
-		[_musicClass,0] spawn BLWK_fnc_musicManager_playMusic;
-	};
-
+    private _musicClass = _availableSongsListControl lnbData [_selectedIndex,0];
+    uiNamespace setVariable ["BLWK_musicManager_selectedTrackToPlay",_musicClass];
+    [] call BLWK_fnc_musicManager_playMusic;
 }];
 
 
+/* ----------------------------------------------------------------------------
+    Generate List
+---------------------------------------------------------------------------- */
 // cache and/or get music info for list
-// get classes
-private "_musicHash";
-if (isNil {missionNamespace getVariable "BLWK_musicManager_musicHash"}) then {
-	private _musicClasses = "true" configClasses (configFile >> "cfgMusic");
+private "_musicMap";
+if (isNil {localNamespace getVariable "BLWK_musicManager_classNameToInfoMap"}) then {
+    
+    private _musicClasses = missionNamespace getVariable ["BLWK_sortedServerMusicConfigs",[]];
+    private _classNameToInfoArray = [];
+    private _indexToInfoArray = [];
+    {
+        private _songDisplayName = getText(_x >> "name");
+        if (_songDisplayName isEqualTo "") then {
+            _songDisplayName = configName _x;
+        };
 
-	// collect music info
-	private ["_name_temp","_duration_temp","_class_temp"];
-	private _musicArray = [];
-	_musicClasses apply {
-		// name
-		_name_temp = getText(_x >> "name");
-		if (_name_temp isEqualTo "") then {
-			_name_temp = configName _x;
-		};
+        private _songDuration = getNumber(_x >> "duration");
+        private _songClassname = configName _x;
+        _classNameToInfoArray pushBack [
+            _songClassname,
+            [_songDisplayName, str (round _songDuration), _songDuration,_forEachIndex]
+        ];
+        _indexToInfoArray pushBack [
+            _forEachIndex,
+            [_songDisplayName, str (round _songDuration), _songDuration,_songClassname]
+        ];
+    } forEach _musicClasses;
 
-		// duration
-		_duration_temp = round (getNumber(_x >> "duration"));
-		_class_temp = configName _x;
-
-		_musicArray pushBack [_class_temp,[_name_temp,_duration_temp]];
-	};
-
-	// sort by track name
-	_musicArray = [_musicArray,[],{(_x select 1) select 0}] call BIS_fnc_sortBy;
-
-	{
-		// provide the index within _musicArray for a particular class
-		// this will be used for finding the location within the available music list control (and avoid looping through the list)
-		// so that we can selectively color entries depending on if they are in the current music list control
-		(_x select 1) pushBack _forEachIndex;
-	} forEach _musicArray;
-
-	_musicHash = createHashMapFromArray _musicArray;
-	missionNamespace setVariable ["BLWK_musicManager_musicHash",_musicHash];
+    _musicMap = createHashMapFromArray _classNameToInfoArray;
+    localNamespace setVariable ["BLWK_musicManager_classNameToInfoMap",_musicMap];
+    localNamespace setVariable ["BLWK_musicManager_indexToInfoMap",createHashMapFromArray _indexToInfoArray];
 
 } else {
-	_musicHash = missionNamespace getVariable "BLWK_musicManager_musicHash";
+    _musicMap = localNamespace getVariable "BLWK_musicManager_classNameToInfoMap";
+
 };
 
 // add duration column
-_control lnbAddColumn 1;
-_control lnbSetColumnsPos [0,0.82];
+_availableSongsListControl lnbAddColumn 1;
+_availableSongsListControl lnbSetColumnsPos [0,0.82];
 
-// fill list
-private "_row";
+
 {
-	// track name and duration
-	_row = _control lnbAddRow [_y select 0,str (_y select 1)];
-	_control lnbSetData [[_row,0],_x]; // set data to the track class name
-	_control lnbSetTooltip [[_row,0],_x];
-} forEach _musicHash;
+    _y params ["_songName","_songDurationString","","_songIndex"];
+    private _rowIndex = _availableSongsListControl lnbAddRow [_songName,_songDurationString];
+
+    private _songClassname = _x;
+    _availableSongsListControl lnbSetData [[_rowIndex,0],_songClassname];
+    _availableSongsListControl lnbSetValue [[_rowIndex,0],_songIndex];
+    _availableSongsListControl lnbSetTooltip [[_rowIndex,0],_songClassname];
+} forEach _musicMap;
 
 
-// Hashes are not sorted even when added from array.
-_control lnbSort [0, false];
+_availableSongsListControl lnbSort [0,false];
+
+private _currentPlaylistMap = localNamespace getVariable ["BLWK_musicManager_currentPlaylistMap", -1];
+private _noPlaylistToLoad = _currentPlaylistMap isEqualTo -1;
+if (_noPlaylistToLoad) exitWith {};
+
+(keys _currentPlaylistMap) apply {
+    [_x,true,false] call BLWK_fnc_musicManager_markAvailableMusicListEntry;
+};
 
 
 nil

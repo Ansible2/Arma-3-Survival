@@ -3,22 +3,22 @@
 Function: BLWK_fnc_musicManagerOnLoad_loadControls
 
 Description:
-	Adds functionality to the loadable playlist dropdown and button in the Music Manager.
+    Adds functionality to the loadable playlist dropdown and button in the Music Manager.
 
 Parameters:
-	0: _loadComboControl : <CONTROL> - The control for the combo box
-	1: _loadButtonControl : <CONTROL> - The control for "Load Playlist" button
+    0: _loadComboControl : <CONTROL> - The control for the combo box
+    1: _loadButtonControl : <CONTROL> - The control for "Load Playlist" button
 
 Returns:
-	NOTHING
+    NOTHING
 
 Examples:
     (begin example)
-		[_loadComboControl,_loadButtonControl] call BLWK_fnc_musicManagerOnLoad_loadControls;
+        [_loadComboControl,_loadButtonControl] call BLWK_fnc_musicManagerOnLoad_loadControls;
     (end)
 
 Author(s):
-	Ansible2 // Cipher
+    Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 disableSerialization;
 scriptName "BLWK_fnc_musicManagerOnLoad_loadControls";
@@ -26,61 +26,48 @@ scriptName "BLWK_fnc_musicManagerOnLoad_loadControls";
 params ["_loadComboControl","_loadButtonControl"];
 
 _loadComboControl ctrlAddEventHandler ["LBSelChanged",{
-	// don't need _control
-	params ["","_selectedIndex"];
+    params ["","_selectedIndex"];
 
-	uiNamespace setVariable ["BLWK_musicManager_loadCombo_currentSelection",_selectedIndex];
+    uiNamespace setVariable ["BLWK_musicManager_loadCombo_currentSelection",_selectedIndex];
 }];
 
 _loadButtonControl ctrlAddEventHandler ["ButtonClick",{
-	// clear out any colored indexes in the available music list
-	// we make a copy of BLWK_musicManager_coloredClasses because the full loop will not complete given that
-	// BLWK_fnc_musicManager_adjustNameColor deletes entries from directly the array
-	private _coloredClasses = +(uiNamespace getVariable ["BLWK_musicManager_coloredClasses",[]]);
-	if (_coloredClasses isNotEqualTo []) then {
-		_coloredClasses apply {
-			[_x,false] call BLWK_fnc_musicManager_adjustNameColor;
-		};
-	};
+    private _playlistArray = profileNamespace getVariable ["BLWK_musicManagerPlaylists",[]];
+    private _selectedIndex = uiNamespace getVariable ["BLWK_musicManager_loadCombo_currentSelection",0];
 
-	// get all the playlists the player has saved
-	private _playlistArray = profileNamespace getVariable ["BLWK_musicManagerPlaylists",[]];
+    if (_playlistArray isNotEqualTo []) then {
+        private _chosenPlaylist = _playlistArray select _selectedIndex;
+        private _musicClassesInList = _chosenPlaylist select 1;
 
-	private _selectedIndex = uiNamespace getVariable ["BLWK_musicManager_loadCombo_currentSelection",0];
+        if (_musicClassesInList isNotEqualTo []) then {
 
-	if (_playlistArray isNotEqualTo []) then {
+            private _currentPlaylist = localNamespace getVariable ["BLWK_musicManager_currentPlaylistMap", -1];
+            if (_currentPlaylist isNotEqualTo -1) then {
+                (keys _currentPlaylist) apply {
+                    [_x] remoteExecCall ["BLWK_fnc_musicManager_removeSongFromPlaylist",0,true];
+                };
+            };
 
-		private _chosenPlaylist = _playlistArray select _selectedIndex;
-		private _musicClassesInList = _chosenPlaylist select 1;
+            private _classNameToInfoMap = localNamespace getVariable "BLWK_musicManager_classNameToInfoMap";
+            private _countOfUnavailable = 0;
+            _musicClassesInList apply {
+                if (_x in _classNameToInfoMap) then {
+                    private _songIndex = (_classNameToInfoMap get _x) select 3;
+                    [_songIndex] remoteExecCall ["BLWK_fnc_musicManager_addSongToPlaylist",0,true];
 
-		// clear global array before adding to it
-		missionNamespace setVariable [TO_STRING(BLWK_PUB_CURRENT_PLAYLIST),[],true];
-		// if there is actually anything to add
-		if !(_musicClassesInList isEqualTo []) then {
-			private _countOfUnavailable = 0;
-			private "_configPath_temp";
+                } else {
+                    _countOfUnavailable = _countOfUnavailable + 1;
 
-			_musicClassesInList apply {
-				_configPath_temp = [["CfgMusic",_x]] call KISKA_fnc_findConfigAny;
-				// make sure song exists right now
-				if !(isNull _configPath_temp) then {
-					// update Available Music List Control color
-					[_x,true] call BLWK_fnc_musicManager_adjustNameColor;
+                };
+            };
 
-					// CIPHER COMMENT: Truth be told, there is no reason to have this be 0, just needs to be the server and players
-					[TO_STRING(BLWK_PUB_CURRENT_PLAYLIST),_x] remoteExecCall ["KISKA_fnc_pushBackToArray",0,true];
-
-				} else {
-					_countOfUnavailable = _countOfUnavailable + 1;
-
-				};
-			};
-
-			if (_countOfUnavailable > 0) then {
-				[((str _countOfUnavailable) + " songs could not be found and were not added to the list")] call KISKA_fnc_notification;
-			};
-		};
-	};
+            if (_countOfUnavailable > 0) then {
+                private _playlistName = _chosenPlaylist select 0;
+                [_playlistName + " was loaded"] call KISKA_fnc_notification;
+                [((str _countOfUnavailable) + " songs could not be found and were not loaded")] call KISKA_fnc_errorNotification;
+            };
+        };
+    };
 
 }];
 
