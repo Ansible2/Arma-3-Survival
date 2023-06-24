@@ -1376,9 +1376,162 @@ class SOGPF_PATHET_LAO : SOGPF_NVA_field
 };
 
 
+class SOGPF_FANK_70 : SOGPF_usArmy
+{
+    displayName = "S.O.G. PF - Khmer National Armed Forces (FANK) 70";
+
+    lightArmor[] = {
+        "vn_i_armor_m113_01_fank_71", 
+        "vn_i_armor_m113_acav_03_fank_71", 
+        "vn_i_armor_m113_acav_06_fank_71", 
+        "vn_i_armor_m113_acav_01_fank_71", 
+        "vn_i_armor_m113_acav_02_fank_71"
+    };
+
+    lightCars[] = {
+        "vn_i_wheeled_lr2a_mg_01_fank_71", 
+        "vn_i_wheeled_m151_mg_04_fank_71", 
+        "vn_i_wheeled_z157_mg_01_fank_70"
+    };
+
+    heavyCars[] = {
+        "vn_i_wheeled_btr40_mg_01_fank_70", 
+        "vn_i_wheeled_btr40_mg_04_fank_70"
+    };
+
+    transportHelicopters[] = {
+        "vn_i_air_uh1d_02_02"
+    };
+    
+    infantry[] = {
+        "vn_i_men_fank_70_02", 
+        "vn_i_men_fank_70_12", 
+        "vn_i_men_fank_70_22", 
+        "vn_i_men_fank_70_14", 
+        "vn_i_men_fank_70_13", 
+        "vn_i_men_fank_70_05", 
+        "vn_i_men_fank_70_04", 
+        "vn_i_men_fank_70_07", 
+        "vn_i_men_fank_70_17", 
+        "vn_i_men_fank_70_06", 
+        "vn_i_men_fank_70_11", 
+        "vn_i_men_fank_70_10", 
+        "vn_i_men_fank_70_03", 
+        "vn_i_men_fank_70_01", 
+        "vn_i_men_fank_70_15", 
+        "vn_i_men_fank_70_16", 
+        "vn_i_men_fank_70_18", 
+        "vn_i_men_fank_70_19", 
+        "vn_i_men_fank_70_20", 
+        "vn_i_men_fank_70_21", 
+        "vn_i_men_fank_70_08", 
+        "vn_i_men_fank_70_09"
+    };
+};
+
+class SOGPF_FANK_71 : SOGPF_FANK_70
+{
+    displayName = "S.O.G. PF - Khmer National Armed Forces (FANK) 71";
+
+    infantry[] = {
+        "vn_i_men_fank_71_02", 
+        "vn_i_men_fank_71_12", 
+        "vn_i_men_fank_71_22", 
+        "vn_i_men_fank_71_05", 
+        "vn_i_men_fank_71_04", 
+        "vn_i_men_fank_71_07", 
+        "vn_i_men_fank_71_17", 
+        "vn_i_men_fank_71_06", 
+        "vn_i_men_fank_71_11", 
+        "vn_i_men_fank_71_10", 
+        "vn_i_men_fank_71_03", 
+        "vn_i_men_fank_71_01", 
+        "vn_i_men_fank_71_15", 
+        "vn_i_men_fank_71_16", 
+        "vn_i_men_fank_71_18", 
+        "vn_i_men_fank_71_19", 
+        "vn_i_men_fank_71_20", 
+        "vn_i_men_fank_71_21", 
+        "vn_i_men_fank_71_08", 
+        "vn_i_men_fank_71_09"
+    };
+};
+
+class SOGPF_khmer_rouge_70 : SOGPF_VC_regional
+{
+    displayName = "S.O.G. PF - Khmer Rouge 70";
+
+    lightArmor[] = {
+        "vn_o_armor_m113_acav_02_kr", 
+        "vn_o_armor_m113_acav_01_kr", 
+        "vn_o_armor_m113_acav_06_kr", 
+        "vn_o_armor_m113_acav_03_kr", 
+        "vn_o_armor_m113_01_kr"
+    };
+
+    heavyCars[] = {
+        "vn_o_wheeled_btr40_mg_02_kr", 
+        "vn_o_wheeled_btr40_mg_01_kr", 
+        "vn_o_wheeled_btr40_mg_04_kr"
+    };
+
+    lightCars[] = {
+        "vn_o_car_04_mg_01_kr", 
+        "vn_o_wheeled_z157_mg_01_kr"
+    };
+
+    infantry[] = {
+        "vn_o_men_kr_70_21", 
+        "vn_o_men_kr_70_14", 
+        "vn_o_men_kr_70_11", 
+        "vn_o_men_kr_70_07", 
+        "vn_o_men_kr_70_10", 
+        "vn_o_men_kr_70_08", 
+        "vn_o_men_kr_70_16", 
+        "vn_o_men_kr_70_15", 
+        "vn_o_men_kr_70_17", 
+        "vn_o_men_kr_70_06", 
+        "vn_o_men_kr_70_13", 
+        "vn_o_men_kr_70_04", 
+        "vn_o_men_kr_70_12", 
+        "vn_o_men_kr_70_05", 
+        "vn_o_men_kr_70_03", 
+        "vn_o_men_kr_70_02", 
+        "vn_o_men_kr_70_24", 
+        "vn_o_men_kr_70_09", 
+        "vn_o_men_kr_70_23", 
+        "vn_o_men_kr_70_22"
+    };
+};
+
+class SOGPF_khmer_rouge_75 : SOGPF_khmer_rouge_70
+{
+    displayName = "S.O.G. PF - Khmer Rouge 75";
+
+    infantry[] = {
+        "vn_o_men_kr_75_21", 
+        "vn_o_men_kr_75_14", 
+        "vn_o_men_kr_75_07", 
+        "vn_o_men_kr_75_11", 
+        "vn_o_men_kr_75_10", 
+        "vn_o_men_kr_75_08", 
+        "vn_o_men_kr_75_16", 
+        "vn_o_men_kr_75_15", 
+        "vn_o_men_kr_75_17", 
+        "vn_o_men_kr_75_01", 
+        "vn_o_men_kr_75_04", 
+        "vn_o_men_kr_75_03", 
+        "vn_o_men_kr_75_02", 
+        "vn_o_men_kr_75_06", 
+        "vn_o_men_kr_75_05", 
+        "vn_o_men_kr_75_12", 
+        "vn_o_men_kr_75_13", 
+        "vn_o_men_kr_75_09", 
+        "vn_o_men_kr_75_23", 
+        "vn_o_men_kr_75_22"
+    };
+};
 // TODO:
-// add FANK
-// add Khmer Rouge
 // update Light armor references
 // update heavy armror references
 // Update transport and cargo helicopter references for western forces
