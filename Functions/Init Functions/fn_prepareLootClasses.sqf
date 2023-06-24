@@ -7,20 +7,13 @@ Description:
 	It is executed from the "BLWK_fnc_prepareGlobals".
 
 Parameters:
-	NONE
+    0: _fallbackWhitelist <STRING> - The BLWK_loot_whiteListMode to fallback to 
+		should the whitelist fail validation
+    1: _whitelistParamConfig <CONFIG> - The config path to the params menu option
+		that controls the whitelist mode
 
 Returns:
-	ARRAY - Format [
-		primary weapons,
-		secondary weapons,
-		launchers,
-		backpacks,
-		vests,
-		uniforms,
-		headgear,
-		items,
-		explosives
-	]
+	NOTHING
 
 Examples:
     (begin example)
@@ -33,9 +26,13 @@ Author(s):
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_prepareLootClasses";
 
+// This should run for headless and the server but not just player clients
+if ((!isServer) AND hasInterface) exitWith {};
 
-if (!isServer AND {hasInterface}) exitWith {[]};
-
+params [
+	["_fallbackWhitelistMode","ALL",[""]],
+	["_whitelistParamConfig",configNull,[configNull]]
+];
 
 /* ----------------------------------------------------------------------------
 
@@ -281,7 +278,7 @@ _publicMagazineConfigs apply {
 };
 
 
-[
+private _preparedTypeArrays = [
 	_primaryWeaponClasses,
 	_handgunWeaponClasses,
 	_launcherClasses,
@@ -291,4 +288,77 @@ _publicMagazineConfigs apply {
 	_headgearClasses,
 	_itemClasses,
 	_explosiveClasses
-]
+];
+
+private _emptyIndex = _preparedTypeArrays find [];
+private _errorMessage = "";
+switch (_emptyIndex) do {
+	case 0: {
+		_errorMessage = "There are no weapon classes (handgun, primaries, and/or launchers) loaded in the current list";
+	};
+	case 1: {
+		_errorMessage = "There are no backpack classes loaded in the current list";
+	};
+	case 2: {
+		_errorMessage = "There are no vest classes loaded in the current list";
+	};
+	case 3: {
+		_errorMessage = "There are no uniform classes loaded in the current list";
+	};
+	case 4: {
+		_errorMessage = "There are no headgear classes loaded in the current list";
+	};
+	case 5: {
+		_errorMessage = "There are no item classes loaded in the current list";
+	};
+	case 6: {
+		_errorMessage = "There are no explosive classes loaded in the current list";
+	};
+};
+
+
+if (_errorMessage isNotEqualTo "") exitWith {
+	[
+		[
+			_errorMessage,": "
+			BLWK_loot_whiteListMode,
+			", changing to fall back list: ",
+			_fallbackWhitelistMode
+		],
+		true
+	] call KISKA_fnc_log;
+
+	[
+		[
+			"There was an error changing to loot list: ",
+			BLWK_loot_whiteListMode,
+			" changing to fallback list: ",
+			_fallbackWhitelistMode
+		] joinString ""
+	] remoteExec ["KISKA_fnc_errorNotification",0];
+
+
+	if (isServer) then {
+		private _serialConfig = [_whitelistParamConfig] call KISKA_fnc_paramsMenu_serializeConfig;
+		[_serialConfig,_fallbackWhitelistMode] call KISKA_fnc_paramsMenu_paramChangedRemote;
+	};
+
+	call BLWK_fnc_prepareLootClasses;
+};
+
+
+// the headless client needs this for weapon randomization
+BLWK_loot_weaponClasses = []; // for getting all weapons into the same pool for spawning loot
+BLWK_loot_primaryWeapons = _primaryWeaponClasses; // the individual split ups are for use with BLWK_fnc_randomizeWeapons
+BLWK_loot_weaponClasses append BLWK_loot_primaryWeapons;
+BLWK_loot_handgunWeapons = _handgunWeaponClasses;
+BLWK_loot_weaponClasses append BLWK_loot_handgunWeapons;
+BLWK_loot_launchers = _launcherClasses;
+BLWK_loot_weaponClasses append BLWK_loot_launchers;
+
+BLWK_loot_backpackClasses = _backpackClasses;
+BLWK_loot_vestClasses = _vestClasses;
+BLWK_loot_uniformClasses = _uniformClasses;
+BLWK_loot_headGearClasses = _headgearClasses;
+BLWK_loot_itemClasses = _itemClasses;
+BLWK_loot_explosiveClasses = _explosiveClasses;

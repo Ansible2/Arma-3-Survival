@@ -95,72 +95,12 @@ if (isServer) then {
     BLWK_normalWaveConfigs = "true" configClasses (missionConfigFile >> "BLWK_waveTypes" >> "normalWaves");    
 };
 
-if (isServer OR {!hasInterface}) then {
+if (isServer OR (!hasInterface)) then {
     if (isServer) then {
         ["<t size = '.5'>Preparing Loot Class Vars...<br/>Please wait...</t>", 0, 0, 10, 0] remoteExec ["BIS_fnc_dynamicText", BLWK_allClientsTargetID];
     };
 
-    private _serverExit = {
-        params ["_message"];
-
-        [_message,true] remoteExecCall ["KISKA_fnc_log",0];
-		sleep 10;
-		["LootListErrorEnd"] call BIS_fnc_endMissionServer;
-    };
-
-    // loot classes
-    private _lootClasses = call BLWK_fnc_prepareLootClasses;
-    // the headless client needs this for weapon randomization
-    BLWK_loot_weaponClasses = []; // for getting all weapons into the same pool for spawning loot
-    BLWK_loot_primaryWeapons = _lootClasses select 0; // the individual split ups are for use with BLWK_fnc_randomizeWeapons
-    BLWK_loot_weaponClasses append BLWK_loot_primaryWeapons;
-    BLWK_loot_handgunWeapons = _lootClasses select 1;
-    BLWK_loot_weaponClasses append BLWK_loot_handgunWeapons;
-    BLWK_loot_launchers = _lootClasses select 2;
-    BLWK_loot_weaponClasses append BLWK_loot_launchers;
-
-    BLWK_loot_backpackClasses = _lootClasses select 3;
-    BLWK_loot_vestClasses = _lootClasses select 4;
-    BLWK_loot_uniformClasses = _lootClasses select 5;
-    BLWK_loot_headGearClasses = _lootClasses select 6;
-    BLWK_loot_itemClasses = _lootClasses select 7;
-    BLWK_loot_explosiveClasses = _lootClasses select 8;
-
-    if (isServer) then {
-        private _emptyIndex = [
-            BLWK_loot_weaponClasses,
-            BLWK_loot_backpackClasses,
-            BLWK_loot_vestClasses,
-            BLWK_loot_uniformClasses,
-            BLWK_loot_headGearClasses,
-            BLWK_loot_itemClasses,
-            BLWK_loot_explosiveClasses
-        ] find [];
-
-        switch (_emptyIndex) do {
-            case 0: {
-                ["There are no weapon classes loaded in the current list (handgun, primaries, and/or launchers), mission will be aborted"] spawn _serverExit;
-            };
-            case 1: {
-                ["There are no backpack classes loaded in the current list, mission will be aborted"] spawn _serverExit;
-            };
-            case 2: {
-                ["There are no vest classes loaded in the current list, mission will be aborted"] spawn _serverExit;
-            };
-            case 3: {
-                ["There are no uniform classes loaded in the current list, mission will be aborted"] spawn _serverExit;
-            };
-            case 4: {
-                ["There are no headgear classes loaded in the current list, mission will be aborted"] spawn _serverExit;
-            };
-            case 5: {
-                ["There are no item classes loaded in the current list, mission will be aborted"] spawn _serverExit;
-            };
-            case 6: {
-                ["There are no explosive classes loaded in the current list, mission will be aborted"] spawn _serverExit;
-            };
-        };
-    };
+    call BLWK_fnc_prepareLootClasses;
 
     // used for chaning medical items of OPTRE units (biofoam to FAKs)
     BLWK_isOptreLoaded = ["OPTRE_core"] call KISKA_fnc_ispatchLoaded;
