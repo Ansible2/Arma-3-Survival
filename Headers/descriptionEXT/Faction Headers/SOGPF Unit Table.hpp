@@ -8,15 +8,26 @@ class SOGPF_usArmy
         "vn_b_wheeled_m151_mg_03"
     };
     heavyCars[] = {
-        "vn_b_wheeled_m151_mg_04"
+        "vn_b_wheeled_m151_mg_04",
+        "vn_b_wheeled_m54_mg_01",
+        "vn_b_wheeled_m54_mg_03",
+        "vn_b_wheeled_m54_mg_02"
     };
 
     lightArmor[] = {
-        "vn_b_wheeled_m54_mg_01",
-        "vn_b_wheeled_m54_mg_03"
+        "vn_b_armor_m113_acav_04", 
+        "vn_b_armor_m113_acav_02", 
+        "vn_b_armor_m113_acav_01", 
+        "vn_b_armor_m113_acav_06", 
+        "vn_b_armor_m113_acav_03", 
+        "vn_b_armor_m113_acav_05", 
+        "vn_b_armor_m113_01", 
+        "vn_b_armor_m132_01"
     };
     heavyArmor[] = {
-        "vn_b_armor_m41_01_01"
+        "vn_b_armor_m41_01_01", 
+        "vn_b_armor_m48_01_01", 
+        "vn_b_armor_m67_01_01"
     };
 
     transportHelicopters[] = {
@@ -25,12 +36,18 @@ class SOGPF_usArmy
         "vn_b_air_uh1c_07_02",
         "vn_b_air_uh1c_02_02",
         "vn_b_air_uh1c_01_01",
-        "vn_b_air_uh1d_02_02"
+        "vn_b_air_uh1d_02_02",
+        "vn_b_air_ach47_04_01", 
+        "vn_b_air_ach47_03_01", 
+        "vn_b_air_ach47_05_01", 
+        "vn_b_air_ach47_01_01", 
+        "vn_b_air_ach47_02_01"
     };
     cargoAircraft[] = {
-        "vn_b_air_uh1d_01_02",
-        "vn_b_air_uh1d_01_01",
-        "vn_b_air_uh1d_01_03"
+        "vn_b_air_ch47_04_01", 
+        "vn_b_air_ch47_04_02", 
+        "vn_b_air_ch47_01_02", 
+        "vn_b_air_ch47_01_01"
     };
 
     casAircraft[] = {
@@ -68,28 +85,21 @@ class SOGPF_usArmy
     };
 };
 
-class SOGPF_usmc : SOGPF_usArmy
+class SOGPF_usmc_66 : SOGPF_usArmy
 {
     dependencies[] = { "VN" };
-    displayName = "S.O.G. PF - USMC";
+    displayName = "S.O.G. PF - USMC 66";
 
     heavyArmor[] = {
+        "vn_b_armor_m67_01_02", 
+        "vn_b_armor_m48_01_02", 
         "vn_b_armor_m41_01_02"
     };
     transportHelicopters[] = {
-        "vn_b_air_uh1c_07_04",
-        "vn_b_air_uh1c_02_04",
-        "vn_b_air_uh1c_01_04",
-        "vn_b_air_uh1d_02_04",
         "vn_b_air_ch34_03_01",
-        "vn_b_air_uh1c_01_05",
-        "vn_b_air_uh1d_02_05",
-        "vn_b_air_uh1c_07_05"
+        "vn_b_air_uh1e_03_04"
     };
-    cargoAircraft[] = {
-        "vn_b_air_uh1d_01_05",
-        "vn_b_air_uh1d_01_04"
-    };
+
     casAircraft[] = {
         "vn_b_air_f4b_navy_cas",
         "vn_b_air_f4b_usmc_cas"
@@ -97,6 +107,137 @@ class SOGPF_usmc : SOGPF_usArmy
     attackHelicopters[] = {
         "vn_b_air_ah1g_04_usmc",
         "vn_b_air_ah1g_09_usmc"
+    };
+
+    infantry[] = {
+        "vn_b_men_usmc_66_02", 
+        "vn_b_men_usmc_66_12", 
+        "vn_b_men_usmc_66_19", 
+        "vn_b_men_usmc_66_03", 
+        "vn_b_men_usmc_66_13", 
+        "vn_b_men_usmc_66_05", 
+        "vn_b_men_usmc_66_04", 
+        "vn_b_men_usmc_66_14", 
+        "vn_b_men_usmc_66_07", 
+        "vn_b_men_usmc_66_06", 
+        "vn_b_men_usmc_66_01", 
+        "vn_b_men_usmc_66_17", 
+        "vn_b_men_usmc_66_09", 
+        "vn_b_men_usmc_66_08", 
+        "vn_b_men_usmc_66_15", 
+        "vn_b_men_usmc_66_16", 
+        "vn_b_men_usmc_66_18", 
+        "vn_b_men_usmc_66_21", 
+        "vn_b_men_usmc_66_10", 
+        "vn_b_men_usmc_66_11"
+    };
+};
+
+class SOGPF_usmc_68 : SOGPF_usmc_66
+{
+    displayName = "S.O.G. PF - USMC 68";
+
+    infantry[] = {
+        "vn_b_men_usmc_68_02", 
+        "vn_b_men_usmc_68_12", 
+        "vn_b_men_usmc_68_19", 
+        "vn_b_men_usmc_68_03", 
+        "vn_b_men_usmc_68_13", 
+        "vn_b_men_usmc_68_05", 
+        "vn_b_men_usmc_68_04", 
+        "vn_b_men_usmc_68_14", 
+        "vn_b_men_usmc_68_07", 
+        "vn_b_men_usmc_68_06", 
+        "vn_b_men_usmc_68_01", 
+        "vn_b_men_usmc_68_17", 
+        "vn_b_men_usmc_68_09", 
+        "vn_b_men_usmc_68_08", 
+        "vn_b_men_usmc_68_15", 
+        "vn_b_men_usmc_68_16", 
+        "vn_b_men_usmc_68_18", 
+        "vn_b_men_usmc_68_21", 
+        "vn_b_men_usmc_68_10", 
+        "vn_b_men_usmc_68_11"
+    };
+};
+
+class SOGPF_usmc_70 : SOGPF_usmc_66
+{
+    displayName = "S.O.G. PF - USMC 70";
+
+    infantry[] = {
+        "vn_b_men_usmc_70_02", 
+        "vn_b_men_usmc_70_20", 
+        "vn_b_men_usmc_70_12", 
+        "vn_b_men_usmc_70_19", 
+        "vn_b_men_usmc_70_03", 
+        "vn_b_men_usmc_70_13", 
+        "vn_b_men_usmc_70_05", 
+        "vn_b_men_usmc_70_04", 
+        "vn_b_men_usmc_70_14", 
+        "vn_b_men_usmc_70_07", 
+        "vn_b_men_usmc_70_06", 
+        "vn_b_men_usmc_70_01", 
+        "vn_b_men_usmc_70_17", 
+        "vn_b_men_usmc_70_09", 
+        "vn_b_men_usmc_70_08", 
+        "vn_b_men_usmc_70_15", 
+        "vn_b_men_usmc_70_16", 
+        "vn_b_men_usmc_70_18", 
+        "vn_b_men_usmc_70_21", 
+        "vn_b_men_usmc_70_10", 
+        "vn_b_men_usmc_70_11"
+    };
+};
+
+class SOGPF_usmc_force_recon_66 : SOGPF_usmc_66
+{
+    displayName = "S.O.G. PF - USMC Force Recon 66";
+
+    infantry[] = {
+        "vn_b_men_usmc_recon_66_02", 
+        "vn_b_men_usmc_recon_66_03", 
+        "vn_b_men_usmc_recon_66_09", 
+        "vn_b_men_usmc_recon_66_05", 
+        "vn_b_men_usmc_recon_66_04", 
+        "vn_b_men_usmc_recon_66_06", 
+        "vn_b_men_usmc_recon_66_07", 
+        "vn_b_men_usmc_recon_66_08", 
+        "vn_b_men_usmc_recon_66_01"
+    };
+};
+
+class SOGPF_usmc_force_recon_68 : SOGPF_usmc_68
+{
+    displayName = "S.O.G. PF - USMC Force Recon 68";
+
+    infantry[] = {
+        "vn_b_men_usmc_recon_68_02", 
+        "vn_b_men_usmc_recon_68_03", 
+        "vn_b_men_usmc_recon_68_09", 
+        "vn_b_men_usmc_recon_68_05", 
+        "vn_b_men_usmc_recon_68_04", 
+        "vn_b_men_usmc_recon_68_06", 
+        "vn_b_men_usmc_recon_68_07", 
+        "vn_b_men_usmc_recon_68_08", 
+        "vn_b_men_usmc_recon_68_01"
+    };
+};
+
+class SOGPF_usmc_force_recon_70 : SOGPF_usmc_70
+{
+    displayName = "S.O.G. PF - USMC Force Recon 70";
+
+    infantry[] = {
+        "vn_b_men_usmc_recon_70_01", 
+        "vn_b_men_usmc_recon_70_02", 
+        "vn_b_men_usmc_recon_70_03", 
+        "vn_b_men_usmc_recon_70_09", 
+        "vn_b_men_usmc_recon_70_05", 
+        "vn_b_men_usmc_recon_70_04", 
+        "vn_b_men_usmc_recon_70_06", 
+        "vn_b_men_usmc_recon_70_07", 
+        "vn_b_men_usmc_recon_70_08"
     };
 };
 
@@ -239,6 +380,29 @@ class SOGPF_macvSOG : SOGPF_usArmy
     };
 };
 
+class SOGPF_macvSOG_NAD : SOGPF_macvSOG
+{
+    displayName = "S.O.G. PF - MACV-SOG NAD";
+
+    infantry[] = {
+        "vn_b_men_seal_23", 
+        "vn_b_men_seal_43", 
+        "vn_b_men_seal_47", 
+        "vn_b_men_seal_48", 
+        "vn_b_men_seal_49", 
+        "vn_b_men_seal_25", 
+        "vn_b_men_seal_50", 
+        "vn_b_men_seal_51", 
+        "vn_b_men_seal_26", 
+        "vn_b_men_seal_45", 
+        "vn_b_men_seal_46", 
+        "vn_b_men_seal_24", 
+        "vn_b_men_seal_42", 
+        "vn_b_men_seal_27", 
+        "vn_b_men_seal_44"
+    };
+};
+
 class SOGPF_lrrp : SOGPF_usArmy
 {
     dependencies[] = { "VN" };
@@ -303,10 +467,15 @@ class SOGPF_NVA_dacCong
         "vn_o_wheeled_btr40_mg_02"
     };
     lightArmor[] = {
+        "vn_o_armor_btr50pk_01_nva65", 
+        "vn_o_armor_btr50pk_02_nva65", 
+        "vn_o_armor_pt76a_01_nva65", 
+        "vn_o_armor_pt76b_01_nva65", 
         "vn_o_armor_type63_01_nva65"
     };
     heavyArmor[] = {
-        "vn_o_armor_m41_01"
+        "vn_o_armor_ot54_01_nva65", 
+        "vn_o_armor_t54b_01_nva65"
     };
     transportHelicopters[] = {
         "vn_o_air_mi2_01_01",
@@ -317,7 +486,8 @@ class SOGPF_NVA_dacCong
         "vn_o_air_mi2_01_02"
     };
     casAircraft[] = {
-        "vn_o_air_mig19_cas"
+        "vn_o_air_mig19_cas", 
+        "vn_o_air_mig21_cas"
     };
     attackHelicopters[] = {
         "vn_b_air_ah1g_05_usmc"
@@ -395,7 +565,52 @@ class SOGPF_NVA_inf_65 : SOGPF_NVA_dacCong
     };
 };
 
-class SOGPF_NVA_field : SOGPF_NVA_dacCong
+class SOGPF_NVA : SOGPF_NVA_dacCong
+{
+    dependencies[] = { "VN" };
+    displayName = "S.O.G. PF - NVA";
+
+    lightArmor[] = {
+        "vn_o_armor_m125_01", 
+        "vn_o_armor_m113_acav_03", 
+        "vn_o_armor_m113_acav_01", 
+        "vn_o_armor_btr50pk_01", 
+        "vn_o_armor_btr50pk_02", 
+        "vn_o_armor_pt76a_01", 
+        "vn_o_armor_pt76b_01", 
+        "vn_o_armor_type63_01"
+    };
+
+    heavyArmor[] = {
+        "vn_o_armor_m41_01", 
+        "vn_o_armor_ot54_01", 
+        "vn_o_armor_t54b_01"
+    };
+
+    infantry[] = {
+        "vn_o_men_nva_43",
+        "vn_o_men_nva_14",
+        "vn_o_men_nva_32",
+        "vn_o_men_nva_07",
+        "vn_o_men_nva_11",
+        "vn_o_men_nva_10",
+        "vn_o_men_nva_08",
+        "vn_o_men_nva_30",
+        "vn_o_men_nva_29",
+        "vn_o_men_nva_31",
+        "vn_o_men_nva_01",
+        "vn_o_men_nva_06",
+        "vn_o_men_nva_03",
+        "vn_o_men_nva_02",
+        "vn_o_men_nva_05",
+        "vn_o_men_nva_04",
+        "vn_o_men_nva_13",
+        "vn_o_men_nva_09",
+        "vn_o_men_nva_12"
+    };
+};
+
+class SOGPF_NVA_field : SOGPF_NVA
 {
     dependencies[] = { "VN" };
     displayName = "S.O.G. PF - NVA (Field)";
@@ -420,34 +635,6 @@ class SOGPF_NVA_field : SOGPF_NVA_dacCong
         "vn_o_men_nva_27",
         "vn_o_men_nva_23",
         "vn_o_men_nva_26"
-    };
-};
-
-class SOGPF_NVA : SOGPF_NVA_dacCong
-{
-    dependencies[] = { "VN" };
-    displayName = "S.O.G. PF - NVA";
-
-    infantry[] = {
-        "vn_o_men_nva_43",
-        "vn_o_men_nva_14",
-        "vn_o_men_nva_32",
-        "vn_o_men_nva_07",
-        "vn_o_men_nva_11",
-        "vn_o_men_nva_10",
-        "vn_o_men_nva_08",
-        "vn_o_men_nva_30",
-        "vn_o_men_nva_29",
-        "vn_o_men_nva_31",
-        "vn_o_men_nva_01",
-        "vn_o_men_nva_06",
-        "vn_o_men_nva_03",
-        "vn_o_men_nva_02",
-        "vn_o_men_nva_05",
-        "vn_o_men_nva_04",
-        "vn_o_men_nva_13",
-        "vn_o_men_nva_09",
-        "vn_o_men_nva_12"
     };
 };
 
@@ -551,7 +738,7 @@ class SOGPF_VC_local : SOGPF_VPN_marines
     };
 };
 
-class SOGPF_VC_main : SOGPF_VPN_marines
+class SOGPF_VC_main : SOGPF_NVA
 {
     dependencies[] = { "VN" };
     displayName = "S.O.G. PF - Viet Cong (Main Force)";
@@ -1187,3 +1374,11 @@ class SOGPF_PATHET_LAO : SOGPF_NVA_field
         "vn_o_armor_pt76a_01_pl"
     };
 };
+
+
+// TODO:
+// add FANK
+// add Khmer Rouge
+// update Light armor references
+// update heavy armror references
+// Update transport and cargo helicopter references for western forces
