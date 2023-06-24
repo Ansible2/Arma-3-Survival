@@ -90,7 +90,7 @@ if (isNil{localNamespace getVariable PARAMS_CURRENT_PROFILE_VAR_STR}) then {
 
         [] spawn {
             disableUserInput true;
-            for "_i" from 1 to 5 do {
+            for "_i" from 1 to 2 do {
                 ["Please wait..."] call KISKA_fnc_paramsMenu_logMessage;
                 uisleep 1; // if in briefing menu, regular sleep is frozen
             };
