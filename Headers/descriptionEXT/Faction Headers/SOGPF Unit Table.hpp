@@ -241,7 +241,7 @@ class SOGPF_usmc_force_recon_70 : SOGPF_usmc_70
     };
 };
 
-class SOGPF_SEAL_det_bravo : SOGPF_usmc
+class SOGPF_SEAL_det_bravo : SOGPF_usmc_66
 {
     dependencies[] = { "VN" };
     displayName = "S.O.G. PF - SEALs Detachment Bravo";
@@ -260,7 +260,7 @@ class SOGPF_SEAL_det_bravo : SOGPF_usmc
     };
 };
 
-class SOGPF_SEAL_team : SOGPF_usmc
+class SOGPF_SEAL_team : SOGPF_usmc_66
 {
     dependencies[] = { "VN" };
     displayName = "S.O.G. PF - SEAL Team";
@@ -317,7 +317,7 @@ class SOGPF_mikeForce : SOGPF_usArmy
     };
 };
 
-class SOGPF_usNavy : SOGPF_usmc
+class SOGPF_usNavy : SOGPF_usmc_66
 {
     dependencies[] = { "VN" };
     displayName = "S.O.G. PF - US Navy";
@@ -986,7 +986,7 @@ class SOGPF_ROK_army_68 : SOGPF_ROK_army_65
     };
 };
 
-class SOGPF_ROK_marines_65 : SOGPF_usmc
+class SOGPF_ROK_marines_65 : SOGPF_usmc_66
 {
     displayName = "S.O.G. PF - Republic Of Korea Marines (65)";
     infantry[] = {
