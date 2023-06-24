@@ -700,7 +700,8 @@ class SOGPF_VC_local : SOGPF_VPN_marines
     displayName = "S.O.G. PF - Viet Cong (Local)";
 
     heavyArmor[] = {
-        "vn_o_armor_m41_02_vcmf"
+        "vn_o_armor_ot54_01_nva65", 
+        "vn_o_armor_t54b_01_nva65"
     };
     infantry[] = {
         "vn_o_men_vc_local_14",
@@ -798,18 +799,31 @@ class SOGPF_ARVN : SOGPF_usArmy
         "vn_i_wheeled_m151_mg_01_mp"
     };
     lightArmor[] = {
+        "vn_i_armor_m113_acav_04", 
+        "vn_i_armor_m113_acav_02", 
+        "vn_i_armor_m113_acav_01", 
+        "vn_i_armor_m113_acav_06", 
+        "vn_i_armor_m113_acav_03", 
+        "vn_i_armor_m113_acav_05", 
+        "vn_i_armor_m113_01", 
+        "vn_i_armor_m132_01",
         "vn_i_armor_type63_01"
     };
     heavyArmor[] = {
-        "vn_i_armor_m41_01"
+        "vn_i_armor_m41_01", 
+        "vn_i_armor_m48_01_01", 
+        "vn_i_armor_m67_01_01"
     };
     cargoAircraft[] = {
-        "vn_i_air_uh1d_01_01"
+        "vn_i_air_ch47_04_01", 
+        "vn_i_air_ch47_01_01"
     };
     transportHelicopters[] = {
-        "vn_i_air_ch34_02_01",
+        "vn_i_air_ch34_02_02",
         "vn_i_air_uh1d_02_01",
-        "vn_i_air_uh1c_07_01"
+        "vn_i_air_uh1c_07_01",
+        "vn_i_air_ch47_04_01", 
+        "vn_i_air_ch47_01_01"
     };
 
     infantry[] = {
@@ -1531,7 +1545,3 @@ class SOGPF_khmer_rouge_75 : SOGPF_khmer_rouge_70
         "vn_o_men_kr_75_22"
     };
 };
-// TODO:
-// update Light armor references
-// update heavy armror references
-// Update transport and cargo helicopter references for western forces
