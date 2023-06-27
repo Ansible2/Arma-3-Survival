@@ -7,20 +7,14 @@ Description:
 	It is executed from the "BLWK_fnc_prepareGlobals".
 
 Parameters:
-	NONE
+    0: _currentWhitelist <STRING> - The whitelist mode currently
+    1: _fallbackWhitelist <STRING> - The _currentWhitelist to fallback to 
+		should the whitelist fail validation
+	2: _whitelistParamConfig <CONFIG> - the config path to the parameter that controls the
+		loot whitelist mode
 
 Returns:
-	ARRAY - Format [
-		primary weapons,
-		secondary weapons,
-		launchers,
-		backpacks,
-		vests,
-		uniforms,
-		headgear,
-		items,
-		explosives
-	]
+	NOTHING
 
 Examples:
     (begin example)
@@ -33,9 +27,22 @@ Author(s):
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_prepareLootClasses";
 
+#define DEFAULT_CONFIFG missionConfigFile >> "KISKA_missionParams" >> "Loot" >> "_currentWhitelist"
+#define DEFAULT_WHITELIST "ALL"
 
-if (!isServer AND {hasInterface}) exitWith {[]};
+// This should run for headless and the server but not player clients
+if ((!isServer) AND hasInterface) exitWith {};
 
+
+params [
+	["_currentWhitelist",DEFAULT_WHITELIST,[""]],
+	["_fallbackWhitelist",DEFAULT_WHITELIST,[""]],
+	["_whitelistParamConfig",DEFAULT_CONFIFG,[configNull]]
+];
+
+if (_currentWhitelist == _fallbackWhitelist) then {
+	_fallbackWhitelist = DEFAULT_WHITELIST
+};
 
 /* ----------------------------------------------------------------------------
 
@@ -61,6 +68,7 @@ if (_masterBlacklist isNotEqualTo []) then {
 	BLWK_lootBlacklist = [_masterBlacklist] call _fn_toLowerArray;
 };
 
+
 /* ----------------------------------------------------------------------------
 	Master Whitelists
 ---------------------------------------------------------------------------- */
@@ -78,68 +86,115 @@ private _explosiveClasses = getArray(_masterListConfig >> "lootWhitelist_explosi
 
 
 private _customLootListConfig = configNull;
-private _lootCondition_weapons = {true};
-private _lootCondition_clothes = {true};
-private _lootCondition_magazines = {true};
+private _lootCondition_weapons = { true };
+private _lootCondition_clothes = { true };
+private _lootCondition_magazines = { true };
 private _checkForDuplicates = false;
 // if whitelist is Not set to off
-if (BLWK_loot_whiteListMode != "ALL") then {
+
+private _exitToFallback = false;
+if (_currentWhitelist != DEFAULT_WHITELIST) then {
 	private _lootListNames = call BLWK_fnc_KISKAParams_populateLootWhitelists;
-	private _indexOfList = _lootListNames find BLWK_loot_whiteListMode;
+	private _indexOfList = _lootListNames find _currentWhitelist;
+	private _customListNotFound = _indexOfList isEqualTo -1;
+	if (_customListNotFound) exitWith { _exitToFallback = true };
 
-	if (_indexOfList isNotEqualTo -1) then {
-		_customLootListConfig = (localNamespace getVariable "BLWK_lootListConfigs") select _indexOfList;
-		[[_customLootListConfig],false] call KISKA_fnc_log;
-
-		private _useCustomList = true;
-		private _patches = getArray(_customLootListConfig >> "patches");
-		if (_patches isNotEqualTo []) then {
-			// find false entry e.g. not loaded patch
-			private _notLoadedIndex = _patches findIf {!([_x] call KISKA_fnc_isPatchLoaded)};
-			if (_notLoadedIndex isNotEqualTo -1) then {
-				private _patchName = _patches select _notLoadedIndex;
-				[["Found that patch ",_patchName," was not loaded for loot list. Default list will be used"],true] call KISKA_fnc_log;
-				_useCustomList = false;
-			};
-
+	_customLootListConfig = (localNamespace getVariable "BLWK_lootListConfigs") select _indexOfList;
+	private _patches = getArray(_customLootListConfig >> "patches");
+	private _hasPatches = _patches isNotEqualTo [];
+	if (_hasPatches) then {
+		// find false entry e.g. not loaded patch
+		private _notLoadedIndex = _patches findIf { !([_x] call KISKA_fnc_isPatchLoaded) };
+		private _missingPatch = _notLoadedIndex isNotEqualTo -1;
+		if (_missingPatch) then {
+			private _patchName = _patches select _notLoadedIndex;
+			[["Found that patch ",_patchName," was not loaded for loot list. Fallback list will be used..."],true] call KISKA_fnc_log;		
+			_exitToFallback = true;
 		};
+	};
 
 
-		if !(_useCustomList) exitWith {};
+	if (_exitToFallback) exitWith {};
 
 
-		_checkForDuplicates = [_customLootListConfig >> "checkForDuplicates"] call BIS_fnc_getCfgDataBool;
+	_checkForDuplicates = [_customLootListConfig >> "checkForDuplicates"] call BIS_fnc_getCfgDataBool;
 
-		_primaryWeaponClasses append (getArray(_customLootListConfig >> "lootWhitelist_primaries"));
-		_handgunWeaponClasses append (getArray(_customLootListConfig >> "lootWhitelist_handguns"));
-		_launcherClasses append (getArray(_customLootListConfig >> "lootWhitelist_launchers"));
-		_backpackClasses append (getArray(_customLootListConfig >> "lootWhitelist_backpacks"));
-		_vestClasses append (getArray(_customLootListConfig >> "lootWhitelist_vests"));
-		_uniformClasses append (getArray(_customLootListConfig >> "lootWhitelist_uniforms"));
-		_headgearClasses append (getArray(_customLootListConfig >> "lootWhitelist_headgear"));
-		_itemClasses append (getArray(_customLootListConfig >> "lootWhitelist_items"));
-		_explosiveClasses append (getArray(_customLootListConfig >> "lootWhitelist_explosives"));
-		BLWK_lootBlacklist append (getArray(_customLootListConfig >> "lootBlackList"));
+	[
+		[_primaryWeaponClasses,"lootWhitelist_primaries"],
+		[_handgunWeaponClasses,"lootWhitelist_handguns"],
+		[_launcherClasses,"lootWhitelist_launchers"],
+		[_backpackClasses,"lootWhitelist_backpacks"],
+		[_vestClasses,"lootWhitelist_vests"],
+		[_uniformClasses,"lootWhitelist_uniforms"],
+		[_headgearClasses,"lootWhitelist_headgear"],
+		[_itemClasses,"lootWhitelist_items"],
+		[_explosiveClasses,"lootWhitelist_explosives"],
+		[BLWK_lootBlacklist,"lootBlackList"]
+	] apply {
+		_x params ["_arrayToAppend","_configName"];
+		_arrayToAppend append (getArray(_customLootListConfig >> _configName));
+	};
 
+	private _conditionWeapons = getText(_customLootListConfig >> "conditionWeapons");
+	if (_conditionWeapons isNotEqualTo "") then {
+		_lootCondition_weapons = compileFinal _conditionWeapons;
+	};
 
-		private _conditionWeapons = getText(_customLootListConfig >> "conditionWeapons");
-		if (_conditionWeapons isNotEqualTo "") then {
-			[_conditionWeapons,false] call KISKA_fnc_log;
-			_lootCondition_weapons = compileFinal _conditionWeapons;
-		};
+	private _conditionClothes = getText(_customLootListConfig >> "conditionClothes");
+	if (_conditionClothes isNotEqualTo "") then {
+		_lootCondition_clothes = compileFinal _conditionClothes;
+	};
 
-		private _conditionClothes = getText(_customLootListConfig >> "conditionClothes");
-		if (_conditionClothes isNotEqualTo "") then {
-			_lootCondition_clothes = compileFinal _conditionClothes;
-		};
-
-		private _conditionMagazines = getText(_customLootListConfig >> "conditionMagazines");
-		if (_conditionMagazines isNotEqualTo "") then {
-			_lootCondition_magazines = compileFinal _conditionMagazines;
-		};
+	private _conditionMagazines = getText(_customLootListConfig >> "conditionMagazines");
+	if (_conditionMagazines isNotEqualTo "") then {
+		_lootCondition_magazines = compileFinal _conditionMagazines;
 	};
 };
 
+
+private _fn_exitToFallBack = {
+	params [
+		["_logMessage",""]
+	];
+
+	if (_logMessage isNotEqualTo "") then {
+		[
+			[
+				_logMessage,": ",
+				_currentWhitelist,
+				", changing to fall back list: ",
+				_fallbackWhitelist
+			],
+			true
+		] call KISKA_fnc_log;
+	};
+
+	[
+		[
+			"There was an error changing to loot list: ",
+			_currentWhitelist,
+			". Changing to fallback list: ",
+			_fallbackWhitelist
+		] joinString "",
+		8
+	] remoteExec ["KISKA_fnc_errorNotification",0];
+
+	if (isServer) then {
+		private _serialConfig = [_whitelistParamConfig] call KISKA_fnc_paramsMenu_serializeConfig;
+		[_serialConfig,_fallbackWhitelist] call KISKA_fnc_paramsMenu_paramChangedRemote;
+	};
+
+	[_fallbackWhitelist] spawn {
+		params ["_fallbackWhitelist"];
+		waitUntil {
+			sleep 1;
+			missionNamespace getVariable ["_currentWhitelist","ALL"] == _fallbackWhitelist;
+		};
+		call BLWK_fnc_prepareLootClasses;
+	};
+};
+
+if (_exitToFallback) exitWith _fn_exitToFallBack;
 
 
 /* ----------------------------------------------------------------------------
@@ -249,39 +304,23 @@ _itemClasses = [_itemClasses] call _fn_toLowerArray;
 _explosiveClasses = [_explosiveClasses] call _fn_toLowerArray;
 
 
-private _weaponConfig = configFile >> "CfgWeapons";
-private _publicWeaponConfigs = "getNumber (_x >> 'scope') isEqualTo 2" configClasses _weaponConfig;
-_publicWeaponConfigs apply {
-	_tempClass = configName _x;
-	if ([_tempClass,_weaponConfig] call _lootCondition_weapons) then {
-		call _fn_sortType;
-	};
-};
-
-
-private _vehicleConfig = configFile >> "CfgVehicles";
-// things such as vests and backpacks are located in CfgVehicles
-private _publicVehicleConfigs = "getNumber (_x >> 'scope') isEqualTo 2" configClasses _vehicleConfig;
-_publicVehicleConfigs apply {
-	_tempClass = configName _x;
-	if ([_tempClass,_vehicleConfig] call _lootCondition_clothes) then {
-		call _fn_sortType;
-	};
-};
-
-
-private _magazineConfig = configFile >> "CfgMagazines";
-// for mags and throwable explosives
-private _publicMagazineConfigs = "getNumber (_x >> 'scope') isEqualTo 2" configClasses _magazineConfig;
-_publicMagazineConfigs apply {
-	_tempClass = configName _x;
-	if ([_tempClass,_magazineConfig] call _lootCondition_magazines) then {
-		call _fn_sortType;
-	};
-};
-
-
 [
+	[configFile >> "CfgWeapons",_lootCondition_weapons],
+	[configFile >> "CfgVehicles",_lootCondition_clothes],
+	[configFile >> "CfgMagazines",_lootCondition_magazines]
+] apply {
+	_x params ["_config","_conditionToAdd"];
+
+	private _publicConfigs = "getNumber (_x >> 'scope') isEqualTo 2" configClasses _config;
+	_publicConfigs apply {
+		_tempClass = configName _x;
+		if ([_tempClass,_config] call _conditionToAdd) then {
+			call _fn_sortType;
+		};
+	};
+};
+
+private _preparedTypeArrays = [
 	_primaryWeaponClasses,
 	_handgunWeaponClasses,
 	_launcherClasses,
@@ -291,4 +330,55 @@ _publicMagazineConfigs apply {
 	_headgearClasses,
 	_itemClasses,
 	_explosiveClasses
-]
+];
+
+private _emptyIndex = _preparedTypeArrays find [];
+private _classSetIsEmpty = _emptyIndex isNotEqualTo -1;
+if (_classSetIsEmpty) exitWith {
+	private _errorMessage = "";
+	switch (_emptyIndex) do {
+		case 0: {
+			_errorMessage = "There are no weapon classes (handgun, primaries, and/or launchers) loaded in the current list";
+		};
+		case 1: {
+			_errorMessage = "There are no backpack classes loaded in the current list";
+		};
+		case 2: {
+			_errorMessage = "There are no vest classes loaded in the current list";
+		};
+		case 3: {
+			_errorMessage = "There are no uniform classes loaded in the current list";
+		};
+		case 4: {
+			_errorMessage = "There are no headgear classes loaded in the current list";
+		};
+		case 5: {
+			_errorMessage = "There are no item classes loaded in the current list";
+		};
+		case 6: {
+			_errorMessage = "There are no explosive classes loaded in the current list";
+		};
+	};
+
+	[_errorMessage] call _fn_exitToFallBack;
+};
+
+
+// the headless client needs this for weapon randomization
+BLWK_loot_weaponClasses = []; // for getting all weapons into the same pool for spawning loot
+BLWK_loot_primaryWeapons = _primaryWeaponClasses; // the individual split ups are for use with BLWK_fnc_randomizeWeapons
+BLWK_loot_weaponClasses append BLWK_loot_primaryWeapons;
+BLWK_loot_handgunWeapons = _handgunWeaponClasses;
+BLWK_loot_weaponClasses append BLWK_loot_handgunWeapons;
+BLWK_loot_launchers = _launcherClasses;
+BLWK_loot_weaponClasses append BLWK_loot_launchers;
+
+BLWK_loot_backpackClasses = _backpackClasses;
+BLWK_loot_vestClasses = _vestClasses;
+BLWK_loot_uniformClasses = _uniformClasses;
+BLWK_loot_headGearClasses = _headgearClasses;
+BLWK_loot_itemClasses = _itemClasses;
+BLWK_loot_explosiveClasses = _explosiveClasses;
+
+
+nil
