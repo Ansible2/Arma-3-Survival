@@ -160,7 +160,7 @@ private _fn_exitToFallBack = {
 	if (_logMessage isNotEqualTo "") then {
 		[
 			[
-				_errorMessage,": ",
+				_logMessage,": ",
 				_currentWhitelist,
 				", changing to fall back list: ",
 				_fallbackWhitelist
@@ -333,10 +333,8 @@ private _preparedTypeArrays = [
 ];
 
 private _emptyIndex = _preparedTypeArrays find [];
-
-
-
-if (_errorMessage isNotEqualTo "") exitWith {
+private _classSetIsEmpty = _emptyIndex isNotEqualTo -1;
+if (_classSetIsEmpty) exitWith {
 	private _errorMessage = "";
 	switch (_emptyIndex) do {
 		case 0: {
