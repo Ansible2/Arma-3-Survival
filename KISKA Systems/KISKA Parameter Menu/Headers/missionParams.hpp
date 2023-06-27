@@ -271,7 +271,8 @@ class KISKA_missionParams
 			title = "Loot Whitelist Mode";
 			tooltip = "Pick a configured loot list to determine what weapons can spawn on the ground.";
 			populationScript = "call BLWK_fnc_KISKAParams_populateLootWhitelists";
-			onChanged = "[_this select 3,_this select 2] call BLWK_fnc_prepareLootClasses";
+			initScript = "_this call BLWK_fnc_prepareLootClasses";
+			onChanged = "_this call BLWK_fnc_prepareLootClasses";
 			default = "ALL";
 		};
 		class BLWK_loot_cityDistribution : comboParamBase

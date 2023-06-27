@@ -96,11 +96,11 @@ if (isServer) then {
 };
 
 if (isServer OR (!hasInterface)) then {
-    if (isServer) then {
-        ["<t size = '.5'>Preparing Loot Class Vars...<br/>Please wait...</t>", 0, 0, 10, 0] remoteExec ["BIS_fnc_dynamicText", BLWK_allClientsTargetID];
-    };
+    // if (isServer) then {
+    //     ["<t size = '.5'>Preparing Loot Class Vars...<br/>Please wait...</t>", 0, 0, 10, 0] remoteExec ["BIS_fnc_dynamicText", BLWK_allClientsTargetID];
+    // };
 
-    call BLWK_fnc_prepareLootClasses;
+    // call BLWK_fnc_prepareLootClasses;
 
     // used for chaning medical items of OPTRE units (biofoam to FAKs)
     BLWK_isOptreLoaded = ["OPTRE_core"] call KISKA_fnc_ispatchLoaded;
