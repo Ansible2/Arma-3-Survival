@@ -37,12 +37,28 @@ Author(s):
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_aircraftGunner";
 
-params ["_vehicleClass","_loiterHeight","_loiterRadius","_defaultVehicleType","_globalUseVarString"];
+#define VOLUME_WHEN_IN_VEHICLE 0.25
+
+params [
+	"_vehicleClass",
+	"_loiterHeight",
+	"_loiterRadius",
+	"_defaultVehicleType",
+	"_globalUseVarString"
+];
 
 private _turretsWithWeapons = [_vehicleClass] call KISKA_fnc_classTurretsWithGuns;
 // go to default aircraft type if no suitable turrets are found
 if (_turretsWithWeapons isEqualTo []) then {
-	[[_vehicleClass," : does not meet type standards to be used, moving to default type: ",_defaultVehicleType],true] call KISKA_fnc_log;
+	[
+		[
+			_vehicleClass,
+		" : does not meet type standards to be used, moving to default type: ",
+		_defaultVehicleType
+		],
+		true
+	] call KISKA_fnc_log;
+
 	_vehicleClass = _defaultVehicleType;
 	_turretsWithWeapons = [_defaultVehicleType] call KISKA_fnc_classTurretsWithGuns;
 };
@@ -54,6 +70,7 @@ _spawnPosition set [2,_loiterHeight];
 private _vehicleArray = [_spawnPosition,0,_vehicleClass,BLUFOR] call BIS_fnc_spawnVehicle;
 private _vehicle = _vehicleArray select 0;
 _vehicle allowDamage false;
+
 // clear out vehicle cargo
 clearBackpackCargoGlobal _vehicle;
 clearWeaponCargoGlobal _vehicle;
@@ -76,16 +93,27 @@ _vehicleCrew apply {
 
 private _loiterDirection = "CIRCLE_L";
 
-// handle cases where helicopter has dominant turret on right side, helicopter needs to loiter in a clockwise fashion
-private _mainTurretWeaponsArray = getArray(configFile >> "CfgVehicles" >> _vehicleClass >> "Turrets" >> "MainTurret" >> "Weapons");
-if (count _mainTurretWeaponsArray > 0) then {
+// handle cases where helicopter has dominant turret on right side, 
+// helicopter needs to loiter in a clockwise fashion
+private _mainTurretWeaponsArray = getArray(
+	configFile >> "CfgVehicles" >> _vehicleClass >> 
+	"Turrets" >> "MainTurret" >> "Weapons"
+);
+if ((count _mainTurretWeaponsArray) > 0) then {
 
 	private _mainTurretWeapon = _mainTurretWeaponsArray select 0;
 	private _mainTurretDir = _vehicle weaponDirection _mainTurretWeapon;
 	private _mainTurretRelativeDir = (_vehicle vectorWorldToModel _mainTurretDir) call CBAP_fnc_vectDir;
 
-	if (_mainTurretRelativeDir >= 0 AND {_mainTurretRelativeDir <= 180}) then {
-		[["Found that vehicle class ",_vehicleClass," met standards to have a loiter of clockwise"],false] call KISKA_fnc_log;
+	if (_mainTurretRelativeDir >= 0 AND (_mainTurretRelativeDir <= 180)) then {
+		[
+			[
+				"Found that vehicle class ",
+				_vehicleClass,
+				" met standards to have a loiter of clockwise"
+			],
+			false
+		] call KISKA_fnc_log;
 		_loiterDirection = "CIRCLE";
 	};
 };
@@ -133,10 +161,9 @@ BLWK_enforceArea = false;
 player allowDamage false;
 player moveInTurret [_vehicle,_turretsWithWeapons select 0];
 
-// store volume for reset
-localNamespace setVariable ["BLWK_soundVolume",soundVolume];
 // turrets are stupid loud
-[] spawn {3 fadeSound 0.25};
+localNamespace setVariable ["BLWK_soundVolume",soundVolume];
+[] spawn {3 fadeSound VOLUME_WHEN_IN_VEHICLE};
 
 // keep player from ejecting or switching seats with vanilla actions
 _vehicle lock true;
@@ -154,16 +181,14 @@ missionNamespace setVariable [_globalUseVarString,true,true];
 	Create actions to switch turrets
 ---------------------------------------------------------------------------- */
 private _turretSwitchActions = [];
-private ["_turretAction_temp","_turretMagazines_temp","_turretPath_temp"];
 {
-	_turretPath_temp = _x;
-
-	_turretAction_temp = [
+	private _turretPath = _x;
+	private _turretAction = [
 		player,
 		format ["<t color='#3c77ba'>Switch To Turret %1</t>",_forEachIndex + 1],
 		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
 		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
-		["!(((objectParent player) turretUnit ",str _turretPath_temp,") isEqualTo player)"] joinString "", // check if units current turret is the stored one, don't show if it is
+		["!(((objectParent player) turretUnit ",str _turretPath,") isEqualTo player)"] joinString "", // check if units current turret is the stored one, don't show if it is
 		"true",
 		{},
 		{},
@@ -173,7 +198,7 @@ private ["_turretAction_temp","_turretMagazines_temp","_turretPath_temp"];
 			_caller moveInTurret [(_arguments select 0),_arguments select 1];
 		},
 		{},
-		[_vehicle,_turretPath_temp],
+		[_vehicle,_turretPath],
 		0.5,
 		1,
 		false,
@@ -181,12 +206,12 @@ private ["_turretAction_temp","_turretMagazines_temp","_turretPath_temp"];
 		false
 	] call BIS_fnc_holdActionAdd;
 
-	_turretSwitchActions pushBack _turretAction_temp;
+	_turretSwitchActions pushBack _turretAction;
 
 	// give turrets a bit more ammo
-	_turretMagazines_temp = _vehicle magazinesTurret _turretPath_temp;
-	_turretMagazines_temp apply {
-		_vehicle addMagazineTurret [_x,_turretPath_temp];
+	private _turretMagazines = _vehicle magazinesTurret _turretPath;
+	_turretMagazines apply {
+		_vehicle addMagazineTurret [_x,_turretPath];
 	};
 } forEach _turretsWithWeapons;
 
@@ -270,13 +295,22 @@ private _exitAction = [
 /* ----------------------------------------------------------------------------
 	While in use loop
 ---------------------------------------------------------------------------- */
-[[_turretSwitchActions,_vehicle,_vehicleGroup,_globalUseVarString,_wasVDLRunning],_exitAction] spawn {
+[
+	[
+		_turretSwitchActions,
+		_vehicle,
+		_vehicleGroup,
+		_globalUseVarString,
+		_wasVDLRunning
+	],
+	_exitAction
+] spawn {
 	params ["_actionArgs","_exitAction"];
 
 	private _vehicle = _actionArgs select 1;
 	// waitUntil we have started a wave to start counting them towards a lifetime
 	waitUntil {
-		if (!BLWK_inBetweenWaves OR {isNull _vehicle}) exitWith {true};
+		if (!BLWK_inBetweenWaves OR (isNull _vehicle)) exitWith {true};
 		sleep 10;
 		false
 	};
@@ -289,19 +323,20 @@ private _exitAction = [
 	private _startingWave = BLWK_currentWaveNumber;
 	private _endWave = _startingWave + BLWK_aircraftGunnerLifetime;
 	private _informed = false;
+	private _notificationWave = _endWave - 1;
 	waitUntil {
-		if (!_informed AND {BLWK_currentWaveNumber == (_endWave - 1)}) then {
-			["You gunner support will end the next wave!"] call KISKA_fnc_notification;
+		if ((!_informed) AND (BLWK_currentWaveNumber isEqualTo _notificationWave)) then {
+			["Your gunner support will end the next wave!"] call KISKA_fnc_notification;
 			_informed = true;
 		};
 
-		if (BLWK_currentWaveNumber >= _endWave) exitWith {true};
-		if (isNull _vehicle) exitWith {true};
+		if (
+			(BLWK_currentWaveNumber >= _endWave) OR 
+			{ isNull _vehicle } OR 
+			{ !(player in _vehicle) }
+		) exitWith {true};
 
-		// if player died
-		if !(player in _vehicle) exitWith {true};
 		sleep 10;
-
 		false
 	};
 
