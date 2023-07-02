@@ -137,6 +137,8 @@ class KISKA
 		{};
 		class heliLand
 		{};
+		class idCounter
+		{};
 		class isAdminOrHost
     	{};
 		class isMainMenu
