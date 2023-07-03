@@ -24,8 +24,10 @@ waitUntil {
     false
 };
 
+
+
 private _player = player;
-_player allowDamage false;
+[_player,false] call BLWK_fnc_allowDamage;
 
 // Lower recoil, lower sway, remove stamina on respawn, make medic and engineer
 [_player] call BLWK_fnc_adjustPlayerTraits;
@@ -78,7 +80,7 @@ _player switchMove ""; // set player standing
 
 [false] call BLWK_fnc_playAreaEnforcementLoop;
 
-_player allowDamage true;
+[_player,true] call BLWK_fnc_allowDamage;
 
 waitUntil {
     sleep 0.1;

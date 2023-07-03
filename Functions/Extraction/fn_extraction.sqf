@@ -3,7 +3,7 @@
 Function: BLWK_fnc_callForExtraction
 
 Description:
-
+    Handles the logic for initiating the extraction sequence.
 
 Parameters:
 	NONE
@@ -38,7 +38,6 @@ if (!isServer) exitWith {
 if (!canSuspend) exitWith {
     ["Must be called from scheduled",true] call KISKA_fnc_log;
     _this spawn BLWK_fnc_callForExtraction;
-    nil
 };
 
 
