@@ -226,6 +226,8 @@ class BLWK
 		{};
 		class adjustPlayerTraits
 		{};
+		class allowDamage
+		{};
 	/*
 		class checkDLC
 		{};
