@@ -158,12 +158,8 @@ if ((getObjectViewDistance select 0) < _objectViewDistance) then {
 // setup player interaction
 BLWK_enforceArea = false;
 [player,false] call BLWK_fnc_adjustStalkable; // make it so AI don't hunt the player
-player allowDamage false;
+private _damageAllowedAdjustmentId = [player,false] call BLWK_fnc_allowDamage;
 player moveInTurret [_vehicle,_turretsWithWeapons select 0];
-
-// turrets are stupid loud
-localNamespace setVariable ["BLWK_soundVolume",soundVolume];
-[] spawn {3 fadeSound VOLUME_WHEN_IN_VEHICLE};
 
 // keep player from ejecting or switching seats with vanilla actions
 _vehicle lock true;
@@ -188,14 +184,16 @@ private _turretSwitchActions = [];
 		format ["<t color='#3c77ba'>Switch To Turret %1</t>",_forEachIndex + 1],
 		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
 		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
-		["!(((objectParent player) turretUnit ",str _turretPath,") isEqualTo player)"] joinString "", // check if units current turret is the stored one, don't show if it is
+		// check if units current turret is the stored one, don't show if it is
+		["!(((objectParent player) turretUnit ",str _turretPath,") isEqualTo player)"] joinString "",
 		"true",
 		{},
 		{},
 		{
-			params ["_target", "_caller", "", "_arguments", "", ""];
+			params ["_target", "_caller", "", "_vehicleAndTurretPath"];
+			
 			moveOut _caller;
-			_caller moveInTurret [(_arguments select 0),_arguments select 1];
+			_caller moveInTurret _vehicleAndTurretPath;
 		},
 		{},
 		[_vehicle,_turretPath],
@@ -220,16 +218,22 @@ private _turretSwitchActions = [];
 	Store exit function
 ---------------------------------------------------------------------------- */
 localNamespace setVariable ["BLWK_fnc_exitFromAircraft",{
-	params ["_caller","_actionId","_arguments"];
-
+	hint "exit from aircraft";
+	params ["_caller","_actionId","_args"];
+	_args params [
+		"_turretSwitchActions",
+		"_vehicle",
+		"_vehicleGroup",
+		"_supportTypeInUseVariableName",
+		"_VDLWasRunning",
+		"_damageAllowedAdjustmentId",
+		"_soundAdjustId"
+	];
 	missionNamespace setVariable ["BLWK_isAircraftGunner",false];
-
-	3 fadeSound (localNamespace getVariable "BLWK_soundVolume");
 
 	setViewDistance -1;
 	setObjectViewDistance -1;
 
-	private _VDLWasRunning = _arguments select 4;
 	if (_VDLWasRunning) then {
 		[] spawn KISKA_fnc_viewDistanceLimiter;
 	};
@@ -240,15 +244,12 @@ localNamespace setVariable ["BLWK_fnc_exitFromAircraft",{
 	[_caller,true] call BLWK_fnc_adjustStalkable;
 
 	// add this action id to list of switch turret actions for removal
-	private _actions = _arguments select 0;
-	_actions pushBack _actionId;
-	_actions apply {
+	_turretSwitchActions pushBack _actionId;
+	_turretSwitchActions apply {
 		[_caller,_x] call BIS_fnc_holdActionRemove;
 	};
 
 
-	private _vehicle = _arguments select 1;
-	private _vehicleGroup = _arguments select 2;
 	(units _vehicleGroup) apply {
 		_vehicle deleteVehicleCrew _x;
 	};
@@ -256,58 +257,105 @@ localNamespace setVariable ["BLWK_fnc_exitFromAircraft",{
 	deleteVehicle _vehicle;
 
 	// allow other users to access the support type again
-	missionNamespace setVariable [_arguments select 3,false,true];
+	missionNamespace setVariable [_supportTypeInUseVariableName,false,true];
 
 	[false] call BLWK_fnc_playAreaEnforcementLoop;
+	
+	[_caller, _damageAllowedAdjustmentId, _soundAdjustId] spawn {
+		params ["_caller","_damageAllowedAdjustmentId","_soundAdjustId"];
 
-	sleep 10;
+		[
+			"BLWK_manage_aircraftSound",
+			[3, (localNamespace getVariable "BLWK_soundVolume"),true],
+			localNamespace,
+			_soundAdjustId
+		] call KISKA_fnc_managedRun_execute;
 
-	_caller allowDamage true;
+		sleep 10;
+
+		[_caller,false,_damageAllowedAdjustmentId] call BLWK_fnc_allowDamage;
+		hint "exit done";
+	};
 }];
 
 
-/* ----------------------------------------------------------------------------
-	Create action to exit the support and return to The Crate
----------------------------------------------------------------------------- */
-private _exitAction = [
-	player,
-	"<t color='#c91306'>Return To The Crate</t>",
-	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
-	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
-	"true",
-	"true",
-	{},
-	{},
-	{
-		[_this select 1,_this select 2,_this select 3] call (localNamespace getVariable "BLWK_fnc_exitFromAircraft");
-	},
-	{},
-	[_turretSwitchActions,_vehicle,_vehicleGroup,_globalUseVarString,_wasVDLRunning],
-	1,
-	1,
-	false,
-	false,
-	false
-] call BIS_fnc_holdActionAdd;
+if !(["BLWK_manage_aircraftSound"] call KISKA_fnc_managedRun_isDefined) then {
+    [
+        "BLWK_manage_aircraftSound",
+        {
+            params ["_timeToFade","_volume",["_resetVolumeVariable",false]];
 
+			_timeToFade fadeSound _volume;
+			if (_resetVolumeVariable) then {
+				localNamespace setVariable ["BLWK_soundVolume",nil];
+			};
+        }
+    ] call KISKA_fnc_managedRun_updateCode;
+};
 
 
 /* ----------------------------------------------------------------------------
 	While in use loop
 ---------------------------------------------------------------------------- */
 [
-	[
-		_turretSwitchActions,
-		_vehicle,
-		_vehicleGroup,
-		_globalUseVarString,
-		_wasVDLRunning
-	],
-	_exitAction
+	_turretSwitchActions,
+	_vehicle,
+	_vehicleGroup,
+	_globalUseVarString,
+	_wasVDLRunning,
+	_damageAllowedAdjustmentId
 ] spawn {
-	params ["_actionArgs","_exitAction"];
+	params [
+		"_turretSwitchActions",
+		"_vehicle",
+		"_vehicleGroup",
+		"_globalUseVarString",
+		"_wasVDLRunning",
+		"_damageAllowedAdjustmentId"
+	];
 
-	private _vehicle = _actionArgs select 1;
+	// turrets are stupid loud
+	if (isNil {localNamespace getVariable "BLWK_soundVolume"}) then {
+		localNamespace setVariable ["BLWK_soundVolume",soundVolume];
+	};
+	private _soundAdjustId = [
+		"BLWK_manage_aircraftSound",
+		[3, VOLUME_WHEN_IN_VEHICLE]
+	] call KISKA_fnc_managedRun_execute;
+
+	/* ----------------------------------------------------------------------------
+		Create action to exit the support and return to The Crate
+	---------------------------------------------------------------------------- */
+	private _exitGunnerArgs = +_this;
+	_exitGunnerArgs pushBack _soundAdjustId;
+	private _exitAction = [
+		player,
+		"<t color='#c91306'>Return To The Crate</t>",
+		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
+		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
+		"true",
+		"true",
+		{},
+		{},
+		{
+			params ["","_caller","_actionId","_args"];
+
+			[
+				_caller,
+				_actionId,
+				_args
+			] call (localNamespace getVariable "BLWK_fnc_exitFromAircraft");
+		},
+		{},
+		_exitGunnerArgs,
+		1,
+		1,
+		false,
+		false,
+		false
+	] call BIS_fnc_holdActionAdd;
+
+
 	// waitUntil we have started a wave to start counting them towards a lifetime
 	waitUntil {
 		if (!BLWK_inBetweenWaves OR (isNull _vehicle)) exitWith {true};
@@ -315,9 +363,11 @@ private _exitAction = [
 		false
 	};
 
+
 	// the null check for the vehicle is here so many times because at any given point
 	// the player can initiate a manual return to The Crate
 	if (isNull _vehicle) exitWith {};
+
 
 	// wait to delete support
 	private _startingWave = BLWK_currentWaveNumber;
@@ -325,7 +375,7 @@ private _exitAction = [
 	private _informed = false;
 	private _notificationWave = _endWave - 1;
 	waitUntil {
-		if ((!_informed) AND (BLWK_currentWaveNumber isEqualTo _notificationWave)) then {
+		if ((!_informed) AND (BLWK_currentWaveNumber >= _notificationWave)) then {
 			["Your gunner support will end the next wave!"] call KISKA_fnc_notification;
 			_informed = true;
 		};
@@ -336,13 +386,26 @@ private _exitAction = [
 			{ !(player in _vehicle) }
 		) exitWith {true};
 
+		// sometimes, sound will be adjusted back to 1 if using something like zeus
+		// soundVolume is relatively precise but not always exact when adjusted with fadeSound; 
+		// using a 0.05 buffer to make sure it actually changed before readjusting
+		if (soundVolume > (VOLUME_WHEN_IN_VEHICLE + 0.05)) then {
+			[
+				"BLWK_manage_aircraftSound",
+				[1, VOLUME_WHEN_IN_VEHICLE],
+				localNamespace,
+				_soundAdjustId
+			] call KISKA_fnc_managedRun_execute;
+		};
+
 		sleep 10;
 		false
 	};
 
+
 	if (isNull _vehicle) exitWith {};
 
-	["Your support expired"] call KISKA_fnc_notification;
 
-	[player,_exitAction,_actionArgs] call (localNamespace getVariable "BLWK_fnc_exitFromAircraft");
+	["Your support expired"] call KISKA_fnc_notification;
+	[player,_exitAction,_exitGunnerArgs] call (localNamespace getVariable "BLWK_fnc_exitFromAircraft");
 };
