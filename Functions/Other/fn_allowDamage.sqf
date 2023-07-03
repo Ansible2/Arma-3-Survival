@@ -48,7 +48,7 @@ if !(["BLWK_manage_allowDamage"] call KISKA_fnc_managedRun_isDefined) then {
 
 
 [
-    "KISKA_manage_allowDamage",
+    "BLWK_manage_allowDamage",
     [_object, _isDamageAllowed],
     _object,
     _idToAdjust
