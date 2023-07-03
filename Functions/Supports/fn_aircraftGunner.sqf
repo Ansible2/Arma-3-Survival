@@ -218,7 +218,6 @@ private _turretSwitchActions = [];
 	Store exit function
 ---------------------------------------------------------------------------- */
 localNamespace setVariable ["BLWK_fnc_exitFromAircraft",{
-	hint "exit from aircraft";
 	params ["_caller","_actionId","_args"];
 	_args params [
 		"_turretSwitchActions",
@@ -274,7 +273,6 @@ localNamespace setVariable ["BLWK_fnc_exitFromAircraft",{
 		sleep 10;
 
 		[_caller,false,_damageAllowedAdjustmentId] call BLWK_fnc_allowDamage;
-		hint "exit done";
 	};
 }];
 
