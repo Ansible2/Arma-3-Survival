@@ -171,5 +171,12 @@ class KISKA
 		{};
 		class supplyDrop
 		{};
+
+		class managedRun_execute
+		{};
+		class managedRun_isDefined
+		{};
+		class managedRun_updateCode
+		{};
 	};
 };
