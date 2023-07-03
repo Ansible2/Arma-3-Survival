@@ -35,7 +35,7 @@ if (!canSuspend) exitWith {
 
 params [
 	["_stalkerGroup",grpNull,[objNull,grpNull]],
-	["_defaultPosition",BLWK_mainCrate,[objNull,grpNull,[]]],
+	["_defaultPosition",getPosATL BLWK_mainCrate,[objNull,grpNull,[]]],
 	["_checkRate",20,[123]],
 	["_conditionToEndStalking",{false},[{}]]
 ];
