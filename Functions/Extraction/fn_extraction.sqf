@@ -1,6 +1,6 @@
 #include "..\..\Headers\Faction Map Ids.hpp"
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_callForExtraction
+Function: BLWK_fnc_extraction
 
 Description:
     Handles the logic for initiating the extraction sequence.
@@ -19,7 +19,7 @@ Examples:
 Author(s):
 	Ansible2
 ---------------------------------------------------------------------------- */
-scriptName "BLWK_fnc_callForExtraction";
+scriptName "BLWK_fnc_extraction";
 
 #define DEFAULT_TRANSPORT_HELI "B_Heli_Transport_01_F"
 #define TOO_LITTLE_SEATS 3
@@ -100,7 +100,7 @@ private _fn_getExtractionHeliData = {
 	_fn_findLandingPositions
 ---------------------------------------------------------------------------- */
 private _fn_findLandingPositions = {
-    params ["_sizeOfLZArea"];
+    params ["_sizeOfLZArea","_numberOfExtractionHelis"];
 
     /* ----------------------------------------------------------------------------
         Find LZs needed for number of transports
@@ -360,14 +360,15 @@ private _fn_afterExtractionWaitTime = {
 	Get Heli Data
 ------------------------------------- */
 private _extractionHeliData = call _fn_getExtractionHeliData;
-_extractionHeliData params ["_extractionHeliClass","_extractionHeliSeatCount","_sizeOfLZArea"];
+_extractionHeliData params ["_extractionHeliClass","_extractionHeliSeatCount","_sizeOfLZArea","","_numberOfExtractionHelis"];
 missionNamespace setVariable ["BLWK_extractSeatCount",_extractionHeliSeatCount];
 
 
 /* -------------------------------------
 	Find LZs
 ------------------------------------- */
-private _landingData = [_sizeOfLZArea] call _fn_findLandingPositions;
+private _landingData = [_sizeOfLZArea,_numberOfExtractionHelis] call _fn_findLandingPositions;
+_landingData params ["_centerPosition","_landingPositions"];
 private _lzFound = _landingPositions isNotEqualTo [];
 if (!_lzFound) exitWith {
     [
@@ -387,7 +388,6 @@ if (!_lzFound) exitWith {
 /* -------------------------------------
 	Prepare LZs for fight
 ------------------------------------- */
-_landingData params ["_centerPosition","_landingPositions"];
 [_centerPosition, _landingPositions, _sizeOfLZArea] call _fn_prepareExtractionSites;
 
 
