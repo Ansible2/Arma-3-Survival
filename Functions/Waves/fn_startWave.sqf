@@ -80,7 +80,11 @@ missionNamespace setVariable ["BLWK_initialWaveSpawnComplete",false];
 	Decide Wave Type/Handle Extraction
 ---------------------------------------------------------------------------- */
 if (missionNamespace getVariable ["BLWK_extractionQueued",false]) then {
-	call BLWK_fnc_extraction;
+	[
+		{
+			call BLWK_fnc_extraction;
+		}
+	] call CBAP_fnc_directCall;
 
 } else {
 	call BLWK_fnc_decideWaveType;

@@ -26,6 +26,7 @@ scriptName "BLWK_fnc_extraction";
 #define SPACE_BUFFER 5
 #define MIN_VEHICLE_SIZE 15
 #define NUMBER_OF_ENEMIES 5000
+#define TELEPORT_TIME 8
 
 #define MAX_ATTEMPTS 300
 
@@ -213,39 +214,43 @@ private _fn_startExtractionDefense = {
     /* -------------------------------------
         Teleport players
     ------------------------------------- */
-    private _players = [] call CBAP_fnc_players;
-    [_centerPosition] remoteExec ["BLWK_fnc_teleportToExtractionSite",_players];
-    // _centerPosition is a 2d position ([1,1])
-    BLWK_mainCrate setPos _centerPosition;
-
-    [BLWK_extractionSetUpTime,15,10] remoteExec ["KISKA_fnc_countDown",-2];
-    [BLWK_extractionSetUpTime,15,10] call KISKA_fnc_countDown;
-
+    [_centerPosition] remoteExec ["BLWK_fnc_teleportToExtractionSite",([] call CBAP_fnc_players)];
+    BLWK_mainCrate setPosASL (getPosASL (missionNamespace getVariable ["BLWK_extractionMarker_1"objNull]));
 
     /* -------------------------------------
         Spawn enemy units
     ------------------------------------- */
-    // set respawns to 0
-    private _currentRespawnTicketCount = [BLUFOR] call BIS_fnc_respawnTickets;
-    [
-        BLUFOR,
-        -_currentRespawnTicketCount,
-        false
-    ] call BIS_fnc_respawnTickets;
-    missionNamespace setVariable ["BLWK_numRespawnTickets",0,true];
-
-    [false,NUMBER_OF_ENEMIES] remoteExec ["BLWK_fnc_createStdWaveInfantry",BLWK_theAIHandlerOwnerID];
+    private _timeUntilWaveStart = BLWK_extractionSetUpTime + TELEPORT_TIME;
+    [_timeUntilWaveStart,15,10] remoteExec ["KISKA_fnc_countDown",0];
 
     [
-        "SpecialWarning",
-        ["Enemies are inbound to your site, hold the position!"]
-    ] remoteExec ["BIS_fnc_showNotification", _players];
-    
+        {
+            params ["_fn_afterExtractionWaitTime","_afterExtractionArgs"];
+            // set respawns to 0
+            private _currentRespawnTicketCount = [BLUFOR] call BIS_fnc_respawnTickets;
+            [
+                BLUFOR,
+                -_currentRespawnTicketCount,
+                false
+            ] call BIS_fnc_respawnTickets;
+            missionNamespace setVariable ["BLWK_numRespawnTickets",0,true];
 
-    [
-        _fn_afterExtractionWaitTime,
-        _afterExtractionArgs,
-        BLWK_timeTillExtraction
+            [false,NUMBER_OF_ENEMIES] remoteExec ["BLWK_fnc_createStdWaveInfantry",BLWK_theAIHandlerOwnerID];
+
+            [
+                "SpecialWarning",
+                ["Enemies are inbound to your site, hold the position!"]
+            ] remoteExec ["BIS_fnc_showNotification", ([] call CBAP_fnc_players)];
+            
+
+            [
+                _fn_afterExtractionWaitTime,
+                _afterExtractionArgs,
+                BLWK_timeTillExtraction
+            ] call CBAP_fnc_waitAndExecute;
+        },
+        [_fn_afterExtractionWaitTime,_afterExtractionArgs],
+        _timeUntilWaveStart
     ] call CBAP_fnc_waitAndExecute;
 };
 
@@ -305,11 +310,13 @@ private _fn_afterExtractionWaitTime = {
         _crew apply {
             _x allowDamage false;
             _x setCaptive true;
+            
             _x disableAI "AUTOCOMBAT";
             _x disableAI "FSM";
             _x disableAI "TARGET";
+
             private _turret = _aircraft unitTurret _x;
-            if (_turret isNotEqualTo [] AND {_turret isNotEqualTo [-1]}) then {
+            if ((_turret isNotEqualTo []) AND (_turret isNotEqualTo [-1])) then {
                 _aircraft lockTurret [_turret,true];
             };
         };
