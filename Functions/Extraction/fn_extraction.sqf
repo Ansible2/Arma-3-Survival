@@ -331,18 +331,18 @@ private _fn_afterExtractionWaitTime = {
             _x,
             "GET IN",
             true,
-            // TODO: make this scheduled for #641
             {
-                params ["_aircraft"];
+                _this spawn {
+                    params ["_aircraft"];
 
-                waitUntil {
-                    sleep 2;
-                    (count (call CBAP_fnc_players)) isEqualTo (count BLWK_playersInExtractAircraft)
+                    waitUntil {
+                        sleep 2;
+                        (count (call CBAP_fnc_players)) isEqualTo (count BLWK_playersInExtractAircraft)
+                    };
+
+                    _aircraft move (_aircraft getVariable "BLWK_exfilPosition");
+                    [] spawn BLWK_fnc_finishedExtraction;
                 };
-
-                _aircraft move (_aircraft getVariable "BLWK_exfilPosition");
-
-                [] spawn BLWK_fnc_finishedExtraction;
             }
         ] call KISKA_fnc_heliLand;
     };
