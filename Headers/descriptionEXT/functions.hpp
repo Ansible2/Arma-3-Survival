@@ -352,7 +352,7 @@ class BLWK
 	class Supports
 	{
 		file = "Functions\Supports";
-		class aircraftGunner
+		class startAircraftGunner
 		{};
 		class endAircraftGunner
 		{};
