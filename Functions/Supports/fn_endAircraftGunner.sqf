@@ -30,13 +30,13 @@ if (
 
 
 (localNamespace getVariable ["BLWK_aircraftGunnerEndData",[]]) params [
-	["_holdActionIdsToRemove",[]],
-	"_vehicle",
-	"_vehicleGroup",
-	"_supportTypeInUseVariableName",
-	"_VDLWasRunning",
-	"_damageAllowedAdjustmentId",
-	"_soundAdjustId"
+	["_holdActionIdsToRemove",[],[[]]],
+	["_vehicle",objNull,[objNull]],
+	["_vehicleGroup",grpNull,[grpNull]],
+	["_supportTypeInUseVariableName","",[""]],
+	["_VDLWasRunning",false,[true]],
+	["_damageAllowedAdjustmentId",-1,[123]],
+	["_soundAdjustId",-1,[123]]
 ];
 
 missionNamespace setVariable ["BLWK_isAircraftGunner",false];
@@ -84,5 +84,6 @@ missionNamespace setVariable [_supportTypeInUseVariableName,false,true];
 	10
 ] call CBAP_fnc_waitAndExecute;
 
+localNamespace setVariable ["BLWK_aircraftGunnerEndData",nil];
 
 nil
