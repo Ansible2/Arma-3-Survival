@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_aircraftGunner
+Function: BLWK_fnc_startAircraftGunner
 
 Description:
     Spawns in an aircraft that circles the play area.
@@ -29,13 +29,13 @@ Examples:
             500,
             "B_Heli_Attack_01_dynamicLoadout_F",
             "BLWK_heliGunnerInUse"
-        ] call BLWK_fnc_aircraftGunner;
+        ] call BLWK_fnc_startAircraftGunner;
     (end)
 
 Author(s):
     Ansible2
 ---------------------------------------------------------------------------- */
-scriptName "BLWK_fnc_aircraftGunner";
+scriptName "BLWK_fnc_startAircraftGunner";
 
 #define VOLUME_WHEN_IN_VEHICLE 0.25
 
