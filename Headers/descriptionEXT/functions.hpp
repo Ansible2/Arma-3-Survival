@@ -354,6 +354,8 @@ class BLWK
 		file = "Functions\Supports";
 		class aircraftGunner
 		{};
+		class endAircraftGunner
+		{};
 		class arsenalSupplyDrop
 		{};
 		class callForArtillery
