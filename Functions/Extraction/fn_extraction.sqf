@@ -214,7 +214,7 @@ private _fn_startExtractionDefense = {
     /* -------------------------------------
         Teleport players
     ------------------------------------- */
-    [_centerPosition] remoteExec ["BLWK_fnc_teleportToExtractionSite",([] call CBAP_fnc_players)];
+    [_centerPosition] remoteExecCall ["BLWK_fnc_teleportToExtractionSite",([] call CBAP_fnc_players)];
     BLWK_mainCrate setPosASL (getPosASL (missionNamespace getVariable ["BLWK_extractionMarker_1",objNull]));
 
     /* -------------------------------------

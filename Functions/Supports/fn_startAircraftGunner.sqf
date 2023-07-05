@@ -130,6 +130,9 @@ _loiterWaypoint setWaypointLoiterType _loiterDirection;
 _loiterWaypoint setWaypointLoiterAltitude _loiterHeight;
 _vehicle flyInHeight _loiterHeight;
 _loiterWaypoint setWaypointSpeed "LIMITED";
+_vehicleGroup setVariable ["BLWK_aircraftGunner_loiterHeight",_loiterHeight];
+_vehicleGroup setVariable ["BLWK_aircraftGunner_loiterType",_loiterDirection];
+_vehicleGroup setVariable ["BLWK_aircraftGunner_loiterRadius",_loiterRadius];
 
 
 // handle view distances so things aren't cloudy
@@ -334,8 +337,8 @@ localNamespace setVariable ["BLWK_aircraftGunnerEndData",[
     call BLWK_fnc_endAircraftGunner;
 };
 
-
-// 1. adjust position of already created aircraft gunners around new area
-// newly spawned aircraft gunners are created around the extraction area
+// TODO:
+// 1. newly spawned aircraft gunners are created around the extraction area
 // 2. end aircraft gunners when extraction helicopter spawns
 // 3. do not allow more extraction gunners to be created after helicopers spawn
+// 4. If user is moved to area while in aircraft gunner, enemies will not rush extraction site
