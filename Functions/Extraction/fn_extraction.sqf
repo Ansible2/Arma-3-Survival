@@ -187,6 +187,9 @@ private _fn_prepareExtractionSites = {
     /* ----------------------------------------------------------------------------
         Mark extraction sites for players
     ---------------------------------------------------------------------------- */
+    #define ROTATION 0
+    #define NUMBER_OF_MARKERS 10
+    #define VERTICAL_OFFSET 1
     {
         private _markerName = "BLWK_extractionMarker_" + (str _forEachIndex);
         private _marker = createMarkerLocal [_markerName,_x];
@@ -195,8 +198,8 @@ private _fn_prepareExtractionSites = {
         _marker setMarkerText ("Extraction LZ " +  (str(_forEachIndex + 1)));
         missionNamespace setVariable [_markerName,_marker];
 
-        _x pushBack 0;
-        [AGLToASL _x,_sizeOfLZArea,10,1] call KISKA_fnc_markBorder;
+        _x pushBack ROTATION;
+        [AGLToASL _x,_sizeOfLZArea,NUMBER_OF_MARKERS,VERTICAL_OFFSET] call KISKA_fnc_markBorder;
     } forEach _landingPositions;
 
 };
@@ -209,6 +212,11 @@ private _fn_startExtractionDefense = {
     params ["_centerPosition","_afterExtractionArgs","_fn_afterExtractionWaitTime"];
 
     missionNamespace setVariable ["BLWK_playAreaCenter",_centerPosition,true];
+    BLWK_playAreaMarker setMarkerPosLocal BLWK_playAreaCenter;
+    // Moving the marker for any functions that rely on it,
+    // play area does not matter for extraction though
+    // only the center is used
+    BLWK_playAreaMarker setMarkerAlpha 0;
     [20,300,350,375] call BLWK_fnc_cacheEnemyMenSpawnPositions;
     
     /* -------------------------------------

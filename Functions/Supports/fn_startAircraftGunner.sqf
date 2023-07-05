@@ -338,7 +338,6 @@ localNamespace setVariable ["BLWK_aircraftGunnerEndData",[
 };
 
 // TODO:
-// 1. newly spawned aircraft gunners are created around the extraction area
 // 2. end aircraft gunners when extraction helicopter spawns
 // 3. do not allow more extraction gunners to be created after helicopers spawn
 // 4. If user is moved to area while in aircraft gunner, enemies will not rush extraction site
