@@ -2,65 +2,65 @@
 Function: BLWK_fnc_aircraftGunner
 
 Description:
-	Spawns in an aircraft that circles the play area.
-	Users are allowed access to all turrets on the aircraft.
+    Spawns in an aircraft that circles the play area.
+    Users are allowed access to all turrets on the aircraft.
 
 Parameters:
-  	0: _vehicleClass : <STRING> - The class of the vehicle to be a gunner on
-	1: _loiterHeight : <NUMBER> - At what height does the aircraft fly
-	2: _loiterRadius : <NUMBER> - The radius of the circle around which the
-		aircraft will loiter
+    0: _vehicleClass : <STRING> - The class of the vehicle to be a gunner on
+    1: _loiterHeight : <NUMBER> - At what height does the aircraft fly
+    2: _loiterRadius : <NUMBER> - The radius of the circle around which the
+        aircraft will loiter
 
-	3: _defaultVehicleType : <STRING> - A fall through vehicle class in case
-		_vehicleClass is found not to be compatible
+    3: _defaultVehicleType : <STRING> - A fall through vehicle class in case
+        _vehicleClass is found not to be compatible
 
-	4: _globalUseVarString : <STRING> - A global string that is used to not allow
-		other players access to the same support type simaltaneously
+    4: _globalUseVarString : <STRING> - A global string that is used to not allow
+        other players access to the same support type simaltaneously
 
 Returns:
-	NOTHING
+    NOTHING
 
 Examples:
     (begin example)
-		private _friendlyAttackHeliClass = [7] call BLWK_fnc_getFriendlyVehicleClass;
-		[
-			_friendlyAttackHeliClass,
-			400,
-			500,
-			"B_Heli_Attack_01_dynamicLoadout_F",
-			"BLWK_heliGunnerInUse"
-		] call BLWK_fnc_aircraftGunner;
+        private _friendlyAttackHeliClass = [7] call BLWK_fnc_getFriendlyVehicleClass;
+        [
+            _friendlyAttackHeliClass,
+            400,
+            500,
+            "B_Heli_Attack_01_dynamicLoadout_F",
+            "BLWK_heliGunnerInUse"
+        ] call BLWK_fnc_aircraftGunner;
     (end)
 
 Author(s):
-	Ansible2 // Cipher
+    Ansible2
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_aircraftGunner";
 
 #define VOLUME_WHEN_IN_VEHICLE 0.25
 
 params [
-	"_vehicleClass",
-	"_loiterHeight",
-	"_loiterRadius",
-	"_defaultVehicleType",
-	"_globalUseVarString"
+    "_vehicleClass",
+    "_loiterHeight",
+    "_loiterRadius",
+    "_defaultVehicleType",
+    "_globalUseVarString"
 ];
 
 private _turretsWithWeapons = [_vehicleClass] call KISKA_fnc_classTurretsWithGuns;
 // go to default aircraft type if no suitable turrets are found
 if (_turretsWithWeapons isEqualTo []) then {
-	[
-		[
-			_vehicleClass,
-		" : does not meet type standards to be used, moving to default type: ",
-		_defaultVehicleType
-		],
-		true
-	] call KISKA_fnc_log;
+    [
+        [
+            _vehicleClass,
+        " : does not meet type standards to be used, moving to default type: ",
+        _defaultVehicleType
+        ],
+        true
+    ] call KISKA_fnc_log;
 
-	_vehicleClass = _defaultVehicleType;
-	_turretsWithWeapons = [_defaultVehicleType] call KISKA_fnc_classTurretsWithGuns;
+    _vehicleClass = _defaultVehicleType;
+    _turretsWithWeapons = [_defaultVehicleType] call KISKA_fnc_classTurretsWithGuns;
 };
 
 
@@ -81,13 +81,13 @@ clearMagazineCargoGlobal _vehicle;
 // get rid of excess crew
 private _vehicleCrew = _vehicleArray select 1;
 _vehicleCrew apply {
-	if ((_vehicle unitTurret _x) in _turretsWithWeapons) then {
-		_vehicle deleteVehicleCrew _x
-	} else {
-		_x allowDamage false;
-		_x disableAI "TARGET";
-		_x disableAI "AUTOTARGET";
-	};
+    if ((_vehicle unitTurret _x) in _turretsWithWeapons) then {
+        _vehicle deleteVehicleCrew _x
+    } else {
+        _x allowDamage false;
+        _x disableAI "TARGET";
+        _x disableAI "AUTOTARGET";
+    };
 };
 
 
@@ -96,26 +96,26 @@ private _loiterDirection = "CIRCLE_L";
 // handle cases where helicopter has dominant turret on right side, 
 // helicopter needs to loiter in a clockwise fashion
 private _mainTurretWeaponsArray = getArray(
-	configFile >> "CfgVehicles" >> _vehicleClass >> 
-	"Turrets" >> "MainTurret" >> "Weapons"
+    configFile >> "CfgVehicles" >> _vehicleClass >> 
+    "Turrets" >> "MainTurret" >> "Weapons"
 );
 if ((count _mainTurretWeaponsArray) > 0) then {
 
-	private _mainTurretWeapon = _mainTurretWeaponsArray select 0;
-	private _mainTurretDir = _vehicle weaponDirection _mainTurretWeapon;
-	private _mainTurretRelativeDir = (_vehicle vectorWorldToModel _mainTurretDir) call CBAP_fnc_vectDir;
+    private _mainTurretWeapon = _mainTurretWeaponsArray select 0;
+    private _mainTurretDir = _vehicle weaponDirection _mainTurretWeapon;
+    private _mainTurretRelativeDir = (_vehicle vectorWorldToModel _mainTurretDir) call CBAP_fnc_vectDir;
 
-	if (_mainTurretRelativeDir >= 0 AND (_mainTurretRelativeDir <= 180)) then {
-		[
-			[
-				"Found that vehicle class ",
-				_vehicleClass,
-				" met standards to have a loiter of clockwise"
-			],
-			false
-		] call KISKA_fnc_log;
-		_loiterDirection = "CIRCLE";
-	};
+    if (_mainTurretRelativeDir >= 0 AND (_mainTurretRelativeDir <= 180)) then {
+        [
+            [
+                "Found that vehicle class ",
+                _vehicleClass,
+                " met standards to have a loiter of clockwise"
+            ],
+            false
+        ] call KISKA_fnc_log;
+        _loiterDirection = "CIRCLE";
+    };
 };
 
 
@@ -134,23 +134,23 @@ _loiterWaypoint setWaypointSpeed "LIMITED";
 
 // handle view distances so things aren't cloudy
 // turn off View Distance Limiter
-private _wasVDLRunning = false;
+private _VDLWasRunning = false;
 if (KISKA_VDL_run) then {
-	KISKA_VDL_run = false;
-	_wasVDLRunning = true;
+    KISKA_VDL_run = false;
+    _VDLWasRunning = true;
 };
 
 private _estimatedDistance = round (sqrt ((_loiterHeight^2) + (_loiterRadius^2)));
 private _overallViewDistance = round (_estimatedDistance * 2.5);
 private _objectViewDistance = round (_estimatedDistance * 1.8);
 if (_objectViewDistance > 2000) then {
-	_objectViewDistance = 2000;
+    _objectViewDistance = 2000;
 };
 if (viewDistance < _overallViewDistance) then {
-	setViewDistance _overallViewDistance;
+    setViewDistance _overallViewDistance;
 };
 if ((getObjectViewDistance select 0) < _objectViewDistance) then {
-	setObjectViewDistance _objectViewDistance;
+    setObjectViewDistance _objectViewDistance;
 };
 //hint str [_estimatedDistance,_overallViewDistance,_objectViewDistance];
 
@@ -174,236 +174,168 @@ missionNamespace setVariable [_globalUseVarString,true,true];
 
 
 /* ----------------------------------------------------------------------------
-	Create actions to switch turrets
+    Create hold actions
 ---------------------------------------------------------------------------- */
-private _turretSwitchActions = [];
+private _holdActionIds = [];
 {
-	private _turretPath = _x;
-	private _turretAction = [
-		player,
-		format ["<t color='#3c77ba'>Switch To Turret %1</t>",_forEachIndex + 1],
-		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
-		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
-		// check if units current turret is the stored one, don't show if it is
-		["!(((objectParent player) turretUnit ",str _turretPath,") isEqualTo player)"] joinString "",
-		"true",
-		{},
-		{},
-		{
-			params ["_target", "_caller", "", "_vehicleAndTurretPath"];
-			
-			moveOut _caller;
-			_caller moveInTurret _vehicleAndTurretPath;
-		},
-		{},
-		[_vehicle,_turretPath],
-		0.5,
-		1,
-		false,
-		false,
-		false
-	] call BIS_fnc_holdActionAdd;
+    private _turretPath = _x;
+    private _turretAction = [
+        player,
+        format ["<t color='#3c77ba'>Switch To Turret %1</t>",_forEachIndex + 1],
+        "\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
+        "\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
+        // check if units current turret is the stored one, don't show if it is
+        ["!(((objectParent player) turretUnit ",str _turretPath,") isEqualTo player)"] joinString "",
+        "true",
+        {},
+        {},
+        {
+            params ["_target", "_caller", "", "_vehicleAndTurretPath"];
+            
+            moveOut _caller;
+            _caller moveInTurret _vehicleAndTurretPath;
+        },
+        {},
+        [_vehicle,_turretPath],
+        0.5,
+        1,
+        false,
+        false,
+        false
+    ] call BIS_fnc_holdActionAdd;
 
-	_turretSwitchActions pushBack _turretAction;
+    _holdActionIds pushBack _turretAction;
 
-	// give turrets a bit more ammo
-	private _turretMagazines = _vehicle magazinesTurret _turretPath;
-	_turretMagazines apply {
-		_vehicle addMagazineTurret [_x,_turretPath];
-	};
+    // give turrets a bit more ammo
+    private _turretMagazines = _vehicle magazinesTurret _turretPath;
+    _turretMagazines apply {
+        _vehicle addMagazineTurret [_x,_turretPath];
+    };
 } forEach _turretsWithWeapons;
+
+private _exitAction = [
+    player,
+    "<t color='#c91306'>Return To The Crate</t>",
+    "\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
+    "\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
+    "true",
+    "true",
+    {},
+    {},
+    {
+        call BLWK_fnc_endAircraftGunner;
+    },
+    {},
+    [],
+    1,
+    1,
+    false,
+    false,
+    false
+] call BIS_fnc_holdActionAdd;
+_holdActionIds pushBack _exitAction;
 
 
 /* ----------------------------------------------------------------------------
-	Store exit function
+    Prepare Exit Requirements
 ---------------------------------------------------------------------------- */
-localNamespace setVariable ["BLWK_fnc_exitFromAircraft",{
-	params ["_caller","_actionId","_args"];
-	_args params [
-		"_turretSwitchActions",
-		"_vehicle",
-		"_vehicleGroup",
-		"_supportTypeInUseVariableName",
-		"_VDLWasRunning",
-		"_damageAllowedAdjustmentId",
-		"_soundAdjustId"
-	];
-	missionNamespace setVariable ["BLWK_isAircraftGunner",false];
-
-	setViewDistance -1;
-	setObjectViewDistance -1;
-
-	if (_VDLWasRunning) then {
-		[] spawn KISKA_fnc_viewDistanceLimiter;
-	};
-
-	moveOut _caller;
-	_caller setVehiclePosition [BLWK_mainCrate,[],5,"NONE"];
-	_caller setVelocity [0,0,0];
-	[_caller,true] call BLWK_fnc_adjustStalkable;
-
-	// add this action id to list of switch turret actions for removal
-	_turretSwitchActions pushBack _actionId;
-	_turretSwitchActions apply {
-		[_caller,_x] call BIS_fnc_holdActionRemove;
-	};
-
-
-	(units _vehicleGroup) apply {
-		_vehicle deleteVehicleCrew _x;
-	};
-	deleteGroup _vehicleGroup;
-	deleteVehicle _vehicle;
-
-	// allow other users to access the support type again
-	missionNamespace setVariable [_supportTypeInUseVariableName,false,true];
-
-	[false] call BLWK_fnc_playAreaEnforcementLoop;
-	
-	[_caller, _damageAllowedAdjustmentId, _soundAdjustId] spawn {
-		params ["_caller","_damageAllowedAdjustmentId","_soundAdjustId"];
-
-		[
-			"BLWK_manage_aircraftSound",
-			[3, (localNamespace getVariable "BLWK_soundVolume"),true],
-			localNamespace,
-			_soundAdjustId
-		] call KISKA_fnc_managedRun_execute;
-
-		sleep 10;
-
-		[_caller,false,_damageAllowedAdjustmentId] call BLWK_fnc_allowDamage;
-	};
-}];
-
-
 if !(["BLWK_manage_aircraftSound"] call KISKA_fnc_managedRun_isDefined) then {
     [
         "BLWK_manage_aircraftSound",
         {
             params ["_timeToFade","_volume",["_resetVolumeVariable",false]];
 
-			_timeToFade fadeSound _volume;
-			if (_resetVolumeVariable) then {
-				localNamespace setVariable ["BLWK_soundVolume",nil];
-			};
+            _timeToFade fadeSound _volume;
+            if (_resetVolumeVariable) then {
+                localNamespace setVariable ["BLWK_soundVolume",nil];
+            };
         }
     ] call KISKA_fnc_managedRun_updateCode;
 };
 
+// turrets are stupid loud
+if (isNil {localNamespace getVariable "BLWK_soundVolume"}) then {
+    localNamespace setVariable ["BLWK_soundVolume",soundVolume];
+};
+
+private _soundAdjustId = [
+    "BLWK_manage_aircraftSound",
+    [3, VOLUME_WHEN_IN_VEHICLE]
+] call KISKA_fnc_managedRun_execute;
+
+
+localNamespace setVariable ["BLWK_aircraftGunnerEndData",[
+    _holdActionIds,
+    _vehicle,
+    _vehicleGroup,
+    _globalUseVarString,
+    _VDLWasRunning,
+    _damageAllowedAdjustmentId,
+    _soundAdjustId
+]];
 
 /* ----------------------------------------------------------------------------
-	While in use loop
+    While in use loop
 ---------------------------------------------------------------------------- */
-[
-	_turretSwitchActions,
-	_vehicle,
-	_vehicleGroup,
-	_globalUseVarString,
-	_wasVDLRunning,
-	_damageAllowedAdjustmentId
-] spawn {
-	params [
-		"_turretSwitchActions",
-		"_vehicle",
-		"_vehicleGroup",
-		"_globalUseVarString",
-		"_wasVDLRunning",
-		"_damageAllowedAdjustmentId"
-	];
+[_vehicle,_soundAdjustId] spawn {
+    params ["_vehicle","_soundAdjustId"];
 
-	// turrets are stupid loud
-	if (isNil {localNamespace getVariable "BLWK_soundVolume"}) then {
-		localNamespace setVariable ["BLWK_soundVolume",soundVolume];
-	};
-	private _soundAdjustId = [
-		"BLWK_manage_aircraftSound",
-		[3, VOLUME_WHEN_IN_VEHICLE]
-	] call KISKA_fnc_managedRun_execute;
-
-	/* ----------------------------------------------------------------------------
-		Create action to exit the support and return to The Crate
-	---------------------------------------------------------------------------- */
-	private _exitGunnerArgs = +_this;
-	_exitGunnerArgs pushBack _soundAdjustId;
-	private _exitAction = [
-		player,
-		"<t color='#c91306'>Return To The Crate</t>",
-		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
-		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
-		"true",
-		"true",
-		{},
-		{},
-		{
-			params ["","_caller","_actionId","_args"];
-
-			[
-				_caller,
-				_actionId,
-				_args
-			] call (localNamespace getVariable "BLWK_fnc_exitFromAircraft");
-		},
-		{},
-		_exitGunnerArgs,
-		1,
-		1,
-		false,
-		false,
-		false
-	] call BIS_fnc_holdActionAdd;
+    // waitUntil we have started a wave to start counting them towards a lifetime
+    waitUntil {
+        if (!BLWK_inBetweenWaves OR (isNull _vehicle)) exitWith {true};
+        sleep 10;
+        false
+    };
 
 
-	// waitUntil we have started a wave to start counting them towards a lifetime
-	waitUntil {
-		if (!BLWK_inBetweenWaves OR (isNull _vehicle)) exitWith {true};
-		sleep 10;
-		false
-	};
+    // the null check for the vehicle is here so many times because at any given point
+    // the player can initiate a manual return to The Crate
+    if (isNull _vehicle) exitWith {};
 
 
-	// the null check for the vehicle is here so many times because at any given point
-	// the player can initiate a manual return to The Crate
-	if (isNull _vehicle) exitWith {};
+    // wait to delete support
+    private _startingWave = BLWK_currentWaveNumber;
+    private _endWave = _startingWave + BLWK_aircraftGunnerLifetime;
+    private _informed = false;
+    private _notificationWave = _endWave - 1;
+    waitUntil {
+        if ((!_informed) AND (BLWK_currentWaveNumber >= _notificationWave)) then {
+            ["Your gunner support will end the next wave!"] call KISKA_fnc_notification;
+            _informed = true;
+        };
+
+        if (
+            (BLWK_currentWaveNumber >= _endWave) OR 
+            { isNull _vehicle } OR 
+            { !(player in _vehicle) }
+        ) exitWith {true};
+
+        // sometimes, sound will be adjusted back to 1 if using something like zeus
+        // soundVolume is relatively precise but not always exact when adjusted with fadeSound; 
+        // using a 0.05 buffer to make sure it actually changed before readjusting
+        if (soundVolume > (VOLUME_WHEN_IN_VEHICLE + 0.05)) then {
+            [
+                "BLWK_manage_aircraftSound",
+                [1, VOLUME_WHEN_IN_VEHICLE],
+                localNamespace,
+                _soundAdjustId
+            ] call KISKA_fnc_managedRun_execute;
+        };
+
+        sleep 10;
+        false
+    };
 
 
-	// wait to delete support
-	private _startingWave = BLWK_currentWaveNumber;
-	private _endWave = _startingWave + BLWK_aircraftGunnerLifetime;
-	private _informed = false;
-	private _notificationWave = _endWave - 1;
-	waitUntil {
-		if ((!_informed) AND (BLWK_currentWaveNumber >= _notificationWave)) then {
-			["Your gunner support will end the next wave!"] call KISKA_fnc_notification;
-			_informed = true;
-		};
-
-		if (
-			(BLWK_currentWaveNumber >= _endWave) OR 
-			{ isNull _vehicle } OR 
-			{ !(player in _vehicle) }
-		) exitWith {true};
-
-		// sometimes, sound will be adjusted back to 1 if using something like zeus
-		// soundVolume is relatively precise but not always exact when adjusted with fadeSound; 
-		// using a 0.05 buffer to make sure it actually changed before readjusting
-		if (soundVolume > (VOLUME_WHEN_IN_VEHICLE + 0.05)) then {
-			[
-				"BLWK_manage_aircraftSound",
-				[1, VOLUME_WHEN_IN_VEHICLE],
-				localNamespace,
-				_soundAdjustId
-			] call KISKA_fnc_managedRun_execute;
-		};
-
-		sleep 10;
-		false
-	};
+    if (isNull _vehicle) exitWith {};
 
 
-	if (isNull _vehicle) exitWith {};
-
-
-	["Your support expired"] call KISKA_fnc_notification;
-	[player,_exitAction,_exitGunnerArgs] call (localNamespace getVariable "BLWK_fnc_exitFromAircraft");
+    ["Your support expired"] call KISKA_fnc_notification;
+    call BLWK_fnc_endAircraftGunner;
 };
+
+
+// 1. adjust position of already created aircraft gunners around new area
+// newly spawned aircraft gunners are created around the extraction area
+// 2. end aircraft gunners when extraction helicopter spawns
+// 3. do not allow more extraction gunners to be created after helicopers spawn
