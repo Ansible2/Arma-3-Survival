@@ -187,7 +187,7 @@ private _fn_prepareExtractionSites = {
     /* ----------------------------------------------------------------------------
         Mark extraction sites for players
     ---------------------------------------------------------------------------- */
-    #define ROTATION 0
+    #define GROUND_LEVEL 0
     #define NUMBER_OF_MARKERS 10
     #define VERTICAL_OFFSET 1
     {
@@ -198,8 +198,22 @@ private _fn_prepareExtractionSites = {
         _marker setMarkerText ("Extraction LZ " +  (str(_forEachIndex + 1)));
         missionNamespace setVariable [_markerName,_marker];
 
-        _x pushBack ROTATION;
-        [AGLToASL _x,_sizeOfLZArea,NUMBER_OF_MARKERS,VERTICAL_OFFSET] call KISKA_fnc_markBorder;
+        // _landingPositions are 2d
+        _x pushBack GROUND_LEVEL;
+        private _lzPositionASL = AGLToASL _x;
+        private _lzBorderMarkers = [
+            _lzPositionASL,
+            _sizeOfLZArea,
+            NUMBER_OF_MARKERS,
+            VERTICAL_OFFSET
+        ] call KISKA_fnc_markBorder;
+
+        if (_forEachIndex isNotEqualTo 0) then { continue };
+
+        localNamespace setVariable [
+            "BLWK_extraction_crateTeleportPosition",
+            getPosASL (_lzBorderMarkers select 0)
+        ];
     } forEach _landingPositions;
 
 };
@@ -223,7 +237,7 @@ private _fn_startExtractionDefense = {
         Teleport players
     ------------------------------------- */
     [_centerPosition] remoteExecCall ["BLWK_fnc_teleportToExtractionSite",([] call CBAP_fnc_players)];
-    BLWK_mainCrate setPosASL (getPosASL (missionNamespace getVariable ["BLWK_extractionMarker_1",objNull]));
+    BLWK_mainCrate setPosASL (localNamespace getVariable "BLWK_extraction_crateTeleportPosition");
 
     /* -------------------------------------
         Spawn enemy units
@@ -269,7 +283,11 @@ private _fn_startExtractionDefense = {
 private _fn_afterExtractionWaitTime = {
     params ["_centerPosition","_landingPositions","_extractionHeliClass"];
 
-    ["Helicopters will arrive shortly"] remoteExec ["KISKA_fnc_notification",call CBAP_fnc_players];
+    private _players = call CBAP_fnc_players;
+    ["Helicopters will arrive shortly",4,false] remoteExec ["KISKA_fnc_notification",_players];
+    if (BLWK_extractionHintsEnabled) then {
+        ["Aircraft gunners will be teleported to LZ once the first helicopter has landed",10,false] remoteExec ["KISKA_fnc_notification",_players];
+    };
 
     /* -------------------------------------
         Create helicopters and have them land
@@ -298,8 +316,9 @@ private _fn_afterExtractionWaitTime = {
             params ["_aircraft", "", "_unit"];
 
             if (isPlayer _unit) then {
-                _unit allowDamage false;
-                _unit setCaptive true;
+                // Not worrying about JIP because of how close to the end this is
+                [_unit,false] remoteExec ["allowDamage",0];
+                [_unit,true] remoteExec ["setCaptive",0];
                 BLWK_playersInExtractAircraft pushBackUnique _unit;
             };
         }];
@@ -308,8 +327,9 @@ private _fn_afterExtractionWaitTime = {
 
             if (isPlayer _unit) then {
                 BLWK_playersInExtractAircraft deleteAt (BLWK_playersInExtractAircraft find _unit);
-                _unit allowDamage true;
-                _unit setCaptive false;
+                // Not worrying about JIP because of how close to the end this is
+                [_unit,true] remoteExec ["allowDamage",0];
+                [_unit,false] remoteExec ["setCaptive",0];
             };
         }];
 
@@ -336,7 +356,7 @@ private _fn_afterExtractionWaitTime = {
 
         private _exfilPosition = [
             [1,1,1],
-            500,
+            3000,
             360
         ] call CBAP_fnc_randPos;
         _aircraft setVariable ["BLWK_exfilPosition",_exfilPosition];
@@ -347,6 +367,11 @@ private _fn_afterExtractionWaitTime = {
             "GET IN",
             true,
             {
+                if !(localNamespace getVariable ["BLWK_extraction_aircraftGunnersEnded",false]) then {
+                    [] remoteExecCall ["BLWK_fnc_endAircraftGunner",(call CBAP_fnc_players)];
+                    localNamespace setVariable ["BLWK_extraction_aircraftGunnersEnded",true];
+                };
+
                 _this spawn {
                     params ["_aircraft"];
 
