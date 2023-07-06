@@ -193,10 +193,11 @@ private _holdActionIds = [];
         {},
         {},
         {
-            params ["_target", "_caller", "", "_vehicleAndTurretPath"];
-            
+            params ["_target", "_caller", "", "_args"];
+
             moveOut _caller;
-            _caller moveInTurret _vehicleAndTurretPath;
+            _args params ["_vehicle","_turretPath"];
+            _caller moveInTurret [_vehicle,_turretPath];
         },
         {},
         [_vehicle,_turretPath],
@@ -338,5 +339,4 @@ localNamespace setVariable ["BLWK_aircraftGunnerEndData",[
 };
 
 // TODO:
-// 1. can't switch turrets
 // 4. If user is moved to area while in aircraft gunner, enemies will not rush extraction site
