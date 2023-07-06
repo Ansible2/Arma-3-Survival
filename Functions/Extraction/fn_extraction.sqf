@@ -367,9 +367,9 @@ private _fn_afterExtractionWaitTime = {
             "GET IN",
             true,
             {
-                if !(localNamespace getVariable ["BLWK_extraction_aircraftGunnersEnded",false]) then {
+                if !(missionNamespace getVariable ["BLWK_extraction_restrictAircraftGunners",false]) then {
+                    missionNamespace setVariable ["BLWK_extraction_restrictAircraftGunners",true,true];
                     [] remoteExecCall ["BLWK_fnc_endAircraftGunner",(call CBAP_fnc_players)];
-                    localNamespace setVariable ["BLWK_extraction_aircraftGunnersEnded",true];
                 };
 
                 _this spawn {

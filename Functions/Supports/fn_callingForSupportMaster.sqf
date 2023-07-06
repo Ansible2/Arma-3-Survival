@@ -254,40 +254,64 @@ if (CHECK_SUPPORT_CLASS(PASS_DOOR_GUNNER_CLASS)) exitWith {
 /* ----------------------------------------------------------------------------
 	Aircraft Gunner
 ---------------------------------------------------------------------------- */
-if (CHECK_SUPPORT_CLASS(TURRET_DOOR_GUNNER_CLASS)) exitWith {
+private _fn_createAircraftGunnerSupport = {
+	params [
+		"_inUseVar",
+		"_friendlyClassId",
+		"_getRandomVehicle",
+		"_loiterHeight",
+		"_loiterRadius",
+		"_defaultVehicleClass"
+	];
+
 	if (missionNamespace getVariable ["BLWK_isAircraftGunner",false]) exitWith {
 		["You can not go straight into another gunner support"] call KISKA_fnc_errorNotification;
+		ADD_SUPPORT_BACK
 	};
 
-	if !(missionNamespace getVariable ["BLWK_doorGunnerInUse",false]) then {
-		private _friendlyTransportHeliClass = [TRANSPORT_HELI_FACTION_MAP_ID,false] call BLWK_fnc_getFriendlyVehicleClass;
-		TURRET_EXPRESSION(_friendlyTransportHeliClass,125,BLWK_playAreaRadius * 1.5,"B_Heli_Transport_01_F","BLWK_doorGunnerInUse")
+	if (missionNamespace getVariable ["BLWK_extraction_restrictAircraftGunners",false]) exitWith {
+		["You can't call gunner supports after the extraction arrives!",6,false] call KISKA_fnc_errorNotification;
+		ADD_SUPPORT_BACK
+	};
+
+	if !(missionNamespace getVariable [_inUseVar,false]) then {
+		private _vehicleClass = [_friendlyClassId,_getRandomVehicle] call BLWK_fnc_getFriendlyVehicleClass;
+		TURRET_EXPRESSION(_vehicleClass,_loiterHeight,_loiterRadius,_defaultVehicleClass,_inUseVar)
 	} else {
 		["Only one door gunner support may be active at a time."] call KISKA_fnc_errorNotification;
 		ADD_SUPPORT_BACK
 	};
 };
+
+if (CHECK_SUPPORT_CLASS(TURRET_DOOR_GUNNER_CLASS)) exitWith {
+	[
+		"BLWK_doorGunnerInUse",
+		TRANSPORT_HELI_FACTION_MAP_ID,
+		false,
+		125,
+		BLWK_playAreaRadius * 1.5,
+		"B_Heli_Transport_01_F"
+	] call _fn_createAircraftGunnerSupport;
+};
 if (CHECK_SUPPORT_CLASS(TURRET_ATTACK_HELI_GUNNER_CLASS)) exitWith {
-	if !(missionNamespace getVariable ["BLWK_heliGunnerInUse",false]) then {
-		private _friendlyAttackHeliClass = [ATTACK_HELI_FACTION_MAP_ID] call BLWK_fnc_getFriendlyVehicleClass;
-		TURRET_EXPRESSION(_friendlyAttackHeliClass,400,550,"B_Heli_Attack_01_dynamicLoadout_F","BLWK_heliGunnerInUse")
-
-	} else {
-		["Only one helicopter gunner support may be active at a time."] call KISKA_fnc_errorNotification;
-		ADD_SUPPORT_BACK
-
-	};
+	[
+		"BLWK_heliGunnerInUse",
+		ATTACK_HELI_FACTION_MAP_ID,
+		true,
+		400,
+		550,
+		"B_Heli_Attack_01_dynamicLoadout_F"
+	] call _fn_createAircraftGunnerSupport;
 };
 if (CHECK_SUPPORT_CLASS(TURRET_GUNSHIP_CLASS)) exitWith {
-	if !(missionNamespace getVariable ["BLWK_gunshipGunnerInUse",false]) then {
-		private _friendlyGunshipClass = [HEAVY_GUNSHIP_FACTION_MAP_ID,false] call BLWK_fnc_getFriendlyVehicleClass;
-		TURRET_EXPRESSION(_friendlyGunshipClass,700,1200,"B_T_VTOL_01_armed_F","BLWK_gunshipGunnerInUse")
-
-	} else {
-		["Only one heavy gunship gunner support may be active at a time."] call KISKA_fnc_errorNotification;
-		ADD_SUPPORT_BACK
-
-	};
+	[
+		"BLWK_gunshipGunnerInUse",
+		HEAVY_GUNSHIP_FACTION_MAP_ID,
+		false,
+		700,
+		1200,
+		"B_T_VTOL_01_armed_F"
+	] call _fn_createAircraftGunnerSupport;
 };
 
 

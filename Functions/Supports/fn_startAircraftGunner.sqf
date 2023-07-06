@@ -338,5 +338,5 @@ localNamespace setVariable ["BLWK_aircraftGunnerEndData",[
 };
 
 // TODO:
-// 3. do not allow more extraction gunners to be created after helicopers spawn
+// 1. can't switch turrets
 // 4. If user is moved to area while in aircraft gunner, enemies will not rush extraction site
