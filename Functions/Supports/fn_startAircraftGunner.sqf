@@ -339,4 +339,5 @@ localNamespace setVariable ["BLWK_aircraftGunnerEndData",[
 };
 
 // TODO:
+// 1. Got kicked out of aircraft gunner when helicopter spawned??? (heli never arrived, probably crashed on spawn?)
 // 4. If user is moved to area while in aircraft gunner, enemies will not rush extraction site
