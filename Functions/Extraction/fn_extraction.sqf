@@ -300,7 +300,9 @@ private _fn_afterExtractionWaitTime = {
         private _aircraftInfo = [
             _spawnPosition,
             _spawnPosition getDir _centerPosition,
-            _extractionHeliClass
+            _extractionHeliClass,
+            BLUFOR,
+            false
         ] call KISKA_fnc_spawnVehicle;
 
         // handle crew AI
