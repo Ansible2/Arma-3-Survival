@@ -226,6 +226,8 @@ class BLWK
 		{};
 		class adjustPlayerTraits
 		{};
+		class allowDamage
+		{};
 	/*
 		class checkDLC
 		{};
@@ -350,7 +352,9 @@ class BLWK
 	class Supports
 	{
 		file = "Functions\Supports";
-		class aircraftGunner
+		class startAircraftGunner
+		{};
+		class endAircraftGunner
 		{};
 		class arsenalSupplyDrop
 		{};

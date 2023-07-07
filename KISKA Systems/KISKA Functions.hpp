@@ -137,6 +137,8 @@ class KISKA
 		{};
 		class heliLand
 		{};
+		class idCounter
+		{};
 		class isAdminOrHost
     	{};
 		class isMainMenu
@@ -168,6 +170,13 @@ class KISKA
 		class str
 		{};
 		class supplyDrop
+		{};
+
+		class managedRun_execute
+		{};
+		class managedRun_isDefined
+		{};
+		class managedRun_updateCode
 		{};
 	};
 };

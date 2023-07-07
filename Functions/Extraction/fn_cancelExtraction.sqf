@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_callForExtraction
+Function: BLWK_fnc_cancelExtraction
 
 Description:
     Sets the extraction queued public var to false if permitted.

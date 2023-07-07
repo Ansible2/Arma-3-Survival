@@ -38,8 +38,10 @@ if (missionNamespace getVariable ["BLWK_isAircraftGunner",false]) then {
 
 
 // make players briefly invincible
-_player allowDamage false;
-[] spawn {
+[_player] spawn {
+    param ["_player"];
+
+    private _idOfRespawnInvincibility = [_player,false] call BLWK_fnc_allowDamage;
     sleep 15;
-    player allowDamage true;
+    [_player,true,_idOfRespawnInvincibility] call BLWK_fnc_allowDamage;
 };

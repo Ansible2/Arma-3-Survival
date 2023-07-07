@@ -133,10 +133,7 @@ if (_landMode isNotEqualTo "LAND") then {
     _aircraft setVariable ["KISKA_cancelLanding",false];
     _aircraft setVariable ["KISKA_isLanding",false];
 
-    [[_aircraft],_afterLandCode] spawn {
-        _this call KISKA_fnc_callBack;
-    };
-
+    [[_aircraft],_afterLandCode] call KISKA_fnc_callBack;
     [_aircraft,LAND_EVENT,[_aircraft]] call BIS_fnc_callScriptedEventHandler;
 };
 
