@@ -337,7 +337,3 @@ localNamespace setVariable ["BLWK_aircraftGunnerEndData",[
     ["Your support expired"] call KISKA_fnc_notification;
     call BLWK_fnc_endAircraftGunner;
 };
-
-// TODO:
-// 1. Got kicked out of aircraft gunner when helicopter spawned??? (heli never arrived, probably crashed on spawn?)
-// 4. If user is moved to area while in aircraft gunner, enemies will not rush extraction site
