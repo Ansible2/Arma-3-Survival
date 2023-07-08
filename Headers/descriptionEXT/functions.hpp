@@ -252,6 +252,8 @@ class BLWK
 		{};
 		class lootReveal
 		{};
+		class notifyAdminsOrHostOfError
+		{};
 		class optreMedicalToVanilla
 		{};
 		class randomizeWeapons
