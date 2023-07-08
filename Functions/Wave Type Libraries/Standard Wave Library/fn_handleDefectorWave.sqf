@@ -5,7 +5,7 @@ Description:
 	This is simply an alias for the below functions. It is used to exec
 	 both on whomever the AI handler is without using multiple remoteExecs
 
-	Executed from "BLWK_fnc_decideWaveType"
+	Executed from "BLWK_fnc_spawnWaveEnemies"
 
 Parameters:
 	NONE

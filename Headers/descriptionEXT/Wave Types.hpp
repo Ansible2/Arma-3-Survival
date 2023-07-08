@@ -6,7 +6,7 @@ class BLWK_waveTypes
     {
         class standardWave
         {
-            onSelected = "remoteExec ['BLWK_fnc_handleStandardWave',BLWK_theAIHandlerOwnerID]"; // uncompiled code that is run on the server when the wave is selected (started). For context of execution see BLWK_fnc_startWave's use of BLWK_fnc_decideWaveType
+            onSelected = "remoteExec ['BLWK_fnc_handleStandardWave',BLWK_theAIHandlerOwnerID]"; // uncompiled code that is run on the server when the wave is selected (started). For context of execution see BLWK_fnc_startWave's use of BLWK_fnc_spawnWaveEnemies
             //onWaveEnd = ""; // uncompiled code that is run on the server when the wave is ended
             creationNotificationTemplate = TASK_ASSIGNED_TEMPLATE; // a CfgNotification template for when the wave starts
             notificationText = "['','Incoming Wave: ' + (str BLWK_currentWaveNumber)]"; // text to appear in wave start notification

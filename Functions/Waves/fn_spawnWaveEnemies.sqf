@@ -1,8 +1,9 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_decideWaveType
+Function: BLWK_fnc_spawnWaveEnemies
 
 Description:
-	Decides what type of wave will be next if there are special waves allowed.
+	Determines what type of wave should happen next and then initiates the
+	 spawning of enemies for that wave.
 
 	Executed from "BLWK_fnc_startWave"
 
@@ -10,20 +11,20 @@ Parameters:
 	NONE
 
 Returns:
-	BOOL
+	NOTHING
 
 Examples:
     (begin example)
-		call BLWK_fnc_decideWaveType;
+		call BLWK_fnc_spawnWaveEnemies;
     (end)
 
 Author(s):
 	Hilltop(Willtop) & omNomios,
-	Modified by: Ansible2 // Cipher
+	Modified by: Ansible2
 ---------------------------------------------------------------------------- */
-scriptName "BLWK_fnc_decideWaveType";
+scriptName "BLWK_fnc_spawnWaveEnemies";
 
-if (!isServer) exitWith {false};
+if (!isServer) exitWith {};
 
 /* ----------------------------------------------------------------------------
 	Check if special waves are allowed
@@ -33,7 +34,6 @@ if (BLWK_currentWaveNumber >= BLWK_specialWavesStartAt) then {
 	["Special waves can be selected this wave",false] call KISKA_fnc_log;
 	private _standardWaveLikelihood = 1 - BLWK_specialWaveLikelihood;
 	_selectSpecialWave = selectRandomWeighted [true,BLWK_specialWaveLikelihood,false,_standardWaveLikelihood];
-
 };
 
 private _usedSpecialWaves = localNamespace getVariable ["BLWK_usedSpecialWaveConfigs",[]];
@@ -44,21 +44,21 @@ private _usedSpecialWaves = localNamespace getVariable ["BLWK_usedSpecialWaveCon
 ---------------------------------------------------------------------------- */
 private _getAllowedSpecialWaves = {
 	BLWK_specialWaveConfigs select {
-		!(_x in _usedSpecialWaves) AND {missionNamespace getVariable [getText(_x >> "toggleVariable"),true]}
+		private _waveIsAllowedInParams = missionNamespace getVariable [getText(_x >> "toggleVariable"),true];
+		!(_x in _usedSpecialWaves) AND _waveIsAllowedInParams
 	};
 };
 
 private _fn_getNormalWave = {
-	if (BLWK_currentWaveNumber >= BLWK_normalWavesStartAt) then {
+	if (BLWK_currentWaveNumber >= BLWK_normalWavesStartAt) exitWith {
 		private _weights = BLWK_normalWaveConfigs apply {
 			missionNamespace getVariable [getText(_x >> "weightVariable"),0];
 		};
 
-		BLWK_normalWaveConfigs selectRandomWeighted _weights;
-	} else {
-		missionConfigFile >> "BLWK_waveTypes" >> "normalWaves" >> "standardWave";
-
+		BLWK_normalWaveConfigs selectRandomWeighted _weights
 	};
+
+	missionConfigFile >> "BLWK_waveTypes" >> "normalWaves" >> "standardWave"
 };
 
 
@@ -71,7 +71,8 @@ if (_selectSpecialWave) then {
 	["Selected a special wave instead of standard",false] call KISKA_fnc_log;
 
 	private _allowedSpecialWaves = call _getAllowedSpecialWaves;
-	if (_allowedSpecialWaves isEqualTo []) then {
+	private _allSpecialWavesHaveBeenUsed = _allowedSpecialWaves isEqualTo [];
+	if (_allSpecialWavesHaveBeenUsed) then {
 		_usedSpecialWaves = [];
 		localNamespace setVariable ["BLWK_usedSpecialWaveConfigs",_usedSpecialWaves];
 		_allowedSpecialWaves = call _getAllowedSpecialWaves;
@@ -113,14 +114,13 @@ if ([_waveConfigPath >> "compileNotificationText"] call BIS_fnc_getCfgDataBool) 
 };
 _notification pushBack _notificationText;
 
+
 private _players = call CBAP_fnc_players;
 _notification remoteExec ["BIS_fnc_showNotification", _players];
-
-
 // play a sound for special waves
 if (_playAlarm) then {
 	["Alarm"] remoteExec ["playSound", _players];
 };
 
 
-true
+nil

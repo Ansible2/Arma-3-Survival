@@ -515,8 +515,6 @@ class BLWK
 		{};
 		class clearMustKillList
 		{};
-		class decideWaveType
-		{};
 		class endWave
 		{};
 		class getMustKillList
@@ -528,6 +526,8 @@ class BLWK
 		class spawnLoot
 		{};
 		class startWave
+		{};
+		class spawnWaveEnemies
 		{};
 		class startWaveCountdown
 		{};

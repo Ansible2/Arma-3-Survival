@@ -14,18 +14,16 @@ Returns:
 
 Examples:
     (begin example)
-
-		[true] spawn BLWK_fnc_startWave;
-
+		[true] call BLWK_fnc_startWave;
     (end)
 
 Author(s):
 	Hilltop(Willtop) & omNomios,
-	Modified by: Ansible2 // Cipher
+	Modified by: Ansible2
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_startWave";
 
-if (!isServer OR {!canSuspend}) exitWith {};
+if (!isServer) exitWith {};
 
 params [
 	["_clearDroppedItems",false]
@@ -62,14 +60,10 @@ missionNamespace setVariable ["BLWK_initialWaveSpawnComplete",false];
 	Decide Wave Type/Handle Extraction
 ---------------------------------------------------------------------------- */
 if (missionNamespace getVariable ["BLWK_extractionQueued",false]) then {
-	[
-		{
-			call BLWK_fnc_extraction;
-		}
-	] call CBAP_fnc_directCall;
+	call BLWK_fnc_extraction;
 
 } else {
-	call BLWK_fnc_decideWaveType;
+	call BLWK_fnc_spawnWaveEnemies;
 
 	// loot is spawned before the wave starts at round 1
 	if (BLWK_currentWaveNumber > BLWK_startingFromWaveNumber) then {
@@ -94,7 +88,7 @@ call BLWK_fnc_cleanUpTheDead;
 waitUntil {
 	if (
 		missionNamespace getVariable ["BLWK_initialWaveSpawnComplete",false] OR
-		{!(missionNamespace getVariable ["BLWK_mustKillList",[]] isEqualTo [])}
+		{(call BLWK_fnc_getMusKillList) isNotEqualTo []}
 	) exitWith {true};
 	sleep 1;
 	false

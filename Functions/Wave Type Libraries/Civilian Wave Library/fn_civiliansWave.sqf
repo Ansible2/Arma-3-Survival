@@ -4,7 +4,7 @@ Function: BLWK_fnc_civiliansWave
 Description:
 	Creates the civilians during a special wave.
 	
-	It is executed from the "BLWK_fnc_decideWaveType".
+	It is executed from the "BLWK_fnc_spawnWaveEnemies".
 	
 Parameters:
 	NONE
