@@ -13,7 +13,7 @@ Returns:
 
 Examples:
     (begin example)
-		call BLWK_fnc_handleUnconsciousAiEvent;
+		[] spawn BLWK_fnc_handleUnconsciousAiEvent;
     (end)
 
 Author(s):

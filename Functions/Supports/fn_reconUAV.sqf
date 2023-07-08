@@ -13,13 +13,11 @@ Returns:
 
 Examples:
     (begin example)
-
 		[] spawn BLWK_fnc_reconUAV;
-
     (end)
 
 Authors:
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
 #define LIFETIME 120
 #define MARKER_SIZE 0.5
