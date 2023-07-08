@@ -159,6 +159,8 @@ class KISKA
 		{};
 		class removeArsenal
 		{};
+		class selectRandom
+		{};
 		class setCrew
 		{};
 		class spawnVehicle
