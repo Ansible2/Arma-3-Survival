@@ -46,7 +46,7 @@ if (!isServer) exitWith {false};
 /* ----------------------------------------------------------------------------
 	Delete Previous Loot Markers
 ---------------------------------------------------------------------------- */
-BLWK_lootMarkers apply { deleteMarker _x };
+(missionNamespace getVariable ["BLWK_lootMarkers",[]]) apply { deleteMarker _x };
 
 
 /* ----------------------------------------------------------------------------
@@ -105,7 +105,7 @@ private _exit = false;
 			_sortedPositions pushBack (AGLToASL _buildingPositionWithHeightIncrease);
 		};
 	} forEach _buildingsPositions;
-	
+
 } forEach BLWK_playAreaBuildings;
 
 // if there are less available positions in the area then the max allowed, just readjust
