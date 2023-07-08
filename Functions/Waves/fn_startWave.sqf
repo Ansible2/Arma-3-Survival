@@ -33,24 +33,6 @@ params [
 
 call BLWK_fnc_clearMustKillList;
 
-/* ----------------------------------------------------------------------------
-	Clean must kill array
----------------------------------------------------------------------------- */
-/*
-	it's rare, but if enemies die too quickly,
-	this can cause overlap in the next wave of enemies.
-	These are people that were just being added into the array when it is cleared
-*/
-private _arrayCleared = [] spawn BLWK_fnc_clearMustKillArray;
-waitUntil {
-	if (scriptDone _arrayCleared) exitWith {true};
-	sleep 0.1;
-	false
-};
-
-/* ----------------------------------------------------------------------------
-	Clear Dropped Items
----------------------------------------------------------------------------- */
 if (_clearDroppedItems) then {
 
 	private _weaponHolders = BLWK_playAreaCenter nearObjects ["weaponHolder",250];
