@@ -1,4 +1,3 @@
-#include "..\..\Headers\String Constants.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_isWaveCleared
 
@@ -25,7 +24,7 @@ Author(s):
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {false};
 
-private _index = (missionNamespace getVariable [WAVE_ENEMIES_ARRAY,[]]) findIf {alive _x};
+private _index = (missionNamespace getVariable ["BLWK_mustKillList",[]]) findIf {alive _x};
 private _allDronesCreated = missionNamespace getVariable ["BLWK_allDronesCreated",true];
 if (_index != -1 OR {!_allDronesCreated}) then {
 	false

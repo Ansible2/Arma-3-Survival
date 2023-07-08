@@ -20,10 +20,6 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-#ifndef WAVE_ENEMIES_ARRAY
-	#include "..\..\Headers\String Constants.hpp"
-#endif
-
 // need to check if anyone is still alive before clearing
 waitUntil {
 	if (call BLWK_fnc_isWaveCleared) exitWith {true};
@@ -31,4 +27,4 @@ waitUntil {
 	false
 };
 
-missionNamespace setVariable [WAVE_ENEMIES_ARRAY,[]];
+missionNamespace setVariable ["BLWK_mustKillList",[]];

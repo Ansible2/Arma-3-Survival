@@ -1,4 +1,3 @@
-#include "..\..\Headers\String Constants.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_addToMustKillArray
 
@@ -31,11 +30,11 @@ params [
 
 if (isNull _unitToAdd) exitWith {false};
 
-private _currentArray = missionNamespace getVariable [WAVE_ENEMIES_ARRAY,[]];
+private _currentArray = missionNamespace getVariable ["BLWK_mustKillList",[]];
 
 _currentArray pushBackUnique _unitToAdd;
 
-missionNamespace setVariable [WAVE_ENEMIES_ARRAY,_currentArray,2];
+missionNamespace setVariable ["BLWK_mustKillList",_currentArray,2];
 
 
 true

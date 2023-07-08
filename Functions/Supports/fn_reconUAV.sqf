@@ -1,4 +1,3 @@
-#include "..\..\Headers\String Constants.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_reconUAV
 
@@ -50,7 +49,7 @@ private _createdMarkers = [];
 private _endtime = time + LIFETIME;
 while {sleep UPDATE_TIME; time < _endTime} do {
 	//_unitsArray = units side OPFOR;
-	_unitsArray = missionNamespace getVariable [WAVE_ENEMIES_ARRAY,[]];
+	_unitsArray = missionNamespace getVariable ["BLWK_mustKillList",[]];
 
 	if !(_unitsArray isEqualTo []) then {
 

@@ -1,4 +1,3 @@
-#include "..\..\Headers\String Constants.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_startWave
 
@@ -112,7 +111,7 @@ call BLWK_fnc_cleanUpTheDead;
 waitUntil {
 	if (
 		missionNamespace getVariable ["BLWK_initialWaveSpawnComplete",false] OR
-		{!(missionNamespace getVariable [WAVE_ENEMIES_ARRAY,[]] isEqualTo [])}
+		{!(missionNamespace getVariable ["BLWK_mustKillList",[]] isEqualTo [])}
 	) exitWith {true};
 	sleep 1;
 	false
