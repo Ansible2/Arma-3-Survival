@@ -14,13 +14,11 @@ Returns:
 
 Examples:
     (begin example)
-
 		_areEnemiesDead = call BLWK_fnc_isWaveCleared;
-
     (end)
 
 Author(s):
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {false};
 
