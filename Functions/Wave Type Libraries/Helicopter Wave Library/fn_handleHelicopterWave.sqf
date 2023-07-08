@@ -61,7 +61,7 @@ private _fn_spawnHeli = {
 
     // loop through crew
     (_vehicleArray select 1) apply {
-        [_x] remoteExecCall ["BLWK_fnc_addToMustKillArray",2];
+        [_x] remoteExecCall ["BLWK_fnc_addToMustKillList",2];
         [_x] call BLWK_fnc_addStdEnemyManEHs;
         _x allowDamage true;
         _x setSkill 0.05;

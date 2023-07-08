@@ -116,7 +116,7 @@ for "_i" from 1 to DRONE_NUMBER do {
 		deleteVehicle _unit;
 	}];
 
-	[_drone_temp] remoteExec ["BLWK_fnc_addToMustKillArray",2];
+	[_drone_temp] remoteExec ["BLWK_fnc_addToMustKillList",2];
 	[BLWK_zeus,[[_drone_temp], true]] remoteExecCall ["addCuratorEditableObjects",2]; 	
 	
 	// space out spawns so that you don't get spammed

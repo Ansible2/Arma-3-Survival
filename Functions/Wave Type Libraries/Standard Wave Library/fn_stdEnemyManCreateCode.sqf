@@ -39,7 +39,7 @@ if (isNil "_group") then {
 
 
 // add to server's list of units that must be dead before the round can end
-[_unit] remoteExecCall ["BLWK_fnc_addToMustKillArray",2];
+[_unit] remoteExecCall ["BLWK_fnc_addToMustKillList",2];
 [BLWK_zeus, [[_unit],false]] remoteExecCall ["addCuratorEditableObjects",2];
 
 
