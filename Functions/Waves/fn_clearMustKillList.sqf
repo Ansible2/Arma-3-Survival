@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_clearMustKillArray
+Function: BLWK_fnc_clearMustKillList
 
 Description:
 	Simply clears the global variable array for the next round.
@@ -12,19 +12,12 @@ Returns:
 
 Examples:
     (begin example)
-
-		call BLWK_fnc_clearMustKillArray;
-
+		call BLWK_fnc_clearMustKillList;
     (end)
 
 Author(s):
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
-// need to check if anyone is still alive before clearing
-waitUntil {
-	if (call BLWK_fnc_isWaveCleared) exitWith {true};
-	sleep 0.5;
-	false
-};
+scriptName "BLWK_fnc_clearMustKillList";
 
-missionNamespace setVariable ["BLWK_mustKillList",[]];
+localNamespace setVariable ["BLWK_mustKillList",[]];

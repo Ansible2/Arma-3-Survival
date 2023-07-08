@@ -35,60 +35,48 @@ if !(canSuspend) exitWith {
 // make it so we can have 2 UAVs active at once
 missionNamespace setVariable ["BLWK_reconUavActive",true,true];
 
-private [
-	"_unit_temp",
-	"_markerName_temp",
-	"_marker_temp",
-	"_markerExists_temp",
-	"_unitsArray"
-];
-
 private _createdMarkers = [];
 private _endtime = time + LIFETIME;
 while {sleep UPDATE_TIME; time < _endTime} do {
-	//_unitsArray = units side OPFOR;
-	_unitsArray = missionNamespace getVariable ["BLWK_mustKillList",[]];
 
-	if !(_unitsArray isEqualTo []) then {
-
-		{
-			_markerName_temp = [RECON_MARKER,_forEachIndex] joinString "_";
-			_markerExists_temp = (getMarkerType _markerName_temp) != "";
-			if (alive _x) then {
-				if (_markerExists_temp) then {
-					_markerName_temp setMarkerPos _x;
-					//diag_log (["Updating position of",_markerName_temp] joinString " ");
-				} else {
-					_marker_temp = createMarkerLocal [_markerName_temp,_x];
-					_marker_temp setMarkerTypeLocal "mil_triangle";
-					_marker_temp setMarkerSizeLocal [MARKER_SIZE,MARKER_SIZE];
-					_marker_temp setMarkerColor "colorOPFOR";
-
-					_createdMarkers pushBack _marker_temp;
-					//diag_log (["created marker:",_marker_temp] joinString " ");
-				};
-
-				sleep UPDATE_TIME;
+	{
+		private _markerName = [RECON_MARKER,_forEachIndex] joinString "_";
+		private _markerExists = (getMarkerType _markerName) != "";
+		if (alive _x) then {
+			if (_markerExists) then {
+				_markerName setMarkerPos _x;
+				//diag_log (["Updating position of",_markerName] joinString " ");
 			} else {
-				if (_markerExists_temp) then {
-					deleteMarker _markerName_temp;
-					//diag_log (["marker", _markerName_temp, "was deleted"] joinString " ");
-				};
+				private _marker = createMarkerLocal [_markerName,_x];
+				_marker setMarkerTypeLocal "mil_triangle";
+				_marker setMarkerSizeLocal [MARKER_SIZE,MARKER_SIZE];
+				_marker setMarkerColor "colorOPFOR";
+
+				_createdMarkers pushBack _marker;
+				//diag_log (["created marker:",_marker] joinString " ");
 			};
-		} forEach _unitsArray;
-	};
+
+			sleep UPDATE_TIME;
+		} else {
+			if (_markerExists) then {
+				deleteMarker _markerName;
+				//diag_log (["marker", _markerName, "was deleted"] joinString " ");
+			};
+		};
+	} forEach (call BLWK_fnc_getMustKillList);
 
 	//diag_log "Reached end of while, going back";
 };
 
-// delete markers
+
 _createdMarkers apply {
 	// if marker is not already deleted
-	if ((getMarkerType _x) != "") then {
-		//diag_log (["The marker isn't already deleted, deleting marker:",_x] joinString " ");
+	private _markerNotDeleted = (getMarkerType _x) != "";
+	if (_markerNotDeleted) then {
 		deleteMarker _x;
 	};
 };
+
 
 missionNamespace setVariable ["BLWK_reconUavActive",false,true];
 ["Recon UAV is no longer active"] remoteExecCall ["KISKA_fnc_notification",BLWK_allClientsTargetId];

@@ -31,6 +31,7 @@ params [
 	["_clearDroppedItems",false]
 ];
 
+call BLWK_fnc_clearMustKillList;
 
 /* ----------------------------------------------------------------------------
 	Clean must kill array

@@ -513,11 +513,13 @@ class BLWK
 		{};
 		class cleanUpTheDead
 		{};
-		class clearMustKillArray
+		class clearMustKillList
 		{};
 		class decideWaveType
 		{};
 		class endWave
+		{};
+		class getMustKillList
 		{};
 		class isWaveCleared
 		{};

@@ -9,7 +9,7 @@ Parameters:
 	0: _unitToAdd : <OBJECT> - The unit to add
 
 Returns:
-	BOOL
+	NOTHING
 
 Examples:
     (begin example)
@@ -19,7 +19,7 @@ Examples:
 Author(s):
 	Ansible2
 ---------------------------------------------------------------------------- */
-if (!isServer) exitWith {false};
+if (!isServer) exitWith {};
 
 params [
 	["_unitToAdd",objNull,[objNull]]
@@ -30,9 +30,6 @@ if (isNull _unitToAdd) exitWith {
 	nil
 };
 
-private _currentArray = missionNamespace getVariable ["BLWK_mustKillList",[]];
+private _currentArray = call BLWK_fnc_getMustKillList;
 _currentArray pushBackUnique _unitToAdd;
-missionNamespace setVariable ["BLWK_mustKillList",_currentArray,2];
-
-
-true
+localNamespace setVariable ["BLWK_mustKillList",_currentArray];
