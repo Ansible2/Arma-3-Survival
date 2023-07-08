@@ -2,7 +2,7 @@
 Function: BLWK_fnc_notifyAdminsOrHostOfError
 
 Description:
-    Prints a simple KISKA Notify error notification on screen.
+    Prints an error onto the screen of only sever and admin machines.
 
 Parameters:
     0: _message : <STRING or ARRAY> - The second line of the notification.
@@ -26,7 +26,7 @@ Examples:
 Author:
     Ansible2
 ---------------------------------------------------------------------------- */
-scriptName "KISKA_fnc_errorNotification";
+scriptName "BLWK_fnc_notifyAdminsOrHostOfError";
 
 if !(call KISKA_fnc_isAdminOrHost) exitWith {};
 
