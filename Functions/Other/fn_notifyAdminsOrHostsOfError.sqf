@@ -19,8 +19,8 @@ Returns:
 Examples:
     (begin example)
         [
-			"An error happened somewhere"
-		] remoteExec ["BLWK_fnc_notifyAdminsOrHostOfError",0];
+            "An error happened somewhere"
+        ] remoteExec ["BLWK_fnc_notifyAdminsOrHostOfError",0];
     (end)
 
 Author:
