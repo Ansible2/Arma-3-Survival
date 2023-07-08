@@ -46,11 +46,7 @@ if (!isServer) exitWith {false};
 /* ----------------------------------------------------------------------------
 	Delete Previous Loot Markers
 ---------------------------------------------------------------------------- */
-if !((missionNamespace getVariable ["BLWK_lootMarkers",[]]) isEqualTo []) then {
-	BLWK_lootMarkers apply {
-		deleteMarker _x;
-	};
-};
+BLWK_lootMarkers apply { deleteMarker _x };
 
 
 /* ----------------------------------------------------------------------------
@@ -59,20 +55,26 @@ if !((missionNamespace getVariable ["BLWK_lootMarkers",[]]) isEqualTo []) then {
 // Add a bool variable to this in the future to check if the play area size changed
 if (isNil "BLWK_playAreaBuildings" /*OR {playAreaSizeWasChanged}*/) then {
 	// get ALL buildings in area
-	private _buildingsInPlayArea = nearestTerrainObjects [BLWK_playAreaCenter,["House"], BLWK_playAreaRadius, false, true];
+	private _buildingsInPlayArea = nearestTerrainObjects [
+		BLWK_playAreaCenter,
+		["House"], 
+		BLWK_playAreaRadius, 
+		false, 
+		true
+	];
 
 	// make sure the building has configed positions to spawn stuff at
 	BLWK_playAreaBuildings = _buildingsInPlayArea select {
-		((_x buildingPos -1) isNotEqualTo [])
+		private _allBuildingPositions = _x buildingPos -1;
+		(_allBuildingPositions isNotEqualTo [])
 	};
 
-	BLWK_playAreaBuildings = [BLWK_playAreaBuildings,true] call CBAP_fnc_shuffle;
 	//playAreaSizeWasChanged = false;
-} else {
-	// randomize buildings because the forEach loop below will be the same every time then
-	BLWK_playAreaBuildings = [BLWK_playAreaBuildings,true] call CBAP_fnc_shuffle;
 };
 
+// randomize buildings because the forEach loop below will be the same every time then
+// shuffles array in place
+[BLWK_playAreaBuildings,true] call CBAP_fnc_shuffle;
 
 
 /* ----------------------------------------------------------------------------
@@ -81,22 +83,29 @@ if (isNil "BLWK_playAreaBuildings" /*OR {playAreaSizeWasChanged}*/) then {
 private _sortedPositions = [];
 private _exit = false;
 {
-	if (_exit) then {break};
+	if (_exit) then { break };
 
 	private _currentBuilding = _x;
 	private _buildingIndex = _forEachIndex;
 	// to distribute to every building, every other building, every 3rd, etc.
-	if ((_buildingIndex mod BLWK_loot_cityDistribution) isEqualTo 0) then {
-		private _buildingsPositions = _currentBuilding buildingPos -1;
+	if ((_buildingIndex mod BLWK_loot_cityDistribution) isNotEqualTo 0) then { continue };
 
-		{
-			if (count _sortedPositions >= MAX_SPAWNS_PLUS_UNIQUES) then {_exit = true; break};
+	private _buildingsPositions = _currentBuilding buildingPos -1;
+	{
+		if (count _sortedPositions >= MAX_SPAWNS_PLUS_UNIQUES) then {
+			_exit = true; 
+			break;
+		};
 
-			if (_forEachIndex isEqualTo 0 OR {(_forEachIndex mod BLWK_loot_roomDistribution) isEqualTo 0}) then {
-				_sortedPositions pushBack (AGLToASL (_x vectorAdd [0,0,LOOT_HOLDER_Z_BUFFER]));
-			};
-		} forEach _buildingsPositions;
-	};
+		private _positionMatchesBuildingLootDistribution = (_forEachIndex mod BLWK_loot_roomDistribution) isEqualTo 0;
+		private _isFirstPositionInBuilding = _forEachIndex isEqualTo 0;
+		if (_isFirstPositionInBuilding OR _positionMatchesBuildingLootDistribution) then {
+			// mitigate loot from sometimes being in the ground
+			private _buildingPositionWithHeightIncrease = _x vectorAdd [0,0,LOOT_HOLDER_Z_BUFFER];
+			_sortedPositions pushBack (AGLToASL _buildingPositionWithHeightIncrease);
+		};
+	} forEach _buildingsPositions;
+	
 } forEach BLWK_playAreaBuildings;
 
 // if there are less available positions in the area then the max allowed, just readjust
