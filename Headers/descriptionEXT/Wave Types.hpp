@@ -6,15 +6,33 @@ class BLWK_waveTypes
     {
         class standardWave
         {
-            // uncompiled code that is run on the server when the wave is selected (started). 
-            // For context of execution see BLWK_fnc_startWave's use of BLWK_fnc_getConfigForWave
-            // onSelected = "remoteExecCall ['BLWK_fnc_handleStandardWave',BLWK_theAIHandlerOwnerID]";
-            
+            // The name of a missionNamespace variable that must be code that will return
+            // an array of weighted or unweighted classnames (<STRING[] | [STRING,NUMBER,STRING,NUMBER,...]>)
+            // that will be randomly selected from when spawning an enemy man
+            // Executes on the SERVER
+            // (see BLWK_fnc_waves_create for context)
             generateMenClassnames = "BLWK_fnc_standardWave_generateMenClassnames";
+
+            // The name of a missionNamespace variable that must be code that will return
+            // a single position in ATL format (<PositionATL[]>)
+            // Executes on the SERVER
+            // (see BLWK_fnc_waves_create for context)
             generateManSpawnPosition = "BLWK_fnc_standardWave_generateManSpawnPosition";
 
-            // The name of a function that exists on the AI handler owner that will be called
+            // The name of a missionNamespace variable that must be code.
+            // This will be executed after all initial units have spawned for the start of a wave
+            // Executes on the SERVER
+            // (see BLWK_fnc_waves_create and BLWK_fnc_waves_onInitialized for context)
+            // Parameters:
+            /// 0: <CONFIG> - the config of the wave 
             onWaveInit = "BLWK_fnc_standardWave_onWaveInit";
+
+            // The name of a missionNamespace variable that must be code.
+            // Runs once a unit is created from the queue of enemies to spawn.
+            // Executes on the AI Handler (either headless or server)
+            // (see BLWK_fnc_spawnQueue_create for context)
+            // Parameters:
+            /// 0: <OBJECT> - the unit created 
             onManCreated = "BLWK_fnc_standardWave_onManCreated";
             
             // uncompiled code that is run on the server when the wave is ended
