@@ -51,9 +51,7 @@ if (_clearDroppedItems) then {
 ---------------------------------------------------------------------------- */
 private _previousWaveNum = missionNamespace getVariable ["BLWK_currentWaveNumber",0];
 missionNamespace setVariable ["BLWK_currentWaveNumber", _previousWaveNum + 1,true];
-
 missionNamespace setVariable ["BLWK_inBetweenWaves",false,true];
-missionNamespace setVariable ["BLWK_initialWaveSpawnComplete",false];
 
 
 /* ----------------------------------------------------------------------------
@@ -75,43 +73,7 @@ if (missionNamespace getVariable ["BLWK_extractionQueued",false]) then {
 };
 
 
-/* ----------------------------------------------------------------------------
-	Clean Dead
----------------------------------------------------------------------------- */
 call BLWK_fnc_cleanUpTheDead;
 
 
-/* ----------------------------------------------------------------------------
-	Make sure enemies have spawned
----------------------------------------------------------------------------- */
-// check to make sure there are actually units inside the wave array before looping
-// or that all initial units are spawned
-waitUntil {
-	if (
-		missionNamespace getVariable ["BLWK_initialWaveSpawnComplete",false] OR
-		{(call BLWK_fnc_getMusKillList) isNotEqualTo []}
-	) exitWith {true};
-	sleep 1;
-	false
-};
-
-
-// log wave
-[["Start Wave: ",BLWK_currentWaveNumber],false] call KISKA_fnc_log;
-
-// invoke wave start event
-[missionNamespace,"BLWK_onWaveStart"] remoteExecCall ["BIS_fnc_callScriptedEventHandler",0];
-
-
-/* ----------------------------------------------------------------------------
-	Check for wave end
----------------------------------------------------------------------------- */
-waitUntil {
-	if (call BLWK_fnc_isWaveCleared) exitWith {
-		[] spawn BLWK_fnc_endWave;
-		true
-	};
-
-	sleep 3;
-	false
-};
+nil

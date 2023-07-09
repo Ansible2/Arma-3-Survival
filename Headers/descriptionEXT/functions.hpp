@@ -530,6 +530,11 @@ class BLWK
 	class Waves
 	{
 		file = "Functions\Waves";
+		class waves_getFunctionFromConfig
+		{};
+		class waves_onInitialized
+		{};
+		
 		class addToMustKillList
 		{};
 		class cacheEnemyMenSpawnPositions

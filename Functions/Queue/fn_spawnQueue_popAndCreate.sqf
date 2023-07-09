@@ -21,8 +21,12 @@ Author(s):
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_spawnQueue_popAndCreate";
 
+if (!isServer) exitWith {};
+
 // check if queue is empty
 private _queue = localNamespace getVariable ["BLWK_spawnQueue",[]];
 if (_queue isEqualTo []) exitWith {};
 
-(_queue deleteAt 0) params ["_type","_position","_onManCreatedFunctionName"];
+private _spawnArgs = _queue deleteAt 0;
+_spawnArgs remoteExecCall ["BLWK_fnc_spawnQueue_create",BLWK_theAIHandlerOwnerID];
+// params ["_type","_position","_onManCreatedFunctionName"]

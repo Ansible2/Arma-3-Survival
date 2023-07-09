@@ -1,8 +1,8 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_queue_add
+Function: BLWK_fnc_spawnQueue_create
 
 Description:
-    Adds the given args to the enemy spawn queue.
+    Creates a unit for the wave based upon the args provided.
 
 Parameters:
     0: _class : <STRING> - The classname of the unit you want to add to the queue
@@ -16,16 +16,14 @@ Returns:
 Examples:
     (begin example)
         [
-            "I_Soldier_A_F",
-            [0,0,0],
-            "BLWK_fnc_standardWave_onManCreated"
-        ] call BLWK_fnc_queue_add;
+            missionConfigFile >> "BLWK_waveTypes" >> "normalWaves" >> "standardWave"
+        ] call BLWK_fnc_spawnQueue_create;
     (end)
 
 Author(s):
     Ansible2
 ---------------------------------------------------------------------------- */
-scriptName "BLWK_fnc_queue_add";
+scriptName "BLWK_fnc_spawnQueue_create";
 
 params [
     ["_class","",[""]],
@@ -33,12 +31,7 @@ params [
     ["_onManCreatedFunctionName","BLWK_fnc_standardWave_onManCreated",[""]],
 ];
 
-if (isNil {localNamespace getVariable "BLWK_spawnQueue"}) then {
-    localNamespace setVariable ["BLWK_spawnQueue",[]];
-};
 
-private _queue = localNamespace getVariable "BLWK_spawnQueue";
-_queue pushBack _this;
-
+// TODO: create man and add him to the mustkill array on the server
 
 nil
