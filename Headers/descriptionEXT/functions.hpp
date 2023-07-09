@@ -463,6 +463,13 @@ class BLWK
 		class handleParatrooperWave
 		{};
 	};
+	class CommonWaveLib
+	{
+		file = "Functions\Wave Type Libraries\Common Wave Library";
+		class wave_create
+		{};
+	};
+	class StandardWaveLib
 
 	class StandardWaveLibrary
 	{
@@ -521,6 +528,8 @@ class BLWK
 		{};
 		class endWave
 		{};
+		class getConfigForWave
+		{};
 		class getMustKillList
 		{};
 		class isWaveCleared
@@ -530,8 +539,6 @@ class BLWK
 		class spawnLoot
 		{};
 		class startWave
-		{};
-		class spawnWaveEnemies
 		{};
 		class startWaveCountdown
 		{};

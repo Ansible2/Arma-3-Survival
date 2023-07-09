@@ -63,7 +63,8 @@ if (missionNamespace getVariable ["BLWK_extractionQueued",false]) then {
 	call BLWK_fnc_extraction;
 
 } else {
-	call BLWK_fnc_spawnWaveEnemies;
+	private _waveConfig = call BLWK_fnc_getConfigForWave;
+	[_waveConfig] call BLWK_fnc_wave_create;
 
 	// loot is spawned before the wave starts at round 1
 	if (BLWK_currentWaveNumber > BLWK_startingFromWaveNumber) then {

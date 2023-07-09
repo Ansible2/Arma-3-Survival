@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_spawnWaveEnemies
+Function: BLWK_fnc_getConfigForWave
 
 Description:
-	Determines what type of wave should happen next and then initiates the
-	 spawning of enemies for that wave.
+	Determines what type of wave should happen next and returns the selected
+	 wave's config.
 
 	Executed from "BLWK_fnc_startWave"
 
@@ -11,18 +11,18 @@ Parameters:
 	NONE
 
 Returns:
-	NOTHING
+	<CONFIG> - The config of the selected wave
 
 Examples:
     (begin example)
-		call BLWK_fnc_spawnWaveEnemies;
+		private _waveConfig = call BLWK_fnc_getConfigForWave;
     (end)
 
 Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2
 ---------------------------------------------------------------------------- */
-scriptName "BLWK_fnc_spawnWaveEnemies";
+scriptName "BLWK_fnc_getConfigForWave";
 
 if (!isServer) exitWith {};
 
@@ -65,7 +65,6 @@ private _fn_getNormalWave = {
 /* ----------------------------------------------------------------------------
 	Select wave type
 ---------------------------------------------------------------------------- */
-private _playAlarm = false;
 private _waveConfigPath = configNull;
 if (_selectSpecialWave) then {
 	["Selected a special wave instead of standard",false] call KISKA_fnc_log;
@@ -83,7 +82,6 @@ if (_selectSpecialWave) then {
 		_waveConfigPath = call _fn_getNormalWave;
 
 	} else {
-		_playAlarm = true;
 		_usedSpecialWaves pushBack _waveConfigPath;
 		localNamespace setVariable ["BLWK_usedSpecialWaveConfigs",_usedSpecialWaves];
 
@@ -94,33 +92,6 @@ if (_selectSpecialWave) then {
 	_waveConfigPath = call _fn_getNormalWave;
 
 };
-localNamespace setVariable ["BLWK_currentWaveConfig",_waveConfigPath];
-call compileFinal (getText(_waveConfigPath >> "onSelected"));
 
 
-/* ----------------------------------------------------------------------------
-	Send wave start notification
----------------------------------------------------------------------------- */
-private _notification = [];
-_notification pushBack (getText(_waveConfigPath >> "creationNotificationTemplate"));
-
-private _notificationText = getText(_waveConfigPath >> "notificationText");
-if ([_waveConfigPath >> "compileNotificationText"] call BIS_fnc_getCfgDataBool) then {
-	_notificationText = call compileFinal _notificationText;
-
-} else {
-	_notificationText = [_notificationText];
-
-};
-_notification pushBack _notificationText;
-
-
-private _players = call CBAP_fnc_players;
-_notification remoteExec ["BIS_fnc_showNotification", _players];
-// play a sound for special waves
-if (_playAlarm) then {
-	["Alarm"] remoteExec ["playSound", _players];
-};
-
-
-nil
+_waveConfigPath
