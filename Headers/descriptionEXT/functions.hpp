@@ -463,12 +463,6 @@ class BLWK
 		class handleParatrooperWave
 		{};
 	};
-	class CommonWaveLib
-	{
-		file = "Functions\Wave Type Libraries\Common Wave Library";
-		class wave_create
-		{};
-	};
 	class StandardWaveLib
 	{
 		file = "Functions\Wave Type Libraries\Standard Wave Lib";
@@ -527,6 +521,8 @@ class BLWK
 		class waves_getFunctionFromConfig
 		{};
 		class waves_onInitialized
+		{};
+		class waves_create
 		{};
 		
 		class addToMustKillList

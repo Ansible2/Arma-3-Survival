@@ -51,22 +51,23 @@ params [
 /* ----------------------------------------------------------------------------
     Create Queue
 ---------------------------------------------------------------------------- */
-private _generatManClassesFunction = ["generateMenClassnames"] call BLWK_fnc_waves_getFunctionFromConfig;
-private _generateSpawnPositionFunction = ["generateManSpawnPosition"] call BLWK_fnc_waves_getFunctionFromConfig;
-
 if (_totalNumEnemiesToSpawnDuringWave < BASE_ENEMY_NUMBER) then {
     _totalNumEnemiesToSpawnDuringWave = BASE_ENEMY_NUMBER * ((BLWK_enemiesPerWaveMultiplier * BLWK_currentWaveNumber) + 1);
     _totalNumEnemiesToSpawnDuringWave = _totalNumEnemiesToSpawnDuringWave + (BLWK_enemiesPerPlayerMultiplier * (count (call CBAP_fnc_players)));
     _totalNumEnemiesToSpawnDuringWave = round _totalNumEnemiesToSpawnDuringWave;
 };
 
-private _availableClassnames = call _generatManClassesFunction;
+
 private "_spawnPosition_temp";
 if (!BLWK_multipleEnemyPositions) then {
 	_spawnPosition_temp = selectRandom BLWK_infantrySpawnPositions;
 };
 
+private _generatManClassesFunction = ["generateMenClassnames"] call BLWK_fnc_waves_getFunctionFromConfig;
+private _availableClassnames = call _generatManClassesFunction;
+private _generateSpawnPositionFunction = ["generateManSpawnPosition"] call BLWK_fnc_waves_getFunctionFromConfig;
 private _onManCreatedFunctionName = ["generateManSpawnPosition",true] call BLWK_fnc_waves_getFunctionFromConfig;
+
 for "_i" from 1 to _totalNumEnemiesToSpawnDuringWave do {
     if (BLWK_multipleEnemyPositions) then {
         _spawnPosition_temp = call _generateSpawnPositionFunction;
