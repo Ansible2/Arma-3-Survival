@@ -494,21 +494,11 @@ class BLWK
 	class StandardWaveLibrary
 	{
 		file = "Functions\Wave Type Libraries\Standard Wave Library";
-		class addStdEnemyManEHs
-		{};
 		class createStdWaveInfantry
 		{};
 		class handleDefectorWave
 		{};
 		class handleStandardWave
-		{};
-		class stdEnemyHitEvent
-		{};
-		class stdEnemyHitEventLocal
-		{};
-		class stdEnemyKilledEvent
-		{};
-		class stdEnemyManCreateCode
 		{};
 		class stdEnemyVehicles
 		{};
