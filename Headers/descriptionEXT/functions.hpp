@@ -474,7 +474,7 @@ class BLWK
 		{};
 		class standardWave_onManCreated
 		{};
-		class standardWave_onWaveSelected
+		class standardWave_onWaveInit
 		{};
 		class standardWave_vehicles
 		{};
@@ -486,13 +486,6 @@ class BLWK
 		class event_killedEnemy
 		{};
 		class event_hitEnemy
-		{};
-	};
-
-	class StandardWaveLibrary
-	{
-		file = "Functions\Wave Type Libraries\Standard Wave Library";
-		class createStdWaveInfantry
 		{};
 	};
 
