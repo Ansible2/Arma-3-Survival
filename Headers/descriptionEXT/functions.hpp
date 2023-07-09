@@ -470,6 +470,18 @@ class BLWK
 		{};
 	};
 	class StandardWaveLib
+	{
+		file = "Functions\Wave Type Libraries\Standard Wave Lib";
+		class standardWave_generateManSpawnPosition 
+		{};
+		class standardWave_generateMenClassnames
+		{};
+		class standardWave_onManCreated
+		{};
+		class standardWave_onWaveSelected
+		{};
+	};
+	
 
 	class StandardWaveLibrary
 	{
