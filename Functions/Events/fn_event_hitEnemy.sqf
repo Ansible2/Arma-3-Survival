@@ -1,13 +1,11 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_stdEnemyHitEventPlayer
+Function: BLWK_fnc_event_hitEnemy
 
 Description:
 	Executes from an enemy's hit eventhandler. The message is sent from whomever
 	 controls the AI to the instigator. 
 	 
 	This is what will add the points to a player and create a hit marker.
-
-	Executed from the event added by "BLWK_fnc_stdEnemyHitEventLocal"
 
 Parameters:
 	0: _hitUnit : <OBJECT> - The unit hit
@@ -19,16 +17,15 @@ Returns:
 Examples:
     (begin example)
 		// from hit event
-		[_hitUnit,_damage] remoteExecCall ["BLWK_fnc_handleHitEventPlayer",_instigator];
+		[_hitUnit,_damage] remoteExecCall ["BLWK_fnc_event_hitEnemy",_instigator];
 
     (end)
 
 Author(s):
 	Hilltop(Willtop) & omNomios,
-	Modified by: Ansible2 // Cipher
+	Modified by: Ansible2
 ---------------------------------------------------------------------------- */
-#define SCRIPT_NAME "BLWK_fnc_handleHitEventPlayer"
-scriptName SCRIPT_NAME;
+scriptName "BLWK_fnc_event_hitEnemy";
 
 if !(hasInterface) exitWith {};
 
@@ -53,3 +50,5 @@ if (missionNamespace getVariable ["BLWK_isAircraftGunner",false]) then {
 	[_points] call BLWK_fnc_addPoints;
 	[_hitUnit,_points] call BLWK_fnc_createHitMarker;
 };
+
+nil

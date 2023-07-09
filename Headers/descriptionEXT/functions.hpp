@@ -482,6 +482,14 @@ class BLWK
 		{};
 	};
 	
+	class Events
+	{
+		file = "Functions\Wave Type Libraries\Events";
+		class event_killedEnemy
+		{};
+		class event_hitEnemy
+		{};
+	};
 
 	class StandardWaveLibrary
 	{
@@ -491,10 +499,6 @@ class BLWK
 		class createStdWaveInfantry
 		{};
 		class handleDefectorWave
-		{};
-		class handleKillEventPlayer
-		{};
-		class handleHitEventPlayer
 		{};
 		class handleStandardWave
 		{};
