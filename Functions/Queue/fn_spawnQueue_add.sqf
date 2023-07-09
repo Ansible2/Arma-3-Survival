@@ -33,11 +33,8 @@ params [
     ["_onManCreatedFunctionName","BLWK_fnc_standardWave_onManCreated",[""]],
 ];
 
-if (isNil {localNamespace getVariable "BLWK_spawnQueue"}) then {
-    localNamespace setVariable ["BLWK_spawnQueue",[]];
-};
 
-private _queue = localNamespace getVariable "BLWK_spawnQueue";
+private _queue = call BLWK_fnc_spawnQueue_get;
 _queue pushBack _this;
 
 
