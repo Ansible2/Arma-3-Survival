@@ -513,7 +513,9 @@ class BLWK
 		{};
 		class waves_create
 		{};
-		
+		class waves_isCleared
+		{};
+
 		class addToMustKillList
 		{};
 		class cacheEnemyMenSpawnPositions
@@ -528,8 +530,7 @@ class BLWK
 		{};
 		class getMustKillList
 		{};
-		class isWaveCleared
-		{};
+
 		class setSkill
 		{};
 		class spawnLoot
