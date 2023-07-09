@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_wave_create
+Function: BLWK_fnc_waves_create
 
 Description:
     Takes the first entry in the enemy man spawn queue, removes the item and then
@@ -17,13 +17,13 @@ Examples:
     (begin example)
         [
             missionConfigFile >> "BLWK_waveTypes" >> "normalWaves" >> "standardWave"
-        ] call BLWK_fnc_wave_create;
+        ] call BLWK_fnc_waves_create;
     (end)
 
 Author(s):
     Ansible2
 ---------------------------------------------------------------------------- */
-scriptName "BLWK_fnc_wave_create";
+scriptName "BLWK_fnc_waves_create";
 
 #define BASE_ENEMY_NUMBER 2
 
