@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_queue_add
+Function: BLWK_fnc_spawnQueue_add
 
 Description:
     Adds the given args to the enemy spawn queue.
@@ -19,13 +19,13 @@ Examples:
             "I_Soldier_A_F",
             [0,0,0],
             "BLWK_fnc_standardWave_onManCreated"
-        ] call BLWK_fnc_queue_add;
+        ] call BLWK_fnc_spawnQueue_add;
     (end)
 
 Author(s):
     Ansible2
 ---------------------------------------------------------------------------- */
-scriptName "BLWK_fnc_queue_add";
+scriptName "BLWK_fnc_spawnQueue_add";
 
 params [
     ["_class","",[""]],

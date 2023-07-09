@@ -297,9 +297,9 @@ class BLWK
 	class Queue
 	{
 		file = "Functions\Queue";
-		class createFromQueue
-		{};
 		class spawnQueue_add
+		{};
+		class spawnQueue_create
 		{};
 		class spawnQueue_popAndCreate
 		{};
