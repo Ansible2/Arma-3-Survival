@@ -25,21 +25,6 @@ Author(s):
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_wave_create";
 
-// if (clientOwner isNotEqualTo BLWK_theAIHandlerOwnerID) exitWith {
-//     private _message = [
-//         "Executed BLWK_fnc_wave_create on clientOwner: ",
-//         clientOwner,
-//         " while BLWK_theAIHandlerOwnerID was: ",
-//         BLWK_theAIHandlerOwnerID,
-//         " on this machine! Defaulting to sever to handle the wave"
-//     ] joinString "";
-//     [_message,5] remoteExecCall ["KISKA_fnc_errorNotification",0];
-// 	[_message,true] remoteExecCall ["KISKA_fnc_log",2];
-
-// 	_this remoteExecCall ["BLWK_fnc_wave_create",2];
-// };
-
-// #define DEFAULT_ON_WAVE_SELECTED_NAME "BLWK_fnc_standardWave_onWaveSelected"
 #define BASE_ENEMY_NUMBER 2
 
 params [
