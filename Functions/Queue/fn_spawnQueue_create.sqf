@@ -88,4 +88,7 @@ _unit addEventHandler ["Deleted", {
 [BLWK_zeus, [[_unit],false]] remoteExecCall ["addCuratorEditableObjects",2];
 
 
+[_unit] call (missionNamespace getVariable [_onManCreatedFunctionName,{}]);
+
+
 nil
