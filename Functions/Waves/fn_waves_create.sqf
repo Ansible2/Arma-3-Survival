@@ -83,19 +83,16 @@ for "_i" from 1 to _totalNumEnemiesToSpawnDuringWave do {
 
 
 
-// TODO: spawn enemies
-
 // spawn the enemies for wave start
-private _numStartingEnemies = BLWK_maxEnemyInfantryAtOnce;
-private _spawnQueueCount = count (missionNamespace getVariable [STANDARD_ENEMY_INFANTRY_QUEUE,[]]);
-if (_spawnQueueCount < BLWK_maxEnemyInfantryAtOnce) then {
-	_numStartingEnemies = _spawnQueueCount;
+private _numberOfStartingEnemies = BLWK_maxEnemyInfantryAtOnce;
+private _numberOfUnitsInQueue = count (call BLWK_fnc_spawnQueue_get);
+if (_numberOfUnitsInQueue < BLWK_maxEnemyInfantryAtOnce) then {
+	_numberOfStartingEnemies = _numberOfUnitsInQueue;
 };
 private _unit = objNull;
 private _units = [];
-for "_i" from 1 to _numStartingEnemies do {
-	_unit = [STANDARD_ENEMY_INFANTRY_QUEUE,"_this call BLWK_fnc_stdEnemyManCreateCode"] call BLWK_fnc_createFromQueue;
-	_units pushBack _unit;
+for "_i" from 1 to _numberOfStartingEnemies do {
+	call BLWK_fnc_spawnQueue_popAndCreate;
 };
 
 
@@ -104,7 +101,8 @@ for "_i" from 1 to _numStartingEnemies do {
 ---------------------------------------------------------------------------- */
 localNamespace setVariable ["BLWK_currentWaveConfig",_waveConfig];
 [_waveConfig] spawn {
-    // TODO: wait for enemies spawned from ai handler owner
+    // TODO: wait for inital enemies spawned from ai handler owner
+    // use onInitalized function
 };
 
 

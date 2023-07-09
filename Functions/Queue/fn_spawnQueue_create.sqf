@@ -39,13 +39,11 @@ private _unit = _group createUnit [_class, _position, [], 0, "NONE"];
 // in that group 
 [_unit] joinSilent _group;
 _group deleteGroupWhenEmpty true;
-// TODO: create man and add him to the mustkill array on the server
 
 [_unit] call BLWK_fnc_setSkill;
 
 // keep items (maps, nvgs, binoculars, etc.) so that they can just be loot drops
 removeAllAssignedItems _unit;
-
 // for pistol only waves and randomized weapons
 [_unit] call BLWK_fnc_handleEnemyWeapons;
 

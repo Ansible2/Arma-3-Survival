@@ -25,8 +25,13 @@ if (!isServer) exitWith {};
 
 // check if queue is empty
 private _queue = localNamespace getVariable ["BLWK_spawnQueue",[]];
-if (_queue isEqualTo []) exitWith {};
+if (_queue isEqualTo []) exitWith {
+    // TODO: end wave
+};
 
 private _spawnArgs = _queue deleteAt 0;
 _spawnArgs remoteExecCall ["BLWK_fnc_spawnQueue_create",BLWK_theAIHandlerOwnerID];
-// params ["_type","_position","_onManCreatedFunctionName"]
+
+
+
+nil
