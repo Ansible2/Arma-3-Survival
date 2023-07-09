@@ -40,12 +40,27 @@ scriptName "BLWK_fnc_waves_getFunctionFromConfig";
 params [
     ["_waveConfig",configNull,[configNull]],
     ["_configProperty","",""],
-    ["_justName",false,[true]]
+    ["_justName",false,[true]],
+    ["_allowDefault",true,[true]]
 ];
 
-private _requestedFunctionName = getText(_waveConfig >> _configProperty);
+
+private _requestedConfig = _waveConfig >> _configProperty;
+private _requestedFunctionName = getText(_requestedConfig);
+private _functionNameIsEmpty = _requestedFunctionName isEqualTo "";
+private _configIsDefinedEmpty = !(isNull _requestedConfig) AND _functionNameIsEmpty;
+if (_configIsDefinedEmpty) exitWith {
+    [] call KISKA_fnc_log;
+    if (_justName) then {
+        ""
+    } else {
+        {}
+    };
+};
+
+
 private _default_functionName = getText(DEFAULT_WAVE_CONFIG_PATH >> _configProperty);
-if (_requestedFunctionName isEqualTo "") then {
+if (_functionNameIsEmpty) then {
     _requestedFunctionName = _default_functionName
 };
 

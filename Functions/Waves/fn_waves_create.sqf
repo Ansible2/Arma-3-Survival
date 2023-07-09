@@ -63,10 +63,10 @@ if (!BLWK_multipleEnemyPositions) then {
 	_spawnPosition_temp = selectRandom BLWK_infantrySpawnPositions;
 };
 
-private _generatManClassesFunction = ["generateMenClassnames"] call BLWK_fnc_waves_getFunctionFromConfig;
+private _generatManClassesFunction = [_waveConfig,"generateMenClassnames"] call BLWK_fnc_waves_getFunctionFromConfig;
 private _availableClassnames = call _generatManClassesFunction;
-private _generateSpawnPositionFunction = ["generateManSpawnPosition"] call BLWK_fnc_waves_getFunctionFromConfig;
-private _onManCreatedFunctionName = ["generateManSpawnPosition",true] call BLWK_fnc_waves_getFunctionFromConfig;
+private _generateSpawnPositionFunction = [_waveConfig,"generateManSpawnPosition"] call BLWK_fnc_waves_getFunctionFromConfig;
+private _onManCreatedFunctionName = [_waveConfig,"generateManSpawnPosition",true] call BLWK_fnc_waves_getFunctionFromConfig;
 
 for "_i" from 1 to _totalNumEnemiesToSpawnDuringWave do {
     if (BLWK_multipleEnemyPositions) then {
@@ -82,8 +82,11 @@ for "_i" from 1 to _totalNumEnemiesToSpawnDuringWave do {
 };
 
 
+localNamespace setVariable ["BLWK_currentWaveConfig",_waveConfig];
 
-// spawn the enemies for wave start
+/* ----------------------------------------------------------------------------
+    Spawn initial enemies
+---------------------------------------------------------------------------- */
 private _numberOfStartingEnemies = BLWK_maxEnemyInfantryAtOnce;
 private _numberOfUnitsInQueue = count (call BLWK_fnc_spawnQueue_get);
 if (_numberOfUnitsInQueue < BLWK_maxEnemyInfantryAtOnce) then {
@@ -99,22 +102,18 @@ for "_i" from 1 to _numberOfStartingEnemies do {
 /* ----------------------------------------------------------------------------
     Activate Initialization
 ---------------------------------------------------------------------------- */
-localNamespace setVariable ["BLWK_currentWaveConfig",_waveConfig];
-[_waveConfig] spawn {
-    // TODO: wait for inital enemies spawned from ai handler owner
-    // use onInitalized function
+[_waveConfig,_numberOfStartingEnemies] spawn {
+    params ["_waveConfig","_numberOfStartingEnemies"];
+    
+    waitUntil {
+        (count (call BLWK_fnc_getMustKillList) >= _numberOfStartingEnemies)
+    };
+
+    [
+        BLWK_fnc_waves_onInitialized,
+        [_waveConfig]
+    ] call CBAP_fnc_directCall;
 };
 
 
 nil
-
-
-
-
-
-
-
-
-
-
-

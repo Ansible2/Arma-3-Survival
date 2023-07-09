@@ -10,21 +10,11 @@ class BLWK_waveTypes
             // For context of execution see BLWK_fnc_startWave's use of BLWK_fnc_getConfigForWave
             // onSelected = "remoteExecCall ['BLWK_fnc_handleStandardWave',BLWK_theAIHandlerOwnerID]";
             
-            // a function that returns a list of queue entries of enemies to spawn
-            // an example of the expected return shape:
-            /*
-                [
-                    [
-                        "I_Soldier_A_F", // enemy class name
-                        [0,0,0] // spawn position ATL
-                    ]
-                ]
-            */
             generateMenClassnames = "BLWK_fnc_standardWave_generateMenClassnames";
             generateManSpawnPosition = "BLWK_fnc_standardWave_generateManSpawnPosition";
 
             // The name of a function that exists on the AI handler owner that will be called
-            onWaveSelected = "BLWK_fnc_standardWave_onWaveSelected";
+            onWaveInit = "BLWK_fnc_standardWave_onWaveInit";
             onManCreated = "BLWK_fnc_standardWave_onManCreated";
             
             // uncompiled code that is run on the server when the wave is ended

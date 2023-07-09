@@ -4,7 +4,7 @@ Function: BLWK_fnc_waves_onInitialized
 Description:
     Activates some basic events after a wave has been fully initialized.
 
-    Meaning that the initial group of units has been spawned.
+    Meaning that the initial set of units has been spawned.
 
 Parameters:
     0: _waveConfig <CONFIG> - The config path of the wave that was created
@@ -32,6 +32,14 @@ params [
     ["_waveConfigPath",configNull,[configNull]]
 ];
 
+
+private _onInit = [
+    _waveConfigPath,
+    "onWaveInit"
+] call BLWK_fnc_waves_getFunctionFromConfig;
+call _onInit;
+
+
 private _notification = [];
 _notification pushBack (getText(_waveConfigPath >> "creationNotificationTemplate"));
 
@@ -52,7 +60,6 @@ private _isSpecialWave = [_waveConfigPath,SPECIAL_WAVE_CONFIG] call CBAP_fnc_inh
 if (_isSpecialWave) then {
     ["Alarm"] remoteExec ["playSound", _players];
 };
-
 
 
 [["Start Wave: ",BLWK_currentWaveNumber],false] call KISKA_fnc_log;
