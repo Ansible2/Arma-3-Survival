@@ -50,7 +50,16 @@ private _requestedFunctionName = getText(_requestedConfig);
 private _functionNameIsEmpty = _requestedFunctionName isEqualTo "";
 private _configIsDefinedEmpty = !(isNull _requestedConfig) AND _functionNameIsEmpty;
 if (_configIsDefinedEmpty) exitWith {
-    [] call KISKA_fnc_log;
+    [
+        [
+            "found empty definition for ",
+            _configProperty,
+            " at config: ",
+            _waveConfig
+        ], 
+        false
+    ] call KISKA_fnc_log;
+
     if (_justName) then {
         ""
     } else {

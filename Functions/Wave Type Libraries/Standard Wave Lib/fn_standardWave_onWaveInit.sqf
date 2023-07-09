@@ -18,4 +18,8 @@ Examples:
 Author(s):
     Ansible2
 ---------------------------------------------------------------------------- */
+private _startingWaveUnits = call BLWK_fnc_getMustKillList;
 [_startingWaveUnits] call BLWK_fnc_stdEnemyVehicles;
+
+
+nil

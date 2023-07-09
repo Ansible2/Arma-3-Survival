@@ -476,6 +476,8 @@ class BLWK
 		{};
 		class standardWave_onWaveSelected
 		{};
+		class standardWave_vehicles
+		{};
 	};
 	
 	class Events
@@ -491,14 +493,6 @@ class BLWK
 	{
 		file = "Functions\Wave Type Libraries\Standard Wave Library";
 		class createStdWaveInfantry
-		{};
-		class handleDefectorWave
-		{};
-		class handleStandardWave
-		{};
-		class stdEnemyVehicles
-		{};
-		class stdVehicleKilledEvent
 		{};
 	};
 
