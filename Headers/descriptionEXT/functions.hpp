@@ -461,6 +461,19 @@ class BLWK
 		{};
 	};
 	
+	class SuicideWaveLib
+	{
+		file = "Functions\Wave Type Libraries\Suicide Wave Lib";
+		class suicideWave_bomberLoop
+		{};
+		class suicideWave_explodeBomber
+		{};
+		class suicideWave_playBomberAudio
+		{};
+		class suicideWave_onWaveInit
+		{};
+	};
+
 	class ParatrooperWaveLib
 	{
 		file = "Functions\Wave Type Libraries\Paratrooper Wave Lib";
@@ -498,21 +511,6 @@ class BLWK
 		class event_killedEnemy
 		{};
 		class event_hitEnemy
-		{};
-	};
-
-	class SuicideWaveLibrary
-	{
-		file = "Functions\Wave Type Libraries\Suicide Wave Library";
-		class createSuicideWave
-		{};
-		class explodeSuicideBomberEvent
-		{};
-		class handleSuicideWave
-		{};
-		class playBomberAudio
-		{};
-		class suicideBomberLoop
 		{};
 	};
 

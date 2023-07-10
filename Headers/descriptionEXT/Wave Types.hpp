@@ -69,7 +69,7 @@ class BLWK_waveTypes
     {
         class suicideWave
         {
-            onSelected = "remoteExecCall ['BLWK_fnc_handleSuicideWave',BLWK_theAIHandlerOwnerID]";
+            onWaveInit = "BLWK_fnc_suicideWave_onWaveInit";
             creationNotificationTemplate = SPECIAL_WARNING_TEMPLATE;
             notificationText = "Enemy Suicide Bombers Are Incoming!";
             // The "toggleVariable" is a name of a missionNamespace variable (on the server) 
