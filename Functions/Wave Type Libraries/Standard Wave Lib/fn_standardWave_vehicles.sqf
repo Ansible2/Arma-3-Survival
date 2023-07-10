@@ -106,7 +106,7 @@ if (_vehicleTypeValues isEqualTo []) exitWith {
 private _returnedVehicles = [];
 private _fn_spawnAVehicle = {
     params [
-        ["_vehicleNumber",1]
+        ["_startingIndex",0]
     ];
     // [str _likelihoodWeights,false,true,false] call KISKA_fnc_log;
     // [str _vehicleTypeValues,false,true,false] call KISKA_fnc_log;
@@ -125,10 +125,27 @@ private _fn_spawnAVehicle = {
     private _spawnPosition = selectRandom BLWK_vehicleSpawnPositions;
     private _vehicle = _vehicleClass createVehicle _spawnPosition;
 
-    private _crewCount = 3;
-    private _topIndex = (_crewCount * _vehicleNumber) - 1;
-    private _bottomIndex = (_crewCount * _vehicleNumber) - _crewCount;
-    private _crew = _availableInfantry select [_bottomIndex,_topIndex];
+    private _totalNumberOfAvailableUnits = (count _availableInfantry) - (_startingIndex + 1);
+    if (_totalNumberOfAvailableUnits isEqualTo 0) exitWith {
+        ["Could not find any units to for vehicle",false] call KISKA_fnc_log;
+        _totalNumberOfAvailableUnits - 1
+    };
+
+    private _configCrewCount = [_vehicleClass, false] call BIS_fnc_crewCount;
+    private _crewCount = _configCrewCount min _totalNumberOfAvailableUnits;
+    if (
+        (_crewCount isEqualTo _totalNumberOfAvailableUnits) AND 
+        (_configCrewCount isNotEqualTo _totalNumberOfAvailableUnits) AND 
+        // A vehicle can get by with 3 crew usually
+        (_crewCount < 3)
+    ) exitWith {
+        ["Did not find enough units to fit into vehicle",false] call KISKA_fnc_log;
+        _startingIndex
+    };
+    
+    private _nextAvailableIndex = _startingIndex + _crewCount;
+    private _selectionEndIndex = _nextAvailableIndex - 1;
+    private _crew = _availableInfantry select [_startingIndex,_lastIndex];
 
     private _group = createGroup (side (_crew select 0));
     _group deleteGroupWhenEmpty true;
@@ -150,10 +167,12 @@ private _fn_spawnAVehicle = {
             [_killedUnit,true] remoteExecCall ["BLWK_fnc_event_killedEnemy",_instigator];
         };
     }];
+
+    _nextAvailableIndex
 };
 
 
-call _fn_spawnAVehicle;
+private _nextAvailableIndex = call _fn_spawnAVehicle;
 
 // do a role for a second vehicle
 // make sure there are enough AI to even crew a ground vehicle
@@ -161,7 +180,7 @@ if ((count _availableInfantry) > 1) then {
     private _howLikelyIsASecondVehicleToSpawn = _howLikelyIsAVehicleToSpawn / SECOND_VEHICLE_DIVIDER;
     private _secondVehicleWillSpawn = [true,false] selectRandomWeighted [_howLikelyIsASecondVehicleToSpawn,1 - _howLikelyIsASecondVehicleToSpawn];
     if (_secondVehicleWillSpawn) then {
-        [2] call _fn_spawnAVehicle;
+        [_nextAvailableIndex] call _fn_spawnAVehicle;
     };
 };
 
