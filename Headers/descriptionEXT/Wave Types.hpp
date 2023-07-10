@@ -59,8 +59,9 @@ class BLWK_waveTypes
         };
         class defectorWave : standardWave
         {
-            onSelected = "remoteExecCall ['BLWK_fnc_handleDefectorWave',BLWK_theAIHandlerOwnerID]";
+            generateMenClassnames = "BLWK_fnc_defectorWave_generateMenClassnames";
             weightVariable = "BLWK_defectorWaveWeight";
+            onWaveInit = "BLWK_fnc_defectorWave_onWaveInit";
         };
     };
 

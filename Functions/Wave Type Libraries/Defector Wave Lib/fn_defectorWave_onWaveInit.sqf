@@ -1,8 +1,8 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_standardWave_onWaveInit
+Function: BLWK_fnc_defectorWave_onWaveInit
 
 Description:
-    The on wave init for standard waves.
+    The on wave init for defector waves.
 
 Parameters:
     NONE
@@ -12,16 +12,16 @@ Returns:
 
 Examples:
     (begin example)
-        call BLWK_fnc_standardWave_onWaveInit;
+        call BLWK_fnc_defectorWave_onWaveInit;
     (end)
 
 Author(s):
     Ansible2
 ---------------------------------------------------------------------------- */
-scriptName "BLWK_fnc_standardWave_onWaveInit";
+scriptName "BLWK_fnc_defectorWave_onWaveInit";
 
 private _startingWaveUnits = call BLWK_fnc_getMustKillList;
-[_startingWaveUnits] call BLWK_fnc_standardWave_vehicles;
+[_startingWaveUnits,true] call BLWK_fnc_standardWave_vehicles;
 
 
 nil

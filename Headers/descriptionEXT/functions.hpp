@@ -467,6 +467,16 @@ class BLWK
 		class handleParatrooperWave
 		{};
 	};
+
+	class DefectorWaveLib
+	{
+		file = "Functions\Wave Type Libraries\Defector Wave Lib";
+		class defectorWave_generateMenClassnames
+		{};
+		class defectorWave_onWaveInit
+		{};
+	};
+	
 	class StandardWaveLib
 	{
 		file = "Functions\Wave Type Libraries\Standard Wave Lib";
