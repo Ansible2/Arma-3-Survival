@@ -25,7 +25,7 @@ scriptName "BLWK_fnc_extraction";
 #define TOO_LITTLE_SEATS 3
 #define SPACE_BUFFER 5
 #define MIN_VEHICLE_SIZE 15
-#define NUMBER_OF_ENEMIES 5000
+#define NUMBER_OF_ENEMIES 10000
 #define TELEPORT_TIME 8
 
 #define MAX_ATTEMPTS 300
@@ -257,7 +257,12 @@ private _fn_startExtractionDefense = {
             ] call BIS_fnc_respawnTickets;
             missionNamespace setVariable ["BLWK_numRespawnTickets",0,true];
 
-            [false,NUMBER_OF_ENEMIES] remoteExec ["BLWK_fnc_createStdWaveInfantry",BLWK_theAIHandlerOwnerID];
+            [
+                missionConfigFile >> "BLWK_waveTypes" >> "normalWaves" >> "standardWave",
+                NUMBER_OF_ENEMIES
+            ] call BLWK_fnc_waves_create;
+            
+            // [false,NUMBER_OF_ENEMIES] remoteExec ["BLWKs_fnc_createStdWaveInfantry",BLWK_theAIHandlerOwnerID];
 
             [
                 "SpecialWarning",
