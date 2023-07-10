@@ -460,11 +460,11 @@ class BLWK
 		class overrunTheCrateWave
 		{};
 	};
-
-	class ParatrooperWaveLibrary
+	
+	class ParatrooperWaveLib
 	{
-		file = "Functions\Wave Type Libraries\Paratrooper Wave Library";
-		class handleParatrooperWave
+		file = "Functions\Wave Type Libraries\Paratrooper Wave Lib";
+		class paratrooperWave_onWaveInit
 		{};
 	};
 

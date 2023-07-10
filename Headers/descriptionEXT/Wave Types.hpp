@@ -54,7 +54,7 @@ class BLWK_waveTypes
         };
         class paratrooperWave : standardWave
         {
-            onSelected = "remoteExecCall ['BLWK_fnc_handleParatrooperWave',BLWK_theAIHandlerOwnerID]";
+            onWaveInit = "BLWK_fnc_paratrooperWave_onWaveInit";
             weightVariable = "BLWK_paratrooperWaveWeight";
         };
         class defectorWave : standardWave
