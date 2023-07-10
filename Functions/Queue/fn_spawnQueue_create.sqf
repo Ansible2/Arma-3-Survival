@@ -73,11 +73,11 @@ _unit addEventHandler ["Killed", {
         [_killedUnit] remoteExec ["BLWK_fnc_event_killedEnemy",_instigator];
     };
 
-    [] remoteExecCall ["BLWK_fnc_spawnQueue_popAndCreate",2];
+    [] remoteExec ["BLWK_fnc_spawnQueue_unitKilled",2];
 }];
 
 _unit addEventHandler ["Deleted", {
-    [] remoteExecCall ["BLWK_fnc_spawnQueue_popAndCreate",2];
+    [] remoteExec ["BLWK_fnc_spawnQueue_unitKilled",2];
 }];
 
 

@@ -9,11 +9,12 @@ Parameters:
     NONE
 
 Returns:
-    NOTHING
+    <[STRING, PositionATL[] OR OBJECT, STRING]> - the element removed or empty `[]`
+        if no items were in queue
 
 Examples:
     (begin example)
-        call BLWK_fnc_spawnQueue_popAndCreate;
+        private _poppedElement = call BLWK_fnc_spawnQueue_popAndCreate;
     (end)
 
 Author(s):
@@ -26,12 +27,11 @@ if (!isServer) exitWith {};
 // check if queue is empty
 private _queue = localNamespace getVariable ["BLWK_spawnQueue",[]];
 if (_queue isEqualTo []) exitWith {
-    // TODO: end wave
+    []
 };
 
 private _spawnArgs = _queue deleteAt 0;
 _spawnArgs remoteExecCall ["BLWK_fnc_spawnQueue_create",BLWK_theAIHandlerOwnerID];
 
 
-
-nil
+_spawnArgs

@@ -305,6 +305,8 @@ class BLWK
 		{};
 		class spawnQueue_popAndCreate
 		{};
+		class spawnQueue_unitKilled
+		{};
 	};
 
 	class SatelliteShop
