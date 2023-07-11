@@ -93,7 +93,10 @@ class BLWK_waveTypes
         };
         class overrunWave : suicideWave
         {
-            onSelected = "remoteExecCall ['BLWK_fnc_handleOverrunWave',BLWK_theAIHandlerOwnerID]";
+            onWaveInit = "BLWK_fnc_overrunWave_onWaveInit";
+            onWaveEnd = "BLWK_fnc_overrunWave_onWaveEnd";
+            generateManSpawnPosition = "BLWK_fnc_overrunWave_generateManSpawnPosition";
+            condition = "BLWK_fnc_overrunWave_condition";
             notificationText = "The Area Was Overrun!";
             toggleVariable = "BLWK_allowOverrunWave";
         };

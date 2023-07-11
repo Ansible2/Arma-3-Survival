@@ -452,12 +452,16 @@ class BLWK
 		{};
 	};
 
-	class OverrunWaveLibrary
+	class OverrunWaveLib
 	{
-		file = "Functions\Wave Type Libraries\Overrun Wave Library";
-		class handleOverrunWave
+		file = "Functions\Wave Type Libraries\Overrun Wave Lib";
+		class overrunWave_onWaveInit
 		{};
-		class overrunTheCrateWave
+		class overrunWave_onWaveEnd
+		{};
+		class overrunWave_generateManSpawnPosition
+		{};
+		class overrunWave_condition
 		{};
 	};
 	
