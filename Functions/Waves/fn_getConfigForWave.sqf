@@ -24,6 +24,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_getConfigForWave";
 
+#define DEFAULT_WAVE_CONFIG missionConfigFile >> "BLWK_waveTypes" >> "normalWaves" >> "standardWave"
+
 if (!isServer) exitWith {};
 
 /* ----------------------------------------------------------------------------
@@ -58,7 +60,7 @@ private _fn_getNormalWave = {
 		BLWK_normalWaveConfigs selectRandomWeighted _weights
 	};
 
-	missionConfigFile >> "BLWK_waveTypes" >> "normalWaves" >> "standardWave"
+	DEFAULT_WAVE_CONFIG
 };
 
 
@@ -91,6 +93,24 @@ if (_selectSpecialWave) then {
 	["Selected a standard wave type",false] call KISKA_fnc_log;
 	_waveConfigPath = call _fn_getNormalWave;
 
+};
+
+
+private _waveConditionFunctionName = getText(_waveConfigPath >> "condition");
+if (_waveConditionFunctionName isNotEqualTo "") then {
+	private _waveConditionFunction = missionNamespace getVariable [_waveConditionFunctionName,{true}];
+	if !(call _waveConditionFunction) then {
+		[
+			[
+				"Wave condition check failed for: ",
+				_waveConfigPath,
+				" with the function: ",
+				_waveConditionFunctionName,
+				". Rerolling for a wave..."
+			]
+		] call KISKA_fnc_log;
+		_waveConfigPath = call BLWK_fnc_getConfigForWave;
+	};
 };
 
 
