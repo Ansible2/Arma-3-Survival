@@ -523,6 +523,8 @@ class BLWK
 		{};
 		class waves_create
 		{};
+		class waves_end
+		{};
 		class waves_isCleared
 		{};
 
@@ -533,8 +535,6 @@ class BLWK
 		class cleanUpTheDead
 		{};
 		class clearMustKillList
-		{};
-		class endWave
 		{};
 		class getConfigForWave
 		{};
