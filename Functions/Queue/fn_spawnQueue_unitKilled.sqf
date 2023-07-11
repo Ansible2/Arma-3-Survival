@@ -28,7 +28,7 @@ private _queueIsEmpty = _queueItem isEqualTo [];
 if (_queueIsEmpty AND {call BLWK_fnc_waves_isCleared}) then {
 	[
 		{
-			// TODO: call end wave
+			call BLWK_fnc_waves_end;
 		}
 	] call CBAP_fnc_directCall;
 };
