@@ -407,19 +407,16 @@ class BLWK
 		{};
 	};
 
-	// Wave Type Libraries
-	class CivilianWaveLibrary
+	class CivilianWaveLib
 	{
-		file = "Functions\Wave Type Libraries\Civilian Wave Library";
-		class civiliansWave
+		file = "Functions\Wave Type Libraries\Civilian Wave Lib";
+		class civilianWave_onCivilianKilled
 		{};
-		class civRandomGear
+		class civilianWave_onWaveInit
 		{};
-		class handleCivilianKilledEventPlayer
+		class civilianWave_onWaveEnd
 		{};
-		class killedCivilianEvent
-		{};
-		class onCivWaveEnd
+		class civilianWave_randomGear
 		{};
 	};
 

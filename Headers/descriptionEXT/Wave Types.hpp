@@ -77,11 +77,12 @@ class BLWK_waveTypes
             // (likely paired with a KISKA parameter menu mission param)
             toggleVariable = "BLWK_allowSuicideWave"; 
         };
-        class civilianWave : suicideWave
+        class civilianWave
         {
-            onSelected = "remoteExecCall ['BLWK_fnc_handleStandardWave',BLWK_theAIHandlerOwnerID]; call BLWK_fnc_civiliansWave";
+            creationNotificationTemplate = SPECIAL_WARNING_TEMPLATE;
+            onWaveInit = "BLWK_fnc_civilianWave_onWaveInit";
+            onWaveEnd = "BLWK_fnc_civilianWave_onWaveEnd";
             notificationText = "Civilians Are Fleeing, Watch Your Fire!";
-            onWaveEnd = "call BLWK_fnc_onCivWaveEnd";
             toggleVariable = "BLWK_allowCivWave";
         };
         class droneWave : suicideWave
@@ -91,8 +92,9 @@ class BLWK_waveTypes
             onWaveEnd = "call BLWK_fnc_onDroneWaveEnd";
             toggleVariable = "BLWK_allowDroneWave";
         };
-        class overrunWave : suicideWave
+        class overrunWave
         {
+            creationNotificationTemplate = SPECIAL_WARNING_TEMPLATE;
             onWaveInit = "BLWK_fnc_overrunWave_onWaveInit";
             onWaveEnd = "BLWK_fnc_overrunWave_onWaveEnd";
             generateManSpawnPosition = "BLWK_fnc_overrunWave_generateManSpawnPosition";

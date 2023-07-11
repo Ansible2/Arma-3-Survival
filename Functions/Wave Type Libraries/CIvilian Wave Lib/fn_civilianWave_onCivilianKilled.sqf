@@ -1,27 +1,25 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_handleCivilianKilledEventPlayer
+Function: BLWK_fnc_civilianWave_onCivilianKilled
 
 Description:
-	Docks players points and plays a sound informing them of a killed civilian.
-	
-	Executed from "BLWK_fnc_killedCivilianEvent".
+    Docks players points and plays a sound informing them of a killed civilian.
 
 Parameters:
-	0: _killedUnit : <OBJECT> - The unit killed by the player
+    0: _killedUnit : <OBJECT> - The unit killed by the player
 
 Returns:
-	NOTHING
+    NOTHING
 
 Examples:
     (begin example)
-
-		[_killedUnit] remoteExecCall ["BLWK_fnc_handleCivilianKilledEventPlayer",_instigator];
-
+        [_killedUnit] remoteExecCall ["BLWK_fnc_civilianWave_onCivilianKilled",_instigator];
     (end)
 
 Author(s):
-	Ansible2 // Cipher
+    Ansible2
 ---------------------------------------------------------------------------- */
+scriptName "BLWK_fnc_civilianWave_onCivilianKilled";
+
 if !(hasInterface) exitWith {};
 
 params ["_killedUnit"];
