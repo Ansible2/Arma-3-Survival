@@ -65,7 +65,7 @@ private _startingWaveUnits = call BLWK_fnc_getMustKillList;
         };
 
         _startingWaveUnits apply {
-            [group _x,BLWK_playerBasePosition] call BLWK_fnc_stopStalking
+            [group _x,BLWK_playerBasePosition] remoteExecCall ["BLWK_fnc_stopStalking",BLWK_theAIHandlerOwnerID];
         };
     },
     [_startingWaveUnits],
