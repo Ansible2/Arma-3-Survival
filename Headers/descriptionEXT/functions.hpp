@@ -420,16 +420,16 @@ class BLWK
 		{};
 	};
 
-	class DroneWaveLibrary
+	class DroneWaveLib
 	{
-		file = "Functions\Wave Type Libraries\Drone Wave Library";
-		class createDroneWave
+		file = "Functions\Wave Type Libraries\Drone Wave Lib";
+		class droneWave_attackLoop
 		{};
-		class droneAttackLoop
+		class droneWave_onWaveInit
 		{};
-		class handleDroneWave
+		class droneWave_onWaveEnd
 		{};
-		class onDroneWaveEnd
+		class droneWave_onDroneKilled
 		{};
 	};
 

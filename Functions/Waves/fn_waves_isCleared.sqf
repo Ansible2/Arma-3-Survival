@@ -29,7 +29,7 @@ if (_aUnitIsStillAlive) exitWith { false };
 // not all special wave drones spawn right away, so checking that they have 
 // (and that they are therefore in the kill list)
 // before checking if all enemies are dead
-private _allDronesCreated = missionNamespace getVariable ["BLWK_allDronesCreated",true];
+private _allDronesCreated = localNamespace getVariable ["BLWK_droneWave_allDronesCreated",true];
 if (!_allDronesCreated) exitWith { false };
 
 true

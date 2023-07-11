@@ -85,11 +85,12 @@ class BLWK_waveTypes
             notificationText = "Civilians Are Fleeing, Watch Your Fire!";
             toggleVariable = "BLWK_allowCivWave";
         };
-        class droneWave : suicideWave
+        class droneWave
         {
-            onSelected = "remoteExecCall ['BLWK_fnc_handleDroneWave',BLWK_theAIHandlerOwnerID]";
+            creationNotificationTemplate = SPECIAL_WARNING_TEMPLATE;
+            onWaveInit = "BLWK_fnc_droneWave_onWaveInit";
+            onWaveEnd = "BLWK_fnc_droneWave_onWaveEnd";
             notificationText = "Enemy Drones Inbound!";
-            onWaveEnd = "call BLWK_fnc_onDroneWaveEnd";
             toggleVariable = "BLWK_allowDroneWave";
         };
         class overrunWave
