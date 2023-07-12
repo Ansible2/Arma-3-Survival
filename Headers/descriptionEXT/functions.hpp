@@ -217,8 +217,6 @@ class BLWK{
 	class Other
 	{
 		file = "Functions\Other";
-		class addVehicleKilledEvent
-		{};
 		class addACESupportMenuAction
 		{};
 		class addPlayerItems
@@ -514,6 +512,8 @@ class BLWK{
 		class event_killedEnemy
 		{};
 		class event_hitEnemy
+		{};
+		class event_addVehicleKilledHandler
 		{};
 	};
 

@@ -159,7 +159,7 @@ private _fn_spawnAVehicle = {
 
 
     _returnedVehicles pushBack _vehicle;
-    [_vehicle] call BLWK_fnc_addVehicleKilledEvent;
+    [_vehicle] call BLWK_fnc_event_addVehicleKilledHandler;
 
     _nextAvailableIndex
 };

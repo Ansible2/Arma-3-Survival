@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_addVehicleKilledEvent
+Function: BLWK_fnc_event_addVehicleKilledHandler
 
 Description:
     Adds a killed event a vehicle that will provide points to a player when it
@@ -13,13 +13,13 @@ Returns:
 
 Examples:
     (begin example)
-        [myVehicle] call BLWK_fnc_addVehicleKilledEvent;
+        [myVehicle] call BLWK_fnc_event_addVehicleKilledHandler;
     (end)
 
 Author(s):
     Ansible2
 ---------------------------------------------------------------------------- */
-scriptName "BLWK_fnc_addVehicleKilledEvent";
+scriptName "BLWK_fnc_event_addVehicleKilledHandler";
 
 params [
     ["_vehicle",objNull,[objNull]]

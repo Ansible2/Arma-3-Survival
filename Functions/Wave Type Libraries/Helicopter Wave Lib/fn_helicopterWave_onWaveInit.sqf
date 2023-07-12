@@ -65,7 +65,7 @@ private _fn_spawnHeli = {
     };
 
     private _heli = _vehicleArray select 0;
-    [_heli] call BLWK_fnc_addVehicleKilledEvent;
+    [_heli] call BLWK_fnc_event_addVehicleKilledHandler;
 };
 
 
