@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_stdEnemyHitEventPlayer
+Function: BLWK_fnc_event_killedEnemy
 
 Description:
 	Executes from an enemy's killed eventhandler. The message is sent from whomever

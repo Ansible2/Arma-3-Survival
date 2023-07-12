@@ -508,7 +508,7 @@ class BLWK{
 	
 	class Events
 	{
-		file = "Functions\Wave Type Libraries\Events";
+		file = "Functions\Events";
 		class event_killedEnemy
 		{};
 		class event_hitEnemy
