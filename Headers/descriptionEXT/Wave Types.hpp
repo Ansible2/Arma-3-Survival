@@ -110,9 +110,10 @@ class BLWK_waveTypes
             notificationText = "Enemy Helicopters Inbound!";
             toggleVariable = "BLWK_allowHeliWave";
         };
-        class mortarWave : suicideWave
+        class mortarWave
         {
-            onSelected = "remoteExecCall ['BLWK_fnc_handleMortarWave',BLWK_theAIHandlerOwnerID]";
+            creationNotificationTemplate = SPECIAL_WARNING_TEMPLATE;
+            onWaveInit = "BLWK_fnc_mortarWave_onWaveInit";
             notificationText = "Incoming Mortar Fire!";
             toggleVariable = "BLWK_allowMortarWave";
         };

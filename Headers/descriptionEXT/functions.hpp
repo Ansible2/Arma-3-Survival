@@ -445,15 +445,13 @@ class BLWK
 		{};
 	};
 	
-	class MortarWaveLibrary
+	class MortarWaveLib
 	{
-		file = "Functions\Wave Type Libraries\Mortar Wave Library";
-		class createMortarWave
-		{};
-		class handleMortarWave
+		file = "Functions\Wave Type Libraries\Mortar Wave Lib";
+		class mortarWave_onWaveInit
 		{};
 	};
-
+	
 	class OverrunWaveLib
 	{
 		file = "Functions\Wave Type Libraries\Overrun Wave Lib";

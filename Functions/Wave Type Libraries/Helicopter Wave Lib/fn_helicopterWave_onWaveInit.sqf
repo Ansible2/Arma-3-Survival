@@ -74,3 +74,6 @@ private _fn_spawnHeli = {
     // only spawn an attack helicopter after its been 12 waves
     if (BLWK_currentWaveNumber < MIN_WAVE_FOR_ATTACK_HELI) then { break };
 };
+
+
+nil
