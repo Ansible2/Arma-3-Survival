@@ -5,8 +5,6 @@ Description:
 	Determines what type of wave should happen next and returns the selected
 	 wave's config.
 
-	Executed from "BLWK_fnc_startWave"
-
 Parameters:
 	NONE
 

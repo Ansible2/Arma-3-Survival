@@ -1,10 +1,8 @@
 /* ----------------------------------------------------------------------------
-Function: BLWK_fnc_startWave
+Function: BLWK_fnc_waves_start
 
 Description:
 	Heals the player when they select the action on The Crate
-
-	Executed from "initServer.sqf" & "BLWK_fnc_endWave"
 
 Parameters:
 	0: _clearDroppedItems <BOOL> - Will dropped items on the ground be deleted this round?
@@ -14,14 +12,14 @@ Returns:
 
 Examples:
     (begin example)
-		[true] call BLWK_fnc_startWave;
+		[true] call BLWK_fnc_waves_start;
     (end)
 
 Author(s):
 	Hilltop(Willtop) & omNomios,
 	Modified by: Ansible2
 ---------------------------------------------------------------------------- */
-scriptName "BLWK_fnc_startWave";
+scriptName "BLWK_fnc_waves_start";
 
 if (!isServer) exitWith {};
 

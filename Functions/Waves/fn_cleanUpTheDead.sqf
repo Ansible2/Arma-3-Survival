@@ -4,8 +4,6 @@ Function: BLWK_fnc_cleanUpTheDead
 Description:
 	Cleans up dead bodies according to the mission param BLWK_roundsBeforeBodyDeletion.
 
-	Executed from "BLWK_fnc_startWave"
-
 Parameters:
 	NONE
 

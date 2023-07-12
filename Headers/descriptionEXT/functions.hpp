@@ -531,6 +531,8 @@ class BLWK
 		{};
 		class waves_isCleared
 		{};
+		class waves_start
+		{};
 
 		class addToMustKillList
 		{};
@@ -548,8 +550,6 @@ class BLWK
 		class setSkill
 		{};
 		class spawnLoot
-		{};
-		class startWave
 		{};
 		class startWaveCountdown
 		{};
