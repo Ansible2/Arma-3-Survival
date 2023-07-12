@@ -159,14 +159,7 @@ private _fn_spawnAVehicle = {
 
 
     _returnedVehicles pushBack _vehicle;
-    _vehicle addEventHandler ["KILLED", {
-        params ["_killedUnit", "", "_instigator"];
-
-        if (!(isNull _instigator) AND (isPlayer _instigator)) then {
-            // show a player hit points and add them to there score
-            [_killedUnit,true] remoteExecCall ["BLWK_fnc_event_killedEnemy",_instigator];
-        };
-    }];
+    [_vehicle] call BLWK_fnc_addVehicleKilledEvent;
 
     _nextAvailableIndex
 };

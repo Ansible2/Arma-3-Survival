@@ -58,28 +58,7 @@ if !(BLWK_doDetectMines) then {
 };
 
 
-/* ----------------------------------------------------------------------------
-    Eventhandlers
----------------------------------------------------------------------------- */
-_unit addEventHandler ["Hit", {
-    params ["_unit", "", "_damage", "_instigator"];
-    [_unit,_damage] remoteExec ["BLWK_fnc_event_hitEnemy",_instigator];
-}];
-
-_unit addEventHandler ["Killed", {
-    params ["_killedUnit", "", "_instigator"];
-    if (!(isNull _instigator) AND (isPlayer _instigator)) then {
-        // show a player hit points and add them to there score
-        [_killedUnit] remoteExec ["BLWK_fnc_event_killedEnemy",_instigator];
-    };
-
-    [] remoteExec ["BLWK_fnc_spawnQueue_unitKilled",2];
-}];
-
-_unit addEventHandler ["Deleted", {
-    [] remoteExec ["BLWK_fnc_spawnQueue_unitKilled",2];
-}];
-
+[_unit] call BLWK_fnc_spawnQueue_addManEventhandlers;
 
 /* ----------------------------------------------------------------------------
     Update server

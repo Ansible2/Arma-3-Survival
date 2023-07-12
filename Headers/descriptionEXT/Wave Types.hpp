@@ -103,9 +103,10 @@ class BLWK_waveTypes
             notificationText = "The Area Was Overrun!";
             toggleVariable = "BLWK_allowOverrunWave";
         };
-        class heliWave : suicideWave
+        class heliWave
         {
-            onSelected = "remoteExecCall ['BLWK_fnc_handleHelicopterWave',BLWK_theAIHandlerOwnerID]";
+            creationNotificationTemplate = SPECIAL_WARNING_TEMPLATE;
+            onWaveInit = "BLWK_fnc_helicopterWave_onWaveInit";
             notificationText = "Enemy Helicopters Inbound!";
             toggleVariable = "BLWK_allowHeliWave";
         };

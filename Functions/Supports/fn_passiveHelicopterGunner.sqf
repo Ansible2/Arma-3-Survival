@@ -52,7 +52,7 @@ scriptName "BLWK_fnc_passiveHelicopterGunner";
 #define DETECT_ENEMY_RADIUS 700
 #define MIN_RADIUS 200
 #define STAR_BEARINGS [0,144,288,72,216]
-#define VEHICLE_DOWNED(vehicle) ((!alive vehicle) OR {(crew vehicle) isEqualTo []} OR {((getPosATL vehicle) select 2) < 3})
+#define VEHICLE_DOWNED(theVehicle) ((!alive theVehicle) OR {(crew theVehicle) isEqualTo []} OR {((getPosATL theVehicle) select 2) < 3})
 
 params [
 	"_centerPosition",
@@ -106,7 +106,7 @@ private _vehicleArray = [_spawnPosition,0,_aircraftType,_side] call BIS_fnc_spaw
 
 private _vehicle = _vehicleArray select 0;
 _vehicle flyInHeight _flyInHeight;
-BLWK_zeus addCuratorEditableObjects [[_vehicle],true];
+[BLWK_zeus,[[_vehicle],true]] remoteExec ["addCuratorEditableObjects",2];
 
 
 

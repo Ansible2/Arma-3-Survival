@@ -218,6 +218,8 @@ class BLWK
 	class Other
 	{
 		file = "Functions\Other";
+		class addVehicleKilledEvent;
+		{};
 		class addACESupportMenuAction
 		{};
 		class addPlayerItems
@@ -304,6 +306,8 @@ class BLWK
 		class spawnQueue_create
 		{};
 		class spawnQueue_popAndCreate
+		{};
+		class spawnQueue_addManEventHandlers
 		{};
 		class spawnQueue_unitKilled
 		{};
@@ -433,6 +437,14 @@ class BLWK
 		{};
 	};
 
+
+	class HelicoperWaveLib
+	{
+		file = "Functions\Wave Type Libraries\Helicopter Wave Lib";
+		class helicoperWave_onWaveInit
+		{};
+	};
+	
 	class HelicoperWaveLibrary
 	{
 		file = "Functions\Wave Type Libraries\Helicopter Wave Library";
