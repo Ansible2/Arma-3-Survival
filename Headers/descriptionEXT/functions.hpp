@@ -1,5 +1,4 @@
-class BLWK
-{
+class BLWK{
 	class AiPathing
 	{
 		file = "functions\AI Pathing";
@@ -218,7 +217,7 @@ class BLWK
 	class Other
 	{
 		file = "Functions\Other";
-		class addVehicleKilledEvent;
+		class addVehicleKilledEvent
 		{};
 		class addACESupportMenuAction
 		{};
@@ -441,7 +440,7 @@ class BLWK
 	class HelicoperWaveLib
 	{
 		file = "Functions\Wave Type Libraries\Helicopter Wave Lib";
-		class helicoperWave_onWaveInit
+		class helicopterWave_onWaveInit
 		{};
 	};
 	
