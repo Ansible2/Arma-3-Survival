@@ -29,8 +29,8 @@ scriptName "BLWK_fnc_spawnQueue_add";
 
 params [
     ["_class","",[""]],
-    ["_position",[],[objNull,[]]]
-    ["_onManCreatedFunctionName","BLWK_fnc_standardWave_onManCreated",[""]],
+    ["_position",[],[objNull,[]]],
+    ["_onManCreatedFunctionName","BLWK_fnc_standardWave_onManCreated",[""]]
 ];
 
 

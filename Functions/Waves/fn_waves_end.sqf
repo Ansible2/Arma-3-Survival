@@ -31,7 +31,7 @@ private _waveConfig = localNamespace getVariable ["BLWK_currentWaveConfig",confi
 private _waveEndEvent = [
     _waveConfig,
     "onWaveEnd"
-] call BLWK_fnc_waves_getFunctionFromConfig
+] call BLWK_fnc_waves_getFunctionFromConfig;
 
 
 if (_waveEndEvent isNotEqualTo {}) then {

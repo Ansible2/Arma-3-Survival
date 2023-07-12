@@ -72,7 +72,6 @@ while {alive _drone} do {
     // move back to spawn
     _drone move _spawnPosition;
     waitUntil {
-        if  exitWith {true};
         if (
             !(alive _drone) OR
             {(_drone distance2d _spawnPosition) <= 10}
