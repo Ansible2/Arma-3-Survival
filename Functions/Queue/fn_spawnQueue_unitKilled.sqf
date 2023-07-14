@@ -23,7 +23,7 @@ scriptName "BLWK_fnc_spawnQueue_unitKilled";
 
 if (!isServer) exitWith {};
 
-private _queueItem = call BLWK_fnc_popAndCreate;
+private _queueItem = call BLWK_fnc_spawnQueue_popAndCreate;
 private _queueIsEmpty = _queueItem isEqualTo [];
 if (_queueIsEmpty AND {call BLWK_fnc_waves_isCleared}) then {
     [
