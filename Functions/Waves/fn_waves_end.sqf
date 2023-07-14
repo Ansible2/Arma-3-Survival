@@ -1,3 +1,4 @@
+#include "..\..\Headers\Stalker Global Strings.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_waves_end
 
@@ -78,7 +79,7 @@ if (_factionQueue isNotEqualTo []) then {
 
 
 /* ----------------------------------------------------------------------------
-     Revive downed players
+    Revive downed players
 ---------------------------------------------------------------------------- */
 _players apply {
     // clear all stalkers counts
