@@ -35,13 +35,12 @@ Author(s):
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_waves_getFunctionFromConfig";
 
-#define DEFAULT_WAVE_CONFIG_PATH missionConfigFile >> "BLWK_waveTypes" >> "normalWaves" >> "standardWave"
+#define DEFAULT_WAVE_CONFIG_PATH (missionConfigFile >> "BLWK_waveTypes" >> "normalWaves" >> "standardWave")
 
 params [
     ["_waveConfig",configNull,[configNull]],
     ["_configProperty","",[""]],
-    ["_justName",false,[true]],
-    ["_allowDefault",true,[true]]
+    ["_justName",false,[true]]
 ];
 
 
@@ -77,7 +76,10 @@ private _requestedFunction = missionNamespace getVariable [
     _requestedFunctionName,
     {}
 ];
-if (_requestedFunction isEqualTo {}) then {
+if (
+    (_requestedFunction isEqualTo {}) AND 
+    (_waveConfig isNotEqualTo DEFAULT_WAVE_CONFIG_PATH)
+) then {
     private _message = [
         "Could not find function for property: ",
         _configProperty,
