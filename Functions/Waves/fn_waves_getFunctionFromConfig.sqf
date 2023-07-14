@@ -39,7 +39,7 @@ scriptName "BLWK_fnc_waves_getFunctionFromConfig";
 
 params [
     ["_waveConfig",configNull,[configNull]],
-    ["_configProperty","",""],
+    ["_configProperty","",[""]],
     ["_justName",false,[true]],
     ["_allowDefault",true,[true]]
 ];
