@@ -33,3 +33,15 @@ private _allDronesCreated = localNamespace getVariable ["BLWK_droneWave_allDrone
 if (!_allDronesCreated) exitWith { false };
 
 true
+
+
+// TODO: 
+// The delay between the headless client sending to the must kill array 
+// and the server checking that BLWK_fnc_getMustKillList has alive units
+// is too large of a delay because that kill list might not be updated
+
+// Might be able to replace this with a total count that can be expected to have needed to
+// die on the server and once it receives notice that the number it's expecting have
+// perished, it will end the wave, though this might run into the same issue
+
+// You can duplicate this error if you kill all spawned units at once.
