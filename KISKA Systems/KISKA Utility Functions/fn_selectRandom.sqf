@@ -27,8 +27,23 @@ Examples:
         private _weight2 = 0.5;
 
         private _randomWeightedValue = [
-            ["thing1", _weight1,
-            "thing2", _weight2],
+            [
+                "thing1", _weight1,
+                "thing2", _weight2
+            ],
+            ""
+        ] call KISKA_fnc_selectRandom;
+    (end)
+
+    (begin example)
+        private _weight1 = 0.5;
+        private _weight2 = 0.5;
+
+        private _randomWeightedValue = [
+            [
+                ["thing1", "thing2"],
+                [_weight1, _weight2]
+            ],
             ""
         ] call KISKA_fnc_selectRandom;
     (end)
@@ -37,6 +52,9 @@ Author(s):
     Ansible2
 ---------------------------------------------------------------------------- */
 scriptName "KISKA_fnc_selectRandom";
+
+#define VALUES_TO_SELECT (_array select 0)
+#define WEIGHTS (_array select 1)
 
 params [
     ["_array",[],[[]]],
@@ -47,8 +65,13 @@ if (isNil "_valueType") exitWith {
     selectRandom _array;
 };
 
-private _weightedArray = _array isEqualTypeParams [_valueType,1];
-if (_weightedArray) exitWith {
+private _isWeightedArray_syntaxOne = (_array isEqualTypeParams [[],[]]) AND ((count _array) isEqualTo 2);
+if (_isWeightedArray_syntaxOne) exitWith {
+   VALUES_TO_SELECT selectRandomWeighted WEIGHTS;
+};
+
+private _isWeightedArray_syntaxTwo = _array isEqualTypeParams [_valueType,1];
+if (_isWeightedArray_syntaxTwo) exitWith {
     selectRandomWeighted _array;
 };
 

@@ -22,28 +22,31 @@ Author(s):
 scriptName "BLWK_fnc_standardWave_generateMenClassnames";
 
 
-private _availableClasses = [];
-// classes
-_availableClasses pushback BLWK_level1Faction_menClasses;
-// weight of class
-_availableClasses pushBack BLWK_level1Faction_weight;
+private _classes = [];
+private _weights = [];
+
+_classes append BLWK_level1Faction_menClasses;
+BLWK_level1Faction_menClasses apply { _weights pushBack BLWK_level1Faction_weight };
 
 if (BLWK_currentWaveNumber >= BLWK_level2Faction_startWave) then {
-    _availableClasses pushback BLWK_level2Faction_menClasses;
-    _availableClasses pushBack BLWK_level2Faction_weight;
+    _classes append BLWK_level2Faction_menClasses;
+    BLWK_level2Faction_menClasses apply { _weights pushBack BLWK_level2Faction_weight };
 };
 if (BLWK_currentWaveNumber > BLWK_level3Faction_startWave) then {
-    _availableClasses pushback BLWK_level3Faction_menClasses;
-    _availableClasses pushBack BLWK_level3Faction_weight;
+    _classes append BLWK_level3Faction_menClasses;
+    BLWK_level3Faction_menClasses apply { _weights pushBack BLWK_level3Faction_weight };
 };
 if (BLWK_currentWaveNumber > BLWK_level4Faction_startWave) then {
-    _availableClasses pushback BLWK_level4Faction_menClasses;
-    _availableClasses pushBack BLWK_level4Faction_weight;
+    _classes append BLWK_level4Faction_menClasses;
+    BLWK_level4Faction_menClasses apply { _weights pushBack BLWK_level4Faction_weight };
 };
 if (BLWK_currentWaveNumber > BLWK_level5Faction_startWave) then {
-    _availableClasses pushback BLWK_level5Faction_menClasses;
-    _availableClasses pushBack BLWK_level5Faction_weight;
+    _classes append BLWK_level5Faction_menClasses;
+    BLWK_level5Faction_menClasses apply { _weights pushBack BLWK_level5Faction_weight };
 };
 
 
-_availableClasses
+[
+    _classes,
+    _weights
+]

@@ -58,7 +58,7 @@ for "_i" from 1 to _totalNumEnemiesToSpawnDuringWave do {
         _spawnPosition_temp = call _generateSpawnPositionFunction;
     };
 
-    private _class = [_availableClassnames] call KISKA_fnc_selectRandom;
+    private _class = [_availableClassnames,""] call KISKA_fnc_selectRandom;
     [
         _class,
         _spawnPosition_temp,
