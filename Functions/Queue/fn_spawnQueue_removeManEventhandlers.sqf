@@ -6,7 +6,7 @@ Description:
      spawn from the queue and provide points to players.
 
 Parameters:
-    0: _unit : <OBJECT> - The unit to add the eventhandlers to
+    0: _unit : <OBJECT> - The unit to remove the eventhandlers from
 
 Returns:
     NOTHING

@@ -68,7 +68,7 @@ private _players = call CBAP_fnc_players;
 
 
 /* ----------------------------------------------------------------------------
-     Handle faction changes
+    Handle faction changes
 ---------------------------------------------------------------------------- */
 private _factionQueue = localNamespace getVariable ["BLWK_factionChangeQueue",[]];
 if (_factionQueue isNotEqualTo []) then {
