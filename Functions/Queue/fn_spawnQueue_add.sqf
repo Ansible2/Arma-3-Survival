@@ -27,6 +27,8 @@ Author(s):
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_spawnQueue_add";
 
+if (!isServer) exitWith {};
+
 params [
     ["_class","",[""]],
     ["_position",[],[objNull,[]]],
@@ -36,6 +38,9 @@ params [
 
 private _queue = call BLWK_fnc_spawnQueue_get;
 _queue pushBack _this;
+
+private _currentRequiredKillCount = localNamespace getVariable ["BLWK_spawnQueue_requiredKillCount",0];
+localNamespace setVariable ["BLWK_spawnQueue_requiredKillCount",_currentRequiredKillCount + 1];
 
 
 nil

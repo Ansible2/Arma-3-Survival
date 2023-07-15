@@ -33,12 +33,18 @@ params [
 ];
 
 
+localNamespace setVariable ["BLWK_spawnQueue_requiredKillCount",0];
+localNamespace setVariable ["BLWK_spawnQueue_killedCount",0];
 /* ----------------------------------------------------------------------------
     Create Queue
 ---------------------------------------------------------------------------- */
 if (_totalNumEnemiesToSpawnDuringWave < BASE_ENEMY_NUMBER) then {
-    _totalNumEnemiesToSpawnDuringWave = BASE_ENEMY_NUMBER * ((BLWK_enemiesPerWaveMultiplier * BLWK_currentWaveNumber) + 1);
-    _totalNumEnemiesToSpawnDuringWave = _totalNumEnemiesToSpawnDuringWave + (BLWK_enemiesPerPlayerMultiplier * (count (call CBAP_fnc_players)));
+    _totalNumEnemiesToSpawnDuringWave = BASE_ENEMY_NUMBER * (
+        (BLWK_enemiesPerWaveMultiplier * BLWK_currentWaveNumber) + 1
+    );
+    _totalNumEnemiesToSpawnDuringWave = _totalNumEnemiesToSpawnDuringWave + (
+        BLWK_enemiesPerPlayerMultiplier * (count (call CBAP_fnc_players))
+    );
     _totalNumEnemiesToSpawnDuringWave = round _totalNumEnemiesToSpawnDuringWave;
 };
 

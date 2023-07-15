@@ -20,7 +20,15 @@ Author(s):
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith { false };
 
+// Given that the ai handler may have a slight delay between it and the server
+/// the server will know about how many units it expects to have died during the wave
+// The server will receive death notifications from the AI handler
+private _numberOfUnitsKilledDuringWave = localNamespace getVariable ["BLWK_spawnQueue_killedCount",0];
+private _numberOfUnitsNeededToKillForWaveToClear = localNamespace getVariable ["BLWK_spawnQueue_requiredKillCount",0];
+if (_numberOfUnitsKilledDuringWave < _numberOfUnitsNeededToKillForWaveToClear) exitWith { false };
+
 if ((call BLWK_fnc_spawnQueue_get) isNotEqualTo []) exitWith { false };
+
 
 private _index = (call BLWK_fnc_getMustKillList) findIf { alive _x };
 private _aUnitIsStillAlive = _index isNotEqualTo -1;
@@ -32,16 +40,5 @@ if (_aUnitIsStillAlive) exitWith { false };
 private _allDronesCreated = localNamespace getVariable ["BLWK_droneWave_allDronesCreated",true];
 if (!_allDronesCreated) exitWith { false };
 
+
 true
-
-
-// TODO: 
-// The delay between the headless client sending to the must kill array 
-// and the server checking that BLWK_fnc_getMustKillList has alive units
-// is too large of a delay because that kill list might not be updated
-
-// Might be able to replace this with a total count that can be expected to have needed to
-// die on the server and once it receives notice that the number it's expecting have
-// perished, it will end the wave, though this might run into the same issue
-
-// You can duplicate this error if you kill all spawned units at once.

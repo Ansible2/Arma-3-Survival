@@ -306,6 +306,8 @@ class BLWK{
 		{};
 		class spawnQueue_addManEventHandlers
 		{};
+		class spawnQueue_removeManEventHandlers
+		{};
 		class spawnQueue_unitKilled
 		{};
 	};
