@@ -5,19 +5,19 @@
 Function: BLWK_fnc_prepareGlobals
 
 Description:
-	Does exactly what it says. Most globals in the scenario are initialized here.
+    Does exactly what it says. Most globals in the scenario are initialized here.
 
-	It is executed from the "initPlayerLocal.sqf & initServer.sqf".
+    It is executed from the "initPlayerLocal.sqf & initServer.sqf".
 
 Parameters:
-	NONE
+    NONE
 
 Returns:
-	Nothing
+    Nothing
 
 Examples:
     (begin example)
-		call BLWK_fnc_prepareGlobals
+        call BLWK_fnc_prepareGlobals
     (end)
 ---------------------------------------------------------------------------- */
 // JIP players have wave number synced already
@@ -60,7 +60,7 @@ if (isServer) then {
 
     // number should never be zero, but it can be for some time until the server has initialized
     waitUntil {
-        if (owner BLWK_theAIHandlerEntity isNotEqualTo 0) exitWith {true};
+        if ((owner BLWK_theAIHandlerEntity) isNotEqualTo 0) exitWith {true};
         sleep 1;
         false
     };
@@ -70,8 +70,11 @@ if (isServer) then {
     [["Found AI Handler with Owner ID of ",BLWK_theAIHandlerOwnerID],false] call KISKA_fnc_log;
 
 
-    // LOCATION LIST OPTIONS
-    BLWK_locations = nearestlocations [[0,0,0],["nameVillage","nameCity","nameCityCapital","nameMarine","Airport"],worldsize * sqrt 2];
+    BLWK_locations = nearestlocations [
+        [0,0,0],
+        ["nameVillage","nameCity","nameCityCapital","nameMarine","Airport"],
+        worldsize * sqrt 2
+    ];
 
     // for revealing loot and deleteing it at the end of the round
     BLWK_lootMarkers = [];

@@ -13,7 +13,7 @@ Returns:
 
 Examples:
     (begin example)
-        [] remoteExec ["BLWK_fnc_spawnQueue_unitKilled",2];
+        [] remoteExecCall ["BLWK_fnc_spawnQueue_unitKilled",2];
     (end)
 
 Author(s):

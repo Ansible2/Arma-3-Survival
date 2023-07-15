@@ -33,7 +33,7 @@ if (isNull _unit) exitWith {
 
 private _hitEventId = _unit addEventHandler ["Hit", {
     params ["_unit", "", "_damage", "_instigator"];
-    [_unit,_damage] remoteExec ["BLWK_fnc_event_hitEnemy",_instigator];
+    [_unit,_damage] remoteExecCall ["BLWK_fnc_event_hitEnemy",_instigator];
 }];
 _unit setVariable ["BLWK_spawnQueue_hitEventId",_hitEventId];
 
@@ -42,7 +42,7 @@ private _killedEventId = _unit addEventHandler ["Killed", {
     params ["_killedUnit", "", "_instigator"];
     if (!(isNull _instigator) AND (isPlayer _instigator)) then {
         // show a player hit points and add them to there score
-        [_killedUnit] remoteExec ["BLWK_fnc_event_killedEnemy",_instigator];
+        [_killedUnit] remoteExecCall ["BLWK_fnc_event_killedEnemy",_instigator];
     };
 
     [_killedUnit] call BLWK_fnc_spawnQueue_removeManEventhandlers;
@@ -54,7 +54,7 @@ _unit setVariable ["BLWK_spawnQueue_killedEventId",_killedEventId];
 private _deletedEventId = _unit addEventHandler ["Deleted", {
     params ["_deletedUnit"];
 
-    [] remoteExec ["BLWK_fnc_spawnQueue_unitKilled",2];
+    [] remoteExecCall ["BLWK_fnc_spawnQueue_unitKilled",2];
 }];
 _unit setVariable ["BLWK_spawnQueue_deletedEventId",_deletedEventId];
 

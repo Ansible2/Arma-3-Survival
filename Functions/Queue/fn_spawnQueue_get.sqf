@@ -2,7 +2,7 @@
 Function: BLWK_fnc_spawnQueue_get
 
 Description:
-    Returns the currently queued list of entries to spawn;
+    Returns the currently queued list of entries to spawn.
 
 Parameters:
     NONE
