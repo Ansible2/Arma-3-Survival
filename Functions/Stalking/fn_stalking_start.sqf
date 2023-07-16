@@ -32,153 +32,182 @@ params [
 
 if (isNull _stalkerGroup) exitWith {
     ["_stalkerGroup is null",true] call KISKA_fnc_log;
-};
-
-private _playerToStalk = call BLWK_fnc_stalking_getPlayer;
-if (isNull _playerToStalk) exitWith {
-    (leader _stalkerGroup) move DEFAULT_POSITION;
+    nil
 };
 
 
-private _currentStalkerCount = _playerToStalk getVariable ["BLWK_stalking_numberOfStalkers",0];
-_playerToStalk setVariable ["BLWK_stalking_numberOfStalkers",_currentStalkerCount + (count (units _stalkerGroup))];
+// private _playerToStalk = call BLWK_fnc_stalking_getPlayer;
+// if !(isNull _playerToStalk) then {
+//     private _currentStalkingGroupCount = _playerToStalk getVariable ["BLWK_stalking_numberOfStalkerGroups",0];
+//     _playerToStalk setVariable ["BLWK_stalking_numberOfStalkerGroups",_currentStalkingGroupCount + 1];
+//     _stalkerGroup setVariable ["BLWK_stalking_stalkedPlayer",_playerToStalk];
+// };
+
 _stalkerGroup setVariable ["BLWK_stalking_doStalk",true];
-_stalkerGroup setVariable ["BLWK_stalking_stalkedPlayer",_playerToStalk];
 
-private _stalkerGroupUnits = units _stalkerGroup;
-_stalkerGroupUnits apply {
-    private _eventId = _x addEventHandler ["KILLED", {
-        params ["_unit"];
+/* ----------------------------------------------------------------------------
+    Add Group Events
+---------------------------------------------------------------------------- */
+private _leaderChangedEventId = _stalkerGroup addEventHandler ["LeaderChanged", {
+    params ["_group", "_newLeader"];
 
-        private _group = group _unit;
-        private _stalkedPlayer = _group getVariable [
-            "BLWK_stalking_stalkedPlayer",
-            objNull
+    if (_group getVariable ["BLWK_stalking_isUnderMove",false]) then {
+        private _currentMovePosition = _stalkerGroup getVariable [
+            "BLWK_stalking_currentMovePosition",
+            DEFAULT_POSITION
         ];
 
-        if !(isNull _stalkedPlayer) then {
-            private _numberOfStalkers = _stalkedPlayer getVariable [
-                "BLWK_stalking_numberOfStalkers",
-                0
-            ];
-
-            _numberOfStalkers = _numberOfStalkers - 1;
-            _stalkedPlayer setVariable [
-                "BLWK_stalking_numberOfStalkers",
-                _numberOfStalkers max 0
-            ];
-        };
-    }];
-
-    _x setVariable ["BLWK_stalking_killedEventId", _eventId];
-};
+        _newLeader move _currentMovePosition;
+    };
+}];
+_stalkerGroup setVariable ["BLWK_stalking_leaderChangedEventId",_leaderChangedEventId];
 
 
+private _deletedEventId = _stalkerGroup addEventHandler ["Deleted", {
+    params ["_group"];
+    _this call BLWK_fnc_stalking_stop;
+}];
+_stalkerGroup setVariable ["BLWK_stalking_deletedEventId",_deletedEventId];
+
+
+private _emptyEventId = _stalkerGroup addEventHandler ["Empty", {
+    params ["_group"];
+    _this call BLWK_fnc_stalking_stop;
+}];
+_stalkerGroup setVariable ["BLWK_stalking_emptyEventId",_emptyEventId];
+
+
+/* ----------------------------------------------------------------------------
+    Main loop
+---------------------------------------------------------------------------- */
 [_stalkerGroup] call KISKA_fnc_clearWaypoints;
 
 [_stalkerGroup] spawn {
     params ["_stalkerGroup"];
     
     while { !(isNull _stalkerGroup) AND (_stalkerGroup getVariable ["BLWK_stalking_doStalk",false]) } do {
+        
         if !([_stalkerGroup] call KISKA_fnc_isGroupAlive) then {
             [_stalkerGroup] call BLWK_fnc_stalking_stop;
             break;
         };
 
-        private _playerToStalk = _stalkerGroup getVariable ["BLWK_stalking_stalkedPlayer",objNull];
-        if !(isNull _playerToStalk) then {
-            /* --------------------------------------
-                Reset group if needed
-            -------------------------------------- */
-            _stalkerGroupUnits = units _stalkerGroup;
-            private _stalkerGroupShouldUseMove = ((leader _stalkerGroup) distance2D _playerToStalk) < SWITCH_TO_MOVE_DISTANCE;
-            private _stalkerGroupIsUnderMoveOrders = _stalkerGroup getVariable ["BLWK_stalking_isUnderMove",false];
-            if (_stalkerGroupIsUnderMoveOrders AND (!_stalkerGroupShouldUseMove)) then {
-                doStop _stalkerGroupUnits;
-                sleep 1;
-                _stalkerGroupUnits doFollow _stalkerLeader;
-            };
+        private _currentPlayerBeingStalked = _stalkerGroup getVariable ["BLWK_stalking_stalkedPlayer",objNull];
+        /* --------------------------------------
+            verify player to stalk
+        -------------------------------------- */
+        private _currentPlayerCanBeStalked = [_currentPlayerBeingStalked] call BLWK_fnc_stalking_canPlayerBeStalked;
+        private _shouldRedistribute = _stalkerGroup getVariable ["BLWK_stalking_redistribute",false];
+        if ((!_currentPlayerCanBeStalked) OR _shouldRedistribute) then {
+            private _playerToStalk = call BLWK_fnc_stalking_getPlayer;
+            if (isNull _playerToStalk) then {
 
-
-            /* --------------------------------------
-                clear previous waypoints,
-                Waypoints are not immediately deleted so need to wait
-            -------------------------------------- */
-            private "_waypointCount";
-            waitUntil {
-                _waypointCount = count (waypoints _stalkerGroup);
-                [
-                    _stalkerGroup,
-                    (_waypointCount - 1)
-                ] call KISKA_fnc_clearWaypoints;
-
-                private _stalkerGroupWaypointsDeleted = _waypointCount < 2;
-                if (_stalkerGroupWaypointsDeleted) exitWith {true};
-                
-                sleep 1;
-
-                (units _stalkerGroup) isEqualTo []
-            };
-
-
-            /* --------------------------------------
-                Choose between waypoint or `move` command
-            -------------------------------------- */
-            private _hasWaypoint = _waypointCount isEqualTo 1;
-            if (_stalkerGroupShouldUseMove) then {
-                _stalkerGroup setVariable ["BLWK_stalking_isUnderMove",true];
-                (leader _stalkerGroup) move (getPosATL _playerToStalk);
-
-                if (_hasWaypoint) then {
-                    deleteWaypoint [_stalkerGroup,0];
+                if !(_stalkerGroup setVariable ["BLWK_stalking_isPatrolling",false]) then {
+                    _stalkerGroup setVariable ["BLWK_stalking_isPatrolling",true];
+                    [_stalkerGroup] call KISKA_fnc_clearWaypoints;
+                    [_stalkerGroup, DEFAULT_POSITION, 100, 3, "MOVE", "AWARE"] call CBAP_fnc_taskPatrol;
                 };
+                
+                sleep UPDATE_RATE;
+
+                continue;
 
             } else {
-                _stalkerGroup setVariable ["BLWK_stalking_isUnderMove",false];
-
-                private _hasStalkerWaypoint = waypointName [
-                    _stalkerGroup,
-                    (currentWaypoint _stalkerGroup)
-                ] == "BLWK_stalking_waypoint";
-
-                if (_hasWaypoint AND (!_hasStalkerWaypoint)) then {
-                    [_stalkerGroup] call KISKA_fnc_clearWaypoints;
-                };
-
-                if (_hasStalkerWaypoint) then {
-                    private _waypoint = [_stalkerGroup,0];
-                    _waypoint setWaypointBehaviour "AWARE";
-                    _waypoint setWaypointPosition [getPos _playerToStalk,5];
-
-                } else {
-                    private _waypoint = [
-                        _stalkerGroup, 
-                        _playerToStalk, 
-                        0, 
-                        "MOVE", 
-                        "AWARE", 
-                        "FULL"
-                    ] call CBAP_fnc_addWaypoint;
-                    _waypoint setWaypointName "BLWK_stalking_waypoint";
-                };
+                [_stalkerGroup,_playerToStalk] call BLWK_fnc_stalking_setStalkedPlayer;
+                _currentPlayerBeingStalked = _playerToStalk;
 
             };
         };
-
-        sleep UPDATE_RATE;
+        
 
         /* --------------------------------------
-            stop temporarily if not units to stalk
+            Reset group if needed from `move` command
         -------------------------------------- */
-        if !([_playerToStalk] call BLWK_fnc_stalking_canPlayerBeStalked) then {
-            _playerToStalk = call BLWK_fnc_stalking_getPlayer;
+        private _stalkerGroupShouldUseMove = (
+            (leader _stalkerGroup) distance2D _currentPlayerBeingStalked
+        ) < SWITCH_TO_MOVE_DISTANCE;
+        private _stalkerGroupIsUnderMoveOrders = _stalkerGroup getVariable ["BLWK_stalking_isUnderMove",false];
+        if (_stalkerGroupIsUnderMoveOrders AND (!_stalkerGroupShouldUseMove)) then {
+            private _stalkerGroupUnits = units _stalkerGroup;
+            doStop _stalkerGroupUnits;
+            sleep 1;
+            // regroup units
+            _stalkerGroupUnits doFollow _stalkerLeader;
         };
 
-        if ((isNull _playerToStalk)) then {
-            [_stalkerGroup] call KISKA_fnc_clearWaypoints;
-            (leader _stalkerGroup) move DEFAULT_POSITION;
-            break;
+
+        /* --------------------------------------
+            clear previous waypoints,
+            Waypoints are not immediately deleted so need to wait
+        -------------------------------------- */
+        private "_waypointCount";
+        waitUntil {
+            _waypointCount = count (waypoints _stalkerGroup);
+            [
+                _stalkerGroup,
+                (_waypointCount - 1)
+            ] call KISKA_fnc_clearWaypoints;
+
+            private _stalkerGroupWaypointsDeleted = _waypointCount < 2;
+            if (_stalkerGroupWaypointsDeleted) exitWith {true};
+            
+            sleep 1;
+
+            // prevent infinte loop
+            (units _stalkerGroup) isEqualTo []
         };
+
+
+        /* --------------------------------------
+            Choose between waypoint or `move` command
+        -------------------------------------- */
+        private _hasWaypoint = _waypointCount isEqualTo 1;
+        if (_stalkerGroupShouldUseMove) then {
+            _stalkerGroup setVariable ["BLWK_stalking_isUnderMove",true];
+            
+            private _playerPosition = getPosATL _currentPlayerBeingStalked;
+            _stalkerGroup setVariable ["BLWK_stalking_currentMovePosition",_playerPosition];
+
+            (leader _stalkerGroup) move _playerPosition;
+            if (_hasWaypoint) then {
+                deleteWaypoint [_stalkerGroup,0];
+            };
+
+        } else {
+            _stalkerGroup setVariable ["BLWK_stalking_isUnderMove",false];
+            _stalkerGroup setVariable ["BLWK_stalking_currentMovePosition",nil];
+
+            private _hasStalkerWaypoint = waypointName [
+                _stalkerGroup,
+                (currentWaypoint _stalkerGroup)
+            ] == "BLWK_stalking_waypoint";
+
+            private _hasWaypointThatIsNotStalkerWaypoint = _hasWaypoint AND (!_hasStalkerWaypoint);
+            if (_hasWaypointThatIsNotStalkerWaypoint) then {
+                [_stalkerGroup] call KISKA_fnc_clearWaypoints;
+            };
+
+            if (_hasStalkerWaypoint) then {
+                private _waypoint = [_stalkerGroup,0];
+                _waypoint setWaypointBehaviour "AWARE";
+                _waypoint setWaypointPosition [getPos _currentPlayerBeingStalked,5];
+
+            } else {
+                private _waypoint = [
+                    _stalkerGroup, 
+                    _currentPlayerBeingStalked, 
+                    0, 
+                    "MOVE", 
+                    "AWARE", 
+                    "FULL"
+                ] call CBAP_fnc_addWaypoint;
+                _waypoint setWaypointName "BLWK_stalking_waypoint";
+            };
+        };
+
+        _stalkerGroup setVariable ["BLWK_stalking_isPatrolling",false];
+
+        sleep UPDATE_RATE;
     };
 };
 

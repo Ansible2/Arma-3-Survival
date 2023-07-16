@@ -27,11 +27,10 @@ if (_players isEqualTo []) exitWith {
 };
 
 
-private _playerStalkerCounts = [];
-private ["_lowestStalkerCount","_playerWithLowestStalkers"];
+private _lowestStalkerCount = 1e7;
+private _playerWithLowestStalkers = objNull;
 {
-    private _playersCurrentStalkerCount = _x getVariable [STALKER_COUNT_VAR,0];
-    _playerStalkerCounts pushBack _playersCurrentStalkerCount;
+    private _playersCurrentStalkerCount = _x getVariable ["BLWK_stalking_numberOfStalkerGroups",0];
     if (_forEachIndex isEqualTo 0) then {
         _lowestStalkerCount = _playersCurrentStalkerCount;
         _playerWithLowestStalkers = _x;
