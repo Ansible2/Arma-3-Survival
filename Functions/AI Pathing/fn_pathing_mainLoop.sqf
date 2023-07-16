@@ -1,4 +1,3 @@
-#include "..\..\Headers\Stalker Global Strings.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_pathing_mainLoop
 
@@ -27,9 +26,6 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-// telling the unit to go to their stalked player seems to cause
-// the issue of AI getting stuck too, hence why they go to the crate
-
 #define RESET_POSITION \
 	[["Reset ", _groupLeader],false] call KISKA_fnc_log; \
 	[_groupLeader,[BLWK_mainCrate, 5] call CBAP_fnc_randPos] remoteExecCall ["move",_groupLeader]; \

@@ -160,7 +160,10 @@ if ((getObjectViewDistance select 0) < _objectViewDistance) then {
 
 // setup player interaction
 BLWK_enforceArea = false;
-[player,false] call BLWK_fnc_adjustStalkable; // make it so AI don't hunt the player
+[player,false] remoteExecCall [
+    "BLWK_fnc_stalking_setPlayerStalkable",
+    BLWK_theAiHandlerOwnerId
+];
 private _damageAllowedAdjustmentId = [player,false] call BLWK_fnc_allowDamage;
 player moveInTurret [_vehicle,_turretsWithWeapons select 0];
 

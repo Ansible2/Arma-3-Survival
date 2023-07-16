@@ -13,7 +13,10 @@ Returns:
 
 Examples:
     (begin example)
-        [] remoteExec ["BLWK_fnc_stalking_start",BLWK_theAiHandlerOwnerId];
+        [] remoteExec [
+            "BLWK_fnc_stalking_queueRedistribute",
+            BLWK_theAiHandlerOwnerId
+        ];
     (end)
 
 Author(s):

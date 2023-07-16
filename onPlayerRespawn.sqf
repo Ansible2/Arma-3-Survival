@@ -35,7 +35,7 @@ if (missionNamespace getVariable ["BLWK_isAircraftGunner",false]) then {
     missionNamespace setVariable ["BLWK_isAircraftGunner",false];
 };
 
-
+[] remoteExec ["BLWK_fnc_stalking_queueRedistribute",BLWK_theAiHandlerOwnerId];
 
 // make players briefly invincible
 [_player] spawn {

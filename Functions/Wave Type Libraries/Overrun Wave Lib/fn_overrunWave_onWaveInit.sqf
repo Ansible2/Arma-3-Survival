@@ -64,9 +64,11 @@ private _startingWaveUnits = call BLWK_fnc_getMustKillList;
             _x setVehiclePosition [_teleportPosition, [], 1, "NONE"];
         };
 
-        _startingWaveUnits apply {
-            [group _x,BLWK_playerBasePosition] remoteExecCall ["BLWK_fnc_stopStalking",BLWK_theAIHandlerOwnerID];
-        };
+        // TODO: was previously telling units to not stalk players,
+        // might end up with players being killed in an open field,
+        // or might make the overrun more challenging if the players
+        // need to fight.
+        // Reimplement this logic if it doesn't go well
     },
     [_startingWaveUnits],
     5

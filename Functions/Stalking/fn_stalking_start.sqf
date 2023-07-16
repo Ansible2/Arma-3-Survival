@@ -36,13 +36,6 @@ if (isNull _stalkerGroup) exitWith {
 };
 
 
-// private _playerToStalk = call BLWK_fnc_stalking_getPlayer;
-// if !(isNull _playerToStalk) then {
-//     private _currentStalkingGroupCount = _playerToStalk getVariable ["BLWK_stalking_numberOfStalkerGroups",0];
-//     _playerToStalk setVariable ["BLWK_stalking_numberOfStalkerGroups",_currentStalkingGroupCount + 1];
-//     _stalkerGroup setVariable ["BLWK_stalking_stalkedPlayer",_playerToStalk];
-// };
-
 _stalkerGroup setVariable ["BLWK_stalking_doStalk",true];
 
 /* ----------------------------------------------------------------------------
@@ -86,11 +79,18 @@ _stalkerGroup setVariable ["BLWK_stalking_emptyEventId",_emptyEventId];
     params ["_stalkerGroup"];
     
     while { !(isNull _stalkerGroup) AND (_stalkerGroup getVariable ["BLWK_stalking_doStalk",false]) } do {
-        
+
         if !([_stalkerGroup] call KISKA_fnc_isGroupAlive) then {
             [_stalkerGroup] call BLWK_fnc_stalking_stop;
             break;
         };
+
+        if (
+            (leader _stalkerGroup) getVariable [
+                "BLWK_isACEUnconscious",
+                false
+            ]
+        ) then { continue };
 
         private _currentPlayerBeingStalked = _stalkerGroup getVariable ["BLWK_stalking_stalkedPlayer",objNull];
         /* --------------------------------------
@@ -211,7 +211,5 @@ _stalkerGroup setVariable ["BLWK_stalking_emptyEventId",_emptyEventId];
     };
 };
 
-
-// TODO: be able to rebalance if a player respawns
 
 nil

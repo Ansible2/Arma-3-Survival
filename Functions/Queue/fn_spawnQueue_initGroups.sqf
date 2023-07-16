@@ -34,14 +34,3 @@ if !(local BLWK_theAIHandlerEntity) exitWith {
 };
 
 localNamespace setVariable ["BLWK_spawnQueue_cleanUpGroup",createGroup [OPFOR,false]];
-
-
-
-
-
-
-// A limited number of groups are used by the AI handler
-// dead AI are moved into a group to be used for dead units on the AI handler
-// Multiple AI are assigned to a given group
-// Players can choose group sizes as a parameter
-// stalker system rewritten to handle groups and dynamically change leader

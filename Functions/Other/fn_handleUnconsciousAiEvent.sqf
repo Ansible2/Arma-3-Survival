@@ -2,7 +2,7 @@
 Function: BLWK_fnc_handleUnconsciousAiEvent
 
 Description:
-	Suspends or restarts the AI pathing and stalking system depending on AI's
+	Suspends or restarts the AI pathing depending on AI's
      ACE unconscious state.
 
 Parameters:
@@ -39,22 +39,19 @@ if (clientOwner isNotEqualTo BLWK_theAIHandlerOwnerID) exitWith {
     nil
 };
 
-// TODO: handle stalking
 [
     "ace_unconscious",
     {
         params ["_unit","_unconscious"];
+
         if !(isPlayer _unit) then {
             _unit setVariable ["BLWK_isACEUnconscious",true];
             
             private _group = group _unit;
             if (_unconscious) then {
                 _group setVariable ["BLWK_runPathingLoop",false];
-                [_group] call BLWK_fnc_stopStalking;
-
             } else { // if waking up
                 [_group] spawn BLWK_fnc_pathing_mainLoop;
-                [_group] spawn BLWK_fnc_startStalkingPlayers;
             };
 
         };

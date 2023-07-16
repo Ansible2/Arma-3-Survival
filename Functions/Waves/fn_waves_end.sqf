@@ -1,4 +1,3 @@
-#include "..\..\Headers\Stalker Global Strings.hpp"
 /* ----------------------------------------------------------------------------
 Function: BLWK_fnc_waves_end
 
@@ -82,9 +81,6 @@ if (_factionQueue isNotEqualTo []) then {
     Revive downed players
 ---------------------------------------------------------------------------- */
 _players apply {
-    // clear all stalkers counts
-    _x setVariable [STALKER_COUNT_VAR,0,BLWK_theAIHandlerOwnerID];
-
     if (!alive _x) then {
         // add a single respawn ticket for each dead unit
         private _respawns = [BLUFOR,1] call BIS_fnc_respawnTickets;
@@ -94,7 +90,7 @@ _players apply {
 
     } else {
 
-        if (lifeState _x == "INCAPACITATED") then {
+        if ((lifeState _x) == "INCAPACITATED") then {
             if (BLWK_dontUseRevive) then {
                 if (BLWK_ACELoaded) then {
                     [_x] remoteExecCall ["ace_medical_treatment_fnc_fullHealLocal",_x];
