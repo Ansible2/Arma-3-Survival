@@ -68,7 +68,7 @@ if (isServer) then {
     // having an owner id for the AI handler makes using setVariable remotely possible
     publicVariable "BLWK_theAIHandlerOwnerID";
     [["Found AI Handler with Owner ID of ",BLWK_theAIHandlerOwnerID],false] call KISKA_fnc_log;
-    [] remoteExecCall ["BLWK_fnc_spawnQuleue_initGroups",BLWK_theAIHandlerOwnerID];
+    [] remoteExecCall ["BLWK_fnc_spawnQueue_initGroups",BLWK_theAIHandlerOwnerID];
 
 
     BLWK_locations = nearestlocations [

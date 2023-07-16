@@ -24,9 +24,13 @@ scriptName "BLWK_fnc_spawnQueue_popAndCreate";
 
 if (!isServer) exitWith {};
 
-// check if queue is empty
-private _maxGroupSize = localNamespace getVariable ["BLWK_spawnQueue_maxGroupSize",1];
-private _stagedSpawns = localNamespace getVariable ["BLWK_spawnQueue_stagedSpawns",[]];
+private _stagedSpawns = localNamespace getVariable ["BLWK_spawnQueue_stagedSpawns",-1];
+private _stagedIsUninitialized = _stagedSpawns isEqualTo -1;
+if (_stagedIsUninitialized) then {
+    _stagedSpawns = [];
+    localNamespace setVariable ["BLWK_spawnQueue_stagedSpawns",_stagedSpawns];
+};
+
 
 private _queue = localNamespace getVariable ["BLWK_spawnQueue",[]];
 if (_queue isEqualTo []) exitWith {
@@ -39,6 +43,7 @@ if (_queue isEqualTo []) exitWith {
 };
 
 
+private _maxGroupSize = localNamespace getVariable ["BLWK_spawnQueue_maxGroupSize",1];
 private _insertedIndex = _stagedSpawns pushBack (_queue deleteAt 0);
 if ((_insertedIndex + 1) isEqualTo _maxGroupSize) then {
     localNamespace setVariable ["BLWK_spawnQueue_stagedSpawns",[]];

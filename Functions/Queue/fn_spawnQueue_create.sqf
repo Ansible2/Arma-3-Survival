@@ -64,13 +64,13 @@ if (_unitCreationArgList isEqualTo []) exitWith {};
 
 
 private _group = call BLWK_fnc_spawnQueue_getAvailableGroup;
-private _spawnPosition = (_unitCreationArgList select 0) select 1;
+private _firstArgSet = _unitCreationArgList select 0;
+_firstArgSet params ["","_spawnPosition","","_onGroupCreatedFunctionName"];
 private _createdUnits = _unitCreationArgList apply {
     _x params [
         ["_class","",[""]],
         "",
-        ["_onManCreatedFunctionName","BLWK_fnc_standardWave_onManCreated",[""]],
-        ["_onGroupCreatedFunctionName","BLWK_fnc_standardWave_onGroupCreated",[""]]
+        ["_onManCreatedFunctionName","BLWK_fnc_standardWave_onManCreated",[""]]
     ];
 
     private _unit = _group createUnit [_class, _spawnPosition, [], 5, "NONE"];

@@ -28,4 +28,4 @@ if (_groupIndex < 0) then {
 };
 
 
-_groupsToChooseFrom param [_groupIndex,(_groupIndex select 0)]
+_groupsToChooseFrom param [_groupIndex,(_groupsToChooseFrom select 0)]
