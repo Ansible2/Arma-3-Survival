@@ -63,7 +63,7 @@ params [
 if (_unitCreationArgList isEqualTo []) exitWith {};
 
 
-private _group = call BLWK_fnc_spawnQueue_getAvailableGroup;
+private _group = createGroup [OPFOR,true];
 private _firstArgSet = _unitCreationArgList select 0;
 _firstArgSet params ["","_spawnPosition","","_onGroupCreatedFunctionName"];
 private _createdUnits = _unitCreationArgList apply {
@@ -79,6 +79,7 @@ private _createdUnits = _unitCreationArgList apply {
 
     // keep items (maps, nvgs, binoculars, etc.) so that they can just be loot drops
     removeAllAssignedItems _unit;
+
     // for pistol only waves and randomized weapons
     [_unit] call BLWK_fnc_handleEnemyWeapons;
 
@@ -95,6 +96,11 @@ private _createdUnits = _unitCreationArgList apply {
     [_unit] call BLWK_fnc_spawnQueue_addManEventhandlers;
     [_unit] call (missionNamespace getVariable [_onManCreatedFunctionName,{}]);
 
+    // Need to keep track of group here because if unit is deleted
+    // They will not have a group at the time of the deleted eventhandler's
+    // activation, but we need to know to be able to clean up this group 
+    _unit setVariable ["BLWK_spawnQueue_group",_group];
+   
     _unit
 };
 

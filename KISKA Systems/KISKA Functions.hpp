@@ -141,6 +141,8 @@ class KISKA
 		{};
 		class isAdminOrHost
     	{};
+		class isGroupAlive
+    	{};
 		class isMainMenu
 		{};
 		class isPatchLoaded

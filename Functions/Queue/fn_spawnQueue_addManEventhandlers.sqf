@@ -47,14 +47,37 @@ private _killedEventId = _unit addEventHandler ["Killed", {
 
     [_killedUnit] call BLWK_fnc_spawnQueue_removeManEventhandlers;
     if !(isNull _killedUnit) then {
-        [_unit] join (localNamespace getVariable "BLWK_spawnQueue_cleanUpGroup");
+        private _cleanUpGroup = localNamespace getVariable ["BLWK_spawnQueue_cleanUpGroup",grpNull];
+        if (isNull _cleanUpGroup) then {
+            call BLWK_fnc_spawnQueue_initGroups;
+        };
+
+        private _previousGroup = group _killedUnit;
+        [_killedUnit] join _cleanUpGroup;
+
+        if !([_previousGroup] call KISKA_fnc_isGroupAlive) then {
+            deleteGroup _previousGroup;
+        };
     };
+
+    [] remoteExecCall ["BLWK_fnc_spawnQueue_unitKilled",2];
 }];
 _unit setVariable ["BLWK_spawnQueue_killedEventId",_killedEventId];
 
 
 private _deletedEventId = _unit addEventHandler ["Deleted", {
     params ["_deletedUnit"];
+
+    // units do not have groups at the time of the deleted event handler
+    private _spawnQueueGroup = _deletedUnit getVariable ["BLWK_spawnQueue_group",grpNull];
+    // game will crash if group is deleted too quickly
+    [_spawnQueueGroup] spawn {
+        params ["_spawnQueueGroup"];
+        sleep 1;
+        if !([_spawnQueueGroup] call KISKA_fnc_isGroupAlive) then {
+            deleteGroup _spawnQueueGroup;
+        };
+    };
 
     [] remoteExecCall ["BLWK_fnc_spawnQueue_unitKilled",2];
 }];

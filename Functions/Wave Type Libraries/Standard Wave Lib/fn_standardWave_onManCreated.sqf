@@ -24,10 +24,10 @@ params [
     ["_unit",objNull,[objNull]]
 ];
 
-private _group = group _unit;
-[_group] spawn BLWK_fnc_pathing_mainLoop;
-[_unit] spawn BLWK_fnc_pathing_collisionLoop;
-[_group] spawn BLWK_fnc_startStalkingPlayers;
+// private _group = group _unit;
+// [_group] spawn BLWK_fnc_pathing_mainLoop;
+// [_unit] spawn BLWK_fnc_pathing_collisionLoop;
+// [_group] spawn BLWK_fnc_startStalkingPlayers;
 
 
 nil

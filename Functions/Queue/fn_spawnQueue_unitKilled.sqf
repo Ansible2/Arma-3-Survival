@@ -26,8 +26,8 @@ if (!isServer) exitWith {};
 private _currentWaveKilledCount = localNamespace getVariable ["BLWK_spawnQueue_killedCount",0];
 localNamespace setVariable ["BLWK_spawnQueue_killedCount",_currentWaveKilledCount + 1];
 
-private _queueItem = call BLWK_fnc_spawnQueue_popAndCreate;
-private _queueIsEmpty = _queueItem isEqualTo [];
+private _currentQueue = call BLWK_fnc_spawnQueue_popAndCreate;
+private _queueIsEmpty = _currentQueue isEqualTo [];
 if (_queueIsEmpty AND {call BLWK_fnc_waves_isCleared}) then {
     [
         {

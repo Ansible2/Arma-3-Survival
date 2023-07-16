@@ -2,8 +2,8 @@
 Function: BLWK_fnc_spawnQueue_initGroups
 
 Description:
-    Creates the limited set of groups that the spawn queue will use during the
-     mission.
+    Creates the clean up group used by the spawn queue units to be able to immediately
+     delete empty groups.
 
 Parameters:
     NONE
@@ -21,8 +21,6 @@ Author(s):
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_spawnQueue_initGroups";
 
-#define NUMBER_OF_GROUPS 50
-
 if !(local BLWK_theAIHandlerEntity) exitWith {
     [
         [
@@ -35,12 +33,6 @@ if !(local BLWK_theAIHandlerEntity) exitWith {
     nil
 };
 
-private _groups = [];
-for "_i" from 1 to NUMBER_OF_GROUPS do { 
-    _groups pushBack (createGroup [OPFOR,false]);
-};
-
-localNamespace setVariable ["BLWK_spawnQueue_groups",_groups];
 localNamespace setVariable ["BLWK_spawnQueue_cleanUpGroup",createGroup [OPFOR,false]];
 
 
