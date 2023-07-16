@@ -400,6 +400,8 @@ class BLWK{
 	class Stalking
 	{
 		file = "Functions\Stalking";
+		class stalking_canPlayerBeStalked
+		{};
 		class stalking_getPlayer
 		{};
 		class stalking_queueRedistribute
@@ -407,6 +409,8 @@ class BLWK{
 		class stalking_removeStalkedPlayer
 		{};
 		class stalking_setPlayerStalkable
+		{};
+		class stalking_setStalkedPlayer
 		{};
 		class stalking_start
 		{};

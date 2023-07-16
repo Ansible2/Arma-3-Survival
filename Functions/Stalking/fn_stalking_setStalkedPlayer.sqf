@@ -27,7 +27,7 @@ params [
 ];
 
 if ((isNull _stalkerGroup) OR (isNull _playerToStalk)) exitWith {
-    [["Null argument passed, params are: "_this]] call KISKA_fnc_log;
+    [["Null argument passed, params are: ",_this]] call KISKA_fnc_log;
     nil
 };
 
