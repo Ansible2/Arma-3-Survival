@@ -75,6 +75,20 @@ class KISKA_missionParams
 	{
 		title = "Enemy AI";
 
+		class BLWK_spawnQueue_maxGroupSize : sliderParamBase
+		{
+			title = "Max Enemy Group Size";
+			tooltip[] = {
+				"Controls the number of units that will be in each group when spawned.", 
+				"If it is 1, every time a unit is killed and there is another unit in the queue, the queued unit will be spawned.", 
+				"If it is 2, for example, two units must die (or the queue must be empty) before a new group of 2 units spawn."
+			};
+			default = 4;
+			namespace = 1;
+			max = 12;
+			min = 1;
+		};
+
 		class BLWK_doDetectCollision : yes_no_paramBase
 		{
 			title = "Run Enemy AI Collision Script?";

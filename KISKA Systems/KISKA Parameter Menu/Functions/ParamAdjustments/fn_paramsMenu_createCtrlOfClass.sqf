@@ -68,9 +68,16 @@ private _paramTitle_ctrl = _paramControlGroup controlsGroupCtrl PARAM_MENU_ROW_T
 _paramTitle_ctrl ctrlSetText (getText(_paramConfig >> "title"));
 
 private _joinStringArray = [];
-private _configToolTipText = getText(_paramConfig >> "tooltip");
-if (_configToolTipText isNotEqualTo "") then {
-    _joinStringArray pushBack _configToolTipText;
+private _toolTipConfig = _paramConfig >> "tooltip";
+if !(isNull _toolTipConfig) then {
+    private _toolTipText = _toolTipConfig call BIS_fnc_getCfgData;
+    if (_toolTipText isEqualType []) then {
+        _toolTipText = _toolTipText joinString "\n";
+    };
+
+    if (_toolTipText isNotEqualTo "") then {
+        _joinStringArray pushBack _toolTipText;
+    };
 };
 
 // OPTIMIZE check if restart bool should be cached and also use when broadcasting to see if it is worth broadcasting a change that won't even take affect

@@ -2,7 +2,7 @@
 Function: BLWK_fnc_spawnQueue_popAndCreate
 
 Description:
-    Takes the first entry in the enemy man spawn queue, removes the item and then
+    Takes the first entry in creation args spawn queue, removes the item and then
      spawns the unit from the arguments.
 
 Parameters:
@@ -25,13 +25,25 @@ scriptName "BLWK_fnc_spawnQueue_popAndCreate";
 if (!isServer) exitWith {};
 
 // check if queue is empty
+private _maxGroupSize = localNamespace getVariable ["BLWK_spawnQueue_maxGroupSize",1];
+private _stagedSpawns = localNamespace getVariable ["BLWK_spawnQueue_stagedSpawns",[]];
+
 private _queue = localNamespace getVariable ["BLWK_spawnQueue",[]];
 if (_queue isEqualTo []) exitWith {
-    []
+    if (_stagedSpawns isNotEqualTo []) then {
+        localNamespace setVariable ["BLWK_spawnQueue_stagedSpawns",[]];
+        [_stagedSpawns] remoteExecCall ["BLWK_fnc_spawnQueue_create",BLWK_theAIHandlerOwnerID];
+    };
+
+    _queue
 };
 
-private _spawnArgs = _queue deleteAt 0;
-_spawnArgs remoteExecCall ["BLWK_fnc_spawnQueue_create",BLWK_theAIHandlerOwnerID];
+
+private _insertedIndex = _stagedSpawns pushBack (_queue deleteAt 0);
+if ((_insertedIndex + 1) isEqualTo _maxGroupSize) then {
+    localNamespace setVariable ["BLWK_spawnQueue_stagedSpawns",[]];
+    [_stagedSpawns] remoteExecCall ["BLWK_fnc_spawnQueue_create",BLWK_theAIHandlerOwnerID];
+};
 
 
-_spawnArgs
+_queue

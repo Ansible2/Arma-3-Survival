@@ -46,7 +46,9 @@ private _killedEventId = _unit addEventHandler ["Killed", {
     };
 
     [_killedUnit] call BLWK_fnc_spawnQueue_removeManEventhandlers;
-    [] remoteExec ["BLWK_fnc_spawnQueue_unitKilled",2];
+    if !(isNull _killedUnit) then {
+        [_unit] join (localNamespace getVariable "BLWK_spawnQueue_cleanUpGroup");
+    };
 }];
 _unit setVariable ["BLWK_spawnQueue_killedEventId",_killedEventId];
 

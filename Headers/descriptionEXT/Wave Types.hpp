@@ -34,6 +34,14 @@ class BLWK_waveTypes
             // Parameters:
             /// 0: <OBJECT> - the unit created 
             onManCreated = "BLWK_fnc_standardWave_onManCreated";
+
+            // The name of a missionNamespace variable that must be code.
+            // Runs once a group is created from the queue of enemies to spawn (and all its units have been created).
+            // Executes on the AI Handler (either headless or server)
+            // (see BLWK_fnc_spawnQueue_create for context)
+            // Parameters:
+            /// 0: <GROUP> - the created group
+            onGroupCreated = "BLWK_fnc_standardWave_onGroupCreated";
             
             // uncompiled code that is run on the server when the wave is ended
             //onWaveEnd = ""; 

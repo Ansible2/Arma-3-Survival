@@ -300,7 +300,11 @@ class BLWK{
 		{};
 		class spawnQueue_get
 		{};
+		class spawnQueue_getAvailableGroup
+		{};
 		class spawnQueue_create
+		{};
+		class spawnQueue_initGroups
 		{};
 		class spawnQueue_popAndCreate
 		{};
@@ -499,6 +503,8 @@ class BLWK{
 		class standardWave_generateManSpawnPosition 
 		{};
 		class standardWave_generateMenClassnames
+		{};
+		class standardWave_onGroupCreated
 		{};
 		class standardWave_onManCreated
 		{};
