@@ -39,6 +39,7 @@ if (clientOwner isNotEqualTo BLWK_theAIHandlerOwnerID) exitWith {
     nil
 };
 
+// TODO: handle stalking
 [
     "ace_unconscious",
     {
