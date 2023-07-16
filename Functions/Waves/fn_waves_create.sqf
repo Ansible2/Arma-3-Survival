@@ -57,8 +57,8 @@ if (!BLWK_multipleEnemyPositions) then {
 private _generatManClassesFunction = [_waveConfig,"generateMenClassnames"] call BLWK_fnc_waves_getFunctionFromConfig;
 private _availableClassnames = call _generatManClassesFunction;
 private _generateSpawnPositionFunction = [_waveConfig,"generateManSpawnPosition"] call BLWK_fnc_waves_getFunctionFromConfig;
-private _onManCreatedFunctionName = [_waveConfig,"onManCreated"] call BLWK_fnc_waves_getFunctionFromConfig;
-private _onGroupCreatedFunctionName = [_waveConfig,"onGroupCreated"] call BLWK_fnc_waves_getFunctionFromConfig;
+private _onManCreatedFunctionName = [_waveConfig,"onManCreated",true] call BLWK_fnc_waves_getFunctionFromConfig;
+private _onGroupCreatedFunctionName = [_waveConfig,"onGroupCreated",true] call BLWK_fnc_waves_getFunctionFromConfig;
 
 for "_i" from 1 to _totalNumEnemiesToSpawnDuringWave do {
     if (BLWK_multipleEnemyPositions) then {
