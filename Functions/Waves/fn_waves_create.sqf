@@ -85,11 +85,10 @@ private _numberOfUnitsInQueue = count (call BLWK_fnc_spawnQueue_get);
 if (_numberOfUnitsInQueue < BLWK_maxEnemyInfantryAtOnce) then {
 	_numberOfStartingEnemies = _numberOfUnitsInQueue;
 };
-private _unit = objNull;
-private _units = [];
-for "_i" from 1 to _numberOfStartingEnemies do {
-	call BLWK_fnc_spawnQueue_popAndCreate;
+for "_i" from 1 to (_numberOfStartingEnemies - 1) do {
+	[false] call BLWK_fnc_spawnQueue_popAndCreate;
 };
+[true] call BLWK_fnc_spawnQueue_popAndCreate;
 
 
 /* ----------------------------------------------------------------------------

@@ -50,7 +50,9 @@ private _leaderChangedEventId = _stalkerGroup addEventHandler ["LeaderChanged", 
             DEFAULT_POSITION
         ];
 
-        _newLeader move _currentMovePosition;
+        (units _stalkerGroup) apply {
+            _x move _currentMovePosition;
+        };
     };
 }];
 _stalkerGroup setVariable ["BLWK_stalking_leaderChangedEventId",_leaderChangedEventId];
@@ -132,6 +134,7 @@ _stalkerGroup setVariable ["BLWK_stalking_emptyEventId",_emptyEventId];
             doStop _stalkerGroupUnits;
             sleep 1;
             // regroup units
+            _stalkerGroupUnits doFollow (leader _stalkerGroup);
             _stalkerGroupUnits doFollow _stalkerLeader;
         };
 
@@ -167,12 +170,18 @@ _stalkerGroup setVariable ["BLWK_stalking_emptyEventId",_emptyEventId];
             
             private _playerPosition = getPosATL _currentPlayerBeingStalked;
             _stalkerGroup setVariable ["BLWK_stalking_currentMovePosition",_playerPosition];
+            
+            // `move` does not work well against group, using it at a unit level
+            (units _stalkerGroup) apply {
+                _x move _playerPosition;
+            };
+            _stalkerGroup setFormation "COLUMN";
+
 
             (leader _stalkerGroup) move _playerPosition;
             if (_hasWaypoint) then {
                 deleteWaypoint [_stalkerGroup,0];
             };
-
         } else {
             _stalkerGroup setVariable ["BLWK_stalking_isUnderMove",false];
             _stalkerGroup setVariable ["BLWK_stalking_currentMovePosition",nil];
@@ -205,6 +214,7 @@ _stalkerGroup setVariable ["BLWK_stalking_emptyEventId",_emptyEventId];
             };
         };
 
+        _stalkerGroup setFormation "STAG COLUMN";
         _stalkerGroup setVariable ["BLWK_stalking_isPatrolling",false];
 
         sleep UPDATE_RATE;

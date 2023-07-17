@@ -6,7 +6,8 @@ Description:
      spawns the unit from the arguments.
 
 Parameters:
-    NONE
+    0: _forceSpawnStaged <BOOL> - If true, any staged units will be spawned with this
+        new pop and create.
 
 Returns:
     <[STRING, PositionATL[] OR OBJECT, STRING]> - the element removed or empty `[]`
@@ -23,6 +24,10 @@ Author(s):
 scriptName "BLWK_fnc_spawnQueue_popAndCreate";
 
 if (!isServer) exitWith {};
+
+params [
+    ["_forceSpawnStaged",false,[true]]
+];
 
 private _stagedSpawns = localNamespace getVariable ["BLWK_spawnQueue_stagedSpawns",-1];
 private _stagedIsUninitialized = _stagedSpawns isEqualTo -1;
@@ -45,7 +50,7 @@ if (_queue isEqualTo []) exitWith {
 
 private _maxGroupSize = localNamespace getVariable ["BLWK_spawnQueue_maxGroupSize",1];
 private _insertedIndex = _stagedSpawns pushBack (_queue deleteAt 0);
-if ((_insertedIndex + 1) isEqualTo _maxGroupSize) then {
+if (((_insertedIndex + 1) isEqualTo _maxGroupSize) OR _forceSpawnStaged) then {
     localNamespace setVariable ["BLWK_spawnQueue_stagedSpawns",[]];
     [_stagedSpawns] remoteExecCall ["BLWK_fnc_spawnQueue_create",BLWK_theAIHandlerOwnerID];
 };

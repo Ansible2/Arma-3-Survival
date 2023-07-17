@@ -35,10 +35,7 @@ if (_clearDroppedItems) then {
 	_weaponHolders = _weaponHolders select {typeOf _x == "groundWeaponHolder" AND {!(_x in BLWK_lootHolders)}};
 
 	if !(_weaponHolders isEqualTo []) then {
-		_weaponHolders apply {
-			deleteVehicle _x;
-		};
-		sleep 1;
+		_weaponHolders apply { deleteVehicle _x };
 	};
 
 };
