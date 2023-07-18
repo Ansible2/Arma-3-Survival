@@ -23,6 +23,8 @@ scriptName "BLWK_fnc_paratrooperWave_onWaveInit";
 #define FLY_IN_HEIGHT 200
 #define APPROACH_DIRECTION -1
 #define NUMBER_OF_UNITS_TO_DROP -1
+#define MAX_NUM_PARAS 14
+#define DROP_AREA_RADIUS 50
 
 private _startingWaveUnits = call BLWK_fnc_getMustKillList;
 private _unitCount = count _startingWaveUnits;
@@ -52,35 +54,49 @@ if (_numberOfUnitsToDrop <= _vehicleCargoCapacity) exitWith {
 };
 
 
-private _parasAllocated = false;
-private _startCount = 0;
-private _numUnitsAllocated = 0;
-while {!_parasAllocated} do {
-    // get units to put into vehicle
-    private _unitsToDropForStick = _startingWaveUnits select [_startCount,_vehicleCargoCapacity];
+[
+    _startingWaveUnits,
+    _vehicleCargoCapacity,
+    _numberOfUnitsToDrop,
+    _dropVehicleClass
+] spawn {
+    params [
+        "_startingWaveUnits",
+        "_vehicleCargoCapacity",
+        "_numberOfUnitsToDrop",
+        "_dropVehicleClass"
+    ];
 
-    // drop around The Crate
-    private _dropZoneForStick = [BLWK_mainCrate,DROP_AREA_RADIUS] call CBAP_fnc_randPos;
-    [
-        _dropZoneForStick,
-        _unitsToDropForStick,
-        _dropVehicleClass,
-        NUMBER_OF_UNITS_TO_DROP,
-        APPROACH_DIRECTION,
-        FLY_IN_HEIGHT,
-        OPFOR
-    ] spawn KISKA_fnc_paratroopers;
+    private _parasAllocated = false;
+    private _startCount = 0;
+    private _numUnitsAllocated = 0;
+    while {!_parasAllocated} do {
+        // get units to put into vehicle
+        private _unitsToDropForStick = _startingWaveUnits select [_startCount,_vehicleCargoCapacity];
 
-    // check if the amount to drop has been reached
-    _numUnitsAllocated = _numUnitsAllocated + _vehicleCargoCapacity;
-    if (_numUnitsAllocated >= _numberOfUnitsToDrop) then {
-        _parasAllocated = true;
-    } else {
-        // update select start count
-        _startCount = _numUnitsAllocated - 1; // want actual array index
+        // drop around The Crate
+        private _dropZoneForStick = [BLWK_mainCrate,DROP_AREA_RADIUS] call CBAP_fnc_randPos;
+        [
+            _dropZoneForStick,
+            _unitsToDropForStick,
+            _dropVehicleClass,
+            NUMBER_OF_UNITS_TO_DROP,
+            APPROACH_DIRECTION,
+            FLY_IN_HEIGHT,
+            OPFOR
+        ] spawn KISKA_fnc_paratroopers;
+
+        // check if the amount to drop has been reached
+        _numUnitsAllocated = _numUnitsAllocated + _vehicleCargoCapacity;
+        if (_numUnitsAllocated >= _numberOfUnitsToDrop) then {
+            _parasAllocated = true;
+        } else {
+            // update select start count
+            _startCount = _numUnitsAllocated - 1; // want actual array index
+        };
+
+        sleep 5;
     };
-
-    sleep 5;
 };
 
 
