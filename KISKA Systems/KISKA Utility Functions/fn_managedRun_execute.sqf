@@ -117,12 +117,15 @@ private _isNewManagement = _idToRunAgainst isEqualTo -1;
 private _currentAdjustmentId = _idNamespace getVariable ["KISKA_managedRun_latestId",-1];
 private _idToAdjustIsCurrent = _currentAdjustmentId isEqualTo _idToRunAgainst;
 
+// new id was made, don't run code
 if ((!_isNewManagement) AND (!_idToAdjustIsCurrent)) exitWith { -1 };
 
-private _idOfRun = _idToRunAgainst;
-if (!_idToAdjustIsCurrent) then {
+private _idOfRun = -1;
+if (_isNewManagement) then {
     // assign new adjusment id as latest
     _idOfRun = ["KISKA_managedRun_latestId",_idNamespace] call KISKA_fnc_idCounter;
+} else {
+    _idOfRun = _idToRunAgainst;
 };
 
 private _code = _codeMap get _nameOfCode;
