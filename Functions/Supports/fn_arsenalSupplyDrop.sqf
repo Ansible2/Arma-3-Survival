@@ -50,19 +50,19 @@ private _vehicleArray = [
 ] call KISKA_fnc_spawnVehicle;
 
 
-private _aircraftCrew = _vehicleArray select 1;
+_vehicleArray params ["_aircraft","_aircraftCrew","_aircraftGroup"];
 _aircraftCrew apply {
 	_x setCaptive true;
 };
 
-private _aircraft = _vehicleArray select 0;
+_aircraftGroup setBehaviourStrong "CARELESS";
+
 _aircraft flyInHeight DROP_ALT;
 _airCraft move _dropPosition;
 
 
 // give it a waypoint and delete it after it gets there
 private _flyToPosition = _dropPosition getPos [FLY_RADIUS,_relativeDirection];
-private _aircraftGroup = _vehicleArray select 2;
 
 [_aircraft,_dropPosition,_aircraftGroup,_flyToPosition] spawn {
 	params ["_aircraft","_dropPosition","_aircraftGroup","_flyToPosition"];
