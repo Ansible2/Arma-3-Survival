@@ -106,7 +106,7 @@ if (_vehicleTypeValues isEqualTo []) exitWith {
 private _returnedVehicles = [];
 private _fn_spawnAVehicle = {
     params [
-        ["_startingIndex",0]
+        ["_startingIndex",0,[123]]
     ];
     // [str _likelihoodWeights,false,true,false] call KISKA_fnc_log;
     // [str _vehicleTypeValues,false,true,false] call KISKA_fnc_log;
@@ -124,7 +124,6 @@ private _fn_spawnAVehicle = {
     private _vehicleClass = selectRandom (_vehicleTypeHash get _vehicleType);
     private _spawnPosition = selectRandom BLWK_vehicleSpawnPositions;
     private _vehicle = _vehicleClass createVehicle _spawnPosition;
-
     private _totalNumberOfAvailableUnits = (count _availableInfantry) - (_startingIndex + 1);
     if (_totalNumberOfAvailableUnits isEqualTo 0) exitWith {
         ["Could not find any units to for vehicle",false] call KISKA_fnc_log;
@@ -145,14 +144,14 @@ private _fn_spawnAVehicle = {
     
     private _nextAvailableIndex = _startingIndex + _crewCount;
     private _selectionEndIndex = _nextAvailableIndex - 1;
-    private _crew = _availableInfantry select [_startingIndex,_lastIndex];
+    private _crew = _availableInfantry select [_startingIndex,_selectionEndIndex];
 
     private _group = createGroup (side (_crew select 0));
     _group deleteGroupWhenEmpty true;
     _group allowFleeing 0;
 
     _crew joinSilent _group;
-    [_group,_vehicle] call KISKA_fnc_setCrew;
+    [_crew,_vehicle] call KISKA_fnc_setCrew;
     _crew doMove (getPosATL BLWK_mainCrate);
 
     [BLWK_zeus, [[_vehicle],false]] remoteExecCall ["addCuratorEditableObjects",2];
@@ -165,7 +164,7 @@ private _fn_spawnAVehicle = {
 };
 
 
-private _nextAvailableIndex = call _fn_spawnAVehicle;
+private _nextAvailableIndex = [] call _fn_spawnAVehicle;
 
 // do a role for a second vehicle
 // make sure there are enough AI to even crew a ground vehicle
