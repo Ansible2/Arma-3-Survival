@@ -22,7 +22,7 @@ Author(s):
 if (!isServer) exitWith {};
 
 params [
-	["_unitsToAdd",[],[[]]]
+	["_unitsToAdd",[],[[],objNull]]
 ];
 
 if (_unitsToAdd isEqualType objNull) then {
