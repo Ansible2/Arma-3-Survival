@@ -6,7 +6,7 @@ Description:
 	 to be killed before the round can be done.
 
 Parameters:
-	0: _unitsToAdd : <OBJECT[]> - The units to add
+	0: _unitsToAdd : <OBJECT[] | OBJECT> - The units to add
 
 Returns:
 	NOTHING
@@ -25,10 +25,14 @@ params [
 	["_unitsToAdd",[],[[]]]
 ];
 
+if (_unitsToAdd isEqualType objNull) then {
+	_unitsToAdd = [_unitsToAdd];
+};
+
 
 private _currentList = call BLWK_fnc_getMustKillList;
 _unitsToAdd apply {
-	if (isNull _x) exitWith {
+	if (isNull _x) then {
 		["A null unit was passed..."] call KISKA_fnc_log;
 		continue
 	};

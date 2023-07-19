@@ -106,7 +106,7 @@ localNamespace setVariable ["BLWK_droneWave_allDronesCreated",false];
 
 
         private _droneArray = [_drone];
-        [_droneArray] call BLWK_fnc_addToMustKillList;
+        _droneArray call BLWK_fnc_addToMustKillList;
         BLWK_zeus addCuratorEditableObjects [_droneArray, true];
         
         // space out spawns so that you don't get spammed
