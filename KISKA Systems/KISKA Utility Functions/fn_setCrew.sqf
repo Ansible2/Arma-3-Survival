@@ -37,7 +37,7 @@ if (_crew isEqualType objNull) then {
 };
 
 if (_crew isEqualTo []) exitWith {
-    [["Found that ",_crew," is not defined, exiting..."],true] call KISKA_fnc_log;
+    [["Found that vehicle crew is empty, exiting..."],true] call KISKA_fnc_log;
     false
 };
 
