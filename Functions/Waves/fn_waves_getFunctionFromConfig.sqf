@@ -45,6 +45,7 @@ params [
 
 
 private _requestedConfig = _waveConfig >> _configProperty;
+private _requestedConfigPropertyIsUndefined = isNull _requestedConfig;
 private _requestedFunctionName = getText(_requestedConfig);
 private _functionNameIsEmpty = _requestedFunctionName isEqualTo "";
 private _configIsDefinedEmpty = !(isNull _requestedConfig) AND _functionNameIsEmpty;
@@ -77,6 +78,7 @@ private _requestedFunction = missionNamespace getVariable [
     {}
 ];
 if (
+    (!_requestedConfigPropertyIsUndefined) AND
     (_requestedFunction isEqualTo {}) AND 
     (_waveConfig isNotEqualTo DEFAULT_WAVE_CONFIG_PATH)
 ) then {
