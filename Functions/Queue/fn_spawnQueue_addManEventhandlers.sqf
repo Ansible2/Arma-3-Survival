@@ -33,7 +33,9 @@ if (isNull _unit) exitWith {
 
 private _hitEventId = _unit addEventHandler ["Hit", {
     params ["_unit", "", "_damage", "_instigator"];
-    [_unit,_damage] remoteExecCall ["BLWK_fnc_event_hitEnemy",_instigator];
+    if (isPlayer _instigator) then {
+        [_unit,_damage] remoteExecCall ["BLWK_fnc_event_hitEnemy",_instigator];
+    };
 }];
 _unit setVariable ["BLWK_spawnQueue_hitEventId",_hitEventId];
 
