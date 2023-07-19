@@ -27,6 +27,11 @@ scriptName "BLWK_fnc_waves_end";
 
 if (!isServer) exitWith {};
 
+private _lastWaveEnd = localNamespace getVariable ["BLWK_waves_lastEndedWave",0];
+// prevent multiple wave ends from being called
+if (_lastWaveEnd isEqualTo BLWK_currentWaveNumber) exitWith {};
+localNamespace setVariable ["BLWK_waves_lastEndedWave",BLWK_currentWaveNumber]; 
+
 private _waveConfig = localNamespace getVariable ["BLWK_currentWaveConfig",configNull];
 private _waveEndEvent = [
     _waveConfig,
