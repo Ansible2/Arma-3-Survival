@@ -41,8 +41,8 @@ private _mortarGroup = createGroup [OPFOR,true];
 _mortarMan moveInGunner _mortarTube;
 [BLWK_zeus,[[_mortarTube],true]] remoteExec ["addCuratorEditableObjects",2];
 
-[_mortarMan] spawn {
-    params ["_mortarMan"];
+[_mortarMan,_mortarTube] spawn {
+    params ["_mortarMan","_mortarTube"];
 
     // give players a bit of time before starting
     sleep 20;
