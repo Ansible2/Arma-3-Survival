@@ -35,11 +35,12 @@ localNamespace setVariable ["BLWK_droneWave_allDronesCreated",false];
         private _droneGroup = createGroup OPFOR;
         private _flyDirection = round (random 360);
         private _flyFromDirection = [_flyDirection + 180] call CBAP_fnc_simplifyAngle;
-        private _spawnPosition = BLWK_mainCrate getPos [
+        private _spawnPosition = [
+            BLWK_mainCrate,
             BLWK_playAreaRadius + (random [100,125,150]),
             _flyFromDirection
-        ];
-        _spawnPosition set [2,FLY_HEIGHT];
+        ] call KISKA_fnc_getPosRelativeSurface;
+        _spawnPosition vectorAdd [0,0,FLY_HEIGHT];
 
         // Create
         private _droneSpawnInfo = [

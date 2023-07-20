@@ -45,8 +45,12 @@ if (_dropPosition isEqualType objNull) then {
 // get directions for vehicle to fly
 private _flyDirection = round (random 360);
 private _flyFromDirection = [_flyDirection + 180] call CBAP_fnc_simplifyAngle;
-private _spawnPosition = _dropPosition getPos [FLY_RADIUS,_flyFromDirection];
-_spawnPosition set [2,DROP_ALT];
+private _spawnPosition = [
+    _dropPosition,
+    FLY_RADIUS,
+    _flyFromDirection
+] call KISKA_fnc_getPosRelativeSurface;
+_spawnPosition vectorAdd [0,0,DROP_ALT];
 
 private _relativeDirection = _spawnPosition getDir _dropPosition;
 

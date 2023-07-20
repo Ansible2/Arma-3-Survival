@@ -43,13 +43,9 @@ private _fn_spawnHeli = {
     };
 
     private _vehicleArray = [
-        BLWK_playAreaCenter,
-        BLWK_playAreaRadius,
         _vehicleClass,
         99999,
-        10,
         random [40,50,60],
-        -1,
         _defaultAircraft,
         "",
         OPFOR
@@ -57,12 +53,12 @@ private _fn_spawnHeli = {
 
     private _crew = _vehicleArray select 1;
     _crew apply {
-        [_x] remoteExecCall ["BLWK_fnc_addToMustKillList",2];
         [_x] call BLWK_fnc_spawnQueue_addManEventhandlers;
         
         _x allowDamage true;
         _x setSkill 0.05;
     };
+    [_crew] remoteExecCall ["BLWK_fnc_addToMustKillList",2];
 
     private _heli = _vehicleArray select 0;
     [_heli] call BLWK_fnc_event_addVehicleKilledHandler;

@@ -33,7 +33,7 @@ if (isNull _vehicle) exitWith {
 _vehicle addEventHandler ["KILLED", {
     params ["_killedUnit", "", "_instigator"];
 
-    if (!(isNull _instigator) AND (isPlayer _instigator)) then {
+    if (isPlayer _instigator) then {
         // show a player hit points and add them to there score
         [_killedUnit,true] remoteExecCall ["BLWK_fnc_event_killedEnemy",_instigator];
     };

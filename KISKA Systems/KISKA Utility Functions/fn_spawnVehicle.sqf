@@ -6,7 +6,7 @@ Description:
     Has support for CUP aircraft to spawn at velocity.
 
 Parameters:
-    0: _spawnPosition <ARRAY or OBJECT> - 3D array in the format of PositionATL
+    0: _spawnPosition <PositionATL[], OBJECT, or PositionAGL[]> - 3D array in the format of PositionATL
         (PositionAGL if boat or amphibious). Objects can be used, however, this
     1: _spawnDirection <NUMBER> - The direction the vehicle is facing when created (relative to north)
         if _spawnPosition is an object and _spawnDirection == -1, _spawnDirection will be set to the

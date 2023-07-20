@@ -203,10 +203,20 @@ if (_exitToDefault) exitwith {
 
 
 /* ----------------------------------------------------------------------------
+    Define attack function
+---------------------------------------------------------------------------- */
+
+
+/* ----------------------------------------------------------------------------
     Position plane towards target
 ---------------------------------------------------------------------------- */
-private _planeSpawnPosition = _attackPosition getPos [_spawnDistance,_attackDirection + 180];
-_planeSpawnPosition set [2,_spawnHeight];
+private _planeSpawnPosition = [
+    _attackPosition,
+    _spawnDistance,
+    (_attackDirection + 180)
+] call KISKA_fnc_getPosRelativeSurface;
+_planeSpawnPosition vectorAdd [0,0,_spawnHeight];
+
 private _planeArray = [_planeSpawnPosition,_attackDirection,_planeClass,_side,false] call KISKA_fnc_spawnVehicle;
 private _plane = _planeArray select 0;
 private _crew = _planeArray select 1;

@@ -94,7 +94,7 @@ class KISKA
 		class battleSound
 		{};
 	};
-	class KISKA_utillities
+	class KISKA_utilities
 	{
 		file = "KISKA Systems\KISKA Utility Functions";
 		class addArsenal
@@ -174,6 +174,13 @@ class KISKA
 		class str
 		{};
 		class supplyDrop
+		{};
+		
+		class getPosRelativeSurface
+		{};
+		class engageHeliTurretsLoop
+		{};
+		class helicopterGunner
 		{};
 
 		class managedRun_execute
