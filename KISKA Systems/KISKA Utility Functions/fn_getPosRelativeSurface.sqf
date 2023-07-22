@@ -13,6 +13,7 @@ Parameters:
         relative position to. If a 2d position, height will be 0.
     1: _distance <NUMBER> - The distance away from the _centerPosition to get the position
     2: _bearing <NUMBER> - The direction relative to the position to find the new position
+    3: _zOffSet <NUMBER> - An offset to add to the Z-axis AFTER the surface position is found
 
 Returns:
     PositionATL[] - the new position
@@ -26,6 +27,15 @@ Examples:
         ] call KISKA_fnc_getPosRelativeSurface;
     (end)
 
+    (begin example)
+        [
+            player,
+            100,
+            180,
+            10 // 10 meters above water surface or terrain
+        ] call KISKA_fnc_getPosRelativeSurface;
+    (end)
+
 Author(s):
     Ansible2
 ---------------------------------------------------------------------------- */
@@ -34,7 +44,8 @@ scriptName "KISKA_fnc_getPosRelativeSurface";
 params [
     ["_centerPosition",[],[objNull,[]],[2,3]],
     ["_distance",0,[123]],
-    ["_bearing",0,[123]]
+    ["_bearing",0,[123]],
+    ["_zOffSet",0,[123]]
 ];
 
 
@@ -47,4 +58,4 @@ if (_isUnderwater) then {
 };
 
 
-_relativePosition
+_relativePosition vectorAdd [0,0,_zOffSet]

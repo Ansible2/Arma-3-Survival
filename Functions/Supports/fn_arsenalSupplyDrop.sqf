@@ -37,9 +37,9 @@ private _flyFromDirection = [_flyDirection + 180] call CBAP_fnc_simplifyAngle;
 private _spawnPosition = [
     _dropPosition,
     FLY_RADIUS,
-    _flyFromDirection
+    _flyFromDirection,
+	DROP_ALT
 ] call KISKA_fnc_getPosRelativeSurface;
-_spawnPosition vectorAdd [0,0,DROP_ALT];
 
 private _relativeDirection = _spawnPosition getDir _dropPosition;
 

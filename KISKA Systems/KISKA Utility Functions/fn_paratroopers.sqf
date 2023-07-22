@@ -107,9 +107,9 @@ _dropZone set [2,_flyInHeight];
 private _spawnPosition = [
     _dropZone,
     _spawnDistance,
-    _flyFromDirection
+    _flyFromDirection,
+    _flyInHeight
 ] call KISKA_fnc_getPosRelativeSurface;
-_spawnPosition vectorAdd [0,0,_flyInHeight];
 
 /* ----------------------------------------------------------------------------
     Create vehicle to drop units

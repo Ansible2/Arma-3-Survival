@@ -213,9 +213,9 @@ if (_exitToDefault) exitwith {
 private _planeSpawnPosition = [
     _attackPosition,
     _spawnDistance,
-    (_attackDirection + 180)
+    (_attackDirection + 180),
+    _spawnHeight
 ] call KISKA_fnc_getPosRelativeSurface;
-_planeSpawnPosition vectorAdd [0,0,_spawnHeight];
 
 private _planeArray = [_planeSpawnPosition,_attackDirection,_planeClass,_side,false] call KISKA_fnc_spawnVehicle;
 private _plane = _planeArray select 0;

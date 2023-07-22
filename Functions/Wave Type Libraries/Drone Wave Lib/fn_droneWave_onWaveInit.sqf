@@ -116,9 +116,9 @@ private _fn_addEventHandlers = {
         private _spawnPosition = [
             BLWK_mainCrate,
             BLWK_playAreaRadius + (random [100,125,150]),
-            _flyFromDirection
+            _flyFromDirection,
+            FLY_HEIGHT
         ] call KISKA_fnc_getPosRelativeSurface;
-        _spawnPosition vectorAdd [0,0,FLY_HEIGHT];
 
         // Create
         private _droneSpawnInfo = [
