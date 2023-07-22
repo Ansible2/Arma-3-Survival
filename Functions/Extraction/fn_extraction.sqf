@@ -312,6 +312,7 @@ private _fn_afterExtractionWaitTime = {
 
         // handle crew AI
         private _aircraft = _aircraftInfo select 0;
+        [BLWK_zeus, [[_aircraft],true]] remoteExecCall ["addCuratorEditableObjects",2];
         BLWK_extractionAircraft pushBack _aircraft;
         _aircraft allowDamage false;
         _aircraft setCaptive true;
@@ -357,9 +358,6 @@ private _fn_afterExtractionWaitTime = {
         };
 
         private _aircraftGroup = _aircraftInfo select 2;
-        _aircraftGroup setBehaviour "CARELESS";
-        _aircraftGroup setCombatBehaviour "CARELESS";
-        _aircraftGroup setCombatMode "BLUE";
 
         private _exfilPosition = [
             [1,1,1],
@@ -367,6 +365,8 @@ private _fn_afterExtractionWaitTime = {
             360
         ] call CBAP_fnc_randPos;
         _aircraft setVariable ["BLWK_exfilPosition",_exfilPosition];
+
+        [_aircraft,5,4,500] spawn KISKA_fnc_engageHeliTurretsLoop;
 
         [
             _aircraft,
