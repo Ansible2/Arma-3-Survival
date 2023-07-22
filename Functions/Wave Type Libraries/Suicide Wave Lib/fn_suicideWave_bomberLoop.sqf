@@ -27,7 +27,9 @@ if (!canSuspend) exitWith {
     nil
 };
 
-params ["_bomber"];
+params [
+    ["_bomber",objNull,[objNull]]
+];
 
 private ["_players","_nearPlayer"];
 private _bomberDistanceToBlow = random [10,15,20];

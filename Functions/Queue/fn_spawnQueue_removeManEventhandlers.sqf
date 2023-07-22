@@ -7,6 +7,8 @@ Description:
 
 Parameters:
     0: _unit : <OBJECT> - The unit to remove the eventhandlers from
+    1: _calledFromKilledEventhandler : <BOOL> - Shouldn't remove the event that called
+        this function if it is executing.
 
 Returns:
     NOTHING
@@ -22,15 +24,18 @@ Author(s):
 scriptName "BLWK_fnc_spawnQueue_removeManEventhandlers";
 
 params [
-    ["_unit",objNull,[objNull]]
+    ["_unit",objNull,[objNull]],
+    ["_calledFromKilledEventhandler",false,[true]]
 ];
 
-
+// TODO: this is causing delete eventhandler to run when bomber is killed?????
 private _deletedEventId = _unit getVariable ["BLWK_spawnQueue_deletedEventId",-1];
 _unit removeEventHandler ["DELETED",_deletedEventId];
 
-private _killedEventId = _unit getVariable ["BLWK_spawnQueue_killedEventId",-1];
-_unit removeEventHandler ["KILLED",_killedEventId];
+if !(_calledFromKilledEventhandler) then {
+    private _killedEventId = _unit getVariable ["BLWK_spawnQueue_killedEventId",-1];
+    _unit removeEventHandler ["KILLED",_killedEventId];
+};
 
 private _hitEventId = _unit getVariable ["BLWK_spawnQueue_hitEventId",-1];
 _unit removeEventHandler ["HIT",_hitEventId];

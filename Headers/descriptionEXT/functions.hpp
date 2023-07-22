@@ -483,6 +483,8 @@ class BLWK{
 		{};
 		class suicideWave_onWaveInit
 		{};
+		class suicideWave_makeBombers
+		{};
 	};
 
 	class ParatrooperWaveLib

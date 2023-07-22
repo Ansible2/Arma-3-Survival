@@ -47,7 +47,7 @@ private _killedEventId = _unit addEventHandler ["Killed", {
         [_killedUnit] remoteExecCall ["BLWK_fnc_event_killedEnemy",_instigator];
     };
 
-    [_killedUnit] call BLWK_fnc_spawnQueue_removeManEventhandlers;
+    [_killedUnit,true] call BLWK_fnc_spawnQueue_removeManEventhandlers;
     if !(isNull _killedUnit) then {
         private _cleanUpGroup = localNamespace getVariable ["BLWK_spawnQueue_cleanUpGroup",grpNull];
         if (isNull _cleanUpGroup) then {
