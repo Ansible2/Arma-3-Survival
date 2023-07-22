@@ -24,16 +24,16 @@ params [
     ["_stalkerGroup",grpNull,[grpNull]]
 ];
 
-if ((isNull _stalkerGroup) OR (isNull _playerToStalk)) exitWith {
-    [["Null argument passed, params are: ",_this]] call KISKA_fnc_log;
+private _playerBeingStalked = _stalkerGroup getVariable ["BLWK_stalking_stalkedPlayer",objNull];
+if ((isNull _stalkerGroup) AND (isNull _playerBeingStalked)) exitWith {
+    ["Both _stalkerGroup AND _playerBeingStalked are null, exiting..."] call KISKA_fnc_log;
     nil
 };
 
-private _playerBeingStalked = _stalkerGroup getVariable ["BLWK_stalking_stalkedPlayer",objNull];
 
 if !(isNull _playerBeingStalked) then {
-    private _numberOfStalkerGroups = _playerToStalk getVariable ["BLWK_stalking_numberOfStalkerGroups",0];
-    _playerToStalk setVariable [
+    private _numberOfStalkerGroups = _playerBeingStalked getVariable ["BLWK_stalking_numberOfStalkerGroups",0];
+    _playerBeingStalked setVariable [
         "BLWK_stalking_numberOfStalkerGroups",
         (_numberOfStalkerGroups - 1) max 0
     ];

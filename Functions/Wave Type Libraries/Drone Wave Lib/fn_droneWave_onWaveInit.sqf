@@ -29,7 +29,85 @@ scriptName "BLWK_fnc_droneWave_onWaveInit";
 
 localNamespace setVariable ["BLWK_droneWave_allDronesCreated",false];
 
-[] spawn {
+private _fn_addEventHandlers = {
+    params [
+        ["_drone",objNull,[objNull]]
+    ];
+    
+    
+    /* --------------------------------------
+        HIT
+    -------------------------------------- */
+    private _hitEventId = _drone addEventHandler ["HIT", {
+        params ["_drone", "", "", "_instigator"];
+
+        if (isPlayer _instigator) then {
+            private _points = [_drone] call BLWK_fnc_getPointsForKill;
+            [_drone,_points] remoteExec ["BLWK_fnc_droneWave_onDroneKilled",_instigator];
+        };
+
+        private _explosion = "DemoCharge_Remote_Ammo_Scripted" createVehicle (getPosATLVisual _drone);
+        _explosion setdamage 1;
+        _drone setDamage 1;
+    }];
+    _drone setVariable ["BLWK_droneWave_droneHitEventId",_hitEventId];
+
+
+    /* --------------------------------------
+        Deleted
+    -------------------------------------- */
+    private _deletedEventId = _drone addEventHandler ["DELETED", {
+        // deleted ai is not actually dead when deleted event runs
+        // need to wait before checking for wave clear
+        [
+            {
+                if (call BLWK_fnc_waves_isCleared) then {
+                    call BLWK_fnc_waves_end
+                };
+            },
+            [],
+            0.5
+        ] call CBAP_fnc_waitAndExecute;
+    }]; 
+    _drone setVariable ["BLWK_droneWave_droneDeletedEventId",_deletedEventId];
+
+
+    /* --------------------------------------
+        Killed
+    -------------------------------------- */
+    private _killedEventId = _drone addEventHandler [
+        "KILLED", 
+        {
+            // removing eventhandlers too quickly from within another eventhandler
+            // can sometimes cause undefined behaviour
+            [
+                {
+                    params ["_drone"];
+                    [
+                        ["BLWK_droneWave_droneHitEventId","HIT"],
+                        ["BLWK_droneWave_droneDeletedEventId","DELETED"]
+                    ] apply {
+                        _x params ["_eventIdVarName","_eventType"];
+                        private _eventId = _drone getVariable [_eventIdVarName,-1];
+                        _drone removeEventHandler [_eventType,_eventId];
+                    };
+                },
+                _this,
+                0.5
+            ] call CBAP_fnc_waitAndExecute;
+
+            if (call BLWK_fnc_waves_isCleared) then {
+                call BLWK_fnc_waves_end
+            };
+        }
+    ]; 
+    _drone setVariable ["BLWK_droneWave_droneKilledEventId",_killedEventId];
+};
+
+
+[_fn_addEventHandlers] spawn {
+    params ["_fn_addEventHandlers"];
+
     for "_i" from 1 to DRONE_NUMBER do {
         // Spawn position
         private _droneGroup = createGroup OPFOR;
@@ -57,57 +135,11 @@ localNamespace setVariable ["BLWK_droneWave_allDronesCreated",false];
 
         [_drone,_droneGroup,_spawnPosition] spawn BLWK_fnc_droneWave_attackLoop;
 
-
-        private _hitEventId = _drone addEventHandler ["HIT", {
-            params ["_drone", "", "", "_instigator"];
-
-            if (isPlayer _instigator) then {
-                private _points = [_drone] call BLWK_fnc_getPointsForKill;
-                [_drone,_points] remoteExec ["BLWK_fnc_droneWave_onDroneKilled",_instigator];
-            };
-
-            private _explosion = "DemoCharge_Remote_Ammo_Scripted" createVehicle (getPosATLVisual _drone);
-            _explosion setdamage 1;
-            _drone setDamage 1;
-        }];
-        _drone setVariable ["BLWK_droneWave_droneHitEventId",_hitEventId];
-
-        private _deletedEventId = _drone addEventHandler ["DELETED", {
-            // deleted ai is not actually dead when deleted event runs
-            // need to wait before checking for wave clear
-            [
-                {
-                    if (call BLWK_fnc_waves_isCleared) then {
-                        call BLWK_fnc_waves_end
-                    };
-                },
-                [],
-                0.5
-            ] call CBAP_fnc_waitAndExecute;
-        }]; 
-        _drone setVariable ["BLWK_droneWave_droneDeletedEventId",_deletedEventId];
-
-        private _killedEventId = _drone addEventHandler ["KILLED", {
-            params ["_drone"];
-            [
-                ["BLWK_droneWave_droneHitEventId","HIT"],
-                ["BLWK_droneWave_droneKilledEventId","KILLED"],
-                ["BLWK_droneWave_droneDeletedEventId","DELETED"]
-            ] apply {
-                _x params ["_eventIdVarName","_eventType"];
-                private _eventId = _drone getVariable [_eventIdVarName,-1];
-                _drone removeEventHandler [_eventType,_eventId];
-            };
-
-            if (call BLWK_fnc_waves_isCleared) then {
-                call BLWK_fnc_waves_end
-            };
-        }]; 
-        _drone setVariable ["BLWK_droneWave_droneKilledEventId",_killedEventId];
-
-
+        
         private _droneArray = [_drone];
+        _droneArray call _fn_addEventHandlers;
         _droneArray call BLWK_fnc_addToMustKillList;
+
         BLWK_zeus addCuratorEditableObjects [_droneArray, true];
         
         // space out spawns so that you don't get spammed

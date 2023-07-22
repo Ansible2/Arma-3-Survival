@@ -56,19 +56,30 @@ if (_hasStalkerWaypoint) then {
 /* ----------------------------------------------------------------------------
     Group events
 ---------------------------------------------------------------------------- */
+// removing eventhandlers too quickly from within another eventhandler
+// can sometimes cause undefined behaviour
 [
-    ["BLWK_stalking_leaderChangedEventId","LeaderChanged"],
-    ["BLWK_stalking_deletedEventId","Deleted"],
-    ["BLWK_stalking_emptyEventId","Empty"]
-] apply {
-    _x params ["_eventSaveId","_eventName"];
+    {
+        params ["_stalkerGroup"];
 
-    private _eventId = _stalkerGroup getVariable [
-        _eventSaveId,
-        -1
-    ];
-    _stalkerGroup removeEventHandler [_eventName,_eventId];
-};
+        [
+            ["BLWK_stalking_leaderChangedEventId","LeaderChanged"],
+            ["BLWK_stalking_deletedEventId","Deleted"],
+            ["BLWK_stalking_emptyEventId","Empty"]
+        ] apply {
+            _x params ["_eventSaveId","_eventName"];
+
+            private _eventId = _stalkerGroup getVariable [
+                _eventSaveId,
+                -1
+            ];
+            _stalkerGroup removeEventHandler [_eventName,_eventId];
+        };
+    },
+    [_stalkerGroup],
+    0.5
+] call CBAP_fnc_waitAndExecute;
+
 
 
 nil

@@ -59,14 +59,12 @@ _stalkerGroup setVariable ["BLWK_stalking_leaderChangedEventId",_leaderChangedEv
 
 
 private _deletedEventId = _stalkerGroup addEventHandler ["Deleted", {
-    params ["_group"];
     _this call BLWK_fnc_stalking_stop;
 }];
 _stalkerGroup setVariable ["BLWK_stalking_deletedEventId",_deletedEventId];
 
 
 private _emptyEventId = _stalkerGroup addEventHandler ["Empty", {
-    params ["_group"];
     _this call BLWK_fnc_stalking_stop;
 }];
 _stalkerGroup setVariable ["BLWK_stalking_emptyEventId",_emptyEventId];
