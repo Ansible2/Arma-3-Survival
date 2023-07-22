@@ -47,7 +47,16 @@ private _killedEventId = _unit addEventHandler ["Killed", {
         [_killedUnit] remoteExecCall ["BLWK_fnc_event_killedEnemy",_instigator];
     };
 
-    [_killedUnit,true] call BLWK_fnc_spawnQueue_removeManEventhandlers;
+    // removing eventhandlers too quickly from within another eventhandler
+    // can sometimes cause undefined behaviour
+    [
+        {
+            _this call BLWK_fnc_spawnQueue_removeManEventhandlers;
+        },
+        [_killedUnit,true],
+        0.5
+    ] call CBAP_fnc_waitAndExecute;
+
     if !(isNull _killedUnit) then {
         private _cleanUpGroup = localNamespace getVariable ["BLWK_spawnQueue_cleanUpGroup",grpNull];
         if (isNull _cleanUpGroup) then {
@@ -61,7 +70,7 @@ private _killedEventId = _unit addEventHandler ["Killed", {
             deleteGroup _previousGroup;
         };
     };
-
+    
     [] remoteExecCall ["BLWK_fnc_spawnQueue_unitKilled",2];
 }];
 _unit setVariable ["BLWK_spawnQueue_killedEventId",_killedEventId];

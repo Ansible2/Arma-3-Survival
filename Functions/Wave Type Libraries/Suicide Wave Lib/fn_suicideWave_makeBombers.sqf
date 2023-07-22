@@ -87,13 +87,11 @@ _bombers apply {
 
 
     _unit addEventHandler ["KILLED",{
-        hint "BOMBER - KILLED";
         params ["_bomber"];
         [_bomber] call BLWK_fnc_suicideWave_explodeBomber;
     }];
 
     _unit addEventHandler ["Deleted", {
-        hint "BOMBER - DELETED";
         params ["_unit"];
 
         (_unit getVariable ["BLWK_suicideBombs",[]]) apply {

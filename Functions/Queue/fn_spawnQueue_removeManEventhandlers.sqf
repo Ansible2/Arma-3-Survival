@@ -28,7 +28,6 @@ params [
     ["_calledFromKilledEventhandler",false,[true]]
 ];
 
-// TODO: this is causing delete eventhandler to run when bomber is killed?????
 private _deletedEventId = _unit getVariable ["BLWK_spawnQueue_deletedEventId",-1];
 _unit removeEventHandler ["DELETED",_deletedEventId];
 

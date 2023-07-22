@@ -22,8 +22,6 @@ scriptName "BLWK_fnc_suicideWave_explodeBomber";
 
 params ["_bomber"];
 
-hint str "kaboom";
-
 if (isNull _bomber) exitWith {};
 
 private _explosiveType = selectRandom [
@@ -34,7 +32,6 @@ private _explosiveType = selectRandom [
 
 private _explosive = _explosiveType createVehicle (getPosATLVisual _bomber);
 _explosive setDamage 1;
-hint str "no really";
 // give time for BLWK_fnc_event_killedEnemy to execute
 [
     {
