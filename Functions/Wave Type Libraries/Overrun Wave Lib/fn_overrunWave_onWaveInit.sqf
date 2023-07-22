@@ -33,13 +33,13 @@ missionNamespace setVariable ["BLWK_enforceArea",false,true];
 [
     {
         private _playerSpawnPosition = localNamespace getVariable "BLWK_overrunWave_playerSpawn";
-        BLWK_mainCrate setPosATL _playerPosition;
+        BLWK_mainCrate setPosATL _playerSpawnPosition;
 
         (call CBAP_fnc_players) apply {
             // don't teleport players in vehicles
             if (isNull (objectParent _x)) then {
                 _x setPosATL (
-                    [_playerPosition,15,random 360] call CBAP_fnc_randPos
+                    [_playerSpawnPosition,15,random 360] call CBAP_fnc_randPos
                 );
             };
         };
