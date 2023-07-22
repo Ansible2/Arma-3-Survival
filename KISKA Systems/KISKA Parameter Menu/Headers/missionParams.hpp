@@ -1103,6 +1103,8 @@ class KISKA_missionParams
 			title = "Standard Wave Weight";
 			tooltip = "Typical enemy infantry wave with a possibility of vehicles to spawn";
 			default = 1;
+			// uses weighted array to select wave type and at least one weight needs to be above 0
+			min = 0.1; 
 		};
 	};
 

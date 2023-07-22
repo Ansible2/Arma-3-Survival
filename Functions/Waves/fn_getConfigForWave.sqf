@@ -50,15 +50,20 @@ private _getAllowedSpecialWaves = {
 };
 
 private _fn_getNormalWave = {
-	if (BLWK_currentWaveNumber >= BLWK_normalWavesStartAt) exitWith {
+	private _selectedNormalWave = DEFAULT_WAVE_CONFIG;
+	if (BLWK_currentWaveNumber >= BLWK_normalWavesStartAt) then {
 		private _weights = BLWK_normalWaveConfigs apply {
 			missionNamespace getVariable [getText(_x >> "weightVariable"),0];
 		};
 
-		BLWK_normalWaveConfigs selectRandomWeighted _weights
+		private _potentialWave = BLWK_normalWaveConfigs selectRandomWeighted _weights;
+		private _allNormalWavesAreWeightedZero = isNil "_potentialWave";
+		if !(_allNormalWavesAreWeightedZero) then {
+			_selectedNormalWave = _potentialWave;
+		};
 	};
 
-	DEFAULT_WAVE_CONFIG
+	_selectedNormalWave
 };
 
 
@@ -77,11 +82,12 @@ if (_selectSpecialWave) then {
 		_allowedSpecialWaves = call _getAllowedSpecialWaves;
 	};
 
-	_waveConfigPath = selectRandom _allowedSpecialWaves;
-	if (isNil "_waveConfigPath") then {
+	private _allSpecialWavesDisabled = _allowedSpecialWaves isEqualTo [];
+	if (_allSpecialWavesDisabled) then {
 		_waveConfigPath = call _fn_getNormalWave;
 
 	} else {
+		_waveConfigPath = selectRandom _allowedSpecialWaves;
 		_usedSpecialWaves pushBack _waveConfigPath;
 		localNamespace setVariable ["BLWK_usedSpecialWaveConfigs",_usedSpecialWaves];
 
