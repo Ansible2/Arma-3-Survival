@@ -63,17 +63,20 @@ if (_globalLimiter isNotEqualTo "") then {
 private _onSupportEnd = [[_globalLimiter,_side],{
     _this params ["_heli","","_crew"];
     _thisArgs params ["_globalLimiter","_side"];
+    
     if (_globalLimiter isNotEqualTo "") then {
         missionNamespace setVariable [_globalLimiter,false,true];
     };
 
-    if (_side isNotEqualTo BLUFOR) exitWith {};
+    if (_side isNotEqualTo BLUFOR) exitWith { true };
 
     if (isNull (currentPilot _heli)) then {
         [TYPE_HELO_DOWN] call BLWK_fnc_supportRadioGlobal;
     } else {
         [TYPE_CAS_ABORT] call BLWK_fnc_supportRadioGlobal;
     };
+
+    true
 }];
 
 
