@@ -243,8 +243,3 @@ _stalkerGroup setVariable ["BLWK_stalking_emptyEventId",_emptyEventId];
 
 
 nil
-
-// TODO: units do not patrol when there is nobody to stalk, 
-// they just sit still after spawn or move to the main crate
-
-// user 3d log and aircraft gunner support to see what orders they are given
