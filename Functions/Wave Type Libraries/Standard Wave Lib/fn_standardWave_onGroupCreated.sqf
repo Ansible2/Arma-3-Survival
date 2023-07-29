@@ -24,7 +24,6 @@ params [
     ["_group",grpNull,[grpNull]]
 ];
 
-// [_group] spawn BLWK_fnc_pathing_mainLoop;
 [_group] spawn BLWK_fnc_stalking_start;
 
 

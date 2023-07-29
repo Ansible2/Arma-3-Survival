@@ -17,7 +17,7 @@ Examples:
     (end)
 
 Author(s):
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_handleUnconsciousAiEvent";
 
@@ -28,12 +28,14 @@ if !(canSuspend) exitWith {
 };
 
 waitUntil {!isNil "BLWK_ACELoaded"};
+
 if !(BLWK_ACELoaded) exitWith {
     ["ACE is not loaded. Exiting..."] call KISKA_fnc_log;
     nil
 };
 
 waitUntil {!isNil "BLWK_theAIHandlerOwnerID"};
+
 if (clientOwner isNotEqualTo BLWK_theAIHandlerOwnerID) exitWith {
     ["Not AI handler. Exiting..."] call KISKA_fnc_log;
     nil
@@ -42,18 +44,10 @@ if (clientOwner isNotEqualTo BLWK_theAIHandlerOwnerID) exitWith {
 [
     "ace_unconscious",
     {
-        params ["_unit","_unconscious"];
+        params ["_unit","_isUnconscious"];
 
         if !(isPlayer _unit) then {
-            _unit setVariable ["BLWK_isACEUnconscious",true];
-            
-            private _group = group _unit;
-            if (_unconscious) then {
-                _group setVariable ["BLWK_runPathingLoop",false];
-            } else { // if waking up
-                [_group] spawn BLWK_fnc_pathing_mainLoop;
-            };
-
+            _unit setVariable ["BLWK_isACEUnconscious",_isUnconscious];
         };
     }
 ] call CBA_fnc_addEventhandler;

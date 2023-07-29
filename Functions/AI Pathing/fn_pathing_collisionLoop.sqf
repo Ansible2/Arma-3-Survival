@@ -2,130 +2,106 @@
 Function: BLWK_fnc_pathing_collisionLoop
 
 Description:
-	Used to keep the AI from attempting to walk through a placed object.
+    Used to keep the AI from attempting to walk through a placed object.
 
-	Units on roads sometimes follow predetermined paths that can have them walk
-	 through objects a user places down.
+    Units on roads sometimes follow predetermined paths that can have them walk
+     through objects a user places down.
 
 Parameters:
-	0: _unit : <OBJECT> - The unit to run the loop on
+    0: _unit : <OBJECT> - The unit to run the loop on
 
 Returns:
-	NOTHING
+    NOTHING
 
 Examples:
     (begin example)
-
-		[myUnit] spawn BLWK_fnc_pathing_collisionLoop;
-
+        [myUnit] spawn BLWK_fnc_pathing_collisionLoop;
     (end)
 
 Author(s):
-	Ansible2 // Cipher
+    Ansible2
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_pathing_collisionLoop";
 
 if (!BLWK_doDetectCollision) exitWith {
-	["BLWK_doDetectCollision is set to be false, exiting...",false] call KISKA_fnc_log;
+    ["BLWK_doDetectCollision is set to be false, exiting...",false] call KISKA_fnc_log;
 };
 
 if (!canSuspend) exitWith {
-	["Needs to be run in scheduled, exting to run in scheduled",true] call KISKA_fnc_log;
-	_this spawn BLWK_fnc_pathing_collisionLoop;
+    ["Needs to be run in scheduled, exting to run in scheduled",true] call KISKA_fnc_log;
+    _this spawn BLWK_fnc_pathing_collisionLoop;
 };
 
-params ["_unit"];
+
+params [
+    ["_unit",objNull,[objNull]]
+];
+
 
 sleep 5;
 
 if (isNull _unit) exitWith {};
-private _unitGroup = group _unit;
 
-private ["_objects","_position","_index","_moveToPosition"];
-while {BLWK_doDetectCollision AND {alive _unit}} do {
-	sleep 0.1;
 
-	// don't run while a unit is in a vehicle
-	if (isNull (objectParent _unit)) then {
-		_position = getposASL _unit;
-		_objects = lineIntersectsObjs [_position,AGLToASL (_unit getRelPos [1,0]), objNull, _unit, false, 4];
+while {BLWK_doDetectCollision AND (alive _unit)} do {
+    sleep 1;
 
-		if (_objects isNotEqualTo []) then {
+    // don't run while a unit is in a vehicle
+    private _unitIsInVehicle = !(isNull (objectParent _unit));
+    if (_unitIsInVehicle) then { continue };
 
-			// check if any encountered object is a built one
-			_index = _objects findIf {
-				!(isNull _x) AND
-				{_x getVariable ["BLWK_collisionObject",false]}
-			};
 
-			if (_index != -1) then {
-				private _collisionObject = _objects select _index;
-				_moveToPosition = (_unit getRelPos [20,180]);
-				// push the unit back from the object
-				_unit setPosATL (_unit getRelPos [2,180]);
+    private _objects = lineIntersectsObjs [
+        (getposASL _unit),
+        AGLToASL (_unit getRelPos [1,0]), 
+        objNull, 
+        _unit, 
+        false, 
+        4
+    ];
+    private _notNearAnyObjects = _objects isEqualTo [];
+    if (_notNearAnyObjects) then { continue };
 
-				_unitGroup setCombatMode "BLUE";
-				_unitGroup setBehaviour "SAFE";
-				_unitGroup setSpeedMode "FULL";
-				_unit disableAI "TARGET";
-				_unit disableAI "AUTOTARGET";
 
-				waitUntil {
-					if (isNull _unit OR {!alive _unit}) exitWith {true};
-					if (_unit distance2D _collisionObject >= 10) exitWith {true};
-					// tell the unit to move away
-					[_unit,_moveToPosition] remoteExec ["move", _unit];
-					sleep 0.1;
-					false
-				};
+    // check if any encountered object is a built one
+    private _index = _objects findIf {_x getVariable ["BLWK_collisionObject",false]};
+    private _notNearBuiltObject = _index == -1;
+    if (_notNearBuiltObject) then { continue };
 
-				// return unit state
-				if (!isNull _unit AND {alive _unit}) then {
-					_unitGroup setCombatMode "YELLOW";
-					_unitGroup setBehaviour "AWARE";
-					_unit enableAI "TARGET";
-					_unit enableAI "AUTOTARGET";
-					//_unit enableAI "AUTOCOMBAT";
-				};
-			};
-		};
-	};
+
+    private _collisionObject = _objects select _index;
+    private _moveToPosition = (_unit getRelPos [20,180]);
+    // push the unit back from the object
+    _unit setPosATL (_unit getRelPos [2,180]);
+
+    private _previousCombatBehaviour = combatBehaviour _unit;
+    private _previousCombatMode = unitCombatMode _unit;
+    _unit setUnitCombatMode "BLUE";
+    _unit setCombatBehaviour "SAFE";
+    _unit disableAI "TARGET";
+    _unit disableAI "AUTOTARGET";
+
+    waitUntil {
+        if (
+            !(alive _unit) OR
+            {
+                (_unit distance2D _collisionObject) >= 10
+            }
+        ) exitWith {true};
+        
+        // tell the unit to move away
+        [_unit,_moveToPosition] remoteExec ["move", _unit];
+        
+        sleep 1;
+        
+        false
+    };
+
+    // return unit state
+    if (alive _unit) then {
+        _unit setUnitCombatMode _previousCombatMode;
+        _unit setCombatBehaviour _previousCombatBehaviour;
+        _unit enableAI "TARGET";
+        _unit enableAI "AUTOTARGET";
+    };
 };
-
-
-// FSM testing
-/*
-private ["_objects","_position","_index","_moveToPosition"];
-while {BLWK_doDetectCollision AND {alive _unit}} do {
-	sleep 0.1;
-
-	// don't run while a unit is in a vehicle
-	if (isNull (objectParent _unit)) then {
-		_position = getposASL _unit;
-		_objects = lineIntersectsObjs [_position,AGLToASL (_unit getRelPos [1,0]), objNull, _unit, false, 4];
-
-		if !(_objects isEqualTo []) then {
-
-			// check if any encountered object is a built one
-			_index = _objects findIf {!(isNull _x) AND {_x getVariable ["BLWK_collisionObject",false]}};
-			if (_index != -1) then {
-				private _collisionObject = _objects select _index;
-				_moveToPosition = (_unit getRelPos [20,180]);
-				// push the unit back from the object
-				_unit setPosATL (_unit getRelPos [2,180]);
-
-				private _fsmHandle = [_unit,_moveToPosition,_collisionObject] execFSM "Functions\Other\testFSM.fsm";
-
-				waitUntil {
-					if (isNull _unit OR {completedFSM _fsmHandle}) exitWith {
-						diag_log "exited wait loop";
-						true
-					};
-					sleep 1;
-					false
-				};
-			};
-		};
-	};
-};
-*/

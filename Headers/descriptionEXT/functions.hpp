@@ -2,15 +2,7 @@ class BLWK{
 	class AiPathing
 	{
 		file = "functions\AI Pathing";
-		class pathing_isGroupAlive
-		{};
-		class pathing_checkLeaderVelocity
-		{};
 		class pathing_collisionLoop
-		{};
-		class pathing_detailedStuckCheck
-		{};
-		class pathing_mainLoop
 		{};
 	};
 
