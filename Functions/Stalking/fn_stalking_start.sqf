@@ -21,7 +21,10 @@ Author(s):
 scriptName "BLWK_fnc_stalking_start";
 
 #define DEFAULT_POSITION (getPosATL BLWK_mainCrate)
-#define UPDATE_RATE 20
+// using random spread to help get a more evenly distributed work load
+// for every group that is stalking, rather then them all needing to execute at about
+// the same time
+#define UPDATE_RATE (random [15,20,25])
 #define SWITCH_TO_MOVE_DISTANCE 50
 
 
@@ -91,7 +94,6 @@ _stalkerGroup setVariable ["BLWK_stalking_emptyEventId",_emptyEventId];
 /* ----------------------------------------------------------------------------
     Main loop
 ---------------------------------------------------------------------------- */
-[_stalkerGroup] call KISKA_fnc_clearWaypoints;
 
 [_stalkerGroup] spawn {
     params ["_stalkerGroup"];
@@ -112,34 +114,43 @@ _stalkerGroup setVariable ["BLWK_stalking_emptyEventId",_emptyEventId];
     //     _group setVariable ["BLWK_stalkerIteration",_id + 1];
     // };
 
-    
-    while { !(isNull _stalkerGroup) AND (_stalkerGroup getVariable ["BLWK_stalking_doStalk",false]) } do {
+
+    _stalkerGroup setBehaviourStrong "AWARE";
+    _stalkerGroup setCombatMode  "RED";
+   
+    while { 
+        !(isNull _stalkerGroup) AND 
+        (_stalkerGroup getVariable ["BLWK_stalking_doStalk",false]) 
+    } do {
 
         if !([_stalkerGroup] call KISKA_fnc_isGroupAlive) then {
             [_stalkerGroup] call BLWK_fnc_stalking_stop;
             break;
         };
 
-        if (
-            (leader _stalkerGroup) getVariable [
-                "BLWK_isACEUnconscious",
-                false
-            ]
-        ) then { 
+
+        private _leaderIsIncapacitated = (leader _stalkerGroup) getVariable [
+            "BLWK_isACEUnconscious",
+            false
+        ];
+        if (_leaderIsIncapacitated) then { 
             sleep 3;
             continue 
         };
 
-        private _currentPlayerBeingStalked = _stalkerGroup getVariable ["BLWK_stalking_stalkedPlayer",objNull];
+
         /* --------------------------------------
             verify player to stalk
         -------------------------------------- */
+        private _currentPlayerBeingStalked = _stalkerGroup getVariable ["BLWK_stalking_stalkedPlayer",objNull];
         private _currentPlayerCanBeStalked = [_currentPlayerBeingStalked] call BLWK_fnc_stalking_canPlayerBeStalked;
         private _shouldRedistribute = _stalkerGroup getVariable ["BLWK_stalking_redistribute",false];
+
         if ((!_currentPlayerCanBeStalked) OR _shouldRedistribute) then {
-            private _playerToStalk = call BLWK_fnc_stalking_getPlayer;
-            if (isNull _playerToStalk) then {
-                
+            
+            private _newPlayerToStalk = call BLWK_fnc_stalking_getPlayer;
+            if (isNull _newPlayerToStalk) then {
+
                 private _groupIsPatrolling = _stalkerGroup getVariable ["BLWK_stalking_isPatrolling",false];
                 // [_stalkerGroup,["NULL player to stalk: ",_groupIsPatrolling] joinString ""] call _fn_add3dLog;
                 if !(_groupIsPatrolling) then {
@@ -152,111 +163,75 @@ _stalkerGroup setVariable ["BLWK_stalking_emptyEventId",_emptyEventId];
                 sleep UPDATE_RATE;
 
                 continue;
-
             } else {
-                [_stalkerGroup,_playerToStalk] call BLWK_fnc_stalking_setStalkedPlayer;
-                _currentPlayerBeingStalked = _playerToStalk;
+                [_stalkerGroup,_newPlayerToStalk] call BLWK_fnc_stalking_setStalkedPlayer;
+                _currentPlayerBeingStalked = _newPlayerToStalk;
                 // [_stalkerGroup,"set new stalked player"] call _fn_add3dLog;
 
             };
+
         };
         
 
         /* --------------------------------------
-            Reset group if needed from `move` command
+            Determine move type
         -------------------------------------- */
+        private _stalkerGroupIsUnderMoveOrders = _stalkerGroup getVariable ["BLWK_stalking_isUnderMove",false];
         private _stalkerGroupShouldUseMove = (
             (leader _stalkerGroup) distance2D _currentPlayerBeingStalked
         ) < SWITCH_TO_MOVE_DISTANCE;
-        private _stalkerGroupIsUnderMoveOrders = _stalkerGroup getVariable ["BLWK_stalking_isUnderMove",false];
-        if (_stalkerGroupIsUnderMoveOrders AND (!_stalkerGroupShouldUseMove)) then {
-            private _stalkerGroupUnits = units _stalkerGroup;
-            doStop _stalkerGroupUnits;
-            sleep 1;
-            // regroup units
-            _stalkerGroupUnits doFollow (leader _stalkerGroup);
-            // [_stalkerGroup,"told to stop and then follow"] call _fn_add3dLog;
-        };
 
-
-        /* --------------------------------------
-            clear previous waypoints,
-            Waypoints are not immediately deleted so need to wait
-        -------------------------------------- */
-        private "_waypointCount";
-        // tODO: maybe a problem???
-        waitUntil {
-            _waypointCount = count (waypoints _stalkerGroup);
-            [
-                _stalkerGroup,
-                (_waypointCount - 1)
-            ] call KISKA_fnc_clearWaypoints;
-
-            private _stalkerGroupWaypointsDeleted = _waypointCount < 2;
-            if (_stalkerGroupWaypointsDeleted) exitWith {true};
-            
-            sleep 1;
-
-            // prevent infinte loop
-            (units _stalkerGroup) isEqualTo []
-        };
-        // [_stalkerGroup,"cleared waypoints"] call _fn_add3dLog;
-
-
-        /* --------------------------------------
-            Choose between waypoint or `move` command
-        -------------------------------------- */
-        private _hasWaypoint = _waypointCount isEqualTo 1;
         if (_stalkerGroupShouldUseMove) then {
-            _stalkerGroup setVariable ["BLWK_stalking_isUnderMove",true];
-            
-            private _playerPosition = getPosATL _currentPlayerBeingStalked;
+
+            if (!_stalkerGroupIsUnderMoveOrders) then {
+                _stalkerGroup setVariable ["BLWK_stalking_isUnderMove",true];
+                [_stalkerGroup,-1,false] call KISKA_fnc_clearWaypoints;
+            };
+
+            if ((formation _stalkerGroup) != "COLUMN") then {
+                _stalkerGroup setFormation "COLUMN";
+            };
+
+             private _playerPosition = getPosATL _currentPlayerBeingStalked;
             _stalkerGroup setVariable ["BLWK_stalking_currentMovePosition",_playerPosition];
-            
-            // `move` does not work well against group, using it at a unit level
-            (units _stalkerGroup) apply {
-                _x move _playerPosition;
-            };
-            _stalkerGroup setFormation "COLUMN";
 
-            // [_stalkerGroup,["told to move ",_playerPosition] joinString ""] call _fn_add3dLog;
-            if (_hasWaypoint) then {
-                deleteWaypoint [_stalkerGroup,0];
-                // [_stalkerGroup,"deleted waypoint"] call _fn_add3dLog;
-            };
+            // // `move` does not work well against group, using it at a unit level
+            // (units _stalkerGroup) apply {
+            //     _x move _playerPosition;
+            // };
+            _stalkerGroup move _playerPosition;
+            [_stalkerGroup,["told to move ",_playerPosition] joinString ""] call _fn_add3dLog;
+
         } else {
-            _stalkerGroup setVariable ["BLWK_stalking_isUnderMove",false];
-            _stalkerGroup setVariable ["BLWK_stalking_currentMovePosition",nil];
 
-            private _hasStalkerWaypoint = waypointName [
-                _stalkerGroup,
-                (currentWaypoint _stalkerGroup)
-            ] == "BLWK_stalking_waypoint";
+            if (_stalkerGroupIsUnderMoveOrders) then {
+                // regroup units
+                private _stalkerGroupUnits = units _stalkerGroup;
+                doStop _stalkerGroupUnits;
+                // [_stalkerGroup,"doStop group units - during WP add"] call _fn_add3dLog;
+                
+                sleep 1;
 
-            private _hasWaypointThatIsNotStalkerWaypoint = _hasWaypoint AND (!_hasStalkerWaypoint);
-            if (_hasWaypointThatIsNotStalkerWaypoint) then {
-                [_stalkerGroup] call KISKA_fnc_clearWaypoints;
-                // [_stalkerGroup,"cleared WPs because excess"] call _fn_add3dLog;
-            };
-
-            if (_hasStalkerWaypoint) then {
-                private _waypoint = [_stalkerGroup,0];
-                _waypoint setWaypointBehaviour "AWARE";
-                _waypoint setWaypointPosition [getPos _currentPlayerBeingStalked,5];
-                // [_stalkerGroup,"updated stalker WP"] call _fn_add3dLog;
+                _stalkerGroupUnits doFollow (leader _stalkerGroup);
+                // [_stalkerGroup,"doFollow group units - during WP add"] call _fn_add3dLog;
 
             } else {
-                private _waypoint = [
-                    _stalkerGroup, 
-                    _currentPlayerBeingStalked, 
-                    0, 
-                    "MOVE", 
-                    "AWARE", 
-                    "FULL"
-                ] call CBAP_fnc_addWaypoint;
-                _waypoint setWaypointName "BLWK_stalking_waypoint";
-                // [_stalkerGroup,"Added new WP"] call _fn_add3dLog;
+                [_stalkerGroup,-1,true] call KISKA_fnc_clearWaypoints;
+                // [_stalkerGroup,"cleared waypoints - during WP add"] call _fn_add3dLog;
+
             };
+
+            private _waypoint = [
+                _stalkerGroup, 
+                player, 
+                0, 
+                "SAD", 
+                "AWARE",
+                "RED",
+                "FULL"
+            ] call CBAP_fnc_addWaypoint;
+            // [_stalkerGroup,"added WP"] call _fn_add3dLog;
+
         };
 
         _stalkerGroup setFormation "STAG COLUMN";
