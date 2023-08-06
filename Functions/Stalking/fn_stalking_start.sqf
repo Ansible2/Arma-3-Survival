@@ -223,7 +223,7 @@ _stalkerGroup setVariable ["BLWK_stalking_emptyEventId",_emptyEventId];
 
             private _waypoint = [
                 _stalkerGroup, 
-                player, 
+                _currentPlayerBeingStalked, 
                 0, 
                 "SAD", 
                 "AWARE",
