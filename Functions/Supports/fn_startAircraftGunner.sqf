@@ -121,7 +121,7 @@ if ((count _mainTurretWeaponsArray) > 0) then {
 
 
 private _vehicleGroup = _vehicleArray select 2;
-_vehicleGroup setBehaviour "SAFE";
+_vehicleGroup setBehaviourStrong "CARELESS";
 _vehicleGroup setCombatMode "BLUE";
 private _loiterWaypoint = _vehicleGroup addWaypoint [BLWK_playAreaCenter,0];
 _loiterWaypoint setWaypointType "LOITER";
