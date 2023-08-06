@@ -300,7 +300,12 @@ private _fn_afterExtractionWaitTime = {
     BLWK_extractionAircraft = [];
     BLWK_playersInExtractAircraft = [];
     _landingPositions apply {
-        private _spawnPosition = [_centerPosition,3000,random 360] call CBAP_fnc_randPos;
+        private _spawnPosition = [
+            _centerPosition,
+            3000,
+            random 360,
+            50
+        ] call KISKA_fnc_getPosRelativeSurface;
 
         private _aircraftInfo = [
             _spawnPosition,
