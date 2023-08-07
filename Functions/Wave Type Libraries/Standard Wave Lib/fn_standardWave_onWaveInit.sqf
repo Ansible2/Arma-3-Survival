@@ -20,8 +20,10 @@ Author(s):
 ---------------------------------------------------------------------------- */
 scriptName "BLWK_fnc_standardWave_onWaveInit";
 
-private _startingWaveUnits = call BLWK_fnc_getMustKillList;
-[_startingWaveUnits] call BLWK_fnc_standardWave_vehicles;
+if !(missionNamespace getVariable ["BLWK_isExtractionWave",false]) then {
+    private _startingWaveUnits = call BLWK_fnc_getMustKillList;
+    [_startingWaveUnits] call BLWK_fnc_standardWave_vehicles;
+};
 
 
 nil

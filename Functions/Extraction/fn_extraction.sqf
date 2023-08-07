@@ -407,6 +407,7 @@ private _fn_afterExtractionWaitTime = {
 /* ----------------------------------------------------------------------------
 	Main Function
 ---------------------------------------------------------------------------- */
+missionNamespace setVariable ["BLWK_isExtractionWave",true];
 
 /* -------------------------------------
 	Get Heli Data
