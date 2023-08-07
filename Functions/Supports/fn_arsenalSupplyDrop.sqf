@@ -122,6 +122,8 @@ private _flyToPosition = _dropPosition getPos [FLY_RADIUS,_relativeDirection];
 		missionNamespace setVariable ["BLWK_arsenalOut",false,true];
 	}];
 
+	[[_arsenalBox]] call KISKA_fnc_addArsenal;
+
 	private _timeBetweenMessages = ARSENAL_LIFETIME / 5;
 	private ["_increment","_timeLeft","_message"];
 	for "_i" from 1 to 5 do { // give out five messages
