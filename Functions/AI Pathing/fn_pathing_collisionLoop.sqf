@@ -44,7 +44,7 @@ if (isNull _unit) exitWith {};
 
 
 while {BLWK_doDetectCollision AND (alive _unit)} do {
-    sleep 1;
+    sleep 0.2;
 
     // don't run while a unit is in a vehicle
     private _unitIsInVehicle = !(isNull (objectParent _unit));
