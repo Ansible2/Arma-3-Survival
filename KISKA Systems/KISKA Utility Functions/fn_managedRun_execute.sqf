@@ -116,9 +116,9 @@ if !(_nameOfCode in _codeMap) exitWith {
 private _isNewManagement = _idToRunAgainst isEqualTo -1;
 private _currentAdjustmentId = _idNamespace getVariable ["KISKA_managedRun_latestId",-1];
 private _idToAdjustIsCurrent = _currentAdjustmentId isEqualTo _idToRunAgainst;
-
+private _newAdjustmentIdExists = (!_isNewManagement) AND (!_idToAdjustIsCurrent) AND (_currentAdjustmentId isNotEqualTo -1);
 // new id was made, don't run code
-if ((!_isNewManagement) AND (!_idToAdjustIsCurrent)) exitWith { -1 };
+if (_newAdjustmentIdExists) exitWith { -1 };
 
 private _idOfRun = -1;
 if (_isNewManagement) then {
