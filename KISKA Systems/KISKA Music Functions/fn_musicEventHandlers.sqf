@@ -23,6 +23,11 @@ scriptName "KISKA_fnc_musicEventHandlers";
 
 if (!hasInterface) exitWith {};
 
+if (call KISKA_fnc_isMainMenu) exitWith {
+    ["Main menu detected, will not init",false] call KISKA_fnc_log;
+    nil
+};
+
 ["Added KISKA music event handlers",false] call KISKA_fnc_log;
 
 addMusicEventHandler ["MusicStart", {

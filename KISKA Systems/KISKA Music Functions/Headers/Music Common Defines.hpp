@@ -1,5 +1,3 @@
-//#include "Headers\Music Common Defines.hpp"
-
 #define MUSIC_TICK_ACCURACY 10
 
 #define MUSIC_VAR_SPACE localNamespace
