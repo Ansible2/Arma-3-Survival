@@ -8,7 +8,7 @@ Description:
 Parameters:
     0: _nameOfCode : <STRING> - The name of the code to update
     1: _code : <CODE, STRING, ARRAY> - The code to run when ID is called 
-        (see KISKA_fnc_callBack). Use `{}`
+        (see KISKA_fnc_callBack). Use `{}` to remove the handler all together.
 
 Returns:
     NOTHING
