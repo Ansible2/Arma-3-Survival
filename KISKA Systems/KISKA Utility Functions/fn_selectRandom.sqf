@@ -5,8 +5,8 @@ Description:
     Selects randomly an entry from an array be it weighted or unweighted.
 
 Parameters:
-    0: _array <ARRAY> - An array either formatted as [value, weight (number)], or
-        just values ([value1,value2])
+    0: _array <ARRAY> - An array either formatted as `[value, weight (number)]`, `[[array_of_values],[array_of_weights]]`, or
+        just values (`[value1,value2]`)
     1: _valueType <ANY> - A variable that should have the same type as the value
         entries in the array e.g. "" for string, [] for array
         (only needed for possibly weighted arrays)
@@ -65,7 +65,12 @@ if (isNil "_valueType") exitWith {
     selectRandom _array;
 };
 
-private _isWeightedArray_syntaxOne = (_array isEqualTypeParams [[],[]]) AND ((count _array) isEqualTo 2);
+private _isWeightedArray_syntaxOne = (_array isEqualTypeParams [[],[]]) AND 
+    ((count _array) isEqualTo 2) AND 
+    { 
+        (WEIGHTS isEqualTypeParams [123]) AND 
+        (VALUES_TO_SELECT isEqualTypeParams [_valueType])
+    };
 if (_isWeightedArray_syntaxOne) exitWith {
    VALUES_TO_SELECT selectRandomWeighted WEIGHTS;
 };
