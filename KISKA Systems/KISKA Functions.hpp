@@ -1,33 +1,8 @@
 class KISKA
 {
 	#include "KISKA Parameter Menu\Headers\param menu functions.hpp"
+	#include "KISKA View DIstance Limiter\Headers\View Distance Limiter Functions.hpp"
 
-	class DynamicViewDistance
-	{
-		file = "KISKA Systems\View Distance Limiter\Functions";
-		class addOpenVdlGuiDiary
-		{
-			postInit = 1;
-		};
-		class adjustVdlControls
-		{};
-		class findVdlPartnerControl
-		{};
-		class handleVdlDialogOpen
-		{};
-		class handleVdlGuiCheckbox
-		{};
-		class isVdlSystemRunning
-		{};
-		class openVdlDialog
-		{};
-		class setAllVdlButton
-		{};
-		class setVdlValue
-		{};
-		class viewDistanceLimiter
-		{};
-	};
 	class KISKA_RandomMusic
 	{
 		file = "KISKA Systems\KISKA Music Functions\Random Music";

@@ -1,21 +1,5 @@
 #include "params menu common defines.hpp"
 
-/*
-import RscText;
-import RscButtonMenu;
-import RscButton;
-import RscCombo;
-import RscEdit;
-import RscToolbox;
-import RscXSliderH;
-*/
-import RscListbox;
-import RscControlsGroupNoHScrollbars;
-import RscControlsGroupNoScrollbars;
-import ctrlButtonPicture;
-import ctrlButton;
-
-
 /* ----------------------------------------------------------------------------
     Main Dialog
 ---------------------------------------------------------------------------- */
