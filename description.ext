@@ -128,11 +128,11 @@ class RscTitles
 
 #include "Headers\descriptionEXT\GUI\shopGUI.hpp"
 #include "Headers\descriptionEXT\GUI\musicManager.hpp"
-#include "KISKA Systems\View Distance Limiter\ViewDistanceLimiterDialog.hpp"
 
 #include "Headers\descriptionEXT\Build Items\Main Build Items.hpp"
 #include "Headers\descriptionEXT\Faction Headers\Faction Master.hpp"
 #include "Headers\descriptionEXT\Loot Lists\Main Loot List.hpp"
 
+#include "KISKA Systems\KISKA View DIstance Limiter\Headers\View Distance Limiter Dialog.hpp"
 #include "KISKA Systems\KISKA Parameter Menu\Headers\params menu.hpp"
 #include "KISKA Systems\KISKA Parameter Menu\Headers\missionParams.hpp"

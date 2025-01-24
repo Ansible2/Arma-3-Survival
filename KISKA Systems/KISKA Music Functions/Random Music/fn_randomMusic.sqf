@@ -13,12 +13,13 @@ Description:
     You can define quiet time space between tracks.
 
 Parameters:
-    0: _tickId <NUMBER> - Used to superceed another random music loop, passs -1 to start a new one
-    1: _musicTracks <ARRAY> - An array of strings (music tracks) to use
-    2: _interval <ARRAY or NUMBER> - A random or set time between tracks.
-        Formats are [min,mid,max] & [max] for random numbers and
+    0: _musicTracks <STRING[]> - An array of classnames for music defined in `CfgMusic`
+    1: _interval <ARRAY or NUMBER> - A random or set time between tracks. Formats are `[min,mid,max]` & `[max]` for random numbers and
         just a single number for a set time between (see example)
-    3: _usedMusicTracks <ARRAY> - An array of already used music tracks, don't bother manually entering anyhting, this is for looping purposes
+    2: _canInterrupt <BOOL> - If this is a new random music set, will the initial song
+        be able to interrupt any playing music.
+    3: _tickId <NUMBER> - Used to superceed another random music loop, passs -1 to start a new one
+    4: _usedMusicTracks <STRING[]> - An array of already used music tracks, don't bother manually entering anyhting, this is for looping purposes
 
 Returns:
     NOTHING
@@ -27,12 +28,12 @@ Examples:
     (begin example)
         // space tracks by 20 seconds exactly each
         [-1,arrayOfTracks,20] call KISKA_fnc_randomMusic;
-       (end)
+    (end)
 
     (begin example)
         // space tracks by UP TO 20 seconds each
         [-1,arrayOfTracks,[20]] call KISKA_fnc_randomMusic;
-       (end)
+    (end)
 
 Author:
     Ansible2
@@ -50,15 +51,16 @@ if !(isServer) exitWith {
     Params
 ---------------------------------------------------------------------------- */
 params [
-    ["_tickId",-1,[123]],
     ["_musicTracks",call KISKA_fnc_randomMusic_getUnusedTracks,[[]]],
     ["_interval",call KISKA_fnc_randomMusic_getTrackInterval,[[],123]],
+    ["_canInterrupt",true,[true]],
+    ["_tickId",-1,[123]],
     ["_usedMusicTracks",call KISKA_fnc_randomMusic_getUsedTracks,[[]]]
 ];
 
 private _latestTickID = GET_MUSIC_RANDOM_START_TIME;
-private _isNewLoop = _tickId isEqualTo -1;
-if ((!_isNewLoop) AND (_tickId < _latestTickID)) exitWith {
+private _isNewRandomMusicSet = _tickId isEqualTo -1;
+if ((!_isNewRandomMusicSet) AND (_tickId < _latestTickID)) exitWith {
     [["Tick ID: ",_tickId," was thrown out in favor of ID: ",_latestTickID],false] call KISKA_fnc_log;
     nil
 };
@@ -87,7 +89,15 @@ if (_musicTracks isEqualTo []) then {
 private _selectedTrack = [_musicTracks] call KISKA_fnc_deleteRandomIndex;
 // get defined volume for random music system
 private _volume = call KISKA_fnc_randomMusic_getVolume;
-[_selectedTrack,0,false,_volume,3,true] remoteExec ["KISKA_fnc_playMusic",[0,-2] select isDedicated];
+_canInterrupt = _canInterrupt AND _isNewRandomMusicSet;
+[
+    _selectedTrack,
+    0,
+    _canInterrupt,
+    _volume,
+    3,
+    true
+] remoteExec ["KISKA_fnc_playMusic",[0,-2] select isDedicated];
 
 
 if !(call KISKA_fnc_randomMusic_isSystemRunning) then {
@@ -144,7 +154,7 @@ private _waitTime = _durationOfTrack + _randomWaitTime;
     not continue their own loops
 */
 
-if (_isNewLoop) then {
+if (_isNewRandomMusicSet) then {
     _tickId = diag_tickTime;
     SET_MUSIC_VAR(MUSIC_RANDOM_START_TIME_VAR_STR,_tickId);
 };
@@ -153,7 +163,13 @@ if (_isNewLoop) then {
     {
         _this call KISKA_fnc_randomMusic;
     },
-    [_tickId],
+    [
+        _musicTracks,
+        _interval,
+        false,
+        _tickId,
+        _usedMusicTracks
+    ],
     _waitTime
 ] call CBAP_fnc_waitAndExecute;
 

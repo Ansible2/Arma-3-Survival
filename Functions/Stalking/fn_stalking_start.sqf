@@ -200,7 +200,7 @@ _stalkerGroup setVariable ["BLWK_stalking_emptyEventId",_emptyEventId];
             //     _x move _playerPosition;
             // };
             _stalkerGroup move _playerPosition;
-            [_stalkerGroup,["told to move ",_playerPosition] joinString ""] call _fn_add3dLog;
+            // [_stalkerGroup,["told to move ",_playerPosition] joinString ""] call _fn_add3dLog;
 
         } else {
 

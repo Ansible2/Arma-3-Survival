@@ -22,12 +22,12 @@ Parameters:
              its complete crew and self to be deleted. The _postSupportCode should return a `BOOL`
              that if `false` will NOT perform the default behaviour in addition to the callback.
         
-            Parameters:
-            - 0: <OBJECT> - The helicopter confucting support
-            - 1: <GROUP> - The group the pilot belongs to
-            - 2: <OBJECT[]> - The full vehicle crew
-            - 3: <OBJECT> - The unit that *should* be the pilot of the helicopter
-            - 4: <ARRAY> - The position the helicopter was supporting
+        Parameters:
+        - 0: <OBJECT> - The helicopter confucting support
+        - 1: <GROUP> - The group the pilot belongs to
+        - 2: <OBJECT[]> - The full vehicle crew
+        - 3: <OBJECT> - The unit that *should* be the pilot of the helicopter
+        - 4: <ARRAY> - The position the helicopter was supporting
 
 Returns:
     ARRAY - The vehicle info

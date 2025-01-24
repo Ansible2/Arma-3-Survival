@@ -12,6 +12,13 @@ Parameters:
     2: _defaultValue : <ANY> - If the variable does not exist for the target, what should be returned instead
     3: _target : <NUMBER, OBJECT, or STRING> - Where the _target is local will be where the variable is taken from 
         (the machine to get the variable from)
+    4: _awaitParams : <[NUMBER,NUMBER,BOOL]> - How the get from the target should be awaited
+
+        Parameters:
+        - 0: <NUMBER> - The sleep time between each check for the variable being received
+        - 1: <NUMBER> - The max time to wait for (this is not total game time but time slept)
+        - 2: <BOOL> - Whether or not the sleep time should be exponential (double every iteration)
+
 
 Returns:
     <ANY> - Whatever the variable is, nil otherwise
@@ -43,7 +50,8 @@ params [
     ["_variableName","",[""]],
     ["_namespace",missionNamespace,[missionNamespace,objNull,"",controlNull,locationNull,grpNull]],
     ["_defaultValue",nil],
-    ["_target",2,[123,objNull,""]]
+    ["_target",2,[123,objNull,""]],
+    ["_awaitParams",[],[[]]]
 ];
 
 if ((_target isEqualType objNull) AND {isNull _target}) exitWith {
@@ -89,6 +97,11 @@ if (_variableName isEqualTo "") exitWith {
     _defaultValue
 };
 
+_awaitParams params [
+    ["_awaitTime",0.05,[123]],
+    ["_maxWaitTime",2,[123]],
+    ["_exponentialBackOff",false,[true]]
+];
 
 // create a unique variable ID for network tranfer
 private _messageNumber = missionNamespace getVariable ["KISKA_getVarTargetQueue_count",0];
@@ -99,17 +112,42 @@ private _saveVariable = ["KISKA_GVT",clientOwner,"_",_messageNumber] joinString 
 
 [_namespace,_variableName,_saveVariable,_defaultValue,clientOwner] remoteExecCall ["KISKA_fnc_getVariableTarget_sendBack",_target];
 
+private _timeWaited = 0;
 waitUntil {
+    if (_timeWaited >= _maxWaitTime) then {
+        [
+            [
+                "Max wait time of: ",
+                _maxWaitTime,
+                " for variable ",
+                _saveVariable,
+                " from target ",
+                _target,
+                " was exceeded. Exiting with default value: ",
+                _defaultValue
+            ],
+            false
+        ] call KISKA_fnc_log;
+        breakWith true;
+    };
+
     if (!isNil _saveVariable) exitWith {
         [["Got variable ",_saveVariable," from target ",_target],false] call KISKA_fnc_log;
         true
     };
-    sleep 0.05;
+    
+    sleep _awaitTime;
+    _timeWaited = _timeWaited + _awaitTime;
+    
+    if (_exponentialBackOff) then {
+        _awaitTime = _awaitTime * 2;
+    };
+
     [["Waiting for variable from target: ",_target],false] call KISKA_fnc_log;
     false
 };
 
-private _return = missionNamespace getVariable _saveVariable;
+private _return = missionNamespace getVariable [_saveVariable,_defaultValue];
 missionNamespace setVariable [_saveVariable,nil];
 
 

@@ -1,4 +1,5 @@
-class BLWK{
+class BLWK
+{
 	class AiPathing
 	{
 		file = "functions\AI Pathing";
@@ -568,6 +569,8 @@ class CBAP //ported CBA functions
 		file = "functions\CBAP";
 		class addWaypoint
 		{};
+        class addPerFrameHandler
+        {};
 		class directCall
 		{};
 		class getArea
@@ -586,6 +589,8 @@ class CBAP //ported CBA functions
 		{};
 		class randPosArea
 		{};
+        class removePerFrameHandler
+        {};
 		class shuffle
 		{};
 		class simplifyAngle
