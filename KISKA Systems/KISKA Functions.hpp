@@ -72,6 +72,8 @@ class KISKA
 	class KISKA_utilities
 	{
 		file = "KISKA Systems\KISKA Utility Functions";
+        class ACEX_setHCTransfer
+        {};
 		class addArsenal
 		{};
 		class addKiskaDiaryEntry
