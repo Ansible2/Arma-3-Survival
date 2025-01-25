@@ -24,7 +24,9 @@ class BLWK_lootLists
             "rhs_mag_20Rnd_556x45_M200_Stanag",
             "rhsusf_100Rnd_762x51_m82_blank",
             "rhsusf_50Rnd_762x51_m82_blank",
-            "hgun_Pistol_Signal_F"
+            "hgun_Pistol_Signal_F",
+            "CUP_item_Moscow_Bombing_File",
+            "CUP_Item_item_Moscow_Bombing_File"
         };
 
         lootWhitelist_launchers[] = {
