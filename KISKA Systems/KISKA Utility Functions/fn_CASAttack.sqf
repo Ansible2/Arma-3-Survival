@@ -62,10 +62,6 @@ _plane setVariable ["KISKA_CAS_guidedFireEvent",{
         {
             params ["_args","_id"];
 
-            if (isNull _projectile) exitWith { 
-                [_id] call CBAP_fnc_removePerFrameHandler;
-            };
-
             _args params [
                 "_projectile",
                 "_projectileStartPosASL",
@@ -75,6 +71,10 @@ _plane setVariable ["KISKA_CAS_guidedFireEvent",{
                 "_timeAfterFlight",
                 "_attackPosition"
             ];
+
+            if (isNull _projectile) exitWith { 
+                [_id] call CBAP_fnc_removePerFrameHandler;
+            };
 
             private _interval = linearConversion [_startTime,_timeAfterFlight,time,0,1];
             private _velocity = velocity _projectile;
