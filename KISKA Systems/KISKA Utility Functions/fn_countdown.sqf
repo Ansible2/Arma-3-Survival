@@ -43,12 +43,28 @@ params [
 ];
 
 if (_countDownTotal < _shownCountDown) then {
-    [["_shownCountDown: ",_shownCountDown ," should be less then _countDownTotal: ", _countDownTotal],false] call KISKA_fnc_log;
+    [
+        [
+            "_shownCountDown: ",
+            _shownCountDown ,
+            " should be less then _countDownTotal: ",
+            _countDownTotal
+        ],
+        false
+    ] call KISKA_fnc_log;
     _shownCountDown = _countDownTotal;
 };
 
 if (_soundedCountDown > _shownCountDown) then {
-    [["_soundedCountDown: ",_soundedCountDown ," should be less then _shownCountDown: ", _shownCountDown],false] call KISKA_fnc_log;
+    [
+        [
+            "_soundedCountDown: ",
+            _soundedCountDown ,
+            " should be less then _shownCountDown: ",
+            _shownCountDown
+        ],
+        false
+    ] call KISKA_fnc_log;
     _soundedCountDown = _shownCountDown;
 };
 

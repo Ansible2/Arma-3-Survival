@@ -25,7 +25,7 @@ scriptName "BLWK_fnc_extraction";
 #define TOO_LITTLE_SEATS 3
 #define SPACE_BUFFER 5
 #define MIN_VEHICLE_SIZE 15
-#define NUMBER_OF_ENEMIES 5000
+#define NUMBER_OF_ENEMIES 10000
 #define TELEPORT_TIME 8
 
 #define MAX_ATTEMPTS 300
@@ -257,7 +257,12 @@ private _fn_startExtractionDefense = {
             ] call BIS_fnc_respawnTickets;
             missionNamespace setVariable ["BLWK_numRespawnTickets",0,true];
 
-            [false,NUMBER_OF_ENEMIES] remoteExec ["BLWK_fnc_createStdWaveInfantry",BLWK_theAIHandlerOwnerID];
+            [
+                missionConfigFile >> "BLWK_waveTypes" >> "normalWaves" >> "standardWave",
+                NUMBER_OF_ENEMIES
+            ] call BLWK_fnc_waves_create;
+            
+            // [false,NUMBER_OF_ENEMIES] remoteExec ["BLWKs_fnc_createStdWaveInfantry",BLWK_theAIHandlerOwnerID];
 
             [
                 "SpecialWarning",
@@ -295,7 +300,12 @@ private _fn_afterExtractionWaitTime = {
     BLWK_extractionAircraft = [];
     BLWK_playersInExtractAircraft = [];
     _landingPositions apply {
-        private _spawnPosition = [_centerPosition,3000,random 360] call CBAP_fnc_randPos;
+        private _spawnPosition = [
+            _centerPosition,
+            3000,
+            random 360,
+            50
+        ] call KISKA_fnc_getPosRelativeSurface;
 
         private _aircraftInfo = [
             _spawnPosition,
@@ -307,6 +317,7 @@ private _fn_afterExtractionWaitTime = {
 
         // handle crew AI
         private _aircraft = _aircraftInfo select 0;
+        [BLWK_zeus, [[_aircraft],true]] remoteExecCall ["addCuratorEditableObjects",2];
         BLWK_extractionAircraft pushBack _aircraft;
         _aircraft allowDamage false;
         _aircraft setCaptive true;
@@ -352,9 +363,6 @@ private _fn_afterExtractionWaitTime = {
         };
 
         private _aircraftGroup = _aircraftInfo select 2;
-        _aircraftGroup setBehaviour "CARELESS";
-        _aircraftGroup setCombatBehaviour "CARELESS";
-        _aircraftGroup setCombatMode "BLUE";
 
         private _exfilPosition = [
             [1,1,1],
@@ -362,6 +370,8 @@ private _fn_afterExtractionWaitTime = {
             360
         ] call CBAP_fnc_randPos;
         _aircraft setVariable ["BLWK_exfilPosition",_exfilPosition];
+
+        [_aircraft,5,4,500] spawn KISKA_fnc_engageHeliTurretsLoop;
 
         [
             _aircraft,
@@ -397,6 +407,7 @@ private _fn_afterExtractionWaitTime = {
 /* ----------------------------------------------------------------------------
 	Main Function
 ---------------------------------------------------------------------------- */
+missionNamespace setVariable ["BLWK_isExtractionWave",true];
 
 /* -------------------------------------
 	Get Heli Data

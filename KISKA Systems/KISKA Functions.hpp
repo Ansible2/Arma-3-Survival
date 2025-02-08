@@ -1,33 +1,8 @@
 class KISKA
 {
 	#include "KISKA Parameter Menu\Headers\param menu functions.hpp"
+	#include "KISKA View DIstance Limiter\Headers\View Distance Limiter Functions.hpp"
 
-	class DynamicViewDistance
-	{
-		file = "KISKA Systems\View Distance Limiter\Functions";
-		class addOpenVdlGuiDiary
-		{
-			postInit = 1;
-		};
-		class adjustVdlControls
-		{};
-		class findVdlPartnerControl
-		{};
-		class handleVdlDialogOpen
-		{};
-		class handleVdlGuiCheckbox
-		{};
-		class isVdlSystemRunning
-		{};
-		class openVdlDialog
-		{};
-		class setAllVdlButton
-		{};
-		class setVdlValue
-		{};
-		class viewDistanceLimiter
-		{};
-	};
 	class KISKA_RandomMusic
 	{
 		file = "KISKA Systems\KISKA Music Functions\Random Music";
@@ -94,9 +69,11 @@ class KISKA
 		class battleSound
 		{};
 	};
-	class KISKA_utillities
+	class KISKA_utilities
 	{
 		file = "KISKA Systems\KISKA Utility Functions";
+        class ACEX_setHCTransfer
+        {};
 		class addArsenal
 		{};
 		class addKiskaDiaryEntry
@@ -141,6 +118,8 @@ class KISKA
 		{};
 		class isAdminOrHost
     	{};
+		class isGroupAlive
+    	{};
 		class isMainMenu
 		{};
 		class isPatchLoaded
@@ -159,6 +138,8 @@ class KISKA
 		{};
 		class removeArsenal
 		{};
+		class selectRandom
+		{};
 		class setCrew
 		{};
 		class spawnVehicle
@@ -170,6 +151,13 @@ class KISKA
 		class str
 		{};
 		class supplyDrop
+		{};
+		
+		class getPosRelativeSurface
+		{};
+		class engageHeliTurretsLoop
+		{};
+		class helicopterGunner
 		{};
 
 		class managedRun_execute

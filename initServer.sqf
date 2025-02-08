@@ -21,7 +21,7 @@ if (BLWK_buildingsNearTheCrateAreIndestructable_radius > 0) then {
 	[] spawn BLWK_fnc_theCrateBuildingsLoop;
 };
 
-call BLWK_fnc_spawnLoot;
+[{ call BLWK_fnc_spawnLoot; }] call CBAP_fnc_directCall;
 
 [] spawn BLWK_fnc_createBattleAmbienceSound;
 
@@ -29,6 +29,6 @@ call BLWK_fnc_spawnLoot;
 
 call BLWK_fnc_startWaveCountdown;
 
-[] spawn BLWK_fnc_startWave;
+[{ [false] call BLWK_fnc_waves_start; }] call CBAP_fnc_directCall;
 
 [] spawn BLWK_fnc_arePlayersAliveLoop;

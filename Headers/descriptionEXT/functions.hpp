@@ -3,15 +3,7 @@ class BLWK
 	class AiPathing
 	{
 		file = "functions\AI Pathing";
-		class pathing_isGroupAlive
-		{};
-		class pathing_checkLeaderVelocity
-		{};
 		class pathing_collisionLoop
-		{};
-		class pathing_detailedStuckCheck
-		{};
-		class pathing_mainLoop
 		{};
 	};
 
@@ -252,6 +244,8 @@ class BLWK
 		{};
 		class lootReveal
 		{};
+		class notifyAdminsOrHostOfError
+		{};
 		class optreMedicalToVanilla
 		{};
 		class randomizeWeapons
@@ -295,9 +289,23 @@ class BLWK
 	class Queue
 	{
 		file = "Functions\Queue";
-		class addtoQueue
+		class spawnQueue_add
 		{};
-		class createFromQueue
+		class spawnQueue_get
+		{};
+		class spawnQueue_getAvailableGroup
+		{};
+		class spawnQueue_create
+		{};
+		class spawnQueue_initGroups
+		{};
+		class spawnQueue_popAndCreate
+		{};
+		class spawnQueue_addManEventHandlers
+		{};
+		class spawnQueue_removeManEventHandlers
+		{};
+		class spawnQueue_unitKilled
 		{};
 	};
 
@@ -385,147 +393,169 @@ class BLWK
 	class Stalking
 	{
 		file = "Functions\Stalking";
-		class adjustStalkable
+		class stalking_canPlayerBeStalked
 		{};
-		class canUnitBeStalked
+		class stalking_getPlayer
 		{};
-		class getAPlayerToStalk
+		class stalking_queueRedistribute
 		{};
-		class registerStalkers
+		class stalking_removeStalkedPlayer
 		{};
-		class startStalkingPlayers
+		class stalking_setPlayerStalkable
 		{};
-		class stopStalking
+		class stalking_setStalkedPlayer
 		{};
-	};
-
-	// Wave Type Libraries
-	class CivilianWaveLibrary
-	{
-		file = "Functions\Wave Type Libraries\Civilian Wave Library";
-		class civiliansWave
+		class stalking_start
 		{};
-		class civRandomGear
-		{};
-		class handleCivilianKilledEventPlayer
-		{};
-		class killedCivilianEvent
-		{};
-		class onCivWaveEnd
+		class stalking_stop
 		{};
 	};
 
-	class DroneWaveLibrary
+	class CivilianWaveLib
 	{
-		file = "Functions\Wave Type Libraries\Drone Wave Library";
-		class createDroneWave
+		file = "Functions\Wave Type Libraries\Civilian Wave Lib";
+		class civilianWave_onCivilianKilled
 		{};
-		class droneAttackLoop
+		class civilianWave_onWaveInit
 		{};
-		class handleDroneWave
+		class civilianWave_onWaveEnd
 		{};
-		class onDroneWaveEnd
+		class civilianWave_randomGear
 		{};
 	};
 
-	class HelicoperWaveLibrary
+	class DroneWaveLib
 	{
-		file = "Functions\Wave Type Libraries\Helicopter Wave Library";
-		class handleHelicopterWave
+		file = "Functions\Wave Type Libraries\Drone Wave Lib";
+		class droneWave_attackLoop
+		{};
+		class droneWave_onWaveInit
+		{};
+		class droneWave_onWaveEnd
+		{};
+		class droneWave_onDroneKilled
 		{};
 	};
 
-	class MortarWaveLibrary
+
+	class HelicoperWaveLib
 	{
-		file = "Functions\Wave Type Libraries\Mortar Wave Library";
-		class createMortarWave
+		file = "Functions\Wave Type Libraries\Helicopter Wave Lib";
+		class helicopterWave_onWaveInit
 		{};
-		class handleMortarWave
+	};
+	
+	class MortarWaveLib
+	{
+		file = "Functions\Wave Type Libraries\Mortar Wave Lib";
+		class mortarWave_onWaveInit
+		{};
+	};
+	
+	class OverrunWaveLib
+	{
+		file = "Functions\Wave Type Libraries\Overrun Wave Lib";
+		class overrunWave_onWaveInit
+		{};
+		class overrunWave_onWaveEnd
+		{};
+		class overrunWave_generateManSpawnPosition
+		{};
+		class overrunWave_condition
+		{};
+	};
+	
+	class SuicideWaveLib
+	{
+		file = "Functions\Wave Type Libraries\Suicide Wave Lib";
+		class suicideWave_bomberLoop
+		{};
+		class suicideWave_explodeBomber
+		{};
+		class suicideWave_playBomberAudio
+		{};
+		class suicideWave_onWaveInit
+		{};
+		class suicideWave_makeBombers
 		{};
 	};
 
-	class OverrunWaveLibrary
+	class ParatrooperWaveLib
 	{
-		file = "Functions\Wave Type Libraries\Overrun Wave Library";
-		class handleOverrunWave
-		{};
-		class overrunTheCrateWave
+		file = "Functions\Wave Type Libraries\Paratrooper Wave Lib";
+		class paratrooperWave_onWaveInit
 		{};
 	};
 
-	class ParatrooperWaveLibrary
+	class DefectorWaveLib
 	{
-		file = "Functions\Wave Type Libraries\Paratrooper Wave Library";
-		class handleParatrooperWave
+		file = "Functions\Wave Type Libraries\Defector Wave Lib";
+		class defectorWave_generateMenClassnames
+		{};
+		class defectorWave_onWaveInit
 		{};
 	};
-
-	class StandardWaveLibrary
+	
+	class StandardWaveLib
 	{
-		file = "Functions\Wave Type Libraries\Standard Wave Library";
-		class addStdEnemyManEHs
+		file = "Functions\Wave Type Libraries\Standard Wave Lib";
+		class standardWave_generateManSpawnPosition 
 		{};
-		class createStdWaveInfantry
+		class standardWave_generateMenClassnames
 		{};
-		class handleDefectorWave
+		class standardWave_onGroupCreated
 		{};
-		class handleKillEventPlayer
+		class standardWave_onManCreated
 		{};
-		class handleHitEventPlayer
+		class standardWave_onWaveInit
 		{};
-		class handleStandardWave
-		{};
-		class stdEnemyHitEvent
-		{};
-		class stdEnemyHitEventLocal
-		{};
-		class stdEnemyKilledEvent
-		{};
-		class stdEnemyManCreateCode
-		{};
-		class stdEnemyVehicles
-		{};
-		class stdVehicleKilledEvent
+		class standardWave_vehicles
 		{};
 	};
-
-	class SuicideWaveLibrary
+	
+	class Events
 	{
-		file = "Functions\Wave Type Libraries\Suicide Wave Library";
-		class createSuicideWave
+		file = "Functions\Events";
+		class event_killedEnemy
 		{};
-		class explodeSuicideBomberEvent
+		class event_hitEnemy
 		{};
-		class handleSuicideWave
-		{};
-		class playBomberAudio
-		{};
-		class suicideBomberLoop
+		class event_addVehicleKilledHandler
 		{};
 	};
 
 	class Waves
 	{
 		file = "Functions\Waves";
-		class addToMustKillArray
+		class waves_getFunctionFromConfig
+		{};
+		class waves_onInitialized
+		{};
+		class waves_create
+		{};
+		class waves_end
+		{};
+		class waves_isCleared
+		{};
+		class waves_start
+		{};
+
+		class addToMustKillList
 		{};
 		class cacheEnemyMenSpawnPositions
 		{};
 		class cleanUpTheDead
 		{};
-		class clearMustKillArray
+		class clearMustKillList
 		{};
-		class decideWaveType
+		class getConfigForWave
 		{};
-		class endWave
+		class getMustKillList
 		{};
-		class isWaveCleared
-		{};
+
 		class setSkill
 		{};
 		class spawnLoot
-		{};
-		class startWave
 		{};
 		class startWaveCountdown
 		{};
@@ -539,6 +569,8 @@ class CBAP //ported CBA functions
 		file = "functions\CBAP";
 		class addWaypoint
 		{};
+        class addPerFrameHandler
+        {};
 		class directCall
 		{};
 		class getArea
@@ -557,6 +589,8 @@ class CBAP //ported CBA functions
 		{};
 		class randPosArea
 		{};
+        class removePerFrameHandler
+        {};
 		class shuffle
 		{};
 		class simplifyAngle

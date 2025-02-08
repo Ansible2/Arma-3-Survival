@@ -121,7 +121,7 @@ if ((count _mainTurretWeaponsArray) > 0) then {
 
 
 private _vehicleGroup = _vehicleArray select 2;
-_vehicleGroup setBehaviour "SAFE";
+_vehicleGroup setBehaviourStrong "CARELESS";
 _vehicleGroup setCombatMode "BLUE";
 private _loiterWaypoint = _vehicleGroup addWaypoint [BLWK_playAreaCenter,0];
 _loiterWaypoint setWaypointType "LOITER";
@@ -160,7 +160,10 @@ if ((getObjectViewDistance select 0) < _objectViewDistance) then {
 
 // setup player interaction
 BLWK_enforceArea = false;
-[player,false] call BLWK_fnc_adjustStalkable; // make it so AI don't hunt the player
+[player,false] remoteExecCall [
+    "BLWK_fnc_stalking_setPlayerStalkable",
+    BLWK_theAiHandlerOwnerId
+];
 private _damageAllowedAdjustmentId = [player,false] call BLWK_fnc_allowDamage;
 player moveInTurret [_vehicle,_turretsWithWeapons select 0];
 

@@ -24,8 +24,7 @@
 	"H_Hat_Safari_sand_F",\
 	"H_Hat_Safari_olive_F",\
 	"H_StrawHat",\
-	"H_StrawHat_dark",\
-	""\
+	"H_StrawHat_dark"\
 ]
 
 #define CIV_VESTS []

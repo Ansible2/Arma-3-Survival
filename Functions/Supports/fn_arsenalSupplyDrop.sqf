@@ -34,8 +34,12 @@ params [
 // get directions for vehicle to fly
 private _flyDirection = round (random 360);
 private _flyFromDirection = [_flyDirection + 180] call CBAP_fnc_simplifyAngle;
-private _spawnPosition = _dropPosition getPos [FLY_RADIUS,_flyFromDirection];
-_spawnPosition set [2,DROP_ALT];
+private _spawnPosition = [
+    _dropPosition,
+    FLY_RADIUS,
+    _flyFromDirection,
+	DROP_ALT
+] call KISKA_fnc_getPosRelativeSurface;
 
 private _relativeDirection = _spawnPosition getDir _dropPosition;
 
@@ -50,19 +54,19 @@ private _vehicleArray = [
 ] call KISKA_fnc_spawnVehicle;
 
 
-private _aircraftCrew = _vehicleArray select 1;
+_vehicleArray params ["_aircraft","_aircraftCrew","_aircraftGroup"];
 _aircraftCrew apply {
 	_x setCaptive true;
 };
 
-private _aircraft = _vehicleArray select 0;
+_aircraftGroup setBehaviourStrong "CARELESS";
+
 _aircraft flyInHeight DROP_ALT;
 _airCraft move _dropPosition;
 
 
 // give it a waypoint and delete it after it gets there
 private _flyToPosition = _dropPosition getPos [FLY_RADIUS,_relativeDirection];
-private _aircraftGroup = _vehicleArray select 2;
 
 [_aircraft,_dropPosition,_aircraftGroup,_flyToPosition] spawn {
 	params ["_aircraft","_dropPosition","_aircraftGroup","_flyToPosition"];
@@ -117,6 +121,8 @@ private _aircraftGroup = _vehicleArray select 2;
 		["Arsenal is deleted"] remoteExec ["KISKA_fnc_notification",BLWK_allClientsTargetID];
 		missionNamespace setVariable ["BLWK_arsenalOut",false,true];
 	}];
+
+	[[_arsenalBox]] call KISKA_fnc_addArsenal;
 
 	private _timeBetweenMessages = ARSENAL_LIFETIME / 5;
 	private ["_increment","_timeLeft","_message"];

@@ -23,7 +23,7 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if (!isServer OR {!canSuspend}) exitWith {};
+if ((!isServer) OR (!canSuspend)) exitWith {};
 
 if (BLWK_customPlayLocation) then {
 	// wait for a play area to be selected by a user
@@ -49,7 +49,10 @@ if (BLWK_customPlayLocation) then {
 	};
 
 	// waitUntil the play area is received by the server
-	waitUntil {!isNil "BLWK_playAreaCenter"};
+	waitUntil {
+		sleep 1;
+		!isNil "BLWK_playAreaCenter"
+	};
 	publicVariable "BLWK_playAreaCenter";
 } else {
 	// get all location positions on the map and shuffle them

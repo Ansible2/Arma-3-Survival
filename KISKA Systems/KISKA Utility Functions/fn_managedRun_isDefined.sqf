@@ -6,11 +6,9 @@ Description:
 
 Parameters:
     0: _nameOfCode : <STRING> - The name of the code to update
-    1: _code : <CODE, STRING, ARRAY> - The code to run when ID is called 
-        (see KISKA_fnc_callBack). Use `{}`
 
 Returns:
-    NOTHING
+    <BOOL> - Whether or not the managed run code is defined
     
 Examples:
     (begin example)

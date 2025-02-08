@@ -16,15 +16,15 @@ Parameters:
         already existing group to add the units to
     4: _forcePosition <BOOL> - Force vehicle to spawn at exact coordinates
         Does nothing when _spawnPosition is an object
-    5: _crewInstructions <ARRAY> - An array of classnames of unit types and/or man objects
+    5: _crewInstructions <(STRING | OBJECT)[]> - An array of classnames of unit types and/or man objects
         for the crew. Units are moved into the vehicle using moveInAny in the order provided
     6: _deleteOverflow <BOOL> - Delete any units from _crewInstructions that prexisted if they don't fit in the vehicle
 
 Returns:
-    <ARRAY> -
-        0: <OBJECT> - The created vehicle
-        1: <ARRAY> - The vehicle crew (if soldier type, it will be the same as created vehicle)
-        2: <GROUP> -  The group the crew is a part of
+    <[OBJECT,OBJECT[],GROUP]> -
+    - 0: <OBJECT> - The created vehicle
+    - 1: <OBJECT[]> - The vehicle crew (if soldier type, it will be the same as created vehicle)
+    - 2: <GROUP> -  The group the crew is a part of
 
 Examples:
     (begin example)
@@ -149,7 +149,17 @@ if (_simulationType != "soldier") then {
 
             _movedIn = _unit moveInAny _createdVehicle;
             if (!_movedIn) then {
-                [["Unit ",_unit," could not be moved into the vehicle ",_createdVehicle," as there was no room in the vehicle"],true] call KISKA_fnc_log;
+                [
+                    [
+                        "Unit ",
+                        _unit,
+                        " could not be moved into the vehicle ",
+                        _createdVehicle,
+                        " as there was no room in the vehicle"
+                    ],
+                    true
+                ] call KISKA_fnc_log;
+                
                 if (_deleteOverflow) then {
                     deleteVehicle _unit;
                 };

@@ -51,7 +51,6 @@ params [
     ["_isRandomTrack",false,[true]]
 ];
 
-
 private _trackConfig = [["cfgMusic",_track]] call KISKA_fnc_findConfigAny;
 if (isNull _trackConfig) exitWith {
     [[_track," is not a defined track in any CfgMusic"],true] call KISKA_fnc_log;
@@ -64,8 +63,8 @@ private _exit = false;
 private _fadeDown = false;
 if (_musicPlaying) then {
     if (_isRandomTrack) then {
-        // if the current playing track is also random
-        if ((call KISKA_fnc_randomMusic_getCurrentTrack) isNotEqualTo "") then {
+        private _playingMusicIsRandom = (call KISKA_fnc_randomMusic_getCurrentTrack) isNotEqualTo "";
+        if (_playingMusicIsRandom OR _canInterrupt) then {
             _fadeDown = true;
 
         } else {

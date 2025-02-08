@@ -101,12 +101,15 @@ if (_flyDirection < 0) then {
 };
 
 
-// get spawn position
 private _flyFromDirection = [_flyDirection + 180] call CBAP_fnc_simplifyAngle;
 _dropZone set [2,_flyInHeight];
-private _spawnPosition = _dropZone getPos [_spawnDistance,_flyFromDirection];
-_spawnPosition set [2,_flyInHeight];
 
+private _spawnPosition = [
+    _dropZone,
+    _spawnDistance,
+    _flyFromDirection
+] call KISKA_fnc_getPosRelativeSurface;
+_spawnPosition vectorAdd [0,0,_flyInHeight];
 
 /* ----------------------------------------------------------------------------
     Create vehicle to drop units

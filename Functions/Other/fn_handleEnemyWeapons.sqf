@@ -6,8 +6,6 @@ Description:
 	Also calls BLWK_fnc_randomizeWeapons if random enemy kits
 	 param is active.
 
-	Executed from "BLWK_fnc_stdEnemyManCreateCode"
-
 Parameters:
 	NONE
 

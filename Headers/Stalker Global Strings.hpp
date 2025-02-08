@@ -1,5 +1,0 @@
-#define DO_STALK_VAR "BLWK_doStalkPlayers"
-#define STALKER_COUNT_VAR "BLWK_stalkerAmount"
-#define STALKED_UNIT_VAR "BLWK_stalkedUnit"
-#define IS_UNIT_AVAILABLE_VAR "BLWK_availableForStalking"
-#define UNIT_KILLED_EVENT_VAR "BLWK_unitStalkerKilledEH_ID"
